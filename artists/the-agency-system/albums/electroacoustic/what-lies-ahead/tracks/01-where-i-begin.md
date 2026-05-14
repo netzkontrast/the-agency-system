@@ -129,6 +129,9 @@ no autotune
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro]
+[solo acoustic piano, sparse, single sustained notes, light tape compression, no drums, no vocals, gentle processed pad enters softly at bar 8, 16 bars, mineral texture, overcast mood]
+
 [Verse 1]
 [male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, light tape compression, conversational range, adult ~40s]
 The list on the table — half mine —
@@ -162,6 +165,9 @@ again —
 not where I left myself —
 not anywhere I can name —
 
+[Instrumental Break]
+[piano motif from intro returns, distant string textures swelling softly, processed pad sustained, light tape compression, no drums, no vocals, 8 bars]
+
 [Bridge]
 [androgynous spoken-word, layered, slight delay/echo, behind the beat, lowercase delivery, audiobook-narrator register, no melodic contour, lower in mix]
 (somebody breathed before I did)
@@ -181,6 +187,9 @@ Here is where I begin —
 the same shape but smaller —
 here —
 again —
+
+[Outro Instrumental]
+[piano alone, single low sustained notes, tape hiss audible, processed pad fading slowly, distant strings dissolving, slow fade over 12 bars, no vocals, no drums]
 
 [End]
 ```
@@ -245,6 +254,9 @@ Same Style Box, Settings, and metatag convention as the primary version. Target 
 *Copy this into Suno's "Lyrics" field when generating the extended version:*
 
 ```
+[Intro]
+[solo acoustic piano, sparse, single sustained notes, light tape compression, no drums, no vocals, gentle processed pad enters softly at bar 8, 16 bars, mineral texture, overcast mood]
+
 [Verse 1]
 [male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, light tape compression, conversational range, adult ~40s]
 The list on the table — half mine —
@@ -278,6 +290,9 @@ again —
 not where I left myself —
 not anywhere I can name —
 
+[Instrumental Break]
+[piano motif from intro returns, distant string textures swelling softly, processed pad sustained, light tape compression, no drums, no vocals, 8 bars]
+
 [Bridge]
 [androgynous spoken-word, layered, slight delay/echo, behind the beat, lowercase delivery, audiobook-narrator register, no melodic contour, lower in mix]
 (somebody breathed before I did)
@@ -294,6 +309,9 @@ warm before I sat —
 my hands smell of a soap —
 from a house I do not liv in —
 
+[Brief Interlude]
+[piano alone, soft sustained chord, breath audible, no vocals, no drums, 4 bars]
+
 [Verse 4]
 Strange — I thought I had —
 held the day before it started —
@@ -305,6 +323,9 @@ Here is where I begin —
 the same shape but smaller —
 here —
 again —
+
+[Outro Instrumental]
+[piano alone, single low sustained notes, tape hiss audible, processed pad fading slowly, distant strings dissolving, slow fade over 12 bars, no vocals, no drums]
 
 [End]
 ```
@@ -389,6 +410,13 @@ Again
 - Style Influence ~75 — the dark folk character must hold
 - Expect 2–3 generations to land the parenthetical Witness layering correctly
 - If Suno over-articulates the Container, regenerate with "slightly under-articulated, no climax" added to the style prompt
+
+**Structural tags (added after first Suno run came in at ~2:00):**
+- `[Intro]` (16 bars, piano + pad enters bar 8) — opens the listening space and gives the album its threshold
+- `[Instrumental Break]` (8 bars, between Chorus 2 and Bridge) — the song's only real exhale; lets the parenthetical Witness layer arrive against silence rather than chorus residue
+- `[Outro Instrumental]` (12-bar slow fade) — extends the bookend without adding more words
+- Extended version only: `[Brief Interlude]` (4 bars, piano alone between V3 and V4) — a held breath before time itself slips ahead
+- These tags steer Suno toward the 3:30–4:30 / 4:00–5:00 targets without changing the lyrical content. If a generation still lands short, push Style Influence to 80 and regenerate.
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
 
