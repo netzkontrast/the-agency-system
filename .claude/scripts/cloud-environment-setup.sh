@@ -2,30 +2,47 @@
 # Cloud-container environment setup for the-agency-system.
 #
 # Paste this into Claude Code's "Environment setup" bash field. It runs
-# once when the cloud container is provisioned, before any Claude Code
-# session starts, and leaves the bitwize-music plugin + its
-# bitwize-music-mcp MCP server fully wired up so the 50+
-# /bitwize-music:* slash commands and 89 MCP tools are live on session
-# start.
+# once when the cloud container is provisioned, before Claude Code
+# clones the repo into /home/user/the-agency-system. After this script
+# finishes and the repo is checked out, the bitwize-music plugin's 50+
+# /bitwize-music:* slash commands and the bitwize-music-mcp MCP
+# server's 89 tools are live the moment a session starts.
+#
+# Approach: use the official `claude plugin` CLI to add the marketplace
+# and install the plugin at user scope — that single install registers
+# the plugin's own .mcp.json so the bitwize-music-mcp MCP server is
+# discovered automatically (no manual `claude mcp add-json` needed).
+# This script only has to provision the Python venv the MCP server
+# expects and the inlined ~/.bitwize-music/config.yaml.
+#
+# Repo-side steps (LFS pull, content subtree creation) belong in the
+# repo's SessionStart hook, since the repo does not exist yet when this
+# script runs. The config.yaml is inlined here for the same reason —
+# the template in the repo is unreachable at env-setup time.
+#
+# In this container Claude Code runs as root, so $HOME=/root is the
+# correct target for plugin and venv state. If you ever switch the
+# cloud image to run sessions as a non-root user, run this script as
+# that user (or set HOME explicitly) so state lands in their home.
 #
 # Hard-coded for /home/user/the-agency-system. Idempotent — safe to
-# re-run after updates.
+# re-run after plugin updates.
 
 set -euo pipefail
 
-REPO_DIR="/home/user/the-agency-system"
 STATE_DIR="${HOME}/.bitwize-music"
 VENV_DIR="${STATE_DIR}/venv"
-PLUGINS_DIR="${HOME}/.claude/plugins"
-PLUGIN_DIR="${PLUGINS_DIR}/marketplaces/bitwize-music"
-PLUGIN_REPO="https://github.com/bitwize-music-studio/claude-ai-music-skills.git"
-MCP_SERVER_ENTRY="${PLUGIN_DIR}/servers/bitwize-music-server/run.py"
+CONFIG_FILE="${STATE_DIR}/config.yaml"
+SENTINEL="${STATE_DIR}/.setup-complete"
+MARKETPLACE_SOURCE="bitwize-music-studio/claude-ai-music-skills"
+PLUGIN_REF="bitwize-music@bitwize-music"
 
 log() { printf '[setup] %s\n' "$*"; }
 
 # ---- 1. System packages ----------------------------------------------------
 # librosa/matchering need libsndfile; the document/audio workflows
-# expect ffmpeg; LFS is required for audio/ and documents/.
+# expect ffmpeg; LFS is installed system-wide so the cloud's repo
+# checkout (which happens after this script) fetches LFS objects.
 log "installing system packages"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
@@ -34,97 +51,42 @@ apt-get install -y -qq \
     python3 python3-venv python3-pip \
     ffmpeg libsndfile1 \
     ca-certificates curl jq
-
-# ---- 2. git-lfs ------------------------------------------------------------
 git lfs install --skip-repo
-if [ -d "${REPO_DIR}/.git" ]; then
-    log "pulling LFS objects in ${REPO_DIR}"
-    git -C "${REPO_DIR}" lfs install --local
-    git -C "${REPO_DIR}" lfs pull || true
-fi
 
-# ---- 3. Clone / refresh the plugin marketplace -----------------------------
-mkdir -p "${PLUGINS_DIR}/marketplaces"
-if [ ! -d "${PLUGIN_DIR}/.git" ]; then
-    log "cloning bitwize-music plugin"
-    git clone --depth 1 "${PLUGIN_REPO}" "${PLUGIN_DIR}"
-else
-    log "refreshing bitwize-music plugin"
-    git -C "${PLUGIN_DIR}" pull --ff-only || true
-fi
+# ---- 2. Marketplace + plugin install via the official CLI -----------------
+# `claude plugin marketplace add` clones the marketplace into
+# ~/.claude/plugins/marketplaces/. `claude plugin install` copies the
+# plugin into the versioned cache, marks it enabled in user-scope
+# state, AND reads the plugin's .mcp.json so bitwize-music-mcp is
+# auto-discovered by `claude mcp list`.
+log "registering marketplace + installing plugin"
+claude plugin marketplace add "${MARKETPLACE_SOURCE}"
+claude plugin install "${PLUGIN_REF}" -s user
 
-# ---- 4. Register the plugin as known + installed + enabled at user scope --
-# This makes Claude Code load the plugin's skills (the /bitwize-music:*
-# slash commands) on session start.
-log "registering plugin in user-level Claude Code state"
-PLUGIN_DIR="${PLUGIN_DIR}" python3 <<'PY'
-import json, os, datetime
+# Resolve the marketplace path the CLI cloned to so we can pip-install
+# from its requirements.txt.
+PLUGIN_DIR="$(python3 -c "
+import json, os, sys
+p = os.path.expanduser('~/.claude/plugins/known_marketplaces.json')
+try:
+    print(json.load(open(p))['bitwize-music']['installLocation'])
+except Exception as e:
+    sys.exit(f'cannot resolve plugin install location: {e}')
+")"
+REQUIREMENTS="${PLUGIN_DIR}/requirements.txt"
 
-home       = os.path.expanduser("~")
-plugin_dir = os.environ["PLUGIN_DIR"]
-ts         = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000Z")
-
-def load(path, default):
-    try:
-        return json.load(open(path)) if os.path.exists(path) else default
-    except Exception:
-        return default
-
-def dump(path, data):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(data, open(path, "w"), indent=2)
-
-# known_marketplaces.json
-km_path = f"{home}/.claude/plugins/known_marketplaces.json"
-km = load(km_path, {})
-if not isinstance(km, dict):
-    km = {}
-km["bitwize-music"] = {
-    "source": {"source": "github",
-               "repo":   "bitwize-music-studio/claude-ai-music-skills"},
-    "installLocation": plugin_dir,
-    "lastUpdated":     ts,
-}
-dump(km_path, km)
-
-# installed_plugins.json
-ip_path = f"{home}/.claude/plugins/installed_plugins.json"
-ip = load(ip_path, {"version": 2, "plugins": {}})
-if not isinstance(ip, dict):
-    ip = {"version": 2, "plugins": {}}
-ip.setdefault("version", 2)
-plugins = ip.setdefault("plugins", {})
-if not isinstance(plugins, dict):
-    plugins = ip["plugins"] = {}
-plugins["bitwize-music@bitwize-music"] = {
-    "marketplace":     "bitwize-music",
-    "name":            "bitwize-music",
-    "installLocation": plugin_dir,
-}
-dump(ip_path, ip)
-
-# User-level settings.json — extra belt for the cloud session loader.
-st_path = f"{home}/.claude/settings.json"
-st = load(st_path, {})
-if not isinstance(st, dict):
-    st = {}
-st.setdefault("extraKnownMarketplaces", {})["bitwize-music"] = {
-    "source": {"source": "github",
-               "repo":   "bitwize-music-studio/claude-ai-music-skills"},
-}
-st.setdefault("enabledPlugins", {})["bitwize-music@bitwize-music"] = True
-dump(st_path, st)
-PY
-
-# ---- 5. Provision the Python venv + install plugin dependencies -----------
+# ---- 3. Python venv + plugin dependencies ---------------------------------
+# The plugin's .mcp.json launches the MCP server with
+# ${HOME}/.bitwize-music/venv/bin/python3, so the venv must exist at
+# exactly that path with the plugin's dependencies installed.
 mkdir -p "${STATE_DIR}"
-if [ ! -x "${VENV_DIR}/bin/python3" ]; then
+[ -x "${VENV_DIR}/bin/python3" ] || {
     log "creating venv at ${VENV_DIR}"
     python3 -m venv "${VENV_DIR}"
-fi
+}
 log "installing Python dependencies"
 "${VENV_DIR}/bin/pip" install --quiet --upgrade pip wheel setuptools
-"${VENV_DIR}/bin/pip" install --quiet -r "${PLUGIN_DIR}/requirements.txt"
+"${VENV_DIR}/bin/pip" install --quiet -r "${REQUIREMENTS}"
 
 # Playwright browser used by document-hunter. Non-fatal if it fails
 # (e.g. missing system libs) — the rest of the plugin still works.
@@ -132,69 +94,58 @@ log "installing playwright chromium (best-effort)"
 "${VENV_DIR}/bin/playwright" install chromium \
     || log "WARN: playwright chromium install failed (non-fatal)"
 
-# ---- 6. Render ~/.bitwize-music/config.yaml -------------------------------
-# Substitute the ${REPO} placeholder in the template with this repo's
-# absolute path. Literal string replace (not sed) so path characters
-# can't corrupt the rendered config.
-CONFIG_TEMPLATE="${REPO_DIR}/.claude/bitwize-music.config.template.yaml"
-CONFIG_FILE="${STATE_DIR}/config.yaml"
-if [ -f "${CONFIG_TEMPLATE}" ]; then
-    log "rendering ${CONFIG_FILE}"
-    REPO="${REPO_DIR}" python3 -c '
-import os, sys
-sys.stdout.write(open(sys.argv[1]).read().replace("${REPO}", os.environ["REPO"]))
-' "${CONFIG_TEMPLATE}" > "${CONFIG_FILE}"
+# ---- 4. Inlined ~/.bitwize-music/config.yaml ------------------------------
+# Preserve any existing file so a re-run doesn't blow away edits or
+# `/bitwize-music:configure` output. Write through a temp file so a
+# transient failure can't truncate a working config.
+if [ ! -f "${CONFIG_FILE}" ]; then
+    log "writing ${CONFIG_FILE}"
+    tmp="$(mktemp "${CONFIG_FILE}.XXXXXX")"
+    cat >"${tmp}" <<'YAML'
+# bitwize-music configuration for the-agency-system.
+# Inlined by cloud-environment-setup.sh. To change settings, run
+# /bitwize-music:configure inside Claude Code, or edit this file
+# directly. Re-running the env-setup script leaves this file untouched.
+
+artist:
+  name: the-agency-system
+
+paths:
+  # content_root is the repo root, so the plugin writes albums to
+  # /home/user/the-agency-system/artists/<artist>/albums/<genre>/<slug>/.
+  # Audio, documents, and overrides live in named subdirectories.
+  content_root: /home/user/the-agency-system
+  audio_root: /home/user/the-agency-system/audio
+  documents_root: /home/user/the-agency-system/documents
+  overrides: /home/user/the-agency-system/overrides
+  ideas_file: /home/user/the-agency-system/IDEAS.md
+
+generation:
+  service: suno
+  require_suno_link_for_final: true
+  max_lyric_words: 800
+
+database:
+  enabled: false
+YAML
+    mv -f "${tmp}" "${CONFIG_FILE}"
+else
+    log "${CONFIG_FILE} already exists — leaving in place"
 fi
 
-# ---- 7. Record the SessionStart sentinel ----------------------------------
-# The repo's SessionStart hook fast-paths when this file holds the
-# current requirements.txt sha256, so pip install never re-runs.
+# ---- 5. SessionStart sentinel ---------------------------------------------
+# The repo's SessionStart hook fast-paths (skips pip install) when this
+# file holds the current requirements.txt sha256.
 python3 -c "
 import hashlib
-print(hashlib.sha256(open('${PLUGIN_DIR}/requirements.txt', 'rb').read()).hexdigest())
-" > "${STATE_DIR}/.setup-complete"
-
-# ---- 8. Ensure repo content subtrees exist --------------------------------
-mkdir -p "${REPO_DIR}/audio" "${REPO_DIR}/documents" "${REPO_DIR}/overrides"
-
-# ---- 9. Register bitwize-music-mcp at user scope --------------------------
-# Use the claude CLI when available (canonical), fall back to writing
-# ~/.claude.json directly.
-log "registering bitwize-music-mcp at user scope"
-MCP_JSON=$(python3 -c "
-import json
-print(json.dumps({
-    'type':    'stdio',
-    'command': '${VENV_DIR}/bin/python3',
-    'args':    ['${MCP_SERVER_ENTRY}'],
-}))
-")
-
-CLAUDE_BIN="$(command -v claude || true)"
-if [ -z "${CLAUDE_BIN}" ] && [ -x /opt/node22/bin/claude ]; then
-    CLAUDE_BIN=/opt/node22/bin/claude
-fi
-
-if [ -n "${CLAUDE_BIN}" ]; then
-    "${CLAUDE_BIN}" mcp remove   bitwize-music-mcp -s user 2>/dev/null || true
-    "${CLAUDE_BIN}" mcp add-json bitwize-music-mcp -s user "${MCP_JSON}"
-else
-    log "claude CLI not found; writing ~/.claude.json directly"
-    MCP_JSON="${MCP_JSON}" python3 <<'PY'
-import json, os
-p = os.path.expanduser("~/.claude.json")
-data = json.load(open(p)) if os.path.exists(p) else {}
-if not isinstance(data, dict):
-    data = {}
-data.setdefault("mcpServers", {})["bitwize-music-mcp"] = json.loads(
-    os.environ["MCP_JSON"]
-)
-json.dump(data, open(p, "w"), indent=2)
-PY
-fi
+print(hashlib.sha256(open('${REQUIREMENTS}', 'rb').read()).hexdigest())
+" > "${SENTINEL}"
 
 log "DONE"
-log "  plugin: ${PLUGIN_DIR}"
-log "  venv:   ${VENV_DIR}"
-log "  config: ${CONFIG_FILE}"
-log "  mcp:    ${VENV_DIR}/bin/python3 ${MCP_SERVER_ENTRY}"
+log "  marketplace: ${PLUGIN_DIR}"
+log "  venv:        ${VENV_DIR}"
+log "  config:      ${CONFIG_FILE}"
+log ""
+log "Verify with:"
+log "  claude plugin list"
+log "  claude mcp list"
