@@ -118,7 +118,14 @@ bootstrap_config() {
         # Re-render only when the recorded content_root doesn't point at
         # this repo, so a customised config keeps working on the same
         # machine but stops drifting after a clone/checkout to a new path.
-        if grep -qE "^[[:space:]]*content_root:[[:space:]]*${REPO}([[:space:]]|$)" "${CONFIG_FILE}"; then
+        # Pass the repo path through Python so regex metacharacters in
+        # the path (.,+,(,[,&,\, …) can't make the check mis-match.
+        if REPO="${REPO}" python3 -c '
+import os, re, sys
+repo = os.environ["REPO"]
+pattern = re.compile(r"^[ \t]*content_root:[ \t]*" + re.escape(repo) + r"(\s|$)", re.MULTILINE)
+sys.exit(0 if pattern.search(open(sys.argv[1]).read()) else 1)
+' "${CONFIG_FILE}"; then
             return 0
         fi
     fi
@@ -126,9 +133,14 @@ bootstrap_config() {
     mkdir -p "${STATE_DIR}"
     local tmp
     tmp="$(mktemp "${CONFIG_FILE}.XXXXXX")"
-    # Substitute ${REPO} with the absolute repo path. sed delimiter '|'
-    # avoids escaping slashes in paths.
-    sed "s|\${REPO}|${REPO}|g" "${CONFIG_TEMPLATE}" > "${tmp}"
+    # Render the template by literal string replacement (str.replace, not
+    # regex) so characters in the repo path that are special to sed
+    # replacements — backslash, ampersand, or the delimiter — can't
+    # corrupt the rendered config.
+    REPO="${REPO}" python3 -c '
+import os, sys
+sys.stdout.write(open(sys.argv[1]).read().replace("${REPO}", os.environ["REPO"]))
+' "${CONFIG_TEMPLATE}" > "${tmp}"
     mv -f "${tmp}" "${CONFIG_FILE}"
 }
 bootstrap_config
