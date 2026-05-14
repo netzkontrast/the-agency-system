@@ -102,18 +102,26 @@ print(hashlib.sha256(open(sys.argv[1], 'rb').read()).hexdigest())
 CURRENT_HASH="$(compute_hash "${REQUIREMENTS}" 2>/dev/null)"
 
 # Render ~/.bitwize-music/config.yaml from the repo's template on first
-# run, so album content writes into the repo (under ${REPO}/music/)
-# rather than $HOME. Only renders when no config exists yet — existing
-# configs (including those produced by /bitwize-music:configure) are
-# left alone. Also creates the music/ subtree if missing.
+# run, so album content writes into this repo (content_root = ${REPO})
+# rather than $HOME. Existing configs (including ones produced by
+# /bitwize-music:configure) are left alone unless the recorded
+# content_root no longer matches the current repo — in that case the
+# template re-renders so the config tracks the repo's actual location.
+# Also creates the audio/ documents/ overrides/ subtrees if missing.
 bootstrap_config() {
     [[ -z "${REPO}" ]] && return 0
     [[ -z "${CONFIG_TEMPLATE}" || ! -f "${CONFIG_TEMPLATE}" ]] && return 0
 
-    mkdir -p "${REPO}/music/content" "${REPO}/music/audio" \
-             "${REPO}/music/documents" "${REPO}/music/overrides"
+    mkdir -p "${REPO}/audio" "${REPO}/documents" "${REPO}/overrides"
 
-    [[ -f "${CONFIG_FILE}" ]] && return 0
+    if [[ -f "${CONFIG_FILE}" ]]; then
+        # Re-render only when the recorded content_root doesn't point at
+        # this repo, so a customised config keeps working on the same
+        # machine but stops drifting after a clone/checkout to a new path.
+        if grep -qE "^[[:space:]]*content_root:[[:space:]]*${REPO}([[:space:]]|$)" "${CONFIG_FILE}"; then
+            return 0
+        fi
+    fi
 
     mkdir -p "${STATE_DIR}"
     local tmp

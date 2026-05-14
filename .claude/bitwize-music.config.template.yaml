@@ -15,12 +15,16 @@ artist:
   name: the-agency-system
 
 paths:
-  # All album content (lyrics, READMEs, track files, ideas) lives in the repo.
-  content_root: ${REPO}/music/content
-  audio_root: ${REPO}/music/audio
-  documents_root: ${REPO}/music/documents
-  overrides: ${REPO}/music/overrides
-  ideas_file: ${REPO}/music/IDEAS.md
+  # content_root is the repo root itself, so the plugin writes albums to
+  # ${REPO}/artists/<artist>/albums/<genre>/<slug>/ at the top level.
+  # Audio, documents, and overrides live in named subdirectories so the
+  # binary outputs and preference files don't compete for top-level
+  # filenames with album metadata.
+  content_root: ${REPO}
+  audio_root: ${REPO}/audio
+  documents_root: ${REPO}/documents
+  overrides: ${REPO}/overrides
+  ideas_file: ${REPO}/IDEAS.md
 
 generation:
   service: suno
