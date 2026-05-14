@@ -32,28 +32,31 @@ ANP = Apparently Normal Part. EP = Emotional Part. ISH = Internal Self Helper. M
 
 Style-prompt language for steering Suno toward distinct timbres per alter. Without explicit voice metatags, Suno trends toward similar vocals across tracks, which kills the per-alter DNA. **Always include these tokens in the track's style prompt.**
 
-Gender assignments below are **craft choices for vocal differentiation**, not identity claims about any real person. They are starting positions — adjustable per track if a different voice serves the lyric better.
+**Design goal:** maximum spread across vocal range, age, gender, texture, and processing — so each alter sounds *unmistakably distinct* even before lyrics carry the difference. No two alters share more than one vocal axis.
+
+Gender assignments are **craft choices for vocal differentiation**, not identity claims about any real person.
 
 | # | Archetype | Suno Voice Metatag |
 |---|-----------|---------------------|
-| 1 | **Container** | male vocals, baritone, weary, slightly under-articulated, present-tense delivery, dry |
-| 2 | **Rationalist** | male vocals, controlled tenor-baritone, dry, cold articulation, no vibrato, micro-cracks at line ends |
-| 3 | **Protector** | male vocals, tight low baritone, clipped delivery, forward in the chest, restrained intensity |
-| 4 | **Caregiver** | female vocals, warm mezzo-soprano, breathy, vowel-forward, intimate close-mic |
-| 5 | **Integrator (ISH)** | female vocals, mezzo, spacious, long vowels, reverb-friendly, ageless quality |
-| 6 | **Fighter** | female vocals, alto, growl-capable, raw, breathless intensity, clipped lines |
-| 7 | **Child-Freeze** | young vocals, androgynous, head-voice, whispered consonants, audible breath, fragile, small |
-| 8 | **Ambivalent** | female vocals, alto-mezzo, microtonal-capable, oscillating dynamics, ambiguous tonic |
-| 9 | **Sexualized-Override** | female vocals, low alto, controlled, deliberate, restrained vibrato, deceptive seduction-to-warning |
-| 10 | **Collapsed One** | male vocals, deep bass-baritone, sub-tempo, near-spoken, gravelly, line-final pauses |
-| 11 | **Witness-of-Witnesses** | androgynous spoken-word, dry, slightly behind the beat, layered, lowercase delivery, parenthetical asides |
+| 1 | **Container** | male vocals, mid-baritone, weary, slightly under-articulated, present-tense delivery, dry close-mic, no reverb, light tape compression, adult ~40s, conversational range |
+| 2 | **Rationalist** | male vocals, **clear tenor**, sibilant precision, no vibrato, cold articulation, thin processed reverb tail, controlled mid-range, adult ~30s, academic register |
+| 3 | **Protector** | male vocals, **chest-weighted low baritone**, clipped three-word lines, forward-mic with slight compression, dry room, adult ~35-45, restrained intensity, no vibrato |
+| 4 | **Caregiver** | female vocals, **warm soprano**, breathy at the edges, vowel-forward legato, intimate close-mic, soft room reverb, adult ~30s, lullaby-adjacent phrasing |
+| 5 | **Integrator (ISH)** | female vocals, **mezzo-alto**, ageless quality (could read older), spacious long vowels, controlled vibrato, plate reverb suggesting architectural space, slow legato cadence |
+| 6 | **Fighter** | female vocals, **belt-alto with growl**, raw breathless intensity, clipped lines, dry mid-distance mic with slight distortion on lows, adult ~30s, no head voice, no breath inside imperatives |
+| 7 | **Child-Freeze** | **young child vocals, gender-androgynous**, head-voice only, whispered consonants, audible breath between phrases, fragile, very close-mic with permitted tape hiss / lo-fi texture, ~10-12yr range |
+| 8 | **Ambivalent** | female vocals, **alto with microtonal pitch-bending**, sliding vibrato, oscillating dynamics within phrases, breath audible mid-line, mixed dry/wet processing, ambiguous tonic, adult ~late 20s |
+| 9 | **Sexualized-Override** | female vocals, **low contralto** (deepest female register), controlled, deliberate, restrained vibrato held as a weapon, mid-distance polished mic, theatrical / cabaret styling, adult ~30s |
+| 10 | **Collapsed One** | male vocals, **very deep bass**, sub-tempo near-spoken delivery, gravelly, breath audible between fragments, subkick-close dry mic, adult ~40-50, line-final pauses longer than the lines |
+| 11 | **Witness-of-Witnesses** | **androgynous spoken-word**, monotone or half-sung, dry, layered with slight delay/echo, slightly behind the beat, lowercase delivery, audiobook-narrator register, no melodic contour |
 
 **Notes on the spread:**
-- **6 male / 4 female / 1 young-androgynous / 1 androgynous spoken** — even-ish gender balance with two non-binary slots (Child-Freeze, Witness). Plural systems are usually gender-diverse; this honors that without overstating any one voice.
-- **The Witness as androgynous spoken-word** suits his function (observation, not assertion) and lets him slip into the margins of other tracks without competing with the lead voice in gender or register.
-- **The Child-Freeze as young/androgynous** keeps the inner-child vocality flexible and avoids the cuteness trap.
-- **The Fighter as female alto** subverts the male-rage default and aligns with the document's framing of her as protective fury for the Child-Freeze.
-- **All these are adjustable.** If a specific alter feels strongly male or female or non-binary to you, we re-tag.
+- **Vocal-range spread:** very-deep-bass / bass-baritone / mid-baritone / low-baritone / tenor / soprano / mezzo-alto / alto (3 different alto positions: belt+growl, microtonal, contralto) / child / spoken. **No two alters share a register and texture.**
+- **Gender spread:** 4 male / 5 female / 1 child-androgynous / 1 spoken-androgynous. The Fighter is female (subverts male-rage default). The Child-Freeze is genuinely androgynous (avoids the cuteness trap). The Witness is non-musically gendered (he's not singing — he's narrating).
+- **Age spread:** ~10-12 (Child-Freeze) / ~late-20s (Ambivalent) / ~30s (Rationalist, Caregiver, Fighter, Sexualized-Override) / ~35-45 (Protector) / ~40s (Container) / ~40-50 (Collapsed One) / ageless (Integrator) / unfixed (Witness).
+- **Processing spread:** dry close-mic / cold thin reverb / slight compression / soft room reverb / plate reverb / dry with distortion / lo-fi with tape hiss / mixed dry-wet / mid-distance polished / subkick-close / delay-echo layered. **Each alter has a distinct sonic fingerprint at the production level, not just the vocal level.**
+- **Reference-singer hints** (use sparingly in actual Suno prompts; mostly to ground your imagination): Scott Walker-younger for Container, Matt Berninger's academic cousin for Rationalist, Mark Lanegan for Protector, intimate ANOHNI for Caregiver, mature Björk for Integrator, PJ Harvey's *Rid of Me* for Fighter, low-fi child-folk for Child-Freeze, Mitski / Joanna Newsom slide-phrasing for Ambivalent, Marlene Dietrich modernized for Sexualized-Override, late-Leonard-Cohen for Collapsed One, audiobook-narrator for Witness.
+- **All adjustable.** If a specific alter feels strongly different, re-tag.
 
 ---
 
