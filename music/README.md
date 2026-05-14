@@ -21,6 +21,16 @@ content/artists/<artist>/albums/<genre>/<album-slug>/
 content/artists/<artist>/albums/<genre>/<album-slug>/tracks/
 ```
 
+## Overrides
+
+`music/overrides/` holds the user preferences the plugin reads through
+its `load_override` MCP tool. Every recognised override file is present
+as a stub; four of them are pre-filled from
+[netzkontrast/agency:skills/suno-lyric-writer](https://github.com/netzkontrast/agency/tree/main/skills/suno-lyric-writer)
+(pronunciation, lyric writing, suno preferences, research). Imported
+files carry a provenance comment at the top so it's clear when they
+diverge from upstream.
+
 ## Heavy binaries are versioned via Git LFS
 
 `music/audio/` (`.wav`, `.flac`, `.mp3`, `.aiff`, `.aif`, `.ogg`, `.m4a`) and
