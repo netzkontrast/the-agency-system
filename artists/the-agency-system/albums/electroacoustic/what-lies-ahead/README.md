@@ -361,7 +361,7 @@ Working titles — final lyric titles emerge during the lyric-writing phase. Sta
 | 01 | [Where I Begin](tracks/01-where-i-begin.md) | Container (solo) | Voiced-thesis opener. Wound as ground from downbeat 1. | In Progress |
 | 02 | [The Closed Loop](tracks/02-the-closed-loop.md) | Container + Integrator (duet) | The closed loop — collusion that believes itself to be care. | Not Started |
 | 03 | [Cold Engine](tracks/03-cold-engine.md) | Rationalist (solo) | Fury early — cold logic almost succeeding before it gives. | Not Started |
-| 04 | [Method Conflict](tracks/04-method-conflict.md) | Protector + Fighter (duet) | Method conflict, kinetic. Outer-critic flip enacted structurally. | Not Started |
+| 04 | [Method Conflict](tracks/04-method-conflict.md) | Protector + Fighter (duet) | Method conflict, kinetic. Outer-critic flip enacted structurally. | Generated |
 | 05 | [Nothing Left to Protect](tracks/05-nothing-left-to-protect.md) | Fighter (solo) | Rage alone — what she is when no one needs protecting. | Not Started |
 | 06 | [Throat-Tight Yes](tracks/06-throat-tight-yes.md) | Caregiver (solo) | Warmth interior, attachment betrayal somatically. Fawn moment lives here. | Not Started |
 | 07 | [Where the Ground Was](tracks/07-where-the-ground-was.md) | Collapsed One (solo) | Structural axis — longest, most stripped. The album's gravity. | Not Started |

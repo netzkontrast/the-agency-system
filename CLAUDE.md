@@ -330,3 +330,4 @@ Invoke as slash commands: `/bitwize-music:<name>`.
 - `artists/<artist>/albums/<genre>/<slug>/` — album content (READMEs, research, tracks, art direction)
 - `overrides/` — cross-project preferences loaded automatically at session start
 - `audio/`, `documents/` — Git LFS (run `git lfs install` once per machine)
+- **Default branch: `Master`** (capitalised). All PRs target `Master`, not `main`. An `origin/main` branch exists but is not the merge target — passing `base: main` to `mcp__github__create_pull_request` returns `422 Validation Failed`.
