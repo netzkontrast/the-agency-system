@@ -1,8 +1,8 @@
 # the-agency-system — Claude Code instructions
 
-Working tree for Michael Schimmer's darkwave/industrial album triptych
-and for the [bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
-plugin that produces it.
+Working tree for **the-agency-system** music projects and for the
+[bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
+plugin that produces them.
 
 ## Session start — required check
 
