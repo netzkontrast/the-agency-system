@@ -237,6 +237,131 @@ Again
 
 <!-- END VOCAL ONLY -->
 
+## Alternate Version — Extended
+
+Same Style Box, Settings, and metatag convention as the primary version. Target duration **4:00–5:00** (slightly longer than primary). Adds a sixth-line to the Bridge (one extra Witness line, one extra Container line) and a fourth verse extending the imagery arc into **time itself** (objects → actions → body → time). Voice-DNA verbal signatures "Strange, I thought I had —" and "I must have —" surface here in literal form.
+
+### Lyrics Box (Extended)
+*Copy this into Suno's "Lyrics" field when generating the extended version:*
+
+```
+[Verse 1]
+[male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, light tape compression, conversational range, adult ~40s]
+The list on the table — half mine —
+half in a hand I do not recognize —
+the pen still warm, in the wrong place —
+the morning is the same shape but smaller —
+
+[Pre-Chorus]
+And I —
+I keep almost —
+
+[Chorus]
+Here is where I begin —
+again —
+not where I left myself —
+not anywhere I can name —
+
+[Verse 2]
+The door I left open —
+I do not remember opening —
+the kettle warm in the hand —
+which I do not remember filling —
+
+[Pre-Chorus]
+And I —
+I keep almost —
+
+[Chorus]
+Here is where I begin —
+again —
+not where I left myself —
+not anywhere I can name —
+
+[Bridge]
+[androgynous spoken-word, layered, slight delay/echo, behind the beat, lowercase delivery, audiobook-narrator register, no melodic contour, lower in mix]
+(somebody breathed before I did)
+(somebody set the cup down hours ago)
+(somebody is already inside the day)
+[male mid-baritone returns, dry close-mic, weary]
+the body knows the morning before I do —
+the body knows what I have not been told —
+the body knows —
+
+[Verse 3]
+The chair I am sitting in —
+warm before I sat —
+my hands smell of a soap —
+from a house I do not liv in —
+
+[Verse 4]
+Strange — I thought I had —
+held the day before it started —
+the hours arrive ahead of me —
+I must have — let them go —
+
+[Outro]
+Here is where I begin —
+the same shape but smaller —
+here —
+again —
+
+[End]
+```
+
+### Streaming Lyrics (Extended)
+*For distributor submission of the extended version. Standard English, no em-dashes, no parentheticals.*
+
+```
+The list on the table half mine
+Half in a hand I do not recognize
+The pen still warm in the wrong place
+The morning is the same shape but smaller
+
+And I
+I keep almost
+
+Here is where I begin
+Again
+Not where I left myself
+Not anywhere I can name
+
+The door I left open
+I do not remember opening
+The kettle warm in the hand
+Which I do not remember filling
+
+And I
+I keep almost
+
+Here is where I begin
+Again
+Not where I left myself
+Not anywhere I can name
+
+Somebody breathed before I did
+Somebody set the cup down hours ago
+Somebody is already inside the day
+The body knows the morning before I do
+The body knows what I have not been told
+The body knows
+
+The chair I am sitting in
+Warm before I sat
+My hands smell of a soap
+From a house I do not live in
+
+Strange I thought I had
+Held the day before it started
+The hours arrive ahead of me
+I must have let them go
+
+Here is where I begin
+The same shape but smaller
+Here
+Again
+```
+
 ## Production Notes
 
 **Inline vocal metatag convention (album-wide):**
