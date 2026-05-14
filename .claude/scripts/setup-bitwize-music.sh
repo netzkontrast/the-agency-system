@@ -112,6 +112,14 @@ bootstrap_config() {
     [[ -z "${REPO}" ]] && return 0
     [[ -z "${CONFIG_TEMPLATE}" || ! -f "${CONFIG_TEMPLATE}" ]] && return 0
 
+    # python3 drives both the drift probe and the renderer. Without it
+    # we can't safely do either — skip the whole bootstrap rather than
+    # let a redirection write an empty file over a working config.
+    if ! command -v python3 >/dev/null 2>&1; then
+        echo "[bitwize-music] WARN: python3 not on PATH; skipping config render" >&2
+        return 0
+    fi
+
     mkdir -p "${REPO}/audio" "${REPO}/documents" "${REPO}/overrides"
 
     if [[ -f "${CONFIG_FILE}" ]]; then
@@ -136,12 +144,19 @@ sys.exit(0 if pattern.search(open(sys.argv[1]).read()) else 1)
     # Render the template by literal string replacement (str.replace, not
     # regex) so characters in the repo path that are special to sed
     # replacements — backslash, ampersand, or the delimiter — can't
-    # corrupt the rendered config.
-    REPO="${REPO}" python3 -c '
+    # corrupt the rendered config. Only promote the temp file when the
+    # renderer actually succeeded, so a failed python3 call can never
+    # leave an empty config in place.
+    if REPO="${REPO}" python3 -c '
 import os, sys
 sys.stdout.write(open(sys.argv[1]).read().replace("${REPO}", os.environ["REPO"]))
-' "${CONFIG_TEMPLATE}" > "${tmp}"
-    mv -f "${tmp}" "${CONFIG_FILE}"
+' "${CONFIG_TEMPLATE}" > "${tmp}"; then
+        mv -f "${tmp}" "${CONFIG_FILE}"
+    else
+        rm -f "${tmp}"
+        echo "[bitwize-music] WARN: failed to render config template; existing ${CONFIG_FILE} (if any) left untouched" >&2
+        return 0
+    fi
 }
 bootstrap_config
 
@@ -166,13 +181,30 @@ mkdir -p "${STATE_DIR}"
 # self-healing on the next session.
 LOCK_KIND=""
 if command -v flock >/dev/null 2>&1; then
-    exec 9>"${LOCK_FILE}"
-    if flock -n 9; then
-        LOCK_KIND="flock"
-    else
-        echo "[bitwize-music] setup already running; see ${LOG_FILE}"
-        exit 0
+    # Open the lock file first so we can distinguish "couldn't open the
+    # lock file" (I/O / permission error) from "another worker holds
+    # the lock" (real contention). With set -u alone a failed redirect
+    # in `exec` doesn't abort the script, so guard it explicitly.
+    if ! exec 9>"${LOCK_FILE}" 2>/dev/null; then
+        echo "[bitwize-music] ERROR: cannot open lock file ${LOCK_FILE}" >&2
+        exit 1
     fi
+    flock -n 9
+    flock_rc=$?
+    case "${flock_rc}" in
+        0)
+            LOCK_KIND="flock"
+            ;;
+        1)
+            # Standard flock contention: another worker holds the lock.
+            echo "[bitwize-music] setup already running; see ${LOG_FILE}"
+            exit 0
+            ;;
+        *)
+            echo "[bitwize-music] ERROR: flock failed (rc=${flock_rc}); see ${LOG_FILE} for details" >&2
+            exit 1
+            ;;
+    esac
 else
     # Note: cleanup of the lock directory lives only in the background
     # worker below — never in the parent, since the parent exits as soon
