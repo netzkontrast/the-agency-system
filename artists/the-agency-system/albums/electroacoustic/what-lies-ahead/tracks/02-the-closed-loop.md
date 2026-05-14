@@ -335,17 +335,19 @@ The door is held
 
 **Review before generating on Suno:**
 
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] **Proper nouns scanned**: none in lyrics; verified via manual scan 2026-05-14
+- [x] **Foreign names**: none in lyrics
+- [x] **Homographs checked**: `check_homographs` MCP returned 0 matches (2026-05-14)
+- [x] **Acronyms**: none in lyrics
+- [x] **Numbers**: none in lyrics (BPM and adult-age refs are metatag-only, not sung)
+- [x] **Tech terms**: none in lyrics
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
-| — | — | — | — |
+| — | — | — | N/A — no proper nouns |
+
+**Pronunciation-specialist verdict (2026-05-14)**: CLEAN. No phonetic substitutions required. `check_pronunciation_enforcement` returns `all_applied: true` (empty table by design). `scan_artist_names` on Style Box returns 0 matches.
 <!-- /SERVICE: suno -->
 
 <!-- END VOCAL ONLY -->
