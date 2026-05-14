@@ -81,6 +81,104 @@ skill should be driving this?"** That question almost always has an
 answer. Document the skill choice in your reasoning before invoking
 the MCP tool — that record is the evidence the right path was taken.
 
+## MANDATORY: Follow the canonical workflow chains
+
+**Albums and tracks advance through fixed phase chains. Each downstream
+skill's `prerequisites:` frontmatter declares which skills must have
+run first. Skipping a link breaks the next skill's invariants. Treat
+the chains below as binding, not advisory.**
+
+The single source of truth for routing is the resume / next-step
+decision trees in the plugin (`skills/resume/SKILL.md`,
+`skills/next-step/SKILL.md`). Don't paraphrase them in conversation —
+invoke them.
+
+### Pre-generation chain (every vocal track, every time)
+
+```
+lyric-writer                  (drafts lyrics; auto-invokes suno-engineer at end)
+  ↓
+pronunciation-specialist      (resolves homographs, proper nouns, tech terms)
+  ↓
+lyric-reviewer                (14-point QC; auto-applies phonetic fixes)
+  ↓
+voice-checker                 (advisory: AI-pattern flags; never blocks)
+  ↓
+pre-generation-check          (6 BLOCKING gates: sources, lyrics,
+                               pronunciation, explicit, style box, artist names)
+  ↓
+[Generate on Suno]
+```
+
+- **lyric-writer auto-invokes suno-engineer** at the end of its
+  workflow — do not double-call suno-engineer after lyric-writer.
+- **The lyric-writer's internal 13-point check is self-review** — it
+  does NOT substitute for invoking `/bitwize-music:lyric-reviewer`.
+  Both must run before generation.
+- **Instrumental tracks** skip lyric-writer, pronunciation-specialist,
+  lyric-reviewer, and voice-checker — they enter the chain at
+  suno-engineer. pre-generation-check gates 2/3/4 auto-skip;
+  gates 1/5/6 still run.
+- **voice-checker is advisory only** — never gate on it. Surface its
+  Warning/Info flags to the user; don't auto-rewrite based on them.
+- **explicit-checker** and **plagiarism-checker** can run earlier than
+  the release chain — call them whenever explicit-content or
+  borrowed-phrase risk surfaces during writing.
+
+### Pre-release chain (every album, every time)
+
+```
+import-audio
+  ↓
+mix-engineer                  (optional stems polish; hands off to mastering)
+  ↓
+mastering-engineer            [qc_audio "" → master_album → qc_audio "mastered"]
+  ↓
+album-art-director + import-art   (final artwork in place, ≥3000×3000)
+  ↓
+validate-album                (structural integrity, required files, path layout)
+  ↓
+plagiarism-checker            (distinctive-phrase scan vs existing songs)
+  ↓
+explicit-checker              (final flag verification for distributor metadata)
+  ↓
+check_streaming_lyrics MCP    (distributor lyric format validation)
+  ↓
+release-director              (9-domain QA gate; blocks until all pass)
+  ↓
+update_streaming_url + verify_streaming_urls
+```
+
+- release-director's 9 QA domains: Audio Quality, Metadata, Source
+  Verification, Lyrics Accuracy, Artwork Quality, File Organization,
+  Documentation, Explicit Content, Promo Copy (optional). Override
+  `overrides/release-preferences.md` may *add* checks; it may NOT skip
+  critical ones.
+- **Streaming lyrics vs Suno lyrics**: distributor metadata, plagiarism
+  scans, and promo content pull from *streaming* lyrics only (standard
+  English, no phonetics). Never paste Suno-phonetic lyrics into
+  public-facing fields.
+
+### Concept phase gate
+
+`album-conceptualizer` Phase 7 (Confirmation) is a hard gate. Lyric
+writing does not begin until the user has explicitly confirmed the
+seven planning phases. Partial agreement triggers a revision pass,
+not a forward pass.
+
+### Sources gate
+
+`sources_verified = N/A` is acceptable for non-documentary albums —
+do not gate non-docs on source verification. Documentary albums must
+reach `Verified (date)` on every track *before* lyric-writer runs.
+
+### When in doubt — invoke the routing skill
+
+`/bitwize-music:resume <album>` or `/bitwize-music:next-step` returns
+the exact next action with skill name and track. If you can't tell
+which step is next, invoke the routing skill — don't guess, don't
+shortcut, don't skip links.
+
 ## MANDATORY: Overrides are cross-project — albums hold album content
 
 **Overrides (`overrides/*.md` and `overrides/*.yaml`) hold cross-project
