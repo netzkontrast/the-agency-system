@@ -98,13 +98,47 @@ recovery manual.
 
 ## Structure
 
-13 tracks. Working target:
+13 tracks total. Working architecture:
 
-- **11 alter tracks** — one per alter (artist + 10 co-alters). Each carries its own sonic DNA per the Voice DNA Protocol's per-voice rules: syntax, vocabulary, rhythm. No alter is labeled.
-- **1 worldview track** — the system's outer-facing view on the world. Likely candidate home for the *„Alles, was da ist…"* anchor line.
-- **1 partner-view track** — perspective from the artist's partner. The album's external mirror.
+- **11 alter tracks** — **The Eleven** (5 ANP + 5 EP + 1 Meta). Each carries its own sonic DNA. No alter is labeled in lyrics or section headers; identity is carried by syntax, vocabulary, rhythm, pause structure. See `overrides/the-eleven.md` for the full archetype profiles, phobia/alliance networks, and lyrical hooks.
+- **1 worldview track** — most fractured. All eleven voices simultaneously, in incompatible registers. The album's central artistic refusal of the "system speaks as one" climax.
+- **1 partner-view track** — outside / song-like. The album's only fully-resolved perspective. The witness from beyond the system.
 
-Structure may yield to the album's wishes. Pattern is target, not cage. Detailed sequencing in Phase 4.
+**The Eleven — Quick Reference**
+
+| # | Archetype | Class | Production World | Arc |
+|---|-----------|-------|------------------|-----|
+| 1 | Container (Host) | ANP | Mixed — container of all registers | → Fractality |
+| 2 | Rationalist | ANP | Orchestral electronic (cold strings) | → Intuition |
+| 3 | Protector | ANP | Band-driven dark electro rock | → Growth |
+| 4 | Caregiver | ANP | Orchestral electronic (warm) | → Acceptance → Kudzu (Act II danger) |
+| 5 | Integrator (ISH) | ANP | Spacious electroacoustic, reverbed | → Mediator |
+| 6 | Fighter | EP (Fight) | Band-driven dark electro rock | → Constructive protection |
+| 7 | Child-Freeze | EP (Freeze) | Piano-and-voice intimate | → Trust |
+| 8 | Ambivalent | EP (Approach/Withdraw) | Piano-intimate, microtonal | → Leave superposition |
+| 9 | Sexualized-Override | EP (Fight-via-control) | Low-register electronic, controlled | → Vulnerability |
+| 10 | Collapsed One | EP (Submit/Collapse) | Sub-tempo drone / near-spoken | → Dragon-fight |
+| 11 | Witness-of-Witnesses | Meta | TBD — inside song-form or annotative-across | → Constructive critique |
+| W | Worldview | — | Most fractured (all eleven at once) | The album's structural refusal of forced integration |
+| P | Partner-view | — | Outside / song-like | The album's stable horizon |
+
+### Mirror-Voices — Excluded by Design
+
+The canonical system in the artist's novel project has **thirteen** voices: The Eleven plus two **Mirror-Voices** (echoes of external forces — *not* trauma-derived parts).
+
+**For *What Lies Ahead*, the Mirror-Voices are excluded.** The album works the system proper. The echoes belong to a different layer of the artist's broader work.
+
+*Open question for Phase 4: should this exclusion be acknowledged on the album (silent omission / structural gesture / liner note / visible numeric gap)? See `overrides/the-eleven.md` Open Question #1.*
+
+### Phase 4 Structural Decisions (Carried from the Eleven Document)
+
+1. **Mirror-Voices acknowledgment** — silent / gesture / liner note / numeric gap?
+2. **Caregiver Kudzu positioning** — Act-I vs Act-II split; how does the Kudzu turn manifest?
+3. **Witness-of-Witnesses form** — his own track, or annotative voice across all tracks?
+4. **Collapsed One position** — likely mid-album, Integrator track immediately after.
+5. **Child-Freeze + Ambivalent** — single duet (alter-to-alter dialogue), or two consecutive tracks that answer each other?
+
+Structure may yield to the album's wishes. Pattern is target, not cage.
 
 ## Themes
 
