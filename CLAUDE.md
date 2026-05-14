@@ -4,31 +4,6 @@ Working tree for **the-agency-system** music projects and for the
 [bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
 plugin that produces them.
 
-## Session start — required check
-
-At the start of every session, verify the **`bitwize-music-mcp`** MCP
-server is running. Recovery, in order:
-
-1. **Start a new session first.** Slash commands (including
-   `/bitwize-music:health-check`) depend on the plugin being wired
-   into the session, so a restart is the cheapest way to re-trigger
-   the `SessionStart` hook in `.claude/settings.json` — it calls
-   `.claude/scripts/setup-bitwize-music.sh`, which provisions
-   `~/.bitwize-music/venv` and renders `~/.bitwize-music/config.yaml`.
-2. Once the new session is up, run `/bitwize-music:health-check` to
-   confirm `bitwize-music-mcp` is registered and healthy.
-3. If the hook didn't fire (e.g. `~/.bitwize-music/setup.log` is
-   missing), run the script manually, then start a new session:
-   ```bash
-   bash .claude/scripts/setup-bitwize-music.sh
-   ```
-   The script self-locates from its own path, so no env vars are
-   required. Logs: `~/.bitwize-music/setup.log`.
-4. If the plugin itself isn't installed (`~/.claude/plugins/installed_plugins.json`
-   doesn't list `bitwize-music@bitwize-music`), the marketplace entry
-   in `.claude/settings.json` hasn't been resolved — re-add the plugin
-   from the marketplace before retrying.
-
 ## MANDATORY: Use subagents for independent or context-heavy work
 
 **Default to subagents when a task is independent, parallelizable, or
@@ -139,12 +114,10 @@ the wrong aesthetic.
 
 ### Session-start audit (fresh session, especially after switching projects)
 
-1. Run `/bitwize-music:health-check` — confirm MCP server, venv, skills.
-2. Skim plugin CLAUDE.md (`~/.claude/plugins/marketplaces/bitwize-music/CLAUDE.md`)
-   for any workflow updates.
-3. Skim `~/.claude/plugins/marketplaces/bitwize-music/reference/overrides/override-index.md`
-   if you'll be touching overrides — it documents merge behaviour per file.
-4. Spot-check active overrides for project-specific content not matching
+1. Run `/bitwize-music:health-check` — confirm the workflow stack is ready.
+2. Run `/bitwize-music:help` if you need to find a skill — don't grep the
+   filesystem.
+3. Spot-check active overrides for project-specific content not matching
    the current album. If found, flag and offer cleanup before invoking
    skills that load those overrides.
 
@@ -188,11 +161,9 @@ Invoke as slash commands: `/bitwize-music:<name>`.
 
 ### Where to find more
 
-- **Full skill list (54 skills):** `/bitwize-music:help` or
-  `ls ~/.claude/plugins/marketplaces/bitwize-music/skills/`
-- **Skill source + READMEs:** `~/.claude/plugins/marketplaces/bitwize-music/skills/<name>/`
-- **Reference docs (workflows, suno, mastering, release, …):**
-  `~/.claude/plugins/marketplaces/bitwize-music/reference/`
+- **Full skill list:** `/bitwize-music:help`
+- **What a specific skill does:** `/bitwize-music:about <skill-name>` or
+  `get_skill` MCP tool with the skill name.
 - **Cross-project preferences (lyric craft, Suno mappings, research
   standards, vocal registers, mastering presets, voice-craft principles):**
   `overrides/lyric-writing-guide.md`,
@@ -204,15 +175,9 @@ Invoke as slash commands: `/bitwize-music:<name>`.
   `overrides/mastering-presets.yaml`
 - **Album-specific content** (voice DNA, narrative, sources, art direction)
   lives inside each album folder, never in `overrides/`.
-- **Active runtime config:** `~/.bitwize-music/config.yaml`
 
 ## Repository essentials
 
-- `artists/the-agency-system/albums/<genre>/<slug>/` — album content
+- `artists/<artist>/albums/<genre>/<slug>/` — album content (READMEs, research, tracks, art direction)
+- `overrides/` — cross-project preferences loaded automatically at session start
 - `audio/`, `documents/` — Git LFS (run `git lfs install` once per machine)
-- `overrides/` — user-preference files loaded by the plugin's `load_override` tool
-- `.claude/settings.json` — enables `bitwize-music@bitwize-music` + SessionStart hook
-- `.claude/scripts/setup-bitwize-music.sh` — venv + config bootstrap (run manually if the hook didn't fire; see above)
-
-If config drifts, delete `~/.bitwize-music/config.yaml` and start a new
-session to re-render from the template.
