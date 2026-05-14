@@ -1,6 +1,6 @@
 # Voice Craft Principles
 
-**Purpose.** Principles for any multi-voice work where distinct voices, parts, or perspectives must be heard inside one piece without losing their separateness. Distilled from the artist's broader craft practice and used throughout *What Lies Ahead*.
+**Purpose.** Principles for any multi-voice work where distinct voices, parts, or perspectives must be heard inside one piece without losing their separateness. Cross-project craft reference applied across the-agency-system's catalog.
 
 ---
 
@@ -38,13 +38,14 @@ The answers determine syntax, vocabulary, pause structure, and where the line wa
 
 ---
 
-## Album-Specific Implications
+## Cross-Project Implications
 
-For *What Lies Ahead*:
+For any multi-voice project (concept albums, character-driven work, system-of-voices work):
 
-- **Forbidden in lyrics:** spoken-word labels naming an alter, name-adlibs, `[Section: Name]` tags that identify a voice, any narrative device that announces "now X is speaking." If the listener needs the announcement, the line has not done its job.
-- **Permitted:** Suno style-prompt directives that ask for a different vocal timbre, register, or texture *between sections*. These shape the sound but never appear in the lyric itself.
-- **Duets and switches:** when two alters share a track, the syntactic and punctuation fingerprints carry the switch. The listener recognizes the shift mid-track because the syntax has shifted, not because a label has appeared.
-- **The worldview track** (most fractured) is the maximum-test of this rule: all eleven voices must be distinguishable inside the simultaneity, and not one of them is named.
+- **Forbidden in lyrics:** spoken-word labels naming a voice or character, name-adlibs, `[Section: Name]` tags that identify a voice, any narrative device that announces "now X is speaking." If the listener needs the announcement, the line has not done its job.
+- **Permitted:** Suno style-prompt directives that ask for a different vocal timbre, register, or texture *between sections*. These shape the sound but never appear in the lyric itself. Use the **descriptive form** `[male mid-baritone, weary, dry close-mic]` — never the **character form** `[Character Name]`.
+- **Duets and switches:** when two voices share a track, the syntactic and punctuation fingerprints carry the switch. The listener recognizes the shift mid-track because the syntax has shifted, not because a label has appeared.
+- **Maximum-density tracks** (worldview, ensemble, polyphony): every voice must remain distinguishable inside the simultaneity. Not one of them is named.
+- **Witness / observer layers** (a third voice annotating a duet, for example): the descriptive metatag changes (`[androgynous spoken-word, layered, behind the beat, lowercase]`) and parenthesized lyric lines mark the annotation typographically. Suno V5 treats parenthesized text as ad-lib / backing-vocal layer automatically.
 
-For per-alter fingerprints — verbal signatures, prosodic anchors, imagery hooks — see `the-eleven.md`.
+For per-project voice fingerprints (verbal signatures, prosodic anchors, imagery hooks per character/alter/part), use the album's own voice reference file — conventions vary per project (`the-eleven.md`, `cast.md`, `voices.md`, etc.).
