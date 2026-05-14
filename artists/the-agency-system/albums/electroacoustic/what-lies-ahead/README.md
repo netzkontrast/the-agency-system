@@ -138,14 +138,48 @@ recovery manual.
 
 Alter appearance counts: Container 2, Rationalist 1, Protector 1 (duet only), Caregiver 2, Integrator 2 (duets only — no solo), Fighter 2, Child-Freeze 1 (duet only), Ambivalent 1 (duet only), Sexualized-Override 2, Collapsed One 2. **Witness annotates across all 13 tracks.**
 
-### Pending Research
+### Research Synthesis
 
-The following structural questions require research grounding before final decisions:
+Six research runs completed (clinical TSDP/ISH/Gatekeeper, DID community preferences, DID-in-music, trauma-album sequencing, cPTSD broad, cPTSD craft-deep). Findings consolidated in **`overrides/research-synthesis.md`** — that file is the new working reference for craft decisions. Key headlines:
 
-1. **Worldview track form.** Provisional read: active *Verhandlung* (negotiation) between the system and the world — polyphonic alter chaos + external sonic element representing the world's pressure (institutional textures / orchestral pressure / chorus voices). Needs: research into how other DID/cPTSD artists handle the system-meets-world moment.
-2. **Partner-view track form.** Provisional read: active *Verhandlung* between the partner and the system (Container especially) — possibly Container+Partner duet rather than pure partner solo. Needs: research into partner-perspective representations of plurality.
-3. **Caregiver Kudzu turn.** When does her warmth become smothering? Her solo, her duet, or in other alters' tracks? Needs: research into Caregiver-archetype handling in DID-aware art and Caregiver-as-Kudzu in clinical/community literature.
-4. **Sequencing.** Where does the Collapsed One sit? Where does the Caregiver's solo sit relative to her duet? When does the worldview track land? Needs: research into trauma-album sequencing patterns (Vulnicura, Left at London, others) — particularly *how* they handle the album's emotional valleys.
+- **The hinge insight:** *"a 'part' without amnesia is a current."* Strömungen sits exactly at Peter Levine's vortex theory ↔ cPTSD ego-states. Single most powerful audience-bridge concept.
+- **Worldview-as-most-fractured serves both audiences differently** — DID listeners hear "my system is not a problem"; cPTSD listeners hear "my recovery is not a line." The album does not need to explain which reading is correct. Depth segments the audience.
+- **97% community preference for functional multiplicity** validates the locked refusal-of-fusion structure.
+- **The DID-concept-album slot is functionally unoccupied.** Nat Puff has the songs; nobody has the album. The user can credibly occupy this position.
+- **New craft principle: deliberate bleed.** Voices distinct *but porous* — passive influence, partial co-fronting, unattributable lines. Otherwise per-alter voice metatags risk reading as vocal cosplay (the Shyamalan / Slim-Shady pattern).
+- **The Witness has three registers across the album:** helper observation (tracks 1–4) → outer-critic attack (5–9) → inner-critic re-voiced (10–13). The shift IS the inner critic's mechanism per Pete Walker.
+- **Emotional flashbacks as production callback:** late track quotes early-track motif at 6–8 BPM slower. Same notes, different body.
+- **Partner-view as Container + Partner duet** (the partner as external memory of the system) — research recommends this strongly.
+
+### Locked Provisional Sequence
+
+| # | Track | Function |
+|---|---|---|
+| 1 | Container (solo) | Voiced-thesis opener — Stonemilker function |
+| 2 | Container + Integrator (duet) | The closed loop — collusion that believes itself to be care |
+| 3 | Rationalist (solo) | Fury early — ANOHNI principle |
+| 4 | Protector + Fighter (duet) | Method conflict, kinetic |
+| 5 | Fighter (solo) | Rage alone |
+| 6 | Caregiver (solo) | Warmth interior, attachment betrayal somatically |
+| 7 | Collapsed One (solo) | **Structural axis** — Black Lake / Fourth of July position |
+| 8 | Collapsed One + Integrator (duet) | Sufjan license — Integrator arrives not as rescue, as another voice in the wreckage |
+| 9 | Caregiver + Sexualized-Override (duet) | Recovery valley — Rest function |
+| 10 | Child-Freeze + Ambivalent (duet) | Quietest and most fragile |
+| 11 | Sexualized-Override (solo) | Climbing tension before fracture |
+| 12 | **Worldview** (most fractured) | Penultimate — fracture after every voice established |
+| 13 | **Partner-view** (Container + Partner) | Benediction outward — "you be free for me" |
+
+### Phase 4 Sub-Decisions Pending User Review
+
+See `overrides/research-synthesis.md` §5 for full context:
+
+1. **Caregiver Kudzu rendering** — default proposal: somatically in her solo (#6), surfacing in duet (#9) as the Override resists.
+2. **Partner-view form** — default proposal: Container + Partner duet.
+3. **Witness register-shift across album** — default proposal: helper (1–4) → outer-critic (5–9) → inner-critic (10–13).
+4. **Fawn moment placement** — open question.
+5. **Outer-critic flip placement** — open question.
+6. **Production callback / emotional flashback** — open question (strongest candidate: track 11 quotes track 5 phrase at 6–8 BPM slower).
+7. **Optional Truddi Chase reference** — a track that explicitly names the refusal of fusion as a love song from the system to itself.
 
 ### Resolved Decisions Recap
 
