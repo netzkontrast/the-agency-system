@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | — |
 | **Fade Out** | 5s |
 | **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)

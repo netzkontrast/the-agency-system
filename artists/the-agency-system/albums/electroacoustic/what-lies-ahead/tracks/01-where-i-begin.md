@@ -19,11 +19,11 @@ sheet_music:
 | **Track #** | 01 |
 | **Title** | Where I Begin |
 | **Album** | [What Lies Ahead](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes |
+| **Explicit** | No |
 | **POV** | The Container (Host, ANP) — solo |
 | **Role** | Voiced-thesis opener. Wound as ground from downbeat 1. |
 | **Fade Out** | 5s |
@@ -94,15 +94,28 @@ The room as the album opens. A pre-dawn quality — not the brightness of beginn
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Male mid-baritone, weary, slightly under-articulated, conversational range, present-tense delivery, no vibrato, breath audible, dry close-mic. Electroacoustic, contemporary dark folk. Sparse acoustic piano, gentle processed pad, distant string textures suggesting larger atmospheres, light tape compression, voice forward, restrained, no climax. 75 BPM, mineral textures, overcast mood. Bridge: layered backing vocals on parenthesized lines, spoken-word annotative texture.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums
+no electric guitar
+no autotune
 ```
+
+### Suno Settings
+
+| Setting | Value |
+|---------|-------|
+| **Model** | V5 |
+| **Instrumental** | Off |
+| **Weirdness** | ~35 (low — restrained, not experimental) |
+| **Style Influence** | ~75 (high — adhere to dark folk character) |
+| **Audio Influence** | N/A (no reference audio) |
+| **Target Duration** | 3:30–4:30 |
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -117,19 +130,59 @@ The room as the album opens. A pre-dawn quality — not the brightness of beginn
 
 ```
 [Verse 1]
-[Lyrics here...]
+[male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, light tape compression, conversational range, adult ~40s]
+The list on the table — half mine —
+half in a hand I do not recognize —
+the pen still warm, in the wrong place —
+the morning is the same shape but smaller —
+
+[Pre-Chorus]
+And I —
+I keep almost —
 
 [Chorus]
-[Lyrics here...]
+Here is where I begin —
+again —
+not where I left myself —
+not anywhere I can name —
 
 [Verse 2]
-[Lyrics here...]
+The door I left open —
+I do not remember opening —
+the kettle warm in the hand —
+which I do not remember filling —
+
+[Pre-Chorus]
+And I —
+I keep almost —
+
+[Chorus]
+Here is where I begin —
+again —
+not where I left myself —
+not anywhere I can name —
 
 [Bridge]
-[Lyrics here...]
+[androgynous spoken-word, layered, slight delay/echo, behind the beat, lowercase delivery, audiobook-narrator register, no melodic contour, lower in mix]
+(somebody breathed before I did)
+(somebody set the cup down hours ago)
+[male mid-baritone returns, dry close-mic, weary]
+the body knows the morning before I do —
+the body knows —
+
+[Verse 3]
+The chair I am sitting in —
+warm before I sat —
+the soap on my hands —
+of a kind I do not buy —
 
 [Outro]
-[Lyrics here...]
+Here is where I begin —
+the same shape but smaller —
+here —
+again —
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
@@ -140,23 +193,77 @@ The room as the album opens. A pre-dawn quality — not the brightness of beginn
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+The list on the table half mine
+Half in a hand I do not recognize
+The pen still warm in the wrong place
+The morning is the same shape but smaller
+
+And I
+I keep almost
+
+Here is where I begin
+Again
+Not where I left myself
+Not anywhere I can name
+
+The door I left open
+I do not remember opening
+The kettle warm in the hand
+Which I do not remember filling
+
+And I
+I keep almost
+
+Here is where I begin
+Again
+Not where I left myself
+Not anywhere I can name
+
+Somebody breathed before I did
+Somebody set the cup down hours ago
+The body knows the morning before I do
+The body knows
+
+The chair I am sitting in
+Warm before I sat
+The soap on my hands
+Of a kind I do not buy
+
+Here is where I begin
+The same shape but smaller
+Here
+Again
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
+**Inline vocal metatag convention (album-wide):**
+- Every section that introduces a different voice gets an inline metatag *describing the vocal sound*, not naming the alter. Format:
+  `[gender + register + texture + processing markers]`
+- Always permitted per `overrides/voice-craft-principles.md`: "Suno style-prompt directives that ask for a different vocal timbre, register, or texture *between sections*."
+- Never permitted: tags that name the alter (`[Container]`, `[Witness]`, `[Sexualized-Override]` etc.). Identity is carried by syntax in the lyric, by timbre in the production.
+- For solos with a Witness annotation (this track), use one tag at section start for the main voice, one tag preceding the Witness lines, and a "main voice returns" tag when the Witness yields.
+- For duets and the worldview track, every alter switch in the lyric is preceded by a fresh descriptive metatag.
+
+**Technical considerations:**
+- Voice metatag for the Container governs the lead vocal — see `the-eleven.md` §Suno Voice Metatags row 1
+- Parenthesized lines in the Bridge land as Suno V5 backing/ad-lib layer automatically (Suno community convention) — reinforced by the inline Witness metatag preceding those lines
+- Sparse arrangement: piano + processed pad + distant string textures. Voice forward.
+- No drums, no rhythmic grid — em-dashes are the breath/pulse
+- Light tape compression for the Container; lower in mix + slight delay for the Witness layer
+
+**Vocal delivery notes:**
+- Mid-baritone, conversational, no vibrato, breath audible but not performed
+- Slightly under-articulated — the Container is too tired to land every consonant cleanly
+- Bridge return ("the body knows the morning before I do") is the moment the Container catches up to what his body has known all along — slightly more present, but still no climax
+
+**Suno generation tips:**
+- Keep Weirdness low (~35) — restraint is core to the voice
+- Style Influence ~75 — the dark folk character must hold
+- Expect 2–3 generations to land the parenthetical Witness layering correctly
+- If Suno over-articulates the Container, regenerate with "slightly under-articulated, no climax" added to the style prompt
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
 

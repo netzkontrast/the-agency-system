@@ -29,6 +29,29 @@ server is running. Recovery, in order:
    in `.claude/settings.json` hasn't been resolved — re-add the plugin
    from the marketplace before retrying.
 
+## MANDATORY: Tools always win over handcrafting
+
+**If a tool exists for the operation, use the tool — never edit by hand.**
+This applies to every layer:
+
+- **Status / explicit / field changes** → use `update_track_field` MCP,
+  not Edit on the Track Details table.
+- **Creating tracks** → `create_track` MCP, not `Write` of a hand-rolled
+  scaffold.
+- **Cache out of sync (`track not found`)** → run `rebuild_state` MCP
+  *first*, then retry the proper tool. Do not fall back to Edit.
+- **Loading overrides** → `load_override` MCP, not bare `Read`.
+- **Album coherence / validation / pre-generation gates** → the
+  matching MCP tool, not a manual checklist.
+
+Hand-editing is only acceptable when the tool surface genuinely doesn't
+cover the operation (e.g. drafting prose inside the Concept section,
+where there is no setter). Whenever you reach for `Edit` on a track or
+album file, first ask: **"Is there a tool that owns this field?"** If
+yes, use it.
+
+This is mandatory and overrides any habit of "just fix it inline."
+
 ## MANDATORY: Skills before MCP
 
 **Always prefer invoking a `/bitwize-music:<skill>` slash command (or the
