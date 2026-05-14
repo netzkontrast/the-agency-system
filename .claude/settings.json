@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/scripts/setup-bitwize-music.sh"
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/scripts/setup-bitwize-music.sh\""
           }
         ]
       }
