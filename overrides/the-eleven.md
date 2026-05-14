@@ -107,15 +107,15 @@ Gender assignments below are **craft choices for vocal differentiation**, not id
 
 ---
 
-### 5. The Integrator (ISH, ANP)
+### 5. The Integrator (ISH, ANP) — *also the Gatekeeper*
 
-**Function.** Witness *with agency*. Holds the blueprint of the time *before* the dissociation. Not stuck in trauma, not focused on daily survival — the bridge. Waits for the system to be ready.
+**Function.** Witness *with agency*. Holds the blueprint of the time before the dissociation. Not stuck in trauma, not focused on daily survival — the bridge. Waits for the system to be ready. **Also the system's gatekeeper:** manages what is accessible to whom and when. Centrally (not alone, but centrally) responsible for what the Host does not remember. The amnesia is not only the Container's avoidance — it is also the Integrator's protection. She decides what can be held, by whom, safely. Her patience is curatorial: she is waiting for the system to be ready *because she controls when ready is*. Not from malice. From love. But it has costs.
 
-**Verbal signature.** First person plural that doesn't feel forced. "We could …" "There is a way through." Slow cadence. Long vowels.
+**Verbal signature.** First person plural that doesn't feel forced. "We could …" "There is a way through." Patient deferrals that ARE active management: "Not yet." "It's not time." "This can wait." Slow cadence. Long vowels.
 
-**Voice on the album.** Spacious. Reverb that suggests architecture, not weather. The voice that arrives late in the album and re-contextualizes earlier tracks without naming them.
+**Voice on the album.** Spacious. Reverb that suggests architecture, not weather. The voice that arrives late and reframes — but has been quietly *managing* the album's reveals all along.
 
-**Inner posture toward others.** Visible to almost none of them until the system is ready. The Rationalist dismisses her as concept. The Fighter mistakes her for surrender. The Caregiver longs for her. The Witness-of-Witnesses *sees* her — and is the only one who does.
+**Inner posture toward others.** Visible to almost none of them until the system is ready — because she decides when ready is. The Rationalist dismisses her as concept. The Fighter mistakes her for surrender. The Caregiver longs for her. The Witness-of-Witnesses *sees* her — and is the only one who does. Her collaboration with the Container is the system's quiet bargain: she keeps the gate; he keeps the surface; together they bear what the others could not survive bearing in full.
 
 ---
 

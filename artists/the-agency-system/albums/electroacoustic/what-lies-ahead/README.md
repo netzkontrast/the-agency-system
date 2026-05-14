@@ -123,20 +123,42 @@ recovery manual.
 | W | Worldview | — | Most fractured (all eleven at once) | The album's structural refusal of forced integration |
 | P | Partner-view | — | Outside / song-like | The album's stable horizon |
 
-### Album Architecture
+### Album Architecture — LOCKED
 
-**12 numbered tracks + 1 cross-album voice = 13 voices honored.**
+**13 tracks. 13 voices.** The Witness has no dedicated track — he lives across all of them as annotative voice. The album's content density is in *dialogue* — explicit alter-to-alter conversation is the central structural move.
 
-- **10 alter tracks** — one per alter for ten of The Eleven. See `overrides/the-eleven.md`.
-- **1 worldview track** — most fractured. All voices simultaneously, in incompatible registers.
-- **1 partner-view track** — outside / song-like. The only fully-resolved perspective.
-- **The Witness-of-Witnesses** is the eleventh voice, but does **not** have a dedicated track. He lives **across** the album — spoken asides, parenthetical lines, lowercase commentary under other voices. He observes; he never takes the chorus. (Resolved structural decision; see `overrides/the-eleven.md` Open Question #2.)
+**Locked track content (provisional sequencing — see Pending Research):**
 
-### Phase 4 Structural Decisions (Remaining)
+| Type | Count | Tracks |
+|---|---|---|
+| **Solos** | 6 | Container, Rationalist, Caregiver, Fighter, Sexualized-Override, Collapsed One |
+| **Alter-alter duets** | 5 | Container+Integrator · Protector+Fighter · Child-Freeze+Ambivalent · Caregiver+Sexualized-Override · Collapsed One+Integrator |
+| **Worldview** | 1 | All voices simultaneously, most fractured (form: pending research) |
+| **Partner-view** | 1 | Outside / song-like — pure partner solo OR Container+Partner duet (pending research) |
 
-1. **Caregiver track — when does the warmth turn?** One track with the turn embedded, two tracks at mirroring positions, or the turn shown through *other* alters' tracks rather than her own?
-2. **Collapsed One position** — likely mid-album, Integrator track immediately after.
-3. **Child-Freeze + Ambivalent** — single duet (alter-to-alter dialogue), or two consecutive tracks that answer each other?
+Alter appearance counts: Container 2, Rationalist 1, Protector 1 (duet only), Caregiver 2, Integrator 2 (duets only — no solo), Fighter 2, Child-Freeze 1 (duet only), Ambivalent 1 (duet only), Sexualized-Override 2, Collapsed One 2. **Witness annotates across all 13 tracks.**
+
+### Pending Research
+
+The following structural questions require research grounding before final decisions:
+
+1. **Worldview track form.** Provisional read: active *Verhandlung* (negotiation) between the system and the world — polyphonic alter chaos + external sonic element representing the world's pressure (institutional textures / orchestral pressure / chorus voices). Needs: research into how other DID/cPTSD artists handle the system-meets-world moment.
+2. **Partner-view track form.** Provisional read: active *Verhandlung* between the partner and the system (Container especially) — possibly Container+Partner duet rather than pure partner solo. Needs: research into partner-perspective representations of plurality.
+3. **Caregiver Kudzu turn.** When does her warmth become smothering? Her solo, her duet, or in other alters' tracks? Needs: research into Caregiver-archetype handling in DID-aware art and Caregiver-as-Kudzu in clinical/community literature.
+4. **Sequencing.** Where does the Collapsed One sit? Where does the Caregiver's solo sit relative to her duet? When does the worldview track land? Needs: research into trauma-album sequencing patterns (Vulnicura, Left at London, others) — particularly *how* they handle the album's emotional valleys.
+
+### Resolved Decisions Recap
+
+- **Genre umbrella:** electroacoustic
+- **Album type:** thematic with documentary edge
+- **13-voice architecture:** 11 alters + worldview + partner-view (= novel-side "Mirror-Voices" reframed)
+- **The Witness:** annotative across all tracks, no dedicated song
+- **Integrator = Gatekeeper too.** Co-responsible (with the Container's avoidance) for the system's forgetting. Curatorial patience, not passive. (See `overrides/the-eleven.md` profile.)
+- **Suno Voice Metatags:** specific gender/register/texture assigned per alter for vocal differentiation. (See `overrides/the-eleven.md`.)
+- **Worldview = most fractured** (not most integrated). The album's central refusal of forced integration.
+- **Partner-view = outside / song-like** (provisional — may become a duet pending research).
+- **Duet preference:** alters in genuine dialogue mid-song, recognized by syntax not labels.
+- **Five alter-alter duets** (above).
 
 Structure may yield to the album's wishes. Pattern is target, not cage.
 
