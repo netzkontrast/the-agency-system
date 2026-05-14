@@ -171,10 +171,49 @@ Structure may yield to the album's wishes. Pattern is target, not cage. Detailed
 
 ## Sonic Palette
 
-- **Beats**: [Production style description]
-- **Samples**: [Sample sources/types if applicable]
-- **Vocals**: [Vocal style and delivery]
-- **Mood**: [Overall emotional tone]
+### Reference Triangle
+
+| Reference | Brings | Territory it opens for this album |
+|---|---|---|
+| **Björk — *Vulnicura*** (2015) | Orchestral strings woven through electronics; voice raw and central; trauma as chronological documentation; dark beauty without prettification | Orchestral-electronic tracks. Strings as grief, not decoration. Microtonal vocal phrasing for integrator-style alters. |
+| **Secret Cameras — *Our Love*** (2026) | Full-band dark electro rock with post-punk lineage (Depeche Mode / Interpol / Placebo / The National / Radiohead); voice with built-in "darkness quality" | Band-driven tracks. Protector/fighter alters live here. Guitar/bass/drums/synths anchored, not just electronic. |
+| **Left at London — *Will My Alters Go to Heaven?*** | Piano-and-voice intimacy; bedroom-pop production; lyrically unflinching about DID; treats plurality as self-evident (not metaphor) | Sparse tracks. Vulnerable alters (child alters, freeze, collapse). The lyrical permission to be direct rather than gestural. |
+
+### Production Spectrum (held together, not fragmented)
+
+The three references form a coherent *spectrum*, not three competing aesthetics. The album can run:
+
+> **piano-and-voice intimate** ↔ **orchestral electronic with strings** ↔ **full dark electro rock band**
+
+…held together by:
+
+- **Voice-forward production** — always. The voice carries meaning; production serves it.
+- **Dark electro / post-punk aesthetic** as connective tissue across the spectrum.
+- **Songcraft anchoring** — even the most experimental tracks remain *songs*, not soundscapes.
+- **Lyrical directness** — willing to name, not just gesture (Left at London permission).
+- **Trauma rendered, not aestheticized** — strings as grief, not decoration (*Vulnicura* permission).
+
+### Adjacent Influences (likely to surface)
+
+Carrying the Secret Cameras post-punk lineage forward: **Depeche Mode** (*Violator*, *Ultra*), **NIN** (*The Fragile* — quieter side especially), **Massive Attack** (*Mezzanine*), **Portishead** (*Third*), **Radiohead** (*In Rainbows*, *A Moon Shaped Pool*), **Placebo**. For the more vulnerable / piano-led territory: adjacent to **Mitski**, **Phoebe Bridgers**, and Left at London's broader catalog.
+
+### Mood / Palette Notes
+
+- **Beats / Rhythm** — varied. Some tracks band-driven (live drums + electronics), some pulse-led electronic, some no rhythm at all (piano-only or drone).
+- **Vocals** — central. Plural. *Never labeled* (per voice-DNA protocol). Recognized through diktion, vocabulary, rhythm, pause structure. Microtonal phrasing welcome.
+- **Duets** — alter-to-alter dialogue inside single tracks. Not call-and-response between performers; genuine internal dialogue rendered as song.
+- **Mood** — dark but never theatrical; intimate even at maximum density; songcraft over soundscape; honest over beautiful (when forced to choose).
+- **Strömungen** — the album's tonal undertow. Some tracks *are* the current. Some tracks resist it. Some tracks ride it.
+
+### Per-Alter Production Mapping (Provisional)
+
+To be refined in Phase 4 when tracks are sequenced. Loose initial map:
+
+- **Protector / Fighter alters** → band-driven dark electro rock (Secret Cameras territory)
+- **Caregiver / Host / Integrator** → orchestral electronic (*Vulnicura* territory)
+- **Child / Freeze / Collapse alters** → sparse piano-and-voice intimate (Left at London territory)
+- **Worldview track** → most-integrated production — chorus / Wir-Stimme energy from the voice-DNA protocol
+- **Partner-view track** → outside-the-system production — possibly the most "song-like" / least fractured
 
 ## Tracklist
 
