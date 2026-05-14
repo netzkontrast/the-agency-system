@@ -1,8 +1,11 @@
 <!--
-Imported from https://github.com/netzkontrast/agency/blob/867453e/skills/the-agency-system-architect/narrative_bible.md
+Sources, top to bottom:
+  1. https://github.com/netzkontrast/agency/blob/867453e/skills/the-agency-system-architect/narrative_bible.md
+  2. https://github.com/netzkontrast/agency/blob/867453e/skills/suno-lyric-writer/SKILL.md (Cross-Track Referencing)
 Source commit: 867453e
 Edit upstream and re-import, or edit here and document the divergence.
 -->
+
 
 # Narrative Bible — The Agency System
 
@@ -88,3 +91,15 @@ EMOTIONAL_GRADIENT: [Start → Ende, je ein Wort, z.B. "gedämpft → wach"]
 ```
 
 Kein Prosa-Text. Der Lyricist liest nur diese fünf Felder.
+
+---
+
+## Part 2 — Generic cross-track referencing
+
+*Adapted from suno-lyric-writer SKILL.md. Project-specific motivic continuity sits in Part 1; this section provides the technique-level rules.*
+
+## Cross-Track Referencing (Concept Albums)
+
+For track N>1: review previous tracks → identify 1–3 callback opportunities → weave organically.
+Types: callback, motif, character thread, contrast/inversion, resolution.
+**Bookend rule**: Final track echoes track 1. **Quality**: Subtle > heavy. Track must stand alone first.

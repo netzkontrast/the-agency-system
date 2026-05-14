@@ -3,9 +3,11 @@ Sources, top to bottom:
   1. https://github.com/netzkontrast/agency/blob/867453e/skills/the-agency-system-architect/sonic_branding.md
   2. https://github.com/netzkontrast/agency/blob/867453e/skills/the-agency-system-architect/suno_prompt_engineering.md
   3. https://github.com/netzkontrast/agency/blob/867453e/skills/suno-lyric-writer/genre-practices.md
+  4. https://github.com/netzkontrast/agency/blob/867453e/skills/suno-lyric-writer/SKILL.md (Phase 4, Phase 5)
 Source commit: 867453e
 Edit upstream and re-import, or edit here and document the divergence.
 -->
+
 
 # Suno Preferences
 
@@ -447,3 +449,187 @@ dense reverb, shimmering delay, dreamy atmosphere. Washed-out production.
 | "Johnny Cash" | "deep baritone, traditional country, train-beat rhythm" |
 | "Carly Rae Jepsen" | "upbeat synth-pop, 80s-influenced, breathy female vocals" |
 | "Radiohead" | "experimental art rock, falsetto, atmospheric guitar, electronic" |
+
+---
+
+## Part 4 — Generic Suno V5/V5.5 prompt engineering
+
+*Adapted from suno-lyric-writer SKILL.md Phase 4. Use these conventions for tagging, style prompts, negative prompting, and voice / delivery — they are the generic baseline that the project layer (Parts 1–2) refines.*
+
+## Phase 4: Suno Prompt Engineering (v5 / v5.5)
+
+### V5 Core Rules
+
+1. **V5 is literal** — simple, direct prompts > verbose descriptions
+2. **Vocals FIRST** in style prompt — always lead with vocal description
+3. **Section tags are critical** — v5 uses them to shape arrangement
+4. **Suno sings EVERYTHING** in the lyrics box — no production notes inline
+5. **Max 2 genres** — 3+ produces inconsistent results
+6. **Style Prompt limit**: 1.000 chars | **Lyrics limit**: 5.000 chars
+7. **BPM and key are reliable in v5** — include both when precision matters
+
+### Lyrics Box Format
+
+```
+[Intro]
+
+[Verse 1]
+First line of lyrics
+(backing ad-lib in parentheses)
+
+[Pre-Chorus]  /  [Chorus]  /  [Post-Chorus]
+
+[Instrumental Break]
+
+[Verse 2]  /  [Bridge]
+
+[Final Chorus]
+
+[Outro]
+[End]
+```
+
+### Complete Section Tag Reference
+
+**Core:** `[Intro]` `[Verse 1]` `[Pre-Chorus]` `[Chorus]` `[Post-Chorus]` `[Bridge]` `[Interlude]` `[Break]` `[Hook]` `[Refrain]` `[Outro]` `[End]`
+
+**Instrumental:** `[Instrumental]` `[Solo]` `[Guitar Solo]` `[Breakdown]` `[Drop]`
+
+**V5 Dynamics** *(new)*: `[Build]` `[Build-Up]` `[Final Chorus]` `[Fade In]` `[Fade Out]` `[Swell]` `[Crescendo]` `[Decrescendo]`
+
+**Formale Kategorie-Metatags** *(granulare Kontrolle, v5-spezifisch)*:
+```
+[Mood: Uplifting]    [Mood: Introspective]    [Energy: High]    [Energy: Medium→High]
+[Instrument: Warm Rhodes, Soft Drums]          [Texture: Gritty]
+[Vocal Style: Whisper]  [Vocal Style: Raspy]   [Structure: seamless loop]
+```
+
+**Vocal-Delivery-Tags** *(inline, vor oder innerhalb Sektionen)*
+
+| Lautstärke | Stil | Techniken | Emotion |
+|---|---|---|---|
+| `[Whispered]` `[Soft]` `[Spoken]` | `[Falsetto]` `[Breathy]` `[Raspy]` | `[Harmonies]` `[Ad-libs]` `[Melisma]` | `[Vulnerable]` `[Defiant]` `[Sultry]` |
+| `[Powerful]` `[Belted]` `[Screamed]` | `[Smooth]` `[Soulful]` `[Operatic]` | `[Vibrato]` `[Choir]` `[Call and Response]` | `[Melancholic]` `[Joyful]` |
+
+Rap: `[Rapped]` `[Fast Rap]` `[Double Time]` `[Trap Flow]` `[Boom Bap Flow]`
+Effects: `[No AutoTune]` `[Vocoder]` `[Telephone Effect]` `[Distorted Vocals]`
+
+**Inline-Beispiel:**
+```
+[Verse 1]
+[Whispered] In the silence of the night
+[Building] I feel you close to me
+[Belted] AND I CAN'T LET GO!
+```
+
+**Lyrics-Box-Tricks:**
+- `(oh yeah)` Runde Klammern → Ad-Lib / Backing-Vocal Layer
+- `(*synth swirl*)` Asterisken in Parenthesen → diskrete Produktions-Cues
+- Emphasis: `loooove`, `feeeel`; Silbentrennung: `lo-ove`
+- Duett: `[Male Vocal] line` / `[Female Vocal] line` / `[Duet] line`
+
+### Style Prompt Construction
+
+**Formel:** `[VOCAL] [GENRE(S) + ÄRA] [2–3 INSTRUMENTE] [PRODUKTION + BPM + KEY]`
+
+- **Top-Loading**: Genre und Stimmung zuerst — v5 gewichtet erste Wörter am stärksten
+- **4–8 Tags** Sweet Spot; **Ankertechnik**: Schlüsseldeskriptoren Anfang UND Ende
+- **Ärabeschreibungen** statt Artist-Namen: „late 70s disco", „80s goth"
+
+```
+Female alto, haunting breathy vocals. Darkwave, synth goth, atmospheric analog synths,
+driving bass, programmed drums. Dark, spacious reverb. 140 BPM, D minor.
+no reverb lead, no electric guitar.
+```
+
+**Artist-Name-Ersatz-Tabelle:**
+
+| Don't Write | Write Instead |
+|-------------|---------------|
+| "Depeche Mode" | "dark synth-pop, brooding male vocals, analog synths" |
+| "NIN" | "dark industrial, grinding synths, distorted vocals" |
+| "Siouxsie" | "post-punk goth, commanding female vocals, jangly guitar" |
+| "Sisters of Mercy" | "goth rock, deep baritone, drum machine, atmospheric" |
+| "Massive Attack" | "trip-hop, dark atmospheric, sparse beats, cinematic" |
+
+### Exclude Styles (Negative Prompting)
+
+`no [Element]` am Ende des Style Prompts — max 4–5 Items. Syntax-Varianten:
+```
+no drums    no autotune    no electric guitar    no choir    no sidechain pump
+no heavy compression    no over-mastered sound    raw recording feel
+```
+
+**Ghost-Vocal-Dreifach-Sicherung** für Instrumentals: UI-Toggle + `no vocals, no singing, no humming, no choir` + `[Instrumental]` in jeder Lyrics-Sektion.
+
+### Duration Awareness
+
+| Target | Structure Guidance |
+|--------|-------------------|
+| < 2:00 | 1–2 sections + `[End]`. Add "short" in style prompt |
+| 2:00–3:00 | 2 verses max, short bridge |
+| 3:00–5:00 | Standard (v5 generiert bis zu 4 Min. in einem Pass) |
+| 5:00+ | 3+ verses, pre-chorus, bridge, 1–2 instrumental breaks. Add "extended" |
+
+### Voice & Delivery Quick Reference
+
+| Type | Range | Best For |
+|------|-------|----------|
+| Soprano | High female | Pop, theatrical |
+| Alto | Low female | Jazz, darkwave, folk |
+| Tenor | High male | Pop, rock, R&B |
+| Baritone | Mid male | Rock, goth, country |
+| Bass | Low male | Blues, doom |
+
+---
+
+
+---
+
+## Part 5 — Generic Suno V5/V5.5 workflow features
+
+*Adapted from suno-lyric-writer SKILL.md Phase 5. Reference for Creative Sliders, Personas / Voices / Custom Models, and Extend / Cover / Remaster / Stems workflows.*
+
+## Phase 5: V5/V5.5 Workflow-Features
+
+### Creative Sliders
+
+| Slider | Funktion | Empfohlener Bereich |
+|--------|----------|---------------------|
+| **Weirdness** | Unvorhersagbarkeit/Experimentierfreude | 35–55 standard; Chorus: tief, Bridge: höher |
+| **Style Influence** | Strenge der Prompt-Befolgung | 55–80 für Genre-Treue |
+| **Audio Influence** | Treue zum Upload-Material | 25–40 Textur; 60–75 enge Stimm-Matches |
+
+Immer **nur einen Slider gleichzeitig ändern**, 2–4 Varianten pro Änderung generieren.
+
+### Personas, Voices (v5.5) & Custom Models
+
+**Personas** — Stimme + Style eines Songs als Template speichern:
+- ⋮ → Create → Make Persona. In Custom Mode auswählen.
+- Aus Tracks mit spärlicher Instrumentierung und trockenen Vocals ableiten.
+- Bei Persona: Style Prompt vereinfachen (Persona trägt die Identität).
+
+**Voices (v5.5, Pro/Premier)** — Voice Cloning:
+- Upload/Aufnahme mit Anti-Deepfake-Verifizierung; max 3 pro Account.
+- Voice Influence bei **50% starten** (höhere Werte = Shimmer-Artefakte).
+- Bei Voices: **Gender-Deskriptoren aus Prompt entfernen**.
+
+**Custom Models (v5.5)** — eigener Produktionsstil via eigene Tracks (max 3).
+- Konsistenter Stil im Katalog → bessere Ergebnisse. Gemischte Genres degradieren das Model.
+
+### Extend, Cover, Remaster, Stems
+
+**Extend:** Von Momentum-Punkten aus (Mitte Strophe, nicht nach finalem Chorus).
+`[Callback: continue with same vibe as chorus]` verhindert Style-Drift.
+Fertige Sektionen aus Lyrics **löschen** — sonst Wiederholung statt Fortsetzung.
+
+**Cover:** Weirdness 0–30% = nah am Original; 70–100% = radikale Neuinterpretation.
+
+**Remaster:** Subtle / Normal / High. Alte v3.5/v4-Tracks sofort auf v5-Qualität.
+
+**Stems & DAW:** Bis zu 12 Stems-Export. Tempo-Drift-Fix: Studio Transport-Bar → **Manual BPM** setzen vor Export.
+
+**Anti-AI-Sound:** `organic feel, human performance, no quantization, subtle imperfections, live recording vibe`
+
+---
+
