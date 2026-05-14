@@ -1,104 +1,73 @@
 # the-agency-system — Claude Code instructions
 
-This repository hosts **The Agency System** — Michael Schimmer's
-darkwave/industrial concept-album triptych (Album 1 *Together We
-Confide*, Album 2 *Moment der Klarheit*, Album 3 *Gegenüber*). Project
-DNA — narrative architecture, two-voice register, sonic identity,
-13-point quality audit — lives in `overrides/`. See
-[`overrides/album-planning-guide.md`](overrides/album-planning-guide.md),
-[`overrides/lyric-writing-guide.md`](overrides/lyric-writing-guide.md),
-[`overrides/suno-preferences.md`](overrides/suno-preferences.md), and
-[`overrides/research-preferences.md`](overrides/research-preferences.md)
-before composing or auditing a track.
+Working tree for Michael Schimmer's darkwave/industrial album triptych
+and for the [bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
+plugin that produces it.
 
-The repository is also the working tree for the
-[bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
-plugin. All album work — concepts, lyrics, mastered audio, research
-documents — is stored here so it lives in git alongside the rest of the
-configuration.
+## Session start — required check
 
-## Repository layout
+At the start of every session, verify the **`bitwize-music-mcp`** MCP
+server is running. Recovery, in order:
 
-```
-the-agency-system/
-├── CLAUDE.md                 # this file
-├── README.md                 # short repo title
-├── IDEAS.md                  # album brainstorming (auto-created on first use)
-├── artists/                  # album content (auto-created by the plugin)
-│   └── the-agency-system/
-│       └── albums/
-│           └── <genre>/
-│               └── <album-slug>/
-│                   ├── README.md
-│                   └── tracks/
-├── audio/                    # mastered audio (Git LFS)
-├── documents/                # research PDFs and references (Git LFS)
-├── overrides/                # per-skill preference files the plugin loads
-│   ├── pronunciation-guide.md
-│   ├── lyric-writing-guide.md
-│   ├── suno-preferences.md
-│   ├── research-preferences.md
-│   └── ...
-├── .claude/
-│   ├── settings.json                          # plugin + SessionStart hook
-│   ├── bitwize-music.config.template.yaml     # versioned config template
-│   └── scripts/
-│       └── setup-bitwize-music.sh             # bootstraps venv + config
-└── .gitattributes            # Git LFS tracking for audio/** and documents/**
-```
+1. **Start a new session first.** Slash commands (including
+   `/bitwize-music:health-check`) depend on the plugin being wired
+   into the session, so a restart is the cheapest way to re-trigger
+   the `SessionStart` hook in `.claude/settings.json` — it calls
+   `.claude/scripts/setup-bitwize-music.sh`, which provisions
+   `~/.bitwize-music/venv` and renders `~/.bitwize-music/config.yaml`.
+2. Once the new session is up, run `/bitwize-music:health-check` to
+   confirm `bitwize-music-mcp` is registered and healthy.
+3. If the hook didn't fire (e.g. `~/.bitwize-music/setup.log` is
+   missing), run the script manually, then start a new session:
+   ```bash
+   bash .claude/scripts/setup-bitwize-music.sh
+   ```
+   The script self-locates from its own path, so no env vars are
+   required. Logs: `~/.bitwize-music/setup.log`.
+4. If the plugin itself isn't installed (`~/.claude/plugins/installed_plugins.json`
+   doesn't list `bitwize-music@bitwize-music`), the marketplace entry
+   in `.claude/settings.json` hasn't been resolved — re-add the plugin
+   from the marketplace before retrying.
 
-## How the plugin is wired up
+## Most important commands & skills
 
-- `.claude/settings.json` enables `bitwize-music@bitwize-music` and registers
-  a `SessionStart` hook that runs `.claude/scripts/setup-bitwize-music.sh`
-  on every session start.
-- The setup script creates `~/.bitwize-music/venv`, installs the plugin's
-  Python dependencies, and renders the config template into
-  `~/.bitwize-music/config.yaml` on first run. `${REPO}` is substituted
-  with this repository's absolute path.
-- The rendered config points `content_root` at the repo root itself, so
-  the plugin writes albums to `./artists/<artist>/albums/<genre>/<slug>/`.
-- The plugin's MCP server (`bitwize-music-mcp`) auto-starts in each
-  session and exposes 89 tools for album, lyric, mastering, and release
-  workflows.
-- Plugin skills appear as `/bitwize-music:<name>` slash commands
-  (50+ skills: `album-conceptualizer`, `lyric-writer`,
-  `mastering-engineer`, `suno-engineer`, `release-director`, …).
+Invoke as slash commands: `/bitwize-music:<name>`.
 
-## Overrides
+| Command | Purpose |
+|---|---|
+| `/bitwize-music:health-check` | Verify plugin + MCP server status |
+| `/bitwize-music:configure` | Show / edit active config |
+| `/bitwize-music:help` | List all plugin skills |
+| `/bitwize-music:about` | Plugin overview |
+| `/bitwize-music:tutorial` | Guided walkthrough |
+| `/bitwize-music:new-album` | Start a new album |
+| `/bitwize-music:album-conceptualizer` | Develop album concept |
+| `/bitwize-music:lyric-writer` | Write lyrics |
+| `/bitwize-music:suno-engineer` | Craft Suno prompts |
+| `/bitwize-music:mastering-engineer` | Master audio |
+| `/bitwize-music:release-director` | Coordinate release |
 
-`overrides/` holds the user-preference files the plugin reads through
-its `load_override` MCP tool. Twelve filenames are recognised; each one
-is additive to the plugin's defaults. Four of them are pre-filled from
-[netzkontrast/agency:skills/suno-lyric-writer](https://github.com/netzkontrast/agency/tree/main/skills/suno-lyric-writer)
-and carry a provenance HTML comment at the top:
+### Where to find more
 
-- `pronunciation-guide.md` — phonetic spellings for Suno
-- `lyric-writing-guide.md` — lyric craft reference
-- `suno-preferences.md` — Suno prompt + genre practices
-- `research-preferences.md` — documentary research standards
+- **Full skill list (54 skills):** `/bitwize-music:help` or
+  `ls ~/.claude/plugins/marketplaces/bitwize-music/skills/`
+- **Skill source + READMEs:** `~/.claude/plugins/marketplaces/bitwize-music/skills/<name>/`
+- **Reference docs (workflows, suno, mastering, release, …):**
+  `~/.claude/plugins/marketplaces/bitwize-music/reference/`
+- **Project DNA (narrative, voice, sonic identity, audit):**
+  `overrides/album-planning-guide.md`,
+  `overrides/lyric-writing-guide.md`,
+  `overrides/suno-preferences.md`,
+  `overrides/research-preferences.md`
+- **Active runtime config:** `~/.bitwize-music/config.yaml`
 
-The remaining files (`album-art-preferences.md`, `album-planning-guide.md`,
-`explicit-words.md`, `mastering-presets.yaml`, `promotion-preferences.md`,
-`release-preferences.md`, `sheet-music-preferences.md`) are stubs ready
-for editing.
+## Repository essentials
 
-## Heavy binaries are versioned via Git LFS
+- `artists/the-agency-system/albums/<genre>/<slug>/` — album content
+- `audio/`, `documents/` — Git LFS (run `git lfs install` once per machine)
+- `overrides/` — user-preference files loaded by the plugin's `load_override` tool
+- `.claude/settings.json` — enables `bitwize-music@bitwize-music` + SessionStart hook
+- `.claude/scripts/setup-bitwize-music.sh` — venv + config bootstrap (run manually if the hook didn't fire; see above)
 
-`audio/` (`.wav`, `.flac`, `.mp3`, `.aiff`, `.aif`, `.ogg`, `.m4a`) and
-`documents/` (`.pdf`, `.epub`, `.docx`) go through [Git LFS](https://git-lfs.com).
-Before cloning or pushing on a new machine, install LFS and run
-`git lfs install` once. Patterns are declared in the repo's `.gitattributes`.
-
-## Working in the repo
-
-- After cloning on a fresh machine, start a Claude Code session in the
-  repo root. The `SessionStart` hook will provision the venv and render
-  the config automatically — first run takes a few minutes for the pip
-  install, subsequent runs are instant.
-- If the local config drifts (e.g. paths point at a different repo
-  location), delete `~/.bitwize-music/config.yaml` and start a new
-  session; the template will re-render with the current `$CLAUDE_PROJECT_DIR`.
-- Use `/bitwize-music:configure show` inside Claude Code to inspect the
-  active configuration, and `/bitwize-music:health-check` for a full
-  plugin diagnostic.
+If config drifts, delete `~/.bitwize-music/config.yaml` and start a new
+session to re-render from the template.

@@ -29,8 +29,15 @@ LOCK_FILE="${STATE_DIR}/setup.lock"
 KNOWN_MARKETPLACES="${HOME}/.claude/plugins/known_marketplaces.json"
 DEFAULT_PLUGIN_DIR="${HOME}/.claude/plugins/marketplaces/bitwize-music"
 # The project the hook fires from. The plugin stores album content
-# under ${REPO}/music/ when the config is rendered from the template.
-REPO="${CLAUDE_PROJECT_DIR:-}"
+# under ${REPO}/artists/<artist>/albums/<genre>/<slug>/ when the
+# config is rendered from the template.
+# Self-locate from $BASH_SOURCE: the script lives at
+# ${REPO}/.claude/scripts/setup-bitwize-music.sh, so the repo root is
+# two directories up. This avoids depending on CLAUDE_PROJECT_DIR or
+# the hook's working directory. CLAUDE_PROJECT_DIR still wins when set
+# so manual runs from outside the repo keep working.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+REPO="${CLAUDE_PROJECT_DIR:-$(cd "${SCRIPT_DIR}/../.." && pwd -P)}"
 CONFIG_TEMPLATE="${REPO:+${REPO}/.claude/bitwize-music.config.template.yaml}"
 
 # Locate the plugin on disk. Prefer the installLocation Claude recorded
