@@ -29,7 +29,8 @@ LOCK_FILE="${STATE_DIR}/setup.lock"
 KNOWN_MARKETPLACES="${HOME}/.claude/plugins/known_marketplaces.json"
 DEFAULT_PLUGIN_DIR="${HOME}/.claude/plugins/marketplaces/bitwize-music"
 # The project the hook fires from. The plugin stores album content
-# under ${REPO}/music/ when the config is rendered from the template.
+# under ${REPO}/artists/<artist>/albums/<genre>/<slug>/ when the
+# config is rendered from the template.
 # Self-locate from $BASH_SOURCE: the script lives at
 # ${REPO}/.claude/scripts/setup-bitwize-music.sh, so the repo root is
 # two directories up. This avoids depending on CLAUDE_PROJECT_DIR or
