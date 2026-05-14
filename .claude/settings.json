@@ -9,5 +9,18 @@
   },
   "enabledPlugins": {
     "bitwize-music@claude-ai-music-skills": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/scripts/setup-bitwize-music.sh\""
+          }
+        ]
+      }
+    ]
   }
 }
