@@ -1,96 +1,247 @@
-# Custom Mastering Presets
+# Custom Mastering Presets — the-agency-system
 #
-# Override or add genre presets for mastering.
-# These merge on top of the built-in presets in tools/mastering/genre-presets.yaml.
-# Only specify fields you want to change — unset fields inherit from built-in.
+# Cross-project mastering targets for the genres this artist works in.
+# Merges on top of built-in presets; only fields specified here override.
+# Built-in defaults handle every field not listed.
 #
-# Fields per genre:
-#   target_lufs          - Loudness target in LUFS (e.g., -14.0)
-#   cut_highmid          - EQ cut in dB at eq_highmid_freq (negative = cut, 0 = none)
-#   cut_highs            - High shelf cut in dB at eq_highs_freq (negative = cut, 0 = none)
-#   compress_ratio       - Compression ratio (1.0 = bypass, default 1.5)
-#   compress_threshold   - Compression threshold in dB (default -18.0)
-#   compress_attack      - Compression attack in ms (default 30.0)
-#   compress_release     - Compression release in ms (default 200.0)
-#   eq_highmid_freq      - High-mid EQ center frequency in Hz (default 3500.0)
-#   eq_highmid_q         - High-mid EQ Q factor (default 1.5)
-#   eq_highs_freq        - High shelf frequency in Hz (default 8000.0)
-#   eq_highs_q           - High shelf Q factor (default 0.7)
-#   eq_low_freq          - Low shelf center frequency in Hz (default 80.0)
-#   eq_low_gain          - Low shelf gain in dB (positive = boost, 0 = bypass)
-#   eq_low_q             - Low shelf Q factor (default 0.7)
-#   eq_sub_cut_freq      - Sub-bass HPF frequency in Hz (0 = bypass)
-#   stereo_width         - Stereo width multiplier (0.0=mono, 1.0=unchanged, >1.0=wider)
-#   stereo_bass_mono_freq - Mono-sum below this frequency in Hz (0 = bypass)
-#   output_bits          - Output bit depth: 16 or 24 (default 16)
-#   dither_bits          - Dither bit depth (default: follows output_bits)
-#   limiter_lookahead_ms - Look-ahead buffer in ms (0 = reactive, default 5.0)
-#   limiter_release_ms   - Limiter release time in ms (default 50.0)
-#   compress_mix         - Compression wet/dry blend (0.0=dry, 1.0=wet, default 1.0)
-#   compress_makeup      - Compression makeup gain in dB (default 0)
-#   processing_oversample - Oversample factor for nonlinear stages (1/2/4, default 1)
-#   target_lra           - Target loudness range in LU (0 = disable, default 0)
-#   dc_filter_freq       - DC offset removal HPF in Hz (0 = bypass, default 5.0)
-#   output_sample_rate   - Target sample rate (0 = preserve input, default 0)
-#   deess_enabled        - Enable de-esser (0 = off, 1 = on, default 0)
-#   deess_freq           - De-esser center frequency in Hz (default 6500)
-#   deess_bandwidth      - De-esser detection bandwidth in Hz (default 4000)
-#   deess_threshold      - De-esser threshold in dB (default -20.0)
-#   deess_ratio          - De-esser compression ratio (default 4.0)
-#   track_gap            - Silence to prepend per track in seconds (default 0)
-#   multiband_enabled    - Enable 3-band multiband compression (0/1, default 0)
-#   multiband_low_crossover  - Low/mid crossover in Hz (default 200)
-#   multiband_high_crossover - Mid/high crossover in Hz (default 5000)
-#   multiband_low_ratio  - Low band compression ratio (default 1.5)
-#   multiband_mid_ratio  - Mid band compression ratio (default 1.5)
-#   multiband_high_ratio - High band compression ratio (default 1.5)
-#   multiband_low_threshold  - Low band threshold in dB (default -18.0)
-#   multiband_mid_threshold  - Mid band threshold in dB (default -18.0)
-#   multiband_high_threshold - High band threshold in dB (default -18.0)
-#   midside_low_gain     - Side channel low shelf gain in dB (default 0)
-#   midside_low_freq     - Side channel low shelf frequency in Hz (default 300)
-#   midside_high_gain    - Side channel high shelf gain in dB (default 0)
-#   midside_high_freq    - Side channel high shelf frequency in Hz (default 8000)
-#   eq_linear_phase      - Use linear-phase FIR EQ (0 = off, 1 = on, default 0)
-#   click_peak_ratio     - QC click detector: peak-to-RMS ratio above which a 10ms
-#                          window counts as a click (default 6.0). Raise for genres
-#                          with intentional sharp transients (e.g., 8.0–10.0).
-#   click_fail_count     - QC click detector: click count above which clicks FAIL
-#                          (default 3). Raise alongside click_peak_ratio for
-#                          dense-transient genres.
+# Streaming-platform targets:
+#   -14 LUFS  - Spotify / YouTube / Apple Music (standard)
+#   -16 LUFS  - Apple Sound Check (more dynamics)
+#   -23 LUFS  - broadcast (EBU R128)
+#
+# Lower target_lufs (more negative) = quieter, more dynamic range.
+# Higher target_lufs (less negative) = louder, more compressed.
+#
+# Aesthetic: "honest over beautiful" - favor dynamics preserved over
+# loudness-war competitiveness, even at the cost of perceived volume
+# on shuffle playlists. Output 24-bit for archival.
 
-# Empty dict — the loader walks the keys, so the stub must parse to {}
-# rather than None. Replace `{}` with real entries to override genres.
-genres: {}
-  # Example: override rock to be less aggressive
-  # rock:
-  #   cut_highmid: -1.5        # Less cut than default -2.5
+genres:
 
-  # Example: add a custom genre
-  # dark-electronic:
-  #   target_lufs: -12.0
-  #   cut_highmid: -3.0
-  #   cut_highs: -1.0
+  # ============================================================
+  # Intimate / voice-forward / acoustic-leaning
+  # Maximum dynamics preserved; voice carries the meaning.
+  # ============================================================
 
-  # Example: ambient with even more dynamics
-  # ambient:
-  #   target_lufs: -18.0       # Override default -16
+  electroacoustic:
+    target_lufs: -16.0          # More dynamic than streaming standard
+    cut_highmid: -1.0           # Gentle high-mid taming, preserve breath
+    cut_highs: 0                # No high cut - let air breathe
+    compress_ratio: 1.3         # Very light compression
+    compress_threshold: -20.0
+    compress_attack: 50.0       # Slow attack - preserve transients
+    eq_low_gain: 0              # No bass boost
+    stereo_width: 1.0           # Natural stereo
+    output_bits: 24
+    target_lra: 11.0            # Preserve dynamic range
 
-  # Example: tweak compression for a genre
-  # hip-hop:
-  #   compress_ratio: 2.5      # Heavier compression
-  #   compress_threshold: -15.0
-  #   compress_attack: 10.0    # Faster attack for punch
+  dark-folk:
+    target_lufs: -15.0
+    cut_highmid: -1.5
+    compress_ratio: 1.4
+    compress_attack: 40.0
+    eq_low_gain: 0
+    output_bits: 24
+    target_lra: 10.0
 
-  # Example: EDM with bass mono fold and sub cut
-  # edm:
-  #   eq_sub_cut_freq: 25      # Remove sub-rumble
-  #   eq_low_gain: 1.5         # Gentle bass boost
-  #   stereo_bass_mono_freq: 120  # Mono below 120Hz for club playback
+  art-song:
+    target_lufs: -16.0
+    cut_highmid: -1.0
+    compress_ratio: 1.3
+    compress_attack: 50.0
+    output_bits: 24
+    target_lra: 11.0
 
-# Default settings (applied when no genre is specified)
-# defaults:
-#   target_lufs: -14.0         # Streaming standard
-#   cut_highmid: 0
-#   cut_highs: 0
-#   output_bits: 24            # 24-bit output for archival
+  singer-songwriter:
+    target_lufs: -15.0
+    cut_highmid: -1.5
+    compress_ratio: 1.4
+    compress_attack: 40.0
+    output_bits: 24
+    target_lra: 10.0
+
+  # ============================================================
+  # Orchestral / cinematic
+  # Preserve range, careful with string bite.
+  # ============================================================
+
+  orchestral-electronic:
+    target_lufs: -15.0
+    cut_highmid: -2.0           # Tame string bite
+    cut_highs: -1.0             # Gentle high shelf
+    compress_ratio: 1.4
+    compress_attack: 30.0
+    eq_low_gain: 1.0            # Slight bass weight
+    stereo_width: 1.1           # Slightly wider for orchestral sense
+    output_bits: 24
+    target_lra: 10.0
+
+  neoclassical:
+    target_lufs: -16.0
+    cut_highmid: -2.0
+    cut_highs: -1.0
+    compress_ratio: 1.3
+    output_bits: 24
+    target_lra: 11.0
+
+  cinematic:
+    target_lufs: -15.0
+    cut_highmid: -2.0
+    cut_highs: -1.0
+    compress_ratio: 1.4
+    eq_low_gain: 1.0
+    stereo_width: 1.1
+    output_bits: 24
+    target_lra: 10.0
+
+  # ============================================================
+  # Band-driven / electro rock
+  # More competitive loudness; preserve some dynamics.
+  # ============================================================
+
+  dark-electro-rock:
+    target_lufs: -12.0          # Genre-competitive loudness
+    cut_highmid: -2.5
+    cut_highs: -0.5
+    compress_ratio: 1.8
+    compress_threshold: -16.0
+    compress_attack: 20.0
+    eq_low_gain: 1.5
+    eq_sub_cut_freq: 30         # HPF below 30Hz
+    stereo_width: 1.1
+    output_bits: 24
+
+  post-punk:
+    target_lufs: -12.0
+    cut_highmid: -2.5
+    compress_ratio: 1.8
+    compress_attack: 20.0
+    eq_low_gain: 1.0
+    output_bits: 24
+
+  gothic-rock:
+    target_lufs: -13.0
+    cut_highmid: -2.0
+    compress_ratio: 1.7
+    eq_low_gain: 1.5
+    output_bits: 24
+
+  alternative-rock:
+    target_lufs: -13.0
+    cut_highmid: -2.0
+    compress_ratio: 1.7
+    eq_low_gain: 1.0
+    output_bits: 24
+
+  # ============================================================
+  # Industrial / darkwave / electronic
+  # Genre convention is loud; fast-attack compression for punch.
+  # ============================================================
+
+  industrial-darkwave:
+    target_lufs: -10.0          # Industrial-genre convention
+    cut_highmid: -3.0
+    cut_highs: -1.0
+    compress_ratio: 2.5
+    compress_threshold: -14.0
+    compress_attack: 10.0       # Fast attack for punch
+    eq_low_gain: 2.0
+    eq_sub_cut_freq: 25
+    stereo_bass_mono_freq: 120  # Mono below 120Hz for club playback
+    stereo_width: 1.1
+    output_bits: 24
+
+  ebm:
+    target_lufs: -10.0
+    cut_highmid: -3.0
+    compress_ratio: 2.8
+    compress_attack: 8.0
+    eq_low_gain: 2.5
+    eq_sub_cut_freq: 25
+    stereo_bass_mono_freq: 120
+    output_bits: 24
+
+  dark-techno:
+    target_lufs: -10.0
+    cut_highmid: -2.5
+    compress_ratio: 2.5
+    eq_low_gain: 2.0
+    eq_sub_cut_freq: 30
+    stereo_bass_mono_freq: 120
+    output_bits: 24
+
+  dark-synth-pop:
+    target_lufs: -12.0
+    cut_highmid: -2.0
+    compress_ratio: 2.0
+    compress_attack: 15.0
+    eq_low_gain: 1.5
+    eq_sub_cut_freq: 30
+    output_bits: 24
+
+  # ============================================================
+  # Trip-hop
+  # Cinematic, room for the voice.
+  # ============================================================
+
+  trip-hop:
+    target_lufs: -13.0
+    cut_highmid: -1.5
+    compress_ratio: 1.6
+    compress_attack: 30.0
+    eq_low_gain: 1.5
+    eq_sub_cut_freq: 35
+    stereo_width: 1.1
+    output_bits: 24
+    target_lra: 9.0
+
+  # ============================================================
+  # Ambient / drone
+  # Maximum dynamic range; minimal processing.
+  # ============================================================
+
+  ambient:
+    target_lufs: -18.0          # Quiet, dynamic
+    cut_highmid: 0              # No EQ moves
+    cut_highs: 0
+    compress_ratio: 1.0         # No compression
+    eq_low_gain: 0
+    stereo_width: 1.2           # Wider for spatial sense
+    output_bits: 24
+    target_lra: 15.0            # Wide dynamic range
+
+  drone:
+    target_lufs: -18.0
+    compress_ratio: 1.0
+    stereo_width: 1.2
+    output_bits: 24
+    target_lra: 15.0
+
+  dark-ambient:
+    target_lufs: -17.0
+    cut_highmid: 0
+    cut_highs: 0
+    compress_ratio: 1.1
+    eq_low_gain: 0.5
+    stereo_width: 1.2
+    output_bits: 24
+    target_lra: 14.0
+
+# ============================================================
+# Default settings - applied when no genre matches
+# ============================================================
+
+defaults:
+  target_lufs: -14.0            # Streaming standard
+  true_peak: -1.0               # Headroom below 0 dBTP
+  cut_highmid: -1.5             # Gentle default high-mid tame
+  cut_highs: 0
+  compress_ratio: 1.5           # Light default compression
+  compress_threshold: -18.0
+  compress_attack: 30.0
+  compress_release: 200.0
+  eq_low_gain: 0.5
+  output_bits: 24               # 24-bit output for archival
+  limiter_lookahead_ms: 5.0
+  limiter_release_ms: 50.0
+  target_lra: 9.0               # Moderate dynamic range

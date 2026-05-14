@@ -1,58 +1,122 @@
 # Promotion Preferences
 
-Customize how `/bitwize-music:promo-writer` generates social media copy for your releases.
+Cross-project social media preferences for the-agency-system. Customizes
+how `/bitwize-music:promo-writer` and `/bitwize-music:promo-director`
+generate copy across platforms.
+
+The tone should never lapse into hype or oversharing. Restrained, honest,
+craft-forward — the same aesthetic as the music.
+
+---
 
 ## Tone & Voice
 
-- **Default tone**: casual
+- **Default tone**: storytelling
   <!-- Options: casual, professional, hype, mysterious, storytelling -->
 - **Emoji usage**: minimal
   <!-- Options: none, minimal, moderate, heavy -->
 - **Point of view**: first-person
-  <!-- Options: first-person ("I made..."), third-person ("bitwize releases..."), collective ("We made...") -->
+  <!-- "I made this..." — the work is personal, not corporate -->
+
+---
 
 ## Platform Priorities
 
-Generate copy for these platforms (in order of priority):
+Generate copy for these platforms in order:
 
-1. Twitter/X
-2. Instagram
-3. TikTok
-4. YouTube
-5. Facebook
+1. SoundCloud (always upload first — same day as completion)
+2. Bandcamp (within 24 hours)
+3. YouTube (full-length tracks + album promo)
+4. Twitter/X
+5. Instagram
+6. TikTok
 
-<!-- Remove or comment out platforms to skip them -->
-<!-- Skip: none -->
+<!-- Skip: Facebook — generally low engagement for this audience -->
+
+---
 
 ## Messaging Themes
 
 ### Always Mention
-- The story/concept behind the album
-- The creative process
+
+- The concept or thematic core of the work (not as buzzword but as actual content)
+- The craft choices that distinguish the track (production decisions, voice work, structural choices)
+- Sonic references when relevant — *describe the sound* (don't compare to imply equivalence; don't name real artists in style prompts per Suno blocklist)
+- Subject matter when it serves the listener (trauma, plurality, recovery without resolution) — name it cleanly, never bait
+- Bilingual context when relevant (German title, German term used un-translated, etc.)
 
 ### Never Mention
-<!-- Add topics to avoid in promo copy -->
-<!-- Example: "personal struggles", "competing artists" -->
+
+- Personal struggles framed as marketing ("I made this while going through X" — only if integral to the work's content, and only in long-form posts)
+- Competing artists by name (unless quoting a third-party comparison)
+- Generic motivational content ("believe in yourself", "follow your dreams")
+- Streaming numbers / chart position (focus on the work, not the metrics)
+- Emotion-baiting captions ("this one is gonna make you cry", "if you've ever felt X")
+
+---
 
 ## Hashtag Preferences
 
 ### Always Include
-- #NewMusic
-<!-- Add hashtags that should appear on every post (platform limits permitting) -->
 
-### Genre Tags
-<!-- Override genre tag selection. Leave empty to use defaults from copy-formulas.md -->
+- #NewMusic
+- #IndieMusic
+
+### Genre Tags (rotate per release based on track)
+
+- #ElectroAcoustic / #DarkFolk / #ArtSong (intimate releases)
+- #DarkElectroRock / #PostPunk / #GothicRock (heavier releases)
+- #IndustrialDarkwave / #EBM / #Darkwave (industrial side)
+- #AmbientMusic / #Drone (ambient releases)
+- #TripHop (trip-hop releases)
+
+### Thematic Tags
+
+- #ConceptAlbum (for any thematic work)
+- #DocumentaryMusic (for true-story work)
+- #CPTSD / #DIDAwareness (for trauma-themed work — use respectfully, never as audience-bait)
 
 ### Avoid
-- #FollowBack
-- #Like4Like
-- #MusicPromotion
+
+- #FollowBack / #Like4Like / #L4L
+- #MusicPromotion / #IndieArtist (overused, low signal)
+- #Spotify / #AppleMusic as standalone (use only with #NewMusic context)
+- Hashtag stacks (10+ tags) — looks like spam
+- Trending hashtags unrelated to the work
+
+---
 
 ## AI Music Positioning
 
 - **Mention AI**: occasionally
   <!-- Options: never, occasionally (when relevant), always -->
-- **Framing**: "AI-assisted artist"
-  <!-- How to describe the AI role when mentioned -->
-- **Emphasis**: creative direction, concept, curation
-  <!-- What to highlight about the human contribution -->
+- **Framing**: "AI-assisted artist" or "human creative direction, AI execution"
+  <!-- Be honest about the tooling without making it the headline -->
+- **Emphasis**: creative direction, concept, voice work, production decisions
+  <!-- The human contribution is the architecture; the AI is the realization -->
+
+Don't lead with AI as the hook — the work stands on its own. When AI
+comes up (questions, controversy, transparency post), respond directly
+and calmly. The position: AI is a tool; the artistic choices are human.
+
+---
+
+## Per-Platform Style Notes
+
+| Platform | Tone | Length | Hashtags | Visual |
+|---|---|---|---|---|
+| SoundCloud | Storytelling, longer description | 200–400 words | 3–5 in tags field, not in description | Album art + waveform |
+| Bandcamp | Personal note, link to album | 100–250 words | None (Bandcamp doesn't use hashtags) | Full album art |
+| YouTube | Description with track context + lyrics | 300–600 words | 5–10 in description tail | Album art + waveform overlay |
+| Twitter/X | Single statement + link | <280 chars | 2–3 max | Square album art crop |
+| Instagram | Caption with concept hook | 100–300 words | 5–10 in first comment | Album art + 2–3 sec waveform reel |
+| TikTok | Hook in first 3 seconds | Caption <150 chars | 3–5 | Vertical video, waveform + lyric snippet |
+
+---
+
+## Release Cadence
+
+- **Singles** posted 1 week apart, building toward album release
+- **Full album** post crosses all platforms same day
+- **Behind-the-craft posts** (production notes, voice work, concept) follow 3–5 days after each release
+- **Re-engagement** at 30 days post-release with a thematic deep-dive or live performance recording
