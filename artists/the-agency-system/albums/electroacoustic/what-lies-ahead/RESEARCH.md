@@ -6,7 +6,7 @@ This album is **thematic with documentary edge**. It does not depict specific re
 
 For URL lists organised by category, see `SOURCES.md`.
 For the alter profiles, voice metatags, and lyrical hooks that operationalise this research, see `the-eleven.md`.
-For the cross-project voice-craft principles (no-labels rule etc.), see `overrides/voice-craft-principles.md`.
+For the cross-project voice-craft principles (no-labels rule etc.), see `../../../../../overrides/voice-craft-principles.md`.
 
 ---
 
@@ -62,7 +62,7 @@ Rather than "Key People" (documentary convention), this album draws from framewo
 | Complex PTSD framework | Pete Walker | Emotional flashbacks, 4Fs (incl. Fawn), inner/outer critic, toxic shame |
 | Somatic experiencing / vortex theory | Peter Levine | The Strömungen analog; body finding its own rhythm |
 | Body Keeps the Score | Bessel van der Kolk | Somatic memory; body lags cognition |
-| Functional multiplicity advocacy | Truddi Chase (1987), The Plural Association | Refusal of forced fusion; 97% community preference |
+| Functional multiplicity advocacy | Truddi Chase (1987), The Plural Association, Power To The Plurals, Kinhost, Lyn Barrett | Refusal of forced fusion as recovery endpoint; community-canon consensus across multiple sources (see SOURCES.md community/critique categories) |
 
 ---
 
@@ -70,7 +70,7 @@ Rather than "Key People" (documentary convention), this album draws from framewo
 
 | Decision | Evidence |
 |---|---|
-| Worldview = most fractured (refusing fusion) | 97% community preference for functional multiplicity (Plural Association 2024 survey). Clinical field has shifted toward patient-led endpoints over the last 10–15 years. |
+| Worldview = most fractured (refusing fusion) | Community-canon consensus favors functional multiplicity over forced fusion (Power To The Plurals, Kinhost, Lyn Barrett, Pluralpedia, peer-reviewed plurality research — see SOURCES.md). Clinical field has shifted toward patient-led endpoints over the last 10–15 years. Original draft cited a specific "97% Plural Association 2024 survey" figure; the exact percentage is pending source verification, but the directional claim is well-supported by the listed sources. |
 | Witness = annotative across all tracks | Aligns with partial co-consciousness (community-accurate). Avoids the "meet the alters" theatrical-switching trope. |
 | Integrator = also Gatekeeper | Clinically defensible (DID-Research: ISH "may or may not also serve as a gatekeeper"). Host avoidance + gatekeeping form a closed loop — the duet should sound like collusion that believes itself to be care. |
 | Alters never named in lyrics | Recognised in community as the correct move; dodges the naming-as-gimmick trope. Caveat in §4.1. |

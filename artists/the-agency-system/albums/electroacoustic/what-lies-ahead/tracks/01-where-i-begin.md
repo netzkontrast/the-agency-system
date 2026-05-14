@@ -85,7 +85,7 @@ The room as the album opens. A pre-dawn quality — not the brightness of beginn
 - **Tempo**: ~70–80 BPM, unhurried
 - **Feel**: Present-tense, conversational, no climax
 - **Instrumentation**: Voice forward. Sparse harmonic bed — piano + processed pad, or guitar harmonics. The "container of all registers" can hint at the album's later palette without committing to any of them.
-- **Vocal delivery**: Slightly under-articulated. Mid-baritone. No vibrato. Breath audible but not performed. See `the-eleven.md` §Suno Voice Metatags row 1.
+- **Vocal delivery**: Slightly under-articulated. Mid-baritone. No vibrato. Breath audible but not performed. See `../the-eleven.md` §Suno Voice Metatags row 1.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -242,13 +242,13 @@ Again
 **Inline vocal metatag convention (album-wide):**
 - Every section that introduces a different voice gets an inline metatag *describing the vocal sound*, not naming the alter. Format:
   `[gender + register + texture + processing markers]`
-- Always permitted per `overrides/voice-craft-principles.md`: "Suno style-prompt directives that ask for a different vocal timbre, register, or texture *between sections*."
+- Always permitted per `../../../../../../overrides/voice-craft-principles.md`: "Suno style-prompt directives that ask for a different vocal timbre, register, or texture *between sections*."
 - Never permitted: tags that name the alter (`[Container]`, `[Witness]`, `[Sexualized-Override]` etc.). Identity is carried by syntax in the lyric, by timbre in the production.
 - For solos with a Witness annotation (this track), use one tag at section start for the main voice, one tag preceding the Witness lines, and a "main voice returns" tag when the Witness yields.
 - For duets and the worldview track, every alter switch in the lyric is preceded by a fresh descriptive metatag.
 
 **Technical considerations:**
-- Voice metatag for the Container governs the lead vocal — see `the-eleven.md` §Suno Voice Metatags row 1
+- Voice metatag for the Container governs the lead vocal — see `../the-eleven.md` §Suno Voice Metatags row 1
 - Parenthesized lines in the Bridge land as Suno V5 backing/ad-lib layer automatically (Suno community convention) — reinforced by the inline Witness metatag preceding those lines
 - Sparse arrangement: piano + processed pad + distant string textures. Voice forward.
 - No drums, no rhythmic grid — em-dashes are the breath/pulse
