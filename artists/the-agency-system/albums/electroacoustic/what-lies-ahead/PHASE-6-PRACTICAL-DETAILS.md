@@ -25,8 +25,8 @@ Three final decisions before track scaffold creation (Phase 7):
 ## 1. Final Title Confirmation
 
 ### Current Status
-- **Working title:** "What Lies Ahead"
-- **Status:** Provisional (locked as concept, not yet confirmed as release title)
+- **Final title:** "What Lies Ahead" (locked 2026-05-14)
+- **Status:** Approved as final release title.
 
 ### Title Analysis
 
@@ -100,8 +100,8 @@ Before proceeding to lyric-writing and generation phases, confirm:
 
 ### Current Status
 
-- **Provisional:** `explicit: false` (in README frontmatter)
-- **Decision point:** Pending lyric content review
+- **Locked:** `explicit: true` (in README frontmatter, 2026-05-14)
+- **Original decision point:** Pending lyric content review (now resolved)
 
 ### Criteria for "Explicit: Yes"
 
@@ -139,26 +139,14 @@ Per Spotify/Apple Music guidelines, `explicit: true` is appropriate when content
 
 ---
 
-## Phase 6 Workflow
+## Phase 6 Outcome
 
-**You are here. Choose:**
+All three decisions locked 2026-05-14:
+- Title approved: "What Lies Ahead"
+- Research scope signed off (6 reports, 100+ sources)
+- Explicit flag set to `true` (artist's call; rationale above)
 
-1. **Quick path (no changes):**
-   - Approve title "What Lies Ahead"
-   - Sign off on research scope
-   - Accept `explicit: false` (reviewable post-lyrics)
-   - → Proceed to Phase 7
-
-2. **Extended path (reconsideration needed):**
-   - Reconsider title
-   - Request additional research
-   - Set explicit flag explicitly
-   - → Document here, then proceed to Phase 7
-
-3. **Deferred path (return to Phase 5 first):**
-   - Midjourney image generation needs iteration before finalizing
-   - Finalize art, return to Phase 6 for final sign-off
-   - → Generate and refine album art, then complete Phase 6
+Phase 7 (Track Scaffolds) is in progress in the album folder.
 
 ---
 

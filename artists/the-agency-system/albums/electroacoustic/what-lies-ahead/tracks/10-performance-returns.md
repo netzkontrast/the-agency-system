@@ -2,7 +2,7 @@
 title: "Performance Returns"
 track_number: 10
 instrumental: false
-explicit: false
+explicit: true
 suno_url: ""
 sheet_music:
   pdf: ""
@@ -18,16 +18,16 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 10 |
 | **Title** | Performance Returns |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [What Lies Ahead](../README.md) |
 | **Status** | Not Started |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | Yes |
+| **POV** | The Sexualized-Override (EP, Fight-via-Control) — solo |
+| **Role** | Performance reasserts. The system can't stay in vulnerability. Control returns. |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 3:30–4:30 |
 | **Sources Verified** | N/A |
 
 <!--

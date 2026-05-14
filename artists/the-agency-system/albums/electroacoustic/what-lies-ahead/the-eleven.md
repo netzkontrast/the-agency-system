@@ -2,7 +2,7 @@
 
 **Purpose.** Working reference for the eleven alters on *What Lies Ahead*. Archetypes only, no personal names — privacy by design, since the album is for a public listener and the system's privacy is paramount.
 
-**Architecture.** 13 tracks = 11 alter tracks (The Eleven) + 1 worldview track (most fractured — all eleven voices at once) + 1 partner-view track (outside / song-like — the album's only fully-resolved perspective).
+**Architecture.** 13 tracks total: 11 alter-led tracks (6 solos + 5 duets covering 10 of The Eleven) + 1 worldview track (most fractured — all eleven voices at once) + 1 partner-view track (Container + Partner duet, outside the system). The Witness, the 11th alter, has no dedicated track — he annotates across all 13.
 
 **What this document does.** Gives you (a) who each alter is, (b) how they speak, (c) how they work together, (d) how they avoid each other, and (e) imagery anchors for writing their tracks. Use the Core Matrix at-a-glance. Use the Individual Profiles for voice/persona work. Use the alliance/avoidance maps for duet and dialogue tracks. Use the Lyrical Hooks last, as imagery anchors.
 
@@ -22,7 +22,7 @@
 | 8 | **The Ambivalent** | EP (Approach/Withdraw) | Betrayal of approached intimacy | → Leave superposition | Piano-intimate, microtonal |
 | 9 | **The Sexualized-Override** | EP (Fight-via-control) | Authentic vulnerability, loss of preemption | → Vulnerability | Low-register electronic, controlled |
 | 10 | **The Collapsed One** | EP (Submit/Collapse) | Hope (because hope means more to lose) | → Dragon-fight | Sub-tempo drone / near-spoken |
-| 11 | **The Witness-of-Witnesses** | Meta | Dysfunction unobserved; analysis paralysis | → Constructive critique | TBD — inside song-form or annotative-across |
+| 11 | **The Witness-of-Witnesses** | Meta | Dysfunction unobserved; analysis paralysis | → Constructive critique | **Annotative across all 13 tracks** (no dedicated track) |
 
 ANP = Apparently Normal Part. EP = Emotional Part. ISH = Internal Self Helper. Meta = Meta-Cognitive part (observer-of-observers).
 
@@ -324,6 +324,6 @@ Imagery anchors and prosodic suggestions for songwriting. **Lyrics in EN**, char
 ## Open Structural Questions for Phase 4
 
 1. **The Caregiver track — when does the warmth turn?** One track with the turn embedded, two tracks at mirroring positions, or the turn shown through *other* alters' tracks rather than her own?
-2. ~~**The Witness-of-Witnesses — inside or outside song-form?**~~ *Resolved: annotative across all tracks, no own song. He lives in the margins of every other track — spoken asides, parenthetical lines, lowercase commentary under other voices. Track count consequence: album becomes 12 numbered tracks (10 alter tracks + worldview + partner-view), with the Witness as a cross-album layer.*
+2. ~~**The Witness-of-Witnesses — inside or outside song-form?**~~ *Resolved: annotative across all tracks, no own song. He lives in the margins of every other track — spoken asides, parenthetical lines, lowercase commentary under other voices. Track count: 13 numbered tracks (11 alter-led + worldview + partner-view), with the Witness as a cross-album annotative layer rather than a 14th track.*
 3. **The Collapsed One — position in sequence.** Likely mid-album, with the Integrator track immediately after as the silent alliance the lyric structure can imply.
 4. **The Child-Freeze + Ambivalent duet.** Write as a single duet (alter-to-alter dialogue within one track), or as two consecutive tracks that subtly answer each other?

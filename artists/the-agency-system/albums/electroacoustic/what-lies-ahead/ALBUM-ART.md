@@ -205,12 +205,14 @@ Once the album art is generated:
 
 ## Status
 
-- ✓ Visual concept locked
-- ✓ Platform selected (Midjourney)
+Phase 5 *concept* is locked. Image generation is a post-planning execution step tracked here.
+
+- ✓ Visual concept locked (Phase 5)
+- ✓ Platform selected (DALL-E 3 via ChatGPT — switched from Midjourney during Phase 5)
 - ✓ Metaphor framework established
-- ✓ Base prompt drafted
+- ✓ Base prompt drafted (DALL-E 3 format)
 - ✗ Image generated (pending execution)
 - ✗ Refined (pending Round 1 assessment)
-- ✗ Finalized (pending Rounds 2–3)
+- ✗ Finalized (pending Rounds 2–3 + upscaling to ≥3000×3000px)
 
-**Next step:** Execute base prompt in Midjourney and assess against refinement anchors.
+**Next step:** Paste the DALL-E 3 base prompt into ChatGPT and generate 4 variations. Assess each against the refinement anchors. Pick the strongest, refine if needed, then upscale (Upscayl recommended).
