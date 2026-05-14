@@ -1,6 +1,18 @@
 # the-agency-system — Claude Code instructions
 
-This repository is the working tree for the [bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
+This repository hosts **The Agency System** — Michael Schimmer's
+darkwave/industrial concept-album triptych (Album 1 *Together We
+Confide*, Album 2 *Moment der Klarheit*, Album 3 *Gegenüber*). Project
+DNA — narrative architecture, two-voice register, sonic identity,
+13-point quality audit — lives in `overrides/`. See
+[`overrides/album-planning-guide.md`](overrides/album-planning-guide.md),
+[`overrides/lyric-writing-guide.md`](overrides/lyric-writing-guide.md),
+[`overrides/suno-preferences.md`](overrides/suno-preferences.md), and
+[`overrides/research-preferences.md`](overrides/research-preferences.md)
+before composing or auditing a track.
+
+The repository is also the working tree for the
+[bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
 plugin. All album work — concepts, lyrics, mastered audio, research
 documents — is stored here so it lives in git alongside the rest of the
 configuration.
