@@ -11,7 +11,10 @@
     "bitwize-music@bitwize-music": true
   },
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "mcp__plugin_bitwize-music_bitwize-music-mcp"
+    ]
   },
   "hooks": {
     "SessionStart": [
