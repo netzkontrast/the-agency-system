@@ -26,7 +26,7 @@ sheet_music:
 
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
+| **Artist** | [The Agency System](../../../README.md) |
 | **Album** | Coherence Protocol |
 | **Genre** | darkwave / synth-goth / dystopian-future-synth |
 | **Tracks** | 30 |

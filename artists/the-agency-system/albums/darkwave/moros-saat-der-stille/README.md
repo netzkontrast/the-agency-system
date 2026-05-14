@@ -26,7 +26,7 @@ sheet_music:
 
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
+| **Artist** | [The Agency System](../../../README.md) |
 | **Album** | MOROS – Saat der Stille |
 | **Genre** | darkwave / synth-goth / dystopian-future-synth / drone |
 | **Tracks** | 13 |

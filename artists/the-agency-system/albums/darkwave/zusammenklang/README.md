@@ -26,7 +26,7 @@ sheet_music:
 
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
+| **Artist** | [The Agency System](../../../README.md) |
 | **Album** | Zusammenklang |
 | **Genre** | darkwave / cinematic / dark-ambient |
 | **Tracks** | 16 |

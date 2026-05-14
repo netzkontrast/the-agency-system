@@ -26,7 +26,7 @@ sheet_music:
 
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
+| **Artist** | [The Agency System](../../../README.md) |
 | **Album** | The Agency System |
 | **Genre** | darkwave / synth-goth / dystopian-future-synth |
 | **Tracks** | 6 |
