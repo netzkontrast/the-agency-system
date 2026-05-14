@@ -1,38 +1,32 @@
 ---
-title: "[Album Title]"
+title: "What Lies Ahead"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: []  # e.g., ["hip-hop", "documentary"]
-tags: []  # e.g., ["tech", "linux", "true-story"]
-explicit: false  # true or false
-# anchor_track: null  # Optional: 1-based track number to anchor album mastering (issue #290). Empty = auto-select by composite score.
+genres: ["electroacoustic", "thematic"]
+tags: ["cptsd", "did", "trauma-recovery", "plurality", "documentary-edge"]
+explicit: false  # tentative — revisit in Phase 6 once tracks take shape
 streaming:
-  soundcloud: ""    # Fill in when released
-  spotify: ""       # Fill in when released
-  apple_music: ""   # Fill in when released
-  youtube_music: "" # Fill in when released
-  amazon_music: ""  # Fill in when released
+  soundcloud: ""
+  spotify: ""
+  apple_music: ""
+  youtube_music: ""
+  amazon_music: ""
 sheet_music:
   songbook: ""
-# mastering:  # Optional - per-album mastering settings
-#   adm_validation_enabled: true
-# slug: ""  # Optional - only uncomment if you need to override auto-generated slug
 ---
 
-# [Album Title]
+# What Lies Ahead
 
 ## Album Details
 
-<!-- NOTE: When releasing, set Status: Released and fill in release_date in frontmatter. Albums stay in place. -->
-
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
-| **Album** | [Album Title] |
-| **Genre** | [Genre](/genres/[genre]/README.md) / [Subgenre] |
-| **Tracks** | [Number] |
-| **Status** | Concept |
-| **Explicit** | Yes / No |
-| **Concept** | [Brief concept description] |
+| **Artist** | the-agency-system |
+| **Album** | What Lies Ahead *(working title)* |
+| **Genre** | electroacoustic *(umbrella — per-track sonic DNA varies widely; see Sonic Palette)* |
+| **Tracks** | 13 *(structural target: 11 alter tracks + 1 worldview + 1 partner-view, with permission to break the pattern where the album wants to)* |
+| **Status** | Concept — in planning |
+| **Explicit** | TBD (Phase 6) |
+| **Concept** | An album that lets every alter speak in their own voice, on their own terms, and be heard. cPTSD listeners meet the inner *Strömungen*; DID listeners recognize the form. |
 
 ## Frontmatter Reference
 
@@ -60,17 +54,67 @@ Omit the block entirely to use the default (ADM off).
 
 ## Concept
 
-[Detailed description of the album's concept, narrative, and themes. What story does this album tell? What's the artistic vision?]
+### The Engine
+
+**An album that lets every alter speak in their own voice, on their own terms, and be heard.**
+
+This is the primary thesis. Not "trauma recovery album," not "concept album about cPTSD/DID" — those are *descriptions* of the album from outside. From inside, the album is a way for the artist's system to be heard, as itself, in art. Audience-facing benefit (listeners with DID feeling seen, listeners with cPTSD feeling met) is the byproduct of doing that with full integrity, not the design target.
+
+### Listener Takeaways
+
+**For cPTSD listeners:**
+- Recovery is **cyclic**, not linear. Relapses don't erase gains.
+- **The worst is survived.** You are *here*, on the other side of what should have killed you.
+- There are inner **Strömungen** (currents, tides, undertows) — trauma states that move through you. Knowing them is part of safety.
+
+**For DID listeners:**
+- *(Deferred — open question pending research. The takeaway must be named truthfully or not at all. Returning to this after research is the correct sequence, not a delay. See RESEARCH.md.)*
+
+### Lyric Seed (Anchor Line)
+
+> *„Alles, was da ist, ist okay und darf bleiben."*
+> *(Therapist's line. Possible album epigraph, worldview-track anchor, or recurring lyrical motif. To be placed when its right home becomes obvious.)*
+
+### Voice Craft Reference
+
+Multi-voice rendering follows the **Voice DNA Protocol** (`overrides/voice-dna-protocol.md`).
+Core rule that transfers from novel to lyrics: **voices are never labeled**. The listener
+recognizes each alter through diktion, rhythm, vocabulary, and pause structure — never
+through headers, name-adlibs, or `[Section]` labels.
+
+**Duet / voice-switch preference:** The artist favors **duets that switch between voices mid-song** —
+not call-and-response between two singers performing the same character, but genuine
+alter-to-alter dialogue inside a single track. This is a distinguishing structural device for the
+album and a natural fit for DID representation: alters in conversation, recognized by *how*
+they speak rather than by any tag.
+
+### Author's Named Fear (as Creative Material)
+
+The artist named — and gave permission to use as material — a specific fear:
+losing control, beginning to understand why memory fails, what role they play in
+suppressing alters. The album does **not** need to resolve this. Some tracks can
+sit inside the fear without offering exit. The album bears witness; it is not a
+recovery manual.
 
 ## Structure
 
-[How is the album organized? What's the narrative arc? How do tracks relate to each other?]
+13 tracks. Working target:
+
+- **11 alter tracks** — one per alter (artist + 10 co-alters). Each carries its own sonic DNA per the Voice DNA Protocol's per-voice rules: syntax, vocabulary, rhythm. No alter is labeled.
+- **1 worldview track** — the system's outer-facing view on the world. Likely candidate home for the *„Alles, was da ist…"* anchor line.
+- **1 partner-view track** — perspective from the artist's partner. The album's external mirror.
+
+Structure may yield to the album's wishes. Pattern is target, not cage. Detailed sequencing in Phase 4.
 
 ## Themes
 
-- [Theme 1]
-- [Theme 2]
-- [Theme 3]
+- **Plurality as survival**, not pathology — alters as the architecture that kept the system alive
+- **Cyclic progress** — recovery without linearity; relapses do not erase what's been gained
+- **The worst is survived** — present-tense safety as the album's quiet ground
+- **Strömungen** — inner currents, trauma states felt as moving water
+- **Being heard** — what happens to an alter when their voice is rendered, not muted
+- **Hope without resolution** — *„What Lies Ahead"* as an open horizon, not a promised destination
+- **Fear, named** — the active fear of control loss, memory gaps, and the role of suppression — as witness, not problem to solve
 
 ## Motifs & Threads
 
