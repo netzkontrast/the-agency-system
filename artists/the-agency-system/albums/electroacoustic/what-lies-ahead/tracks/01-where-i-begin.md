@@ -20,7 +20,7 @@ sheet_music:
 | **Title** | Where I Begin |
 | **Album** | [What Lies Ahead](../README.md) |
 | **Status** | Final |
-| **Suno Link** | https://suno.com/s/i0tswtgnqYtKe7mw |
+| **Suno Link** | https://suno.com/s/WUto3l3FQQj9xMtm |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
@@ -454,7 +454,8 @@ Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
-| 1 | 2026-05-14 | V5 | [Listen](https://suno.com/s/i0tswtgnqYtKe7mw) | Primary version, first take — approved | ✓ |
+| 1 | 2026-05-14 | V5 | [Listen](https://suno.com/s/i0tswtgnqYtKe7mw) | Primary version, first take — superseded | — |
+| 2 | 2026-05-14 | V5 | [Listen](https://suno.com/s/WUto3l3FQQj9xMtm) | Primary version, second take — preferred over take 1 | ✓ |
 
 <!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
 
