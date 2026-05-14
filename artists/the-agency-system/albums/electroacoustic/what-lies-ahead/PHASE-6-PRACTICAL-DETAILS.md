@@ -1,0 +1,168 @@
+---
+title: "Phase 6 — Practical Details"
+status: locked
+locked_date: 2026-05-14
+---
+
+# Phase 6 — Practical Details (LOCKED)
+
+All three decisions confirmed by the artist on 2026-05-14:
+
+| Decision | Choice |
+|---|---|
+| **Title** | "What Lies Ahead" — approved as final title |
+| **Research scope** | Signed off as complete |
+| **Explicit flag** | `explicit: true` |
+
+Detailed reasoning below preserved for future reference / liner notes.
+
+---
+
+Three final decisions before track scaffold creation (Phase 7):
+
+---
+
+## 1. Final Title Confirmation
+
+### Current Status
+- **Final title:** "What Lies Ahead" (locked 2026-05-14)
+- **Status:** Approved as final release title.
+
+### Title Analysis
+
+**"What Lies Ahead"** serves the album's thematic core:
+- **Literal meaning**: forward motion, open horizon, unknowing
+- **Emotional meaning**: persistence through terrain without promised arrival
+- **DID resonance**: "ahead" avoids cure/completion framing; suits functional multiplicity
+- **cPTSD resonance**: cyclic progress, dark dignity in continuing forward
+- **Sonic fit**: contemporary dark (no metaphor fatigue or recovery-manual warmth)
+
+### Title Alternatives (if reconsideration is desired)
+
+Consider alternatives only if one of these applies:
+
+**Problem: "What Lies Ahead" too generic?**
+- *Alternative framing:* No — the title's restraint is its strength. It refuses explanation.
+
+**Problem: The title doesn't clearly signal "this is about plurality/DID"?**
+- *Intent:* Correct — the album's DID takeaway is implicit in form, not named in title. The title should NOT name the content.
+
+**Problem: Need something more visceral or image-based?**
+- *Alternative directions:*
+  - "Strömungen" (the German word carries both water-logic and psychological weight; risk: too insider)
+  - "Everything That Rises" (per Annie Dillard; risk: spiritual, too pretty)
+  - "Currents" (direct; risk: too on-the-nose)
+  - "[Untitled]" (genuine plural identity doesn't need a name; risk: confusing for distribution)
+
+**Recommendation:** Stick with "What Lies Ahead." It's accurate, restrained, and honors both audiences without explaining either.
+
+### Decision Point — LOCKED
+
+- [x] **APPROVED** "What Lies Ahead" as final title
+- [ ] ~~RECONSIDER~~
+- [ ] ~~CHANGE to: _______________~~
+
+---
+
+## 2. Research Scope Sign-Off
+
+### Current Status
+
+**Research Phase:** Complete (6 reports synthesized)
+- ✓ Clinical TSDP / ISH / Gatekeeper function
+- ✓ DID community preferences and identity frameworks
+- ✓ DID representation in music (artists, albums, YouTube)
+- ✓ Trauma-album sequencing (reference analysis: Vulnicura, ANOHNI, Sufjan, Lingua Ignota, Mount Eerie, Ethel Cain, Left at London)
+- ✓ cPTSD broad (Pete Walker's 4Fs, Strömungen, recovery cycles)
+- ✓ cPTSD craft-deep (how to render emotional flashbacks, inner/outer/other critic, fawn response somatically; somatic experiencing principles)
+
+**Documentation:** RESEARCH.md (consolidated findings) + SOURCES.md (100+ URLs, 8 categories)
+
+### Sign-Off Checklist
+
+Before proceeding to lyric-writing and generation phases, confirm:
+
+- [ ] **Research foundation adequate?** All craft decisions have clinical / community / artistic grounding. (See RESEARCH.md for validation.)
+- [ ] **Anti-patterns locked?** 10 explicitly forbidden approaches (no final-fusion-as-cure, no theatrical switching, no persecutor-as-monster, etc.). (See RESEARCH.md §3.)
+- [ ] **Creative license named?** Artist has explicit permission to deviate from research where art demands. (See RESEARCH.md §6.)
+- [ ] **Sources traceable?** All 100+ references are available for liner notes, criticism, or future defense. (See SOURCES.md.)
+- [ ] **Next research needed?** Any gaps to fill before track-by-track work? (Unlikely at this depth, but ask.)
+
+### Decision Point — LOCKED
+
+- [x] **APPROVED** research scope; ready for lyric-writing phase
+- [ ] ~~REQUEST additional research~~
+- [ ] ~~CLARIFY interpretation~~
+
+---
+
+## 3. Explicit Content Flag
+
+### Current Status
+
+- **Locked:** `explicit: true` (in README frontmatter, 2026-05-14)
+- **Original decision point:** Pending lyric content review (now resolved)
+
+### Criteria for "Explicit: Yes"
+
+The album will be flagged `explicit: true` if:
+
+1. **Profanity** — Uncensored F-words, slurs, or blasphemy in lyrics
+2. **Sexual content** — Explicit sexual description or sexual assault rendering
+3. **Graphic violence** — Gore, detailed violence, or abuse scenarios
+
+### Anticipated Content (per album scope)
+
+- ✓ **Trauma subject matter** — emotional, somatic, psychological (NOT graphically violent)
+- ✓ **Abuse acknowledgment** — naming what happened (NOT graphic detail)
+- ✓ **Sexual override / control** — a specific alter's function (NOT sexual content)
+- ✓ **Inner critics** — harsh self-talk, shame (NOT profanity or slurs)
+
+**Preliminary assessment:** Unless lyrics lean graphically violent or sexually explicit, `explicit: false` is correct.
+
+### Decision Point — LOCKED
+
+- [ ] ~~APPROVE `explicit: false`~~
+- [x] **SET** to `explicit: true` — artist's call
+- [ ] ~~DEFER final decision~~
+
+**Reasoning for `explicit: true`:**
+
+The artist chose `explicit: true` despite the preliminary assessment leaning toward `false`. This is correct on closer inspection:
+
+- The **Sexualized-Override alter** is one of The Eleven and gets a solo (track 10) plus a duet (track 11). Even rendered with restraint, this alter's *function* (control as protection, performance as armor) involves language and somatic detail that may cross the explicit threshold for streaming distributors.
+- **Abuse acknowledgment** — the album explicitly names what happened (per Phase 1 fear-as-material decision). Even paraphrased and somatically rendered, this is "trauma subject matter explicitly named" — exactly the kind of content streaming distributors flag.
+- **Inner critic re-voicing** (tracks 10–12) renders harsh self-talk and toxic-shame language. Even without profanity, the *intent and content* may earn the flag.
+- **Better safe than miscategorized.** A correctly-flagged album reaches its intended audience; an under-flagged album risks distributor removal or age-gating after release. The flag is a *signal to listeners*, not a confession.
+
+Per Spotify/Apple Music guidelines, `explicit: true` is appropriate when content "may not be suitable for all audiences due to language or content." This album qualifies on content even if profanity stays minimal.
+
+---
+
+## Phase 6 Outcome
+
+All three decisions locked 2026-05-14:
+- Title approved: "What Lies Ahead"
+- Research scope signed off (6 reports, 100+ sources)
+- Explicit flag set to `true` (artist's call; rationale above)
+
+Phase 7 (Track Scaffolds) is in progress in the album folder.
+
+---
+
+## Next: Phase 7 (Confirmation & Track Scaffolds)
+
+Once Phase 6 decisions are locked:
+
+1. **Confirm all prior phases** — 1–5 locked, 6 locked, ready to scaffold
+2. **Create track file templates** for all 13 tracks (skeleton markdown files in `tracks/` directory)
+3. **Populate track tables** in track files with metadata (archetype, POV, concept, solo/duet, research implications)
+4. **Ready for Phase 7 sign-off** — all 13 tracks have skeleton, artist ready to write lyrics
+
+---
+
+## Status
+
+- [x] Phase 6 decisions complete (2026-05-14)
+- [x] All prior phases confirmed
+- [x] Ready for Phase 7 (Track Scaffolds)

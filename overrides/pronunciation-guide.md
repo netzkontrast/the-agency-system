@@ -1,45 +1,71 @@
-<!--
-Imported from https://github.com/netzkontrast/agency/blob/867453e/skills/suno-lyric-writer/pronunciation-guide.md
-Source commit: 867453e
-Edit upstream and re-import, or edit here and document the divergence.
--->
+# Pronunciation Guide (Override)
 
-# Pronunciation Guide for Suno
+Cross-project pronunciation entries for the-agency-system. Merges on top of
+the base guide at `/reference/suno/pronunciation-guide.md` — base entries
+remain in effect unless overridden here.
 
-Suno AI guesses pronunciation. Wrong guess = wrong song = wasted generation. **One wrong word ruins the take.**
+**One wrong word ruins the take.** Suno cannot infer pronunciation from
+context — every homograph and risky term needs an explicit phonetic
+substitution in the Suno Lyrics Box (streaming lyrics keep standard spelling).
 
 ---
 
-## Category 1: Homographs (CRITICAL)
+## Artist & Studio Names
 
-Same spelling, different pronunciation. **ALWAYS ask the user — NEVER guess.**
+| Standard | Phonetic | Notes |
+|----------|----------|-------|
+| the-agency-system | thee A-jen-see SIS-tem | Artist name; ALWAYS lowercase + hyphens in text |
+| bitwize | bit-wize | Studio name |
 
-"Context is clear" is NEVER an acceptable resolution. Suno cannot infer from context.
+---
+
+## Cross-Project Recurring Terms
+
+Album-specific pronunciations (alter names, character names, location
+names tied to one album) belong in that album's track files'
+Pronunciation Notes tables — not here.
+
+| Standard | Phonetic | Notes |
+|----------|----------|-------|
+| Strömungen | SHTRER-mung-en | German: inner currents / undertows. Used un-translated across trauma-themed work. |
+| Sehnsucht | ZAYN-zukht | German: longing / yearning |
+| Schadenfreude | SHAH-den-FROY-deh | German: malicious joy |
+| Weltschmerz | VELT-shmerts | German: world-weariness |
+| Doppelgänger | DOP-pel-geng-er | German: double, often used un-translated in English |
+| Zeitgeist | TSITE-gyste | German: spirit of the age |
+| Über- | OO-ber | German prefix |
+
+---
+
+## Category 1: Homographs (CRITICAL — always ask)
+
+Same spelling, different pronunciation. **Never guess.** "Context is clear"
+is NEVER an acceptable resolution.
 
 | Word | Meaning A | Phonetic A | Meaning B | Phonetic B |
 |------|-----------|------------|-----------|------------|
-| live | alive/exist (verb) | lyve | performance (adj) | liv |
+| live | alive/exist (verb) | liv | broadcast/perform (adj) | lyve |
 | read | present tense | reed | past tense | red |
 | lead | to guide | leed | metal | led |
-| wind | air movement | wind | to coil/turn | wynd |
-| close | nearby | close | to shut | cloze |
-| tear | from crying | teer | to rip | tare |
-| bass | low sound/music | bayss | the fish | bass |
 | wound | injury | woond | past of wind | wownd |
+| wind | air movement | wihnd | to coil/turn | wynd |
+| close | nearby | klohs | to shut | kloze |
+| bass | low sound | bayss | the fish | bas |
+| tear | from crying | teer | to rip | tare |
 | bow | ribbon | boh | to bend | bow |
 | minute | time unit | min-it | tiny | my-noot |
-| desert | sand/arid land | dez-ert | to abandon | dih-zert |
-| object | thing | ob-ject | to protest | ob-JECT |
-| present | gift/current | prez-ent | to give/show | prih-ZENT |
-| record | disc/album | rek-ord | to capture | rih-KORD |
-| refuse | garbage | ref-yoos | to decline | rih-FYOOZ |
+| desert | sand / arid land (noun) | DEH-zert | to abandon (verb) | de-ZERT |
+| object | thing (noun) | OB-ject | to protest (verb) | ob-JECT |
+| present | gift/current (noun) | PREH-zent | to give/show (verb) | preh-ZENT |
+| record | disc/album (noun) | REH-kord | to capture (verb) | reh-KORD |
+| refuse | garbage (noun) | REH-fyoos | to decline (verb) | reh-FYOOZ |
 
 ### Homograph Workflow
 
-1. **Identify**: Flag any word with multiple pronunciations
-2. **ASK**: Ask user which pronunciation — do NOT assume
-3. **Fix**: Replace with phonetic spelling in Suno lyrics only
-4. **Document**: Add to Pronunciation Notes table
+1. **Identify** every homograph during phonetic review
+2. **Batch-ask** the user with numbered list when a track has multiple homographs (avoid back-and-forth)
+3. **Apply** phonetic spelling in Suno lyrics only
+4. **Document** in the track's Pronunciation Notes table
 
 ---
 
@@ -47,39 +73,36 @@ Same spelling, different pronunciation. **ALWAYS ask the user — NEVER guess.**
 
 | Term | Wrong | Right | Phonetic |
 |------|-------|-------|----------|
-| Linux | "LINE-ucks" | "LIN-ucks" | Lin-ucks |
-| SQL | "squeal" | "S-Q-L" or "sequel" | S-Q-L |
-| API | varies | "A-P-I" | A-P-I |
-| CLI | varies | "C-L-I" | C-L-I |
-| AI | varies | "A-I" or "ay-eye" | A-I |
+| Linux | LINE-ucks | LIN-ucks | Lin-ucks |
+| SQL | "squeal" | "sequel" or "S-Q-L" | sequel |
+| API | varies | A-P-I | A-P-I |
+| CLI | varies | C-L-I | C-L-I |
+| AI | varies | A-I (spelled) | A-I |
 | GUI | usually correct | "gooey" | gooey |
-| SSH | varies | "S-S-H" | S-S-H |
-| DNS | varies | "D-N-S" | D-N-S |
-| VPN | varies | "V-P-N" | V-P-N |
-| GPU | varies | "G-P-U" | G-P-U |
-| CPU | varies | "C-P-U" | C-P-U |
-| USB | varies | "U-S-B" | U-S-B |
+| SSH | varies | S-S-H | S-S-H |
+| DNS | varies | D-N-S | D-N-S |
+| VPN | varies | V-P-N | V-P-N |
+| GPU | varies | G-P-U | G-P-U |
+| CPU | varies | C-P-U | C-P-U |
+| USB | varies | U-S-B | U-S-B |
 | macOS | varies | "mack-oh-ess" | mack-oh-ess |
 | iOS | varies | "eye-oh-ess" | eye-oh-ess |
 
 ---
 
-## Category 3: Names & Proper Nouns
+## Category 3: Music & Genre Jargon
 
-Non-English names always need phonetic spelling.
-
-| Name | Common Error | Phonetic |
-|------|--------------|----------|
-| Jose | "joe-SAY" | Ho-zay |
-| Maria | "muh-REE-uh" | Mah-ree-ah |
-| Ramos | "RAM-ohs" | Rah-mohs |
-| Sinaloa | "sin-uh-LOW-uh" | Sin-ah-lo-ah |
-| Nguyen | "NEW-win" | Win or Nwin |
-| Zhang | "ZANG" | Jahng |
-| Mikhail | "mih-KYLE" | Mee-kah-eel |
-| Bjork | varies | Bee-york |
-| Kiev | varies | Kee-ev or Kye-ev |
-| Qatar | varies | Kuh-tar |
+| Term | Phonetic | Notes |
+|------|----------|-------|
+| Suno | SOO-noh | AI music platform |
+| BPM | B-P-M | Acronym |
+| EBM | E-B-M | Electronic Body Music |
+| IDM | I-D-M | Intelligent Dance Music |
+| DAW | dah-w | Digital Audio Workstation (or D-A-W) |
+| LUFS | "loofs" | Loudness Units relative to Full Scale |
+| dB | "decibels" | Spell out — never D-B |
+| EQ | E-Q | Equalization |
+| LP / EP | L-P / E-P | Album formats |
 
 ---
 
@@ -98,14 +121,31 @@ Non-English names always need phonetic spelling.
 | SCUBA | Word | Scoo-bah |
 | RICO | Word | Ree-koh |
 
-**Rule**: 3 letters → spell out with hyphens, unless commonly said as a word (NASA, SCUBA).
+**Rule**: 3 letters → spell out with hyphens, unless commonly said as a word (NASA, SCUBA, RICO).
 
 ---
 
-## Category 5: Numbers
+## Category 5: Non-English Names (common errors)
 
-| Written | Suno Might Say | Better |
-|---------|---------------|--------|
+| Name | Common Error | Phonetic |
+|------|--------------|----------|
+| Jose | "joe-SAY" | Ho-zay |
+| Maria | English flat | Mah-ree-ah |
+| Ramos | flat-stress | Rah-mohs |
+| Sinaloa | "sin-uh-LOW-uh" | Sin-ah-lo-ah |
+| Nguyen | "NEW-win" | Win (or Nwin) |
+| Zhang | "ZANG" | Jahng |
+| Mikhail | "mih-KYLE" | Mee-kah-eel |
+| Björk | varies | Bee-york |
+| Kyiv | varies | Keev (post-2014 preferred) |
+| Qatar | varies | KUH-tar |
+
+---
+
+## Category 6: Numbers in Lyrics
+
+| Written | Suno may say | Better |
+|---------|--------------|--------|
 | 1993 | "one nine nine three" | "nineteen ninety-three" or "'93" |
 | 2024 | "two zero two four" | "twenty twenty-four" |
 | 63 | "six three" | "sixty-three" |
@@ -114,42 +154,45 @@ Non-English names always need phonetic spelling.
 
 ---
 
-## Category 6: Commonly Mispronounced
+## Category 7: Commonly Mispronounced
 
 | Word | Fix |
 |------|-----|
-| data | User preference: day-tuh or dah-tuh |
-| either | User preference: ee-ther or eye-ther |
-| neither | User preference: nee-ther or nye-ther |
+| data | User preference: DAY-tuh or DAH-tuh |
+| either | User preference: EE-ther or EYE-ther |
+| neither | User preference: NEE-ther or NYE-ther |
 | route | User preference: root or rowt |
-| legal | lee-gul (not "leh-GAL") |
-| illegal | ill-ee-gul (not "ILL-ih-gul") |
+| legal | LEE-gul (not "leh-GAL") |
+| illegal | ill-EE-gul (not "ILL-ih-gul") |
 
 ---
 
 ## Auto-Fix Rules
 
-### Always Auto-Fix (no confirmation needed)
-- Tech terms (SQL → S-Q-L, Linux → Lin-ucks)
+### Always Auto-Fix (no confirmation)
+- Tech terms (SQL → sequel, Linux → Lin-ucks)
 - Common acronyms (FBI → F-B-I, GPS → G-P-S)
-- Numbers (1993 → '93 or nineteen ninety-three)
+- Numbers (1993 → '93 or "nineteen ninety-three")
 
-### Always Ask User First
+### Always Ask First
 - Homographs (live, read, lead, wind, tear, bass, bow, close, wound)
 - Names (confirm pronunciation preference)
 - Regional variants (data, either, route)
+- German words in English contexts
 
 ---
 
-## Scanning Checklist
+## Scanning Checklist (for `/bitwize-music:pronunciation-specialist`)
 
 When scanning lyrics:
-1. Check every word against homograph table above
+
+1. Check every word against the homograph table — flag and batch-ask
 2. Flag any ALL-CAPS sequences (potential acronyms)
 3. Flag any 2+ digit numbers
 4. Flag any capitalized proper nouns not in common English
-5. Flag any tech/domain terms
-6. Cross-reference pronunciation notes table — every entry must be applied in Suno lyrics
+5. Flag any tech / genre / domain terms
+6. Flag any German words (or French, Spanish, etc.)
+7. Cross-reference the track's Pronunciation Notes table — **every entry must be applied as phonetic spelling in the Suno lyrics**
 
 ---
 
@@ -157,7 +200,7 @@ When scanning lyrics:
 
 Suno only handles standard English contractions.
 
-**Standard (OK):** they'd, he'd, you'd, she'd, we'd, I'd, wouldn't, couldn't, shouldn't
+**Standard (OK):** they'd, he'd, you'd, she'd, we'd, I'd, wouldn't, couldn't, shouldn't, won't, can't, don't
 
 **Invented (WILL BREAK):** signal'd, TV'd, network'd, podcast'd, channel'd
 
@@ -167,13 +210,30 @@ Suno only handles standard English contractions.
 
 ## Pronunciation Table Enforcement
 
-Every entry in a track's Pronunciation Notes table MUST appear as phonetic spelling in the Suno lyrics. The table is not documentation — it is a checklist of required substitutions.
+Every entry in a track's Pronunciation Notes table MUST appear as
+phonetic spelling in the Suno lyrics. The table is **not documentation
+— it is a checklist of required substitutions.**
 
-**Verification:**
-- ❌ "Potrero" in pronunciation table but "Potrero" in lyrics = FAIL
-- ✅ "poh-TREH-roh" in lyrics matches table = PASS
+### Verification format
 
-**Common failures:**
+- ❌ "Strömungen" in pronunciation table but "Strömungen" in lyrics = FAIL
+- ✅ "SHTRER-mung-en" in lyrics matches table = PASS
+
+### Common failures
+
 - Word added to table but never applied to lyrics
 - Phonetic applied in one verse but missed in chorus repeat
 - New edit introduces a word already in the table but not phonetic
+
+---
+
+## How to Add Entries
+
+When `/bitwize-music:pronunciation-specialist` discovers a new issue:
+
+1. **Cross-project term** (recurs in future albums) → add to this file
+2. **Album-specific term** → add to the track's Pronunciation Notes table
+3. Include: standard spelling, phonetic spelling, context notes
+4. Use hyphens for syllable breaks: `Sin-ah-lo-ah`
+5. Use ALL-CAPS for stressed syllables when ambiguous: `reh-CORD` (verb) vs `REH-cord` (noun)
+6. Phonetic spelling goes in the Suno Lyrics Box ONLY — streaming lyrics keep standard spelling
