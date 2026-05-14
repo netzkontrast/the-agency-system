@@ -6,11 +6,29 @@ plugin that produces it.
 
 ## Session start — required check
 
-At the start of every session, verify the **bitwize-music MCP server**
-is running. If it is not, run `/bitwize-music:health-check` and, if
-needed, start a new session so the `SessionStart` hook in
-`.claude/settings.json` re-provisions `~/.bitwize-music/venv` and
-launches `bitwize-music-server`.
+At the start of every session, verify the **`bitwize-music-mcp`** MCP
+server is running. Recovery, in order:
+
+1. **Start a new session first.** Slash commands (including
+   `/bitwize-music:health-check`) depend on the plugin being wired
+   into the session, so a restart is the cheapest way to re-trigger
+   the `SessionStart` hook in `.claude/settings.json` — it calls
+   `.claude/scripts/setup-bitwize-music.sh`, which provisions
+   `~/.bitwize-music/venv` and renders `~/.bitwize-music/config.yaml`.
+2. Once the new session is up, run `/bitwize-music:health-check` to
+   confirm `bitwize-music-mcp` is registered and healthy.
+3. If the hook didn't fire (e.g. `~/.bitwize-music/setup.log` is
+   missing or `CLAUDE_PROJECT_DIR` was unset), run the script
+   manually, then start a new session:
+   ```bash
+   CLAUDE_PROJECT_DIR="$(git rev-parse --show-toplevel)" \
+     bash .claude/scripts/setup-bitwize-music.sh
+   ```
+   Logs: `~/.bitwize-music/setup.log`.
+4. If the plugin itself isn't installed (`~/.claude/plugins/installed_plugins.json`
+   doesn't list `bitwize-music@bitwize-music`), the marketplace entry
+   in `.claude/settings.json` hasn't been resolved — re-add the plugin
+   from the marketplace before retrying.
 
 ## Most important commands & skills
 
@@ -50,7 +68,7 @@ Invoke as slash commands: `/bitwize-music:<name>`.
 - `audio/`, `documents/` — Git LFS (run `git lfs install` once per machine)
 - `overrides/` — user-preference files loaded by the plugin's `load_override` tool
 - `.claude/settings.json` — enables `bitwize-music@bitwize-music` + SessionStart hook
-- `.claude/scripts/setup-bitwize-music.sh` — venv + config bootstrap
+- `.claude/scripts/setup-bitwize-music.sh` — venv + config bootstrap (run manually if the hook didn't fire; see above)
 
 If config drifts, delete `~/.bitwize-music/config.yaml` and start a new
 session to re-render from the template.
