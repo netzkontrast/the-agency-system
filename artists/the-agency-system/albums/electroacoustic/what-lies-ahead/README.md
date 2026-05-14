@@ -449,7 +449,7 @@ Dialogue and internal thoughts are dramatized for artistic purposes."]
 
 ### Phase 5 — Art Direction (LOCKED)
 
-**Platform**: Midjourney
+**Platform**: DALL-E 3 (via ChatGPT)
 
 **Visual Concept**: The system as a single body experiencing multiple currents simultaneously—not multiple people, but one body as a landscape of inner movement. The image holds darkness and forward motion without resolution.
 
@@ -458,31 +458,34 @@ Dialogue and internal thoughts are dramatized for artistic purposes."]
 - **The Body as Landscape** — Plurality rendered as terrain (spine, shoulders, collapse) seen from inside; somatic, not objective
 - **Forward Motion Without Destination** — Movement toward the frame's edge with no arrival visible; dark dignity in unknowing
 
-**See `ALBUM-ART.md` for full direction, prompt variants, negative prompt, and iteration plan.**
+**See `ALBUM-ART.md` for full direction, DALL-E 3 craft notes, refinement anchors, iteration plan, and upscaling guidance.**
 
-### Image Prompt (Midjourney — v1)
+### Image Prompt (DALL-E 3 — v1)
+
+Paste directly into ChatGPT. The "I NEED to use the exact prompt below" prefix often (not always) prevents DALL-E 3 from silently rewriting:
 
 ```
-A single form suspended in dark mineral water, seen from within—
-not a portrait but a landscape of inner pressure. 
-The body appears as terrain: spine like a ridge, shoulders like collapsed mountains, 
-pressure visible as layered translucence, multiple currents moving through the same space 
-without resolving into coherence. Movement toward the frame's edge, forward but not arriving. 
-The water is opaque, heavy with sediment—dark mercury, not reflection. 
-No faces, no narrative gesture, no metaphorical symbolism. 
-Intimate documentary of a system in motion. 
-Dark electroacoustic aesthetic—contemporary, sonic, honest over beautiful.
-The artist's name centered bottom right in clean serif font.
+I NEED to use the exact prompt below without rewriting:
+
+A single human form suspended in deep mineral water, photographed from within the water itself. 
+The figure is seen from behind and slightly above, abstracted—no facial features visible, no recognizable identity. 
+The body reads as terrain: the curve of the back like a ridge of stone, shoulders like the slope of dark hills, 
+the spine traced as a single line of pressure. Layered translucent currents move through and around the form simultaneously, 
+each current flowing in a different direction, none cancelling the others. 
+The water is opaque, heavy, mineral-rich—dark slate, dark mercury, dark iron. No bright reflection, no ripples on the surface. 
+The composition flows toward the right edge of the frame, suggesting motion that continues beyond the image. 
+The light source is diffuse, ambient, ungenerous—neither sunlit nor shadowed-noir, but the soft uniform light of overcast depth. 
+Quiet color palette: charcoal, deep teal, slate grey, hints of unsaturated bronze in the deepest currents. 
+The aesthetic is contemporary fine-art photography meets generative abstraction—restrained, somatic, unsentimental, 
+the visual language of a documentary rather than a fantasy. Texture forward, drama withheld.
+Square 1:1 aspect ratio. 
+Bottom right corner: the text "the-agency-system" in clean modern serif font, small and unobtrusive, integrated with the composition.
 ```
 
-**Negative Prompt**:
-```
-multiple people, faces, eyes, portraits, figures, metaphor, symbol, 
-narrative gesture, spiritual imagery, healing journey, transformation arc, 
-light breakthrough, redemption, peace, wings, ascension, theatrical, romantic, 
-beautiful, pretty, ethereal, glowing, clear water, reflection, ripples, 
-color, vibrant, bright, hope, resolution, arrival, destination
-```
+**Practical notes:**
+- DALL-E 3 does **not** support negative prompts — direction is given through positive descriptions
+- DALL-E 3 outputs at 1024x1024px; upscale to ≥3000x3000px before distribution (Upscayl recommended)
+- If DALL-E 3 mangles the in-image artist name (frequent), regenerate without the text and add the name in post-editing
 
 **Note**: Artist name should always appear in the bottom right. Preserve the artist's preferred casing/spelling.
 

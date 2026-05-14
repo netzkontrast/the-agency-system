@@ -60,101 +60,124 @@ Plurality is not "I contain multitudes" (metaphor). The body *is* the landscape 
 
 ---
 
-## Platform Selection: Midjourney
+## Platform Selection: DALL-E 3 (via ChatGPT)
 
-**Why Midjourney:**
+**Why DALL-E 3:**
 
-1. **Emotional abstraction** — Strongest at rendering feeling as visual coherence (not literal illustration)
-2. **Contemporary dark aesthetic** — Naturally skews toward sophisticated, non-theatrical darkness
-3. **Water/flow/movement** — Excellent at suggesting current, flow, turbulence without melodrama
-4. **Unified composition** — The rendered image will feel like a single integrated vision, not collaged
-5. **Artist as decision-maker** — Midjourney's interface allows rapid refinement; artist can steer the concept through iteration
+1. **Accessibility** — Available through ChatGPT (no separate account/subscription needed beyond ChatGPT Plus)
+2. **Natural-language fidelity** — DALL-E 3 follows descriptive paragraphs well; good for the cinematic, scene-specific direction this album needs
+3. **Strong abstract rendering** — Handles "landscape of body" and "form in mineral water" concepts reliably
+4. **Built-in safety latitude** — As long as the prompt is framed as artistic/abstract (not graphic), DALL-E 3 will engage with somatic/psychological imagery
+
+**DALL-E 3 craft notes (vs. Midjourney):**
+
+- **No negative prompts.** DALL-E 3 ignores "do not" instructions. Reframe everything as positive description.
+- **Prompt rewriting.** DALL-E 3 silently revises prompts before rendering. To resist this, prefix with: *"I NEED to use the exact prompt below without rewriting:"* — this often (not always) preserves intent.
+- **Natural-language paragraphs work best.** Avoid tag-style comma lists; use cinematic descriptive sentences instead.
+- **Avoid trigger words for content filtering.** Replace: "trauma" → "weight"; "wound" → "pressure"; "collapse" → "settling"; "violence" → (omit entirely). The image needs *somatic gravity*, which is achievable without flagged language.
+- **Square 1024x1024 default.** Confirm aspect ratio request when prompting.
 
 ---
 
-## Image Prompt — Midjourney
+## Image Prompt — DALL-E 3
 
 ### Base Prompt (v1)
 
 ```
-A single form suspended in dark mineral water, seen from within—
-not a portrait but a landscape of inner pressure. 
-The body appears as terrain: spine like a ridge, shoulders like collapsed mountains, 
-pressure visible as layered translucence, multiple currents moving through the same space 
-without resolving into coherence. Movement toward the frame's edge, forward but not arriving. 
-The water is opaque, heavy with sediment—dark mercury, not reflection. 
-No faces, no narrative gesture, no metaphorical symbolism. 
-Intimate documentary of a system in motion. 
-Dark electroacoustic aesthetic—contemporary, sonic, honest over beautiful.
-The artist's name centered bottom right in clean serif font.
+I NEED to use the exact prompt below without rewriting:
+
+A single human form suspended in deep mineral water, photographed from within the water itself. 
+The figure is seen from behind and slightly above, abstracted—no facial features visible, no recognizable identity. 
+The body reads as terrain: the curve of the back like a ridge of stone, shoulders like the slope of dark hills, 
+the spine traced as a single line of pressure. Layered translucent currents move through and around the form simultaneously, 
+each current flowing in a different direction, none cancelling the others. 
+The water is opaque, heavy, mineral-rich—dark slate, dark mercury, dark iron. No bright reflection, no ripples on the surface. 
+The composition flows toward the right edge of the frame, suggesting motion that continues beyond the image. 
+The light source is diffuse, ambient, ungenerous—neither sunlit nor shadowed-noir, but the soft uniform light of overcast depth. 
+Quiet color palette: charcoal, deep teal, slate grey, hints of unsaturated bronze in the deepest currents. 
+The aesthetic is contemporary fine-art photography meets generative abstraction—restrained, somatic, unsentimental, 
+the visual language of a documentary rather than a fantasy. Texture forward, drama withheld.
+Square 1:1 aspect ratio. 
+Bottom right corner: the text "the-agency-system" in clean modern serif font, small and unobtrusive, integrated with the composition.
 ```
 
 ### Refinement Anchors
 
-**If the first generation reads too human/portraiture:**
-- Remove facial features entirely; focus on back/spine/shoulders as abstracted form
-- Emphasize the water's opacity and weight over any clear rendering of the body
-- Add note: "figure should be ambiguous—not clearly humanoid"
+**If DALL-E 3 renders too human/portraiture (face appears, recognizable identity):**
+- Add explicitly: "The figure has no visible face, no eyes, no identifying features. Seen from behind only. Identity is concealed by water and angle."
+- Increase abstraction language: "abstracted human form, almost geological, body-as-terrain rather than body-as-person"
 
-**If the current/flow reads too chaotic or decorative:**
-- Emphasize "undertow logic" over visible swirling
-- Request darker, mineral-heavy water (less dynamic, more oppressive)
-- Add: "multiple pressures, not visible turbulence"
+**If the currents read too dynamic/decorative (visible swirls, dramatic flow):**
+- Replace "currents move through" with "pressures press through"
+- Add: "The water moves with the heaviness of mercury, not the lightness of streams. Pressure, not turbulence."
 
-**If the composition reads as final/resolved:**
-- Push the form toward the frame edge; ensure the motion continues beyond
-- Remove any element that suggests arrival or safe harbor
-- Add: "horizon offers no rest, no resolution—only the next current"
+**If the composition reads too composed/balanced (looks like an arrival point):**
+- Emphasize: "The form is mid-motion. The frame catches a moment in continuing passage. Nothing in the image suggests rest, completion, or arrival."
 
-**If the aesthetic reads theatrical or romanticized:**
-- Reduce saturation; shift toward desaturated darks
-- Remove any element that suggests beauty-as-redemption
-- Add: "documentary in darkness, not dark as aesthetic choice"
+**If the aesthetic comes out too pretty / romanticized / spiritual:**
+- Add: "The image should feel like the cover of an honest contemporary art photography book, not like fantasy art or spiritual imagery. No glow, no halo, no light breaking through, no symbolic transcendence."
+- Reduce color saturation language even further: "near-monochromatic, almost duotone"
+
+**If DALL-E 3 rewrites your prompt anyway (frequently happens):**
+- Try the same prompt as a single sentence rather than a paragraph
+- Move the "I NEED to use the exact prompt below" prefix to a separate ChatGPT turn before submitting
+- Run the prompt 4 times and pick the version that drifted least
 
 ---
 
-## Negative Prompt (prevents)
+## Visual Language as Positive-Only Description
 
-```
-multiple people, faces, eyes, portraits, figures, metaphor, symbol, 
-narrative gesture, spiritual imagery, healing journey, transformation arc, 
-light breakthrough, redemption, peace, wings, ascension, theatrical, romantic, 
-beautiful, pretty, ethereal, glowing, clear water, reflection, ripples, 
-color, vibrant, bright, hope, resolution, arrival, destination
-```
+DALL-E 3 doesn't understand negation. Translate the Midjourney negative prompt into positive direction:
+
+| Avoid | Render Instead |
+|---|---|
+| Multiple people, faces, eyes | A single anonymous form, seen from behind, abstracted into landscape |
+| Theatrical, romantic, beautiful | Restrained, documentary, unsentimental |
+| Spiritual imagery, light breakthrough, transcendence | Ambient overcast light, mineral weight, ungenerous illumination |
+| Clear water, ripples, reflection | Opaque heavy water, layered translucence, mercury-like density |
+| Color, vibrant, bright | Charcoal, deep teal, slate grey, near-monochromatic |
+| Resolution, arrival, destination | Continuing passage, frame-edge motion, unfinished gesture |
+| Wings, ascension, healing journey | Body-as-terrain, geological abstraction, somatic stillness inside motion |
 
 ---
 
 ## Iteration Plan
 
-**Round 1:** Generate base prompt. Assess:
-- Does the form read as landscape, not portrait?
+**Round 1:** Generate base prompt in ChatGPT (DALL-E 3). Run 4 times to see the variance band. Assess each:
+- Does the form read as landscape/terrain, not portrait?
 - Does the water feel heavy/opaque, not decorative?
 - Does the movement continue beyond the frame?
-- Does the aesthetic feel contemporary dark, not romanticized?
+- Does the aesthetic feel contemporary documentary, not romanticized?
+- Did DALL-E 3 silently rewrite the prompt? (Ask it to show the actual prompt it used.)
 
-**Round 2:** Refine based on assessment. Likely tweaks:
-- Adjust body abstraction (more or less visible?)
-- Deepen water's darkness/opacity
-- Clarify the forward motion without resolution
-- Ensure artist name placement and legibility
+**Round 2:** Refine based on assessment. Apply relevant Refinement Anchors above. Likely tweaks:
+- Adjust body abstraction language (more geological? less recognizable?)
+- Deepen water's darkness/opacity ("mercury weight" / "iron-rich" / "ungenerous light")
+- Clarify the forward motion ("continuing passage" / "mid-motion" / "frame-edge")
+- Decide whether to include the artist name in the prompt or add it in post
 
-**Round 3:** Final polish. Variations if needed:
-- Horizontal vs. vertical composition (album art should be square; consider both options)
-- Subtle shifts in water pressure/darkness
-- Artist name sizing/placement
+**Round 3:** Final polish. Pick the strongest of the variations. Then:
+- Upscale to ≥3000x3000px (Upscayl recommended)
+- Add artist name in post if DALL-E 3 mangled it
+- Save to both audio and content directory paths
 
 ---
 
 ## Output Specifications
 
 - **Format:** PNG (best for digital distribution)
-- **Resolution:** 3000x3000px minimum (for distribution), 1500x1500px minimum (absolute)
+- **DALL-E 3 native output:** 1024x1024px (square) — below the 3000x3000px distribution minimum
+- **Required upscaling step:** Once the final DALL-E 3 image is selected, upscale to ≥3000x3000px before distribution. Options:
+  - **Topaz Gigapixel AI** (paid, best quality)
+  - **Upscayl** (free, open-source, runs locally — recommended)
+  - **Real-ESRGAN** (free, command-line)
+  - **ChatGPT's own variation/upscale** (lower quality, but zero-effort)
 - **Aspect Ratio:** Square (1:1)
-- **File Location (once generated):**
+- **File Location (once generated and upscaled):**
   - Audio directory: `audio/artists/the-agency-system/albums/electroacoustic/what-lies-ahead/album.png`
   - Content directory: `artists/the-agency-system/albums/electroacoustic/what-lies-ahead/album-art.png`
 - **Artist Name:** "the-agency-system" (bottom right corner, clean serif font, maintain casing)
+- **Note on artist name placement:** DALL-E 3 frequently mangles in-image text. If the rendered "the-agency-system" text is illegible or misspelled, generate the image without text and add the artist name in post (Photoshop, GIMP, or Affinity Photo). Don't lose a good image over typography.
 
 ---
 
