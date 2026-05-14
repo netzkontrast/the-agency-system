@@ -121,51 +121,51 @@ No "trauma-reveal" plot. The wound is named (somatically, specifically) from the
 
 ---
 
-## 4. Proposed Sequence (Locked Architecture, Research-Grounded Ordering)
+## 4. Locked Sequence (v3 — post-synthesis revision)
 
-Based on the 6-album sequencing analysis (Vulnicura, ANOHNI, Sufjan, Lingua Ignota, Mount Eerie, Left at London):
+v1 (drafted by the sequencing subagent in isolation) placed Caregiver+Sexualized-Override at #9 as the "recovery valley" — but that duet is internally tense (warmth meeting foreclosure), not soft. v3 corrects: the genuine soft moment is Child-Freeze+Ambivalent's silent recognition. Tracks 1–8 and 12–13 unchanged; tracks 9–11 reshuffled.
 
-| # | Track | Function | Source-template |
+| # | Track | Function | Source-template / Note |
 |---|---|---|---|
-| 1 | **Container** (solo) | Voiced-thesis opener. Quiet, piano-and-voice. Host as the listener's first contact. | Vulnicura "Stonemilker" |
+| 1 | **Container** (solo) | Voiced-thesis opener. Wound as ground from downbeat 1. | Vulnicura "Stonemilker" |
 | 2 | **Container + Integrator** (duet) | The closed loop. Collusion that believes itself to be care. | New |
 | 3 | **Rationalist** (solo) | Fury early — cold logic almost succeeding. | ANOHNI front-loading |
-| 4 | **Protector + Fighter** (duet) | Method conflict — kinetic, band-driven. | New |
+| 4 | **Protector + Fighter** (duet) | Method conflict, kinetic. **Outer-critic flip lives here** — the duet enacts Walker's vacillation structurally. | Walker 4Fs vacillation |
 | 5 | **Fighter** (solo) | Rage alone — what she is when no one needs protecting. | New |
-| 6 | **Caregiver** (solo) | Warmth interior. Attachment betrayal rendered somatically. *Possible site of the Kudzu turn.* | Ethel Cain *Preacher's Daughter* template |
-| 7 | **Collapsed One** (solo) | **Structural axis.** Longest track. Most production-stripped. The album's gravity. | Vulnicura "Black Lake," Sufjan "Fourth of July" |
-| 8 | **Collapsed One + Integrator** (duet) | **Sufjan license** — stack two hard tracks. Integrator arrives not as rescue, as another voice in the wreckage. | Sufjan "Fourth of July" → "The Only Thing" |
-| 9 | **Caregiver + Sexualized-Override** (duet) | **Recovery valley.** Soft, complicated, not denial of what just happened. | ANOHNI "Rest" |
-| 10 | **Child-Freeze + Ambivalent** (duet) | Quietest and most fragile. Earned by everything before it. | Lingua Ignota valley-deeper-than-neighbors |
-| 11 | **Sexualized-Override** (solo) | Climbing tension before fracture. Performance reasserts itself. | Sufjan penultimate-heavy |
-| 12 | **Worldview** (most fractured) | **Penultimate.** All voices at once, all Strömungen at once. Fracture confrontation arrives AFTER every voice established. | Left at London "Will My Alters Go to Heaven?" placement |
-| 13 | **Partner-view** (Container + Partner) | Closer as benediction outward. The only fully-resolved perspective. | ANOHNI "You Be Free" |
+| 6 | **Caregiver** (solo) | Warmth interior, attachment betrayal somatically. **Fawn moment lives here** — throat-tight yes, body-site per verse. | Ethel Cain template + Walker fawn |
+| 7 | **Collapsed One** (solo) | **Structural axis.** Longest, most stripped. Album's gravity. | Vulnicura "Black Lake" / Sufjan "Fourth of July" |
+| 8 | **Collapsed One + Integrator** (duet) | Sufjan license — Integrator arrives *in* the wreckage, not as rescue. | Sufjan "Fourth of July" → "The Only Thing" |
+| 9 | **Child-Freeze + Ambivalent** (duet) | **Recovery valley — genuinely soft.** Silent recognition across an impossible gap. | ANOHNI "Rest" / Lingua Ignota soft-valley |
+| 10 | **Sexualized-Override** (solo) | Performance reasserts. The system can't stay in vulnerability. Control returns. | New |
+| 11 | **Caregiver + Sexualized-Override** (duet) | Climbing tension. The Caregiver's Kudzu surfaces as the Override resists. **Production callback lives here** — track 6's Caregiver motif returns at 6–8 BPM slower. | Emotional-flashback rendering |
+| 12 | **Worldview** (most fractured) | Penultimate fracture. All voices at once. Accumulated self-attack at maximum. | Left at London "Will My Alters Go to Heaven?" placement |
+| 13 | **Partner-view** (Container + Partner) | Benediction outward. **The only track with no Witness presence.** The system drops its self-watching. | ANOHNI "You Be Free" |
+
+**Witness register-shift across the album:** helper observation (1–3) → transition (4) → outer-critic attack (5–9) → inner-critic re-voiced (10–12) → Witness departs entirely (13).
 
 ---
 
-## 5. Phase 4 Sub-Decisions Now Possible
+## 5. Phase 4 Sub-Decisions — Status
 
-The architecture is locked. The remaining decisions are *track-content* level, all now research-grounded.
+### Resolved by v3 locking:
 
-### Now decidable (with strong defaults):
+1. **Caregiver Kudzu rendering** — somatically in her solo (#6, attachment-betrayal body-site lyric); surfaces in duet (#11) as Override resists. Production callback from #6 to #11 (motif slowed 6–8 BPM) renders the Kudzu's first surfacing as somatic memory.
+2. **Partner-view form** — Container + Partner duet at #13. Partner as external memory of the system; asymmetry as wound, not resolution.
+3. **Witness register-shift** — helper (1–3) → transition (4) → outer-critic attack (5–9) → inner-critic re-voiced (10–12) → no Witness (13).
+4. **Fawn moment placement** — Caregiver solo (#6). Her caregiving is fawn-coded; throat-tight yes lives in her lyric body.
+5. **Outer-critic flip placement** — Protector + Fighter duet (#4). The duet structurally enacts Walker's vacillation — Protector inner-attacks, Fighter outer-attacks.
+6. **Production callback / emotional flashback** — track 11 quotes track 6 phrase at 6–8 BPM slower. Same melodic phrase, different body. The Caregiver's warmth-motif returns suppressed in the Override duet.
 
-1. **Caregiver Kudzu rendering.** Default: rendered somatically inside her solo (#6), with the smothering edge surfacing in the duet (#9) as the Override resists. *Not character indictment; relational dynamic.* Caregiver writes attachment-betrayal-as-body-imagery; Override's foreclosure exposes the Kudzu risk by refusing to be held.
-2. **Partner-view form.** Default: Container + Partner duet. Partner holds what Container can't. The asymmetry is the wound, not the resolution.
-3. **Witness register-shift across album.** Default: helper observation (1–4) → outer-critic attack (5–9) → inner-critic re-voiced (10–13). The shift IS the mechanism.
+### Still open (optional):
 
-### New questions surfaced by research:
+7. **The Truddi Chase reference.** A track that explicitly names the refusal of fusion as a love song from the system to itself. The 1987 Chase stance ("integration is not a solution for them") is community canon. Could live: (a) inside the Worldview lyric, (b) inside the Partner-view duet as the Container's "we stay" answer to the partner, (c) as a Witness annotation late in the album, (d) declined entirely. Optional but high-impact.
 
-4. **Fawn moment.** Where does the album render the fawn response? Could be: (a) inside the Caregiver's solo (her caregiving = fawn-coded), (b) inside the Container's tracks (host avoidance as social fawn), (c) a dedicated lyric moment somewhere obvious, (d) implicit across multiple tracks. Walker's dog-image is brutal and accurate; the throat-tight "yes" of a child.
-5. **Outer-critic flip.** Where does the lyric flip from "I am the problem" → "all of you are dangerous"? Could be: (a) inside the Fighter solo (her contempt outward), (b) inside Protector + Fighter duet (the argument lands here), (c) inside Sexualized-Override solo (her "Don't bother" is outward-flip). Walker's vacillation — under-rendered in trauma music.
-6. **Production callback / emotional flashback.** Which track quotes which earlier track? Strongest candidate: track 11 (Sexualized-Override solo, climbing tension before fracture) quotes a melodic phrase from track 5 (Fighter solo) at 6–8 BPM slower. Same phrase, different body.
-7. **The Truddi Chase reference.** Optional but powerful: a track that explicitly names the *refusal of fusion* — not as polemic, as a love song from the system to itself. The 1987 Chase stance ("integration is not a solution for them") is community canon. Could live inside the Worldview track's lyric or as an annotation by the Witness late in the album.
-
-### Deferred to track writing (no decision needed at planning level):
+### Deferred to track writing (no architectural decision needed):
 
 - Specific lyric language for each track
-- Specific imagery anchors
-- Specific Suno style prompts (the metatag table in `the-eleven.md` is the starting point)
-- Specific motif content for the production callback
+- Specific imagery anchors per track
+- Specific Suno style prompts (metatag table in `the-eleven.md` is the starting point)
+- Specific motif content for the production callback (decided when the Caregiver solo is written)
 
 ---
 

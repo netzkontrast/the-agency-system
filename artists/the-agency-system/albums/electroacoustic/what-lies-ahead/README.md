@@ -151,23 +151,30 @@ Six research runs completed (clinical TSDP/ISH/Gatekeeper, DID community prefere
 - **Emotional flashbacks as production callback:** late track quotes early-track motif at 6–8 BPM slower. Same notes, different body.
 - **Partner-view as Container + Partner duet** (the partner as external memory of the system) — research recommends this strongly.
 
-### Locked Provisional Sequence
+### Locked Sequence (v3 — research-grounded, post-synthesis)
 
-| # | Track | Function |
-|---|---|---|
-| 1 | Container (solo) | Voiced-thesis opener — Stonemilker function |
-| 2 | Container + Integrator (duet) | The closed loop — collusion that believes itself to be care |
-| 3 | Rationalist (solo) | Fury early — ANOHNI principle |
-| 4 | Protector + Fighter (duet) | Method conflict, kinetic |
-| 5 | Fighter (solo) | Rage alone |
-| 6 | Caregiver (solo) | Warmth interior, attachment betrayal somatically |
-| 7 | Collapsed One (solo) | **Structural axis** — Black Lake / Fourth of July position |
-| 8 | Collapsed One + Integrator (duet) | Sufjan license — Integrator arrives not as rescue, as another voice in the wreckage |
-| 9 | Caregiver + Sexualized-Override (duet) | Recovery valley — Rest function |
-| 10 | Child-Freeze + Ambivalent (duet) | Quietest and most fragile |
-| 11 | Sexualized-Override (solo) | Climbing tension before fracture |
-| 12 | **Worldview** (most fractured) | Penultimate — fracture after every voice established |
-| 13 | **Partner-view** (Container + Partner) | Benediction outward — "you be free for me" |
+| # | Track | Function | Witness register |
+|---|---|---|---|
+| 1 | Container (solo) | Voiced-thesis opener. Wound as ground from downbeat 1. | Helper / observation |
+| 2 | Container + Integrator (duet) | The closed loop — collusion that believes itself to be care | Helper / observation |
+| 3 | Rationalist (solo) | Fury early — cold logic almost succeeding before it gives | Helper / observation |
+| 4 | Protector + Fighter (duet) | Method conflict, kinetic. **Outer-critic flip lives here** — Protector self-blames, Fighter attacks outward. The duet IS Walker's vacillation. | Helper → outer-critic transition |
+| 5 | Fighter (solo) | Rage alone — what she is when no one needs protecting | Outer-critic attack |
+| 6 | Caregiver (solo) | Warmth interior, attachment betrayal somatically (Ethel Cain template). **Fawn moment lives here** — throat-tight yes, body-site per verse. | Outer-critic attack |
+| 7 | Collapsed One (solo) | **Structural axis** — Black Lake / Fourth of July position. Longest, most stripped. The album's gravity. | Outer-critic attack |
+| 8 | Collapsed One + Integrator (duet) | Sufjan license. Integrator arrives *in* the wreckage, not as rescue. | Outer-critic attack |
+| 9 | Child-Freeze + Ambivalent (duet) | **Recovery valley — genuinely soft.** Silent recognition across an impossible gap. Earned by everything before it. | Outer-critic attack → softening |
+| 10 | Sexualized-Override (solo) | Performance reasserts. The system can't stay in vulnerability. Control returns. | Inner-critic re-voiced begins |
+| 11 | Caregiver + Sexualized-Override (duet) | Climbing tension. The Caregiver's Kudzu surfaces as the Override resists. **Production callback lives here — track 6's Caregiver motif returns at 6–8 BPM slower, suppressed under the Override's refusal.** | Inner-critic re-voiced |
+| 12 | **Worldview** (most fractured) | Penultimate fracture. All voices at once. Accumulated self-attack at maximum. | Inner-critic re-voiced |
+| 13 | **Partner-view** (Container + Partner) | Benediction outward. **The only track with no Witness presence** — partner outside the system, the system drops its self-watching and simply IS. | None — Witness departs |
+
+**Witness register-shift summary:** helper observation (1–3) → transition (4) → outer-critic attack (5–9) → inner-critic re-voiced (10–12) → Witness departs entirely (13). The Witness's *departure* in track 13 is part of the structural argument: when the partner sees you whole from outside, the system stops needing to watch itself.
+
+**Three sub-decisions resolved by v3 locking:**
+- **Outer-critic flip placement**: track 4 (Protector + Fighter duet enacts the inner/outer-critic vacillation structurally).
+- **Fawn moment placement**: track 6 (Caregiver solo — her caregiving is fawn-coded; throat-tight yes lives in her attachment-betrayal lyric).
+- **Production callback / emotional flashback**: track 11 quotes track 6 phrase at 6–8 BPM slower. Same melodic phrase, different body. The Kudzu's first surfacing as somatic memory.
 
 ### Phase 4 Sub-Decisions Pending User Review
 
