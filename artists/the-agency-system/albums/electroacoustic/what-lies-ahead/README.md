@@ -77,10 +77,11 @@ This is the primary thesis. Not "trauma recovery album," not "concept album abou
 
 ### Voice Craft Reference
 
-Multi-voice rendering follows the **Voice DNA Protocol** (`overrides/voice-dna-protocol.md`).
-Core rule that transfers from novel to lyrics: **voices are never labeled**. The listener
-recognizes each alter through diktion, rhythm, vocabulary, and pause structure — never
-through headers, name-adlibs, or `[Section]` labels.
+Multi-voice rendering follows the principles in `overrides/voice-craft-principles.md`.
+Core rule: **voices are never labeled.** The listener recognizes each alter through
+diktion, rhythm, vocabulary, and pause structure — never through headers, name-adlibs,
+or `[Section]` labels. For per-alter verbal signatures and prosodic anchors, see
+`overrides/the-eleven.md`.
 
 **Duet / voice-switch preference:** The artist favors **duets that switch between voices mid-song** —
 not call-and-response between two singers performing the same character, but genuine
@@ -122,21 +123,18 @@ recovery manual.
 | W | Worldview | — | Most fractured (all eleven at once) | The album's structural refusal of forced integration |
 | P | Partner-view | — | Outside / song-like | The album's stable horizon |
 
-### Mirror-Voices — Excluded by Design
+### The 13-Track Architecture
 
-The canonical system in the artist's novel project has **thirteen** voices: The Eleven plus two **Mirror-Voices** (echoes of external forces — *not* trauma-derived parts).
+- **11 alter tracks** — one per alter (The Eleven). See `overrides/the-eleven.md`.
+- **1 worldview track** — most fractured. All eleven voices simultaneously, in incompatible registers.
+- **1 partner-view track** — outside / song-like. The only fully-resolved perspective on the album.
 
-**For *What Lies Ahead*, the Mirror-Voices are excluded.** The album works the system proper. The echoes belong to a different layer of the artist's broader work.
+### Phase 4 Structural Decisions
 
-*Open question for Phase 4: should this exclusion be acknowledged on the album (silent omission / structural gesture / liner note / visible numeric gap)? See `overrides/the-eleven.md` Open Question #1.*
-
-### Phase 4 Structural Decisions (Carried from the Eleven Document)
-
-1. **Mirror-Voices acknowledgment** — silent / gesture / liner note / numeric gap?
-2. **Caregiver Kudzu positioning** — Act-I vs Act-II split; how does the Kudzu turn manifest?
-3. **Witness-of-Witnesses form** — his own track, or annotative voice across all tracks?
-4. **Collapsed One position** — likely mid-album, Integrator track immediately after.
-5. **Child-Freeze + Ambivalent** — single duet (alter-to-alter dialogue), or two consecutive tracks that answer each other?
+1. **Caregiver track — when does the warmth turn?** One track with the turn embedded, two tracks at mirroring positions, or the turn shown through *other* alters' tracks rather than her own?
+2. **Witness-of-Witnesses form** — his own track, or annotative voice across all tracks?
+3. **Collapsed One position** — likely mid-album, Integrator track immediately after.
+4. **Child-Freeze + Ambivalent** — single duet (alter-to-alter dialogue), or two consecutive tracks that answer each other?
 
 Structure may yield to the album's wishes. Pattern is target, not cage.
 
@@ -255,9 +253,9 @@ Archetype-to-production map as a **starting point**, with exceptions documented 
 
 **Locked-in artistic choice.** The worldview track is the album's most fractured production, not its most integrated. The system's view of the world is **not a single reconciled view** — it is all voices held simultaneously, in their incompatible registers, without resolution.
 
-This is the album's central artistic refusal: most trauma-recovery albums place a "system speaks as one" moment as the climax. *What Lies Ahead* refuses that. Worldview as polyphonic chaos says: **plurality is not a wound to integrate. The worldview IS the plurality**. The track honors the voice-DNA protocol's *Wir-Stimme* principle — chorus that never becomes monolith — but pushed to its sharpest form: all voices, all styles, all Strömungen at once.
+This is the album's central artistic refusal: most trauma-recovery albums place a "system speaks as one" moment as the climax. *What Lies Ahead* refuses that. Worldview as polyphonic chaos says: **plurality is not a wound to integrate. The worldview IS the plurality**. The track holds chorus without becoming monolith — every voice remains distinguishable inside the simultaneity. All voices, all styles, all Strömungen at once.
 
-Production direction: maximum simultaneity. Multiple vocal layers in incompatible styles co-existing. May echo *Vortex 1* from the voice-DNA protocol (Kael's Wir-Stimme and AEGIS' macro-log audible at the same time).
+Production direction: maximum simultaneity. Multiple vocal layers in incompatible styles co-existing. No alter is named; recognition is carried by syntactic and timbral fingerprint alone.
 
 ### Partner-View Track — Outside / Song-Like
 
