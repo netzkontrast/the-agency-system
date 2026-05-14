@@ -21,9 +21,9 @@ sheet_music:
 | Attribute | Detail |
 |-----------|--------|
 | **Artist** | the-agency-system |
-| **Album** | What Lies Ahead *(working title)* |
+| **Album** | What Lies Ahead |
 | **Genre** | electroacoustic *(umbrella — per-track sonic DNA varies widely; see Sonic Palette)* |
-| **Tracks** | 13 *(structural target: 11 alter tracks + 1 worldview + 1 partner-view, with permission to break the pattern where the album wants to)* |
+| **Tracks** | 13 *(11 alter-led tracks + 1 worldview + 1 partner-view; Witness annotates across all, no dedicated track)* |
 | **Status** | Phase 6 complete — ready for Phase 7 (track scaffolds) |
 | **Explicit** | Yes (locked Phase 6) |
 | **Concept** | An album that lets every alter speak in their own voice, on their own terms, and be heard. cPTSD listeners meet the inner *Strömungen*; DID listeners recognize the form. |
@@ -36,7 +36,7 @@ sheet_music:
 | 2 | Listener Takeaways & Research Direction | ✓ Locked |
 | 3 | Research Synthesis & Craft Principles | ✓ Locked |
 | 4 | Track Sequencing & Production Mapping | ✓ Locked |
-| 5 | Album Art Concept & Visual Direction | ✓ Locked |
+| 5 | Album Art Concept & Visual Direction | ✓ Locked *(execution pending — see `ALBUM-ART.md`)* |
 | 6 | Practical Details (Title, Explicit, Research Scope) | ✓ Locked |
 | 7 | Confirmation & Finalization (Track Scaffold Files) | ⧗ In progress |
 
@@ -96,11 +96,11 @@ This is the primary thesis. Not "trauma recovery album," not "concept album abou
 
 ### Voice Craft Reference
 
-Multi-voice rendering follows the principles in `overrides/voice-craft-principles.md`.
+Multi-voice rendering follows the principles in `../../../../../overrides/voice-craft-principles.md`.
 Core rule: **voices are never labeled.** The listener recognizes each alter through
 diktion, rhythm, vocabulary, and pause structure — never through headers, name-adlibs,
 or `[Section]` labels. For per-alter verbal signatures and prosodic anchors, see
-`the-eleven.md`.
+`the-eleven.md` in this album folder.
 
 **Duet / voice-switch preference:** The artist favors **duets that switch between voices mid-song** —
 not call-and-response between two singers performing the same character, but genuine
@@ -118,11 +118,11 @@ recovery manual.
 
 ## Structure
 
-13 tracks total. Working architecture:
+13 tracks total. Locked architecture:
 
-- **11 alter tracks** — **The Eleven** (5 ANP + 5 EP + 1 Meta). Each carries its own sonic DNA. No alter is labeled in lyrics or section headers; identity is carried by syntax, vocabulary, rhythm, pause structure. See `the-eleven.md` for the full archetype profiles, phobia/alliance networks, and lyrical hooks.
-- **1 worldview track** — most fractured. All eleven voices simultaneously, in incompatible registers. The album's central artistic refusal of the "system speaks as one" climax.
-- **1 partner-view track** — outside / song-like. The album's only fully-resolved perspective. The witness from beyond the system.
+- **11 alter-led tracks** — 6 solos + 5 alter-to-alter duets covering 10 of **The Eleven** (5 ANP + 5 EP). Witness, the 11th alter, has no dedicated track — he annotates across all 13. Each track carries its own sonic DNA. No alter is labeled in lyrics or section headers; identity is carried by syntax, vocabulary, rhythm, pause structure. See `the-eleven.md` for full archetype profiles, phobia/alliance networks, and lyrical hooks.
+- **1 worldview track** (track 12) — most fractured. All eleven voices simultaneously, in incompatible registers. The album's central artistic refusal of the "system speaks as one" climax.
+- **1 partner-view track** (track 13) — outside / song-like. Container + Partner duet — the only fully-resolved perspective. The witness from beyond the system.
 
 **The Eleven — Quick Reference**
 
@@ -153,7 +153,7 @@ recovery manual.
 | **Solos** | 6 | Container, Rationalist, Caregiver, Fighter, Sexualized-Override, Collapsed One |
 | **Alter-alter duets** | 5 | Container+Integrator · Protector+Fighter · Child-Freeze+Ambivalent · Caregiver+Sexualized-Override · Collapsed One+Integrator |
 | **Worldview** | 1 | All voices simultaneously, most fractured (form: pending research) |
-| **Partner-view** | 1 | Outside / song-like — pure partner solo OR Container+Partner duet (pending research) |
+| **Partner-view** | 1 | Container + Partner duet (outside the system, locked) |
 
 Alter appearance counts: Container 2, Rationalist 1, Protector 1 (duet only), Caregiver 2, Integrator 2 (duets only — no solo), Fighter 2, Child-Freeze 1 (duet only), Ambivalent 1 (duet only), Sexualized-Override 2, Collapsed One 2. **Witness annotates across all 13 tracks.**
 
@@ -166,7 +166,7 @@ Six research runs completed (clinical TSDP/ISH/Gatekeeper, DID community prefere
 - **97% community preference for functional multiplicity** validates the locked refusal-of-fusion structure.
 - **The DID-concept-album slot is functionally unoccupied.** Nat Puff has the songs; nobody has the album. The user can credibly occupy this position.
 - **New craft principle: deliberate bleed.** Voices distinct *but porous* — passive influence, partial co-fronting, unattributable lines. Otherwise per-alter voice metatags risk reading as vocal cosplay (the Shyamalan / Slim-Shady pattern).
-- **The Witness has three registers across the album:** helper observation (tracks 1–4) → outer-critic attack (5–9) → inner-critic re-voiced (10–13). The shift IS the inner critic's mechanism per Pete Walker.
+- **The Witness has three registers across the album:** helper observation (tracks 1–3, transition at 4) → outer-critic attack (5–9) → inner-critic re-voiced (10–12) → departs entirely (13). The shift IS the inner critic's mechanism per Pete Walker.
 - **Emotional flashbacks as production callback:** late track quotes early-track motif at 6–8 BPM slower. Same notes, different body.
 - **Partner-view as Container + Partner duet** (the partner as external memory of the system) — research recommends this strongly.
 
@@ -195,17 +195,20 @@ Six research runs completed (clinical TSDP/ISH/Gatekeeper, DID community prefere
 - **Fawn moment placement**: track 6 (Caregiver solo — her caregiving is fawn-coded; throat-tight yes lives in her attachment-betrayal lyric).
 - **Production callback / emotional flashback**: track 11 quotes track 6 phrase at 6–8 BPM slower. Same melodic phrase, different body. The Kudzu's first surfacing as somatic memory.
 
-### Phase 4 Sub-Decisions Pending User Review
+### Phase 4 Sub-Decisions — Resolved by v3 Sequence Lock
 
-See `RESEARCH.md` §5 for full context:
+See `RESEARCH.md` §5 for full context. All decisions below are locked into the Locked Sequence (v3) above:
 
-1. **Caregiver Kudzu rendering** — default proposal: somatically in her solo (#6), surfacing in duet (#9) as the Override resists.
-2. **Partner-view form** — default proposal: Container + Partner duet.
-3. **Witness register-shift across album** — default proposal: helper (1–4) → outer-critic (5–9) → inner-critic (10–13).
-4. **Fawn moment placement** — open question.
-5. **Outer-critic flip placement** — open question.
-6. **Production callback / emotional flashback** — open question (strongest candidate: track 11 quotes track 5 phrase at 6–8 BPM slower).
-7. **Optional Truddi Chase reference** — a track that explicitly names the refusal of fusion as a love song from the system to itself.
+- **Caregiver Kudzu rendering** — somatically in her solo (#6), surfacing in duet (#11) as the Override resists.
+- **Partner-view form** — Container + Partner duet (track 13).
+- **Witness register-shift across album** — helper (1–3), transition (4), outer-critic (5–9), inner-critic re-voiced (10–12), departs at 13.
+- **Fawn moment placement** — track 6 (Caregiver solo).
+- **Outer-critic flip placement** — track 4 (Protector + Fighter duet).
+- **Production callback / emotional flashback** — track 11 quotes track 6 phrase at 6–8 BPM slower.
+
+### Open (still pending)
+
+- **Optional Truddi Chase reference** — a track that explicitly names the refusal of fusion as a love song from the system to itself. Decision deferred to the lyric-writing phase, where it will become obvious whether the line belongs in the worldview track (#12), the partner-view track (#13), Witness annotation, or declined entirely.
 
 ### Resolved Decisions Recap
 
@@ -216,7 +219,7 @@ See `RESEARCH.md` §5 for full context:
 - **Integrator = Gatekeeper too.** Co-responsible (with the Container's avoidance) for the system's forgetting. Curatorial patience, not passive. (See `the-eleven.md` profile.)
 - **Suno Voice Metatags:** specific gender/register/texture assigned per alter for vocal differentiation. (See `the-eleven.md`.)
 - **Worldview = most fractured** (not most integrated). The album's central refusal of forced integration.
-- **Partner-view = outside / song-like** (provisional — may become a duet pending research).
+- **Partner-view = Container + Partner duet** (outside the system; locked in v3 sequence).
 - **Duet preference:** alters in genuine dialogue mid-song, recognized by syntax not labels.
 - **Five alter-alter duets** (above).
 
@@ -351,10 +354,23 @@ Production direction: cleanest, most "song-like" rendering. Vocal-forward. Likel
 
 ## Tracklist
 
+Working titles — final lyric titles emerge during the lyric-writing phase. Status reflects current track state.
+
 | # | Title | POV | Concept | Status |
 |---|-------|-----|---------|--------|
-| 01 | [Track Name](tracks/01-track-name.md) | [POV] | [Brief concept] | Not Started |
-| 02 | [Track Name](tracks/02-track-name.md) | [POV] | [Brief concept] | Not Started |
+| 01 | [Where I Begin](tracks/01-where-i-begin.md) | Container (solo) | Voiced-thesis opener. Wound as ground from downbeat 1. | In Progress |
+| 02 | [The Closed Loop](tracks/02-the-closed-loop.md) | Container + Integrator (duet) | The closed loop — collusion that believes itself to be care. | Not Started |
+| 03 | [Cold Engine](tracks/03-cold-engine.md) | Rationalist (solo) | Fury early — cold logic almost succeeding before it gives. | Not Started |
+| 04 | [Method Conflict](tracks/04-method-conflict.md) | Protector + Fighter (duet) | Method conflict, kinetic. Outer-critic flip enacted structurally. | Not Started |
+| 05 | [Nothing Left to Protect](tracks/05-nothing-left-to-protect.md) | Fighter (solo) | Rage alone — what she is when no one needs protecting. | Not Started |
+| 06 | [Throat-Tight Yes](tracks/06-throat-tight-yes.md) | Caregiver (solo) | Warmth interior, attachment betrayal somatically. Fawn moment lives here. | Not Started |
+| 07 | [Where the Ground Was](tracks/07-where-the-ground-was.md) | Collapsed One (solo) | Structural axis — longest, most stripped. The album's gravity. | Not Started |
+| 08 | [In the Wreckage](tracks/08-in-the-wreckage.md) | Collapsed One + Integrator (duet) | Sufjan license. Integrator arrives *in* the wreckage, not as rescue. | Not Started |
+| 09 | [Across the Gap](tracks/09-across-the-gap.md) | Child-Freeze + Ambivalent (duet) | Recovery valley — genuinely soft. Silent recognition across an impossible gap. | Not Started |
+| 10 | [Performance Returns](tracks/10-performance-returns.md) | Sexualized-Override (solo) | Performance reasserts. The system can't stay in vulnerability. Control returns. | Not Started |
+| 11 | [Kudzu Surfaces](tracks/11-kudzu-surfaces.md) | Caregiver + Sexualized-Override (duet) | Climbing tension. Caregiver's Kudzu surfaces; production callback to track 6 at −6–8 BPM. | Not Started |
+| 12 | [All Voices at Once](tracks/12-all-voices-at-once.md) | Worldview (all 11 voices) | Penultimate fracture. All voices simultaneously. Accumulated self-attack at maximum. | Not Started |
+| 13 | [From Outside](tracks/13-from-outside.md) | Container + Partner (duet) | Benediction outward. The only track with no Witness presence — partner outside the system. | Not Started |
 
 ## Key Characters
 
