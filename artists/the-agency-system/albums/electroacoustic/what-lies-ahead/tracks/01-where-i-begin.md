@@ -173,8 +173,8 @@ the body knows —
 [Verse 3]
 The chair I am sitting in —
 warm before I sat —
-the soap on my hands —
-of a kind I do not buy —
+my hands smell of a soap —
+from a house I do not liv in —
 
 [Outro]
 Here is where I begin —
@@ -226,8 +226,8 @@ The body knows
 
 The chair I am sitting in
 Warm before I sat
-The soap on my hands
-Of a kind I do not buy
+My hands smell of a soap
+From a house I do not live in
 
 Here is where I begin
 The same shape but smaller
@@ -273,7 +273,7 @@ Again
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| live (V3) | liv | Homograph — verb "to reside" (/lɪv/), not "real-time" (/laɪv/). Phonetic spelling in Suno lyrics only. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
