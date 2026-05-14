@@ -28,6 +28,35 @@ ANP = Apparently Normal Part. EP = Emotional Part. ISH = Internal Self Helper. M
 
 ---
 
+## Suno Voice Metatags
+
+Style-prompt language for steering Suno toward distinct timbres per alter. Without explicit voice metatags, Suno trends toward similar vocals across tracks, which kills the per-alter DNA. **Always include these tokens in the track's style prompt.**
+
+Gender assignments below are **craft choices for vocal differentiation**, not identity claims about any real person. They are starting positions — adjustable per track if a different voice serves the lyric better.
+
+| # | Archetype | Suno Voice Metatag |
+|---|-----------|---------------------|
+| 1 | **Container** | male vocals, baritone, weary, slightly under-articulated, present-tense delivery, dry |
+| 2 | **Rationalist** | male vocals, controlled tenor-baritone, dry, cold articulation, no vibrato, micro-cracks at line ends |
+| 3 | **Protector** | male vocals, tight low baritone, clipped delivery, forward in the chest, restrained intensity |
+| 4 | **Caregiver** | female vocals, warm mezzo-soprano, breathy, vowel-forward, intimate close-mic |
+| 5 | **Integrator (ISH)** | female vocals, mezzo, spacious, long vowels, reverb-friendly, ageless quality |
+| 6 | **Fighter** | female vocals, alto, growl-capable, raw, breathless intensity, clipped lines |
+| 7 | **Child-Freeze** | young vocals, androgynous, head-voice, whispered consonants, audible breath, fragile, small |
+| 8 | **Ambivalent** | female vocals, alto-mezzo, microtonal-capable, oscillating dynamics, ambiguous tonic |
+| 9 | **Sexualized-Override** | female vocals, low alto, controlled, deliberate, restrained vibrato, deceptive seduction-to-warning |
+| 10 | **Collapsed One** | male vocals, deep bass-baritone, sub-tempo, near-spoken, gravelly, line-final pauses |
+| 11 | **Witness-of-Witnesses** | androgynous spoken-word, dry, slightly behind the beat, layered, lowercase delivery, parenthetical asides |
+
+**Notes on the spread:**
+- **6 male / 4 female / 1 young-androgynous / 1 androgynous spoken** — even-ish gender balance with two non-binary slots (Child-Freeze, Witness). Plural systems are usually gender-diverse; this honors that without overstating any one voice.
+- **The Witness as androgynous spoken-word** suits his function (observation, not assertion) and lets him slip into the margins of other tracks without competing with the lead voice in gender or register.
+- **The Child-Freeze as young/androgynous** keeps the inner-child vocality flexible and avoids the cuteness trap.
+- **The Fighter as female alto** subverts the male-rage default and aligns with the document's framing of her as protective fury for the Child-Freeze.
+- **All these are adjustable.** If a specific alter feels strongly male or female or non-binary to you, we re-tag.
+
+---
+
 ## Individual Profiles
 
 ### 1. The Container (Host, ANP)
@@ -292,6 +321,6 @@ Imagery anchors and prosodic suggestions for songwriting. **Lyrics in EN**, char
 ## Open Structural Questions for Phase 4
 
 1. **The Caregiver track — when does the warmth turn?** One track with the turn embedded, two tracks at mirroring positions, or the turn shown through *other* alters' tracks rather than her own?
-2. **The Witness-of-Witnesses — inside or outside song-form?** His own track, or annotative voice across all tracks?
+2. ~~**The Witness-of-Witnesses — inside or outside song-form?**~~ *Resolved: annotative across all tracks, no own song. He lives in the margins of every other track — spoken asides, parenthetical lines, lowercase commentary under other voices. Track count consequence: album becomes 12 numbered tracks (10 alter tracks + worldview + partner-view), with the Witness as a cross-album layer.*
 3. **The Collapsed One — position in sequence.** Likely mid-album, with the Integrator track immediately after as the silent alliance the lyric structure can imply.
 4. **The Child-Freeze + Ambivalent duet.** Write as a single duet (alter-to-alter dialogue within one track), or as two consecutive tracks that subtly answer each other?

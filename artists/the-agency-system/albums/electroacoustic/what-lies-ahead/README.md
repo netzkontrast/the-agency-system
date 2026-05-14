@@ -119,22 +119,24 @@ recovery manual.
 | 8 | Ambivalent | EP (Approach/Withdraw) | Piano-intimate, microtonal | → Leave superposition |
 | 9 | Sexualized-Override | EP (Fight-via-control) | Low-register electronic, controlled | → Vulnerability |
 | 10 | Collapsed One | EP (Submit/Collapse) | Sub-tempo drone / near-spoken | → Dragon-fight |
-| 11 | Witness-of-Witnesses | Meta | TBD — inside song-form or annotative-across | → Constructive critique |
+| — | Witness-of-Witnesses | Meta | **Annotative across all tracks** (no dedicated track) | → Constructive critique |
 | W | Worldview | — | Most fractured (all eleven at once) | The album's structural refusal of forced integration |
 | P | Partner-view | — | Outside / song-like | The album's stable horizon |
 
-### The 13-Track Architecture
+### Album Architecture
 
-- **11 alter tracks** — one per alter (The Eleven). See `overrides/the-eleven.md`.
-- **1 worldview track** — most fractured. All eleven voices simultaneously, in incompatible registers.
-- **1 partner-view track** — outside / song-like. The only fully-resolved perspective on the album.
+**12 numbered tracks + 1 cross-album voice = 13 voices honored.**
 
-### Phase 4 Structural Decisions
+- **10 alter tracks** — one per alter for ten of The Eleven. See `overrides/the-eleven.md`.
+- **1 worldview track** — most fractured. All voices simultaneously, in incompatible registers.
+- **1 partner-view track** — outside / song-like. The only fully-resolved perspective.
+- **The Witness-of-Witnesses** is the eleventh voice, but does **not** have a dedicated track. He lives **across** the album — spoken asides, parenthetical lines, lowercase commentary under other voices. He observes; he never takes the chorus. (Resolved structural decision; see `overrides/the-eleven.md` Open Question #2.)
+
+### Phase 4 Structural Decisions (Remaining)
 
 1. **Caregiver track — when does the warmth turn?** One track with the turn embedded, two tracks at mirroring positions, or the turn shown through *other* alters' tracks rather than her own?
-2. **Witness-of-Witnesses form** — his own track, or annotative voice across all tracks?
-3. **Collapsed One position** — likely mid-album, Integrator track immediately after.
-4. **Child-Freeze + Ambivalent** — single duet (alter-to-alter dialogue), or two consecutive tracks that answer each other?
+2. **Collapsed One position** — likely mid-album, Integrator track immediately after.
+3. **Child-Freeze + Ambivalent** — single duet (alter-to-alter dialogue), or two consecutive tracks that answer each other?
 
 Structure may yield to the album's wishes. Pattern is target, not cage.
 
