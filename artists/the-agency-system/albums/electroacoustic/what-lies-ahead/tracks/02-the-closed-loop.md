@@ -19,8 +19,8 @@ sheet_music:
 | **Track #** | 02 |
 | **Title** | The Closed Loop |
 | **Album** | [What Lies Ahead](../README.md) |
-| **Status** | In Progress |
-| **Suno Link** | — |
+| **Status** | Generated |
+| **Suno Link** | https://suno.com/s/0iKwVLI0kcGpWGRe |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
@@ -358,7 +358,7 @@ Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
-| — | — | — | — | — | — |
+| 1 | 2026-05-14 | V5 | [Listen](https://suno.com/s/0iKwVLI0kcGpWGRe) | Current best — candidate, not yet approved | — |
 
 <!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
 
