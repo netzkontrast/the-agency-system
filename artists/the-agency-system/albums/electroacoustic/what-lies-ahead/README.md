@@ -81,7 +81,7 @@ Multi-voice rendering follows the principles in `overrides/voice-craft-principle
 Core rule: **voices are never labeled.** The listener recognizes each alter through
 diktion, rhythm, vocabulary, and pause structure — never through headers, name-adlibs,
 or `[Section]` labels. For per-alter verbal signatures and prosodic anchors, see
-`overrides/the-eleven.md`.
+`the-eleven.md`.
 
 **Duet / voice-switch preference:** The artist favors **duets that switch between voices mid-song** —
 not call-and-response between two singers performing the same character, but genuine
@@ -101,7 +101,7 @@ recovery manual.
 
 13 tracks total. Working architecture:
 
-- **11 alter tracks** — **The Eleven** (5 ANP + 5 EP + 1 Meta). Each carries its own sonic DNA. No alter is labeled in lyrics or section headers; identity is carried by syntax, vocabulary, rhythm, pause structure. See `overrides/the-eleven.md` for the full archetype profiles, phobia/alliance networks, and lyrical hooks.
+- **11 alter tracks** — **The Eleven** (5 ANP + 5 EP + 1 Meta). Each carries its own sonic DNA. No alter is labeled in lyrics or section headers; identity is carried by syntax, vocabulary, rhythm, pause structure. See `the-eleven.md` for the full archetype profiles, phobia/alliance networks, and lyrical hooks.
 - **1 worldview track** — most fractured. All eleven voices simultaneously, in incompatible registers. The album's central artistic refusal of the "system speaks as one" climax.
 - **1 partner-view track** — outside / song-like. The album's only fully-resolved perspective. The witness from beyond the system.
 
@@ -140,7 +140,7 @@ Alter appearance counts: Container 2, Rationalist 1, Protector 1 (duet only), Ca
 
 ### Research Synthesis
 
-Six research runs completed (clinical TSDP/ISH/Gatekeeper, DID community preferences, DID-in-music, trauma-album sequencing, cPTSD broad, cPTSD craft-deep). Findings consolidated in **`overrides/research-synthesis.md`** — that file is the new working reference for craft decisions. Key headlines:
+Six research runs completed (clinical TSDP/ISH/Gatekeeper, DID community preferences, DID-in-music, trauma-album sequencing, cPTSD broad, cPTSD craft-deep). Findings consolidated in **`RESEARCH.md`** — that file is the new working reference for craft decisions. Key headlines:
 
 - **The hinge insight:** *"a 'part' without amnesia is a current."* Strömungen sits exactly at Peter Levine's vortex theory ↔ cPTSD ego-states. Single most powerful audience-bridge concept.
 - **Worldview-as-most-fractured serves both audiences differently** — DID listeners hear "my system is not a problem"; cPTSD listeners hear "my recovery is not a line." The album does not need to explain which reading is correct. Depth segments the audience.
@@ -178,7 +178,7 @@ Six research runs completed (clinical TSDP/ISH/Gatekeeper, DID community prefere
 
 ### Phase 4 Sub-Decisions Pending User Review
 
-See `overrides/research-synthesis.md` §5 for full context:
+See `RESEARCH.md` §5 for full context:
 
 1. **Caregiver Kudzu rendering** — default proposal: somatically in her solo (#6), surfacing in duet (#9) as the Override resists.
 2. **Partner-view form** — default proposal: Container + Partner duet.
@@ -194,8 +194,8 @@ See `overrides/research-synthesis.md` §5 for full context:
 - **Album type:** thematic with documentary edge
 - **13-voice architecture:** 11 alters + worldview + partner-view (= novel-side "Mirror-Voices" reframed)
 - **The Witness:** annotative across all tracks, no dedicated song
-- **Integrator = Gatekeeper too.** Co-responsible (with the Container's avoidance) for the system's forgetting. Curatorial patience, not passive. (See `overrides/the-eleven.md` profile.)
-- **Suno Voice Metatags:** specific gender/register/texture assigned per alter for vocal differentiation. (See `overrides/the-eleven.md`.)
+- **Integrator = Gatekeeper too.** Co-responsible (with the Container's avoidance) for the system's forgetting. Curatorial patience, not passive. (See `the-eleven.md` profile.)
+- **Suno Voice Metatags:** specific gender/register/texture assigned per alter for vocal differentiation. (See `the-eleven.md`.)
 - **Worldview = most fractured** (not most integrated). The album's central refusal of forced integration.
 - **Partner-view = outside / song-like** (provisional — may become a duet pending research).
 - **Duet preference:** alters in genuine dialogue mid-song, recognized by syntax not labels.
