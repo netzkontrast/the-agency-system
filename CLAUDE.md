@@ -29,6 +29,27 @@ server is running. Recovery, in order:
    in `.claude/settings.json` hasn't been resolved — re-add the plugin
    from the marketplace before retrying.
 
+## MANDATORY: Skills before MCP
+
+**Always prefer invoking a `/bitwize-music:<skill>` slash command (or the
+`Skill` tool with the same name) over calling the underlying
+`mcp__plugin_bitwize-music_*` tools directly.** Skills carry the full
+workflow, the guard rails, and the project's craft conventions. MCP
+tools are the low-level primitives the skills are built on — use them
+directly only when:
+
+1. A skill explicitly delegates to a specific MCP call (e.g.
+   `update_track_field` for a status flip), or
+2. No skill covers the operation (rare — check `/bitwize-music:help`
+   first), or
+3. A skill has been invoked and it has explicitly asked you to perform
+   the MCP call as part of its own workflow.
+
+If you find yourself reaching for an MCP tool, first ask: **"Which
+skill should be driving this?"** That question almost always has an
+answer. Document the skill choice in your reasoning before invoking
+the MCP tool — that record is the evidence the right path was taken.
+
 ## Most important commands & skills
 
 Invoke as slash commands: `/bitwize-music:<name>`.
