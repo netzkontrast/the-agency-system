@@ -205,15 +205,33 @@ Carrying the Secret Cameras post-punk lineage forward: **Depeche Mode** (*Violat
 - **Mood** — dark but never theatrical; intimate even at maximum density; songcraft over soundscape; honest over beautiful (when forced to choose).
 - **Strömungen** — the album's tonal undertow. Some tracks *are* the current. Some tracks resist it. Some tracks ride it.
 
-### Per-Alter Production Mapping (Provisional)
+### Per-Alter Production Mapping
 
-To be refined in Phase 4 when tracks are sequenced. Loose initial map:
+Archetype-to-production map as a **starting point**, with exceptions documented as the system reveals them. The map is a scaffold for Phase 4 sequencing, not a constraint.
+
+**Baseline map (archetype → production world):**
 
 - **Protector / Fighter alters** → band-driven dark electro rock (Secret Cameras territory)
 - **Caregiver / Host / Integrator** → orchestral electronic (*Vulnicura* territory)
 - **Child / Freeze / Collapse alters** → sparse piano-and-voice intimate (Left at London territory)
-- **Worldview track** → most-integrated production — chorus / Wir-Stimme energy from the voice-DNA protocol
-- **Partner-view track** → outside-the-system production — possibly the most "song-like" / least fractured
+
+**Exceptions:** *(To be filled in per-alter — alters whose production world contradicts their archetype. Surface them as they emerge.)*
+
+### Worldview Track — Most Fractured
+
+**Locked-in artistic choice.** The worldview track is the album's most fractured production, not its most integrated. The system's view of the world is **not a single reconciled view** — it is all voices held simultaneously, in their incompatible registers, without resolution.
+
+This is the album's central artistic refusal: most trauma-recovery albums place a "system speaks as one" moment as the climax. *What Lies Ahead* refuses that. Worldview as polyphonic chaos says: **plurality is not a wound to integrate. The worldview IS the plurality**. The track honors the voice-DNA protocol's *Wir-Stimme* principle — chorus that never becomes monolith — but pushed to its sharpest form: all voices, all styles, all Strömungen at once.
+
+Production direction: maximum simultaneity. Multiple vocal layers in incompatible styles co-existing. May echo *Vortex 1* from the voice-DNA protocol (Kael's Wir-Stimme and AEGIS' macro-log audible at the same time).
+
+### Partner-View Track — Outside / Song-Like
+
+**Locked-in artistic choice.** The partner-view track sits *outside* the system. Cleanest production on the album. The only track that fully resolves.
+
+This is the album's stable horizon — the only fully-resolved perspective the album allows itself. Everything else either stays inside the system or stays inside the current. The partner is the witness who sees the system whole, from beyond. Likely the album's emotional gut-punch track.
+
+Production direction: cleanest, most "song-like" rendering. Vocal-forward. Likely sparser instrumentation. Could be the most "Vulnicura *Stonemilker*-ish" production on the record — but with the partner's voice as the carrier, not the system's.
 
 ## Tracklist
 
