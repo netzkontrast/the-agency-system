@@ -4,10 +4,40 @@ Working tree for Michael Schimmer's darkwave/industrial album triptych
 and for the [bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
 plugin that produces it.
 
-## Session start — required check
+## Session start — required actions
 
-At the start of every session, verify the **`bitwize-music-mcp`** MCP
-server is running. Recovery, in order:
+At the start of every session:
+
+1. **Verify `bitwize-music-mcp` is running** (see recovery steps below).
+2. **Print the full list of available bitwize-music commands/skills.**
+   Use `mcp__plugin_bitwize-music_bitwize-music-mcp__list_skills` (or
+   fall back to listing `~/.claude/plugins/marketplaces/bitwize-music/skills/`)
+   and render a compact table of `/<name>` → short description so the
+   user can see what's available without typing `/bitwize-music:help`.
+
+### Command shorthand — always accept bare `/<name>`
+
+The user prefers to type the short form. Whenever they write a slash
+command that matches a bitwize-music skill, **map it to the fully
+qualified form before acting**:
+
+- `/health-check` → `/bitwize-music:health-check`
+- `/new-album` → `/bitwize-music:new-album`
+- `/lyric-writer` → `/bitwize-music:lyric-writer`
+- …and so on for every skill listed by `list_skills`.
+
+Rules:
+- Only map when the bare name unambiguously matches a bitwize-music skill.
+- If a bare name collides with a built-in Claude Code command (e.g.
+  `/help`, `/review`, `/init`, `/security-review`), the built-in wins —
+  ask the user which one they meant before mapping.
+- Do not silently rewrite the user's message; just invoke the resolved
+  command and mention the mapping in one short sentence the first time
+  it happens in a session.
+
+### MCP server recovery
+
+If `bitwize-music-mcp` is not running, recover in order:
 
 1. **Start a new session first.** Slash commands (including
    `/bitwize-music:health-check`) depend on the plugin being wired
