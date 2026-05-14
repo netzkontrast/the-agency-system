@@ -18,13 +18,12 @@ server is running. Recovery, in order:
 2. Once the new session is up, run `/bitwize-music:health-check` to
    confirm `bitwize-music-mcp` is registered and healthy.
 3. If the hook didn't fire (e.g. `~/.bitwize-music/setup.log` is
-   missing or `CLAUDE_PROJECT_DIR` was unset), run the script
-   manually, then start a new session:
+   missing), run the script manually, then start a new session:
    ```bash
-   CLAUDE_PROJECT_DIR="$(git rev-parse --show-toplevel)" \
-     bash .claude/scripts/setup-bitwize-music.sh
+   bash .claude/scripts/setup-bitwize-music.sh
    ```
-   Logs: `~/.bitwize-music/setup.log`.
+   The script self-locates from its own path, so no env vars are
+   required. Logs: `~/.bitwize-music/setup.log`.
 4. If the plugin itself isn't installed (`~/.claude/plugins/installed_plugins.json`
    doesn't list `bitwize-music@bitwize-music`), the marketplace entry
    in `.claude/settings.json` hasn't been resolved — re-add the plugin
