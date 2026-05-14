@@ -81,31 +81,53 @@ skill should be driving this?"** That question almost always has an
 answer. Document the skill choice in your reasoning before invoking
 the MCP tool — that record is the evidence the right path was taken.
 
-## MANDATORY: Follow the canonical workflow chains
+## RECOMMENDED: Follow the canonical workflow chains (and remind the user before skipping)
 
 **Albums and tracks advance through fixed phase chains. Each downstream
-skill's `prerequisites:` frontmatter declares which skills must have
-run first. Skipping a link breaks the next skill's invariants. Treat
-the chains below as binding, not advisory.**
+skill's `prerequisites:` frontmatter declares which skills the chain
+*expects* to have run first. The chains below are the recommended path
+— the route that protects each skill's invariants.**
+
+**The chain steps are optional, not mandatory.** The user may choose to
+skip any link (e.g., generate on Suno without running lyric-reviewer
+first, or release without running plagiarism-checker). Skipping is the
+user's call, not Claude's.
+
+**Claude's job at every handoff:** name the recommended next step,
+explain in one sentence what it would check, and ask whether to run
+it or move on. Surface — don't enforce. The reminder is mandatory; the
+step is not.
+
+**Hard gates are explicitly marked below and remain binding when the
+corresponding skill is invoked.** Example: if the user runs
+`pre-generation-check`, its 6 BLOCKING gates still block. Choosing not
+to invoke it is allowed; running it and bypassing its results is not.
 
 The single source of truth for routing is the resume / next-step
 decision trees in the plugin (`skills/resume/SKILL.md`,
 `skills/next-step/SKILL.md`). Don't paraphrase them in conversation —
-invoke them.
+invoke them when the user asks "what's next?". When the user gives a
+direct instruction (e.g., "generate on Suno now"), honor it after
+delivering the one-sentence reminder.
 
-### Pre-generation chain (every vocal track, every time)
+### Pre-generation chain (recommended path for every vocal track)
+
+Steps marked **(optional)** can be skipped at the user's discretion;
+Claude must remind before skipping. Steps marked **(hard gate when
+invoked)** still block when the skill is run.
 
 ```
 lyric-writer                  (drafts lyrics; auto-invokes suno-engineer at end)
   ↓
-pronunciation-specialist      (resolves homographs, proper nouns, tech terms)
+pronunciation-specialist      (optional — resolves homographs, proper nouns, tech terms)
   ↓
-lyric-reviewer                (14-point QC; auto-applies phonetic fixes)
+lyric-reviewer                (optional — 14-point QC; auto-applies phonetic fixes)
   ↓
-voice-checker                 (advisory: AI-pattern flags; never blocks)
+voice-checker                 (optional, advisory — AI-pattern flags; never blocks even when run)
   ↓
-pre-generation-check          (6 BLOCKING gates: sources, lyrics,
-                               pronunciation, explicit, style box, artist names)
+pre-generation-check          (optional to invoke — but hard gate when invoked:
+                               6 BLOCKING gates on sources, lyrics, pronunciation,
+                               explicit, style box, artist names)
   ↓
 [Generate on Suno]
 ```
@@ -114,7 +136,9 @@ pre-generation-check          (6 BLOCKING gates: sources, lyrics,
   workflow — do not double-call suno-engineer after lyric-writer.
 - **The lyric-writer's internal 13-point check is self-review** — it
   does NOT substitute for invoking `/bitwize-music:lyric-reviewer`.
-  Both must run before generation.
+  Lyric-reviewer is the recommended follow-up; if the user opts to
+  skip it, remind that the 14-point QC and auto-phonetic-fix pass
+  will not run.
 - **Instrumental tracks** skip lyric-writer, pronunciation-specialist,
   lyric-reviewer, and voice-checker — they enter the chain at
   suno-engineer. pre-generation-check gates 2/3/4 auto-skip;
@@ -125,26 +149,32 @@ pre-generation-check          (6 BLOCKING gates: sources, lyrics,
   the release chain — call them whenever explicit-content or
   borrowed-phrase risk surfaces during writing.
 
-### Pre-release chain (every album, every time)
+### Pre-release chain (recommended path for every album)
+
+Steps marked **(optional)** can be skipped at the user's discretion;
+Claude must remind before skipping. Steps marked **(hard gate when
+invoked)** still block when the skill is run.
 
 ```
 import-audio
   ↓
 mix-engineer                  (optional stems polish; hands off to mastering)
   ↓
-mastering-engineer            [qc_audio "" → master_album → qc_audio "mastered"]
+mastering-engineer            (optional — but recommended before release:
+                               [qc_audio "" → master_album → qc_audio "mastered"])
   ↓
-album-art-director + import-art   (final artwork in place, ≥3000×3000)
+album-art-director + import-art   (optional — final artwork in place, ≥3000×3000)
   ↓
-validate-album                (structural integrity, required files, path layout)
+validate-album                (optional — structural integrity, required files, path layout)
   ↓
-plagiarism-checker            (distinctive-phrase scan vs existing songs)
+plagiarism-checker            (optional — distinctive-phrase scan vs existing songs)
   ↓
-explicit-checker              (final flag verification for distributor metadata)
+explicit-checker              (optional — final flag verification for distributor metadata)
   ↓
-check_streaming_lyrics MCP    (distributor lyric format validation)
+check_streaming_lyrics MCP    (optional — distributor lyric format validation)
   ↓
-release-director              (9-domain QA gate; blocks until all pass)
+release-director              (optional to invoke — but hard gate when invoked:
+                               9-domain QA gate; blocks until all pass)
   ↓
 update_streaming_url + verify_streaming_urls
 ```
@@ -159,25 +189,46 @@ update_streaming_url + verify_streaming_urls
   English, no phonetics). Never paste Suno-phonetic lyrics into
   public-facing fields.
 
-### Concept phase gate
+### Concept phase gate (hard gate — preserved)
 
-`album-conceptualizer` Phase 7 (Confirmation) is a hard gate. Lyric
-writing does not begin until the user has explicitly confirmed the
-seven planning phases. Partial agreement triggers a revision pass,
-not a forward pass.
+`album-conceptualizer` Phase 7 (Confirmation) is a **hard gate** and
+remains binding. Lyric writing does not begin until the user has
+explicitly confirmed the seven planning phases. Partial agreement
+triggers a revision pass, not a forward pass. This gate is enforced
+by the `album-conceptualizer` skill itself when invoked, and Claude
+should not start lyric-writer for an album whose phases have not been
+confirmed.
 
-### Sources gate
+### Sources gate (hard gate for documentary albums — preserved)
 
 `sources_verified = N/A` is acceptable for non-documentary albums —
-do not gate non-docs on source verification. Documentary albums must
-reach `Verified (date)` on every track *before* lyric-writer runs.
+do not gate non-docs on source verification. **Documentary albums
+must** reach `Verified (date)` on every track before lyric-writer
+runs. This is a hard gate for documentary work; Claude should refuse
+to draft documentary lyrics on unverified sources and remind the user
+to run source verification first.
 
 ### When in doubt — invoke the routing skill
 
 `/bitwize-music:resume <album>` or `/bitwize-music:next-step` returns
-the exact next action with skill name and track. If you can't tell
-which step is next, invoke the routing skill — don't guess, don't
-shortcut, don't skip links.
+the recommended next action with skill name and track. If you can't
+tell which step is next, invoke the routing skill rather than guessing.
+The user can still choose to skip the recommended step — but invoke
+routing to know what's being skipped.
+
+### Reminder behavior at handoffs (mandatory)
+
+After any skill completes, Claude must end its reply with a short
+**"Next step (optional)"** line naming the recommended next skill
+and what it would check. Example:
+
+> *Next step (optional): `/bitwize-music:lyric-reviewer` would run the
+> 14-point QC on the lyrics and auto-apply any phonetic fixes. Run it,
+> or proceed straight to Suno generation?*
+
+The user decides whether to run it. Claude does not auto-invoke
+optional chain steps without being asked. The reminder is the
+guarantee that nothing is silently skipped.
 
 ## MANDATORY: Overrides are cross-project — albums hold album content
 
