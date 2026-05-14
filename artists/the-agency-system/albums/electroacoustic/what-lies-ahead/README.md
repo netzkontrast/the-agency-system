@@ -3,7 +3,7 @@ title: "What Lies Ahead"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
 genres: ["electroacoustic", "thematic"]
 tags: ["cptsd", "did", "trauma-recovery", "plurality", "documentary-edge"]
-explicit: false  # tentative — revisit in Phase 6 once tracks take shape
+explicit: true  # locked Phase 6 — artist's decision; trauma subject matter + abuse acknowledgment + sexualized-override alter render warrant the flag
 streaming:
   soundcloud: ""
   spotify: ""
@@ -24,8 +24,8 @@ sheet_music:
 | **Album** | What Lies Ahead *(working title)* |
 | **Genre** | electroacoustic *(umbrella — per-track sonic DNA varies widely; see Sonic Palette)* |
 | **Tracks** | 13 *(structural target: 11 alter tracks + 1 worldview + 1 partner-view, with permission to break the pattern where the album wants to)* |
-| **Status** | Phase 5 (Album Art) — in planning |
-| **Explicit** | TBD (Phase 6) |
+| **Status** | Phase 6 complete — ready for Phase 7 (track scaffolds) |
+| **Explicit** | Yes (locked Phase 6) |
 | **Concept** | An album that lets every alter speak in their own voice, on their own terms, and be heard. cPTSD listeners meet the inner *Strömungen*; DID listeners recognize the form. |
 
 ## Phase Overview
@@ -37,10 +37,15 @@ sheet_music:
 | 3 | Research Synthesis & Craft Principles | ✓ Locked |
 | 4 | Track Sequencing & Production Mapping | ✓ Locked |
 | 5 | Album Art Concept & Visual Direction | ✓ Locked |
-| 6 | Practical Details (Title, Explicit, Release Strategy) | ⧗ Pending |
-| 7 | Confirmation & Finalization (Track Scaffold Files) | ⧗ Pending |
+| 6 | Practical Details (Title, Explicit, Research Scope) | ✓ Locked |
+| 7 | Confirmation & Finalization (Track Scaffold Files) | ⧗ In progress |
 
-**Current position**: Phase 5 complete. Art direction documented in `ALBUM-ART.md`. Image generation and refinement in progress.
+**Phase 6 decisions (locked):**
+- **Title**: "What Lies Ahead" — approved as final title
+- **Research scope**: Signed off as complete (6 reports, 100+ sources, 10 anti-patterns, creative license documented)
+- **Explicit flag**: `explicit: true` — artist's call; trauma subject matter, abuse acknowledgment, sexualized-override alter rendering warrant the flag
+
+**Current position**: Phases 1–6 complete. Ready for Phase 7 — track scaffold creation (13 skeleton track files in `tracks/`).
 
 ## Frontmatter Reference
 

@@ -1,9 +1,22 @@
 ---
 title: "Phase 6 — Practical Details"
-status: in-development
+status: locked
+locked_date: 2026-05-14
 ---
 
-# Phase 6 — Practical Details
+# Phase 6 — Practical Details (LOCKED)
+
+All three decisions confirmed by the artist on 2026-05-14:
+
+| Decision | Choice |
+|---|---|
+| **Title** | "What Lies Ahead" — approved as final title |
+| **Research scope** | Signed off as complete |
+| **Explicit flag** | `explicit: true` |
+
+Detailed reasoning below preserved for future reference / liner notes.
+
+---
 
 Three final decisions before track scaffold creation (Phase 7):
 
@@ -43,11 +56,11 @@ Consider alternatives only if one of these applies:
 
 **Recommendation:** Stick with "What Lies Ahead." It's accurate, restrained, and honors both audiences without explaining either.
 
-### Decision Point
+### Decision Point — LOCKED
 
-- [ ] **APPROVE** "What Lies Ahead" as final title
-- [ ] **RECONSIDER** — artist wishes to explore alternatives (specify which)
-- [ ] **CHANGE** to: _______________
+- [x] **APPROVED** "What Lies Ahead" as final title
+- [ ] ~~RECONSIDER~~
+- [ ] ~~CHANGE to: _______________~~
 
 ---
 
@@ -75,11 +88,11 @@ Before proceeding to lyric-writing and generation phases, confirm:
 - [ ] **Sources traceable?** All 100+ references are available for liner notes, criticism, or future defense. (See SOURCES.md.)
 - [ ] **Next research needed?** Any gaps to fill before track-by-track work? (Unlikely at this depth, but ask.)
 
-### Decision Point
+### Decision Point — LOCKED
 
-- [ ] **APPROVE** research scope; ready for lyric-writing phase
-- [ ] **REQUEST** additional research in area: _______________
-- [ ] **CLARIFY** interpretation of existing research (e.g., "how does anti-pattern X apply to track 4?")
+- [x] **APPROVED** research scope; ready for lyric-writing phase
+- [ ] ~~REQUEST additional research~~
+- [ ] ~~CLARIFY interpretation~~
 
 ---
 
@@ -107,11 +120,22 @@ The album will be flagged `explicit: true` if:
 
 **Preliminary assessment:** Unless lyrics lean graphically violent or sexually explicit, `explicit: false` is correct.
 
-### Decision Point
+### Decision Point — LOCKED
 
-- [ ] **APPROVE** `explicit: false` as current best guess; finalize after lyric review
-- [ ] **SET** to `explicit: true` if artist expects graphic content in any track
-- [ ] **DEFER** final decision until post-generation review (lyric-writer can flag)
+- [ ] ~~APPROVE `explicit: false`~~
+- [x] **SET** to `explicit: true` — artist's call
+- [ ] ~~DEFER final decision~~
+
+**Reasoning for `explicit: true`:**
+
+The artist chose `explicit: true` despite the preliminary assessment leaning toward `false`. This is correct on closer inspection:
+
+- The **Sexualized-Override alter** is one of The Eleven and gets a solo (track 10) plus a duet (track 11). Even rendered with restraint, this alter's *function* (control as protection, performance as armor) involves language and somatic detail that may cross the explicit threshold for streaming distributors.
+- **Abuse acknowledgment** — the album explicitly names what happened (per Phase 1 fear-as-material decision). Even paraphrased and somatically rendered, this is "trauma subject matter explicitly named" — exactly the kind of content streaming distributors flag.
+- **Inner critic re-voicing** (tracks 10–12) renders harsh self-talk and toxic-shame language. Even without profanity, the *intent and content* may earn the flag.
+- **Better safe than miscategorized.** A correctly-flagged album reaches its intended audience; an under-flagged album risks distributor removal or age-gating after release. The flag is a *signal to listeners*, not a confession.
+
+Per Spotify/Apple Music guidelines, `explicit: true` is appropriate when content "may not be suitable for all audiences due to language or content." This album qualifies on content even if profanity stays minimal.
 
 ---
 
@@ -151,6 +175,6 @@ Once Phase 6 decisions are locked:
 
 ## Status
 
-- [ ] Phase 6 decisions complete
-- [ ] All prior phases confirmed
-- [ ] Ready for Phase 7 (Track Scaffolds)
+- [x] Phase 6 decisions complete (2026-05-14)
+- [x] All prior phases confirmed
+- [x] Ready for Phase 7 (Track Scaffolds)
