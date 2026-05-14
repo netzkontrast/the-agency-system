@@ -10,6 +10,12 @@
   "enabledPlugins": {
     "bitwize-music@bitwize-music": true
   },
+  "permissions": {
+    "allow": [
+      "mcp__plugin_bitwize-music_bitwize-music-mcp",
+      "Skill(bitwize-music:*)"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {
