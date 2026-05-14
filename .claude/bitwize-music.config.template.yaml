@@ -1,0 +1,31 @@
+# bitwize-music configuration template.
+#
+# The SessionStart setup script renders this file into
+# ~/.bitwize-music/config.yaml on first run, substituting the repository
+# path placeholder with the absolute path of this repo.
+# Existing configs are left untouched.
+#
+# To change settings later, either:
+#   1. Run /bitwize-music:configure inside Claude Code, or
+#   2. Edit ~/.bitwize-music/config.yaml directly, or
+#   3. Delete ~/.bitwize-music/config.yaml and update this template;
+#      the next session-start will re-render from here.
+
+artist:
+  name: the-agency-system
+
+paths:
+  # All album content (lyrics, READMEs, track files, ideas) lives in the repo.
+  content_root: ${REPO}/music/content
+  audio_root: ${REPO}/music/audio
+  documents_root: ${REPO}/music/documents
+  overrides: ${REPO}/music/overrides
+  ideas_file: ${REPO}/music/IDEAS.md
+
+generation:
+  service: suno
+  require_suno_link_for_final: true
+  max_lyric_words: 800
+
+database:
+  enabled: false

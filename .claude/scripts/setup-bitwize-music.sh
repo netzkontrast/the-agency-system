@@ -22,11 +22,16 @@ set -u
 
 STATE_DIR="${HOME}/.bitwize-music"
 VENV_DIR="${STATE_DIR}/venv"
+CONFIG_FILE="${STATE_DIR}/config.yaml"
 SENTINEL="${STATE_DIR}/.setup-complete"
 LOG_FILE="${STATE_DIR}/setup.log"
 LOCK_FILE="${STATE_DIR}/setup.lock"
 KNOWN_MARKETPLACES="${HOME}/.claude/plugins/known_marketplaces.json"
 DEFAULT_PLUGIN_DIR="${HOME}/.claude/plugins/marketplaces/bitwize-music"
+# The project the hook fires from. The plugin stores album content
+# under ${REPO}/music/ when the config is rendered from the template.
+REPO="${CLAUDE_PROJECT_DIR:-}"
+CONFIG_TEMPLATE="${REPO:+${REPO}/.claude/bitwize-music.config.template.yaml}"
 
 # Locate the plugin on disk. Prefer the installLocation Claude recorded
 # in known_marketplaces.json so this keeps working if the marketplace is
@@ -35,26 +40,30 @@ DEFAULT_PLUGIN_DIR="${HOME}/.claude/plugins/marketplaces/bitwize-music"
 resolve_plugin_dir() {
     if [[ -f "${KNOWN_MARKETPLACES}" ]] && command -v python3 >/dev/null 2>&1; then
         local loc
+        # Only accept entries whose source repo or marketplace key
+        # identifies the bitwize plugin. Without this guard, a co-installed
+        # marketplace with a requirements.txt could win arbitrarily.
         loc="$(python3 - "${KNOWN_MARKETPLACES}" <<'PY' 2>/dev/null
 import json, os, sys
 try:
     data = json.load(open(sys.argv[1]))
 except Exception:
     sys.exit(0)
-candidates = []
-if isinstance(data, dict):
-    # Prefer an entry whose source repo matches the plugin.
-    for entry in data.values():
-        if not isinstance(entry, dict):
-            continue
-        loc = entry.get("installLocation")
-        repo = (entry.get("source") or {}).get("repo", "")
-        if loc and os.path.isfile(os.path.join(loc, "requirements.txt")):
-            score = 1 if "claude-ai-music-skills" in repo else 0
-            candidates.append((score, loc))
-candidates.sort(reverse=True)
-if candidates:
-    print(candidates[0][1])
+if not isinstance(data, dict):
+    sys.exit(0)
+for key, entry in data.items():
+    if not isinstance(entry, dict):
+        continue
+    loc = entry.get("installLocation")
+    repo = (entry.get("source") or {}).get("repo", "") or ""
+    is_bitwize = (
+        "claude-ai-music-skills" in repo
+        or "bitwize-music" in repo
+        or "bitwize-music" in str(key)
+    )
+    if is_bitwize and loc and os.path.isfile(os.path.join(loc, "requirements.txt")):
+        print(loc)
+        break
 PY
         )"
         if [[ -n "${loc}" ]]; then
@@ -73,7 +82,48 @@ if [[ ! -f "${REQUIREMENTS}" ]]; then
     exit 0
 fi
 
-CURRENT_HASH="$(sha256sum "${REQUIREMENTS}" 2>/dev/null | awk '{print $1}')"
+# Hash requirements.txt to detect plugin updates. Falls through three
+# implementations so it works on Linux (sha256sum), macOS (shasum), and
+# anywhere python3 is available — without which we couldn't create the
+# venv anyway.
+compute_hash() {
+    local file="$1"
+    if command -v sha256sum >/dev/null 2>&1; then
+        sha256sum "${file}" | awk '{print $1}'
+    elif command -v shasum >/dev/null 2>&1; then
+        shasum -a 256 "${file}" | awk '{print $1}'
+    elif command -v python3 >/dev/null 2>&1; then
+        python3 -c "
+import hashlib, sys
+print(hashlib.sha256(open(sys.argv[1], 'rb').read()).hexdigest())
+" "${file}"
+    fi
+}
+CURRENT_HASH="$(compute_hash "${REQUIREMENTS}" 2>/dev/null)"
+
+# Render ~/.bitwize-music/config.yaml from the repo's template on first
+# run, so album content writes into the repo (under ${REPO}/music/)
+# rather than $HOME. Only renders when no config exists yet — existing
+# configs (including those produced by /bitwize-music:configure) are
+# left alone. Also creates the music/ subtree if missing.
+bootstrap_config() {
+    [[ -z "${REPO}" ]] && return 0
+    [[ -z "${CONFIG_TEMPLATE}" || ! -f "${CONFIG_TEMPLATE}" ]] && return 0
+
+    mkdir -p "${REPO}/music/content" "${REPO}/music/audio" \
+             "${REPO}/music/documents" "${REPO}/music/overrides"
+
+    [[ -f "${CONFIG_FILE}" ]] && return 0
+
+    mkdir -p "${STATE_DIR}"
+    local tmp
+    tmp="$(mktemp "${CONFIG_FILE}.XXXXXX")"
+    # Substitute ${REPO} with the absolute repo path. sed delimiter '|'
+    # avoids escaping slashes in paths.
+    sed "s|\${REPO}|${REPO}|g" "${CONFIG_TEMPLATE}" > "${tmp}"
+    mv -f "${tmp}" "${CONFIG_FILE}"
+}
+bootstrap_config
 
 # Fast path: sentinel records the same hash → already provisioned for
 # this requirements.txt. A plugin update changes the hash and forces
@@ -87,22 +137,58 @@ fi
 mkdir -p "${STATE_DIR}"
 
 # Open the lock file and acquire an exclusive non-blocking flock on FD 9.
-# A held lock means another invocation's worker is still running.
-exec 9>"${LOCK_FILE}"
-if ! flock -n 9; then
-    echo "[bitwize-music] setup already running; see ${LOG_FILE}"
-    exit 0
+# A held lock means another invocation's worker is still running. If
+# `flock` is unavailable (e.g. macOS without util-linux), fall back to a
+# best-effort mkdir-based lock: it's not race-proof against very fast
+# concurrent SessionStart events, but it's the right behaviour when the
+# alternative is "silently never provision". Without any lock at all the
+# worst case is two pip installs that step on each other — annoying but
+# self-healing on the next session.
+LOCK_KIND=""
+if command -v flock >/dev/null 2>&1; then
+    exec 9>"${LOCK_FILE}"
+    if flock -n 9; then
+        LOCK_KIND="flock"
+    else
+        echo "[bitwize-music] setup already running; see ${LOG_FILE}"
+        exit 0
+    fi
+else
+    # Note: cleanup of the lock directory lives only in the background
+    # worker below — never in the parent, since the parent exits as soon
+    # as it spawns the worker.
+    if mkdir "${LOCK_FILE}.d" 2>/dev/null; then
+        LOCK_KIND="mkdir"
+    else
+        # Owner check: if the recorded pid is alive, bail; otherwise evict.
+        owner_pid="$(cat "${LOCK_FILE}.d/pid" 2>/dev/null || true)"
+        if [[ -n "${owner_pid}" ]] && kill -0 "${owner_pid}" 2>/dev/null; then
+            echo "[bitwize-music] setup already running (pid ${owner_pid}); see ${LOG_FILE}"
+            exit 0
+        fi
+        rm -rf "${LOCK_FILE}.d" 2>/dev/null || true
+        if mkdir "${LOCK_FILE}.d" 2>/dev/null; then
+            LOCK_KIND="mkdir"
+        else
+            # Another process won the eviction race; let them run.
+            echo "[bitwize-music] setup already running; see ${LOG_FILE}"
+            exit 0
+        fi
+    fi
 fi
 
 echo "[bitwize-music] starting MCP server setup in background"
 echo "[bitwize-music] progress: tail -f ${LOG_FILE}"
 
-# Spawn the heavy work detached. FD 9 (with the flock) is inherited into
-# the subshell, so the kernel keeps the lock held until the worker exits.
-# When the parent process exits its FD 9 also closes, but the worker's
-# inherited descriptor keeps the lock alive — and when the worker dies
-# the kernel releases it, no matter how the worker terminates.
+# Spawn the heavy work detached. With flock, FD 9 (and its kernel lock)
+# is inherited into the subshell, so the lock survives until the worker
+# exits — even on SIGKILL. With the mkdir fallback, the worker records
+# its own PID for liveness checks and removes the lock dir on exit.
 (
+    if [[ "${LOCK_KIND}" == "mkdir" ]]; then
+        echo "$BASHPID" > "${LOCK_FILE}.d/pid"
+        trap 'rm -rf "${LOCK_FILE}.d"' EXIT
+    fi
     {
         echo "=== bitwize-music setup started $(date -Iseconds) ==="
         echo "PLUGIN_DIR=${PLUGIN_DIR}"
