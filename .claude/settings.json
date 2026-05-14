@@ -1,6 +1,6 @@
 {
   "extraKnownMarketplaces": {
-    "claude-ai-music-skills": {
+    "bitwize-music": {
       "source": {
         "source": "github",
         "repo": "bitwize-music-studio/claude-ai-music-skills"
@@ -8,6 +8,18 @@
     }
   },
   "enabledPlugins": {
-    "bitwize-music@claude-ai-music-skills": true
+    "bitwize-music@bitwize-music": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/scripts/setup-bitwize-music.sh\""
+          }
+        ]
+      }
+    ]
   }
 }
