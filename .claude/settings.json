@@ -10,6 +10,9 @@
   "enabledPlugins": {
     "bitwize-music@bitwize-music": true
   },
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
   "hooks": {
     "SessionStart": [
       {
