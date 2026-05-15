@@ -2,7 +2,7 @@
 title: "The Long Corridor"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
 genres: ["atmospheric-dark-folk"]
-tags: ["trauma", "healing", "psychosomatic", "collective", "therapeutic"]
+tags: ["trauma", "healing", "psychosomatic", "collective", "therapeutic", "true-story", "köln", "documentary"]
 explicit: false  # true or false
 # anchor_track: null  # Optional: 1-based track number to anchor album mastering (issue #290). Empty = auto-select by composite score.
 streaming:
@@ -29,10 +29,12 @@ sheet_music:
 | **Artist** | Children of Agatha |
 | **Album** | The Long Corridor |
 | **Genre** | [Atmospheric Dark Folk](/genres/atmospheric-dark-folk/README.md) |
+| **Album Type** | Documentary / Inspired By Real Events |
+| **Subject** | St. Agatha Krankenhaus, Köln — patients creating music together in psychosomatic care |
 | **Tracks** | TBD |
 | **Status** | Concept |
 | **Explicit** | No |
-| **Concept** | Patients at a psychosomatic clinic (Agatha) create music together to process collective and individual trauma. The long corridor is the album's central image — a literal hospital hallway and a metaphor for the long, non-linear journey of healing. |
+| **Concept** | Patients at the St. Agatha Krankenhaus in Köln create music together to process collective and individual trauma. The long corridor is the album's central image — a literal hospital hallway and a metaphor for the long, non-linear journey of healing. |
 
 ## Frontmatter Reference
 
