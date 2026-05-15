@@ -3,7 +3,7 @@ title: "Method Conflict"
 track_number: 4
 instrumental: false
 explicit: false
-suno_url: ""
+suno_url: "https://suno.com/s/sBNMKeBSBWEWznxE"
 sheet_music:
   pdf: ""
   musicxml: ""
