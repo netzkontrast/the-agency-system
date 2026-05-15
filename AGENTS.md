@@ -76,7 +76,7 @@ How to use the installed plugins and MCP servers when acting as or dispatching a
 
 **What it is:** Google Drive integration — read, write, copy, search, and manage files in Google Drive.
 
-**Tool prefix:** `mcp__02fbb94b-1aaa-4e09-bcd2-e5748743f593__`
+**Tool prefix:** Session-specific UUID — not pinned in repo config, changes per environment. Discover at session start with `ToolSearch("google drive file")` — all matching tools share a common UUID prefix safe to use for that session.
 
 **Tools:**
 
