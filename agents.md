@@ -127,3 +127,32 @@ How to use the installed plugins and MCP servers when acting as or dispatching a
 3. **Explore subagent for lookups** — use `subagent_type: Explore` for "where is X" or "which files reference Y" questions.
 4. **private-journal for continuity** — record key decisions so future sessions can recover context via `search_journal`.
 5. **Never push to `main`** — default branch is `Master`; all PRs target `Master`.
+
+---
+
+## Mandatory: Journal at session end
+
+**Every session must close with a `process_thoughts` call.** This is not optional. The private-journal is the only persistent memory across sessions — without it, context is lost and future sessions repeat the same discovery work.
+
+### What to record
+
+| Field | What goes there |
+|---|---|
+| `reflections` | What happened this session, what decisions were made, what surprised you |
+| `project_notes` | Technical discoveries: tool behaviors, branch conventions, schema quirks, gotchas |
+| `user_context` | How the user communicates, what they care about, patterns you noticed |
+| `technical_insights` | Broader engineering learnings that apply beyond this project |
+| `observations` | Short atomic noticings that don't fit elsewhere |
+
+### When to journal
+- **End of every session** — always, no exceptions
+- **After a significant decision** — when a non-obvious architectural or workflow choice is made
+- **After discovering a gotcha** — any surprise behavior from a tool, MCP, or skill
+
+### Recovering context at session start
+At the start of a new session on this repo, run:
+```
+mcp__private-journal__search_journal("the-agency-system bitwize-music workflow")
+mcp__private-journal__read_recent_entries()
+```
+This surfaces prior decisions and prevents re-discovering known patterns.
