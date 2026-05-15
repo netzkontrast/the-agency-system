@@ -74,6 +74,8 @@ How to use the installed plugins and MCP servers when acting as or dispatching a
 
 ## Journal Workflow
 
+**For the canonical tag ontology, the `[STARTUP]` distillation pattern, and the full session-lifecycle discipline:** invoke `Skill('journaling')` at session start (the SessionStart hook also surfaces recent briefs automatically) or run `/journal-brief <topic>` to distill scattered entries. This section is the *what*; the `journaling` skill is the *how*.
+
 Use the private-journal **frequently and deliberately** — not just at session end. Every meaningful moment in a session is worth capturing while it's fresh.
 
 ### Session Start — always
