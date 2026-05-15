@@ -370,7 +370,7 @@ Working titles — final lyric titles emerge during the lyric-writing phase. Sta
 | 10 | [Performance Returns](tracks/10-performance-returns.md) | Sexualized-Override (solo) | Performance reasserts. The system can't stay in vulnerability. Control returns. | Not Started |
 | 11 | [Kudzu Surfaces](tracks/11-kudzu-surfaces.md) | Caregiver + Sexualized-Override (duet) | Climbing tension. Caregiver's Kudzu surfaces; production callback to track 6 at −6–8 BPM. | Not Started |
 | 12 | [All Voices at Once](tracks/12-all-voices-at-once.md) | Worldview (all 11 voices) | Penultimate fracture. All voices simultaneously. Accumulated self-attack at maximum. | Not Started |
-| 13 | [From Outside](tracks/13-from-outside.md) | Container + Partner (duet) | Benediction outward. The only track with no Witness presence — partner outside the system. | Not Started |
+| 13 | [From Outside](tracks/13-from-outside.md) | Container + Partner (duet) | Benediction outward. The only track with no Witness presence — partner outside the system. | In Progress |
 
 ## Key Characters
 
