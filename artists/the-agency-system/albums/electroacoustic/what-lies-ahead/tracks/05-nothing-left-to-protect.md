@@ -1,10 +1,10 @@
 ---
 title: "Nothing Left to Protect"
 track_number: 5
-status: "In Progress"
+status: "Generated"
 instrumental: false
 explicit: false
-suno_url: ""
+suno_url: "https://suno.com/s/XWGPNfXj58VdiDdX"
 sheet_music:
   pdf: ""
   musicxml: ""
@@ -20,8 +20,8 @@ sheet_music:
 | **Track #** | 05 |
 | **Title** | Nothing Left to Protect |
 | **Album** | [What Lies Ahead](../README.md) |
-| **Status** | In Progress |
-| **Suno Link** | — |
+| **Status** | Generated |
+| **Suno Link** | https://suno.com/s/XWGPNfXj58VdiDdX |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
@@ -375,7 +375,7 @@ Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
-| — | — | — | — | — | — |
+| 1 | 2026-05-15 | V5 | [Listen](https://suno.com/s/XWGPNfXj58VdiDdX) | First take logged — rating pending listen | — |
 
 <!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
 
