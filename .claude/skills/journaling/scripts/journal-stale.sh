@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # List [STARTUP] briefs by age. Run periodically when working a topic to check freshness.
-set -euo pipefail
+set -uo pipefail
 
 J="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}/journals"
 

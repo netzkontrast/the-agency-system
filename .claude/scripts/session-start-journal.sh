@@ -25,13 +25,15 @@ done < <(find "$J" -name '*.md' -mtime -30 -print 2>/dev/null | xargs -I{} grep 
 echo
 
 echo "### Recent [LEARNING] entries (last 3 days)"
-learning_count=$(find "$J" -name '*.md' -mtime -3 -print 2>/dev/null \
+learning_lines=$(find "$J" -name '*.md' -mtime -3 -print 2>/dev/null \
   | xargs grep -h '\[LEARNING\]' 2>/dev/null \
   | head -10 \
-  | sed 's/^/  /' \
-  | tee /dev/stderr \
-  | wc -l) 2>/dev/null || learning_count=0
-[ "$learning_count" -eq 0 ] && echo "  (none in window)"
+  | sed 's/^/  /' || true)
+if [ -z "$learning_lines" ]; then
+  echo "  (none in window)"
+else
+  echo "$learning_lines"
+fi
 echo
 
 echo "**Next:** invoke \`Skill('journaling')\` for the full session-start procedure, or \`/journal-brief <topic>\` to distill scattered entries on a topic into a [STARTUP] brief."

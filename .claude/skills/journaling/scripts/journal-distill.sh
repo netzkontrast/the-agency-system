@@ -28,20 +28,25 @@ if [ -z "$matches" ]; then
   exit 0
 fi
 
-count=0
+files_matched=0
+tagged_count=0
 while IFS= read -r file; do
   date=$(basename "$(dirname "$file")")
   time=$(basename "$file" .md | cut -d- -f1-3)
-  echo "### $date $time — $file"
-  grep -n '\[[A-Z][A-Z-]*\]' "$file" 2>/dev/null | sed 's/^/  /' || true
-  echo
-  count=$((count + 1))
+  tagged=$(grep -n '\[[A-Z][A-Z-]*\]' "$file" 2>/dev/null || true)
+  files_matched=$((files_matched + 1))
+  if [ -n "$tagged" ]; then
+    echo "### $date $time — $file"
+    echo "$tagged" | sed 's/^/  /'
+    echo
+    tagged_count=$((tagged_count + 1))
+  fi
 done <<< "$matches"
 
 echo "---"
-echo "Files matched: $count"
-if [ "$count" -ge 3 ]; then
+echo "Files matched: $files_matched  (with tagged entries: $tagged_count)"
+if [ "$tagged_count" -ge 3 ]; then
   echo
-  echo "*Threshold reached (3+ entries).* Consider authoring or updating a [STARTUP] brief."
+  echo "*Threshold reached (3+ tagged entries).* Consider authoring or updating a [STARTUP] brief."
   echo "See .claude/skills/journaling/SKILL.md §The [STARTUP] Pattern."
 fi
