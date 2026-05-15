@@ -20,7 +20,7 @@ sheet_music:
 | **Track #** | 01 |
 | **Title** | Ich und Ich |
 | **Album** | [Ich und Ich (Single)](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
@@ -159,24 +159,41 @@ no maximalist production
 [Intro]
 [atmospheric detuned warm pad, deep 808 sub-bass drone, no drums, 4 bars, ambient]
 [male vocals, mid-baritone, half-spoken weary, dry close-mic, slightly under-articulated, behind the beat, no vibrato, light tape compression, adult ~40s, conversational range]
-[M1 — Searching — spoken intro lines, 4 lines, less blumig than source]
+(ich und ich)
+
+Mein Schlüssel liegt auf der Ablage —
+ich leg ihn nie da hin.
+Auf dem Stuhl liegt ein Hemd.
+Ich weiß nicht, welche Nacht das war.
 
 [Verse 1]
 [half-time trap drums enter, 808 sub-bass with slides, sparse hi-hats, atmospheric pad held, ~80 BPM]
 [male vocals, mid-baritone, weary half-rapped half-spoken, dry close-mic, slightly under-articulated, conversational range, behind the beat, breath audible]
-[M1 — Searching — 8 lines, two 4-line stanzas, "Wer hat …?" stacks, em-dash trailing fingerprint]
+Wer hat das geschrieben?
+Die Tinte — die ist meine.
+Der Spiegel zeigt jemand,
+der mein Gesicht trägt.
 
-(parenthesized adlib line from M1)
+Wer hat das Fenster geöffnet?
+Ich schlaf bei geschlossenem —
+Vier Tassen auf dem Tisch.
+Ich wohne allein.
+
+(Ich wohne allein.)
 
 [Pre-Chorus]
 [hi-hats tighten slightly, atmospheric pad swells, sub-bass under]
 [female vocals, warm soprano, breathy at edges, vowel-forward legato, intimate close-mic, soft room reverb, melodic singing, adult ~30s]
-[F1 — Healer — 2 lines, offered permission as fact]
+Du musst die Tür nicht halten.
+Ich lass das Licht an.
 
 [Chorus]
 [four-voice harmony stack on the hook lines only, 808 slides, atmospheric pad full, triplet hi-hat rolls, sub-heavy, melodic peak]
 [stacked vocals: all four voices on hook lines, harmonized — male mid-baritone lead with female soprano + female mezzo-alto layered above + male bass-baritone underneath]
-[CHORUS HOOK — 4 lines, ends with "ich und ich"]
+Wir teilen denselben Schlüssel,
+dieselbe Tür,
+dieselbe Küche im Morgengrauen —
+ich und ich.
 
 [layered female + male adlibs, lower in mix, parenthesized]
 (ich und ich)
@@ -185,17 +202,29 @@ no maximalist production
 [Verse 2]
 [half-time trap drums return, sub-bass slides, hi-hat triplets sparse, atmospheric pad held]
 [female vocals, deep mezzo-alto, declarative melodic spoken, plate reverb suggesting architectural space, slow legato, long vowels held]
-[F2 — Gatekeeper — 8 lines, explanation of locked doors, declarative fingerprint with full stops]
+Ich hab die Schlösser gedreht.
+Das weißt du.
+Der Flur gehörte niemandem.
+Ich hab ihn gehalten.
+
+Die Türen stehen jetzt offen.
+Ich steh am Eingang.
+Der Flur ist frei.
+Wir gehen rein.
 
 [Pre-Chorus]
 [hi-hats tighten, atmospheric pad swells, sub-bass under, drums slightly fuller than PC1]
 [male vocals, low bass-baritone, controlled forward, dry mid-distance mic, slight saturation on lows, no vibrato, reflective register — same fingerprint as bridge L2 but slower cadence]
-[M2 — Warrior reflective — 2 lines]
+Ich hab die Faust geöffnet. Lang genug.
+Das Gewicht liegt anders, seitdem.
 
 [Chorus]
 [four-voice harmony stack on the hook lines only, 808 slides, atmospheric pad full, triplet hi-hat rolls, sub-heavy]
 [stacked vocals: all four voices on hook lines, harmonized]
-[CHORUS HOOK — 4 lines, ends with "ich und ich"; minor 1-line variation from Chorus 1]
+Wir teilen denselben Schlüssel,
+denselben Atem,
+dieselbe Küche im Morgengrauen —
+ich und ich.
 
 (ich und ich)
 (ich und ich)
@@ -203,41 +232,46 @@ no maximalist production
 [Verse 3]
 [drums pull back to sparse, atmospheric pad foregrounded, sub-bass softer, hi-hats minimal]
 [male vocals, mid-baritone, weary half-rapped half-sung, dry close-mic]
-[M1 — Searching — duet line 1]
+Ich hab deinen Zettel gelesen —
 
 [female vocals, warm soprano, breathy at edges, intimate close-mic, soft room reverb, melodic singing]
-[F1 — Healer — duet line 2]
+Du hast immer lesen dürfen.
 
 [male vocals, mid-baritone, dry close-mic]
-[M1 — Searching — duet line 3]
+Ich kannte deine Schrift nicht —
 
 [female vocals, warm soprano, intimate close-mic]
-[F1 — Healer — duet line 4]
+Ich schreib schon immer für uns alle.
 
 [Pre-Chorus]
 [all four voices in soft unison, atmospheric pad foregrounded, drums minimal]
 [mixed vocals — male mid-baritone + female warm soprano + male bass-baritone + female deep mezzo-alto, soft unison, vowel-forward, no harsh consonants]
-[ALL — 2 lines, sanft vereint]
+Wir atmen denselben Morgen ein.
+Noch ist es still — das reicht.
 
 [Bridge]
 [atmospheric synth swells, sub-bass under, drums pull back to half-half-time, vocal layers thicken, no autotune; each line in its own stereo position so the four voices read as four distinct rooms]
 
 [female vocals, warm soprano, breathy at edges, intimate close-mic, melodic spoken, soft room reverb — centre-left position]
-[F1 — Healer — bridge line 1]
+Ich hab nicht losgelassen.
 
 [male vocals, low bass-baritone, controlled forward, dry mid-distance mic, slight saturation on lows, no vibrato — centre-right position]
-[M2 — Warrior — bridge line 2]
+Ich stell das Gewicht ab.
 
 [female vocals, deep mezzo-alto, declarative melodic spoken, plate reverb wide, slow legato, long vowels held — centre-back depth]
-[F2 — Gatekeeper — bridge line 3]
+Türen offen. Wir gehen rein.
 
 [male vocals, mid-baritone, weary, dry close-mic, breath audible, lines trailing into em-dashes — centre-front dry]
-[M1 — Searching — bridge line 4]
+Ich weiß, wer das Fenster aufmacht —
 
 [Chorus]
 [all four voices stacked at climax, full half-time trap drums, 808 booms, atmospheric pad full, triplet hi-hat rolls tighter, layered vocal adlibs, sub-heavy melodic peak]
 [stacked vocals: all four voices on hook lines, harmonized]
-[CHORUS HOOK — 5 lines, climax variation; ends with "ich und ich"]
+Vier Stimmen, ein Morgen.
+Wir teilen denselben Schlüssel,
+denselben Atem,
+dieselbe Küche im Morgengrauen —
+ich und ich.
 
 (ich und ich)
 (ich und ich)
@@ -247,7 +281,8 @@ ich und ich
 [Outro]
 [drums fade out, atmospheric pad sustains, sub-bass slow decay]
 [female vocals, deep mezzo-alto, spacious, plate reverb wide, slow legato, long vowels held, melodic spoken over fading drums and atmospheric pad]
-[F2 — Gatekeeper liberating — 2 lines]
+Der Schritt ist gemacht.
+Türen offen. Wir gehen.
 
 [layered female + male adlibs, lower in mix, parenthesized, fading]
 (ich und ich)
@@ -262,8 +297,74 @@ ich und ich
 *For distributor submission. Filled at lyric-writer phase. No section tags, no em-dashes, no parentheticals, plain German text.*
 
 ```
-[To be drafted by /bitwize-music:lyric-writer once Suno lyrics are final.
-Standard German spelling, no phonetic markers, no Suno-specific typography.]
+ich und ich
+
+Mein Schlüssel liegt auf der Ablage,
+ich leg ihn nie da hin.
+Auf dem Stuhl liegt ein Hemd.
+Ich weiß nicht, welche Nacht das war.
+
+Wer hat das geschrieben?
+Die Tinte, die ist meine.
+Der Spiegel zeigt jemand,
+der mein Gesicht trägt.
+
+Wer hat das Fenster geöffnet?
+Ich schlaf bei geschlossenem.
+Vier Tassen auf dem Tisch.
+Ich wohne allein.
+
+Du musst die Tür nicht halten.
+Ich lass das Licht an.
+
+Wir teilen denselben Schlüssel,
+dieselbe Tür,
+dieselbe Küche im Morgengrauen,
+ich und ich.
+
+Ich hab die Schlösser gedreht.
+Das weißt du.
+Der Flur gehörte niemandem.
+Ich hab ihn gehalten.
+
+Die Türen stehen jetzt offen.
+Ich steh am Eingang.
+Der Flur ist frei.
+Wir gehen rein.
+
+Ich hab die Faust geöffnet. Lang genug.
+Das Gewicht liegt anders, seitdem.
+
+Wir teilen denselben Schlüssel,
+denselben Atem,
+dieselbe Küche im Morgengrauen,
+ich und ich.
+
+Ich hab deinen Zettel gelesen.
+Du hast immer lesen dürfen.
+Ich kannte deine Schrift nicht.
+Ich schreib schon immer für uns alle.
+
+Wir atmen denselben Morgen ein.
+Noch ist es still. Das reicht.
+
+Ich hab nicht losgelassen.
+Ich stell das Gewicht ab.
+Türen offen. Wir gehen rein.
+Ich weiß, wer das Fenster aufmacht.
+
+Vier Stimmen, ein Morgen.
+Wir teilen denselben Schlüssel,
+denselben Atem,
+dieselbe Küche im Morgengrauen,
+ich und ich.
+
+Ich und ich.
+
+Der Schritt ist gemacht.
+Türen offen. Wir gehen.
+
+Ich und ich.
 ```
 
 ## Source Material
@@ -382,19 +483,19 @@ Ich und ich
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | To be assessed after lyric-writer pass. |
+| — | — | Scanned after lyric-writer pass: no proper nouns, homographs, acronyms, or tech terms. Standard German throughout. No phonetic substitutions required. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
 **Review before generating on Suno (after lyric-writer pass):**
 
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Non-German names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words
-- [ ] **Acronyms**: Spelled out
-- [ ] **Numbers**: Word forms (vier not 4)
-- [ ] **Tech terms**: None expected
+- [x] **Proper nouns scanned**: None found
+- [x] **Foreign names**: None found
+- [x] **Homographs checked**: None found
+- [x] **Acronyms**: None
+- [x] **Numbers**: "Vier" written as word ✓
+- [x] **Tech terms**: None
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
