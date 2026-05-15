@@ -81,12 +81,13 @@ Use the private-journal **frequently and deliberately** — not just at session 
 Before doing any work, recover context from prior sessions:
 
 ```
+search_journal("learnings <task topic>")   # ALWAYS first — pick up prior learnings for this task
 search_journal("the-agency-system")        # broad context recall
 search_journal("bitwize-music workflow")   # plugin-specific patterns
 read_recent_entries()                      # what happened last time
 ```
 
-If results surface a relevant decision or gotcha, carry it into your working context before proceeding.
+The `learnings` search is mandatory — it surfaces accumulated workflow improvements so you don't repeat solved problems. Replace `<task topic>` with the actual task at hand (e.g. `learnings lyric writing`, `learnings github PR`, `learnings mastering`).
 
 ### During the session — use often
 
@@ -100,8 +101,36 @@ Call `process_thoughts` whenever something noteworthy happens. Don't batch every
 | A broader engineering insight clicks | `technical_insights` | "Parallel subagent dispatch keeps main context clean — use it aggressively for research" |
 | You learn something about the user | `user_context` | "User communicates in short bursts; prefers action over clarifying questions" |
 | You learn domain knowledge | `world_knowledge` | "Suno metatags use descriptive voice form, never character names" |
+| You compare two approaches for token cost | `technical_insights` | "[TOKEN-COST] gh pr view ~200 tok vs mcp pull_request_read ~800 — prefer CLI for reads" |
+| You find a better way to do something | `technical_insights` | "[LEARNING] ToolSearch before any MCP call — schemas not loaded until fetched" |
 
 **Use multiple fields in a single call** — they're independent spaces. One `process_thoughts` call can write to all six at once.
+
+> **Note:** The `process_thoughts` tool has fixed fields. `token_consumption` and `learnings` are not native parameters — they live inside `technical_insights` with a tag prefix (`[TOKEN-COST]` and `[LEARNING]`). This makes them retrievable via semantic search.
+
+### [TOKEN-COST] — track and compare
+
+Prefix entries in `technical_insights` with `[TOKEN-COST]` when comparing two approaches. Over time this builds a data-driven picture of what's expensive.
+
+What to capture:
+- The two options compared (`gh pr list` vs `mcp__github__list_pull_requests`)
+- Relative cost (cheaper / more expensive / ~same)
+- Which you chose and why
+- Any quality difference (did one return more useful output?)
+
+Search later: `search_journal("TOKEN-COST github")`, `search_journal("TOKEN-COST CLI MCP")`
+
+### [LEARNING] — workflow improvements
+
+Prefix entries in `technical_insights` with `[LEARNING]` for anything that makes future sessions faster or better. Think of it as a growing ops runbook.
+
+What belongs here:
+- A shortcut or pattern discovered ("always run rebuild_state after bulk create_track")
+- A mistake to avoid ("don't pass base: main to create_pull_request — use Master")
+- A better sequencing ("search_journal before research avoids duplicate work")
+- Non-obvious tool behavior
+
+Search at session start: `search_journal("learnings <topic>")` — the tag is lowercase-searchable via semantic matching.
 
 ### Session End — mandatory
 
@@ -111,6 +140,7 @@ Minimum at close:
 - `reflections` — what happened, what was decided, what surprised you
 - `project_notes` — any technical gotchas, tool behaviors, or workflow discoveries
 - `user_context` — anything learned about the user's preferences or communication style
+- `technical_insights` — use `[LEARNING]` prefix for workflow improvements, `[TOKEN-COST]` prefix for CLI-vs-MCP comparisons
 
 ### Searching past entries
 
@@ -163,27 +193,39 @@ read_recent_entries()          # full text of recent entries
 
 ---
 
-## 4. GitHub MCP
+## 4. GitHub — CLI first, MCP as fallback
 
-**What it is:** GitHub operations scoped to `netzkontrast/the-agency-system`.
+**Prefer `gh` CLI over MCP tools whenever it is available** — CLI calls are cheaper on tokens than MCP round-trips and produce more compact output. Use MCP only when `gh` is unavailable (remote/web sessions) or when a specific operation has no CLI equivalent.
+
+**Check availability at session start:**
+```bash
+which gh && gh auth status   # CLI available → use gh
+```
+If that fails, fall back to the MCP tools below.
+
+**CLI equivalents for common tasks:**
+
+| Task | CLI (preferred) | MCP fallback |
+|---|---|---|
+| View PR | `gh pr view <n>` | `pull_request_read` get |
+| List PRs | `gh pr list` | `list_pull_requests` |
+| PR diff | `gh pr diff <n>` | `pull_request_read` get_diff |
+| PR comments | `gh pr view <n> --comments` | `pull_request_read` get_comments |
+| Review comments | `gh api /repos/:owner/:repo/pulls/<n>/comments` | `pull_request_read` get_review_comments |
+| Create PR | `gh pr create` | `create_pull_request` |
+| View issue | `gh issue view <n>` | `issue_read` |
+| List issues | `gh issue list` | `list_issues` |
+| CI status | `gh pr checks <n>` | `pull_request_read` get_check_runs |
+| Browse file | `gh api /repos/:owner/:repo/contents/<path>` | `get_file_contents` |
+
+**MCP-only operations** (no CLI equivalent in this environment):
+- `subscribe_pr_activity` / `unsubscribe_pr_activity` — event-driven PR watching
+- `resolve_review_thread` / `unresolve_review_thread`
+- `run_secret_scanning`
 
 **Tool prefix:** `mcp__github__`
 
-**Key tools by task:**
-
-| Task | Tools |
-|---|---|
-| Read a PR or issue | `pull_request_read`, `issue_read` |
-| Create/update a PR | `create_pull_request`, `update_pull_request` |
-| Comment | `add_issue_comment`, `add_reply_to_pull_request_comment` |
-| Review | `pull_request_review_write`, `resolve_review_thread` |
-| Browse code | `get_file_contents`, `search_code`, `list_commits` |
-| Branches | `create_branch`, `list_branches`, `update_pull_request_branch` |
-| Releases | `list_releases`, `get_latest_release` |
-| CI / scanning | `run_secret_scanning` |
-| Watch PR events | `subscribe_pr_activity`, `unsubscribe_pr_activity` |
-
-**As an agent:** Always use these tools instead of the `gh` CLI (not available in remote sessions). After pushing a branch, always check for an existing PR before creating one.
+**As an agent:** After pushing a branch, always check for an existing PR before creating one. Track CLI-vs-MCP token cost in the journal under `token_consumption`.
 
 ---
 
