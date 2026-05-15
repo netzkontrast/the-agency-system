@@ -12,9 +12,19 @@ Martin Hofmann was appointed Pflegedirektor on 1 March 2026, succeeding Karin Ja
 
 ---
 
+## Contact
+
+| Detail | Value |
+|--------|-------|
+| Email | hofmann@st-agatha-krankenhaus.de |
+| Phone | 0221 7175-3003 |
+| Approximate age | ~38 (in 2026) |
+
+---
+
 ## Notes
 
-No biographical background, educational history, or prior institutional affiliations have been found in publicly accessible sources. His appointment date and role are confirmed via the clinic's official Pflegedirektion page.
+No educational history or prior institutional affiliations have been found in publicly accessible sources. His appointment date, role, and contact details are confirmed via the clinic's official Pflegedirektion page.
 
 ---
 

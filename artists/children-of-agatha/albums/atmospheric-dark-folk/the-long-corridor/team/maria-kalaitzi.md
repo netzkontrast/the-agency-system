@@ -9,6 +9,8 @@
 
 Maria Kalaitzi holds a Master's degree in social work (M.A.) and works in the Sozialdienst (social services department) at St. Agatha. The Sozialdienst supports patients with discharge planning, housing, welfare benefits navigation, and community reintegration.
 
+**Station assignment:** Station Augustinus
+
 ---
 
 ## Notes

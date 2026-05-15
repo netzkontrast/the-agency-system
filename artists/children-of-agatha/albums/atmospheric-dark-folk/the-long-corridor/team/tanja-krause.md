@@ -9,6 +9,8 @@
 
 Tanja Krause leads the social services (Sozialdienst) department at St. Agatha. The Sozialdienst coordinates discharge planning, social supports, housing, welfare benefits, and community reintegration for inpatient and day-clinic patients. The team under her leadership includes multiple qualified social workers (Dipl. Sozialpädagoginnen and Sozialarbeiterinnen/Sozialarbeiter) with BA and MA-level qualifications.
 
+**Station assignment:** Station Monika (as Leitung Sozialdienst — exact station liaison may vary)
+
 ---
 
 ## Notes

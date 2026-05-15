@@ -9,6 +9,8 @@
 
 Katja Lohmann is a qualified social educator (Dipl. Sozialpädagogin) in the Sozialdienst (social services department) at St. Agatha. The Sozialdienst supports patients with discharge planning, housing, welfare benefits navigation, and community reintegration.
 
+**Station assignment:** Station Hermann-Josef
+
 ---
 
 ## Notes

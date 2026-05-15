@@ -9,6 +9,8 @@
 
 Dominik Malek holds a Bachelor's degree in social work (B.A.) and works in the Sozialdienst (social services department) at St. Agatha. The Sozialdienst supports patients with discharge planning, housing, welfare benefits navigation, and community reintegration.
 
+**Station assignment:** Station Maria
+
 ---
 
 ## Notes

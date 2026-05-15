@@ -3,7 +3,7 @@
 Research profiles for all publicly identified staff, former staff, and associated persons connected to the St. Agatha Fachklinik für Seelische Gesundheit, Feldgärtenstraße 97, 50735 Köln-Niehl.
 
 **Research conducted:** 2026-05-15  
-**Total profiles:** 50
+**Total profiles:** 60
 
 ---
 
@@ -131,6 +131,47 @@ Founded 1993. Supports the clinic's patient welfare beyond standard clinical pro
 | Profile | Name | Role | Period |
 |---------|------|------|--------|
 | [dr-gunther-quinkler.md](dr-gunther-quinkler.md) | Dr. Günther Quinkler | Chefarzt Innere Medizin | Until ~2023 |
+| [dr-walter-schurig.md](dr-walter-schurig.md) | Dr. med. Walter Schurig | Chefarzt Psychosomatik | Pre-2023 (Psychosomatik era) |
+| [dr-carmen-blaschke.md](dr-carmen-blaschke.md) | Dr. med. Carmen Blaschke | Oberärztin (Essstörungen era) | Pre-2023 |
+
+---
+
+## Former Administrative / Secretariat (Historical)
+
+| Profile | Name | Role | Period |
+|---------|------|------|--------|
+| [birgit-siepmann.md](birgit-siepmann.md) | Birgit Siepmann | Sekretariat Psychosomatik | Pre-2023 (Psychosomatik era) |
+
+---
+
+## MARIENBORN gGmbH (Parent Organisation — Associated Contacts)
+
+| Profile | Name | Role |
+|---------|------|------|
+| [janina-klinkhammer.md](janina-klinkhammer.md) | Janina Klinkhammer | HR / Recruitment contact (marienborn-jobs.de) |
+
+---
+
+## Kreativtherapien (Creative Therapies)
+
+**Note on Frau Sprenger:** Exhaustive research across 9 parallel agents, 20 first-name combinations, therapy association directories (DMtG NRW full list, BTD, DGT, DAKBT, BAG KT, DGKT), patient reviews, RocketReach, LinkedIn/XING, job postings, and query expansion techniques returned no publicly identifiable individual named "Sprenger" at St. Agatha. The clinic does not publish creative therapy staff names on any public-facing platform. The only verified path to contact the creative therapies team directly is:
+- **Email:** kreativ@st-agatha-krankenhaus.de
+- **Phone:** 0221 71753480
+
+The clinic's 2022 Qualitätsbericht records: 2.05 FTE Kunsttherapie · 0.74 FTE Musiktherapie · 1.30 FTE Ergotherapie.
+
+| Profile | Name | Role |
+|---------|------|------|
+| [nicola-weller.md](nicola-weller.md) | Nicola Weller | Kunsttherapeutin (since 2018; B.A. Hogeschool Zuyd; prior Salus Klinik, My Way, SPZ Köln) |
+
+---
+
+## Psychologie (Psychologists / PiA)
+
+| Profile | Name | Role |
+|---------|------|------|
+| [anne-scherer.md](anne-scherer.md) | Anne Scherer | Psychologin (ResearchGate affiliation; 11 publications, 604 citations; CBT / emotion regulation) |
+| [barbara-schneider.md](barbara-schneider.md) | Barbara Schneider | Psychologin in Ausbildung (PiA) — Systemische Psychotherapie APP Köln 2022–2026; M.Sc. Innsbruck |
 
 ---
 
@@ -140,8 +181,10 @@ Founded 1993. Supports the clinic's patient welfare beyond standard clinical pro
 |---------|------|-------|
 | [dr-philipp-richrath.md](dr-philipp-richrath.md) | Dr. med. Philipp Richrath | Plastic surgeon; LinkedIn connection; affiliation likely historical |
 | [prof-dr-thomas-koslowsky.md](prof-dr-thomas-koslowsky.md) | Prof. Dr. med. Thomas Koslowsky | Surgeon at St. Elisabeth-Hohenlind; LinkedIn connection to St. Agatha |
-| [sevilay-alhan.md](sevilay-alhan.md) | Sevilay Alhan | LinkedIn connection; role unknown |
+| [sevilay-alhan.md](sevilay-alhan.md) | Sevilay Alhan | Psychologische Psychotherapeutin (CBT); M.Sc. Heidelberg; private practice Barbarossaplatz 4 Köln; LinkedIn/Doctolib/therapie.de |
 | [melanie-meier.md](melanie-meier.md) | Melanie Meier | LinkedIn connection; role unknown |
+| [kristin-stubenrauch.md](kristin-stubenrauch.md) | Kristin Stubenrauch | Kunsttherapeutin DFKGT; Heilpraktikerin Psychotherapie; private practice 2006–; HfWU lecturer; LinkedIn connection |
+| [lissia-sepina.md](lissia-sepina.md) | Lissia Sepina | LinkedIn connection; role unknown |
 
 ---
 
