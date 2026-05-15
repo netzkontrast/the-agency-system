@@ -16,7 +16,8 @@ Album inspired by the Cellitinnen-Marienborn St. Agatha Fachklinik für Seelisch
 | **Neighbourhood history (Niehler Bürgerverein)** | 4 | Hospital, Agathakapelle, Kulturpfad, Niehl history |
 | **Press / Secondary (hospital)** | 3 | Hospital directory, anniversary feature, F.A.Z. ranking |
 | **Saint Agatha — hagiographic / theological** | 8 | Catholic Encyclopedia, Britannica, catholicsaints.info, others |
-| **Total Sources** | **21** | |
+| **Financial / Operational** | 5 | North Data, DKV, klinikradar, marienborn-jobs.de, kma-online |
+| **Total Sources** | **26** | |
 
 ---
 
@@ -117,6 +118,16 @@ Children of Agatha is a fictional collective inspired by what that space makes p
 | 111th anniversary feature | Kölner Wochenspiegel | https://www.rheinische-anzeigenblaetter.de/mein-blatt/koelner-wochenspiegel/nippes/ein-stueck-niehler-geschichte-krankenhaus-st--agatha-feierte-den-111--jahrestag-24879864 |
 | F.A.Z. "Best Hospitals 2025" | via myDRG.de | https://www.mydrg.de/myDRG_archives/aus-den-krankenhaeusern/krankenhaus-st-agatha-in-koeln-niehl-wird-zur-fachklinik-fuer-seelische-gesundheit.html |
 
+### Financial / Operational
+
+| Source | Notes | URL |
+|--------|-------|-----|
+| North Data — MARIENBORN gemeinnützige GmbH | HRB 34979, registered capital, founding date | https://www.northdata.com/MARIENBORN%20gemeinn%C3%BCtzige%20GmbH,%20Z%C3%BClpich/Amtsgericht%20K%C3%B6ln%20HRB%2034979 |
+| MARIENBORN als Arbeitgeber (marienborn-jobs.de) | ~2,200 employees across MARIENBORN facilities | https://www.marienborn-jobs.de/marienborn-als-arbeitgeber/ |
+| klinikradar.de — St. Agatha | 76 beds, five stations | https://klinikradar.de/kliniken/st-agatha-fachklinik-fuer-seelische-gesundheit |
+| kma-online.de — Hospitalvereinigung der Cellitinnen | €801.2M group revenue 2023, ~13,800 employees | https://www.kma-online.de/aktuelles/wirtschaft/detail/hospitalvereinigung-der-cellitinnen-krankenhaustraeger-mit-potenzial-53922 |
+| QM-Bericht St. Agatha 2022 | FTE: Musiktherapie 0.74, Kunsttherapie 2.05, Ergotherapie 1.30 | https://www.stagatha-fachklinik.de/fileadmin/St._Agatha/Dokumente/Ueber_uns/Risiko-_Qualitaets-_und_Hygienemanagement/QM-Bericht_St._Agatha_2022.pdf |
+
 ### Saint Agatha — Hagiographic / Theological
 
 | Source | Notes | URL |
@@ -167,6 +178,15 @@ Children of Agatha is a fictional collective inspired by what that space makes p
 | *Minne di Sant'Agata* | Dome-shaped ricotta pastries; directly replicating the iconographic attribute | catholicsaints.info |
 | Bells/breasts confusion | Northern European iconographic drift; self-reinforcing once bell-founder patronage adopted | ucatholic.com |
 | Veil and Etna (1669) | Procession with relics during documented eruption; causal claim is faith not history | sanctoral.com |
+| MARIENBORN gGmbH legal entity | HRB 34979, €2M registered capital, founded 2002 | North Data |
+| MARIENBORN employees | ~2,200 across all facilities | marienborn-jobs.de |
+| St. Agatha beds | 76–85 inpatient, 27 day-clinic, 16 short-term | klinikradar.de / DKV |
+| St. Agatha annual cases | ~782 inpatient | Deutsches Krankenhaus Verzeichnis |
+| Cellitinnen group revenue 2023 | €801.2 million (+48.7%); ~13,800 staff | kma-online.de |
+| Cellitinnen group scope | ~90 locations, 13–14 hospitals | kma-online.de / KGNW |
+| Musiktherapie FTE at St. Agatha | 0.74 FTE | QM-Bericht 2022 |
+| Kunsttherapie FTE at St. Agatha | 2.05 FTE | QM-Bericht 2022 |
+| Ergotherapie FTE at St. Agatha | 1.30 FTE | QM-Bericht 2022 |
 
 ---
 

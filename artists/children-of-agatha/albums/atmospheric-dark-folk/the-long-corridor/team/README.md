@@ -3,7 +3,7 @@
 Research profiles for all publicly identified staff, former staff, and associated persons connected to the St. Agatha Fachklinik für Seelische Gesundheit, Feldgärtenstraße 97, 50735 Köln-Niehl.
 
 **Research conducted:** 2026-05-15  
-**Total profiles:** 60
+**Total profiles:** 61
 
 ---
 
@@ -154,15 +154,16 @@ Founded 1993. Supports the clinic's patient welfare beyond standard clinical pro
 
 ## Kreativtherapien (Creative Therapies)
 
-**Note on Frau Sprenger:** Exhaustive research across 9 parallel agents, 20 first-name combinations, therapy association directories (DMtG NRW full list, BTD, DGT, DAKBT, BAG KT, DGKT), patient reviews, RocketReach, LinkedIn/XING, job postings, and query expansion techniques returned no publicly identifiable individual named "Sprenger" at St. Agatha. The clinic does not publish creative therapy staff names on any public-facing platform. The only verified path to contact the creative therapies team directly is:
-- **Email:** kreativ@st-agatha-krankenhaus.de
-- **Phone:** 0221 71753480
+**Note on Frau Sprenger:** Exhaustive research across 12 parallel agents, all first-name combinations, all major therapy association directories (DMtG NRW, BTD, DGT, DAKBT, BAG KT, DGKT), patient reviews, Google Maps reviews, Kununu, RocketReach, LinkedIn/XING, job postings, and query expansion returned no publicly identifiable individual named "Sprenger" at St. Agatha under any therapy specialisation. The clinic does not publish creative therapy staff names. Verified Köln Sprengers are all in general/internal medicine. Direct contact: **kreativ@st-agatha-krankenhaus.de** / 0221 71753480
 
-The clinic's 2022 Qualitätsbericht records: 2.05 FTE Kunsttherapie · 0.74 FTE Musiktherapie · 1.30 FTE Ergotherapie.
+**Note on Musiktherapeutin Reiss:** Similarly exhausted — DMtG full NRW directory (6 Köln members confirmed, no Reiss), BVMT (domain parked), Doctolib, all first-name combinations, patient reviews, Google Maps. Not found in any public index. Most probable explanation: salaried hospital employee, not in private practice, therefore absent from all practitioner directories. See [musiktherapeutin-reiss.md](musiktherapeutin-reiss.md) for full search log.
+
+The clinic's 2022 QM-Bericht records: **2.05 FTE Kunsttherapie · 0.74 FTE Musiktherapie · 1.30 FTE Ergotherapie**.
 
 | Profile | Name | Role |
 |---------|------|------|
 | [nicola-weller.md](nicola-weller.md) | Nicola Weller | Kunsttherapeutin (since 2018; B.A. Hogeschool Zuyd; prior Salus Klinik, My Way, SPZ Köln) |
+| [musiktherapeutin-reiss.md](musiktherapeutin-reiss.md) | Reiss (first name unknown) | Musiktherapeutin — confirmed by user; not publicly indexed anywhere |
 
 ---
 

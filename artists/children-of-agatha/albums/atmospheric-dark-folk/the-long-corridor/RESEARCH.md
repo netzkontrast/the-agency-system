@@ -32,6 +32,7 @@ This document provides citations and background research for the album *The Long
 18. [Track-by-Track Claim Verification](#track-by-track-claim-verification)
 19. [Areas of Creative License](#areas-of-creative-license)
 20. [Outstanding Verification Items](#outstanding-verification-items)
+21. [Financial & Operational Data](#financial--operational-data)
 
 ---
 
@@ -357,6 +358,60 @@ For *The Long Corridor*: these structures map onto the psychosomatic experience 
 | Specific ward events or incidents | Fictional | General institutional atmosphere only |
 | "Children of Agatha" as a collective | Artistic conceit | Not a documented real group; inspired by what music therapy at St. Agatha makes possible |
 | Hagiographic elements (Agatha's story) | Received tradition | Clearly marked as tradition, not historical fact |
+
+---
+
+## Financial & Operational Data
+
+*Sources verified: 2026-05-15*
+
+### MARIENBORN gGmbH (Direct Operator of St. Agatha)
+
+| Detail | Value | Source |
+|--------|-------|--------|
+| Legal name | MARIENBORN gemeinnützige GmbH | Handelsregister |
+| Register | Amtsgericht Köln HRB 34979 | North Data |
+| Registered capital | €2,000,000 | North Data |
+| Founded | 2002 | North Data |
+| Employees (all MARIENBORN facilities) | ~2,200 | marienborn-jobs.de |
+| Standalone revenue | Not publicly accessible (paywalled in Bundesanzeiger) | — |
+
+**Scope of MARIENBORN gGmbH operations:** St. Agatha Fachklinik für Seelische Gesundheit (Köln-Niehl), MARIENBORN Fachklinik für Psychiatrie und Psychotherapie (Zülpich), day clinics in Köln and Hürth, twelve long-term care/senior facilities in the Köln/Bonn/Euskirchen region, disability services in Zülpich/Aachen/Frechen, MARIENBORN mobil gGmbH (mobile care), and MIC (catering integration company).
+
+---
+
+### St. Agatha Fachklinik — Capacity & Operational Data
+
+| Metric | Figure | Source |
+|--------|--------|--------|
+| Inpatient beds | 76–85 (five stations; sources vary) | klinikradar.de (76) / DKV (85) |
+| Day-clinic (Tagesklinik) places | 27 | stagatha-fachklinik.de |
+| Short-term full-care (Kurzzeitpflege) places | 16 | DKV |
+| Outpatient (PIA) | Active | stagatha-fachklinik.de |
+| Annual inpatient cases | ~782 | Deutsches Krankenhaus Verzeichnis |
+| Physicians | ~20 | DKV |
+| Nursing staff | ~90 | DKV |
+| Musiktherapie FTE | 0.74 | QM-Bericht 2022 |
+| Kunsttherapie FTE | 2.05 | QM-Bericht 2022 |
+| Ergotherapie FTE | 1.30 | QM-Bericht 2022 |
+| F.A.Z. ranking (Nov 2025) | 1st in NRW, psychiatric specialty clinics (89.2/100) | stagatha-fachklinik.de |
+
+**Conversion:** Somatic departments closed 21 January 2023; psychiatric specialty operation formally launched February 2023. The clinic assumed mandatory supply responsibility (Pflichtversorgung) for six additional Cologne districts from H2 2023: Merkenich, Fühlingen, Blumberg, Worringen, Seeberg, and parts of Chorweiler.
+
+**Capital investment for conversion:** No figure found in any public source.
+
+---
+
+### Stiftung der Cellitinnen / Hospitalvereinigung (Parent Group)
+
+The Stiftung der Cellitinnen zur hl. Maria merged with Stiftung der Cellitinnen e.V. on 1 January 2023 to form the unified Hospitalvereinigung der Cellitinnen.
+
+| Metric | Figure | Source |
+|--------|--------|--------|
+| Group revenue (2023, first consolidated year) | **€801.2 million** (+48.7% vs prior year; includes €11M retrospective compensation) | kma-online.de / KGNW Jahresbericht |
+| Group employees | ~13,800 | Cellitinnen press release |
+| Locations | ~90 | Cellitinnen press release |
+| Hospitals | 13–14 | Various (date-dependent) |
 
 ---
 
