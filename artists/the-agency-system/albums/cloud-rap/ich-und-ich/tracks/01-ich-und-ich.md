@@ -120,16 +120,7 @@ No fog, no shadow as mood-marker. The atmosphere is **soft pre-dawn of an apartm
 *Copy this into Suno's "Style of Music" field. Filled at lyric-writer / suno-engineer phase.*
 
 ```
-[To be drafted by /bitwize-music:suno-engineer after lyrics are written. Anchor:
-four distinct vocalists — male mid-baritone weary half-rapped half-spoken dry close-mic;
-female warm soprano breathy melodic intimate close-mic soft room reverb;
-male bass-baritone controlled forward dry mid-distance light saturation;
-female deep mezzo-alto declarative melodic spoken plate reverb long vowels;
-dark introspective Future Rap / cloud-rap, half-time trap, ~80 BPM,
-deep 808 sub-bass with slides, atmospheric detuned warm pad,
-sparse half-time drums with triplet hi-hat rolls in chorus.
-Chorus stacks all four voices in harmony on the hook only.
-No autotune, no festival energy, no maximalist layering.]
+Four distinct German-language vocalists, voice forward, restrained — male mid-baritone weary half-rapped half-spoken dry close-mic; female warm soprano breathy melodic intimate close-mic soft room reverb; male bass-baritone controlled forward dry mid-distance light saturation; female deep mezzo-alto declarative melodic spoken plate reverb long vowels held. Dark cloud-rap, dark introspective production, half-time trap feel, ~80 BPM. Deep 808 sub-bass with slides, saturated 808 booms on downbeats, atmospheric detuned warm pad slow attack slow release, sparse half-time trap drums, triplet hi-hat rolls tighter in chorus, occasional muted piano pluck. Chorus stacks all four voices in harmony on the hook only. Bridge: each voice in its own stereo position so the listener registers four rooms. Contemporary, dynamic range, mineral palette, late-night apartment stillness.
 ```
 
 ### Exclude Styles
