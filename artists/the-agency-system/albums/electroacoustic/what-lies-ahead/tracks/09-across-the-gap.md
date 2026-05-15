@@ -1,10 +1,10 @@
 ---
 title: "Across the Gap"
 track_number: 9
-status: "In Progress"
+status: "Generated"
 instrumental: false
 explicit: false
-suno_url: ""
+suno_url: "https://suno.com/s/Jn7EFKc8aHpp0ggj"
 sheet_music:
   pdf: ""
   musicxml: ""
@@ -20,8 +20,8 @@ sheet_music:
 | **Track #** | 09 |
 | **Title** | Across the Gap |
 | **Album** | [What Lies Ahead](../README.md) |
-| **Status** | In Progress |
-| **Suno Link** | — |
+| **Status** | Generated |
+| **Suno Link** | https://suno.com/s/Jn7EFKc8aHpp0ggj |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
@@ -404,7 +404,7 @@ Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
-| — | — | — | — | — | — |
+| 1 | 2026-05-15 | V5 | [Listen](https://suno.com/s/Jn7EFKc8aHpp0ggj) | First take logged — rating pending listen | — |
 
 <!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
 

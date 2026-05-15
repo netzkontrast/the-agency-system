@@ -3,7 +3,7 @@ title: "Where I Begin"
 track_number: 1
 instrumental: false
 explicit: false
-suno_url: ""
+suno_url: "https://suno.com/s/WUto3l3FQQj9xMtm"
 sheet_music:
   pdf: ""
   musicxml: ""

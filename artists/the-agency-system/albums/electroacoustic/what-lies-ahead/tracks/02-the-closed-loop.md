@@ -3,7 +3,7 @@ title: "The Closed Loop"
 track_number: 2
 instrumental: false
 explicit: false
-suno_url: ""
+suno_url: "https://suno.com/s/0iKwVLI0kcGpWGRe"
 sheet_music:
   pdf: ""
   musicxml: ""

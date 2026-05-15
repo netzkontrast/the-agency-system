@@ -3,7 +3,7 @@ title: "Cold Engine"
 track_number: 3
 instrumental: false
 explicit: false
-suno_url: ""
+suno_url: "https://suno.com/s/QPJv9PzSvp2WYoo7"
 sheet_music:
   pdf: ""
   musicxml: ""
