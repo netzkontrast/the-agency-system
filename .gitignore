@@ -1,3 +1,0 @@
-# Journal entries contain machine-specific absolute paths in embeddings;
-# they are per-environment and should not be shared via version control.
-journals/

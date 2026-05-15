@@ -68,7 +68,74 @@ How to use the installed plugins and MCP servers when acting as or dispatching a
 | `read_recent_entries` | Read recent entries in full |
 | `read_journal_entry` | Read a specific entry by path |
 
-**As an agent:** Use `process_thoughts` to record significant decisions, architectural choices, or user preferences at the end of a session. Use `search_journal` at session start to recall relevant past context before making decisions.
+**Journal entries are committed and shared** — they form the collective memory of all sessions working in this repo. Treat them as a living log, not throwaway scratch notes.
+
+---
+
+## Journal Workflow
+
+Use the private-journal **frequently and deliberately** — not just at session end. Every meaningful moment in a session is worth capturing while it's fresh.
+
+### Session Start — always
+
+Before doing any work, recover context from prior sessions:
+
+```
+search_journal("the-agency-system")        # broad context recall
+search_journal("bitwize-music workflow")   # plugin-specific patterns
+read_recent_entries()                      # what happened last time
+```
+
+If results surface a relevant decision or gotcha, carry it into your working context before proceeding.
+
+### During the session — use often
+
+Call `process_thoughts` whenever something noteworthy happens. Don't batch everything to the end — capture it while it's vivid.
+
+| Moment | Field to use | Example |
+|---|---|---|
+| Something surprises you | `reflections` | "Didn't expect rebuild_state to be required after create_track" |
+| You notice a recurring pattern | `observations` | "User always wants lyrics reviewed before Suno, even when skipping lyric-reviewer" |
+| You discover a codebase/tool quirk | `project_notes` | "update_track_field rejects In Progress → In Progress; use force=true only for cache recovery" |
+| A broader engineering insight clicks | `technical_insights` | "Parallel subagent dispatch keeps main context clean — use it aggressively for research" |
+| You learn something about the user | `user_context` | "User communicates in short bursts; prefers action over clarifying questions" |
+| You learn domain knowledge | `world_knowledge` | "Suno metatags use descriptive voice form, never character names" |
+
+**Use multiple fields in a single call** — they're independent spaces. One `process_thoughts` call can write to all six at once.
+
+### Session End — mandatory
+
+Every session closes with a `process_thoughts` call. No exceptions.
+
+Minimum at close:
+- `reflections` — what happened, what was decided, what surprised you
+- `project_notes` — any technical gotchas, tool behaviors, or workflow discoveries
+- `user_context` — anything learned about the user's preferences or communication style
+
+### Searching past entries
+
+The journal has **semantic search** — use natural language, not exact keywords:
+
+```
+search_journal("album workflow decisions")
+search_journal("track status errors")
+search_journal("user preferences for lyrics")
+search_journal("bitwize-music plugin gotchas")
+```
+
+Also use for specific lookups:
+```
+list_recent_entries()          # most recent N entries
+read_journal_entry("<path>")   # read a specific entry by path
+read_recent_entries()          # full text of recent entries
+```
+
+### What makes a good entry
+
+- **Be honest and direct** — this is private working memory, not a report
+- **Capture the WHY** — not just what happened, but why a decision was made
+- **Short and atomic is fine** — one sentence in `observations` is worth writing
+- **Don't wait for "enough"** — three lines mid-session beats a rushed paragraph at close
 
 ---
 
@@ -132,27 +199,6 @@ How to use the installed plugins and MCP servers when acting as or dispatching a
 
 ## Mandatory: Journal at session end
 
-**Every session must close with a `process_thoughts` call.** This is not optional. The private-journal is the only persistent memory across sessions — without it, context is lost and future sessions repeat the same discovery work.
+**Every session must close with a `process_thoughts` call.** This is not optional. The private-journal is the shared memory of all sessions working in this repo — without it, context is lost and future sessions repeat the same discovery work.
 
-### What to record
-
-| Field | What goes there |
-|---|---|
-| `reflections` | What happened this session, what decisions were made, what surprised you |
-| `project_notes` | Technical discoveries: tool behaviors, branch conventions, schema quirks, gotchas |
-| `user_context` | How the user communicates, what they care about, patterns you noticed |
-| `technical_insights` | Broader engineering learnings that apply beyond this project |
-| `observations` | Short atomic noticings that don't fit elsewhere |
-
-### When to journal
-- **End of every session** — always, no exceptions
-- **After a significant decision** — when a non-obvious architectural or workflow choice is made
-- **After discovering a gotcha** — any surprise behavior from a tool, MCP, or skill
-
-### Recovering context at session start
-At the start of a new session on this repo, run:
-```
-mcp__private-journal__search_journal("the-agency-system bitwize-music workflow")
-mcp__private-journal__read_recent_entries()
-```
-This surfaces prior decisions and prevents re-discovering known patterns.
+See the **Journal Workflow** section above for the full field-by-field guide, when to call during the session, and how to search past entries.
