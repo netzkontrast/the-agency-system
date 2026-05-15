@@ -41,22 +41,20 @@ Untagged entries are unfindable. Scattered entries are unread. Both are equivale
 digraph journaling {
     rankdir=LR;
     "Session start" [shape=doublecircle];
-    "Hook output" [shape=box];
-    "Fresh [STARTUP]?" [shape=diamond];
-    "Read STARTUP" [shape=box];
-    "search learnings <topic>" [shape=box];
-    "Hits?" [shape=diamond];
-    "Read hits (timebox 90s)" [shape=box];
+    "search_journal learnings <topic>" [shape=box];
+    "read_recent_entries()" [shape=box];
+    "Hook: Fresh [STARTUP]?" [shape=diamond];
+    "read_journal_entry(path)" [shape=box];
+    "Broad search (optional)" [shape=box];
     "Start working" [shape=doublecircle];
 
-    "Session start" -> "Hook output" -> "Fresh [STARTUP]?";
-    "Fresh [STARTUP]?" -> "Read STARTUP" [label="yes"];
-    "Fresh [STARTUP]?" -> "search learnings <topic>" [label="no"];
-    "Read STARTUP" -> "Start working";
-    "search learnings <topic>" -> "Hits?";
-    "Hits?" -> "Read hits (timebox 90s)" [label="yes"];
-    "Hits?" -> "Start working" [label="no"];
-    "Read hits (timebox 90s)" -> "Start working";
+    "Session start" -> "search_journal learnings <topic>";
+    "search_journal learnings <topic>" -> "read_recent_entries()";
+    "read_recent_entries()" -> "Hook: Fresh [STARTUP]?";
+    "Hook: Fresh [STARTUP]?" -> "read_journal_entry(path)" [label="yes"];
+    "Hook: Fresh [STARTUP]?" -> "Broad search (optional)" [label="no"];
+    "read_journal_entry(path)" -> "Start working";
+    "Broad search (optional)" -> "Start working";
 }
 ```
 
@@ -145,11 +143,14 @@ A stale `[STARTUP]` is replaced by writing a **new** one with `supersedes: <prio
 
 ## Session Lifecycle
 
-### Session start (90s timebox)
+### Session start (90s timebox — run these MCP calls in order)
 
-1. Read the **SessionStart hook output** — it lists recent `[STARTUP]` topics and `[LEARNING]` entries.
-2. If a relevant `[STARTUP]` is named, `read_journal_entry(<path>)` and start working.
-3. Else `search_journal("learnings <task topic>")`. Three searches max. Stop and start working.
+1. **`search_journal("learnings <task topic>")`** — ALWAYS first. Surfaces workflow improvements accumulated for this exact task so you don't repeat solved problems. Replace `<task topic>` with the actual work at hand (e.g. `learnings lyric writing`, `learnings github PR`, `learnings mastering`).
+2. **`read_recent_entries()`** — what happened last time. One call to see the last few full entries.
+3. **Hook output check** — the SessionStart hook has already listed recent `[STARTUP]` topics and `[LEARNING]` entries. If a relevant `[STARTUP]` path is named, call `read_journal_entry(<path>)` on it and you're done — that brief was written exactly for this moment.
+4. **If no fresh `[STARTUP]`** — optionally follow up with `search_journal("the-agency-system")` for broad context or `search_journal("bitwize-music workflow")` for plugin-specific patterns. Two additional searches max, then start working.
+
+**Stop at 90 seconds.** Three searches returning nothing useful = start working. Digging past the timebox costs more than the occasional re-derivation.
 
 ### Mid-session capture
 
