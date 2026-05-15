@@ -79,7 +79,7 @@ The album does not promise integration. It promises that what is here is allowed
 
 A kitchen at slow morning. Two cups, one already poured. The kettle still on from the earlier tracks — now received rather than offered. The chair warm but not before he sat. The door he walked through without remembering, standing open behind him, no one watching it.
 
-Two voices in one room: one trailing in em-dashes, fragmentary, weary; one closing with full stops, patient, declarative. The Container's prosodic anchor stays exactly what it was in Track 01 — sentences that don't punctuate — but the second voice is new to the album, distinct from all eleven alters. The partner is recognised by what he refuses to do: no possession, no critique, no annotation, no naming the parts. He waits. He sees.
+Two voices in one room: one trailing in em-dashes, fragmentary, weary; one closing with full stops, patient, declarative. The Container's prosodic anchor stays exactly what it was in Track 01 — sentences that don't punctuate — but the second voice is new to the album, distinct from all eleven alters. The partner is recognised by what she refuses to do: no possession, no critique, no annotation, no naming the parts. She waits. She sees.
 
 Mineral light, ungenerous but kind. Dry close-mic on the Container. Open-room reverb on the Partner — not the Integrator's plate, not the Caregiver's soft room. A bigger, plainer space. The sound of a kitchen that is not enchanted.
 
@@ -98,7 +98,7 @@ The album's only track with no Witness presence. The system stops watching itsel
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Two male voices in duet: a weary mid-baritone, dry close-mic, fragmentary trailing delivery with em-dash pauses; a warm tenor, open-room reverb, steady declarative phrasing, patient breath. Intimate piano-and-voice, contemporary dark folk. ~70 BPM slow, sparse acoustic piano, small string ensemble (cello and violin), no climb, no build. Voice forward, restrained, dark production, contemporary, dynamic range. Bilingual German anchor line in the chorus, sung naturally. Mineral light, sparse, intimate but unsentimental.
+Male-female duet: a weary male mid-baritone, dry close-mic, fragmentary trailing delivery with em-dash pauses; a warm female mezzo-soprano, open-room reverb, steady declarative phrasing, patient breath, conversational range, straight intonation. Intimate piano-and-voice, contemporary dark folk. ~70 BPM slow, sparse acoustic piano, small string ensemble (cello and violin), no climb, no build. Voice forward, restrained, dark production, contemporary, dynamic range. Bilingual German anchor line in the chorus, sung naturally. Mineral light, sparse, intimate but unsentimental.
 ```
 
 ### Exclude Styles
@@ -128,7 +128,7 @@ The morning — the same shape —
 but smaller. I must have —
 
 [Verse 1]
-[warm alto-tenor, mid-distance polished, declarative, open-room reverb, full stops]
+[warm female mezzo-soprano, conversational, mid-distance polished mic, open-room reverb, declarative, full stops, straight intonation]
 
 You walked through the door you don't remember.
 The kettle was on. The chair was warm.
@@ -138,7 +138,7 @@ You said: I must have —
 I said: you did.
 
 [Chorus]
-[duet, alto-tenor leads, baritone present underneath]
+[duet, female mezzo-soprano leads, male baritone present underneath]
 
 From outside, I see you whole.
 Every one of you. I see them too.
@@ -154,7 +154,7 @@ The morning held still.
 Someone — someone in here — was listening.
 
 [Chorus]
-[duet]
+[duet, female mezzo lead, male baritone underneath]
 
 From outside, I see you whole.
 Every one of you. I see them too.
@@ -162,7 +162,7 @@ AH-luss vahs dah ist, ist oh-KAY oont darf BLY-ben.
 From outside. I see you whole.
 
 [Bridge]
-[alto-tenor alone, steady legato, longest unbroken passage on the album]
+[female mezzo-soprano alone, steady legato, longest unbroken passage on the album]
 
 What is here is allowed to be here.
 The fury, the freeze, the vine, the floor.
@@ -172,7 +172,7 @@ I will not call anyone out.
 I will wait until the kettle cools.
 
 [Chorus]
-[duet, gentle layering, no climb]
+[duet, female mezzo lead, male baritone underneath, gentle layering, no climb]
 
 From outside, I see you whole.
 Every one of you. I see them too.
@@ -246,7 +246,7 @@ Alles, was da ist
 
 ## Production Notes
 
-- **The Partner's voice is new to the album.** It must sound *outside* the eleven established alter timbres. Recommended: warm clear alto-tenor (or alternatively low contralto), mid-distance polished mic, open-room reverb — not the Integrator's plate, not the Caregiver's soft room. Larger and plainer. Reference singer hint (do not name in the prompt): the carrier voice on Björk's *Stonemilker*, but with male-tenor steadiness.
+- **The Partner's voice is new to the album.** It must sound *outside* the eleven established alter timbres. Recommended: **warm female mezzo-soprano**, conversational range, mid-distance polished mic, open-room reverb, straight intonation. Distinguished from all four female alter voices: not the Caregiver's breathy warm soprano (lullaby-adjacent), not the Integrator's mezzo-alto with plate reverb (architectural space), not the Sexualized-Override's low contralto (theatrical, restrained vibrato), not the Ambivalent's microtonal alto (sliding vibrato), not the Fighter's belt-alto with growl. Steady declarative, patient breath, conversational rather than melismatic. The Partner's voice should sound plainer and less ornamented than any alter — the album's only "outside" timbre.
 - **No Witness layer.** Unlike every other track on the album, there are no parenthetical asides, no lowercase spoken annotation, no half-sung commentary. The system stops watching itself. If Suno tries to introduce a third voice, regen.
 - **Duet handoffs are syntactic, not labelled.** The Container trails in em-dashes; the Partner closes with full stops. Suno V5 should track the switch from the punctuation alone if the voice metatags are clearly distinct.
 - **No build.** This track does not climb. It is flat and held. Reject takes that crescendo into the bridge or final chorus.
