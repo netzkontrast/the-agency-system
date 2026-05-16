@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "jules": {
+      "command": "python3",
+      "args": [
+        "${CLAUDE_PROJECT_DIR}/.claude/mcp/jules-mcp/server.py"
+      ]
+    }
+  }
+}

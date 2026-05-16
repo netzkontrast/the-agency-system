@@ -3,15 +3,16 @@ name: jules
 description: >
   Delegates long-running codebase tasks (refactors, multi-file edits, test
   generation, feature implementation, automated PR creation) to the Google
-  Jules asynchronous coding agent over its REST API. Use when the user
-  mentions "Jules", "remote agent", "asynchronous task", or asks for a
-  cloud-side coding job that would block the local terminal if run
-  synchronously.
-argument-hint: <action> [args...]   # actions: create | list | status | activities | approve | message | stop | help
+  Jules asynchronous coding agent. Supports fan-out parallel orchestration
+  across many concurrent sessions. Use when the user mentions "Jules",
+  "remote agent", "asynchronous task", asks for a cloud-side coding job
+  that would block the local terminal, or asks for parallel work.
+argument-hint: <action> [args...]   # actions: create | list | status | activities | approve | message | stop | fanout | dashboard | help
 model: claude-sonnet-4-6
 allowed-tools:
   - Bash
   - Read
+  - mcp__jules
 ---
 
 ## Your Task
@@ -23,9 +24,45 @@ user's local terminal is a control plane; Jules is the remote worker. Your
 job is to start, monitor, decide on, interact with, and stop Jules sessions
 on the user's behalf — never to simulate the work locally.
 
-This skill talks to the Jules REST API directly via `curl`. There is no
-separate MCP server. Authentication uses the `JULES_API_KEY` environment
-variable set in the user's shell.
+## Preferred path: MCP tools (`mcp__jules__*`)
+
+When the `jules` MCP server is connected, **always prefer its tools over
+raw `curl`** — they are reliable, structured, and the model sees them in
+every turn so they cannot be silently missed (the watcher+log-tail
+pipeline is fragile; tool calls are not).
+
+| Tool | What it does |
+|---|---|
+| `jules_create` | Start a new session. |
+| `jules_list` | List sessions on the account (trimmed). |
+| `jules_get` | Live state of one session. |
+| `jules_activities` | Filtered activity timeline. |
+| `jules_plan` | Render the latest planGenerated as steps. |
+| `jules_approve` | Approve a plan — **call promptly or the session times out.** |
+| `jules_message` | Send user feedback to a session. |
+| `jules_stop` | Delete a session (destructive). |
+| `jules_patch` | Extract the unified-diff from a completed session's outputs. |
+| `jules_status_all` | Bulk: state of every session grouped by state. |
+| `jules_approve_awaiting` | Bulk: approve every session currently awaiting approval (filter by title substring for safety). |
+
+When the MCP tools are unavailable (server not yet started, no permission),
+fall back to the raw `curl` recipes documented below — they remain the
+authoritative reference for the on-wire format.
+
+## Companion tooling
+
+| Path | What it is |
+|---|---|
+| `.claude/mcp/jules-mcp/server.py` | The FastMCP server exposing the tools above. |
+| `.claude/skills/jules/watch_jules.py` | Background watcher that polls and writes a JSON-lines log on every state transition. Supports `--daemonize`, `--stop`, and writes the latest state into the local session registry. |
+| `.claude/skills/jules/sessions_state.py` | Local session registry — maps short aliases to session ids, holds last-known state. CLI: `register | list | get | update | forget | resolve`. |
+| `.claude/skills/jules/jules_bulk.sh` | Bash helper for `fanout` (parallel create), `dashboard` (table view), `approve-awaiting`, `stop-all`. |
+| `.claude/skills/jules/notifications.jsonl` | Watcher's event log (gitignored). |
+| `.claude/skills/jules/sessions.json` | Registry persistence (gitignored). |
+| `.claude/skills/jules/examples/fanout-tasks.json` | Sample input for `fanout`. |
+
+The MCP server reads `JULES_API_KEY` from the environment on every tool
+call. The skill and helpers do the same. None of these cache the key.
 
 ---
 
@@ -92,7 +129,7 @@ matrix:
 | `IN_PROGRESS` | Writing code, running tests, committing | Report status; yield. Do not poll continuously. |
 | `PAUSED` | Suspended (quota, rate limit, admin) | Surface any accompanying message; stop polling; let the user decide. |
 | `FAILED` | Terminal error | Pull recent activities for diagnostics, summarise the failure, close out the local task tracking. |
-| `COMPLETED` | Done | Extract `outputs` (look for the PR URL in `pullRequest`/`outputs[].pullRequest.url` — schema may vary), present the artifact link, exit cleanly. |
+| `COMPLETED` | Maybe done, maybe stalled — **disambiguate by `outputs`**. The Jules backend reports `COMPLETED` for both terminal success AND for sessions that finished their planning phase and need human approval to continue. If `outputs` is non-empty, it's truly done; if `outputs` is null/empty, the session is gated on plan approval and timing out — treat it like `AWAITING_PLAN_APPROVAL` and call `jules_plan` + `jules_approve` immediately. | Extract `outputs[].changeSet.gitPatch.unidiffPatch` (or `outputs[].pullRequest.url` when `automationMode=AUTO_CREATE_PR`); if outputs is empty, fetch the plan and ask the user to approve — fast, before the backend times the session out. |
 
 **Never simulate a blocking poll loop.** The terminal is interactive; do
 not freeze it. The pattern is: do *one* status check, report, hand control
@@ -503,6 +540,104 @@ To check what changed without re-running the watcher, just `tail` the log:
 ```bash
 tail -f .claude/skills/jules/notifications.jsonl | jq -c '{time, session, state, note}'
 ```
+
+## Parallel Orchestration
+
+You can run **many Jules sessions in parallel**. This is the canonical
+flow for fan-out work (e.g. apply the same change across N tracks,
+review N PRs, generate N test files):
+
+### 1. Fan out
+
+Provide a JSON or YAML file with one entry per task (see
+`.claude/skills/jules/examples/fanout-tasks.json`). Each entry has
+`{alias, title, prompt}` and optionally `{branch, source}`. Then:
+
+```bash
+JULES_DEFAULT_SOURCE="sources/github/<org>/<repo>" \
+  ./.claude/skills/jules/jules_bulk.sh fanout tasks.json
+```
+
+Each entry creates one session and registers it in `sessions.json` with
+its alias so you can refer to it by name (`auth-fix`) instead of the
+19-digit id.
+
+Equivalently in MCP: call `jules_create` once per task in a single
+turn. The Jules API accepts concurrent session creation; rate limits
+apply per account.
+
+### 2. Watch all of them at once
+
+```bash
+python3 .claude/skills/jules/watch_jules.py --daemonize
+```
+
+The watcher polls every session, writes one JSON line per state
+transition to `notifications.jsonl`, and pushes the latest state into
+the registry so `dashboard` always has fresh data.
+
+### 3. Use the dashboard to triage
+
+```bash
+./.claude/skills/jules/jules_bulk.sh dashboard
+```
+
+Lists every active session in a compact table: alias | id | state |
+title. Sessions in `AWAITING_PLAN_APPROVAL` are highlighted — those are
+the ones blocking on you.
+
+For an in-context check during a chat turn, call `jules_status_all`
+(one API request, all sessions grouped by state).
+
+### 4. Bulk-approve
+
+When you have N plans waiting and you have already inspected them in
+the dashboard or via `jules_plan`, you can batch-approve:
+
+```bash
+./.claude/skills/jules/jules_bulk.sh approve-awaiting
+```
+
+Or in MCP:
+
+```
+jules_approve_awaiting(only_titles_contain="lyric-review")
+```
+
+The `only_titles_contain` filter is your safety net — restrict the
+bulk-approve to a known prefix so a stray unrelated session can't be
+swept in.
+
+### 5. Harvest patches
+
+For each completed session whose `outputs` is non-empty, call
+`jules_patch` (MCP) — it returns `{patch, base_commit,
+suggested_commit_message}`. Pipe the patch into `git apply`. Patches
+likely touch disjoint files (you scoped them that way); if not, the
+normal merge-conflict resolution applies.
+
+Remember: **`COMPLETED` with empty `outputs` is not done** — it's an
+abandoned-pending-approval session. Use `jules_get` to check
+`has_outputs` before treating it as a deliverable.
+
+### Caveats for parallel work
+
+- **Approve quickly.** The Jules backend appears to discard sessions
+  that sit in `AWAITING_PLAN_APPROVAL` for too long — they end up in
+  `COMPLETED` state with empty `outputs`. **Treat `COMPLETED + empty
+  outputs` as `AWAITING_PLAN_APPROVAL`**: fetch the plan and approve,
+  or the work is lost.
+- **Scope tasks to disjoint files.** Parallel sessions branch from the
+  same base commit, so patches that touch the same file will conflict
+  on apply.
+- **Use aliases.** 19-digit ids are unusable in conversation; aliases
+  scale to dozens of sessions without confusion.
+- **Watch out for stale `list` responses.** `jules_list` can show a
+  session as `IN_PROGRESS` for a few seconds after `jules_get` reports
+  the real state. Use `jules_get` (per-session) as the authoritative
+  state, not `jules_list`.
+- **No more than 4 concurrent approves.** `jules_bulk.sh
+  approve-awaiting` uses `xargs -P 4`. Higher concurrency risks 429s.
 
 ## What This Skill Does NOT Do
 

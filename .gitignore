@@ -6,3 +6,4 @@
 
 # Jules session registry (machine-local; one user's session ids are not another's)
 .claude/skills/jules/sessions.json
+__pycache__/
