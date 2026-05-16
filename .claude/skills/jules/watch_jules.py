@@ -63,8 +63,11 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def emit(log_path: Path, event: dict) -> None:
+def emit(log_path: Path, event: dict, quiet_transitions: bool = False, summary_mode: bool = False) -> None:
     """Append one JSON line to the log and mirror a human-readable line to stderr."""
+    if quiet_transitions and summary_mode:
+        return
+
     with log_path.open("a") as f:
         f.write(json.dumps(event) + "\n")
     print(
@@ -76,8 +79,31 @@ def emit(log_path: Path, event: dict) -> None:
 
 
 def list_sessions() -> list[dict]:
-    data = http_get("/v1alpha/sessions?pageSize=100")
-    return data.get("sessions", [])
+    sessions = []
+    page_token = None
+    today_prefix = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    while True:
+        url = "/v1alpha/sessions?pageSize=100"
+        if page_token:
+            url += f"&pageToken={page_token}"
+        data = http_get(url)
+        page_sessions = data.get("sessions", [])
+        if not page_sessions:
+            break
+
+        for s in page_sessions:
+            sessions.append(s)
+            create_time = s.get("createTime", "")
+            if create_time and not create_time.startswith(today_prefix):
+                # We've hit a session from before today UTC, so bail out early
+                return sessions
+
+        page_token = data.get("nextPageToken")
+        if not page_token:
+            break
+
+    return sessions
 
 
 def get_session(session_id: str) -> dict:
@@ -135,6 +161,9 @@ def parse_args() -> argparse.Namespace:
                    help="Only log NOTIFY_STATES; suppress intermediate transitions like QUEUED/PLANNING/IN_PROGRESS.")
     p.add_argument("--daemonize", action="store_true", help="Run in background as a daemon.")
     p.add_argument("--stop", action="store_true", help="Stop the running watcher daemon.")
+    p.add_argument("--once", action="store_true", help="Do exactly ONE poll across all sessions, then exit cleanly.")
+    p.add_argument("--summary", action="store_true", help="Print ONE human-readable summary line to stdout.")
+    p.add_argument("--quota-warn", type=int, metavar="N", help="Emit a stderr warning if today's remaining sessions drop below N.")
     return p.parse_args()
 
 
@@ -230,7 +259,7 @@ def main() -> int:
         "session": "watcher",
         "state": "STARTED",
         "note": f"watching {'session ' + args.session if args.session else 'all sessions'}; interval={args.interval}s",
-    })
+    }, args.quiet_transitions, args.summary)
 
     while not stop:
         changed = False
@@ -246,14 +275,14 @@ def main() -> int:
                 "session": "watcher",
                 "state": "HTTP_ERROR",
                 "note": f"{e.code} {e.reason}",
-            })
+            }, args.quiet_transitions, args.summary)
             if e.code == 401:
                 emit(log_path, {
                     "time": now_iso(),
                     "session": "watcher",
                     "state": "FATAL",
                     "note": "API key rejected. Re-export JULES_API_KEY.",
-                })
+                }, args.quiet_transitions, args.summary)
                 return 2
             time.sleep(min(interval * 2, args.max_interval))
             continue
@@ -263,9 +292,29 @@ def main() -> int:
                 "session": "watcher",
                 "state": "POLL_ERROR",
                 "note": str(e),
-            })
+            }, args.quiet_transitions, args.summary)
             time.sleep(min(interval * 2, args.max_interval))
             continue
+
+        today_prefix = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        today_count = sum(1 for s in sessions if s.get("createTime", "").startswith(today_prefix))
+        remaining = 100 - today_count
+
+        if args.summary:
+            active_states = {}
+            for s in sessions:
+                state = s.get("state")
+                if state not in ("COMPLETED", "FAILED", "STATE_UNSPECIFIED"):
+                    active_states[state] = active_states.get(state, 0) + 1
+
+            active_total = sum(active_states.values())
+            states_str = ", ".join(f"{count} {state}" for state, count in active_states.items())
+            details = f" ({states_str})" if states_str else ""
+
+            print(f"Jules: {today_count} used today, {remaining} left, {active_total} active{details}", flush=True)
+
+        if args.quota_warn is not None and remaining < args.quota_warn:
+            print(f"WARNING: Jules quota running low! {remaining} left today.", file=sys.stderr, flush=True)
 
         for s in sessions:
             sid = session_id_of(s)
@@ -287,7 +336,7 @@ def main() -> int:
                 "title": s.get("title", ""),
                 "url": s.get("url", ""),
                 "note": note_for(state, prev, sid),
-            })
+            }, args.quiet_transitions, args.summary)
             last_state[sid] = state
 
             try:
@@ -299,10 +348,13 @@ def main() -> int:
                     "session": sid,
                     "state": "REGISTRY_ERROR",
                     "note": f"registry upsert failed: {e}",
-                })
+                }, args.quiet_transitions, args.summary)
 
             if args.session and state in TERMINAL_STATES:
                 stop = True
+
+        if args.once:
+            break
 
         interval = args.interval if changed else min(int(interval * 1.5), args.max_interval)
 
@@ -316,7 +368,7 @@ def main() -> int:
         "session": "watcher",
         "state": "STOPPED",
         "note": "shutdown received",
-    })
+    }, args.quiet_transitions, args.summary)
 
     if args.daemonize and pid_file.exists():
         try:
