@@ -129,7 +129,7 @@ matrix:
 | `IN_PROGRESS` | Writing code, running tests, committing | Report status; yield. Do not poll continuously. |
 | `PAUSED` | Suspended (quota, rate limit, admin) | Surface any accompanying message; stop polling; let the user decide. |
 | `FAILED` | Terminal error | Pull recent activities for diagnostics, summarise the failure, close out the local task tracking. |
-| `COMPLETED` | Maybe done, maybe stalled — **disambiguate by `outputs`**. The Jules backend reports `COMPLETED` for both terminal success AND for sessions that finished their planning phase and need human approval to continue. If `outputs` is non-empty, it's truly done; if `outputs` is null/empty, the session is gated on plan approval and timing out — treat it like `AWAITING_PLAN_APPROVAL` and call `jules_plan` + `jules_approve` immediately. | Extract `outputs[].changeSet.gitPatch.unidiffPatch` (or `outputs[].pullRequest.url` when `automationMode=AUTO_CREATE_PR`); if outputs is empty, fetch the plan and ask the user to approve — fast, before the backend times the session out. |
+| `COMPLETED` | **Ambiguous — the field lies in two distinct ways.** (1) `state=COMPLETED + outputs is null/empty` means the plan-approval gate timed out and Jules abandoned the session; treat as `AWAITING_PLAN_APPROVAL` and approve fast. (2) `state=COMPLETED + has_outputs=True` may still mean Jules is paused in the web UI asking whether to create a Pull Request for the patch it produced; the `state` field has flipped but the session is not finalized. The `sessionCompleted` activity does NOT distinguish the two — it appears in both. The only reliable resolutions are: (a) set `automationMode=AUTO_CREATE_PR` at create time so Jules opens the PR itself without asking; or (b) after harvesting the patch via `jules_patch`, send `jules_message(session_id, "no PR needed, patch applied locally")` to finalize the session. | If outputs is empty, approve the plan. If outputs is present but Jules might be waiting on PR-creation, either set automation mode up front or send a finalize message after harvest. |
 
 **Never simulate a blocking poll loop.** The terminal is interactive; do
 not freeze it. The pattern is: do *one* status check, report, hand control
@@ -608,7 +608,7 @@ The `only_titles_contain` filter is your safety net — restrict the
 bulk-approve to a known prefix so a stray unrelated session can't be
 swept in.
 
-### 5. Harvest patches
+### 5. Harvest patches and finalize
 
 For each completed session whose `outputs` is non-empty, call
 `jules_patch` (MCP) — it returns `{patch, base_commit,
@@ -616,9 +616,26 @@ suggested_commit_message}`. Pipe the patch into `git apply`. Patches
 likely touch disjoint files (you scoped them that way); if not, the
 normal merge-conflict resolution applies.
 
-Remember: **`COMPLETED` with empty `outputs` is not done** — it's an
-abandoned-pending-approval session. Use `jules_get` to check
-`has_outputs` before treating it as a deliverable.
+**Two `COMPLETED` traps you must defuse:**
+
+1. **`COMPLETED` with empty `outputs` = abandoned.** The plan-approval
+   gate timed out before you approved. Use `jules_get` to check
+   `has_outputs` before treating any session as a deliverable.
+2. **`COMPLETED` with `has_outputs=True` may still be waiting on a
+   "Create PR?" UI prompt.** The patch is real and harvestable, but
+   the session is not finalized — it's sitting in the Jules web UI
+   asking the human whether to open a PR. To finalize cleanly when
+   you've already applied the patch locally:
+
+   ```python
+   jules_message(session_id, "Patch applied locally — no PR needed. Finalize.")
+   ```
+
+   To avoid the trap entirely on a fresh session, pass
+   `auto_create_pr=True` at create time and let Jules open the PR
+   without asking. Choose your default based on whether you want
+   patches piped into your branch (current default) or independent
+   PRs (auto mode).
 
 ### Caveats for parallel work
 
