@@ -1,2 +1,4 @@
 {"event": "created", "alias": "wave1-skill-split", "id": "8456730791258466088", "url": "https://jules.google.com/session/8456730791258466088", "title": "Jules refactor wave 1: skill body decomposition", "prompt_chars": 3190}
 {"event": "change-requested", "response": {"ok": true, "session_id": "8456730791258466088"}}
+{"event": "approved-revised-plan", "response": {"ok": true, "session_id": "8456730791258466088"}}
+{"event": "proceed-confirmed", "response": {"ok": true, "session_id": "8456730791258466088"}}

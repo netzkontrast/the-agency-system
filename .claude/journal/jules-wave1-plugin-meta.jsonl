@@ -1,2 +1,4 @@
 {"event": "created", "alias": "wave1-plugin-meta", "id": "9851032668763408986", "url": "https://jules.google.com/session/9851032668763408986", "title": "Jules refactor wave 1: plugin metadata + marketplace", "prompt_chars": 2930}
 {"event": "change-requested", "response": {"ok": true, "session_id": "9851032668763408986"}}
+{"event": "approved-revised-plan", "response": {"ok": true, "session_id": "9851032668763408986"}}
+{"event": "proceed-confirmed", "response": {"ok": true, "session_id": "9851032668763408986"}}
