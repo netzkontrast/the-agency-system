@@ -500,8 +500,24 @@ Skill:
   Plan approval: REQUIRED (default)
 
   Created. ID: 7f3a91c2-…  State: QUEUED
+  Session URL: https://jules.google.com/session/7f3a91c2-…
   → Polled once: state is now PLANNING.
   Run "/jules status 7f3a91c2-…" in a minute to check progress.
+```
+
+**Mandatory:** every time a new session is created (single or via fan-out),
+print the **direct session URL** in the form
+`https://jules.google.com/session/<sessionId>` on its own line. The URL is
+returned in `jules_create`'s response as the `url` field. This is the link
+the user clicks to open the session in the Jules web UI for inspection,
+manual approval, or PR creation. Never omit it — even in compact bulk-create
+output, render `id + url` together. For fan-out:
+
+```
+Created 3 sessions:
+  - auth-fix         (7f3a91c2-…)  https://jules.google.com/session/7f3a91c2-…
+  - tests-gen        (a8b4d219-…)  https://jules.google.com/session/a8b4d219-…
+  - refactor-api     (c2e6f905-…)  https://jules.google.com/session/c2e6f905-…
 ```
 
 **Status with plan ready:**
