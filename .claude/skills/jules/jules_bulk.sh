@@ -37,13 +37,15 @@ cmd_fanout() {
     temp_json=$(mktemp)
     trap 'rm -f "$temp_json"' EXIT
 
-    # Convert YAML to JSON if necessary, or just format JSON
-    if command -v yq >/dev/null 2>&1; then
-        yq -o=json '.' "$file" > "$temp_json"
+    # Accept JSON directly; otherwise convert YAML to JSON via Python (always available).
+    if jq -e . "$file" >/dev/null 2>&1; then
+        cp "$file" "$temp_json"
     elif command -v python3 >/dev/null 2>&1; then
-        python3 -c "import sys, json, yaml; json.dump(yaml.safe_load(sys.stdin), sys.stdout)" < "$file" > "$temp_json"
+        python3 -c "import sys, json, yaml; json.dump(yaml.safe_load(open(sys.argv[1])), sys.stdout)" \
+            "$file" > "$temp_json" || {
+                echo "ERROR: could not parse $file as JSON or YAML." >&2; exit 1; }
     else
-        echo "ERROR: yq or python3+yaml is required to parse FILE." >&2
+        echo "ERROR: python3 with PyYAML required for YAML input." >&2
         exit 1
     fi
 
@@ -120,7 +122,8 @@ cmd_dashboard() {
     temp_out=$(mktemp)
     trap 'rm -f "$temp_out"' EXIT
 
-    echo "$registry_json" | jq -c '.[]' | while read -r item; do
+    # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
+    echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
         local id alias state title temp_resp http_code
         id=$(echo "$item" | jq -r '.id')
         alias=$(echo "$item" | jq -r '.alias')
@@ -142,9 +145,26 @@ cmd_dashboard() {
     done
 
     if [ -s "$temp_out" ]; then
-        printf "%s\t%s\t%s\t%s\n" "ALIAS" "ID" "STATE" "TITLE" | column -t -s $'\t'
-        echo "--------------------------------------------------------------------------------"
-        column -t -s $'\t' "$temp_out"
+        {
+            printf "%s\t%s\t%s\t%s\n" "ALIAS" "ID" "STATE" "TITLE"
+            cat "$temp_out"
+        } | awk -F'\t' '
+            { for (i=1;i<=NF;i++){ if(length($i)>w[i]) w[i]=length($i); rows[NR,i]=$i; cols=NF } }
+            END {
+                for (r=1;r<=NR;r++){
+                    line=""
+                    for (i=1;i<=cols;i++){
+                        sep = (i==cols ? "" : "  ")
+                        line = line sprintf("%-*s%s", w[i], rows[r,i], sep)
+                    }
+                    print line
+                    if (r==1) {
+                        sepline=""
+                        for (i=1;i<=cols;i++){ for(j=0;j<w[i];j++) sepline=sepline"-"; if(i<cols) sepline=sepline"  " }
+                        print sepline
+                    }
+                }
+            }'
     fi
 }
 
@@ -161,7 +181,8 @@ cmd_approve_awaiting() {
     trap 'rm -f "$to_approve"' EXIT
 
     echo "Checking session states..."
-    echo "$registry_json" | jq -c '.[]' | while read -r item; do
+    # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
+    echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
         local id temp_resp http_code state
         id=$(echo "$item" | jq -r '.id')
         
@@ -226,7 +247,8 @@ cmd_stop_all() {
     trap 'rm -f "$to_stop"' EXIT
 
     echo "Finding active sessions..."
-    echo "$registry_json" | jq -c '.[]' | while read -r item; do
+    # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
+    echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
         local id temp_resp http_code state
         id=$(echo "$item" | jq -r '.id')
         
