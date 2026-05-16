@@ -680,10 +680,40 @@ the ones blocking on you.
 For an in-context check during a chat turn, call `jules_status_all`
 (one API request, all sessions grouped by state).
 
-### 4. Bulk-approve
+### 4. Review the plan FIRST, then approve (do not auto-approve)
 
-When you have N plans waiting and you have already inspected them in
-the dashboard or via `jules_plan`, you can batch-approve:
+**The plan-approval gate is your cheapest review point. Do not
+bypass it.** A misaligned plan caught at the AWAITING_PLAN_APPROVAL
+stage costs one `jules_message` to redirect; the same misalignment
+caught after the patch lands costs a re-spawn (a slot) and a full
+fresh planning cycle.
+
+The workflow for every fan-out:
+
+1. Wait for each session to reach `AWAITING_PLAN_APPROVAL` (watch
+   `jules_status_all` periodically, or run the watcher daemon).
+2. For each one, call `jules_plan(session_id)` and READ THE STEPS.
+   Check: are the right files in scope? Are the wrong files
+   excluded? Is the plan over-engineered? Under-scoped?
+3. If the plan is good, call `jules_approve(session_id)` —
+   manually, one at a time.
+4. If the plan needs refinement, call `jules_message(session_id,
+   "<specific feedback>")`. The session will replan; loop back to
+   step 1.
+5. **Bulk-approve (`jules_approve_awaiting`) is for the case where
+   you have ALREADY individually reviewed each plan and they are
+   all good.** It is not for "auto-approve everything that's
+   waiting" — that pattern wastes the review opportunity.
+
+Auto-approving drivers (`while AWAITING: approve()`) are an
+antipattern: they remove your cheapest course-correction lever and
+guarantee you'll integrate work you didn't actually want. Only use
+them when you've explicitly decided this batch doesn't warrant
+review (e.g. a known-safe templated fan-out you've validated
+before).
+
+When you have N plans waiting AND you have already inspected them
+in the dashboard or via `jules_plan`, you can batch-approve:
 
 ```bash
 ./.claude/skills/jules/jules_bulk.sh approve-awaiting
@@ -699,14 +729,35 @@ The `only_titles_contain` filter is your safety net — restrict the
 bulk-approve to a known prefix so a stray unrelated session can't be
 swept in.
 
-### 5. Harvest via PRs-as-integration-points (canonical)
+### 5. Harvest patches via `jules_patch_apply` (canonical)
 
-**You are an integrator, not a PR-merger.** Jules's native output
-channel is some form of `branch + (optional) pull request`. Don't
-be prescriptive about *which* mechanism Jules uses — let it choose
-between plain branch push, draft PR, or full PR based on its
-tooling and permissions. Your job is to consume whatever lands on
-the remote.
+The integrator-via-PR pattern is conceptually appealing but
+**empirically unreliable on this account**: setting
+`auto_create_pr=True` is silently ignored (the response shows
+`automationMode: None`, no branch is pushed, no PR is opened —
+verified on session `4878612101900714069`). Prompt-level
+instructions to push or open PRs also fail or hallucinate
+completion. The working harvest path is patches:
+
+```python
+jules_patch_summary(session_id)         # metadata only — files, line counts
+jules_patch_apply(session_id, dry_run=True)   # validate cleanly
+jules_patch_apply(session_id)           # apply on disk, token-cheap
+```
+
+The full unidiff is written to a tempfile, fed to `git apply`, and
+discarded. Only metadata (`{applied, files, lines_added,
+lines_removed, base_commit, suggested_commit_message}`) flows back
+through the model — ~200 bytes vs. a diff that can be tens of KB.
+This works reliably even when PR / branch publishing does not.
+
+**The integrator-via-PR pattern remains valid in principle.** When
+you confirm it works on your account (i.e. setting
+`auto_create_pr=True` actually publishes a branch and opens a PR),
+use it — it's strictly better than patches (richer audit trail,
+multi-iteration history, cherry-pick granularity). The patch path
+is the *fallback* when the publish path is unavailable. Probe with
+one session before relying on either.
 
 **The instruction template for `jules_create`:**
 
