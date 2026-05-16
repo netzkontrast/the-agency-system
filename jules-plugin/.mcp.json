@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "jules": {
+      "command": "python3",
+      "args": ["-m", "jules_mcp.server"],
+      "env": {
+        "PYTHONPATH": "${PWD}/mcp-server/src"
+      }
+    }
+  }
+}

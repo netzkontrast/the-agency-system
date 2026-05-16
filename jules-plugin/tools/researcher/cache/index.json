@@ -1,0 +1,92 @@
+{
+  "fe2d3f733327a133876753b13e3f826c4b3cd28b32da179db979af9e4be3e4d7": {
+    "url": "https://docs.anthropic.com/en/docs/claude-code",
+    "fetched_at": "2026-05-16T21:00:20.248276+00:00",
+    "label": "test_fetch",
+    "content_type": "text/html; charset=utf-8",
+    "bytes_raw": 1123041,
+    "bytes_md": 14580,
+    "file_raw": "fe2d3f733327a133876753b13e3f826c4b3cd28b32da179db979af9e4be3e4d7.raw",
+    "file_md": "fe2d3f733327a133876753b13e3f826c4b3cd28b32da179db979af9e4be3e4d7.md"
+  },
+  "9625cca462bd0cf8a4786bdc54075440fa3787926e0066e50e1ec44d890d60c2": {
+    "url": "https://raw.githubusercontent.com/PrefectHQ/fastmcp/main/README.md",
+    "fetched_at": "2026-05-16T17:49:12.287708+00:00",
+    "label": "fastmcp_readme_prefect",
+    "content_type": "text/plain; charset=utf-8",
+    "bytes_raw": 6658,
+    "bytes_md": 6658,
+    "file_raw": "9625cca462bd0cf8a4786bdc54075440fa3787926e0066e50e1ec44d890d60c2.raw",
+    "file_md": "9625cca462bd0cf8a4786bdc54075440fa3787926e0066e50e1ec44d890d60c2.md"
+  },
+  "98a512605d51107a30eaf4fb43bf88ffbb6f6e19fe2748a25adf390a2392f971": {
+    "url": "https://modelcontextprotocol.io/specification",
+    "fetched_at": "2026-05-16T17:42:47.661795+00:00",
+    "label": "mcp_spec",
+    "content_type": "text/html; charset=utf-8",
+    "bytes_raw": 332546,
+    "bytes_md": 7429,
+    "file_raw": "98a512605d51107a30eaf4fb43bf88ffbb6f6e19fe2748a25adf390a2392f971.raw",
+    "file_md": "98a512605d51107a30eaf4fb43bf88ffbb6f6e19fe2748a25adf390a2392f971.md"
+  },
+  "aa0d8b80ac083e1591be0789273f447058cc9187b4331634a5614155da27778d": {
+    "url": "https://raw.githubusercontent.com/anthropics/claude-code/main/README.md",
+    "fetched_at": "2026-05-16T17:42:56.330349+00:00",
+    "label": "claude_code_readme",
+    "content_type": "text/plain; charset=utf-8",
+    "bytes_raw": 2873,
+    "bytes_md": 2873,
+    "file_raw": "aa0d8b80ac083e1591be0789273f447058cc9187b4331634a5614155da27778d.raw",
+    "file_md": "aa0d8b80ac083e1591be0789273f447058cc9187b4331634a5614155da27778d.md"
+  },
+  "1335132176c4b88af100ae874fc6fb8e35ac31aadca2a61e5fe27c290ce4b15a": {
+    "url": "https://docs.anthropic.com/en/docs/claude-code",
+    "fetched_at": "2026-05-16T17:43:59.016041+00:00",
+    "label": "claude_code_docs",
+    "content_type": "text/html; charset=utf-8",
+    "bytes_raw": 1121936,
+    "bytes_md": 14639,
+    "file_raw": "1335132176c4b88af100ae874fc6fb8e35ac31aadca2a61e5fe27c290ce4b15a.raw",
+    "file_md": "1335132176c4b88af100ae874fc6fb8e35ac31aadca2a61e5fe27c290ce4b15a.md"
+  },
+  "be548ce1ab1ff4ac991845ea5fdbc4cbf399ed143ff06ce6fb7d88382ced31be": {
+    "url": "https://docs.anthropic.com/en/docs/agents-and-tools/mcp/overview",
+    "fetched_at": "2026-05-16T17:44:43.185299+00:00",
+    "label": "mcp_overview",
+    "content_type": "text/html; charset=utf-8",
+    "bytes_raw": 519843,
+    "bytes_md": 226,
+    "file_raw": "be548ce1ab1ff4ac991845ea5fdbc4cbf399ed143ff06ce6fb7d88382ced31be.raw",
+    "file_md": "be548ce1ab1ff4ac991845ea5fdbc4cbf399ed143ff06ce6fb7d88382ced31be.md"
+  },
+  "91d26730c62c0c38df191b23d12b347f17604ae134cf94829b12196e20c77ab3": {
+    "url": "https://modelcontextprotocol.io/docs",
+    "fetched_at": "2026-05-16T17:44:54.466976+00:00",
+    "label": "mcp_docs",
+    "content_type": "text/html; charset=utf-8",
+    "bytes_raw": 310151,
+    "bytes_md": 4646,
+    "file_raw": "91d26730c62c0c38df191b23d12b347f17604ae134cf94829b12196e20c77ab3.raw",
+    "file_md": "91d26730c62c0c38df191b23d12b347f17604ae134cf94829b12196e20c77ab3.md"
+  },
+  "96f807a4aac7f46abee8a5e03db672c2c0d563b9383fa67cf69d842c26e342d4": {
+    "url": "https://raw.githubusercontent.com/anthropics/claude-code/main/plugins/README.md",
+    "fetched_at": "2026-05-16T17:45:23.585137+00:00",
+    "label": "claude_plugins_readme",
+    "content_type": "text/plain; charset=utf-8",
+    "bytes_raw": 6530,
+    "bytes_md": 6530,
+    "file_raw": "96f807a4aac7f46abee8a5e03db672c2c0d563b9383fa67cf69d842c26e342d4.raw",
+    "file_md": "96f807a4aac7f46abee8a5e03db672c2c0d563b9383fa67cf69d842c26e342d4.md"
+  },
+  "6021809c770a03f8cf5caac36958646551a2b97358bf5d2f0be64e2d03018ed8": {
+    "url": "https://raw.githubusercontent.com/anthropics/claude-code/main/plugins/commit-commands/.claude-plugin/plugin.json",
+    "fetched_at": "2026-05-16T17:47:14.410570+00:00",
+    "label": "plugin_commit_json",
+    "content_type": "text/plain; charset=utf-8",
+    "bytes_raw": 258,
+    "bytes_md": 258,
+    "file_raw": "6021809c770a03f8cf5caac36958646551a2b97358bf5d2f0be64e2d03018ed8.raw",
+    "file_md": "6021809c770a03f8cf5caac36958646551a2b97358bf5d2f0be64e2d03018ed8.md"
+  }
+}

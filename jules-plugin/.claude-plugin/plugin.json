@@ -1,0 +1,8 @@
+{
+  "name": "jules-orchestrator",
+  "description": "Complete suite for orchestrating Jules asynchronous coding sessions.",
+  "version": "1.0.0",
+  "author": {
+    "name": "The Agency System"
+  }
+}
