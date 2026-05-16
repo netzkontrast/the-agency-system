@@ -17,11 +17,14 @@ usage() {
     cat << 'USAGE'
 Usage: jules_bulk.sh <subcommand> [args...]
 
+This script is a thin facade over the MCP server's Python tools (jules-mcp/server.py).
+
 Subcommands:
   fanout FILE          FILE is a JSON or YAML list of {alias, title, prompt} entries; creates one session per entry
   dashboard            Prints a compact table of all active sessions: alias | id | state | title
   approve-awaiting     Approves every session currently in AWAITING_PLAN_APPROVAL
   stop-all [--force]   Cancels every non-terminal session; prompts "yes/no" first unless --force given
+  quota                Prints the Jules daily session quota usage
 USAGE
     exit 1
 }
@@ -67,45 +70,44 @@ cmd_fanout() {
 
         echo "Creating session for alias: $alias ..."
         
-        local payload
-        payload=$(jq -n \
-            --arg title "$title" \
-            --arg prompt "$prompt" \
-            --arg branch "$branch" \
-            --arg source "$DEFAULT_SOURCE" \
-            '{
-                title: $title,
-                prompt: $prompt,
-                requirePlanApproval: true,
-                sourceContext: {
-                    source: $source,
-                    githubRepoContext: {
-                        startingBranch: $branch
-                    }
-                }
-            }')
-            
+        export JULES_TEMP_PROMPT="$prompt"
+        export JULES_TEMP_TITLE="$title"
+        export JULES_TEMP_BRANCH="$branch"
+        export JULES_TEMP_SOURCE="$DEFAULT_SOURCE"
+        export SCRIPT_DIR="$DIR"
+
         local resp
-        resp=$(mktemp)
-        local http_code
-        http_code=$(curl -sS -o "$resp" -w "%{http_code}" -X POST "$JULES_API_BASE_URL/v1alpha/sessions" \
-            -H "x-goog-api-key: $JULES_API_KEY" \
-            -H "Content-Type: application/json" \
-            -d "$payload")
-            
-        if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
-            local session_name
-            session_name=$(jq -r '.name' "$resp")
-            local session_id="${session_name#sessions/}"
+        resp=$(python3 - <<'PY'
+import importlib.util, json, os
+server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
+spec = importlib.util.spec_from_file_location('jm', server_path)
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+try:
+    res = mod.jules_create(
+        prompt=os.environ['JULES_TEMP_PROMPT'],
+        source=os.environ['JULES_TEMP_SOURCE'],
+        starting_branch=os.environ['JULES_TEMP_BRANCH'],
+        title=os.environ.get('JULES_TEMP_TITLE', ''),
+        require_plan_approval=True
+    )
+    print(json.dumps({"ok": True, "res": res}))
+except Exception as e:
+    print(json.dumps({"ok": False, "err": str(e)}))
+PY
+        )
+        
+        local ok=$(echo "$resp" | jq -r '.ok')
+        if [ "$ok" = "true" ]; then
+            local session_id
+            session_id=$(echo "$resp" | jq -r '.res.name // .res.id // empty' | sed 's|^sessions/||')
             echo "Session created: $session_id"
             
             python3 "$DIR/sessions_state.py" register --id "$session_id" --title "$title" --alias "$alias"
         else
-            echo "ERROR: Failed to create session ($http_code). Response:" >&2
-            cat "$resp" >&2
-            echo "" >&2
+            local err=$(echo "$resp" | jq -r '.err // "Unknown error"')
+            echo "ERROR: Failed to create session. Error: $err" >&2
         fi
-        rm -f "$resp"
     done
 }
 
@@ -113,7 +115,7 @@ cmd_dashboard() {
     local registry_json
     registry_json=$(python3 "$DIR/sessions_state.py" list --json)
 
-    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ]; then
+    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ] || [ "$registry_json" = '{"sessions": []}' ]; then
         echo "No sessions in registry."
         return 0
     fi
@@ -122,24 +124,38 @@ cmd_dashboard() {
     temp_out=$(mktemp)
     trap 'rm -f "$temp_out"' EXIT
 
+    export SCRIPT_DIR="$DIR"
+    local all_sessions_json
+    all_sessions_json=$(python3 - <<'PY'
+import importlib.util, json, os
+server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
+spec = importlib.util.spec_from_file_location('jm', server_path)
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+try:
+    print(json.dumps(mod.jules_status_all()))
+except Exception as e:
+    print(json.dumps({"error": str(e)}))
+PY
+    )
+
     # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
     echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
-        local id alias state title temp_resp http_code
+        local id alias state title
         id=$(echo "$item" | jq -r '.id')
         alias=$(echo "$item" | jq -r '.alias')
         
-        temp_resp=$(mktemp)
-        http_code=$(curl -sS -o "$temp_resp" -w "%{http_code}" "$JULES_API_BASE_URL/v1alpha/sessions/$id" \
-            -H "x-goog-api-key: $JULES_API_KEY")
-            
-        if [ "$http_code" -eq 200 ]; then
-            state=$(jq -r '.state' "$temp_resp")
-            title=$(jq -r '.title' "$temp_resp")
+        # Look up session info from bulk status JSON
+        local match
+        match=$(echo "$all_sessions_json" | jq -c --arg id "$id" '.sessions[]? | select(.id == $id)')
+        
+        if [ -n "$match" ]; then
+            state=$(echo "$match" | jq -r '.state // "STATE_UNSPECIFIED"')
+            title=$(echo "$match" | jq -r '.title // "<unknown>"')
         else
-            state="ERROR_$http_code"
-            title="<unknown>"
+            state="UNKNOWN"
+            title="<not found>"
         fi
-        rm -f "$temp_resp"
         
         printf "%s\t%s\t%s\t%s\n" "$alias" "$id" "$state" "$title" >> "$temp_out"
     done
@@ -169,64 +185,48 @@ cmd_dashboard() {
 }
 
 cmd_approve_awaiting() {
-    local registry_json
-    registry_json=$(python3 "$DIR/sessions_state.py" list --json)
-    
-    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ]; then
-        echo "No sessions in registry."
-        return 0
+    echo "Checking session states and approving..."
+    export SCRIPT_DIR="$DIR"
+    local resp
+    resp=$(python3 - <<'PY'
+import importlib.util, json, os
+server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
+spec = importlib.util.spec_from_file_location('jm', server_path)
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+try:
+    print(json.dumps(mod.jules_approve_awaiting()))
+except Exception as e:
+    print(json.dumps({"error": str(e)}))
+PY
+    )
+
+    local err
+    err=$(echo "$resp" | jq -r '.error // empty')
+    if [ -n "$err" ]; then
+        echo "ERROR: Failed to run approve-awaiting. Error: $err" >&2
+        return 1
     fi
 
-    local to_approve=$(mktemp)
-    trap 'rm -f "$to_approve"' EXIT
+    local approved_count skipped_count errors_count
+    approved_count=$(echo "$resp" | jq -r '.approved | length')
+    skipped_count=$(echo "$resp" | jq -r '.skipped | length')
+    errors_count=$(echo "$resp" | jq -r '.errors | length')
 
-    echo "Checking session states..."
-    # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
-    echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
-        local id temp_resp http_code state
-        id=$(echo "$item" | jq -r '.id')
-        
-        temp_resp=$(mktemp)
-        http_code=$(curl -sS -o "$temp_resp" -w "%{http_code}" "$JULES_API_BASE_URL/v1alpha/sessions/$id" \
-            -H "x-goog-api-key: $JULES_API_KEY")
-            
-        if [ "$http_code" -eq 200 ]; then
-            state=$(jq -r '.state' "$temp_resp")
-            if [ "$state" = "AWAITING_PLAN_APPROVAL" ]; then
-                echo "$id" >> "$to_approve"
-            fi
-        fi
-        rm -f "$temp_resp"
-    done
-
-    if [ ! -s "$to_approve" ]; then
+    if [ "$approved_count" -eq 0 ] && [ "$errors_count" -eq 0 ]; then
         echo "No sessions are currently AWAITING_PLAN_APPROVAL."
         return 0
     fi
 
-    echo "Approving the following sessions in parallel:"
-    cat "$to_approve"
+    if [ "$approved_count" -gt 0 ]; then
+        echo "Approved the following sessions:"
+        echo "$resp" | jq -r '.approved[]'
+    fi
 
-    # Export variables needed by the subshell for xargs
-    export JULES_API_KEY
-    export JULES_API_BASE_URL
-
-    approve_session() {
-        local id="$1"
-        local http_code
-        http_code=$(curl -sS -o /dev/null -w "%{http_code}" -X POST "$JULES_API_BASE_URL/v1alpha/sessions/$id:approvePlan" \
-            -H "x-goog-api-key: $JULES_API_KEY" \
-            -H "Content-Type: application/json" \
-            -d '{}')
-        if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
-            echo "Approved: $id"
-        else
-            echo "Failed to approve: $id (HTTP $http_code)" >&2
-        fi
-    }
-    export -f approve_session
-
-    cat "$to_approve" | xargs -P 4 -I {} bash -c 'approve_session "{}"'
+    if [ "$errors_count" -gt 0 ]; then
+        echo "Failed to approve the following sessions:" >&2
+        echo "$resp" | jq -r '.errors[] | "\(.id): \(.error)"' >&2
+    fi
 }
 
 cmd_stop_all() {
@@ -238,7 +238,7 @@ cmd_stop_all() {
     local registry_json
     registry_json=$(python3 "$DIR/sessions_state.py" list --json)
     
-    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ]; then
+    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ] || [ "$registry_json" = '{"sessions": []}' ]; then
         echo "No sessions in registry."
         return 0
     fi
@@ -247,23 +247,37 @@ cmd_stop_all() {
     trap 'rm -f "$to_stop"' EXIT
 
     echo "Finding active sessions..."
+    export SCRIPT_DIR="$DIR"
+    local all_sessions_json
+    all_sessions_json=$(python3 - <<'PY'
+import importlib.util, json, os
+server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
+spec = importlib.util.spec_from_file_location('jm', server_path)
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+try:
+    print(json.dumps(mod.jules_status_all()))
+except Exception as e:
+    print(json.dumps({"error": str(e)}))
+PY
+    )
+
     # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
     echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
-        local id temp_resp http_code state
+        local id state
         id=$(echo "$item" | jq -r '.id')
         
-        temp_resp=$(mktemp)
-        http_code=$(curl -sS -o "$temp_resp" -w "%{http_code}" "$JULES_API_BASE_URL/v1alpha/sessions/$id" \
-            -H "x-goog-api-key: $JULES_API_KEY")
-            
-        if [ "$http_code" -eq 200 ]; then
-            state=$(jq -r '.state' "$temp_resp")
+        # Look up session info from bulk status JSON
+        local match
+        match=$(echo "$all_sessions_json" | jq -c --arg id "$id" '.sessions[]? | select(.id == $id)')
+        
+        if [ -n "$match" ]; then
+            state=$(echo "$match" | jq -r '.state // "STATE_UNSPECIFIED"')
             # Exclude terminal states. Assuming COMPLETED, FAILED, and potentially deleted/not found.
             if [ "$state" != "COMPLETED" ] && [ "$state" != "FAILED" ] && [ "$state" != "STATE_UNSPECIFIED" ]; then
                 echo "$id" >> "$to_stop"
             fi
         fi
-        rm -f "$temp_resp"
     done
 
     if [ ! -s "$to_stop" ]; then
@@ -284,15 +298,60 @@ cmd_stop_all() {
     fi
 
     cat "$to_stop" | while read -r id; do
-        local http_code
-        http_code=$(curl -sS -o /dev/null -w "%{http_code}" -X DELETE "$JULES_API_BASE_URL/v1alpha/sessions/$id" \
-            -H "x-goog-api-key: $JULES_API_KEY")
-        if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+        export JULES_TEMP_ID="$id"
+        local stop_resp
+        stop_resp=$(python3 - <<'PY'
+import importlib.util, json, os
+server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
+spec = importlib.util.spec_from_file_location('jm', server_path)
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+try:
+    res = mod.jules_stop(session_id=os.environ['JULES_TEMP_ID'])
+    print(json.dumps({"ok": True, "res": res}))
+except Exception as e:
+    print(json.dumps({"ok": False, "err": str(e)}))
+PY
+        )
+        local ok=$(echo "$stop_resp" | jq -r '.ok')
+        if [ "$ok" = "true" ]; then
             echo "Stopped: $id"
         else
-            echo "Failed to stop: $id (HTTP $http_code)" >&2
+            local err=$(echo "$stop_resp" | jq -r '.err // "Unknown error"')
+            echo "Failed to stop: $id (Error: $err)" >&2
         fi
     done
+}
+
+cmd_quota() {
+    export SCRIPT_DIR="$DIR"
+    local resp
+    resp=$(python3 - <<'PY'
+import importlib.util, json, os
+server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
+spec = importlib.util.spec_from_file_location('jm', server_path)
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+try:
+    print(json.dumps(mod.jules_quota()))
+except Exception as e:
+    print(json.dumps({"error": str(e)}))
+PY
+    )
+    
+    local err
+    err=$(echo "$resp" | jq -r '.error // empty')
+    if [ -n "$err" ]; then
+        echo "ERROR: Failed to fetch quota. Error: $err" >&2
+        return 1
+    fi
+
+    local used remaining active
+    used=$(echo "$resp" | jq -r '.used_today // 0')
+    remaining=$(echo "$resp" | jq -r '.remaining_today // 0')
+    active=$(echo "$resp" | jq -r '.active_today // 0')
+
+    echo "Jules quota: $used/100 used, $remaining left, $active active"
 }
 
 case "$1" in
@@ -309,6 +368,9 @@ case "$1" in
     stop-all)
         shift
         cmd_stop_all "$@"
+        ;;
+    quota)
+        cmd_quota
         ;;
     *)
         usage
