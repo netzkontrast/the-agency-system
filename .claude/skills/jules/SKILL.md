@@ -699,56 +699,78 @@ The `only_titles_contain` filter is your safety net — restrict the
 bulk-approve to a known prefix so a stray unrelated session can't be
 swept in.
 
-### 5. Harvest via branches (canonical), not patches
+### 5. Harvest via PRs-as-integration-points (canonical)
 
-**Branches are the communication layer between Jules and us.**
-Patches are a fallback for inspection or transformation. The default
-flow is:
+**You are an integrator, not a PR-merger.** Jules's native output
+channel is some form of `branch + (optional) pull request`. Don't
+be prescriptive about *which* mechanism Jules uses — let it choose
+between plain branch push, draft PR, or full PR based on its
+tooling and permissions. Your job is to consume whatever lands on
+the remote.
 
-1. Every `jules_create` call includes the branch convention in the
-   prompt:
+**The instruction template for `jules_create`:**
 
-   > "When done, push your work to branch `jules/<short-slug>` on
-   > the source repository. Do NOT open a pull request."
+> "When done, make your work retrievable on the remote — your
+> choice of mechanism: push to a branch named `jules/<slug>` if
+> your tooling supports it, otherwise a draft PR or a regular
+> PR from such a branch. Reply with the exact branch name and
+> PR URL (if any). The PR is for integration, not necessarily
+> for merging."
 
-2. When the session completes, `git fetch origin` will surface the
-   branch. Inspect with standard git tools — none of this enters the
-   model's context:
+Equivalent in code: `jules_create(..., auto_create_pr=True)` is
+the most reliable signal, but for some setups the prompt-level
+instruction works too. When in doubt, set the flag AND include the
+prompt sentence.
 
-   ```
-   git fetch origin
-   git log --oneline main..origin/jules/<slug>
-   git diff main...origin/jules/<slug> --stat
-   git diff main...origin/jules/<slug> -- path/to/file   # only when needed
-   ```
+**The integrator flow once the branch lands:**
 
-3. Integrate by `git cherry-pick`, `git merge`, or
-   `git checkout origin/jules/<slug> -- path/to/file` for selective
-   pickup. The user gets a clean audit trail (every Jules run lives
-   as a real branch in the repo) and the model never pays a token
-   cost for diff content.
+```
+git fetch origin
+git branch -r | grep jules/                                   # discover
+git log --oneline <my-branch>..origin/jules/<slug>            # what's there
+git diff <my-branch>...origin/jules/<slug> --stat             # scope
+git diff <my-branch>...origin/jules/<slug> -- path/to/file    # only when needed
+gh pr view <pr-number>                                        # PR body & metadata, if a PR was opened
+```
 
-**Why this beats patches:**
-- Zero token cost for diff inspection (git output goes to shell,
-  not into the model).
-- Real git history per session: blame, log, bisect all work.
-- Cherry-picking files cleanly avoids the "all-or-nothing" feel
-  of `git apply`.
+**Then integrate at the granularity you want:**
+
+```
+git cherry-pick <commit-on-jules-branch>                # one commit
+git checkout origin/jules/<slug> -- path/to/file        # one file
+git merge --no-ff origin/jules/<slug>                   # the whole branch
+```
+
+If a PR was opened, **close it without merging** when you've
+cherry-picked what you wanted — the closed PR is the audit
+record. If no PR was opened, the branch itself is the record;
+delete it from the remote once integrated, or leave it as a
+historical reference.
+
+**Why this beats both raw patches and "no PR please":**
+
+- Zero token cost for diff inspection (git output never enters the
+  model's context).
+- Works with Jules's actual capabilities — no instructions Jules
+  interprets the wrong way (the "don't open a PR" framing reliably
+  causes some sessions to conflate it with "don't push").
+- Real git history per session: blame, log, bisect, cherry-pick
+  all work normally.
+- The PR (when one exists) is metadata you can comment on / link
+  to — useful for multi-orchestrator coordination.
 - Multiple iterations on the same session push additional commits
-  to the same branch — fixes the "outputs[].gitPatch is set only
-  once" trap of patch-based harvesting (principle #2 in the Quota
-  section above).
+  to the same branch — defuses the "outputs[].gitPatch is set
+  only once" trap from principle #2 above.
 
 **When to fall back to patches:**
-- Jules' GitHub-app permissions don't include push on the target
-  repo (rare; check on first try).
+
+- The target repo doesn't accept Jules's push or PR scope (rare).
 - You need to transform the diff in-context before applying
   (e.g. strip unrelated changes). Use `jules_patch_summary` first,
-  then `jules_patch` with explicit `max_bytes` if it's truly
-  necessary.
-- `jules_patch_apply(session_id, dry_run=True)` still works for
-  the unidiff path when needed — preserves the token-efficiency
-  win for that mode.
+  then `jules_patch` with explicit `max_bytes` if truly necessary.
+- `jules_patch_apply(session_id, dry_run=True)` is still the
+  preferred way to land a unified-diff locally when the integrator
+  pattern doesn't apply.
 
 **Two `COMPLETED` traps you must defuse:**
 
