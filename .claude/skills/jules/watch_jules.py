@@ -78,31 +78,28 @@ def emit(log_path: Path, event: dict, quiet_transitions: bool = False, summary_m
     )
 
 
-def list_sessions() -> list[dict]:
-    sessions = []
-    page_token = None
-    today_prefix = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+def list_sessions(max_pages: int = 10) -> list[dict]:
+    """Page through ``sessions.list`` and return every session up to
+    ``max_pages * 100`` entries.
 
-    while True:
+    The Jules sessions.list API does not document a sort order, so we
+    cannot stop early based on createTime — we must scan every page (or
+    hit the max_pages cap, which is a safety brake for huge accounts).
+    """
+    sessions: list[dict] = []
+    page_token: str | None = None
+    pages = 0
+    while pages < max_pages:
         url = "/v1alpha/sessions?pageSize=100"
         if page_token:
             url += f"&pageToken={page_token}"
         data = http_get(url)
-        page_sessions = data.get("sessions", [])
-        if not page_sessions:
-            break
-
-        for s in page_sessions:
-            sessions.append(s)
-            create_time = s.get("createTime", "")
-            if create_time and not create_time.startswith(today_prefix):
-                # We've hit a session from before today UTC, so bail out early
-                return sessions
-
+        page_sessions = data.get("sessions", []) or []
+        sessions.extend(page_sessions)
+        pages += 1
         page_token = data.get("nextPageToken")
         if not page_token:
             break
-
     return sessions
 
 
@@ -110,22 +107,42 @@ def get_session(session_id: str) -> dict:
     return http_get(f"/v1alpha/sessions/{session_id}")
 
 
-def latest_agent_question(session_id: str) -> str | None:
-    try:
-        data = http_get(f"/v1alpha/sessions/{session_id}/activities?pageSize=20")
-    except Exception:
-        return None
-    for act in data.get("activities", []):
-        if act.get("originator") != "agent":
-            continue
-        msg = act.get("agentMessaged")
-        if isinstance(msg, dict):
-            text = msg.get("agentMessage") or msg.get("message")
-            if text:
-                return text
-        elif isinstance(msg, str):
-            return msg
-    return None
+def latest_agent_question(session_id: str, max_pages: int = 3) -> str | None:
+    """Return the newest agentMessaged text across up to ``max_pages`` of
+    activities, picked by ``createTime``. The activities endpoint does not
+    document a sort order, so we cannot stop at the first page or the first
+    hit and trust that it is current."""
+    best_text: str | None = None
+    best_time = ""
+    token = ""
+    pages = 0
+    while pages < max_pages:
+        path = f"/v1alpha/sessions/{session_id}/activities?pageSize=50"
+        if token:
+            path += f"&pageToken={token}"
+        try:
+            data = http_get(path)
+        except Exception:
+            return best_text
+        for act in data.get("activities", []) or []:
+            msg = act.get("agentMessaged")
+            if not isinstance(msg, (dict, str)):
+                continue
+            if isinstance(msg, dict):
+                text = msg.get("agentMessage") or ""
+            else:
+                text = msg
+            if not text:
+                continue
+            ct = act.get("createTime", "")
+            if ct > best_time:
+                best_text = text
+                best_time = ct
+        token = data.get("nextPageToken") or ""
+        pages += 1
+        if not token:
+            break
+    return best_text
 
 
 def session_id_of(s: dict) -> str:
@@ -147,11 +164,23 @@ def note_for(state: str, prev: str | None, sid: str) -> str:
     return f"transition {prev or '(new)'} -> {state}"
 
 
+def _positive_int(s: str) -> int:
+    try:
+        v = int(s)
+    except ValueError as e:
+        raise argparse.ArgumentTypeError(f"not an integer: {s!r}") from e
+    if v <= 0:
+        raise argparse.ArgumentTypeError(f"must be > 0, got {v}")
+    return v
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__.strip().splitlines()[0])
     p.add_argument("--session", help="Watch only this session id; exit on terminal state.")
-    p.add_argument("--interval", type=int, default=30, help="Base poll interval seconds (default 30).")
-    p.add_argument("--max-interval", type=int, default=300, help="Cap exponential backoff at N seconds.")
+    p.add_argument("--interval", type=_positive_int, default=30,
+                   help="Base poll interval seconds (>0, default 30).")
+    p.add_argument("--max-interval", type=_positive_int, default=300,
+                   help="Cap exponential backoff at N seconds (>0, default 300).")
     p.add_argument(
         "--log",
         default=".claude/skills/jules/notifications.jsonl",
@@ -164,11 +193,38 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--once", action="store_true", help="Do exactly ONE poll across all sessions, then exit cleanly.")
     p.add_argument("--summary", action="store_true", help="Print ONE human-readable summary line to stdout.")
     p.add_argument("--quota-warn", type=int, metavar="N", help="Emit a stderr warning if today's remaining sessions drop below N.")
-    return p.parse_args()
+    args = p.parse_args()
+    if args.max_interval < args.interval:
+        p.error(
+            f"--max-interval ({args.max_interval}) must be >= --interval ({args.interval})"
+        )
+    return args
+
+
+PIDFILE_PATH = Path(__file__).resolve().parent / "watcher.pid"
+PIDFILE_MARKER = "watch_jules.py"
+
+
+def _pid_is_watcher(pid: int) -> bool:
+    """Best-effort check that ``pid`` belongs to a watch_jules.py process.
+
+    Reads /proc/<pid>/cmdline (Linux) and looks for our script name. On
+    platforms without /proc (e.g. macOS) we fall back to assuming the PID
+    is ours — a stricter check would require psutil, which we deliberately
+    avoid (stdlib-only).
+    """
+    cmdline_path = Path(f"/proc/{pid}/cmdline")
+    if not cmdline_path.exists():
+        return True
+    try:
+        cmdline = cmdline_path.read_bytes().replace(b"\x00", b" ").decode("utf-8", "replace")
+    except (OSError, PermissionError):
+        return True
+    return PIDFILE_MARKER in cmdline
 
 
 def stop_watcher() -> int:
-    pid_file = Path('.claude/skills/jules/watcher.pid')
+    pid_file = PIDFILE_PATH
     if not pid_file.exists():
         print("Watcher not running (no pidfile found).", file=sys.stderr)
         return 1
@@ -179,10 +235,26 @@ def stop_watcher() -> int:
         print("Invalid pidfile.", file=sys.stderr)
         return 1
 
+    if not _pid_is_watcher(pid):
+        print(
+            f"Pidfile {pid_file} refers to PID {pid} but it is not a "
+            "watch_jules.py process; treating as stale and removing.",
+            file=sys.stderr,
+        )
+        try:
+            pid_file.unlink()
+        except FileNotFoundError:
+            pass
+        return 1
+
     try:
         os.kill(pid, signal.SIGTERM)
     except ProcessLookupError:
         print("Watcher not running (process not found).", file=sys.stderr)
+        try:
+            pid_file.unlink()
+        except FileNotFoundError:
+            pass
         return 1
     except Exception as e:
         print(f"Failed to send SIGTERM: {e}", file=sys.stderr)
@@ -233,10 +305,26 @@ def main() -> int:
         print("ERROR: JULES_API_KEY is not set in the environment.", file=sys.stderr)
         return 1
 
-    pid_file = Path('.claude/skills/jules/watcher.pid').resolve()
+    pid_file = PIDFILE_PATH
     log_path = Path(args.log).resolve()
 
     if args.daemonize:
+        if pid_file.exists():
+            try:
+                existing = int(pid_file.read_text().strip())
+            except ValueError:
+                existing = -1
+            if existing > 0 and _pid_is_watcher(existing):
+                try:
+                    os.kill(existing, 0)
+                    print(
+                        f"ERROR: another watcher is already running (pid {existing}). "
+                        "Run with --stop first.",
+                        file=sys.stderr,
+                    )
+                    return 1
+                except ProcessLookupError:
+                    pass
         daemonize_process()
         pid_file.parent.mkdir(parents=True, exist_ok=True)
         pid_file.write_text(f"{os.getpid()}\n")
@@ -244,6 +332,7 @@ def main() -> int:
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
     last_state: dict[str, str] = {}
+    seeded_baseline = False
     interval = args.interval
     stop = False
 
@@ -284,6 +373,15 @@ def main() -> int:
                     "note": "API key rejected. Re-export JULES_API_KEY.",
                 }, args.quiet_transitions, args.summary)
                 return 2
+            if e.code == 404 and args.session:
+                emit(log_path, {
+                    "time": now_iso(),
+                    "session": args.session,
+                    "state": "FATAL",
+                    "note": "Session not found (404). It may have been deleted, "
+                            "or the id is wrong. Exiting --session watch.",
+                }, args.quiet_transitions, args.summary)
+                return 3
             time.sleep(min(interval * 2, args.max_interval))
             continue
         except Exception as e:
@@ -316,16 +414,52 @@ def main() -> int:
         if args.quota_warn is not None and remaining < args.quota_warn:
             print(f"WARNING: Jules quota running low! {remaining} left today.", file=sys.stderr, flush=True)
 
+        last_agent_msg: dict[str, str] = getattr(main, "_last_agent_msg", {})
+        main._last_agent_msg = last_agent_msg  # type: ignore[attr-defined]
+
+        # On first poll (all-sessions mode), seed last_state from terminal
+        # historical sessions so we don't fire a notification storm of stale
+        # COMPLETED/FAILED events. For --session mode we always want the
+        # current state surfaced, so skip the seeding.
+        if not seeded_baseline and not args.session:
+            for s in sessions:
+                state = s.get("state", "STATE_UNSPECIFIED")
+                if state in TERMINAL_STATES:
+                    last_state[session_id_of(s)] = state
+            seeded_baseline = True
+
         for s in sessions:
             sid = session_id_of(s)
             state = s.get("state", "STATE_UNSPECIFIED")
             prev = last_state.get(sid)
 
-            if prev == state:
+            # When the session sits in AWAITING_USER_FEEDBACK across polls,
+            # the state-change check will skip it — but Jules may have posted
+            # a *new* agent question in the meantime. Re-emit whenever the
+            # newest agent message changes, even at the same state.
+            agent_msg_changed = False
+            if state == "AWAITING_USER_FEEDBACK":
+                current_q = latest_agent_question(sid) or ""
+                if current_q and current_q != last_agent_msg.get(sid):
+                    agent_msg_changed = True
+                    last_agent_msg[sid] = current_q
+
+            if prev == state and not agent_msg_changed:
                 continue
 
-            if args.quiet_transitions and state not in NOTIFY_STATES and prev is not None:
+            # Intermediate transitions (QUEUED/PLANNING/IN_PROGRESS) under
+            # --quiet-transitions are suppressed from the log but still count
+            # as activity — otherwise the watcher backs off to --max-interval
+            # while sessions are actively progressing and misses the next
+            # actionable state by minutes.
+            if (
+                args.quiet_transitions
+                and state not in NOTIFY_STATES
+                and prev is not None
+                and not agent_msg_changed
+            ):
                 last_state[sid] = state
+                changed = True
                 continue
 
             changed = True
@@ -341,7 +475,7 @@ def main() -> int:
 
             try:
                 import sessions_state
-                sessions_state.upsert(sid, status=state, updated_at=now_iso())
+                sessions_state.upsert({"id": sid, "status": state})
             except Exception as e:
                 emit(log_path, {
                     "time": now_iso(),

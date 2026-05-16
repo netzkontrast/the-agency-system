@@ -7,8 +7,31 @@ if [ -z "$JULES_API_KEY" ]; then
 fi
 
 JULES_API_BASE_URL="${JULES_API_BASE_URL:-https://jules.googleapis.com}"
-DEFAULT_SOURCE="${JULES_DEFAULT_SOURCE:-sources/github/netzkontrast/the-agency-system}"
-DEFAULT_BRANCH="$(git branch --show-current 2>/dev/null || echo 'main')"
+# DEFAULT_SOURCE is the source string handed to jules_create. The server
+# accepts either an opaque 'sources/<id>' or a GitHub 'owner/repo' shorthand
+# which it resolves via sources.list. We auto-detect 'owner/repo' from the
+# git remote so fan-out runs in different repos without manual config.
+detect_default_source() {
+    local url
+    url="$(git remote get-url origin 2>/dev/null || true)"
+    if [ -z "$url" ]; then
+        return 1
+    fi
+    # Strip scheme/host and any trailing .git, leaving owner/repo.
+    local path
+    path=$(echo "$url" \
+        | sed -E 's#^(git@|ssh://git@|https?://)([^:/]+)[:/]##' \
+        | sed -E 's#\.git$##')
+    if [ -z "$path" ] || [[ "$path" != */* ]]; then
+        return 1
+    fi
+    echo "$path"
+}
+DEFAULT_SOURCE="${JULES_DEFAULT_SOURCE:-$(detect_default_source || true)}"
+# git branch --show-current exits 0 with empty output in detached HEAD —
+# treat empty output as failure so the explicit fallback runs.
+_current_branch="$(git branch --show-current 2>/dev/null || true)"
+DEFAULT_BRANCH="${_current_branch:-main}"
 
 # Base directory for the script to find sessions_state.py
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
@@ -23,7 +46,7 @@ Subcommands:
   fanout FILE          FILE is a JSON or YAML list of {alias, title, prompt} entries; creates one session per entry
   dashboard            Prints a compact table of all active sessions: alias | id | state | title
   approve-awaiting     Approves every session currently in AWAITING_PLAN_APPROVAL
-  stop-all [--force]   Cancels every non-terminal session; prompts "yes/no" first unless --force given
+  stop-all             NOT SUPPORTED — the Jules API has no cancel method
   quota                Prints the Jules daily session quota usage
 USAGE
     exit 1
@@ -34,6 +57,13 @@ cmd_fanout() {
     if [ -z "$file" ] || [ ! -f "$file" ]; then
         echo "ERROR: fanout requires a valid FILE argument." >&2
         usage
+    fi
+
+    if [ -z "$DEFAULT_SOURCE" ]; then
+        echo "ERROR: no default source configured." >&2
+        echo "  Set JULES_DEFAULT_SOURCE to 'sources/<id>' or 'owner/repo'," >&2
+        echo "  or run this script from a git checkout with a GitHub remote." >&2
+        exit 1
     fi
 
     local temp_json
@@ -230,97 +260,22 @@ PY
 }
 
 cmd_stop_all() {
-    local force=false
-    if [ "$1" = "--force" ]; then
-        force=true
-    fi
+    # The Jules v1alpha REST API does not expose a delete/cancel/stop
+    # method on sessions, so bulk stop is impossible. Report this clearly
+    # rather than emitting fake "Stopped" lines.
+    cat >&2 <<'MSG'
+ERROR: stop-all is not supported.
 
-    local registry_json
-    registry_json=$(python3 "$DIR/sessions_state.py" list --json)
-    
-    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ] || [ "$registry_json" = '{"sessions": []}' ]; then
-        echo "No sessions in registry."
-        return 0
-    fi
+The Jules v1alpha API does not provide a way to cancel or delete a session.
+Documented session methods are: create, get, list, approvePlan, sendMessage.
 
-    local to_stop=$(mktemp)
-    trap 'rm -f "$to_stop"' EXIT
-
-    echo "Finding active sessions..."
-    export SCRIPT_DIR="$DIR"
-    local all_sessions_json
-    all_sessions_json=$(python3 - <<'PY'
-import importlib.util, json, os
-server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
-spec = importlib.util.spec_from_file_location('jm', server_path)
-mod = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(mod)
-try:
-    print(json.dumps(mod.jules_status_all()))
-except Exception as e:
-    print(json.dumps({"error": str(e)}))
-PY
-    )
-
-    # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
-    echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
-        local id state
-        id=$(echo "$item" | jq -r '.id')
-        
-        # Look up session info from bulk status JSON
-        local match
-        match=$(echo "$all_sessions_json" | jq -c --arg id "$id" '.sessions[]? | select(.id == $id)')
-        
-        if [ -n "$match" ]; then
-            state=$(echo "$match" | jq -r '.state // "STATE_UNSPECIFIED"')
-            # Exclude terminal states. Assuming COMPLETED, FAILED, and potentially deleted/not found.
-            if [ "$state" != "COMPLETED" ] && [ "$state" != "FAILED" ] && [ "$state" != "STATE_UNSPECIFIED" ]; then
-                echo "$id" >> "$to_stop"
-            fi
-        fi
-    done
-
-    if [ ! -s "$to_stop" ]; then
-        echo "No active sessions found to stop."
-        return 0
-    fi
-
-    echo "The following active sessions will be stopped:"
-    cat "$to_stop"
-    echo ""
-
-    if [ "$force" != "true" ]; then
-        read -p "Are you sure you want to stop all these sessions? (yes/no): " confirm
-        if [ "$confirm" != "yes" ]; then
-            echo "Operation cancelled."
-            return 0
-        fi
-    fi
-
-    cat "$to_stop" | while read -r id; do
-        export JULES_TEMP_ID="$id"
-        local stop_resp
-        stop_resp=$(python3 - <<'PY'
-import importlib.util, json, os
-server_path = os.path.abspath(os.path.join(os.environ.get('SCRIPT_DIR', '.'), '..', '..', 'mcp', 'jules-mcp', 'server.py'))
-spec = importlib.util.spec_from_file_location('jm', server_path)
-mod = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(mod)
-try:
-    res = mod.jules_stop(session_id=os.environ['JULES_TEMP_ID'])
-    print(json.dumps({"ok": True, "res": res}))
-except Exception as e:
-    print(json.dumps({"ok": False, "err": str(e)}))
-PY
-        )
-        local ok=$(echo "$stop_resp" | jq -r '.ok')
-        if [ "$ok" = "true" ]; then
-            echo "Stopped: $id"
-        else
-            local err=$(echo "$stop_resp" | jq -r '.err // "Unknown error"')
-            echo "Failed to stop: $id (Error: $err)" >&2
-        fi
-    done
+Workarounds:
+  * Send a stop instruction via jules_message ("please halt and leave
+    changes uncommitted"); the agent may comply.
+  * Wait for the session(s) to reach a terminal state (COMPLETED / FAILED).
+  * Use the Jules web UI for any cancellation that the dashboard exposes.
+MSG
+    return 2
 }
 
 cmd_quota() {

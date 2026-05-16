@@ -7,7 +7,7 @@ description: >
   across many concurrent sessions. Use when the user mentions "Jules",
   "remote agent", "asynchronous task", asks for a cloud-side coding job
   that would block the local terminal, or asks for parallel work.
-argument-hint: <action> [args...]   # actions: create | list | status | activities | approve | message | stop | fanout | dashboard | help
+argument-hint: <action> [args...]   # actions: create | list | status | activities | approve | message | fanout | dashboard | help (note: stop is not supported upstream)
 model: claude-sonnet-4-6
 allowed-tools:
   - Bash
@@ -40,7 +40,8 @@ pipeline is fragile; tool calls are not).
 | `jules_plan` | Render the latest planGenerated as steps. |
 | `jules_approve` | Approve a plan — **call promptly or the session times out.** |
 | `jules_message` | Send user feedback to a session. |
-| `jules_stop` | Delete a session (destructive). |
+| `jules_stop` | **NOT SUPPORTED** — Jules API has no cancel method. Returns an explanatory error. |
+| `jules_resolve_source` | Look up the opaque `sources/<id>` for a `owner/repo` (Jules sources are not slash-delimited paths). |
 | `jules_patch_summary` | Token-cheap: files touched, line counts, suggested commit msg. NO diff body. |
 | `jules_patch_apply` | Token-cheap: apply the patch on disk (or `--dry_run`) and return metadata only. NO diff body. **Preferred harvest path.** |
 | `jules_patch` | Token-EXPENSIVE: returns the full unidiff in the response. Only call when you need to inspect or transform the diff in-context; defaults to refusing > 60 KB. |
@@ -247,7 +248,18 @@ after "Jules to" / "Jules:".
 
 ### 1. Resolve repository context
 
-If `--source` is missing, infer it from the local git remote:
+**Source resource format.** The Jules REST API uses opaque source resource
+names of the form `sources/<id>`. The `<id>` is assigned by Jules when a
+GitHub repository is connected via the Jules GitHub app and is NOT a
+constructed path. In particular, `sources/github/owner/repo` is **invalid**
+and will be rejected with HTTP 400. To find the right name for a repo,
+either:
+
+- call the MCP tool `jules_resolve_source(owner=..., repo=...)`, or
+- list sources directly: `GET /v1alpha/sources` and match on
+  `githubRepo.owner` / `githubRepo.repo`.
+
+If `--source` is missing, derive `owner/repo` from the local git remote:
 
 ```bash
 REMOTE_URL=$(git remote get-url origin 2>/dev/null) || true
@@ -255,15 +267,19 @@ REMOTE_URL=$(git remote get-url origin 2>/dev/null) || true
 #   git@github.com:org/repo.git
 #   https://github.com/org/repo.git
 #   https://github.com/org/repo
-# Result: sources/github/org/repo
+# Result: owner/repo (then resolve to sources/<id>)
 ```
 
 Extract `org/repo` with a regex that strips `.git`, the URL scheme, and the
 host. If the remote is missing, has multiple plausible matches, or is not
 GitHub, **ask the user** for an explicit `--source` rather than guessing.
 
-If `--branch` is missing, use `git branch --show-current`. Refuse to
-proceed if it returns empty (detached HEAD) — ask the user to specify.
+`jules_create` (the MCP tool) accepts both forms — pass either `sources/<id>`
+directly or `owner/repo`, and it will call `sources.list` to resolve.
+
+If `--branch` is missing, use `git branch --show-current`. **Note:** in
+detached HEAD state this command exits 0 with empty output, so check for
+emptiness explicitly and refuse to proceed without an explicit `--branch`.
 
 ### 2. Build the payload
 
@@ -302,17 +318,31 @@ Defaults:
 
 ### 3. Call the API
 
+Capture the HTTP status code into a separate variable so the response body
+can be branched on before `jq`-projecting fields that only exist on success:
+
 ```bash
 TMP=$(mktemp /tmp/jules-create-XXXXXX.json)
-curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions" \
+STATUS=$(curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions" \
   -H "x-goog-api-key: $JULES_API_KEY" \
   -H "Content-Type: application/json" \
-  -d "$PAYLOAD"
+  -d "$PAYLOAD")
+
+if [ "$STATUS" -ge 400 ]; then
+    echo "ERROR: HTTP $STATUS" >&2
+    jq '.error // .' "$TMP" >&2  # Jules returns {error: {code, message, status}} on failures
+    rm -f "$TMP"
+    exit 1
+fi
 
 jq '{name, state, title}' "$TMP"
-
 rm -f "$TMP"
 ```
+
+The same pattern applies to every other curl recipe below — always check
+`$STATUS` before projecting success fields. Projecting `{name, state, title}`
+through `jq` on a `400 Bad Request` body silently turns the error payload
+into `{name: null, state: null, title: null}` and hides the real cause.
 
 Extract the session ID from `name` (format: `sessions/{id}`). Echo the
 **short** ID for the user:
@@ -338,8 +368,12 @@ transitioned past `STATE_UNSPECIFIED`. Yield.
 
 ```bash
 TMP=$(mktemp /tmp/jules-list-XXXXXX.json)
-curl -sS -o "$TMP" -w "%{http_code}" "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions?pageSize=${PAGE_SIZE:-10}${PAGE_TOKEN:+&pageToken=$PAGE_TOKEN}" \
-  -H "x-goog-api-key: $JULES_API_KEY"
+STATUS=$(curl -sS -o "$TMP" -w "%{http_code}" "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions?pageSize=${PAGE_SIZE:-10}${PAGE_TOKEN:+&pageToken=$PAGE_TOKEN}" \
+  -H "x-goog-api-key: $JULES_API_KEY")
+
+if [ "$STATUS" -ge 400 ]; then
+    echo "ERROR: HTTP $STATUS" >&2; jq '.error // .' "$TMP" >&2; rm -f "$TMP"; exit 1
+fi
 
 jq '{sessions: [.sessions[]? | {id: (.name | sub("^sessions/"; "")), state, title}], nextPageToken}' "$TMP"
 
@@ -355,8 +389,12 @@ how to fetch the next page (`/jules list --page-token <token>`).
 
 ```bash
 TMP=$(mktemp /tmp/jules-status-XXXXXX.json)
-curl -sS -o "$TMP" -w "%{http_code}" "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID" \
-  -H "x-goog-api-key: $JULES_API_KEY"
+STATUS=$(curl -sS -o "$TMP" -w "%{http_code}" "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID" \
+  -H "x-goog-api-key: $JULES_API_KEY")
+
+if [ "$STATUS" -ge 400 ]; then
+    echo "ERROR: HTTP $STATUS" >&2; jq '.error // .' "$TMP" >&2; rm -f "$TMP"; exit 1
+fi
 
 jq '{state, title, source: .sourceContext.source, branch: .sourceContext.githubRepoContext.startingBranch, outputs}' "$TMP"
 
@@ -386,12 +424,22 @@ curl -sS "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$
 
 **Filter aggressively.** A long-running session can have hundreds of
 activities; do not paste all of them into context. Pull only what you
-need:
+need. The `Activity.activity` oneof has 7 members per the v1alpha schema:
+`agentMessaged`, `userMessaged`, `planGenerated`, `planApproved`,
+`progressUpdated`, `sessionCompleted`, `sessionFailed`. Each carries its
+text in a kind-named field — `agentMessaged.agentMessage`,
+`userMessaged.userMessage`, etc. (NOT `prompt`/`message`).
 
 - Plans: `jq '.activities[] | select(.planGenerated)' "$TMP"`
-- Agent questions: `jq '.activities[] | select(.userMessaged) | select(.originator != "USER")' "$TMP"` (schema-dependent — adjust if `originator` is named differently in the response)
-- Errors: any activity with an `error` field
-- Completion artifacts: any with `outputs`
+- Agent questions (the `AWAITING_USER_FEEDBACK` channel):
+  `jq '.activities[] | select(.agentMessaged) | .agentMessaged.agentMessage' "$TMP"`
+- User messages: `jq '.activities[] | select(.userMessaged) | .userMessaged.userMessage' "$TMP"`
+- Failures: `jq '.activities[] | select(.sessionFailed) | .sessionFailed.reason' "$TMP"`
+- Patch / changeSet artifacts:
+  `jq '.activities[] | select(.artifacts) | .artifacts[] | .changeSet.gitPatch' "$TMP"`
+  (patches are activity artifacts, **not** `Session.outputs[]` — `outputs`
+  carries the merged PR when `automationMode=AUTO_CREATE_PR` was set, not
+  the diff).
 
 Render plans as readable markdown (numbered steps, one line each — not raw
 JSON). Render questions verbatim, in quotes, attributed to "Jules".
@@ -413,10 +461,14 @@ Only valid when state is `AWAITING_PLAN_APPROVAL`. If unsure, fetch
 
 ```bash
 TMP=$(mktemp /tmp/jules-approve-XXXXXX.json)
-curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:approvePlan" \
+STATUS=$(curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:approvePlan" \
   -H "x-goog-api-key: $JULES_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{}'
+  -d '{}')
+
+if [ "$STATUS" -ge 400 ]; then
+    echo "ERROR: HTTP $STATUS" >&2; jq '.error // .' "$TMP" >&2; rm -f "$TMP"; exit 1
+fi
 
 jq . "$TMP"
 
@@ -437,15 +489,23 @@ during any interactive state. Build the body with `jq`:
 BODY=$(jq -n --arg prompt "$TEXT" '{prompt: $prompt}')
 
 TMP=$(mktemp /tmp/jules-message-XXXXXX.json)
-curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:sendMessage" \
+STATUS=$(curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:sendMessage" \
   -H "x-goog-api-key: $JULES_API_KEY" \
   -H "Content-Type: application/json" \
-  -d "$BODY"
+  -d "$BODY")
+
+if [ "$STATUS" -ge 400 ]; then
+    echo "ERROR: HTTP $STATUS" >&2; jq '.error // .' "$TMP" >&2; rm -f "$TMP"; exit 1
+fi
 
 jq . "$TMP"
 
 rm -f "$TMP"
 ```
+
+The `sendMessage` body key is **`prompt`** (not `message`/`userMessage`).
+The Jules schema for `SendMessageRequest` is `{"prompt": string}` and is
+required.
 
 Confirm dispatch. Note that the session state will likely move back to
 `PLANNING` or `IN_PROGRESS` depending on how Jules digests the feedback.
@@ -454,19 +514,25 @@ Confirm dispatch. Note that the session state will likely move back to
 
 ## Action: `stop`
 
-**Destructive.** Cancels and deletes the session on Google's side. Always
-confirm with the user *before* the DELETE call unless they used clearly
-unambiguous language ("cancel that task", "stop Jules", "kill session
-abc123"):
+**Not supported by the Jules API.** The v1alpha REST surface for sessions
+exposes only `create`, `get`, `list`, `approvePlan`, and `sendMessage` —
+there is no `delete`, `cancel`, `stop`, or `pause` method. Any
+`DELETE /v1alpha/sessions/<id>` call will fail (typically 405 or 404), and
+no other endpoint terminates a running session.
 
-```bash
-curl -sS -X DELETE "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID" \
-  -H "x-goog-api-key: $JULES_API_KEY" \
-  -w "HTTP %{http_code}\n"
-```
+When the user asks to cancel a Jules session:
 
-A 2xx (often 200 with empty body, or 204) is success. Tell the user the
-session is destroyed and any in-flight work is discarded.
+1. Tell them the API does not support cancellation.
+2. Offer the two workarounds:
+   - Send an in-band instruction via `jules_message` ("please halt and
+     leave the changes uncommitted") — the agent may comply.
+   - Wait for the session to reach a terminal state (`COMPLETED` /
+     `FAILED`) — quota slot is already burned either way.
+3. Check the Jules web UI for any dashboard-only cancellation that may
+   exist outside the REST API.
+
+The `jules_stop` MCP tool exists for backwards-compatibility but returns
+`{"error": "unsupported", ...}` rather than issuing a doomed DELETE.
 
 ---
 
@@ -495,9 +561,9 @@ and inspect it. Then parse the body from the tempfile with `jq < "$TMP"`.
 ```
 User: /jules create refactor the auth middleware to use JWT and cover it with integration tests
 Skill:
-  Detected source: sources/github/netzkontrast/the-agency-system
+  Detected repo:   netzkontrast/the-agency-system → sources/<resolved-id>
   Detected branch: claude/create-jules-skill-x8QHA
-  Plan approval: REQUIRED (default)
+  Plan approval:   REQUIRED (default)
 
   Created. ID: 7f3a91c2-…  State: QUEUED
   Session URL: https://jules.google.com/session/7f3a91c2-…
@@ -586,12 +652,13 @@ Feature: Bidirectional feedback
     Then it surfaces the agent's question verbatim
     And the user's reply is dispatched via sendMessage.
 
-Feature: Destructive cancel requires confirmation
+Feature: Cancel is not supported by the API
   Scenario: User says "stop"
     Given an active session
     When the user issues an unambiguous cancel ("stop", "cancel", "kill")
-    Then the skill calls DELETE on the session
-    Otherwise it confirms first.
+    Then the skill informs the user that the Jules API has no cancel method
+    And offers jules_message as the in-band workaround
+    And does NOT issue a DELETE request (it would 4xx).
 
 Feature: No tight polling
   Scenario: Session is QUEUED, PLANNING, or IN_PROGRESS
@@ -661,8 +728,13 @@ session id, and `origin/jules/auth-fix` holds the work.
 Then:
 
 ```bash
-JULES_DEFAULT_SOURCE="sources/github/<org>/<repo>" \
+# Either pass the opaque source explicitly:
+JULES_DEFAULT_SOURCE="sources/<id>" \
   ./.claude/skills/jules/jules_bulk.sh fanout tasks.json
+# …or pass an owner/repo shorthand (resolved via sources.list at create time):
+JULES_DEFAULT_SOURCE="<org>/<repo>" \
+  ./.claude/skills/jules/jules_bulk.sh fanout tasks.json
+# …or omit and let jules_bulk.sh detect owner/repo from the git remote.
 ```
 
 Each entry creates one session and registers it in `sessions.json` with
@@ -841,9 +913,17 @@ historical reference.
 
 **Two `COMPLETED` traps you must defuse:**
 
-1. **`COMPLETED` with empty `outputs` = abandoned.** The plan-approval
-   gate timed out before you approved. Use `jules_get` to check
-   `has_outputs` before treating any session as a deliverable.
+`Session.outputs[]` carries the **pull-request resource** when Jules opens
+a PR (typically with `automationMode=AUTO_CREATE_PR`). Patches do NOT live
+in `outputs` — they live as **activity artifacts**
+(`activities[].artifacts[].changeSet.gitPatch.unidiffPatch`). The
+`has_outputs` flag returned by `jules_get` therefore means "a PR was
+attached", not "this session produced any work".
+
+1. **`COMPLETED` with empty `outputs` AND no patch artifacts = abandoned.**
+   The plan-approval gate timed out before you approved, or the agent
+   produced nothing. Check via `jules_patch_summary(session_id)` — if it
+   reports "no patch artifact found", the session is dead.
 2. **`COMPLETED` with `has_outputs=True` may still be waiting on a
    "Create PR?" UI prompt.** The patch is real and harvestable, but
    the session is not finalized — it's sitting in the Jules web UI
@@ -864,9 +944,9 @@ historical reference.
 
 - **Approve quickly.** The Jules backend appears to discard sessions
   that sit in `AWAITING_PLAN_APPROVAL` for too long — they end up in
-  `COMPLETED` state with empty `outputs`. **Treat `COMPLETED + empty
-  outputs` as `AWAITING_PLAN_APPROVAL`**: fetch the plan and approve,
-  or the work is lost.
+  `COMPLETED` state with no patch artifacts. Treat `COMPLETED` with no
+  artifacts (verify via `jules_patch_summary`) as `AWAITING_PLAN_APPROVAL`:
+  fetch the plan and approve, or the work is lost.
 - **Scope tasks to disjoint files.** Parallel sessions branch from the
   same base commit, so patches that touch the same file will conflict
   on apply.
@@ -890,4 +970,7 @@ historical reference.
 - **Does not cache the API key.** It is read live from `JULES_API_KEY`
   every invocation.
 - **Does not retry destructive failures automatically.** A failed
-  `approve`, `message`, or `stop` is reported, not silently re-attempted.
+  `approve` or `message` is reported, not silently re-attempted.
+- **Does not cancel sessions.** The Jules API does not expose a
+  cancel/delete/stop method, so `stop` requests are reported as
+  unsupported instead of issuing doomed HTTP requests.
