@@ -1,0 +1,12 @@
+{
+  "name": "jules-orchestrator",
+  "owner": {
+    "name": "netzkontrast"
+  },
+  "plugins": [
+    {
+      "name": "jules-orchestrator",
+      "source": "./"
+    }
+  ]
+}

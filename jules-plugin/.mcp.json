@@ -1,10 +1,11 @@
 {
   "mcpServers": {
-    "jules": {
+    "jules-orchestrator": {
+      "type": "stdio",
       "command": "python3",
       "args": ["-m", "jules_mcp.server"],
       "env": {
-        "PYTHONPATH": "${PWD}/mcp-server/src"
+        "PYTHONPATH": "${CLAUDE_PLUGIN_ROOT}/mcp-server/src"
       }
     }
   }

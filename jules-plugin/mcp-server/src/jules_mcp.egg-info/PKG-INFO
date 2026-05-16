@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: jules-mcp
+Version: 1.0.0
+Summary: FastMCP server for Jules orchestrator
+Requires-Python: >=3.10
+Requires-Dist: fastmcp==3.3.1
