@@ -155,12 +155,15 @@ The API expects a deeply nested object. Construct it with `jq` (never
 hand-concatenate JSON):
 
 ```bash
+# Callers must set REQUIRE_APPROVAL to a literal 'true' or 'false'.
+REQUIRE_APPROVAL="${REQUIRE_APPROVAL:-true}"
+
 PAYLOAD=$(jq -n \
   --arg prompt "$PROMPT" \
   --arg source "$SOURCE" \
   --arg branch "$BRANCH" \
   --arg title  "$TITLE" \
-  --argjson requireApproval $REQUIRE_APPROVAL \
+  --argjson requireApproval "$REQUIRE_APPROVAL" \
   --arg automation "$AUTOMATION_MODE" \
   '{
     prompt: $prompt,
@@ -184,12 +187,15 @@ Defaults:
 ### 3. Call the API
 
 ```bash
-curl -sS -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions" \
+TMP=$(mktemp /tmp/jules-create-XXXXXX.json)
+curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions" \
   -H "x-goog-api-key: $JULES_API_KEY" \
   -H "Content-Type: application/json" \
-  -d "$PAYLOAD" \
-  | tee /tmp/jules-create-response.json \
-  | jq '{name, state, title}'
+  -d "$PAYLOAD"
+
+jq '{name, state, title}' "$TMP"
+
+rm -f "$TMP"
 ```
 
 Extract the session ID from `name` (format: `sessions/{id}`). Echo the
@@ -215,9 +221,13 @@ transitioned past `STATE_UNSPECIFIED`. Yield.
 ## Action: `list`
 
 ```bash
-curl -sS "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions?pageSize=${PAGE_SIZE:-10}${PAGE_TOKEN:+&pageToken=$PAGE_TOKEN}" \
-  -H "x-goog-api-key: $JULES_API_KEY" \
-  | jq '{sessions: [.sessions[]? | {id: (.name | sub("^sessions/"; "")), state, title}], nextPageToken}'
+TMP=$(mktemp /tmp/jules-list-XXXXXX.json)
+curl -sS -o "$TMP" -w "%{http_code}" "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions?pageSize=${PAGE_SIZE:-10}${PAGE_TOKEN:+&pageToken=$PAGE_TOKEN}" \
+  -H "x-goog-api-key: $JULES_API_KEY"
+
+jq '{sessions: [.sessions[]? | {id: (.name | sub("^sessions/"; "")), state, title}], nextPageToken}' "$TMP"
+
+rm -f "$TMP"
 ```
 
 Render as a compact table. If `nextPageToken` is non-empty, tell the user
@@ -228,9 +238,13 @@ how to fetch the next page (`/jules list --page-token <token>`).
 ## Action: `status`
 
 ```bash
-curl -sS "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID" \
-  -H "x-goog-api-key: $JULES_API_KEY" \
-  | jq '{state, title, source: .sourceContext.source, branch: .sourceContext.githubRepoContext.startingBranch, outputs}'
+TMP=$(mktemp /tmp/jules-status-XXXXXX.json)
+curl -sS -o "$TMP" -w "%{http_code}" "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID" \
+  -H "x-goog-api-key: $JULES_API_KEY"
+
+jq '{state, title, source: .sourceContext.source, branch: .sourceContext.githubRepoContext.startingBranch, outputs}' "$TMP"
+
+rm -f "$TMP"
 ```
 
 Then **act on the state** per the decision matrix above. Don't just print
@@ -248,17 +262,18 @@ the state and stop — interpret it:
 ## Action: `activities`
 
 ```bash
+TMP=$(mktemp /tmp/jules-activities-XXXXXX.json)
 curl -sS "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID/activities?pageSize=${PAGE_SIZE:-10}" \
   -H "x-goog-api-key: $JULES_API_KEY" \
-  > /tmp/jules-activities.json
+  > "$TMP"
 ```
 
 **Filter aggressively.** A long-running session can have hundreds of
 activities; do not paste all of them into context. Pull only what you
 need:
 
-- Plans: `jq '.activities[] | select(.planGenerated)'`
-- Agent questions: `jq '.activities[] | select(.userMessaged) | select(.originator != "USER")'` (schema-dependent — adjust if `originator` is named differently in the response)
+- Plans: `jq '.activities[] | select(.planGenerated)' "$TMP"`
+- Agent questions: `jq '.activities[] | select(.userMessaged) | select(.originator != "USER")' "$TMP"` (schema-dependent — adjust if `originator` is named differently in the response)
 - Errors: any activity with an `error` field
 - Completion artifacts: any with `outputs`
 
@@ -268,6 +283,11 @@ JSON). Render questions verbatim, in quotes, attributed to "Jules".
 If the user asks for the raw timeline, then and only then, dump a
 condensed listing (timestamp + activity type + 1-line summary).
 
+Remember to clean up:
+```bash
+rm -f "$TMP"
+```
+
 ---
 
 ## Action: `approve`
@@ -276,11 +296,15 @@ Only valid when state is `AWAITING_PLAN_APPROVAL`. If unsure, fetch
 `status` first.
 
 ```bash
-curl -sS -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:approvePlan" \
+TMP=$(mktemp /tmp/jules-approve-XXXXXX.json)
+curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:approvePlan" \
   -H "x-goog-api-key: $JULES_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{}' \
-  | jq .
+  -d '{}'
+
+jq . "$TMP"
+
+rm -f "$TMP"
 ```
 
 A 2xx with no error is success. Confirm to the user and tell them the
@@ -296,11 +320,15 @@ during any interactive state. Build the body with `jq`:
 ```bash
 BODY=$(jq -n --arg prompt "$TEXT" '{prompt: $prompt}')
 
-curl -sS -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:sendMessage" \
+TMP=$(mktemp /tmp/jules-message-XXXXXX.json)
+curl -sS -o "$TMP" -w "%{http_code}" -X POST "${JULES_API_BASE_URL:-https://jules.googleapis.com}/v1alpha/sessions/$SESSION_ID:sendMessage" \
   -H "x-goog-api-key: $JULES_API_KEY" \
   -H "Content-Type: application/json" \
-  -d "$BODY" \
-  | jq .
+  -d "$BODY"
+
+jq . "$TMP"
+
+rm -f "$TMP"
 ```
 
 Confirm dispatch. Note that the session state will likely move back to
@@ -340,8 +368,8 @@ Trap HTTP errors and translate, don't dump:
 | `429` | Quota exceeded | Stop polling. Tell the user to wait or check their billing/quota in the Jules console. |
 | `5xx` | Server error | Retryable. Suggest waiting a minute. Do not auto-retry more than once. |
 
-Use `curl -sS -w '\nHTTP %{http_code}\n'` so the status code is always
-visible, and inspect it with `tail -1` before parsing the body.
+Use `curl -sS -o "$TMP" -w "%{http_code}"` so the status code is emitted,
+and inspect it. Then parse the body from the tempfile with `jq < "$TMP"`.
 
 ---
 
