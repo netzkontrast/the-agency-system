@@ -43,6 +43,16 @@ def _log(msg: str) -> None:
     print(f"[jules-mcp] {msg}", file=sys.stderr, flush=True)
 
 
+try:
+    _mcp_dir = os.path.dirname(os.path.abspath(__file__))
+    _jules_skills_dir = os.path.normpath(os.path.join(_mcp_dir, "..", "..", "skills", "jules"))
+    sys.path.insert(0, _jules_skills_dir)
+    import sessions_state
+except ImportError as e:
+    sessions_state = None
+    _log(f"Could not import sessions_state: {e}")
+
+
 def _api_key() -> str:
     key = os.environ.get("JULES_API_KEY", "")
     if not key:
@@ -108,6 +118,7 @@ def jules_create(
     title: str = "",
     require_plan_approval: bool = True,
     auto_create_pr: bool = False,
+    alias: str = "",
 ) -> dict:
     """Create a new Jules session.
 
@@ -138,7 +149,43 @@ def jules_create(
         body["title"] = title
     if auto_create_pr:
         body["automationMode"] = "AUTO_CREATE_PR"
-    return _request("POST", "/v1alpha/sessions", body)
+    
+    resp = _request("POST", "/v1alpha/sessions", body)
+    
+    if sessions_state is not None:
+        try:
+            new_id = resp.get("id") or _short_id(resp.get("name", ""))
+            sessions_state.register_session(
+                id=new_id,
+                title=title,
+                source=source,
+                branch=starting_branch,
+                alias=(alias or None),
+                url=resp.get("url", ""),
+                status=resp.get("state")
+            )
+        except Exception as e:
+            _log(f"Failed to register session locally: {e}")
+            
+    return resp
+
+
+@mcp.tool()
+def jules_resolve_alias(name_or_id: str) -> dict:
+    """Resolve a session alias or id to its canonical session id.
+    
+    Args:
+        name_or_id: The alias or id to resolve.
+        
+    Returns: {"id": "..."} on success, {"error": "..."} on failure.
+    """
+    if sessions_state is None:
+        return {"error": "sessions_state is unavailable"}
+        
+    resolved = sessions_state.resolve(name_or_id)
+    if resolved:
+        return {"id": resolved}
+    return {"error": f"Session alias or id not found: {name_or_id}"}
 
 
 @mcp.tool()
