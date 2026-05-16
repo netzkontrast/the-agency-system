@@ -41,7 +41,9 @@ pipeline is fragile; tool calls are not).
 | `jules_approve` | Approve a plan — **call promptly or the session times out.** |
 | `jules_message` | Send user feedback to a session. |
 | `jules_stop` | Delete a session (destructive). |
-| `jules_patch` | Extract the unified-diff from a completed session's outputs. |
+| `jules_patch_summary` | Token-cheap: files touched, line counts, suggested commit msg. NO diff body. |
+| `jules_patch_apply` | Token-cheap: apply the patch on disk (or `--dry_run`) and return metadata only. NO diff body. **Preferred harvest path.** |
+| `jules_patch` | Token-EXPENSIVE: returns the full unidiff in the response. Only call when you need to inspect or transform the diff in-context; defaults to refusing > 60 KB. |
 | `jules_status_all` | Bulk: state of every session grouped by state. |
 | `jules_approve_awaiting` | Bulk: approve every session currently awaiting approval (filter by title substring for safety). |
 | `jules_quota` | How many sessions remain on today's quota (default 100/UTC day). Call before fan-out. |
@@ -672,11 +674,28 @@ swept in.
 
 ### 5. Harvest patches and finalize
 
-For each completed session whose `outputs` is non-empty, call
-`jules_patch` (MCP) — it returns `{patch, base_commit,
-suggested_commit_message}`. Pipe the patch into `git apply`. Patches
-likely touch disjoint files (you scoped them that way); if not, the
-normal merge-conflict resolution applies.
+For each completed session whose `outputs` is non-empty, use the
+**token-efficient apply path**:
+
+```
+jules_patch_apply(session_id)        # writes on disk, returns metadata only
+```
+
+The full unidiff is written to a tempfile, fed to `git apply`, and
+discarded. Only `{applied, files, lines_added, lines_removed,
+base_commit, suggested_commit_message}` flows back through the
+model — typically ~200 bytes vs. a diff that can be tens of
+kilobytes. For a 5-session fan-out, that's the difference between
+~600 tokens and ~30,000 tokens in your context budget.
+
+To preview before applying: `jules_patch_apply(session_id,
+dry_run=True)` runs `git apply --check` without touching the tree.
+
+When you genuinely need to read the diff in-context (rare — e.g. to
+transform it before applying), use `jules_patch` — but check
+`jules_patch_summary` first to see how big it is. `jules_patch` will
+refuse diffs over 60 KB by default to prevent accidental context
+blow-out.
 
 **Two `COMPLETED` traps you must defuse:**
 
