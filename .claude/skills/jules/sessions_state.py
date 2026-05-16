@@ -86,6 +86,24 @@ def resolve(id_or_alias):
 def find(predicate):
     return [e for e in load() if predicate(e)]
 
+
+def register_session(id, title="", source="", branch="", alias=None, url="", status=None):
+    """Python API for callers (e.g. the MCP server) to upsert a session
+    without going through the CLI. Idempotent: re-registering the same id
+    updates the existing entry rather than duplicating it. Safe under
+    concurrent writers — uses the same fcntl flock as the CLI path."""
+    entry = {"id": id}
+    if title: entry["title"] = title
+    if source: entry["source"] = source
+    if branch: entry["branch"] = branch
+    if alias: entry["alias"] = alias
+    if url: entry["url"] = url
+    if status: entry["status"] = status
+    upsert(entry)
+    matches = find(lambda x: x.get("id") == id)
+    return matches[0] if matches else entry
+
+
 def main():
     parser = argparse.ArgumentParser(description="Jules sessions registry")
     subparsers = parser.add_subparsers(dest="command")

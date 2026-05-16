@@ -630,7 +630,19 @@ review N PRs, generate N test files):
 
 Provide a JSON or YAML file with one entry per task (see
 `.claude/skills/jules/examples/fanout-tasks.json`). Each entry has
-`{alias, title, prompt}` and optionally `{branch, source}`. Then:
+`{alias, title, prompt}` and optionally `{branch, source}`.
+
+**Every prompt should include the branch convention** so harvest
+goes through git, not patches:
+
+> "When done, push your work to branch `jules/<alias>` on the source
+> repository. Do NOT open a pull request."
+
+This makes the alias the link between the local registry and the
+remote branch — `jules_resolve_alias("auth-fix")` returns the
+session id, and `origin/jules/auth-fix` holds the work.
+
+Then:
 
 ```bash
 JULES_DEFAULT_SOURCE="sources/github/<org>/<repo>" \
@@ -687,30 +699,56 @@ The `only_titles_contain` filter is your safety net — restrict the
 bulk-approve to a known prefix so a stray unrelated session can't be
 swept in.
 
-### 5. Harvest patches and finalize
+### 5. Harvest via branches (canonical), not patches
 
-For each completed session whose `outputs` is non-empty, use the
-**token-efficient apply path**:
+**Branches are the communication layer between Jules and us.**
+Patches are a fallback for inspection or transformation. The default
+flow is:
 
-```
-jules_patch_apply(session_id)        # writes on disk, returns metadata only
-```
+1. Every `jules_create` call includes the branch convention in the
+   prompt:
 
-The full unidiff is written to a tempfile, fed to `git apply`, and
-discarded. Only `{applied, files, lines_added, lines_removed,
-base_commit, suggested_commit_message}` flows back through the
-model — typically ~200 bytes vs. a diff that can be tens of
-kilobytes. For a 5-session fan-out, that's the difference between
-~600 tokens and ~30,000 tokens in your context budget.
+   > "When done, push your work to branch `jules/<short-slug>` on
+   > the source repository. Do NOT open a pull request."
 
-To preview before applying: `jules_patch_apply(session_id,
-dry_run=True)` runs `git apply --check` without touching the tree.
+2. When the session completes, `git fetch origin` will surface the
+   branch. Inspect with standard git tools — none of this enters the
+   model's context:
 
-When you genuinely need to read the diff in-context (rare — e.g. to
-transform it before applying), use `jules_patch` — but check
-`jules_patch_summary` first to see how big it is. `jules_patch` will
-refuse diffs over 60 KB by default to prevent accidental context
-blow-out.
+   ```
+   git fetch origin
+   git log --oneline main..origin/jules/<slug>
+   git diff main...origin/jules/<slug> --stat
+   git diff main...origin/jules/<slug> -- path/to/file   # only when needed
+   ```
+
+3. Integrate by `git cherry-pick`, `git merge`, or
+   `git checkout origin/jules/<slug> -- path/to/file` for selective
+   pickup. The user gets a clean audit trail (every Jules run lives
+   as a real branch in the repo) and the model never pays a token
+   cost for diff content.
+
+**Why this beats patches:**
+- Zero token cost for diff inspection (git output goes to shell,
+  not into the model).
+- Real git history per session: blame, log, bisect all work.
+- Cherry-picking files cleanly avoids the "all-or-nothing" feel
+  of `git apply`.
+- Multiple iterations on the same session push additional commits
+  to the same branch — fixes the "outputs[].gitPatch is set only
+  once" trap of patch-based harvesting (principle #2 in the Quota
+  section above).
+
+**When to fall back to patches:**
+- Jules' GitHub-app permissions don't include push on the target
+  repo (rare; check on first try).
+- You need to transform the diff in-context before applying
+  (e.g. strip unrelated changes). Use `jules_patch_summary` first,
+  then `jules_patch` with explicit `max_bytes` if it's truly
+  necessary.
+- `jules_patch_apply(session_id, dry_run=True)` still works for
+  the unidiff path when needed — preserves the token-efficiency
+  win for that mode.
 
 **Two `COMPLETED` traps you must defuse:**
 
