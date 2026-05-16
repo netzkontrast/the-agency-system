@@ -401,6 +401,99 @@ def jules_approve_awaiting(only_titles_contain: str = "") -> dict:
     return {"approved": approved, "skipped": skipped, "errors": errors}
 
 
+@mcp.tool()
+def jules_quota(daily_limit: int = 100, max_pages: int = 5) -> dict:
+    """Estimate how many Jules sessions you have left for today.
+
+    Jules enforces a per-account daily session quota (default 100). The
+    API does not expose remaining quota directly, but every session
+    carries a `createTime` (UTC ISO-8601), so we paginate sessions
+    newest-first and count those created since today's UTC midnight.
+
+    A running session still occupies its slot for the day — stopping it
+    early does NOT reclaim the slot. So the right way to be efficient
+    is to (a) extend an existing session via `jules_message` rather
+    than creating a new one for related follow-up work, and (b) avoid
+    `jules_stop` unless the session is genuinely off-track.
+
+    Args:
+        daily_limit: Quota assumed for the account (default 100).
+        max_pages: Safety cap on pagination (default 5 = up to 500
+            sessions scanned). Today's sessions are typically on the
+            first 1-2 pages.
+
+    Returns:
+        {
+          "daily_limit": int,
+          "used_today": int,                   # all states
+          "remaining_today": int,
+          "active_today": int,                 # non-terminal — still useful
+          "by_state_today": {STATE: count},
+          "today_utc": "YYYY-MM-DD",
+          "newest_today_id": str | None,       # the most recently created session today
+          "pages_scanned": int,
+          "truncated": bool                    # true if max_pages was hit
+        }
+    """
+    import datetime
+    today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+    today_prefix = today  # ISO-8601 createTime strings start with YYYY-MM-DD
+
+    used = 0
+    by_state: dict[str, int] = {}
+    newest_today_id: str | None = None
+    token = ""
+    pages = 0
+    truncated = False
+
+    NON_TERMINAL = {
+        "QUEUED", "PLANNING", "IN_PROGRESS",
+        "AWAITING_PLAN_APPROVAL", "AWAITING_USER_FEEDBACK",
+        "PAUSED", "STATE_UNSPECIFIED",
+    }
+
+    while pages < max_pages:
+        q = {"pageSize": 100}
+        if token:
+            q["pageToken"] = token
+        qs = urllib.parse.urlencode(q)
+        raw = _request("GET", f"/v1alpha/sessions?{qs}")
+        pages += 1
+        sessions = raw.get("sessions", []) or []
+
+        # Sessions arrive newest-first; once we drop below today we can stop
+        saw_older = False
+        for s in sessions:
+            ct = s.get("createTime", "")
+            if not ct.startswith(today_prefix):
+                saw_older = True
+                continue
+            used += 1
+            st = s.get("state") or "STATE_UNSPECIFIED"
+            by_state[st] = by_state.get(st, 0) + 1
+            if newest_today_id is None:
+                newest_today_id = s.get("id") or _short_id(s.get("name", ""))
+
+        token = raw.get("nextPageToken", "")
+        if not token or saw_older:
+            break
+    else:
+        truncated = True  # exited via while-condition (pages >= max_pages)
+
+    active = sum(by_state.get(st, 0) for st in NON_TERMINAL)
+    return {
+        "daily_limit": daily_limit,
+        "used_today": used,
+        "remaining_today": max(0, daily_limit - used),
+        "active_today": active,
+        "by_state_today": by_state,
+        "today_utc": today,
+        "newest_today_id": newest_today_id,
+        "pages_scanned": pages,
+        "truncated": truncated,
+    }
+
+
 if __name__ == "__main__":
     _log(f"starting jules-mcp; base={BASE_URL}; key={'set' if os.environ.get('JULES_API_KEY') else 'MISSING'}")
     mcp.run()

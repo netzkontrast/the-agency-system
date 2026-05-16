@@ -44,6 +44,7 @@ pipeline is fragile; tool calls are not).
 | `jules_patch` | Extract the unified-diff from a completed session's outputs. |
 | `jules_status_all` | Bulk: state of every session grouped by state. |
 | `jules_approve_awaiting` | Bulk: approve every session currently awaiting approval (filter by title substring for safety). |
+| `jules_quota` | How many sessions remain on today's quota (default 100/UTC day). Call before fan-out. |
 
 When the MCP tools are unavailable (server not yet started, no permission),
 fall back to the raw `curl` recipes documented below — they remain the
@@ -63,6 +64,67 @@ authoritative reference for the on-wire format.
 
 The MCP server reads `JULES_API_KEY` from the environment on every tool
 call. The skill and helpers do the same. None of these cache the key.
+
+---
+
+## Quota and Session Economics
+
+**Jules enforces a per-account daily session quota — currently 100
+sessions / UTC day.** Every `jules_create` call burns one slot;
+stopping or finalizing a session does NOT return its slot. The
+remaining budget for the day is queryable:
+
+```python
+jules_quota()  # returns used_today, remaining_today, active_today, by_state_today
+```
+
+`active_today` is the count of non-terminal sessions you started
+today — they are still alive and **still able to do useful work for
+you**. A running session is not a leak; it's a worker you have on
+retainer.
+
+### Conservation principles (mandatory before fan-out)
+
+1. **Call `jules_quota` before any fan-out of 3+ sessions.** If
+   remaining is tight, batch the work — or extend an existing
+   session instead of spawning new ones.
+2. **Prefer `jules_message` over `jules_create` for follow-up work.**
+   When you already have an active session that knows the repo /
+   context, send it another instruction via `jules_message` rather
+   than creating a fresh session and burning a slot. The existing
+   session keeps its working tree, plan history, and conversation
+   context — that's free value.
+3. **Don't `jules_stop` a session that can still produce value.**
+   Stopping does not reclaim the slot for today. The only good
+   reasons to stop a session are: it's clearly off-track and a
+   message can't redirect it, OR it's blocking another session that
+   needs the same exclusive resource. "Tidiness" is not a reason —
+   leave them alive until the day rolls over (UTC midnight).
+4. **Pass `auto_create_pr=True` for fire-and-forget work.** That way
+   the session finalizes itself when done instead of pausing in the
+   web UI asking whether to open a PR (the second COMPLETED-state
+   trap documented below). Each pending PR-approval prompt is a slot
+   you're effectively holding open without intent.
+5. **Use aliases to reuse sessions across tasks.** A session aliased
+   `refactor-auth` can be reactivated tomorrow with new instructions
+   via `jules_message` — it's a long-running agent on retainer, not
+   a single-use ticket. The local registry (`sessions_state.py`) is
+   built for this; refer to sessions by alias instead of throwing
+   them away.
+
+### When to spawn vs. when to reuse
+
+| Situation | Right move |
+|---|---|
+| Same context, follow-up question or revision | `jules_message` (free) |
+| Different files / unrelated task, but you want it serialised | `jules_message` to an idle session; it'll context-switch |
+| Genuinely independent parallel work (no shared context, no shared files) | `jules_create` — burns a slot but produces real concurrency |
+| The earlier session is failed/stuck and won't recover | Stop it (slot already lost) and create one fresh |
+| Quota is below 10 and the work isn't urgent | Defer until UTC midnight; warn the user |
+
+The MCP tool `jules_status_all` plus `jules_quota` together give you
+the full economic picture: what slots you've burned, which are still
+working for you, and how many you have left for the rest of the day.
 
 ---
 
