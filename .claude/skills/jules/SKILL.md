@@ -441,6 +441,41 @@ Feature: No tight polling
 
 ---
 
+## Background Watcher (`watch_jules.py`)
+
+A companion Python script (`watch_jules.py`, stdlib only — no install)
+polls Jules sessions and writes a JSON-lines notification any time a
+session crosses into a state that needs your attention
+(`AWAITING_PLAN_APPROVAL`, `AWAITING_USER_FEEDBACK`, `COMPLETED`,
+`FAILED`, `PAUSED`). For `AWAITING_USER_FEEDBACK` it also fetches and
+embeds the agent's question text.
+
+```bash
+# Watch every active session (Ctrl-C to stop)
+python3 .claude/skills/jules/watch_jules.py
+
+# Watch one session and exit when it terminates
+python3 .claude/skills/jules/watch_jules.py --session 5740936444374394996
+
+# Suppress noisy intermediate transitions (QUEUED/PLANNING/IN_PROGRESS)
+python3 .claude/skills/jules/watch_jules.py --quiet-transitions
+
+# Custom interval / log location
+python3 .claude/skills/jules/watch_jules.py --interval 15 --log /tmp/jules.jsonl
+```
+
+The default log lives at `.claude/skills/jules/notifications.jsonl` (in
+`.gitignore`). The watcher uses exponential backoff: it polls every
+30s when something is happening, then stretches up to 5 min during
+quiet periods to stay under Jules' rate limits. SIGINT/SIGTERM stop
+it cleanly.
+
+To check what changed without re-running the watcher, just `tail` the log:
+
+```bash
+tail -f .claude/skills/jules/notifications.jsonl | jq -c '{time, session, state, note}'
+```
+
 ## What This Skill Does NOT Do
 
 - **Does not edit local files.** Jules works on its own VM and pushes to
