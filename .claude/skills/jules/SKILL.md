@@ -90,12 +90,27 @@ retainer.
 1. **Call `jules_quota` before any fan-out of 3+ sessions.** If
    remaining is tight, batch the work — or extend an existing
    session instead of spawning new ones.
-2. **Prefer `jules_message` over `jules_create` for follow-up work.**
-   When you already have an active session that knows the repo /
-   context, send it another instruction via `jules_message` rather
-   than creating a fresh session and burning a slot. The existing
-   session keeps its working tree, plan history, and conversation
-   context — that's free value.
+2. **`jules_message` is free — but it does NOT deliver new patch
+   artifacts.** A session's `outputs[].gitPatch` is set ONCE, when
+   the first piece of work completes, and does NOT update when
+   subsequent work happens via follow-up messages. Subsequent work
+   IS performed (Jules commits to its own copy of your branch in
+   its VM), but the unified-diff artifact stays the original. So:
+   - Use `jules_message` for: clarifications, revising a plan
+     before approval, answering agent questions, sending
+     "finalize" messages, requesting summaries / reviews of work
+     already done.
+   - Do NOT use `jules_message` for: independent follow-up work
+     that needs its own deliverable patch. For that, create a
+     fresh session — yes, it burns a slot, but it's the only way
+     to get a clean unidiff artifact back.
+
+   If you must extract follow-up work from an existing session,
+   the only paths are (a) ask the session to inline the diff in
+   an `agentMessaged` text reply (token-expensive — pulls the
+   diff into your context), or (b) ask it to create a PR
+   (separate Jules-side branch and PR per session, messy to
+   integrate).
 3. **Don't `jules_stop` a session that can still produce value.**
    Stopping does not reclaim the slot for today. The only good
    reasons to stop a session are: it's clearly off-track and a
@@ -118,8 +133,8 @@ retainer.
 
 | Situation | Right move |
 |---|---|
-| Same context, follow-up question or revision | `jules_message` (free) |
-| Different files / unrelated task, but you want it serialised | `jules_message` to an idle session; it'll context-switch |
+| Clarifying question / plan revision / agent question / finalize-please | `jules_message` (free — same session) |
+| **New work that needs its own patch deliverable** | `jules_create` (burns a slot — required, see principle #2) |
 | Genuinely independent parallel work (no shared context, no shared files) | `jules_create` — burns a slot but produces real concurrency |
 | The earlier session is failed/stuck and won't recover | Stop it (slot already lost) and create one fresh |
 | Quota is below 10 and the work isn't urgent | Defer until UTC midnight; warn the user |
