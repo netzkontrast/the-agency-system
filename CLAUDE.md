@@ -290,6 +290,15 @@ the wrong aesthetic.
   `[male mid-baritone, weary, dry close-mic]` is permitted; the character
   form `[Container]` is forbidden by `voice-craft-principles.md`.
 
+## Jules orchestration plugin
+
+The Jules orchestrator allows for multi-agent asynchronous coding sessions.
+It bundles an MCP server (with 16 lifecycle/patch/bulk tools), a slimmed `SKILL.md` (with `/references/`), and helpers (`lib/` utilities, `bin/jules-bulk`).
+For details, see the [refactor design spec](docs/superpowers/specs/2026-05-16-jules-suite-refactor-design.md).
+
+- **Local dev install:** `claude --plugin-dir ./jules-plugin`
+- **Marketplace install:** `/plugin install jules-orchestrator@netzkontrast`
+
 ## Most important commands & skills
 
 Invoke as slash commands: `/bitwize-music:<name>`.

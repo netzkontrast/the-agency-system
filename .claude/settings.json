@@ -10,6 +10,7 @@
   "enabledPlugins": {
     "bitwize-music@bitwize-music": true
   },
+  "enabledMcpjsonServers": [],
   "permissions": {
     "defaultMode": "bypassPermissions",
     "allow": [

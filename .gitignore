@@ -1,0 +1,19 @@
+# Jules watcher notification log
+.claude/skills/jules/notifications.jsonl
+
+# Jules watcher PID file
+.claude/skills/jules/watcher.pid
+
+# Jules session registry (machine-local; one user's session ids are not another's)
+.claude/skills/jules/sessions.json
+__pycache__/
+
+# Research-tool cache: regenerable working artefacts; never committed.
+# Cache files live under any tools/researcher/cache/ directory in the plugin
+# (or wherever JULES_RESEARCH_CACHE / --cache-dir points). Only .gitkeep
+# preserves the empty directory structure.
+jules-plugin/tools/researcher/cache/*
+!jules-plugin/tools/researcher/cache/.gitkeep
+.claude/skills/jules/research/
+.venv
+*.egg-info/
