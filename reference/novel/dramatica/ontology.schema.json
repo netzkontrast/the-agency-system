@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency.local/schemas/narrative-ontology/ontology.schema.json",
+  "title": "Narrative Ontology — Entry",
+  "description": "One canonical record of a Dramatica concept (Class, Type, Variation, Element, Archetype, Character/Plot Dynamic, Storypoint, Quad, Dynamic-Pair, Signpost-slot, or meta Concept). Maps optionally to one NCP enum string. The single source of truth for narrative IDs across the four narrative skills.",
+
+  "type": "object",
+  "required": ["id", "kind", "canonical_label", "provenance"],
+  "additionalProperties": false,
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$",
+      "description": "Stable canonical identifier. Form: '<kind-prefix>.<slug>' (e.g. 'el.trust', 'type.preconscious', 'throughline.relationship', 'quad.evidence', 'dp.trust-test', 'concept.crucial-element')."
+    },
+
+    "kind": {
+      "enum": [
+        "class", "type", "variation", "element", "archetype",
+        "character-dynamic", "plot-dynamic", "storypoint",
+        "dynamic-pair", "quad", "signpost-slot",
+        "throughline", "concept"
+      ],
+      "description": "What category of narrative thing this entry represents. 'concept' covers meta-entries about structural slots (Crucial Element, Symptom, Focus, Direction)."
+    },
+
+    "canonical_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "The label tools render in JSON output. For the three resolved naming contradictions (OQ-resolved per the kickoff SPEC), the NCP enum string is canonical: 'Relationship Story', 'Influence Character', 'Problem-solving Style'."
+    },
+
+    "provenance": {
+      "enum": ["source-original", "extension-derived"],
+      "description": "Whether the entry comes from a Dramatica source file or from one of the six Extension files in dramatica-vocabulary/references/."
+    },
+
+    "term_file": {
+      "type": "string",
+      "pattern": "^skills/(dramatica-vocabulary|dramatica-theory)/references/[a-z0-9_.-]+\\.md(#.+)?$",
+      "description": "Pointer to the prose section: 'skills/.../references/<file>.md#<anchor>'. Optional but RECOMMENDED so nav.py can hand off to extract.py."
+    },
+
+    "scenarios": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(novel|lyric)\\.[a-z0-9-]+$" },
+      "maxItems": 8,
+      "uniqueItems": true,
+      "description": "Persona-scenario IDs from scenarios.json. Capped at 8 (M01 falsification trigger; if median > 5 across the corpus, the scenario-index contingency activates)."
+    },
+
+    "ncp_appreciation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "OPTIONAL. Closest NCP enum string in the pinned ncp-schema. ABSENT (not null) for kinds with no NCP target: archetype, quad, dynamic-pair, concept. Approximately 60% of populated entries are partial."
+    },
+
+    "ncp_appreciation_partial": {
+      "type": "boolean",
+      "description": "REQUIRED iff ncp_appreciation is present. true means the NCP target is a Storypoint slot the Dramatica entry rolls up to (e.g. an Element appearing in 'MC Problem'); false means clean enum equality."
+    },
+
+    "ncp_schema_min_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OPTIONAL. Pinned NCP schema version this mapping was authored against."
+    },
+
+    "dynamic_pair_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$",
+      "description": "RECOMMENDED for kind=element|variation when the canonical theory pairs the term with another. FORBIDDEN for kind=archetype|quad|dynamic-pair|concept|class|throughline. Reciprocity enforced by validate.py."
+    },
+
+    "pair_member_a": {
+      "type": "string",
+      "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$",
+      "description": "REQUIRED iff kind=dynamic-pair. ID of one half of the pair. Reciprocity invariant: <pair_member_a>.dynamic_pair_id MUST equal <pair_member_b>'s id."
+    },
+
+    "pair_member_b": {
+      "type": "string",
+      "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$",
+      "description": "REQUIRED iff kind=dynamic-pair."
+    },
+
+    "quad_id": {
+      "type": "string",
+      "pattern": "^quad\\.[a-z0-9][a-z0-9-]*$",
+      "description": "RECOMMENDED for kind=element|variation; OPTIONAL elsewhere."
+    },
+
+    "ktad_position": {
+      "enum": ["K", "T", "A", "D"],
+      "description": "Knowledge / Thought / Ability / Desire position. RECOMMENDED for entries that participate in a Quad."
+    },
+
+    "class_id":     { "type": "string", "pattern": "^class\\.[a-z][a-z-]*$" },
+    "type_id":      { "type": "string", "pattern": "^type\\.[a-z][a-z-]*$" },
+    "variation_id": { "type": "string", "pattern": "^var\\.[a-z][a-z-]*$" }
+  },
+
+  "patternProperties": {
+    "^aliases_[a-z]{2}$": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+      "uniqueItems": true,
+      "description": "Locale-specific alias list (ISO-639-1 suffix). Per OQ-A resolution, depth-1 flattened keys; nested 'aliases: { en: [...] }' is rejected."
+    },
+    "^deprecated_aliases_[a-z]{2}$": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+      "uniqueItems": true,
+      "description": "Locale-specific deprecated alias list. Used to surface dated terms (e.g. 'Mental Sex' → 'Problem-solving Style', 'Male/Female problem-solving' deprecated)."
+    }
+  },
+
+  "allOf": [
+    {
+      "description": "ncp_appreciation_partial requires ncp_appreciation present.",
+      "if":   { "required": ["ncp_appreciation_partial"] },
+      "then": { "required": ["ncp_appreciation"] }
+    },
+    {
+      "description": "kind=dynamic-pair MUST carry pair_member_a + pair_member_b; MUST NOT carry dynamic_pair_id.",
+      "if":   { "properties": { "kind": { "const": "dynamic-pair" } }, "required": ["kind"] },
+      "then": {
+        "required": ["pair_member_a", "pair_member_b"],
+        "not": { "required": ["dynamic_pair_id"] }
+      }
+    },
+    {
+      "description": "Non-dynamic-pair kinds MUST NOT carry pair_member_a/b.",
+      "if":   { "properties": { "kind": { "not": { "const": "dynamic-pair" } } }, "required": ["kind"] },
+      "then": {
+        "not": {
+          "anyOf": [
+            { "required": ["pair_member_a"] },
+            { "required": ["pair_member_b"] }
+          ]
+        }
+      }
+    },
+    {
+      "description": "Forbidden kinds for dynamic_pair_id (archetype, quad, concept, class, throughline).",
+      "if":   { "properties": { "kind": { "enum": ["archetype", "quad", "concept", "class", "throughline"] } }, "required": ["kind"] },
+      "then": { "not": { "required": ["dynamic_pair_id"] } }
+    }
+  ]
+}
