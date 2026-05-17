@@ -7,12 +7,11 @@ def build_unified_state(domains: list[str]) -> dict:
     """Build a unified state dictionary from individual domain indexers."""
     state = {"_version": "1.0.0"}
 
-    # We only call the indexers that are requested, or default to all?
-    # Actually wait, the spec says build_unified_state calls each per-domain stub and assembles top-level dict
+    # We call each per-domain stub and assemble the top-level dict as requested by spec
 
-    state["music"] = music_indexer.build() if "music" in domains else {"_generated": None}
-    state["novel"] = novel_indexer.build() if "novel" in domains else {"_generated": None}
-    state["jules"] = jules_indexer.build() if "jules" in domains else {"_generated": None}
-    state["agentic"] = ncp_indexer.build() if "agentic" in domains else {"_generated": None}
+    state["music"] = music_indexer.build()
+    state["novel"] = novel_indexer.build()
+    state["jules"] = jules_indexer.build()
+    state["agentic"] = ncp_indexer.build()
 
     return state

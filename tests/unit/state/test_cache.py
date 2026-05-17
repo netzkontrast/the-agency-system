@@ -18,7 +18,7 @@ def temp_cache_dir(monkeypatch):
 
 @pytest.fixture
 def schema():
-    schema_path = Path("state/schema/state.schema.json")
+    schema_path = Path(__file__).parents[3] / "state" / "schema" / "state.schema.json"
     with open(schema_path) as f:
         return json.load(f)
 
@@ -102,4 +102,4 @@ async def test_state_dict_validates_against_schema(temp_cache_dir, schema):
     assert set(snapshot.keys()) == expected_keys
 
     # Validate against schema
-    jsonschema.validate(instance=snapshot, schema=schema)
+    jsonschema.validate(instance=snapshot, schema=schema, format_checker=jsonschema.FormatChecker())
