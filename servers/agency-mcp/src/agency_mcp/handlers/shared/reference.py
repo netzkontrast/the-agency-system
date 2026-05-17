@@ -5,7 +5,7 @@ from typing import Any
 def _safe_resolve(base: Path, subpath: str) -> Path | None:
     try:
         resolved = (base / subpath).resolve()
-        if not str(resolved).startswith(str(base.resolve())):
+        if not resolved.is_relative_to(base.resolve()):
             return None
         return resolved
     except Exception:

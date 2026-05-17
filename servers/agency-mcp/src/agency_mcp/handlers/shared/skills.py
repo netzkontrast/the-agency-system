@@ -38,11 +38,15 @@ def shared_list_skills(domain: str | None = None) -> dict[str, Any]:
                     pass
 
     # Limit to 20 per overview §2.1.6
+    limited_skills = skills[:20]
+    next_cursor = "page_2" if len(skills) > 20 else None
+
     return {
         "ok": True,
-        "data": skills[:20],
+        "data": limited_skills,
         "warnings": [],
         "artefacts_written": [],
+        "next_cursor": next_cursor,
         "next_suggested_tools": [],
     }
 

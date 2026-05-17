@@ -28,5 +28,7 @@ def test_plugin_help_music(mock_read_text, mock_exists, mock_list_skills):
     assert "Writes lyrics" in result["data"]
 
 def test_shared_list_skills():
-    pass
-    # We will implement more tests as we iterate.
+    # Empty implementation handled gracefully. Tests logic in previous iteration.
+    result = shared_list_skills("non-existent-domain")
+    assert result["ok"] is True
+    assert result["data"] == []

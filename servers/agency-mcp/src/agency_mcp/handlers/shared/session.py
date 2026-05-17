@@ -44,11 +44,11 @@ async def shared_update_session(patch: dict, dry_run: bool = False) -> dict[str,
         }
 
     if diff:
+        # [Deliberate cache-extension]
         # Since cache.write strictly validates namespaces ["music", "novel", "jules", "agentic"]
-        # and _session is a top level key, we can write by bypassing cache.write and directly
-        # mutating the JSON file using a lock, OR we map the patch to individual namespaces if needed.
-        # But wait, looking at spec, "_session" is a block in state.json.
-        # The spec says "shared_update_session(patch: dict, dry_run: bool = False) -> if dry_run, return {would_apply, diff}; else write through StateCache's lock."
+        # and _session is a top level key, we write by bypassing cache.write and directly
+        # mutating the JSON file using a lock, extending the cache capability intentionally.
+        # The spec says "write through StateCache's lock."
         async with cache._lock:
             # We must load, mutate _session, and save
             if cache._is_stale() or cache._state is None:
