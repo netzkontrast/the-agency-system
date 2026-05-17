@@ -38,7 +38,7 @@ wave: B
 
 ## Why
 
-token-optimizer ships **sixteen CLI handlers** that intercept Bash invocations at the PreToolUse layer and rewrite the **output** before the model sees it: a 60-file `ls -la` truncates to 50, a 564-token pytest summary becomes 115 tokens, full git logs collapse to the diff-only view, lint runs trim to error lines. Their measured impact: **~10% of total session input tokens**. Specs 103 (view-projection) and 108-110 (context-mode) handle MCP tool outputs, but the built-in `Bash` tool — heavily used by our music + jules workflows for git/pytest/rg/ls — is uncompressed today. This spec ports the algorithm: a `PostToolUse` hook for `Bash` runs the raw output through a command-aware compressor (dispatched by `shlex.split(input.command)[0]`), preserving credentials verbatim and never running with `shell=True`.
+token-optimizer ships **sixteen CLI handlers** that intercept Bash invocations at the PreToolUse layer and rewrite the **output** before the model sees it: a 60-file `ls -la` truncates to 50, a 564-token pytest summary becomes 115 tokens, full git logs collapse to the diff-only view, lint runs trim to error lines. Their measured impact: **~10% of total session input tokens**. Specs 103 (view-projection) and 108/111/112/113 (context-mode + manifest + anchor triad + cache) handle MCP tool outputs, but the built-in `Bash` tool — heavily used by our music + jules workflows for git/pytest/rg/ls — is uncompressed today. This spec ports the algorithm: a `PostToolUse` hook for `Bash` runs the raw output through a command-aware compressor (dispatched by `shlex.split(input.command)[0]`), preserving credentials verbatim and never running with `shell=True`.
 
 ## Done When
 
@@ -69,7 +69,7 @@ License: PolyForm Noncommercial 1.0.0. We re-implement each handler idiomaticall
   - `servers/agency-mcp/src/agency_mcp/hooks/bash_compress_hook.py` — PostToolUse hook.
   - `tests/unit/codemode/bash_compress/test_*.py` (one per handler + dispatch) and `tests/integration/test_bash_compress_pretooluse.py`.
 - **Modify**:
-  - `hooks/hooks.json` — register the hook on `PostToolUse` for `Bash`. Order is independent of Spec 111/112's PreToolUse hooks.
+  - `hooks/hooks.json` — register the hook on `PostToolUse` for `Bash`. Order is independent of Spec 114/115's PreToolUse hooks.
 - **Move / Delete**: none.
 
 ## Approach
@@ -88,7 +88,7 @@ License: PolyForm Noncommercial 1.0.0. We re-implement each handler idiomaticall
 ## Acceptance (Gherkin)
 
 ```gherkin
-# anchor: 113.1
+# anchor: 116.1
 Scenario: pytest output compresses below 200 bytes while preserving failures
   Given a captured pytest stdout fixture of 564+ bytes with 1 PASSED, 1 FAILED, 1 ERROR line
   When bash_compress.dispatch.compress("pytest", stdout, stderr="") is called
@@ -96,20 +96,20 @@ Scenario: pytest output compresses below 200 bytes while preserving failures
   And every original line matching ^(FAILED|ERROR)\s appears verbatim in result.stdout
   And result.fired == "pytest"
 
-# anchor: 113.2
+# anchor: 116.2
 Scenario: Credentials are preserved verbatim through compression
   Given a Bash output containing the literal "gh_pat_AbCdEf1234567890..." in a curl trace
   When the output passes through bash_compress.dispatch.compress(...)
   Then the original credential token appears verbatim in result.stdout (possibly on a "[preserved credential]" line)
 
-# anchor: 113.3
+# anchor: 116.3
 Scenario: Unrecognised command bypasses compression
   Given a Bash command "esoteric_tool --do --stuff" with 100 lines of output
   When bash_compress.dispatch.compress(...) is called
   Then result.fired is None
   And result.stdout equals the input stdout byte-for-byte
 
-# anchor: 113.4
+# anchor: 116.4
 Scenario: Output above 2,000-line cap bypasses compression with marker
   Given a Bash command "rg pattern src/" returning 2,500 lines of output
   When bash_compress.dispatch.compress(...) is called

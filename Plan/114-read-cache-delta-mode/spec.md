@@ -78,7 +78,7 @@ Read-only reference. License is **PolyForm Noncommercial 1.0.0** — we do NOT c
 ## Acceptance (Gherkin)
 
 ```gherkin
-# anchor: 111.1
+# anchor: 114.1
 Scenario: First read of a large file populates the cache
   Given a 2,000-token Python file at /tmp/foo.py
   And the read-cache is empty
@@ -86,7 +86,7 @@ Scenario: First read of a large file populates the cache
   Then the PostToolUse hook stores (path, mtime, size, content) in the cache
   And the in-memory cache size increases by exactly 1
 
-# anchor: 111.2
+# anchor: 114.2
 Scenario: Re-read returns a unified diff via additionalContext
   Given /tmp/foo.py was Read once and cached
   And /tmp/foo.py has been edited (one line changed)
@@ -95,14 +95,14 @@ Scenario: Re-read returns a unified diff via additionalContext
   And the diff body summary matches the regex ^\+\d+/-\d+$
   And the body byte length is ≤ 10% of the file's full byte length
 
-# anchor: 111.3
+# anchor: 114.3
 Scenario: Files below the minimum threshold bypass the cache
   Given a 50-line shell script (≤1,000 tokens) at /tmp/run.sh
   When the agent Reads /tmp/run.sh twice
   Then neither read produces additionalContext from the read-cache hook
   And the cache contains no entry for /tmp/run.sh
 
-# anchor: 111.4
+# anchor: 114.4
 Scenario: Mtime change invalidates the cache
   Given /tmp/foo.py is cached with mtime T0
   And /tmp/foo.py has been touched (mtime advances to T1)
@@ -117,7 +117,7 @@ Scenario: Mtime change invalidates the cache
 - Cross-session persistence beyond `~/.cache/agency-system/read-cache/` — no SQLite trends.db.
 - Caching of MCP tool outputs (Specs 108/110 own that axis via context-mode).
 - Cache prefix manipulation or interaction with the cache breakpoint (Spec 107 owns that).
-- AST/skeleton extraction for very large files (Spec 112 covers that — distinct path).
+- AST/skeleton extraction for very large files (Spec 115 covers that — distinct path).
 - License flag: token-optimizer is PolyForm Noncommercial 1.0.0. We re-implement the algorithm with stdlib `difflib`; we do NOT copy code. If we ever vendor the file verbatim, this clause MUST be revisited.
 
 ## References

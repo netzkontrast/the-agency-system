@@ -32,7 +32,7 @@ wave: B
 token-optimizer's most general-purpose compression mechanism: **any tool output above 4 KB is automatically archived to disk; the conversation sees a short preview plus an inline hint `[Full result archived (12,400 chars). Use 'expand abc123' to retrieve.]`**. The model retrieves the full body on demand via an `expand <id>` command. This is **complementary** to:
 - Spec 106 (per-tool subagent wrappers for GitHub) — those collapse fixed-shape PR/issue calls; this archives **anything**.
 - Spec 108 (context-mode) — that re-routes large tool outputs into an FTS5 index for semantic search; archive is a simpler "store-and-pointer" pattern that doesn't require the context-mode plugin.
-- Spec 113 (bash compression) — that rewrites bash output in-place; archive kicks in when the rewritten output is still >4 KB.
+- Spec 116 (bash compression) — that rewrites bash output in-place; archive kicks in when the rewritten output is still >4 KB.
 
 The result: a session-wide guardrail that nothing exceeds 4 KB in the model's context unless the model explicitly asks for it.
 
@@ -40,7 +40,7 @@ The result: a session-wide guardrail that nothing exceeds 4 KB in the model's co
 
 - [ ] `agency_mcp.lib.codemode.result_archive.ResultArchive` exposes `store(payload: str, meta: dict) -> str` (returns short archive id, e.g. 8-char base32 like `abc12345`) and `load(archive_id: str) -> ArchiveEntry | None`.
 - [ ] Archive entries persist at `~/.cache/agency-system/archive/<YYYY>/<MM>/<DD>/<id>.json` with `{id, created_at, meta: {tool_name, session_id, original_bytes}, payload}`.
-- [ ] Threshold: ≥ 4 KB **after** Spec 113's bash-compress and Spec 106's subagent wrappers have had their chance. The archive hook MUST run **last** in the PostToolUse chain.
+- [ ] Threshold: ≥ 4 KB **after** Spec 116's bash-compress and Spec 106's subagent wrappers have had their chance. The archive hook MUST run **last** in the PostToolUse chain.
 - [ ] Inline-hint replacement format mirrors token-optimizer exactly: the original `tool_result` payload is replaced with `<preview first 200 chars>...\n\n[Full result archived ({original_bytes} chars). Use 'expand {id}' to retrieve.]`.
 - [ ] `shared_archive_expand(archive_id: str) -> ArchiveEntry` MCP tool returns the stored payload. Snake_case, ≤120-char docstring, `tags={"domain:shared"}`. The model uses this when it needs the body.
 - [ ] `shared_archive_list(session_id: str | None = None, limit: int = 20) -> list[ArchiveStub]` lists recent archives (`limit` capped at 100). Always-eager (not deferred — the model needs to discover ids).
@@ -69,7 +69,7 @@ License: PolyForm Noncommercial 1.0.0. Read-only reference for the archive id fo
 
 ## Approach
 
-1. **Gate 1 — Confidence.** Verify Specs 008 + 100 + 108 + 113 have shipped. Confirm `hooks.json` already has a PostToolUse chain where order is honoured (it is — hooks fire in file order per Anthropic's hook contract). Note the 4 KB threshold from token-optimizer README. Cite SHA.
+1. **Gate 1 — Confidence.** Verify Specs 008 + 100 + 108 + 116 have shipped. Confirm `hooks.json` already has a PostToolUse chain where order is honoured (it is — hooks fire in file order per Anthropic's hook contract). Note the 4 KB threshold from token-optimizer README. Cite SHA.
 2. **Implement `ResultArchive`.** id generation: `base32(secrets.token_bytes(5))[:8].lower()` (40-bit space, ~10¹² collisions at session scale). On `store(payload, meta)`: ensure date-sharded directory exists, write `{id, created_at: ISO-8601, meta, payload}` as JSON, return id. On `load(id)`: glob `~/.cache/agency-system/archive/**/<id>.json`, return parsed entry or `None`.
 3. **Implement the two MCP tools.** `shared_archive_expand(archive_id)` validates id format `^[a-z0-9]{8}$`, calls `ResultArchive.load`, returns the `ArchiveEntry` dict. `shared_archive_list(session_id, limit)` scans the last 7 days of archive shards, filters by session_id if provided, sorts by `created_at` desc, returns ≤ `limit` stubs (`{id, created_at, tool_name, original_bytes}`). Cap `limit` at 100. Both tools register with `tags={"domain:shared"}` and **opt out of Spec 104's hidden-by-default** (declared in `manifest.json:always_eager` so the model can discover them).
 4. **Author `archive_hook.py`.** Read PostToolUse JSON event from stdin. Compute `payload_bytes`. If < 4,096 → exit 0 silently. Else: generate id, call `ResultArchive.store(payload, meta)`, emit `updatedOutput` JSON on stdout replacing the original tool result with the preview-plus-hint format. The hint format string MUST exactly equal: `f"{payload[:200]}...\n\n[Full result archived ({payload_bytes} chars). Use 'expand {id}' to retrieve.]"`.
@@ -83,7 +83,7 @@ License: PolyForm Noncommercial 1.0.0. Read-only reference for the archive id fo
 ## Acceptance (Gherkin)
 
 ```gherkin
-# anchor: 114.1
+# anchor: 117.1
 Scenario: Tool output above 4 KB is archived and replaced with a hint
   Given a PostToolUse event where the tool result payload is 12,000 chars
   And the tool_name is not in ARCHIVE_SKIP_TOOLS
@@ -93,14 +93,14 @@ Scenario: Tool output above 4 KB is archived and replaced with a hint
   And the payload contains the exact substring "[Full result archived (12000 chars). Use 'expand"
   And the payload contains an 8-char lowercase alphanumeric archive id
 
-# anchor: 114.2
+# anchor: 117.2
 Scenario: Small outputs pass through unchanged
   Given a PostToolUse event where the tool result is 3,000 chars
   When the archive_hook processes the event
   Then the hook exits 0 with no stdout
   And ResultArchive.store(...) is NOT called
 
-# anchor: 114.3
+# anchor: 117.3
 Scenario: shared_archive_expand round-trips the original payload
   Given the model has invoked a tool that produced a 50,000-char output
   And the archive_hook stored it as id "abc12345"
@@ -108,7 +108,7 @@ Scenario: shared_archive_expand round-trips the original payload
   Then the tool returns ArchiveEntry with payload of length 50,000
   And the payload equals the original byte-for-byte
 
-# anchor: 114.4
+# anchor: 117.4
 Scenario: Skip-list tools bypass archiving
   Given a PostToolUse event for tool_name="shared_archive_expand" with a 50,000-char payload
   When the archive_hook processes the event
@@ -132,5 +132,5 @@ Scenario: Skip-list tools bypass archiving
 - Spec dependency: `Plan/008-codemode-registry/spec.md`
 - Spec dependency: `Plan/100-session-log-mcp/spec.md` (archive can log a session event on store/expand)
 - Spec dependency: `Plan/108-context-mode-integration/spec.md` (PostToolUse chain conventions)
-- Spec sibling: `Plan/116-bash-output-compression/spec.md` (runs before archive in PostToolUse chain)
+- Spec sibling: `Plan/116-bash-output-compression/spec.md` (runs before this spec in PostToolUse chain)
 - Spec sibling: `Plan/106-github-mcp-summary-wrappers/spec.md` (per-tool subagent wrappers; archive is the general fallback)
