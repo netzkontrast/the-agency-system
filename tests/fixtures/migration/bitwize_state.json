@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "generated_at": "2024-05-17T18:05:00+00:00",
+  "config": {
+    "content_root": "/home/user/music",
+    "artist_name": "Test Artist"
+  },
+  "albums": {
+    "Rock": {
+      "rock-album-1": {
+        "slug": "rock-album-1",
+        "title": "Rock Album 1",
+        "genre": "Rock",
+        "tracks": {
+          "01-intro": {
+            "slug": "01-intro",
+            "title": "Intro",
+            "status": "mastered"
+          },
+          "02-main": {
+            "slug": "02-main",
+            "title": "Main Track",
+            "status": "idea"
+          }
+        }
+      }
+    },
+    "Pop": {
+      "pop-album-1": {
+        "slug": "pop-album-1",
+        "title": "Pop Album 1",
+        "genre": "Pop",
+        "tracks": {
+          "01-hit": {
+            "slug": "01-hit",
+            "title": "Hit Song",
+            "status": "generating"
+          }
+        }
+      }
+    }
+  },
+  "ideas": {},
+  "skills": {},
+  "session": {}
+}

@@ -1,0 +1,6 @@
+# sample bitwize config
+content:
+  root: "/home/user/music"
+  artist: "Test Artist"
+suno:
+  cookie: "test_cookie"
