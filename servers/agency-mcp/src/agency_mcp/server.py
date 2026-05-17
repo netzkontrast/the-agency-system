@@ -23,6 +23,12 @@ def register_all(mcp: FastMCP) -> None:
     """
     register_health_tools(mcp)
 
+    from pathlib import Path
+    from agency_mcp.handlers.music import _shared
+    from agency_mcp.state.cache import StateCache
+    _shared.cache = StateCache("bitwize-music", fallback_dir=Path.home() / ".bitwize-music")
+    _shared.PLUGIN_ROOT = Path(__file__).resolve().parents[3]
+
     from agency_mcp.handlers.music import register_music_handlers
     register_music_handlers(mcp)
 

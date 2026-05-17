@@ -25,6 +25,8 @@ affects:
 estimated_jules_sessions: 2
 domain: novel
 wave: B
+deps:
+  - jsonschema>=4.21.0
 ---
 
 > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1→4 in order:

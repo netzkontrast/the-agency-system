@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from agency_mcp.handlers.music import _shared
-from agency_mcp.handlers.music._atomic import atomic_write_text
+from agency_mcp.handlers.music._atomic_write import atomic_write_text
 from agency_mcp.handlers.music._shared import (
     _CODE_BLOCK_SECTIONS,
     _MARKDOWN_LINK_RE,

@@ -12,7 +12,7 @@ def test_all_modules_register_at_least_one_tool():
     import pkgutil
     import agency_mcp.handlers.music as music_handlers
 
-    modules = [name for _, name, _ in pkgutil.iter_modules(music_handlers.__path__) if not name.startswith("_") and name != "status"]
+    modules = [name for _, name, _ in pkgutil.iter_modules(music_handlers.__path__) if not name.startswith("_")]
 
     # We should have exactly 16 modules
     expected_modules = {
