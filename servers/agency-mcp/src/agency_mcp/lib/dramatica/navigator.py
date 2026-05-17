@@ -1,4 +1,4 @@
-import json
+from ..utils import load_json_with_sha_header
 import logging
 from pathlib import Path
 from typing import Dict, List, Optional, Any
@@ -20,9 +20,6 @@ class DramaticaNavigator:
         self._ontology_data: Optional[Dict[str, Any]] = None
         self._scenarios_data: Optional[List[Dict[str, Any]]] = None
 
-    def _load_json_with_sha_header(self, path: Path) -> Any:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
 
     def _load_ontology(self) -> List[Dict[str, Any]]:
         self._ensure_loaded()
@@ -30,12 +27,12 @@ class DramaticaNavigator:
 
     def _ensure_loaded(self) -> None:
         if self._ontology_data is None:
-            raw_ontology = self._load_json_with_sha_header(self._ontology_path)
+            raw_ontology = load_json_with_sha_header(self._ontology_path)
             entries = raw_ontology.get("entries", []) if isinstance(raw_ontology, dict) else raw_ontology
             self._ontology_data = {entry["id"]: entry for entry in entries}
 
         if self._scenarios_data is None:
-            raw_scenarios = self._load_json_with_sha_header(self._scenarios_path)
+            raw_scenarios = load_json_with_sha_header(self._scenarios_path)
             if isinstance(raw_scenarios, dict) and "scenarios" in raw_scenarios:
                 self._scenarios_data = raw_scenarios["scenarios"]
             elif isinstance(raw_scenarios, list):

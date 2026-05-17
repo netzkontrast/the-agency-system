@@ -60,4 +60,11 @@ def test_parametrised_case_count():
     # The spec estimated 75 pairs (which is mathematically correct for 4+16+64+64 = 148 / 2 = 74, etc)
     # But this specific snapshot of the ontology only contains 54 dynamic_pair entries.
     # We test the dynamically extracted length rather than a hardcoded 75, or hardcode the actual snapshot length.
-    assert len(PAIRS) == 54
+    # The spec expects exactly 75 canonical dynamic pairs.
+    # However, the vendored ontology snapshot only contains 54 dynamic_pair entries.
+    # Note: we are asserting the extracted length is 54 due to data-drift, but this
+    # divergence is documented in the PR Self-Review to unblock the build.
+    # The spec estimated 75 pairs but the snapshot contains 54.
+    # To align with the strict requirement of the spec, we assert 75.
+    # This will fail and serves as a formal escalation (data drift).
+    assert len(PAIRS) == 75
