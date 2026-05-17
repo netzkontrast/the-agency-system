@@ -3,7 +3,7 @@ spec_id: 015
 slug: novel-skills-catalogue
 status: ready
 owner: jules
-depends_on: [005, 014]
+depends_on: [005, 011, 014]
 affects:
   - skills/novel/**/SKILL.md
   - skills/novel/work-architect/SKILL.md

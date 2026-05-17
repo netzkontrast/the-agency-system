@@ -3,7 +3,7 @@ spec_id: 020
 slug: bitwize-deprecation-and-docs
 status: ready
 owner: jules
-depends_on: [005, 007, 015, 016, 019]
+depends_on: [005, 007, 015, 016, 017, 018, 019]
 affects:
   - CLAUDE.md
   - README.md

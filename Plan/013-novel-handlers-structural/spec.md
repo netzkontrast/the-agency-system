@@ -5,6 +5,7 @@ status: ready
 owner: jules
 depends_on: [011, 012]
 affects:
+  - servers/agency-mcp/pyproject.toml
   - servers/agency-mcp/src/agency_mcp/handlers/novel/__init__.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/structure.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/characters.py

@@ -3,8 +3,9 @@ spec_id: 021
 slug: novel-prompt-builder-family
 status: ready
 owner: jules
-depends_on: [013, 015]
+depends_on: [011, 012, 013, 015]
 affects:
+  - servers/agency-mcp/pyproject.toml
   - servers/agency-mcp/src/agency_mcp/handlers/novel/prompts.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/__init__.py
   - skills/novel/prompts/world-prompt-builder/SKILL.md

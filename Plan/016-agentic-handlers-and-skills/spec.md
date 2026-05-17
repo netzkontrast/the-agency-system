@@ -3,7 +3,7 @@ spec_id: 016
 slug: agentic-handlers-and-skills
 status: ready
 owner: jules
-depends_on: [009]
+depends_on: [002, 003, 008, 009]
 affects:
   - servers/agency-mcp/src/agency_mcp/handlers/agentic/__init__.py
   - servers/agency-mcp/src/agency_mcp/handlers/agentic/specs.py
