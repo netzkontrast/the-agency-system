@@ -3,7 +3,7 @@ spec_id: 004
 slug: music-handlers-port
 status: ready
 owner: jules
-depends_on: [003]
+depends_on: [003, 004a]
 affects:
   - servers/agency-mcp/src/agency_mcp/handlers/music/__init__.py
   - servers/agency-mcp/src/agency_mcp/handlers/music/core.py
@@ -79,7 +79,13 @@ If clone fails: open draft PR `[BLOCKED: verify-source-url]` per `Plan/SOURCES.m
 
 1. **Gate 1 — Confidence.** Confirm no `handlers/music/` modules already exist (`rg -l 'domain:music' servers/`). Verify `fastmcp[code-mode]>=3.1.0` is in `servers/agency-mcp/pyproject.toml` (Spec 001). Verify `agency_mcp.state.cache.StateCache` exists (Spec 003). Cite the commands in the PR Confidence table.
 2. **Clone source.** Run the clone command above. `ls ~/work/vendor/bitwize-music/servers/bitwize-music-server/handlers/` should list 14 `.py` files. Read each to enumerate its tool functions and dependencies on `lib/audio_processing/`, `state/cache.py`, and `lib/codemode/`.
-3. **Port skeleton.** For each source module, create the matching `handlers/music/<module>.py`. Copy the function bodies verbatim. Rewrite imports: `from bitwize_music.lib.audio_processing` → `from agency_mcp.lib.audio_processing`; `from bitwize_music.state.cache` → `from agency_mcp.state.cache`; `from bitwize_music.lib.codemode` → `from agency_mcp.lib.codemode`.
+3. **Port skeleton.** For each source module, create the matching `handlers/music/<module>.py`. Copy the function bodies verbatim. Rewrite imports per these rules (spec 004a has already ported the underlying packages into `agency_mcp/tools/*`, so the rewrite targets are now real paths on this branch):
+   - `from tools.mastering.X` → `from agency_mcp.tools.mastering.X`
+   - `from tools.shared.X` → `from agency_mcp.tools.shared.X`
+   - `from tools.state.X` → `from agency_mcp.tools.state.X`
+   - `from tools.cloud` → `from agency_mcp.tools.cloud`
+   - `from tools.sheet-music` / dynamic `importlib.import_module("tools.sheet-music")` → `agency_mcp.tools.sheet_music` (hyphen → underscore rename per spec 004a §References).
+   - `from bitwize_music.state.cache` → `from agency_mcp.state.cache` (spec 003's namespaced cache).
 4. **Rename tools.** Every `@mcp.tool()`-decorated function gets renamed to `music_<verb>_<object>`. Examples: `find_album` → `music_find_album`, `create_track` → `music_create_track`, `master_album` → `music_master_album`, `analyze_rhyme_scheme` → `music_analyze_rhyme_scheme`, `db_search_tweets` → `music_db_search_tweets`. Keep the docstring ≤120 chars (overview §2.1 #2). Add `tags={"domain:music"}` to every `@mcp.tool(...)` decoration.
 5. **Split modules where source mixes domains.** Source `core.py` mixes album + track operations; if so split as listed in `affects:` (`album_ops.py`, `core.py` for tracks). Source `tools_audio.py` → `audio.py`. Source `tools_mixing.py` → `mixing.py`. Match the 16-module layout listed in `affects:` exactly.
 6. **Wire registration.** Each module exposes `def register(mcp): ...` that does the `@mcp.tool` registrations. `handlers/music/__init__.py` defines `register_music_handlers(mcp)` that imports all 16 modules and calls each `register(mcp)` in deterministic order.
