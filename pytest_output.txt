@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /app
+plugins: anyio-4.13.0
+collected 2 items
+
+tests/unit/jules/test_handlers_smoke.py .                                [ 50%]
+tests/unit/jules/test_watcher_quota.py .                                 [100%]
+
+============================== 2 passed in 4.74s ===============================
