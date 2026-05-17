@@ -23,6 +23,9 @@ def register_all(mcp: FastMCP) -> None:
     """
     register_health_tools(mcp)
 
+    from agency_mcp.handlers.shared import register_shared_handlers
+    register_shared_handlers(mcp)
+
 
 def create_mcp() -> FastMCP:
     mcp = FastMCP(
