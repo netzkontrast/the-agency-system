@@ -1,0 +1,13 @@
+{
+  "name": "agency-system-marketplace",
+  "plugins": [
+    {
+      "name": "agency-system",
+      "owner": "netzkontrast",
+      "source": {
+        "type": "github",
+        "repository": "netzkontrast/the-agency-system"
+      }
+    }
+  ]
+}

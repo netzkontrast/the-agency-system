@@ -32,6 +32,19 @@ trip-hop, and ambient territory.
 - **Git LFS required** for `audio/` and `documents/`. Run
   `git lfs install` once per machine.
 
+## Plugin install
+
+For local development:
+```bash
+claude --plugin-dir .
+```
+
+To install from the marketplace:
+```bash
+/plugin install agency-system@netzkontrast
+```
+<!-- Spec: Plan/002-manifest-and-marketplace/spec.md -->
+
 ## Working on an album
 
 Inside any album folder you'll find a `README.md` with the locked

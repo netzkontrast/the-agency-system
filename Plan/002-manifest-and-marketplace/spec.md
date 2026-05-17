@@ -28,7 +28,7 @@ Claude Code resolves a plugin by reading `.claude-plugin/plugin.json` at the rep
 
 ## Done When
 
-- [ ] `.claude-plugin/plugin.json` exists with required keys `name: "agency-system"`, `version: "0.1.0"`, `description`, `author`, `homepage`, `mcpServers` referencing the root `.mcp.json` entry from Spec 001.
+- [ ] `.claude-plugin/plugin.json` exists with required keys `name: "agency-system"`, `version: "0.1.0"`, `description`, `author`, `homepage`. Do NOT include an `mcpServers` field — Claude Code auto-discovers the sibling root-level `.mcp.json` created in Spec 001 (per the plugins-reference docs, MCP servers live in EITHER `.mcp.json` at plugin root OR inline in `plugin.json`, not both).
 - [ ] Manifest validates against the Claude Code plugin schema (run `python -m json.tool .claude-plugin/plugin.json` exit 0 + smoke test below).
 - [ ] `.claude-plugin/marketplace.json` exists as a single-plugin shape per Claude Code Plugins Reference.
 - [ ] `jules-plugin/.claude-plugin/plugin.json` has `"deprecated": true` and a `description` suffix `"DEPRECATED — superseded by agency-system at repo root."`.
@@ -54,11 +54,11 @@ None. Read Claude Code documentation via WebFetch only — see References.
 
 1. WebFetch https://code.claude.com/docs/en/plugins-reference and confirm the current required-keys list and `marketplace.json` shape (single-plugin form). Record the doc revision in the PR Confidence block.
 2. Read the existing `jules-plugin/.claude-plugin/plugin.json` to mirror author/license fields and avoid drift from the project's known-good metadata.
-3. Author `.claude-plugin/plugin.json` per §2.3 of `Plan/000-overview.md`: `name: "agency-system"`, `version: "0.1.0"`, `description`, `author`, `homepage: "https://github.com/netzkontrast/the-agency-system"`, `mcpServers.agency-system` pointing at the entry created in Spec 001 (`${CLAUDE_PLUGIN_ROOT}/servers/agency-mcp/run.py`). Reference `.mcp.json` only — do not duplicate the command line.
+3. Author `.claude-plugin/plugin.json` per §2.3 of `Plan/000-overview.md`: `name: "agency-system"`, `version: "0.1.0"`, `description`, `author`, `homepage: "https://github.com/netzkontrast/the-agency-system"`. Do NOT add `mcpServers` here — the sibling `.mcp.json` at repo root (created in Spec 001) is the authoritative MCP server declaration and Claude Code auto-discovers it. The plugins-reference docs explicitly list `.mcp.json` and inline `mcpServers` as alternatives, not both required.
 4. Author `.claude-plugin/marketplace.json` as a single-plugin marketplace descriptor (name, owner, plugin entry pointing to this repo) so the human can `/plugin install <url>` without cloning first.
 5. Edit `jules-plugin/.claude-plugin/plugin.json`: add top-level `"deprecated": true`, append `" — DEPRECATED: superseded by agency-system at repo root; will be removed in Spec 020."` to its `description`. Leave every other field untouched — Spec 020 deletes the file outright.
 6. Edit `README.md`: add a `## Plugin install` H2 with two fenced blocks — `claude --plugin-dir .` for local dev and `/plugin install agency-system@netzkontrast` for marketplace. Cite spec 002 by path in a footer comment.
-7. RED: write `tests/smoke/test_manifest.py` with `test_root_manifest_has_required_keys`, `test_marketplace_descriptor_is_single_plugin_shape`, and `test_jules_plugin_manifest_is_deprecated`. Watch them fail before edits, then green.
+7. RED: write `tests/smoke/test_manifest.py` with `test_root_manifest_has_required_keys`, `test_root_manifest_omits_mcpservers` (asserts `mcpServers` is NOT in `plugin.json` — the field belongs in the sibling `.mcp.json` only), `test_marketplace_descriptor_is_single_plugin_shape`, and `test_jules_plugin_manifest_is_deprecated`. Watch them fail before edits, then green.
 8. Verify the boot path end-to-end manually: from a clean shell run `claude --plugin-dir .` then `/plugin list` — agency-system v0.1.0 must appear. Paste the listing under `## Evidence`.
 
 ## Acceptance (Gherkin)

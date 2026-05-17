@@ -1,8 +1,9 @@
 {
   "name": "jules-orchestrator",
   "version": "1.0.0",
-  "description": "Complete suite for orchestrating Jules asynchronous coding sessions.",
+  "description": "Complete suite for orchestrating Jules asynchronous coding sessions. — DEPRECATED: superseded by agency-system at repo root; will be removed in Spec 020.",
   "author": {
     "name": "The Agency System"
-  }
+  },
+  "deprecated": true
 }

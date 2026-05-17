@@ -1,0 +1,9 @@
+{
+  "name": "agency-system",
+  "version": "0.1.0",
+  "description": "the-agency-system music projects and agency-mcp unified server",
+  "author": {
+    "name": "The Agency System"
+  },
+  "homepage": "https://github.com/netzkontrast/the-agency-system"
+}
