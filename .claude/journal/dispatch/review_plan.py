@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fetch a Jules session's plan and dump as compact markdown for review."""
 import importlib.util, json, sys
-spec = importlib.util.spec_from_file_location("jm", ".claude/mcp/jules-mcp/server.py")
+spec = importlib.util.spec_from_file_location("jm", "jules-plugin/mcp-server/src/jules_mcp/server.py")
 mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 
 if len(sys.argv) < 2:
