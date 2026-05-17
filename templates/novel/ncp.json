@@ -1,0 +1,11 @@
+{
+  "storyform": null,
+  "players": [],
+  "scenes": [],
+  "metadata": {
+    "author_slug": "{{author_slug}}",
+    "work_slug": "{{work_slug}}",
+    "genre_slug": "{{genre_slug}}",
+    "created": "{{created}}"
+  }
+}
