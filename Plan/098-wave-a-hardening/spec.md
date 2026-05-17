@@ -102,7 +102,7 @@ This spec is the consolidated cleanup pass. It does NOT add features; it makes t
    - At top of each file:
      ```python
      from pathlib import Path
-     _REPO_ROOT = Path(__file__).resolve().parents[5]  # tools/X/file.py → repo root (verify the parent count!)
+     _REPO_ROOT = Path(__file__).resolve().parents[6]  # tools/X/file.py → repo root (0=file 1=X 2=tools 3=agency_mcp 4=src 5=agency-mcp 6=servers parent = repo)
      import sys
      if str(_REPO_ROOT / "servers" / "agency-mcp" / "src") not in sys.path:
          sys.path.insert(0, str(_REPO_ROOT / "servers" / "agency-mcp" / "src"))
