@@ -9,10 +9,12 @@ affects:
   - servers/agency-mcp/src/agency_mcp/handlers/novel/revision.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/promo.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/__init__.py
+  - servers/agency-mcp/src/agency_mcp/handlers/novel/content.py  # spec 011's chapter handler; spec 014 injects _chapter_create_guard at top of novel_create_chapter
   - tests/unit/novel/test_gates.py
   - tests/unit/novel/test_revision.py
   - tests/unit/novel/test_promo.py
-source_repos:
+  - tests/fixtures/novel/          # ENTIRE SUBTREE — gate test fixtures (clean_work/, no_dramatica/, partial_ncp/, etc.)
+source-repos:
   - bitwize-music @ v0.91.0
 estimated_jules_sessions: 1
 domain: novel

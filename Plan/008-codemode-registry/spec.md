@@ -3,7 +3,7 @@ spec_id: 008
 slug: codemode-registry
 status: ready
 owner: jules
-depends_on: [003, 004]
+depends_on: [003, 004, 006]
 affects:
   - servers/agency-mcp/src/agency_mcp/lib/codemode/__init__.py
   - servers/agency-mcp/src/agency_mcp/lib/codemode/registry.py
@@ -14,7 +14,7 @@ affects:
   - tests/unit/codemode/test_registry.py
   - tests/integration/__init__.py
   - tests/integration/test_boot_token_budget.py
-source_repos: []
+source-repos: []
 estimated_jules_sessions: 1
 domain: cross
 wave: A

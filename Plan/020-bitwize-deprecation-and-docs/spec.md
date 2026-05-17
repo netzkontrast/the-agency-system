@@ -12,11 +12,12 @@ affects:
   - docs/domain/novel.md
   - docs/domain/jules.md
   - docs/domain/agentic.md
+  - REFACTOR_DESIGN.md                    # SOURCE of git mv to docs/architecture/REFACTOR_DESIGN.md
   - docs/architecture/REFACTOR_DESIGN.md
   - .claude-plugin/plugin.json
   - jules-plugin/
   - tests/smoke/test_doctrine_and_version.py
-source_repos:
+source-repos:
   - bitwize-music @ v0.91.0
   - agency @ claude/agency-plugin-refactor-PgMQ4
 estimated_jules_sessions: 1

@@ -14,7 +14,7 @@ affects:
   - tests/integration/test_migration.py
   - tests/fixtures/migration/bitwize_state.json
   - tests/fixtures/migration/bitwize_config.yaml
-source_repos:
+source-repos:
   - bitwize-music @ v0.91.0
 estimated_jules_sessions: 1
 domain: migration

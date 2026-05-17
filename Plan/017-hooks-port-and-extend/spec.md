@@ -20,7 +20,7 @@ affects:
   - tests/fixtures/hooks/chapters/malformed_chapter.md
   - tests/fixtures/hooks/state_versions/state_current.json
   - tests/fixtures/hooks/state_versions/state_drifted.json
-source_repos:
+source-repos:
   - bitwize-music @ v0.91.0
 estimated_jules_sessions: 1
 domain: cross

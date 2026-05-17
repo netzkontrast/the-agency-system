@@ -25,7 +25,7 @@ affects:
   - servers/agency-mcp/src/agency_mcp/server.py
   - tests/unit/music/__init__.py
   - tests/unit/music/test_handlers_smoke.py
-source_repos:
+source-repos:
   - bitwize-music @ v0.91.0
 estimated_jules_sessions: 2
 domain: music

@@ -15,7 +15,7 @@ affects:
   - tests/unit/overrides/test_overrides_present.py
   - tests/unit/overrides/test_load_override.py
   - tests/unit/overrides/test_config_template.py
-source_repos:
+source-repos:
   - bitwize-music @ v0.91.0
 estimated_jules_sessions: 1
 domain: migration

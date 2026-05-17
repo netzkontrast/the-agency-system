@@ -23,7 +23,7 @@ affects:
   - tests/unit/agentic/test_return_plan.py
   - tests/unit/agentic/test_skills_present.py
   - Plan/016-agentic-handlers-and-skills/references/agentic-tool-catalog.md
-source_repos:
+source-repos:
   - agency @ claude/agency-plugin-refactor-PgMQ4
   - superpowers-marketplace @ main
 estimated_jules_sessions: 2

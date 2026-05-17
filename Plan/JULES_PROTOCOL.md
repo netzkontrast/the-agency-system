@@ -113,7 +113,7 @@ The work in this repo produces a single Claude Code plugin. Read these before an
 
 Key conventions for the unified plugin:
 
-- `.claude-plugin/plugin.json` is the only file under `.claude-plugin/`; everything else lives at repo root.
+- `.claude-plugin/` contains exactly two files: `plugin.json` (always) and `marketplace.json` (when this repo also acts as a single-plugin marketplace, per Spec 002). Nothing else lives there — no skills, no commands, no `.gitkeep`.
 - Skills auto-namespace: a folder `skills/novel/world-prompt-builder/SKILL.md` becomes `/agency-system:world-prompt-builder` in the slash menu (the `skills/novel/` subdir is organisational, not part of the slash name — unless the plugin opts into nested namespacing in the manifest).
 - MCP server is registered via `.mcp.json` at repo root; use `${CLAUDE_PLUGIN_ROOT}` for paths, never absolute.
 - Hooks (`hooks/hooks.json`) are synchronous in current Claude Code (the `async` flag is a future feature; do not rely on it).

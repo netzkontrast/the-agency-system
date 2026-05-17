@@ -16,7 +16,7 @@ affects:
   - tests/unit/jules/__init__.py
   - tests/unit/jules/test_handlers_smoke.py
   - tests/unit/jules/test_watcher_quota.py
-source_repos: []
+source-repos: []
 estimated_jules_sessions: 1
 domain: jules
 wave: A

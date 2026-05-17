@@ -12,8 +12,9 @@ affects:
   - skills/novel/ncp-author/SKILL.md
   - Plan/015-novel-skills-catalogue/references/parity-table.md
   - tools/skill_qc_lint.py
+  - tests/unit/skills/__init__.py
   - tests/unit/skills/test_novel_skill_catalogue.py
-source_repos:
+source-repos:
   - agency @ claude/agency-plugin-refactor-PgMQ4
 estimated_jules_sessions: 2
 domain: novel

@@ -19,8 +19,9 @@ affects:
   - tests/unit/novel/test_coherence.py
   - tests/unit/novel/test_structure.py
   - tests/unit/novel/test_prose_analysis.py
+  - tests/fixtures/novel/          # ENTIRE SUBTREE — coherence + structure test fixtures (good_work.ncp.json, broken_work_<check>.ncp.json, etc.)
   - Plan/013-novel-handlers-structural/references/dramatica-decidability.md
-source_repos:
+source-repos:
   - agency @ claude/agency-plugin-refactor-PgMQ4
 estimated_jules_sessions: 2
 domain: novel

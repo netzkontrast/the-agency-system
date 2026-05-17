@@ -19,7 +19,7 @@ affects:
   - skills/novel/prompts/relationship-prompt-builder/SKILL.md
   - Plan/021-novel-prompt-builder-family/references/prompt-builder-methods.md
   - tests/unit/novel/test_prompts.py
-source_repos:
+source-repos:
   - agency @ claude/agency-plugin-refactor-PgMQ4
 estimated_jules_sessions: 2
 domain: novel

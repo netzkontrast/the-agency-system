@@ -7,7 +7,7 @@ depends_on: [002, 004]
 affects:
   - skills/music/
   - Plan/005-music-skills-port/references/skill-mapping.md
-source_repos:
+source-repos:
   - bitwize-music @ v0.91.0
 estimated_jules_sessions: 1
 domain: music

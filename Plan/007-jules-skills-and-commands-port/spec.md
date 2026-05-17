@@ -13,7 +13,7 @@ affects:
   - commands/jules-patch-summary.md
   - tools/jules/researcher/
   - bin/jules-bulk
-source_repos: []
+source-repos: []
 estimated_jules_sessions: 1
 domain: jules
 wave: A
