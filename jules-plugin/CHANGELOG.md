@@ -15,3 +15,9 @@ This release cuts over the Jules orchestration suite to a standard Claude Deskto
 
 ### Removed
 - **Stop Action Disabled**: The Jules API does not support cancellation. The `jules_stop` tool was removed/turned into a no-op as the underlying action isn't supported.
+
+## Superseded
+- The in-repo `jules-plugin/mcp-server/` is superseded by Spec 006 / `servers/agency-mcp/handlers/jules/`; deletion deferred to Spec 020.
+
+## Note
+- The 3 watcher tools (`jules_start_watcher`, `jules_watcher_status`, `jules_stop_watcher`) were removed from `handlers/jules/lifecycle.py` and deferred to a follow-up watcher spec.

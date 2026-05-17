@@ -23,6 +23,12 @@ affects:
   - servers/agency-mcp/src/agency_mcp/handlers/music/maintenance.py
   - servers/agency-mcp/src/agency_mcp/handlers/music/promo.py
   - servers/agency-mcp/src/agency_mcp/server.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_shared.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_atomic.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_helpers.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_album_stages.py
+  - servers/agency-mcp/pyproject.toml
+  - servers/agency-mcp/src/agency_mcp/state/cache.py
   - tests/unit/music/__init__.py
   - tests/unit/music/test_handlers_smoke.py
 source-repos:
@@ -69,10 +75,13 @@ If clone fails: open draft PR `[BLOCKED: verify-source-url]` per `Plan/SOURCES.m
 - **Create**:
   - `servers/agency-mcp/src/agency_mcp/handlers/music/__init__.py` — exports `register_music_handlers(mcp)`.
   - 16 handler modules under `handlers/music/`: `core.py`, `audio.py`, `mixing.py`, `sheet_music.py`, `video.py`, `lyrics_analysis.py`, `text_analysis.py`, `album_ops.py`, `gates.py`, `database.py`, `ideas.py`, `streaming.py`, `content.py`, `health.py`, `maintenance.py`, `promo.py`.
+  - Also include necessary structural files that existing code relies on: `_shared.py`, `_atomic.py`, `_helpers.py`, `_album_stages.py`.
   - `tests/unit/music/__init__.py`.
   - `tests/unit/music/test_handlers_smoke.py` — asserts each module exposes ≥1 `@mcp.tool()` registration and the aggregate count is ≥60.
 - **Modify**:
   - `servers/agency-mcp/src/agency_mcp/server.py` — call `register_music_handlers(mcp)` inside `register_all(mcp)`.
+  - `servers/agency-mcp/pyproject.toml` — append missing runtime dependencies `scipy`, `pyloudnorm`, `librosa`, `soundfile`, `numpy`.
+  - `servers/agency-mcp/src/agency_mcp/state/cache.py` — add a sync facade to proxy `get_state()` for legacy handlers.
 - **Move / Delete**: none. `vendor/bitwize-music/` is read-only and never committed.
 
 ## Approach
