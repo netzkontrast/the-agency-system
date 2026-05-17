@@ -7,6 +7,8 @@ depends_on: [003]
 affects:
   - servers/agency-mcp/src/agency_mcp/handlers/jules/__init__.py
   - servers/agency-mcp/src/agency_mcp/handlers/jules/_shared.py
+  - servers/agency-mcp/src/agency_mcp/handlers/jules/source.py
+  - servers/agency-mcp/src/agency_mcp/handlers/jules/trim.py
   - servers/agency-mcp/src/agency_mcp/handlers/jules/lifecycle.py
   - servers/agency-mcp/src/agency_mcp/handlers/jules/info.py
   - servers/agency-mcp/src/agency_mcp/handlers/jules/actions.py

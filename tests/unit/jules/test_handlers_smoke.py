@@ -19,6 +19,7 @@ def test_jules_tools_registration_and_tags():
         assert len(parts) >= 2, f"Tool {t.name} must be snake_case verb_object"
 
     names = {t.name for t in jules_tools}
-    assert "jules_start_watcher" in names
-    assert "jules_watcher_status" in names
-    assert "jules_stop_watcher" in names
+    # Watcher tools removed for now
+    # assert "jules_start_watcher" in names
+    # assert "jules_watcher_status" in names
+    # assert "jules_stop_watcher" in names

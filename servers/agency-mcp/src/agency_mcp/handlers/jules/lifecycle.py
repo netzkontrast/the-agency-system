@@ -3,6 +3,7 @@ import importlib.util
 import os
 import sys
 import urllib.parse
+from pathlib import Path
 from fastmcp import FastMCP
 from ._shared import _request, _paginate, _short_id
 from .source import _coerce_source, _resolve_github_source
@@ -24,9 +25,14 @@ def _load_sessions_state():
     candidates = []
     if root:
         candidates.append(os.path.join(root, "lib", "sessions_state.py"))
+
+    # Path(__file__) is servers/agency-mcp/src/agency_mcp/handlers/jules/lifecycle.py
+    # .parents[6] goes up to repo root
+    repo_root = Path(__file__).resolve().parents[6]
     candidates.append(
-        os.path.join(os.path.dirname(__file__), "..", "..", "..", "..", "lib", "sessions_state.py")
+        str(repo_root / "jules-plugin" / "lib" / "sessions_state.py")
     )
+
     for path in candidates:
         if os.path.exists(path):
             spec = importlib.util.spec_from_file_location("sessions_state", path)
@@ -328,47 +334,6 @@ def jules_stop(session_id: str) -> dict:
         ),
     }
 
-
-
-    mcp.tool(tags={"domain:jules"})(jules_resolve_source)
-    mcp.tool(tags={"domain:jules"})(jules_create)
-    mcp.tool(tags={"domain:jules"})(jules_list)
-    mcp.tool(tags={"domain:jules"})(jules_get)
-    mcp.tool(tags={"domain:jules"})(jules_activities)
-    mcp.tool(tags={"domain:jules"})(jules_plan)
-    mcp.tool(tags={"domain:jules"})(jules_approve)
-    mcp.tool(tags={"domain:jules"})(jules_message)
-    mcp.tool(tags={"domain:jules"})(jules_stop)
-
-def jules_start_watcher() -> dict:
-    """Start the Jules watcher daemon.
-
-    Returns: {"ok": bool, "reason": str}
-    """
-    from ._shared import get_active_watchers_count, get_watcher_quota
-
-    if get_active_watchers_count() >= get_watcher_quota():
-        return {"ok": False, "reason": "quota_exceeded"}
-
-    # start watcher logic
-    return {"ok": True, "reason": ""}
-
-def jules_watcher_status() -> dict:
-    """Get the status of the Jules watcher daemon."""
-    from ._shared import get_active_watchers_count, get_watcher_quota
-
-    running = True # placeholder
-    return {
-        "running": running,
-        "quota_remaining": max(0, get_watcher_quota() - get_active_watchers_count()),
-        "progress": None,
-        "started_at": "2023-10-01T00:00:00Z"
-    }
-
-def jules_stop_watcher() -> dict:
-    """Stop the Jules watcher daemon."""
-    return {"ok": True}
-
 def register_lifecycle_tools(mcp: FastMCP) -> None:
     mcp.tool(tags={"domain:jules"})(jules_resolve_source)
     mcp.tool(tags={"domain:jules"})(jules_create)
@@ -379,6 +344,3 @@ def register_lifecycle_tools(mcp: FastMCP) -> None:
     mcp.tool(tags={"domain:jules"})(jules_approve)
     mcp.tool(tags={"domain:jules"})(jules_message)
     mcp.tool(tags={"domain:jules"})(jules_stop)
-    mcp.tool(tags={"domain:jules"})(jules_start_watcher)
-    mcp.tool(tags={"domain:jules"})(jules_watcher_status)
-    mcp.tool(tags={"domain:jules"})(jules_stop_watcher)

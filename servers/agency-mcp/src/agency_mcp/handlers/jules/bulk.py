@@ -1,6 +1,7 @@
 from fastmcp import FastMCP
 from ._shared import _paginate, _request, _short_id
 from .trim import apply_list_trim
+from .lifecycle import jules_approve
 
 def jules_status_all(page_size: int = 100, max_pages: int = 20, fields: str = "id,state,title") -> dict:
     """Bulk status: returns a compact dict of every session's current state.
@@ -43,13 +44,6 @@ def jules_status_all(page_size: int = 100, max_pages: int = 20, fields: str = "i
         "pages_scanned": pages,
         "truncated": truncated
     }
-
-def jules_approve(session_id: str) -> dict:
-    """Approve the plan on a session that is in AWAITING_PLAN_APPROVAL.
-    Internal helper for jules_approve_awaiting."""
-    sid = _short_id(session_id)
-    _request("POST", f"/v1alpha/sessions/{sid}:approvePlan", body={})
-    return {"ok": True, "session_id": sid}
 
 def jules_approve_awaiting(only_titles_contain: str = "") -> dict:
     """Bulk-approve every session currently in AWAITING_PLAN_APPROVAL.
