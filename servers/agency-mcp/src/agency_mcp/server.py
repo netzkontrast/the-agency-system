@@ -22,6 +22,11 @@ def register_all(mcp: FastMCP) -> None:
     ``register_<domain>_handlers`` entry points here.
     """
     register_health_tools(mcp)
+    from .handlers.novel import register_novel_core_handlers
+    register_novel_core_handlers(mcp)
+
+    from agency_mcp.handlers.shared import register_shared_handlers
+    register_shared_handlers(mcp)
 
 
 def create_mcp() -> FastMCP:

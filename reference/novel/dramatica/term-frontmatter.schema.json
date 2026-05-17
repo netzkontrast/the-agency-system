@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency.local/schemas/narrative-ontology/term-frontmatter.schema.json",
+  "title": "Narrative Ontology — Per-Term YAML Frontmatter",
+  "description": "Validates the YAML frontmatter block inserted at every '## <Term>' anchor in skills/dramatica-vocabulary/references/*.md. Mirrors ontology.schema.json minus fields that live only in the canonical table (term_file). Inserted by tools/dramatica-nav/ontology-build.py --bootstrap. The ontology table and these per-term blocks MUST agree; drift is a CI failure.",
+
+  "type": "object",
+  "required": ["id", "kind", "canonical_label", "provenance"],
+  "additionalProperties": false,
+
+  "properties": {
+    "id":              { "type": "string", "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$" },
+
+    "kind": {
+      "enum": [
+        "class", "type", "variation", "element", "archetype",
+        "character-dynamic", "plot-dynamic", "storypoint",
+        "dynamic-pair", "quad", "signpost-slot",
+        "throughline", "concept"
+      ]
+    },
+
+    "canonical_label": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "provenance":      { "enum": ["source-original", "extension-derived"] },
+
+    "scenarios": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(novel|lyric)\\.[a-z0-9][a-z0-9-]*$" },
+      "maxItems": 8,
+      "uniqueItems": true
+    },
+
+    "ncp_appreciation":          { "type": "string", "minLength": 1 },
+    "ncp_appreciation_partial":  { "type": "boolean" },
+    "ncp_schema_min_version":    { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+
+    "dynamic_pair_id":           { "type": "string", "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$" },
+    "pair_member_a":             { "type": "string", "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$" },
+    "pair_member_b":             { "type": "string", "pattern": "^[a-z][a-z-]*\\.[a-z0-9][a-z0-9-]*$" },
+
+    "quad_id":                   { "type": "string", "pattern": "^quad\\.[a-z0-9][a-z0-9-]*$" },
+    "ktad_position":             { "enum": ["K", "T", "A", "D"] },
+
+    "class_id":                  { "type": "string", "pattern": "^class\\.[a-z][a-z-]*$" },
+    "type_id":                   { "type": "string", "pattern": "^type\\.[a-z][a-z-]*$" },
+    "variation_id":              { "type": "string", "pattern": "^var\\.[a-z][a-z-]*$" }
+  },
+
+  "patternProperties": {
+    "^aliases_[a-z]{2}$":            { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 80 }, "uniqueItems": true },
+    "^deprecated_aliases_[a-z]{2}$": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 80 }, "uniqueItems": true }
+  },
+
+  "allOf": [
+    {
+      "if":   { "required": ["ncp_appreciation_partial"] },
+      "then": { "required": ["ncp_appreciation"] }
+    },
+    {
+      "if":   { "properties": { "kind": { "const": "dynamic-pair" } }, "required": ["kind"] },
+      "then": {
+        "required": ["pair_member_a", "pair_member_b"],
+        "not": { "required": ["dynamic_pair_id"] }
+      }
+    },
+    {
+      "if":   { "properties": { "kind": { "not": { "const": "dynamic-pair" } } }, "required": ["kind"] },
+      "then": {
+        "not": {
+          "anyOf": [
+            { "required": ["pair_member_a"] },
+            { "required": ["pair_member_b"] }
+          ]
+        }
+      }
+    },
+    {
+      "if":   { "properties": { "kind": { "enum": ["archetype", "quad", "concept", "class", "throughline"] } }, "required": ["kind"] },
+      "then": { "not": { "required": ["dynamic_pair_id"] } }
+    }
+  ]
+}

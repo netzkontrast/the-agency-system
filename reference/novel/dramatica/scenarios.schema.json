@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency.local/schemas/narrative-ontology/scenarios.schema.json",
+  "title": "Narrative Ontology — Scenario Definition",
+  "description": "One persona-scenario record. Eleven scenarios ship in v0.1 (six 'novel.*' for the Novel Author Anna; five 'lyric.*' for the Organist / Lyric Architect Otto). New scenarios go through the proposal procedure declared in tasks/015-integrate-dramatica-ncp-skills/task.md § Scenario Taxonomy Rules.",
+
+  "type": "object",
+  "required": ["id", "persona", "summary", "created"],
+  "additionalProperties": false,
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(novel|lyric)\\.[a-z0-9][a-z0-9-]*$",
+      "description": "Stable scenario identifier. Form: '<persona>.<slug>' (e.g. 'novel.crucial-element-audit', 'lyric.verse-chorus-pair')."
+    },
+
+    "persona": {
+      "enum": ["novel", "lyric"],
+      "description": "Which working persona owns the scenario. 'novel' = Novel Author Anna (consumes via novel-architect); 'lyric' = Organist / Lyric Architect Otto (consumes via the-agency-system-architect + suno-lyric-writer)."
+    },
+
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Token-cheap explanation of the working scenario. Schema enforces ≤200 chars; the prose convention enforces ≤25 words."
+    },
+
+    "created": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "ISO-8601 date when the scenario was added to v0.1 of scenarios.json."
+    },
+
+    "deprecated": {
+      "type": "boolean",
+      "description": "OPTIONAL. true if this scenario is deprecated and SHOULD NOT be used for new tags. Existing tags remain so audit history is preserved."
+    },
+
+    "deprecation_reason": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "RECOMMENDED iff deprecated=true. One-line rationale."
+    }
+  },
+
+  "allOf": [
+    {
+      "description": "deprecation_reason requires deprecated=true.",
+      "if":   { "required": ["deprecation_reason"] },
+      "then": { "properties": { "deprecated": { "const": true } }, "required": ["deprecated"] }
+    }
+  ]
+}
