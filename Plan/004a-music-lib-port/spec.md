@@ -5,12 +5,8 @@ status: ready
 owner: jules
 depends_on: [003]
 affects:
-  - servers/agency-mcp/src/agency_mcp/tools/__init__.py
-  - servers/agency-mcp/src/agency_mcp/tools/mastering/
-  - servers/agency-mcp/src/agency_mcp/tools/shared/
-  - servers/agency-mcp/src/agency_mcp/tools/state/
-  - servers/agency-mcp/src/agency_mcp/tools/cloud/
-  - servers/agency-mcp/src/agency_mcp/tools/sheet_music/
+  - servers/agency-mcp/src/agency_mcp/tools/        # ENTIRE SUBTREE — every .py under bitwize-music v0.91.0 tools/ gets ported here.
+  - Plan/004a-music-lib-port/references/sheet-music-rename.md
   - tests/unit/tools/__init__.py
   - tests/unit/tools/test_imports_smoke.py
 source-repos:
@@ -33,19 +29,21 @@ deps: []
 
 Spec 004 (PR #36, currently `[BLOCKED]`) tried to port bitwize-music's 16 handler modules but those handlers import from `tools.mastering.*` (~17 submodules), `tools.shared.*` (2 submodules), `tools.state.*` (2 submodules), and dynamically from `tools.cloud.*` and `tools.sheet-music.*`. None of those packages existed on the work branch, so the resulting PR couldn't import without bitwize-music's source bleeding into `PYTHONPATH`.
 
-This spec ports the bitwize-music `tools/` subtree verbatim into `agency_mcp/tools/`, rewriting only the import roots so handler modules can resolve their dependencies from a clean install. After this spec merges, a fresh spec 004 (handler port) can land cleanly against the new package.
+This spec ports the bitwize-music `tools/` subtree **in its entirety, verbatim**, into `agency_mcp/tools/`, rewriting only the import roots so handler modules can resolve their dependencies from a clean install. After this spec merges, a fresh spec 004 (handler port) can land cleanly against the new package.
 
-Concretely: every `from tools.mastering.X` in the handler source becomes resolvable via `agency_mcp.tools.mastering.X` (and the same for `shared`, `state`, `cloud`, `sheet_music`). No behaviour change; only relocation + import-root rewrite.
+Concretely: every `from tools.<sub>.X` in the handler source becomes resolvable via `agency_mcp.tools.<sub>.X`. No behaviour change; only relocation + import-root rewrite.
+
+**Whole-subtree contract** (this was the bug in the first attempt — `[BLOCKED]` session `sessions/3738904739183261333`): port every subdirectory under bitwize-music v0.91.0's `tools/`, not just an enumerated subset. As of v0.91.0 those subdirectories are 10: `cloud`, `database`, `mastering`, `mixing`, `n8n`, `promotion`, `shared`, `sheet-music`, `state`, `userscripts`. If `bitwize-music@v0.91.0` ships an additional subdirectory not in this list, port it too — the contract is "everything under `tools/`", not "this specific list". The list is provided as ground-truth at write-time, not as a hard upper bound.
 
 ## Done When
 
-- [ ] `python -c "import agency_mcp.tools.mastering; import agency_mcp.tools.shared.config; import agency_mcp.tools.shared.text_utils; import agency_mcp.tools.state.indexer; import agency_mcp.tools.state.parsers"` exits 0 from a clean install (NO vendor on PYTHONPATH).
-- [ ] `python -c "import importlib; importlib.import_module('agency_mcp.tools.cloud'); importlib.import_module('agency_mcp.tools.sheet_music')"` exits 0 (the dynamically-loaded subpackages exist as importable namespaces).
+- [ ] **Subtree completeness:** every `.py` file under `~/work/vendor/bitwize-music/tools/` has a corresponding file under `servers/agency-mcp/src/agency_mcp/tools/` (modulo the single `sheet-music → sheet_music` rename). Verified by `diff <(cd ~/work/vendor/bitwize-music/tools && find . -name '*.py' | sort) <(cd servers/agency-mcp/src/agency_mcp/tools && find . -name '*.py' ! -name '__init__.py' | sed 's|sheet_music|sheet-music|' | sort)` printing nothing.
+- [ ] `pytest -x tests/unit/tools/test_imports_smoke.py` exits 0 from a clean install (NO vendor on PYTHONPATH). The smoke test enumerates every submodule under `agency_mcp.tools.*` via `pkgutil.walk_packages` and asserts each one imports. Any ImportError = test failure with the failing module name in the assertion message.
 - [ ] Every `.py` file under `agency_mcp/tools/` parses (`python -m py_compile <file>` exit 0 for each).
-- [ ] `rg 'from tools\.|import tools\.' servers/agency-mcp/src/agency_mcp/tools/` returns empty (all internal cross-references rewritten to absolute `agency_mcp.tools.*` form).
-- [ ] `rg 'bitwize_music' servers/agency-mcp/src/agency_mcp/tools/` returns empty (no stale package-name references).
-- [ ] `pytest -x tests/unit/tools/test_imports_smoke.py` exits 0 — the smoke test enumerates every submodule under `agency_mcp.tools.*` via `pkgutil.walk_packages` and asserts each one imports.
+- [ ] `rg 'from tools\.|import tools\b' servers/agency-mcp/src/agency_mcp/tools/` returns empty — no relative `tools.*` references remain; all rewritten to absolute `agency_mcp.tools.*` form.
+- [ ] `rg 'bitwize_music' servers/agency-mcp/src/agency_mcp/tools/` returns empty — no stale package-name references.
 - [ ] **Vendor copy provenance:** every `.py` ported from bitwize carries a top-of-file comment recording the upstream path and the bitwize-music v0.91.0 commit SHA. Format: `# Vendored from bitwize-music@v0.91.0: <upstream/path>`.
+- [ ] **No spec-drift fallback:** if Jules discovers a bitwize subdirectory not enumerated in the Why section's "10 subdirectories" list, Jules ports it anyway (the contract is "whole subtree") and documents the discrepancy in Self-Review #1 — does NOT open `[BLOCKED]` for this.
 
 ## Source clones (run first)
 
@@ -63,27 +61,24 @@ If clone fails per `Plan/SOURCES.md` verification flag, open a draft PR labelled
 
 - **Create — top-level**:
   - `servers/agency-mcp/src/agency_mcp/tools/__init__.py` — empty namespace package.
-- **Create — `mastering/`** (port all .py files from `~/work/vendor/bitwize-music/tools/mastering/`):
-  - `servers/agency-mcp/src/agency_mcp/tools/mastering/__init__.py`
-  - `mastering/adm_validation.py`, `album_signature.py`, `analyze_tracks.py`, `anchor_selector.py`, `archival.py`, `ceiling_guard.py`, `codec_preview.py`, `coherence.py`, `config.py`, `fix_dynamic_track.py`, `layout.py`, `master_tracks.py`, `metadata.py`, `mono_fold.py`, `mono_fold_report.py`, `qc_tracks.py`, `signature_persistence.py`
-  - Any other `.py` files present in the source `tools/mastering/` directory.
-- **Create — `shared/`**:
-  - `servers/agency-mcp/src/agency_mcp/tools/shared/__init__.py`
-  - `shared/config.py`, `shared/text_utils.py`
-  - Any other `.py` present in the source `tools/shared/`.
-- **Create — `state/`** (NOTE: this is the bitwize handler-side state helpers, NOT the agency `state/cache.py` from Spec 003):
-  - `servers/agency-mcp/src/agency_mcp/tools/state/__init__.py`
-  - `state/indexer.py`, `state/parsers.py`
-  - Any other `.py` present in the source `tools/state/`.
-- **Create — `cloud/`** (only the package skeleton if no `.py` files exist; the handlers load it via `importlib`):
-  - `servers/agency-mcp/src/agency_mcp/tools/cloud/__init__.py`
-  - Any `.py` files present in the source `tools/cloud/`.
-- **Create — `sheet_music/`** (rename from source `tools/sheet-music/` — Python does not allow hyphens in module names; the handlers' dynamic loader will need the rename, but that fix lives in spec 004's redo):
-  - `servers/agency-mcp/src/agency_mcp/tools/sheet_music/__init__.py`
-  - Any `.py` files present in the source `tools/sheet-music/`.
+- **Create — every subdirectory under bitwize-music v0.91.0 `tools/`**, with these specific paths under `servers/agency-mcp/src/agency_mcp/tools/`:
+  - `cloud/` (port all `.py` from `~/work/vendor/bitwize-music/tools/cloud/`, including any subdirs)
+  - `database/`
+  - `mastering/` (the heaviest one — ~17 modules)
+  - `mixing/` (provides `mix_tracks.gentle_compress` that `mastering/master_tracks.py` imports — this was the FAILED-session blocker)
+  - `n8n/`
+  - `promotion/`
+  - `shared/`
+  - `sheet_music/` (renamed from `sheet-music`; see `references/sheet-music-rename.md`)
+  - `state/` (handler-side state helpers — NOT spec 003's `state/cache.py`)
+  - `userscripts/`
+  - + any other subdir present in the source that's not in this list (the contract is "everything").
+  - Each subdirectory must contain an `__init__.py` (create one if the bitwize source doesn't have it) so the package resolves under `agency_mcp.tools.<sub>`.
+- **Create — reference**:
+  - `Plan/004a-music-lib-port/references/sheet-music-rename.md` — documents the single hyphen→underscore rename and lists which dynamic-loader call sites in the handlers (spec 004 redo) will need adjustment.
 - **Create — tests**:
   - `tests/unit/tools/__init__.py`
-  - `tests/unit/tools/test_imports_smoke.py` — uses `pkgutil.walk_packages(agency_mcp.tools.__path__, prefix='agency_mcp.tools.')` to enumerate and import every submodule.
+  - `tests/unit/tools/test_imports_smoke.py` — uses `pkgutil.walk_packages(agency_mcp.tools.__path__, prefix='agency_mcp.tools.')` to enumerate and import every submodule. Failures append to a `failed: list[str]` and the final assertion `assert not failed, "\n".join(failed)` prints every broken import in one shot (faster iteration than `pytest -x`-style first-failure).
 - **Modify**: none.
 
 ## Approach
