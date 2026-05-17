@@ -152,7 +152,10 @@ def _update_frontmatter_block(
     Returns:
         ``(True, None)`` on success, ``(False, error_string)`` on failure.
     """
-    import yaml
+    try:
+        import yaml
+    except ImportError:
+        raise RuntimeError("PyYAML is required.")
 
     try:
         text = file_path.read_text(encoding="utf-8")

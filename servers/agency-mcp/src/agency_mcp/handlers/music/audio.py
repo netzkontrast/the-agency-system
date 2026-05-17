@@ -77,7 +77,7 @@ async def music_analyze_audio(album_slug: str, subfolder: str = "") -> str:
     # Build summary
     import numpy as np
     lufs_values = [r["lufs"] for r in results]
-    avg_lufs = float(np.mean(lufs_values))
+    avg_lufs = float(__import__("numpy").mean(lufs_values))
     lufs_range = float(max(lufs_values) - min(lufs_values))
     tinny_tracks = [r["filename"] for r in results if r["tinniness_ratio"] > 0.6]
 
@@ -310,10 +310,10 @@ async def music_master_audio(
             def _dry_run_measure(path: Path) -> dict[str, Any] | None:
                 data, rate = sf.read(str(path))
                 if len(data.shape) == 1:
-                    data = np.column_stack([data, data])
+                    data = __import__("numpy").column_stack([data, data])
                 meter = pyln.Meter(rate)
                 current = meter.integrated_loudness(data)
-                if not np.isfinite(current):
+                if not __import__("numpy").isfinite(current):
                     return None
                 return {
                     "filename": path.name,
@@ -429,7 +429,7 @@ async def music_fix_dynamic_track(album_slug: str, track_filename: str) -> str:
 
         data, rate = sf.read(str(in_path))
         if len(data.shape) == 1:
-            data = np.column_stack([data, data])
+            data = __import__("numpy").column_stack([data, data])
 
         data, metrics = fix_dynamic(data, rate)
 

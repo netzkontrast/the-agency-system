@@ -28,7 +28,6 @@ from ._shared import (
     _normalize_slug,
     _safe_json,
 )
-from agency_mcp.tools.state.indexer import write_state
 from agency_mcp.tools.state.parsers import parse_track_file
 
 logger = logging.getLogger(__name__)
@@ -887,13 +886,13 @@ async def music_update_track_field(
         JSON with update result or error
     """
     # Lazy imports to avoid circular dependencies
-    from handlers.gates import _check_pre_gen_gates_for_track
-    from handlers.status import (
+    from .gates import _check_pre_gen_gates_for_track
+    from ._shared import (
         _CANONICAL_TRACK_STATUS,
         _VALID_TRACK_STATUSES,
         _validate_track_transition,
     )
-    from handlers.text_analysis import _load_artist_blocklist
+    from .text_analysis import _load_artist_blocklist
 
     # Validate field
     field_key = field.lower().strip()
@@ -1049,7 +1048,7 @@ async def music_update_track_field(
                 "sources_verified": parsed.get("sources_verified", tracks[matched_slug].get("sources_verified")),
                 "mtime": path.stat().st_mtime,
             })
-            write_state(state)
+            await _shared.cache.write("music", state)
     except Exception as e:
         logger.warning("File written but cache update failed for %s.%s: %s", normalized_album, matched_slug, e)
 

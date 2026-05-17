@@ -345,7 +345,7 @@ async def music_promote_idea(
         success, or ``{error: ...}`` on failure.
     """
     # Lazy import to avoid any circular-import risk at module load time.
-    from handlers.album_ops import create_album_structure
+    from .album_ops import create_album_structure
 
     idea = _find_idea_in_state(idea_title)
     if idea is None:

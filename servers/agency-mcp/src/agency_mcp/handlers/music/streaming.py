@@ -94,7 +94,10 @@ async def music_update_streaming_url(album_slug: str, platform: str, url: str) -
     Returns:
         JSON with update result or error
     """
-    import yaml
+    try:
+        import yaml
+    except ImportError:
+        raise RuntimeError("PyYAML is required.")
 
     # Validate platform
     canonical_platform = _STREAMING_PLATFORMS.get(platform.lower().replace(" ", "_"))
@@ -201,7 +204,7 @@ async def music_update_streaming_url(album_slug: str, platform: str, url: str) -
     # Best-effort DB sync
     db_synced = False
     try:
-        from handlers.database import _check_db_deps, _get_db_connection
+        from .database import _check_db_deps, _get_db_connection
 
         dep_err = _check_db_deps()
         if not dep_err:

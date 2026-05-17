@@ -27,7 +27,7 @@ def register_all(mcp: FastMCP) -> None:
     from agency_mcp.handlers.music import _shared
 
     _shared.cache = StateCache()
-    _shared.PLUGIN_ROOT = Path(__file__).parent.parent.parent.parent
+    _shared.PLUGIN_ROOT = Path(__file__).resolve().parents[4]
 
     cache = _shared.cache
     cache.name = "agency-system"
