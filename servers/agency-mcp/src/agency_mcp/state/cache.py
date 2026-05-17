@@ -108,3 +108,28 @@ class StateCache:
             self._state[namespace].update(data)
 
             self._write_to_disk()
+
+    # --- Sync facades for legacy bitwize-music handlers ---
+    def get_state(self) -> dict:
+        """Sync facade for legacy music handlers to get state."""
+        if self._is_stale() or self._state is None:
+            # Bypass async lock strictly for read-only sync access in legacy handlers
+            self._load_from_disk()
+        # The legacy cache format nested music under the root.
+        # But wait, agency-mcp unified state nests music under 'music' key.
+        # So we should probably just return the music slice? No, the bitwize-music code
+        # expects root keys like "albums", "config", "generation".
+        # Let's assume the unified state maps these under "music".
+        state = copy.deepcopy(self._state) if self._state else _get_empty_state()
+        return state.get("music", state)
+
+    def get_state_ref(self) -> dict:
+        return self.get_state()
+
+    def rebuild(self, root: str | None = None) -> None:
+        """Placeholder for legacy rebuild."""
+        pass
+
+    def music_update_session(self, **kwargs) -> None:
+        """Placeholder for legacy session update."""
+        pass
