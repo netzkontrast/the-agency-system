@@ -4,5 +4,6 @@ version = "1.0.0"
 description = "FastMCP server for Jules orchestrator"
 requires-python = ">=3.10"
 dependencies = [
-    "fastmcp==3.3.1"
+    "fastmcp[code-mode]>=3.1.0"
+    # Fallback to plain "fastmcp>=3.1.0" if pip fails to resolve the [code-mode] extra
 ]
