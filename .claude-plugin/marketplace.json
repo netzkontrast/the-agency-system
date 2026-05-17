@@ -1,0 +1,12 @@
+{
+  "name": "agency-marketplace",
+  "owner": {
+    "name": "The Agency System"
+  },
+  "plugins": [
+    {
+      "name": "agency-system",
+      "source": "./"
+    }
+  ]
+}

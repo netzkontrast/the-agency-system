@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "ontology_version": "0.1",
+  "created": "2026-05-04",
+  "scenarios": [
+    {
+      "id": "novel.storyform-slot-fill",
+      "persona": "novel",
+      "summary": "Identify which Element or Variation fits an open Storypoint slot given the declared MC Resolve and Crucial Element.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "novel.act-pivot",
+      "persona": "novel",
+      "summary": "Determine the canonical Type-level Signpost transition at the OS Driver pivot between Acts 2 and 3.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "novel.crucial-element-audit",
+      "persona": "novel",
+      "summary": "Audit whether a draft actually pivots on its declared Crucial Element by tracing scenes where the Element or its dynamic pair activates.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "novel.character-arc",
+      "persona": "novel",
+      "summary": "Design or diagnose a character arc by mapping which Variations and Elements an archetype carries across the four Signposts.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "novel.diagnose-flat-draft",
+      "persona": "novel",
+      "summary": "Identify which structural terms to inspect when a draft lacks a clear Crucial Element and feels dramatically inert.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "novel.dual-storyform",
+      "persona": "novel",
+      "summary": "Resolve whether the same Element appearing in two parallel Storyforms creates legitimate interference or semantic collision.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "lyric.verse-chorus-pair",
+      "persona": "lyric",
+      "summary": "Select the dynamic Element pair that drives dramatic tension between a track's Verse and Chorus sections.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "lyric.bridge-pivot",
+      "persona": "lyric",
+      "summary": "Design a track bridge that flips the verse's dynamic pair, anchored to Variation parents and Class context.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "lyric.album-arc-mapping",
+      "persona": "lyric",
+      "summary": "Map an album's Story Driver, Outcome, and Judgment onto a track-by-track dramatic arc using Dramatica's four ending categories.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "lyric.archetype-as-system-part",
+      "persona": "lyric",
+      "summary": "Map system architecture roles onto Dramatica archetypes to surface the Element-pair tension between two character-functions.",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "lyric.refrain-as-restatement",
+      "persona": "lyric",
+      "summary": "Determine when a refrain restating the same Element across verses is structurally valid using companion-pair vs. dynamic-pair geometry.",
+      "created": "2026-05-04"
+    }
+  ]
+}
