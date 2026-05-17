@@ -23,6 +23,9 @@ def register_all(mcp: FastMCP) -> None:
     """
     register_health_tools(mcp)
 
+    from agency_mcp.handlers.music import register_music_handlers
+    register_music_handlers(mcp)
+
 
 def create_mcp() -> FastMCP:
     mcp = FastMCP(
