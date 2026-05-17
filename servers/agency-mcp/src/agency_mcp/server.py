@@ -34,6 +34,8 @@ def register_all(mcp: FastMCP) -> None:
     cache.name = "agency-system"
     cache.dir = Path.home() / ".agency-system"
     register_health_tools(mcp)
+    from .handlers.novel import register_novel_core_handlers
+    register_novel_core_handlers(mcp)
     register_music_handlers(mcp)
     register_jules_handlers(mcp)
 
