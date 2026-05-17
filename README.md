@@ -39,3 +39,16 @@ concept, sequence, and per-track table. Track files in `tracks/` hold
 lyrics (both Suno-formatted and streaming-ready), Style Box, production
 notes, and generation log. Research-driven albums add `RESEARCH.md` and
 `SOURCES.md` at the album root.
+
+## Plugin install
+
+**Local development (from source)**:
+```bash
+claude --plugin-dir .
+```
+
+**From marketplace**:
+```bash
+/plugin install agency-system@netzkontrast
+```
+<!-- Spec: Plan/002-manifest-and-marketplace/spec.md -->
