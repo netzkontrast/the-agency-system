@@ -1,2 +1,0 @@
-[jules-mcp] Could not locate sessions_state (tried jules_plugin.lib, CLAUDE_PLUGIN_ROOT, relative)
-19
