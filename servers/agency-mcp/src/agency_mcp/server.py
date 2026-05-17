@@ -14,6 +14,7 @@ except ImportError:
     _transforms = []
 
 from agency_mcp.handlers.shared.health import register_health_tools
+from agency_mcp.handlers.jules import register_jules_handlers
 from agency_mcp.state.cache import StateCache
 
 
@@ -34,6 +35,7 @@ def register_all(mcp: FastMCP) -> None:
     cache.dir = Path.home() / ".agency-system"
     register_health_tools(mcp)
     register_music_handlers(mcp)
+    register_jules_handlers(mcp)
 
     from agency_mcp.handlers.shared import register_shared_handlers
     register_shared_handlers(mcp)
