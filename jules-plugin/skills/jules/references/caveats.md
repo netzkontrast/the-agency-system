@@ -33,3 +33,34 @@ This file lists caveats and constraints of the Jules skill. Load this to underst
 - **Does not cancel sessions.** The Jules API does not expose a
   cancel/delete/stop method, so `stop` requests are reported as
   unsupported instead of issuing doomed HTTP requests.
+
+## Empirically observed traps (from PR #27 refactor)
+
+1. **COMPLETED without artifacts ≠ dead.** A session can show state
+   COMPLETED with no patch artifact and no PR output, yet still be
+   paused waiting on a UI gate (e.g. a "Create PR?" prompt). Do NOT
+   assume the work is lost. Recovery: send a jules_message asking the
+   agent to continue ("Please continue and complete the brief…"); the
+   state will transition to AWAITING_USER_FEEDBACK and the work
+   resumes. Only respawn if a nudge produces no transition within
+   ~10 minutes.
+2. **jules_message during plan-approval can kill the session.** When
+   a session is in AWAITING_PLAN_APPROVAL and you want to request
+   changes, sending jules_message instead of jules_approve sometimes
+   causes the session to interpret the message as a stop signal and
+   transition to COMPLETED with no plan and no work. Safer pattern:
+   if the plan is acceptable, jules_approve; if not, jules_message
+   with the change request AND then verify the next state is
+   PLANNING (re-plan in progress), not COMPLETED.
+3. **Patch artifacts are retrievable while state is IN_PROGRESS.**
+   jules_patch_summary and jules_patch_apply walk activities[]
+   artifacts; they do not require the session to be COMPLETED. If a
+   session is stuck IN_PROGRESS for >30 minutes but the latest
+   progressUpdated activity shows artifacts written, fetch and
+   integrate the patch immediately — don't wait for COMPLETED.
+4. **Watcher liveness is not free.** watch_jules.py is a separate
+   process; if it dies, state transitions stop being written to
+   notifications.jsonl and any monitor that tails the log goes
+   silent. Verify with `ps -p $(cat .claude/skills/jules/watcher.pid)`
+   or `claude/journal` log lines before assuming a session is
+   stalled. Restart with --daemonize.

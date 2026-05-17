@@ -10,12 +10,11 @@
   "enabledPlugins": {
     "bitwize-music@bitwize-music": true
   },
-  "enabledMcpjsonServers": ["jules"],
+  "enabledMcpjsonServers": [],
   "permissions": {
     "defaultMode": "bypassPermissions",
     "allow": [
-      "mcp__plugin_bitwize-music_bitwize-music-mcp",
-      "mcp__jules"
+      "mcp__plugin_bitwize-music_bitwize-music-mcp"
     ]
   },
   "hooks": {

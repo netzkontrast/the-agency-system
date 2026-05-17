@@ -113,3 +113,30 @@ The `only_titles_contain` filter is your safety net — restrict the
 bulk-approve to a known prefix so a stray unrelated session can't be
 swept in.
 
+## Fan-out reliability checklist (from PR #27 refactor experience)
+
+1. Before dispatching a fan-out, verify the watcher daemon is alive
+   (ps -p $(cat .claude/skills/jules/watcher.pid)). A dead watcher
+   means silent failures.
+2. Each session prompt should include the exact branch name and the
+   EXACT shape of the expected reply (5-line summary + pytest verdict).
+   Vague prompts trigger more clarifying questions per session, which
+   multiplies under fan-out.
+3. Wave-based dispatch (groups of 3-6 sessions with no inter-wave
+   dependencies) integrates better than single-session-per-task
+   because review cycles batch across the wave instead of context
+   thrashing one at a time.
+4. When integrating multiple Jules patches that touch overlapping
+   files, use jules_patch_apply with only_files= to apply just the
+   in-scope subset. Letting two sessions both rewrite tools/lifecycle.py
+   via blind `git apply` lets the second one silently overwrite the
+   first.
+5. Quota cost of fan-out is len(unique_sessions), not retries. A
+   respawn or a fresh continuation each burns one slot of the
+   per-account daily quota. Budget 1.3x the expected session count
+   for safety (correction loops + stalled-session respawns).
+6. The plan-approval gate is your cheapest steering point. Spend the
+   time to read each plan before approve/correct rather than batching
+   blindly — the cost of a misaligned implementation is much higher
+   than the cost of one extra review pass.
+
