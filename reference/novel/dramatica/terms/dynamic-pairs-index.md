@@ -1,0 +1,83 @@
+<!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dynamic-pairs-index.md @ 867453e49065e16b9298b960a22fd34746985572 -->
+
+# Index by Dynamic Pair
+
+Dramatica builds meaning through reciprocal pairs: each term implies its opposite. Knowing one half points to the other. Below: 75 unique pairs extracted from the term files.
+
+Format: `Term A ↔ Term B`
+
+- **Ability** ↔ **Desire**
+- **Acceptance** ↔ **Non-acceptance**
+- **Accurate** ↔ **NonAccurate**
+- **Accurate** ↔ **Non-accurate**
+- **Activity** ↔ **Manipulation**
+- **Actuality** ↔ **Perception**
+- **Analysis** ↔ **Strategy**
+- **Appraisal** ↔ **Reappraisal**
+- **Attempt** ↔ **Work**
+- **Attraction** ↔ **Repulsion**
+- **Avoid** ↔ **Pursuit**
+- **Avoidance** ↔ **Pursuit**
+- **Becoming** ↔ **Being**
+- **Cause** ↔ **Effect**
+- **Certainty** ↔ **Potentiality**
+- **Change** ↔ **Inertia**
+- **Chaos** ↔ **Order**
+- **Choice** ↔ **Delay**
+- **Circumstances** ↔ **Situation**
+- **Closure** ↔ **Denial**
+- **Commitment** ↔ **Responsibility**
+- **Conceiving** ↔ **Conceptualizing**
+- **Conceiving An Idea** ↔ **Developing A Plan**
+- **Conditioning** ↔ **Instinct**
+- **Conscience** ↔ **Temptation**
+- **Conscious** ↔ **Memory**
+- **Consider** ↔ **Reconsider**
+- **Contemplation** ↔ **Memories**
+- **Control** ↔ **Uncontrolled**
+- **Deduction** ↔ **Induction**
+- **Deficiency** ↔ **Permission**
+- **Destiny** ↔ **Fate**
+- **Destiny** ↔ **Fantasy**
+- **Determination** ↔ **Expectation**
+- **Disbelief** ↔ **Faith**
+- **Doing** ↔ **Obtaining**
+- **Doubt** ↔ **Investigation**
+- **Dream** ↔ **Hope**
+- **Ending** ↔ **Unending**
+- **Enlightenment** ↔ **Wisdom**
+- **Equity** ↔ **Inequity**
+- **Evaluation** ↔ **Re-evaluation**
+- **Evaluation** ↔ **Reevaluation**
+- **Evidence** ↔ **Suspicion**
+- **Expediency** ↔ **Need**
+- **Experience** ↔ **Skill**
+- **Fact** ↔ **Fantasy**
+- **Falsehood** ↔ **Truth**
+- **Feeling** ↔ **Logic**
+- **Fixed Attitude** ↔ **Situation**
+- **Future** ↔ **Progress**
+- **Future** ↔ **How Things Are Going**
+- **Help** ↔ **Hinder**
+- **Hunch** ↔ **Theory**
+- **Interdiction** ↔ **Prediction**
+- **Interpretation** ↔ **Senses**
+- **Learning** ↔ **Understanding**
+- **Mind** ↔ **Universe**
+- **Morality** ↔ **SelfInterest**
+- **Obligation** ↔ **Rationalization**
+- **Openness** ↔ **Preconception**
+- **Oppose** ↔ **Support**
+- **Past** ↔ **Present**
+- **Physics** ↔ **Psychology**
+- **Possibility** ↔ **Probability**
+- **Preconditions** ↔ **Prerequisites**
+- **Preconscious** ↔ **Subconscious**
+- **Process** ↔ **Result**
+- **Production** ↔ **Reduction**
+- **Projection** ↔ **Speculation**
+- **Proven** ↔ **Unproven**
+- **Security** ↔ **Threat**
+- **Sense of Self** ↔ **State of Being**
+- **Test** ↔ **Trust**
+- **Value** ↔ **Worth**
