@@ -5,7 +5,7 @@ work_slug: "{{work_slug}}"
 created: "{{created}}"
 status: draft
 name: ""
-type: ""
+element_type: ""
 description: ""
 sources: []
 ---

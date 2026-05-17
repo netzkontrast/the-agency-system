@@ -1,3 +1,11 @@
+---
+type: novel.readme
+author_slug: "{{author_slug}}"
+work_slug: "{{work_slug}}"
+created: "{{created}}"
+status: draft
+---
+
 # {{work_title}}
 
 Welcome to the workspace for **{{work_title}}**.
