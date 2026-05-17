@@ -16,3 +16,4 @@ jules-plugin/tools/researcher/cache/*
 !jules-plugin/tools/researcher/cache/.gitkeep
 .claude/skills/jules/research/
 .venv
+*.egg-info/
