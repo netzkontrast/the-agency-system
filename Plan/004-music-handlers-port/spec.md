@@ -23,6 +23,12 @@ affects:
   - servers/agency-mcp/src/agency_mcp/handlers/music/maintenance.py
   - servers/agency-mcp/src/agency_mcp/handlers/music/promo.py
   - servers/agency-mcp/src/agency_mcp/server.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_shared.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_atomic.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_helpers.py
+  - servers/agency-mcp/src/agency_mcp/handlers/music/_album_stages.py
+  - servers/agency-mcp/pyproject.toml
+  - servers/agency-mcp/src/agency_mcp/state/cache.py
   - tests/unit/music/__init__.py
   - tests/unit/music/test_handlers_smoke.py
 source-repos:
