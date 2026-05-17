@@ -20,7 +20,7 @@ READ FIRST: docs/superpowers/specs/2026-05-16-jules-suite-refactor-design.md
 By now (Wave 3 dispatch), Waves 1 and 2 are already merged on {branch}.
 The plugin under jules-plugin/ should be functionally complete:
 mcp-server/src/jules_mcp/ has api.py, source.py, trim.py, server.py
-with CodeMode opt-in, tools/{lifecycle,patches,bulk,aliases}.py;
+with CodeMode opt-in, tools/{{lifecycle,patches,bulk,aliases}}.py;
 skills/jules/SKILL.md is slim with references/; lib/ + bin/ ported.
 
 [BRIEF]
