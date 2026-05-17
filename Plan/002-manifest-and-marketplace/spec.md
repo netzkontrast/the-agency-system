@@ -9,6 +9,7 @@ affects:
   - .claude-plugin/marketplace.json
   - jules-plugin/.claude-plugin/plugin.json
   - README.md
+  - tests/smoke/test_manifest.py
 estimated_jules_sessions: 1
 domain: scaffold
 wave: A
