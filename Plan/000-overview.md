@@ -1,323 +1,391 @@
-# Plan 000 — Agency System Plugin Refactor (Master Overview)
+# Plan 000 — Agency-System Unified Plugin (Master Overview, v2)
 
-> **Status:** approved 2026-05-17  ·  **Owner:** human + Jules (fan-out)
-> **Branch:** `claude/agency-plugin-refactor-PgMQ4`
-> **Goal:** collapse `jules-plugin`, `bitwize-music`, and the agency-repo skill corpus into one token-efficient Claude Code plugin where `the-agency-system` repo *is* the plugin. Music absorbs bitwize; novel side is built spirit-isomorphic to music; agentic/spec-driven work and Jules orchestration are first-class.
+> **Status:** drafted 2026-05-18 by orchestrator audit · supersedes v1 of 2026-05-17
+> **Branch:** `claude/check-installed-plugins-1rf3k` (this PR), thereafter target `Master`
+> **Goal:** Drive the-agency-system to a single token-efficient Claude Code plugin built around **one MCP (Code Mode anchor triads), graph-based context mapping (Path B docs + Wave D ontology graph), and a closed-loop hook chain**. Orchestrate the remaining implementation work over Jules with up to 60 parallel sessions and a PR review loop that runs Jules-against-Jules until no relevant feedback surfaces.
 
-This document is the **map**. Each spec is a one-Jules-session task; specs depend on each other per the DAG below. Conventions and disciplines live in `Plan/JULES_PROTOCOL.md`. Source URLs live in `Plan/SOURCES.md`.
+This document is the **map and sequencing authority**. Existing sub-spec directories (`001/` … `139/`) remain the source of truth for per-task acceptance criteria; this file decides which specs run, in what order, why, and how Jules drives them.
 
-## 1. Target architecture (at a glance)
+---
+
+## 1. North star (recovered from drift)
+
+The architecture has not changed. Three collapses, one budget:
+
+1. **One plugin** — `the-agency-system/` repo *is* the plugin. `.claude-plugin/plugin.json` at root, `.mcp.json` mounts a single MCP server, skills live under `skills/{shared,music,novel,jules,agentic}/`, hooks at `hooks/`. No nested plugins, no sibling plugins. `jules-plugin/` is the legacy artefact and is removed in Phase 0.
+
+2. **One MCP, Code Mode native** — `servers/agency-mcp/` with `FastMCP("agency-system", dereference_schemas=False)` wrapping an `AnchorAwareCodeMode` transform. Per domain: ~4 eager anchor tools (`*_search`, `*_describe`, `*_invoke` / `*_query`); all bulk tools registered `hidden=True, defer_schema=True`. Boot tool surface target: `tools/list` < 4 KB, total boot context < 500 tokens (was ~34 k).
+
+3. **Graph-based context** — two complementary layers sharing one manifest schema:
+   - **Path B (documents)**: `context_manifest.json` catalogues every spec/lesson/override/reference with `{id, title, summary, sha256, tags, views:{summary|preview|full}}`. Exposed via `context_search` / `context_describe` / `context_read` + a polling watcher emitting `notifications/resources/updated`. Defers ≥ 200 k tokens of preemptively-inlined docs.
+   - **Wave D (ontology graph)**: an 18-type frontmatter ontology + GraphQLite Cypher extension over `~/.agency-system/cache/graph.sqlite`. Exposes `graph_cypher` / `graph_describe_node` / `graph_run_algorithm`. The same manifest entries from Path B carry a `graph_id`, so document discovery and structural queries reinforce each other.
+
+The unifying constraint everywhere is **token efficiency**. Every spec sized by what it saves; every hook ordered to maximise prefix-cache hits.
+
+---
+
+## 2. Audit of current state (2026-05-18)
+
+The repository is **further along than v1 of this overview implied**. Sub-agent audit results:
+
+### 2.1 Done (~20 specs, mostly Wave A + B)
+
+| Spec | Title | Evidence |
+|---|---|---|
+| 001 | scaffold-plugin-skeleton | `.claude-plugin/`, `servers/agency-mcp/`, `skills/` all present at repo root |
+| 002 | manifest-and-marketplace | `.claude-plugin/plugin.json` + `marketplace.json` present |
+| 003 | unified-statecache-port | `servers/agency-mcp/src/agency_mcp/state/cache.py` present |
+| 004 / 004a | music handlers + lib port | `handlers/music/` populated, lib subtree imported |
+| 005 | music skills port | `skills/music/` populated |
+| 006 | jules handlers port | `handlers/jules/{lifecycle,patches,bulk,aliases,source}.py` present |
+| 007 | jules skills + commands | `skills/jules/`, `commands/jules-*.md` present |
+| 008 | codemode-registry | `server.py` has `_AnchorAwareCodeMode` subclass wired; `codemode/manifest.json` present (**but anchor triad tools — Spec 104 — still missing**, see drift §3.5) |
+| 009 | shared-handlers | `handlers/shared/{search,reference,config,session,skills,health}.py` present |
+| 010 / 011 / 011a / 012 / 013 | novel layout + handlers + libs + structural | all populated under `handlers/novel/` |
+| 017 | hooks-port-and-extend | `hooks/{validate_chapter,validate_track,check_version_sync}.py` + `hooks.json` |
+| 019 | state-migration-from-bitwize | migrator landed |
+| 098 | wave-a-hardening | merged via PRs #34/#37/#38/#32 |
+| 101 | jules-mcp-tool-additions | session_summary / pr_url / quota added |
+| 103 | view-fields-projection | wired (PR #100 merged per recent git log) |
+
+### 2.2 In-progress (2)
+
+- **014** novel-gates-and-revision
+- **022** dev-mode-install
+
+### 2.3 Scaffolded specs without implementation (~40)
+
+Phases 1-8 below assign each of these to a phase or mark them superseded:
+
+- **Token efficiency**: 104, 105, 106, 107, 114, 115, 116, 117, 121
+- **Context layer (Path B)**: 111, 112, 113 — competing with 108 (see drift §3.1)
+- **Token-optimiser hook layer**: 114-121 (composes with Path B)
+- **Quality / loop / compaction**: 118, 119, 120
+- **Ontology + graph (Wave D)**: 122, 123, 124
+- **Operational discipline drafts**: 130, 131, 132, 133, 134, 135, 136, 137, 138, 139
+- **Other**: 015, 016, 018, 020, 021, 023, 099, 100, 102
+
+### 2.4 Legacy artefact
+
+`jules-plugin/` is fully implemented (16 MCP tools, 1 skill, 8 reference docs, 8 pytest files, 2 CLI helpers) — and **already marked `"deprecated": true`** in `jules-plugin/.claude-plugin/plugin.json`. Its content was ported to `servers/agency-mcp/handlers/jules/*` (Spec 006/007). Phase 0 deletes it.
+
+---
+
+## 3. Drift analysis — where the design wandered
+
+Five concrete drifts, each with a resolution:
+
+### 3.1 Two-path indecision on Context Mode
+
+**Drift:** Spec 108 (adopt third-party `mksglu/context-mode` plugin) and Specs 111/112/113 (build the manifest, anchor-triad, cache+watcher ourselves) are mutually-exclusive — the v1 overview said "PICK ONE PATH" but never picked one. Both currently sit `ready`.
+
+**Resolution — D1: ADOPT PATH B (111 + 112 + 113). SUPERSEDE 108.**
+
+Reasons:
+1. Path B's manifest schema is the same shape Wave D's graph ingests — sharing `{id, sha256, tags, views}` means one watcher serves both, one cache invalidates both, one `graph_id` field on every manifest entry is enough to bridge.
+2. We control the truncation cap, the tag taxonomy, the BM25 ranker — third-party `mksglu/context-mode` is a hook-layer adapter and would force a translation shim.
+3. Spec 108 lists 5 hook entry points and 26 event categories that don't map cleanly to our existing PostToolUse chain (`bash-compress → context-mode-sync → graph-ingest → archive`). The sync overhead exceeds the win.
+
+Spec 108 is **rewritten in Phase 4 as a superseded stub** that points to 111/112/113.
+
+### 3.2 Token-optimiser hook layer (114-121) bolted on without overlap analysis
+
+**Drift:** Specs 114-121 were copied from an external token-optimiser project (see lesson `14-token-consumption-postmortem.md`) without explicit overlap analysis against Path B. Result: drafted-but-orphaned hook specs.
+
+**Resolution — D2: KEEP all of 114-121 — they are *orthogonal* to Path B and compose with it.**
+
+Path B handles **document deferral** (200 k+ tokens of specs/lessons/overrides). The hook layer handles **runtime tool-output compression**. Both feed the same archive (117) and the same session-log (100). Wired in this canonical PreToolUse → PostToolUse order:
+
+```
+PreToolUse:        contextignore (121) → structure-map (115) → read-cache-delta (114) → context-mode-sync
+PostToolUse:       bash-compress (116) → context-mode-sync → graph-ingest (124) → archive (117)
+UserPromptSubmit:  quality-score (118) + loop-detect (119)
+PreCompact:        checkpoint snapshot (120)
+CompactionEnd:     checkpoint restore (120)
+```
+
+This chain ordering is **the contract** Phase 2 implements.
+
+### 3.3 Operational discipline drafts (130-139) queued behind 099
+
+**Drift:** Ten "discipline" specs were authored in the 2026-05-18 research sweep, all marked `draft`, all chaining off 099 (jules-orchestration-improvements) which itself is scaffolded. They are the polish layer, but they're stalling the architectural phases.
+
+**Resolution — D3: Defer 130-139 to Phase 8 (Operational Hardening). Three exceptions:**
+
+- **130 (shared-toolresult-envelope)** is a contract every other phase depends on — **moves up to Phase 1**, locking the envelope before any new handler tool ships.
+- **131 (manifest-coverage-lint)** prevents regressions on the anchor triad — **moves up to Phase 1**, runs in the smoke test.
+- **135 (spec-test-anchor-traceability)** is needed to verify Wave D acceptance — **moves up to Phase 5**.
+
+All others stay deferred; the bus-factor cost of not having them yet is acceptable while the architectural spine is finishing.
+
+### 3.4 jules-plugin/ on disk after being marked deprecated
+
+**Drift:** Spec 020 (bitwize-deprecation-and-docs) was scoped for the bitwize plugin and the jules-plugin together but only the bitwize side was executed.
+
+**Resolution — D4: Phase 0 deletes `jules-plugin/` in full** (under Spec 020). Smoke test asserts the directory no longer exists. CLAUDE.md is updated to drop the "Jules orchestration plugin" section's `--plugin-dir ./jules-plugin` install path. The CLI helpers (`bin/jules-bulk`, `bin/jules-dev-install`) and reference docs are re-homed:
+
+- `bin/jules-bulk` and `bin/jules-dev-install` → `bin/` at repo root.
+- `skills/jules/SKILL.md` + 9 references → already mirrored at `skills/jules/` at repo root via Spec 007; the duplicates inside `jules-plugin/` are deleted.
+- `tools/researcher/` → moves to `tools/researcher/` at repo root (it was tangentially placed inside `jules-plugin/` and is plugin-agnostic).
+- All `jules-plugin/tests/` are merged into `tests/jules/`.
+
+### 3.5 Anchor triad (104) missing despite registry (008) marked done
+
+**Drift:** Spec 008 created `_AnchorAwareCodeMode` and wires the anchor list from a registry, but the registry currently returns an empty/near-empty set because Spec 104's three eager tools (`agency_tool_search` / `agency_tool_describe` / `agency_tool_invoke`) were never authored. Result: every backend tool is still hidden, and the model has no discovery path — the optimisation is half-deployed.
+
+**Resolution — D5: Phase 1 ships Spec 104 alongside the cache-breakpoint reorder (107) and the envelope (130). These three land as a single coordinated PR-set so the prompt-cache invariant holds from the moment the triad ships.**
+
+---
+
+## 4. Phase map
+
+Eight phases. Each phase is one PR-set (1-N PRs depending on independence). Each PR maps to exactly one sub-spec. Dispatch order respects deps; within a phase, parallel where independent.
+
+| Phase | Name | Specs (existing sub-spec dirs) | Token-budget win | Blocking deps |
+|---|---|---|---|---|
+| **0** | Foundation cleanup | 020 (extended), 022 finish, 099 stub | none directly; removes confusion | none |
+| **1** | Anchor triad + envelope (cold-start) | 104, 107, 130, 131 | tools/list 38k → <4k tokens | Phase 0 |
+| **2** | Hook chain | 121, 115, 114, 116, 117 | 20-30% of session input | Phase 1 (envelope) |
+| **3** | GitHub sink wrapper | 106 | 40-80k → <2.5k per PR/issue read | Phase 1 (envelope), Phase 2 (archive) |
+| **4** | Context Mode (Path B) | 111, 112, 113 + 108-stub | defers ≥200k of inline docs | Phase 1 (anchors), Phase 2 (cache+watcher idioms) |
+| **5** | Ontology + Graph (Wave D) | 122, 123, 124, 135 | cross-domain queryability | Phase 4 (manifest schema sharing) |
+| **6** | Quality / loop / compaction | 118, 119, 120, 100 | self-healing context, ~47k saved per loop | Phase 2 (session-log canon) |
+| **7** | Domain handler completion | 014, 015, 016, 018, 021 | feature completeness | Phase 1 (envelope), Phase 5 (ontology) |
+| **8** | Operational hardening | 102, 132, 133, 134, 136, 137, 138, 139, 023, 099-full | polish + bus-factor | optional / continuous |
+
+### 4.1 Highest-leverage order (the "ship-first 6", per token-efficiency audit)
+
+When phase work is parallelised, this ordering preserves the most token savings per Jules-session-hour:
+
+1. **104 + 107 + 130** (Phase 1) — cold-start triad + breakpoint + envelope. Single biggest one-shot win; prerequisite for every later phase's measured boot budget.
+2. **103** — already done; verify wired and projected.
+3. **121 + 115 + 114** (Phase 2 first half) — PreToolUse chain. Lands the 20-30% of session input from re-reads.
+4. **117** (Phase 2 second half) — universal 4 KB archive guardrail. Final-net for anything that escapes upstream compression.
+5. **106** (Phase 3) — GitHub PR/issue subagent wrapper. Single largest measured leak (40-80k tokens/call).
+6. **111 + 112 + 113** (Phase 4) — Path B documents.
+
+Phase 5 (Wave D), Phase 6 (quality/loop/compact), and Phase 7 (domain completion) multiply the above value but assume the spine is wired.
+
+---
+
+## 5. Token budget — measured targets
+
+Every phase's PR must paste these counters into `## Evidence`:
+
+| Metric | Baseline (current) | Target | Measured by |
+|---|---|---|---|
+| `tools/list` payload (cold) | ~38 KB | < 4 KB | `tests/smoke/test_boot_budget.py` (Phase 1) |
+| Boot context tokens | ~34 000 | < 500 | same |
+| Average `mcp__github__pull_request_read` cost | 40-80 k tokens | ≤ 2.5 KB envelope | manual: 3 sample PRs (Phase 3) |
+| Per-tool result max in context | unbounded | ≤ 4 KB → archived | `tests/smoke/test_archive_threshold.py` (Phase 2) |
+| Doc inlining (specs + lessons + overrides) | ≥ 200 KB summed | 0 by default; triad + on-demand | `tests/smoke/test_path_b_defers.py` (Phase 4) |
+| Cross-domain query (e.g. `spec → spec`) | 22 spec reads | 1 Cypher MATCH | `tests/smoke/test_graph_queries.py` (Phase 5) |
+
+A phase is **not done** until its row(s) are evidence-backed in the merging PR. This replaces the soft "Done When:" checklists with hard counters.
+
+---
+
+## 6. The Jules-orchestrated implementation loop
+
+See `Plan/JULES-REVIEW-LOOP.md` for the full mechanics. The summary:
+
+```
+For each phase:
+  1. Read existing sub-spec(s); update `affects:` + `done_when:` if drift since v1
+  2. Fanout: dispatch 1 Jules session per spec (parallel, capped 60 in-flight)
+  3. Watch: poll jules_status_all every 3 minutes via persistent Monitor
+  4. On COMPLETED:
+       - Verify branch on remote (mcp__github__list_branches)
+       - If absent → JULES_PROTOCOL §8-Appendix recovery (probe → API extract → mcp__github__push)
+       - If present → PR is open against Master
+  5. Review loop (the back-and-forth requested in this plan's goal):
+       a. Dispatch a Jules-driven review session against the open PR:
+            jules_create(prompt = REVIEW_PROMPT_TEMPLATE, source = PR_BASE)
+       b. When review COMPLETES, fetch the PR review comments
+       c. Triage with the orchestrator:
+            - Cosmetic / out-of-scope → resolve thread, no action
+            - Substantive → spawn a follow-up Jules session targeting the same branch
+              with a focused fix prompt; OR if trivial, fix locally
+       d. Iterate until a review session returns < 1 substantive comment
+            ("no relevant feedback surfaces")
+  6. Merge phase PR(s) via mcp__github__merge_pull_request
+  7. Update this overview's "Done" table (§2.1) with the new specs
+```
+
+The loop is **idempotent under crashes**: session state lives in `~/.agency-system/sessions.json` (Spec 006's `sessions_state.py`), and the watcher (`lib/watch_jules.py`) resumes from there.
+
+---
+
+## 7. Target file structure (unchanged from v1; reproduced for orientation)
 
 ```
 the-agency-system/                              ← the plugin
-├── .claude-plugin/plugin.json                  ← only file in this dir
+├── .claude-plugin/plugin.json                  ← only file in this dir (per JULES_PROTOCOL §7)
 ├── .mcp.json                                   ← stdio command, ${CLAUDE_PLUGIN_ROOT}
 ├── CLAUDE.md / README.md / CHANGELOG.md
 ├── commands/                                   ← /agency-system:{music,novel,jules,agentic,spec}-* slash facades
-├── servers/agency-mcp/                         ← FastMCP server (servers/ convention from bitwize)
+├── servers/agency-mcp/
 │   ├── run.py / pyproject.toml
 │   └── src/agency_mcp/
-│       ├── server.py                           ← FastMCP("agency-system") + CodeMode + StateCache + register_all()
-│       ├── handlers/
-│       │   ├── music/      (~67 tools — port of bitwize handlers verbatim)
-│       │   ├── novel/      (~73 tools — 63 domain + 10 prompt-builders)
-│       │   ├── jules/      (~12 tools — ported from jules-plugin)
-│       │   ├── agentic/    (~32 tools — spec/plans/workflows/research/ralph/confidence)
-│       │   └── shared/     (search, skills, reference, config, session — cross-domain)
+│       ├── server.py                           ← FastMCP + AnchorAwareCodeMode + StateCache + register_all()
+│       ├── handlers/{music,novel,jules,agentic,shared,context,ontology,graph}/
 │       ├── state/cache.py + indexers/{music,novel,jules,ncp}_indexer.py
-│       ├── lib/{ncp, dramatica, audio_processing, prose_processing, codemode}/
-│       └── codemode/{registry.py, deferred_loader.py, manifest.json}
-├── skills/{shared,music,novel,jules,agentic}/  ← ~140 skills total
-├── hooks/hooks.json                            ← PostToolUse validators
+│       ├── lib/{ncp, dramatica, audio_processing, prose_processing, codemode, envelope}/
+│       └── codemode/
+│           ├── manifest.json                   ← tools eager|deferred|background classification
+│           ├── context_manifest.json           ← Path B documents (Phase 4)
+│           ├── context_manifest.schema.json
+│           └── registry.py / deferred_loader.py
+├── skills/{shared,music,novel,jules,agentic}/  ← ~140 skills total, auto-namespaced
+├── hooks/
+│   ├── hooks.json                              ← PostToolUse + PreToolUse + UserPromptSubmit + PreCompact
+│   ├── contextignore_hook.py                   ← Phase 2
+│   ├── structure_map_hook.py                   ← Phase 2
+│   ├── read_cache_hook.py                      ← Phase 2
+│   ├── bash_compress_hook.py                   ← Phase 2
+│   ├── archive_hook.py                         ← Phase 2
+│   ├── quality_score_hook.py                   ← Phase 6
+│   ├── loop_detect_hook.py                     ← Phase 6
+│   ├── compaction_checkpoint_hook.py           ← Phase 6
+│   ├── graph_ingest_hook.py                    ← Phase 5
+│   └── validate_{track,chapter}.py + check_version_sync.py  ← Phase 0 (kept)
 ├── reference/                                  ← craft guides + ontology + ncp + dramatica primers
 ├── templates/                                  ← album/track + work/chapter/scene/ncp
 ├── migrations/                                 ← music/0.40..0.91 + agency/1.0.0
-├── tools/                                      ← CLI utilities
-├── state/schema/                               ← state.schema.json + ncp.schema.json + migrators
+├── tools/                                      ← CLI utilities (researcher/, jules-patch-extract.py, fm/, check-*)
+├── state/schema/                               ← state.schema.json + ncp.schema.json + migrators + ontology
 ├── config/agency-system.config.template.yaml
 ├── docs/architecture/ + domain/{music,novel,jules,agentic}.md
 ├── tests/{unit, integration, smoke}/
-├── bin/                                        ← jules-bulk + agency-* helpers
+├── bin/                                        ← jules-bulk + jules-dev-install + agency-* helpers (re-homed from jules-plugin/ in Phase 0)
 ├── artists/                                    ← KEEP music content
 ├── novels/                                     ← NEW novel content `{author}/works/{genre}/{slug}/`
 ├── audio/ documents/ genres/ overrides/ journals/   ← KEEP
 └── Plan/                                       ← THIS folder
 ```
 
-State on disk (single unified JSON, namespaced top-level keys):
-```
-~/.agency-system/cache/state.json    { music:{}, novel:{}, jules:{}, agentic:{}, _version:"1.0.0" }
-~/.agency-system/config.yaml         (replaces ~/.bitwize-music/config.yaml at cutover)
-~/.agency-system/agentic/{plans,workflows,specs,research,ralph,cache,locks}/
-```
-
-## 2. Core conventions (must be cited in every spec's Approach)
-
-### 2.1 Code Mode & MCP
-
-1. **Tool naming**: snake_case `<domain>_<verb>_<object>` (`music_list_albums`, `novel_get_chapter`). NOT dot-notation. Use FastMCP `tags={"domain:music"}` for grouping.
-2. **FastMCP construction**: `FastMCP("agency-system", dereference_schemas=False)`. Shared enums in `lib/codemode/enums.py`. Tool docstrings ≤120 chars (one-line purpose, imperative mood, mention sibling tools with backticks).
-3. **Code Mode discovery**: rely on built-in `search` / `get_schema` / `execute`. **No custom `list_tools` or `search_tools`** — single exception: `plugin_help(domain: str) -> Markdown` cheat-sheet.
-4. **Schema deferral**: ~4 anchor tools per domain registered eagerly; bulk with `defer_schema=True`. Code Mode drops boot context ~34k → ~315 tokens.
-5. **Tool classification** in `codemode/manifest.json`: `eager` | `deferred` | `background` (long-running tools register a `*_status` poll companion).
-6. **Response shape**: `list_*` returns `{id, name, summary}` capped 20 + opaque cursor; large blobs as `{ref_id, length, preview}` with a `read_ref` resolver. Opt-in `full=true` flag.
-7. **Stateful tools**: MUST accept `dry_run: bool = False` → `{would_apply, diff, warnings}`.
-8. **Orchestration tools**: MUST accept `return_plan: bool = False` → `OrchestrationPlan` of steps.
-9. **Shared `ToolResult` envelope**: `{ok, data, warnings, artefacts_written, next_suggested_tools}`.
-10. **StateCache**: ONE instance per FastMCP lifespan; `asyncio.Lock` for writes; mtime-staleness on `state.json`. Not process-global.
-11. **Hooks**: state invalidation MUST be synchronous inside the tool; hooks only for non-correctness side effects.
-
-### 2.2 Skill best practices (from `skill-creator`)
-
-L1 Vault Core frontmatter (mandatory): `type: spec`, `status`, `slug`, `summary` (≤120 chars), `created`, `updated`.
-
-L2 `skill_*` namespace (mandatory): `skill_kind` (9-value enum: `domain|tool|orchestrator|meta|discipline|workflow|persona|analysis|agent-template`), `skill_target_agents`, `skill_references_skills`, `skill_references_research`, `skill_references_prompts`, `skill_bootstrap_required`.
-
-Cross-refs in frontmatter only; `:embed` suffix = composition vs bare slug = invocation. Five mandatory body sections: `## What`, `## When to use`, `## How to use`, `## References`, `## Compatibility`. Linter enforces resolution + reciprocity — don't author `skill_referenced_by`.
-
-### 2.3 Claude Code plugin specifics
-
-- `.claude-plugin/plugin.json` is the only file in `.claude-plugin/`. Everything else at repo root.
-- Skills auto-namespace to `/agency-system:<skill-name>`. Sub-folders under `skills/` (`music/`, `novel/`) are organisational only.
-- `.mcp.json` uses `${CLAUDE_PLUGIN_ROOT}` for paths — never absolute.
-- Hooks (`hooks/hooks.json`) are synchronous in current Claude Code.
-- FastMCP ≥3.1.0 for Code Mode; `CodeMode` import wrapped in `try/except ImportError` for graceful fallback (jules-plugin's pattern).
-
-Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
-
-## 3. Spec list (57 specs as of 2026-05-18 — 20 done / 1 partial / 29 ready / 7 draft)
-
-> **Audit note (2026-05-18 evening):** Five Explore-subagent audits against actual disk state corrected the table below. Two specs the prior version marked `ready` are in fact **done** (098, 101 — Codex P1 cleanup + Jules-MCP additions, both merged via PRs #85 and #89-91). Four specs are **partial** with significant scaffolding landed but Done-When items still open (011a, 014, 022, 103). All other "ready" specs verified to have zero on-disk implementation.
->
-> **Wave D promotion (this PR, 2026-05-18):** Specs 122 / 123 / 124 flipped from `draft` to `ready` (three rows in the Wave D section below). Counts shifted accordingly: draft 10 → 7, ready 26 → 29. Total 57 unchanged.
->
-> **Wave A/B post-merge update (2026-05-18 evening):** Specs **011a, 017, 103** flipped from `partial`/`ready` to `done` after PRs **#98, #97, #100** merged on Master. Counts: done 17 → 20, partial 4 → 1 (only 022 + 014 remain partial — 014 still in flight). Critical-path 011a + 103 (Wave-A hardening surface) and 017 (hooks foundation for chapter validation) all landed. **014 still in flight** on the dispatched Jules session.
-
-### Wave A — Scaffold + Music + Jules + Code Mode (DONE)
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 001 | scaffold-plugin-skeleton | scaffold | — | ✅ done | 1 |
-| 002 | manifest-and-marketplace | scaffold | 001 | ✅ done | 1 |
-| 003 | unified-statecache-port | cross | 001 | ✅ done | 2 |
-| 004 | music-handlers-port | music | 003, 004a | ✅ done | 2 |
-| 004a | music-lib-port (subtree) | music | 003 | ✅ done | 1 |
-| 005 | music-skills-port | music | 002, 004 | ✅ done | 1 |
-| 006 | jules-handlers-port | jules | 003 | ✅ done | 1 |
-| 006a | jules-handlers hardening (implicit) | jules | 006 | ✅ done | 1 |
-| 007 | jules-skills-and-commands-port | jules | 002, 006 | ✅ done | 1 |
-| 008 | codemode-registry | cross | 003, 004, 006 | ✅ done | 1 |
-| 009 | shared-handlers | cross | 003 | ✅ done | 1 |
-| 010 | novel-on-disk-layout | novel | 002 | ✅ done | 1 |
-| 011 | novel-handlers-core (Wave B foundation) | novel | 003, 009, 010 | ✅ done | 2 |
-| 012 | dramatica-and-ncp-libs | novel | 010 | ✅ done | 2 |
-| 013 | novel-handlers-structural | novel | 011, 012 | ✅ done | 2 |
-| 019 | state-migration-from-bitwize | migration | 003 | ✅ done | 1 |
-| 098 | wave-a-hardening (Codex P1 cleanup) | cross | 002, 003, 004a, 019 | ✅ done | 1 |
-| 101 | jules-mcp-tool-additions (session_summary, pr_url, quota re-export) | jules | 006 | ✅ done | 1 |
-| **011a** | **novel-handlers-core hardening** (dry_run uniform + atomic indexer + singleton) | novel | 011 | ✅ done — PR #98 | 1 |
-| **017** | **hooks-port-and-extend** (validate_track/chapter + version-sync) | cross | 004, 012, 013 | ✅ done — PR #97 | 1 |
-| **103** | **view-fields-projection** (View enum + projection + handler decorators) | cross | 008 | ✅ done — PR #100 | 2 |
-
-### Wave A completion — enabler
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| **022** | **dev-mode-install** ⭐ first | cross | 002, 005, 007, 008 | 🟡 partial — run.py + bootstrap shipped; docs + smoke test missing | 1 |
-| 023 | harness-in-harness (research epic) | agentic | 008, 022 | ready | 3 |
-
-### Wave B remaining — novel completion
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 014 | novel-gates-and-revision | novel | 011, 012, 013 | 🟡 partial — gates.py + revision.py + promo.py landed (PR #88); test coverage skeleton-only; Jules session in flight | 1 |
-| 015 | novel-skills-catalogue | novel | 005, 011, 014 | ready | 2 |
-| 021 | novel-prompt-builder-family | novel | 011, 012, 013, 015 | ready | 2 |
-
-### Wave C — agentic + cutover
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 016 | agentic-handlers-and-skills | agentic | 002, 003, 008, 009 | ready | 2 |
-| 018 | overrides-and-config-migration | migration | 009, 015 | ready | 1 |
-| 020 | bitwize-deprecation-and-docs | cross | 005, 007, 015, 016, 018, 019 | ready | 1 |
-
-### Operational specs (from lessons + research)
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 099 | jules-orchestration-improvements (meta) | agentic | — | ready | 1 |
-| 100 | session-log-mcp (sidequest) | agentic | — | ready | 2 |
-| 102 | pr-rebase-policy | cross | — | ready | 1 |
-
-### Token-efficiency
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 104 | tool-search-anchor-triad | cross | 008 | ready | 2 |
-| 105 | toon-serializer | cross | 008 | ready | 1 |
-| 106 | github-mcp-summary-wrappers | cross | 008 | ready | 2 |
-| 107 | cache-breakpoint-ordering | cross | 008 | ready | 1 |
-
-### Context Mode (PICK ONE PATH — mutually exclusive)
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 108 | context-mode-integration (adopt mksglu) | cross | 002, 008, 100 | ready | 2 |
-| 111 | context-mode-manifest (build alt) | cross | 008, 104 | ready | 2 |
-| 112 | context-anchor-triad (build alt) | cross | 008, 104, 111 | ready | 2 |
-| 113 | context-cache-and-subscriptions (build alt) | cross | 008, 104, 111, 112 | ready | 2 |
-
-### Wave D — Path B content layer (extends 111-113)
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 122 | centralized-ontology | cross | 111, 112, 113 | ready | 1 |
-| 123 | agency-tooling-codemode | cross | 008, 111, 122 | ready | 2 |
-| 124 | graphqlite-codemode | cross | 008, 100, 111, 112, 113, 122 | ready | 3 |
-
-See `Plan/_research/_synthesis-122-123-124.md` for the interlocking design (data shape → machinery → graph layer). Three Jules research outputs landed on Master via PRs #82 / #84 / #86 with full findings docs under `Plan/_research/<slug>/`.
-
-### Token-optimizer hook layer (orthogonal)
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 114 | read-cache-delta-mode | cross | — | ready | 1 |
-| 115 | structure-map-ast | cross | — | ready | 1 |
-| 116 | bash-output-compression | cross | — | ready | 1 |
-| 117 | tool-result-archive | cross | 009 | ready | 1 |
-| 118 | quality-score-telemetry | cross | 100 | ready | 1 |
-| 119 | loop-detection | cross | — | ready | 1 |
-| 120 | smart-compaction-checkpoints | cross | 100 | ready | 2 |
-| 121 | contextignore-hardblock | cross | — | ready | 1 |
-
-### Discipline + lint cluster (drafts — added since 2026-05-18)
-
-Operational specs from the latest research/lessons batch. All draft — needs review + promotion to `ready` before dispatch. Most chain off 099 (`jules-orchestration-improvements`), so 099 lands before this cluster fans out.
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 130 | shared-toolresult-envelope + conformance gate | cross | 008, 009 | draft | 1 |
-| 131 | manifest-coverage-lint (drift detector) | cross | 008 | draft | 1 |
-| 132 | skill-tool-hooks (Pre/PostToolUse on `Skill\|Agent`) | cross | 017 | draft | 1 |
-| 133 | skill-subagent-pressure-tests | cross | 015, 016, 132 | draft | 2 |
-| 134 | plan-adr-convention (MADR records) | process | 099 | draft | 1 |
-| 135 | spec ↔ test anchor traceability lint | process | 099 | draft | 1 |
-| 136 | agents.yaml role manifest + hand-off registry | process | 099 | draft | 1 |
-| 137 | watcher SDK + composable polling | jules | 007, 100 | draft | 2 |
-| 138 | mandatory per-PR frustration-log protocol | process | 099 | draft | 1 |
-| 139 | clean-install evidence-snapshot helper (Gate 3) | process | 099 | draft | 1 |
-
-**Wave A — DONE** (21 specs incl. 006a + 098 + 101 + 011a + 017 + 103): unified plugin boots, 113+ tools registered, music side 100% bitwize parity, jules side 100% jules-plugin parity (incl. session_summary / pr_url / quota re-export from 101), Code Mode registry in place (boot context 210 tokens), novel foundation + structural + hardening layer in (011a), hooks foundation in (017), View projection wired across handlers (103), Codex P1 hardening sweep complete (098). **Bitwize-music plugin can be uninstalled once Spec 020 cuts over.**
-
-**Wave A completion** (2 specs): Spec 022 dev-mode-install (🟡 partial — bootstrap + run.py shipped, docs/smoke-test open) + Spec 023 harness-in-harness research epic (depends on 022 — opens the plugin to bash-only agents).
-
-**Wave B remaining** (3 specs): novel domain shipping. 014 (🟡) has gates/revision/promo scaffolding; 015 + 021 unstarted. End-state: user can run `/agency-system:novel-work-conceptualizer`, write chapters, validate against NCP, pass the 6-gate.
-
-**Wave C** (3 specs): agentic surface live (32 tools per Spec 016), overrides merged, `jules-plugin/` removed, bitwize marked deprecated. 016, 018, 020 verified NOT_STARTED. (Spec 017 hooks landed early via PR #97.)
-
-**Cross-cutting backlog** (22 ready specs): operational + token-efficiency + Context Mode + token-optimizer. All verified NOT_STARTED. Most depend only on 008 (✅ done) so they ship in parallel waves.
-
-**Discipline + lint drafts** (10 specs, 130-139): operational hardening cluster from the most recent research/lessons sweep. Needs spec-review pass before promotion to `ready`; mostly chains off 099.
-
-**Critical path to v1.0 cutover**: 022 → 014 → 015 → 020 ≈ **4 sessions** (down from 5 with 011a + 017 + 103 now landed). Everything else compresses into parallel fan-out.
-
-## 4. Dependency DAG (updated 2026-05-18)
-
-✅ = merged on Master · ⭐ = next-session priority · ⏳ = ready, awaiting dispatch
-
-### Critical path to v1.0 cutover (4 sessions)
+State on disk:
 
 ```
-        ┌── 022 ⭐ (enabler)
-        │
-✅ Wave A (incl. 011a, 017, 103)
-        │
-        ├── 014 ⏳ ── 015 ⏳ ── 020 ⏳ (v1.0)
-        │              │
-        │              └── 021 ⏳ (parallel)
-        │
-        ├── 016 ⏳ ──────────────┘
-        │
-        └── 018 ⏳ ──────────────┘
+~/.agency-system/cache/state.json       { music:{}, novel:{}, jules:{}, agentic:{}, _version:"1.0.0" }
+~/.agency-system/cache/manifest.json    Path B document manifest (Phase 4)
+~/.agency-system/cache/graph.sqlite     Wave D ontology graph (Phase 5)
+~/.agency-system/cache/sessions.json    Jules session registry
+~/.agency-system/config.yaml
 ```
 
-### Cross-cutting (parallelizable from session start)
+---
 
-```
-Wave A hardening   098 ✅ (Codex P1 cleanup — merged f4519a1)
+## 8. Phase 0 — Foundation cleanup (executable now)
 
-Token-efficiency   103 ✅ (merged via PR #100)
-                   104 ⏳ ─┐
-                   105 ⏳ ─┤  all depend only on 008 ✅
-                   106 ⏳ ─┤
-                   107 ⏳ ─┘
+Phase 0 is the only phase this overview implements directly (the rest are dispatched via Jules per `JULES-REVIEW-LOOP.md`). It is also the first PR review-cycle the orchestrator drives to demonstrate the workflow.
 
-Operational        099 ⏳ (meta) · 100 ⏳ (session-log-mcp) ·
-                   101 ✅ (jules-mcp additions — merged PRs #89-91) ·
-                   102 ⏳ (rebase policy)
+**Files this phase touches:**
 
-Context Mode       108 ⏳ (adopt mksglu plugin)        ← PICK
-                          OR                             ONE
-                   111 ⏳ → 112 ⏳ → 113 ⏳ (build)    ← PATH
+- DELETE: `jules-plugin/` (entire subdir)
+- CREATE: `bin/jules-bulk`, `bin/jules-dev-install` (moves from `jules-plugin/bin/`)
+- CREATE: `tests/jules/test_*.py` (moves from `jules-plugin/tests/`)
+- CREATE: `tools/researcher/` (moves from `jules-plugin/tools/researcher/`)
+- MODIFY: `CLAUDE.md` (drop the "Jules orchestration plugin" section's `--plugin-dir ./jules-plugin` install path)
+- MODIFY: `Plan/000-overview.md` (this file — also marks 020 done)
+- CREATE: `Plan/JULES-REVIEW-LOOP.md` (the orchestration spec)
 
-Token-optimizer    114 ⏳ · 115 ⏳ · 116 ⏳ · 117 ⏳ ·
-hook layer         118 ⏳ · 119 ⏳ · 120 ⏳ · 121 ⏳
-                   (all near-orthogonal; 117 needs 009 ✅,
-                   118+120 want 100 ⏳ first)
-```
+**Phase 0 tasks:**
 
-### Recommended dispatch order
+- [ ] **Task 0.1** — Sub-spec audit (this overview) lands as PR #1 against `Master`. Jules-review-loop runs against PR #1 to validate the plan before any code moves.
+- [ ] **Task 0.2** — Phase 0 implementation PR (`Master ← phase-0-cleanup`):
+  - Move `jules-plugin/bin/*` → `bin/`; chmod +x preserved.
+  - Move `jules-plugin/tools/researcher/` → `tools/researcher/`.
+  - Move `jules-plugin/tests/*` → `tests/jules/` (rename to avoid collision with handler tests).
+  - `rm -rf jules-plugin/`.
+  - Update `CLAUDE.md` install instructions.
+  - Smoke test: `python -c "from agency_mcp.server import create_mcp; print(len(create_mcp().tools))"` returns same count as before deletion (the Jules tools live in `handlers/jules/` already).
+  - `tests/smoke/test_no_jules_plugin.py` asserts `jules-plugin/` is absent.
+- [ ] **Task 0.3** — `Plan/000-overview.md` updates §2.1 to add 020 to Done with PR# evidence.
+- [ ] **Task 0.4** — Run JULES-REVIEW-LOOP §3 against Phase 0 PR — single Jules review session, iterate until clean, merge.
 
-**Session 1 (in flight — 6 Jules sessions dispatched 2026-05-18):**
-- **011a** (🟡 PARTIAL — finish indexer atomicity + full dry_run)
-- **014** (🟡 PARTIAL — fill gate test coverage)
-- **017** (NOT_STARTED — new hooks port)
-- **022** (🟡 PARTIAL — add docs + smoke test)
-- **100** (NOT_STARTED — new session-log-mcp server)
-- **103** (🟡 PARTIAL — wire projection into remaining handlers + token-budget test)
+Phase 0 is also the smoke test for the entire orchestration mechanism. If the review-loop doesn't work on a 4-task cleanup PR, fix the loop before attempting Phase 1.
 
-Two of these (011a, 103) need a clarifying `jules_message` at plan-approval time — both have substantial scaffolding that prior PRs (#83, #87, #88) already landed, and Jules should *extend* rather than recreate.
+---
 
-**Session 2 (post-merge of Session 1):**
-- Parallel-dispatch: **015 + 016 + 018 + 023 + 106** (5 sessions)
-- Pick Context Mode path (108 vs 111-chain); dispatch first step
-- Decide on token-optimizer first 1-2 picks (e.g. 117 archive guardrail first)
-- Dispatch **099** to unblock the discipline+lint drafts (130-139)
+## 9. Phase 1-8 dispatch matrices
 
-**Session 3 (cutover):**
-- Dispatch **020 + 021** (final Wave-B + cutover)
-- Continue token-eff backlog (104, 105, 107)
-- Begin promotion of drafts 130-139 to `ready`, dispatch the ones whose deps are merged
+For each phase below: `Specs` lists the sub-spec directories Jules will work from; `Parallel-safe` lists which specs can be dispatched simultaneously (no file-overlap); `Sequential` lists ordering constraints.
 
-After Session 3: v1.0 plugin shipped; remaining specs are continuous-improvement.
+### Phase 1 — Anchor triad + envelope
 
-## 5. Workflow trace (end-to-end coherence proof)
+- **Specs:** `Plan/104-tool-search-anchor-triad/`, `Plan/107-cache-breakpoint-ordering/`, `Plan/130-shared-toolresult-envelope/`, `Plan/131-manifest-coverage-lint/`
+- **Parallel-safe:** 130 + 131 (envelope and lint touch different files); then 104 (uses envelope); 107 must land after 104 (reorders registration around the triad).
+- **Token win:** boot context 34k → <500
+- **PR strategy:** 4 PRs, dispatched as one fanout. 130 + 131 open first; 104 opens after either of them merges; 107 opens last.
+- **Smoke test:** `tests/smoke/test_boot_budget.py` (Spec 131 ships it; runs in CI).
 
-Full traces live below under `Coherence reflection`. Three workflows are proven coherent:
+### Phase 2 — Hook chain
 
-- **Music**: `/agency-system:music-lyric-writer` → music tools → hooks/validate_track.py → StateCache refresh.
-- **Novel**: `/agency-system:novel-work-conceptualizer` → novel_create_work → novel_ncp_compile → novel_run_pre_drafting_gates (6 BLOCKING) → `novel-scene-prompt-builder` composes character + world + throughline + bridge prompt-builders → chapter-writer drafts → validate_chapter.py fires.
-- **Jules / spec-driven**: Jules opens spec.md → reads 80-word sticker → `Plan/JULES_PROTOCOL.md` → Gate 1 (Confidence) → clone source → Gate 2 (TDD) → Gate 3 (Evidence in PR) → Gate 4 (Self-Review).
+- **Specs:** 121 (contextignore), 115 (structure-map), 114 (read-cache-delta), 116 (bash-compress), 117 (archive)
+- **Parallel-safe:** all five — each owns its own `hooks/*_hook.py` file and a tightly-scoped `hooks.json` section.
+- **Sequential:** none within the phase; the **chain order** is enforced at runtime via `hooks.json` ordering, not by PR order.
+- **Token win:** 20-30% of session input + 4 KB cap on any single result.
+- **PR strategy:** 5 PRs as one fanout. All 5 in parallel.
 
-## 6. Research briefs (embedded in spec `references/` folders)
+### Phase 3 — GitHub sink wrapper
 
-| Brief | Embedded in spec |
-|---|---|
-| Novel-craft parity table (30 music↔novel role mappings, 12 craft-research citations) | 015 |
-| Dramatica decidability matrix (11 decidable + 2 judgement Dramatica checks) | 012, 013 |
-| FastMCP / Code Mode best practices (token budget, response shapes, lazy loading) | 008 (also cited by many) |
-| Agentic-orchestration tool catalog (32 tools, ToolResult envelope) | 016 |
-| Novel prompt-builder methods (10 builders, 12-source method survey) | 021 |
-| Jules protocol (this doc) | `Plan/JULES_PROTOCOL.md` (master) |
-| Claude Code plugin best practices | this overview §2.3 + spec 001 |
-| Source-repo URLs | `Plan/SOURCES.md` |
+- **Specs:** 106 (github-mcp-summary-wrappers)
+- **Token win:** PR/issue reads collapse from 40-80k → ≤ 2.5 KB.
+- **Implementation note:** uses subagent dispatch pattern from `superpowers:dispatching-parallel-agents`. The wrapper tool spawns an ephemeral subagent with `mcp__github__pull_request_read` access; distils to a typed Pydantic proto; the main session never sees the raw body.
+- **PR strategy:** 1 PR.
 
-## 7. Reading order for Jules
+### Phase 4 — Context Mode (Path B)
 
-1. `Plan/JULES_PROTOCOL.md` — non-negotiable
-2. `Plan/SOURCES.md` — clone commands for your spec
-3. `Plan/000-overview.md` — this doc (§2 conventions especially)
-4. Your assigned spec's `Plan/NNN-<slug>/spec.md`
-5. Any embedded brief in `Plan/NNN-<slug>/references/`
-6. Anthropic docs cited in `Plan/SOURCES.md` §"Reference / framework docs"
+- **Specs:** 111 (manifest), 112 (anchor-triad), 113 (cache + subscriptions), 108-stub (supersession marker)
+- **Sequential:** 111 → 112 → 113 (each builds on the prior). 108-stub lands in parallel with 111.
+- **Token win:** 200 k+ deferred.
+- **PR strategy:** 4 PRs. 111 + 108-stub fanout together; 112 dispatched on 111 merge; 113 on 112 merge.
+
+### Phase 5 — Ontology + Graph (Wave D)
+
+- **Specs:** 122 (centralized-ontology), 123 (agency-tooling-codemode), 124 (graphqlite-codemode), 135 (spec-test-anchor-traceability)
+- **Sequential:** 122 → 123 → 124 (schema → enforcement → graph). 135 in parallel.
+- **Token win:** cross-domain queries collapse to single Cypher MATCH.
+- **PR strategy:** 4 PRs over ~3 fanouts.
+
+### Phase 6 — Quality / loop / compaction
+
+- **Specs:** 100 (session-log-mcp), 118 (quality-score), 119 (loop-detect), 120 (compaction-checkpoints)
+- **Sequential:** 100 first (session-log is the data store the other three append to). 118 / 119 / 120 parallel.
+- **PR strategy:** 4 PRs over 2 fanouts.
+
+### Phase 7 — Domain handler completion
+
+- **Specs:** 014 (novel gates + revision), 015 (novel skills catalogue), 016 (agentic handlers + skills), 018 (overrides migration), 021 (novel prompt-builders)
+- **Parallel-safe:** all five (different handler subdirs).
+- **PR strategy:** 5 PRs as one fanout.
+
+### Phase 8 — Operational hardening
+
+- **Specs:** 102 (pr-rebase-policy), 132 (skill-tool-hooks), 133 (skill-subagent-pressure-tests), 134 (plan-adr-convention), 136 (agents-yaml-role-manifest), 137 (watcher-sdk-composability), 138 (frustration-log-protocol), 139 (evidence-snapshot-helper), 023 (harness-in-harness), 099-full (jules-orchestration-improvements remainder)
+- **Parallel-safe:** all (orthogonal subsystems).
+- **PR strategy:** up to 10 PRs as one fanout — this phase is where the 60-session quota is most relevant.
+
+---
+
+## 10. Done when (whole plan)
+
+This master plan is **complete** when:
+
+1. All eight phases have at least one merged PR each, and each phase's smoke test row (§5) passes in CI.
+2. `tools/list` payload measured at < 4 KB on a fresh boot — captured in CI gate.
+3. `jules-plugin/` does not exist; `Plan/_lessons-learned/` has at least one new lesson per phase (the reflexion contract).
+4. The unified plugin loads via `/plugin install agency-system@netzkontrast` (marketplace path verified by Spec 022 finish).
+5. `Plan/000-overview.md` §2.1 lists every spec from §2.2 and §2.3 as Done with a merged PR number, OR explicitly marked superseded with a pointer.
+
+---
+
+## 11. Pointers
+
+- **JULES_PROTOCOL.md** — the contract for any Jules session (4 gates, recovery, anti-patterns).
+- **JULES-REVIEW-LOOP.md** *(new in this plan)* — the orchestration loop mechanics (dispatch, watch, review, iterate).
+- **SOURCES.md** — vendor source repos referenced by specs.
+- **_lessons-learned/** — reflexion log; every phase appends one entry.
+- **_research/_synthesis-122-123-124.md** — the Wave D braid (already authored).
+- **docs/superpowers/specs/2026-05-16-jules-suite-refactor-design.md** — the predecessor spec; still useful for Phase 0/1 historical context.
