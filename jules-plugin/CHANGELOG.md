@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- `jules_create` accepts `initial_messages: list[str] | None`. Each entry is sent to the new session via `:sendMessage` immediately after creation, with built-in exponential-backoff retry on the 404-while-session-initialising window (up to 6 attempts, base 2 s, cap 30 s). Non-404 errors do NOT retry. Failures are surfaced as `initial_messages_failed: [{message, status, attempts}]` on the response without raising — the session is created either way. Eliminates the manual "create then sleep then jules_message" dance the orchestrator was running.
+- `bin/jules-bulk` fanout entries accept an optional `initial_messages` field (JSON array of strings); the shim plumbs it through to `jules_create`.
+
+### Fixed
+- `bin/jules-bulk` previously imported `jules_create`, `jules_status_all`, `jules_approve_awaiting`, `jules_quota` from `jules_mcp.server`. Those names are registered there as FastMCP tools but NOT re-exported as module attributes, so every subcommand crashed with `module 'jules_mcp.server' has no attribute …`. All four heredocs now import from the correct submodules (`jules_mcp.tools.lifecycle` / `jules_mcp.tools.bulk`).
+
 ## [v1.0.0] - Initial Release
 
 This release cuts over the Jules orchestration suite to a standard Claude Desktop plugin architecture, removing the monolithic scripts and adopting a modular codebase.

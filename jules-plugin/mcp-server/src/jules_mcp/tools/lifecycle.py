@@ -2,9 +2,10 @@ from typing import Any
 import importlib.util
 import os
 import sys
+import time
 import urllib.parse
 from fastmcp import FastMCP
-from ..api import _request, _paginate, _short_id
+from ..api import _request, _paginate, _short_id, JulesAPIError
 from ..source import _coerce_source, _resolve_github_source
 from ..trim import apply_fields, apply_summary, apply_list_trim
 
@@ -59,6 +60,31 @@ def jules_resolve_source(owner: str, repo: str) -> dict:
     return _resolve_github_source(owner, repo)
 
 
+def _send_initial_message_with_retry(
+    sid: str, prompt: str, max_attempts: int = 6, base_delay_s: float = 2.0
+) -> tuple[bool, int, int]:
+    """Send a message to a freshly-created session, retrying on 404.
+
+    The Jules backend returns 404 from `:sendMessage` for a brief window
+    after `POST /sessions` while the session is still initialising
+    upstream. Retry with exponential backoff (capped at 30 s) until it
+    transitions, then send. All other errors propagate immediately.
+
+    Returns: (ok, last_status, attempts_used).
+    """
+    last_status = 0
+    for attempt in range(1, max_attempts + 1):
+        try:
+            _request("POST", f"/v1alpha/sessions/{sid}:sendMessage", body={"prompt": prompt})
+            return True, 200, attempt
+        except JulesAPIError as e:
+            last_status = e.status
+            if e.status != 404 or attempt == max_attempts:
+                return False, e.status, attempt
+            time.sleep(min(base_delay_s * (2 ** (attempt - 1)), 30.0))
+    return False, last_status, max_attempts
+
+
 def jules_create(
     prompt: str,
     source: str,
@@ -67,6 +93,7 @@ def jules_create(
     require_plan_approval: bool = True,
     auto_create_pr: bool = False,
     alias: str = "",
+    initial_messages: list[str] | None = None,
 ) -> dict:
     """Create a new Jules session.
 
@@ -86,8 +113,20 @@ def jules_create(
         auto_create_pr: When True, Jules opens a real Pull Request on
             completion. When False (default), the patch comes back as a
             unified diff via jules_patch.
+        initial_messages: Optional list of follow-up messages to send via
+            `:sendMessage` immediately after the session is created. Each
+            message is retried with exponential backoff while the upstream
+            returns 404 (the session-not-yet-ready window). Non-404 errors
+            do NOT retry. Failures are surfaced as `initial_messages_failed`
+            on the response without raising — the session itself is created
+            either way. Typical use: a rebase-onto-branch instruction that
+            you would otherwise send as a manual jules_message after a
+            sleep.
 
     Returns: the newly created session resource as a dict with id, state, title, url.
+        When `initial_messages` is provided, the dict also carries
+        `initial_messages_sent: list[str]` and (if any failed)
+        `initial_messages_failed: list[{message, status, attempts}]`.
     """
     resolved_source = _coerce_source(source)
     body: dict[str, Any] = {
@@ -104,7 +143,7 @@ def jules_create(
         body["automationMode"] = "AUTO_CREATE_PR"
 
     resp = _request("POST", "/v1alpha/sessions", body)
-    
+
     if sessions_state is not None:
         try:
             new_id = resp.get("id") or _short_id(resp.get("name", ""))
@@ -119,7 +158,22 @@ def jules_create(
             )
         except Exception as e:
             _log(f"Failed to register session locally: {e}")
-            
+
+    if initial_messages:
+        sid = _short_id(resp.get("name", "")) or resp.get("id", "")
+        sent: list[str] = []
+        failed: list[dict[str, Any]] = []
+        for msg in initial_messages:
+            ok, status, attempts = _send_initial_message_with_retry(sid, msg)
+            if ok:
+                sent.append(msg)
+            else:
+                failed.append({"message": msg, "status": status, "attempts": attempts})
+                _log(f"initial_message dropped after {attempts} attempts (last status {status}): {msg[:80]!r}")
+        resp["initial_messages_sent"] = sent
+        if failed:
+            resp["initial_messages_failed"] = failed
+
     return resp
 
 

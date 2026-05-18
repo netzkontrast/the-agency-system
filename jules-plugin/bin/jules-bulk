@@ -106,51 +106,61 @@ cmd_fanout() {
     fi
 
     jq -c '.[]' "$temp_json" | while read -r entry; do
-        local alias title prompt branch
+        local alias title prompt branch initial_messages_json
         alias=$(echo "$entry" | jq -r '.alias // empty')
         title=$(echo "$entry" | jq -r '.title // empty')
         prompt=$(echo "$entry" | jq -r '.prompt // empty')
         branch=$(echo "$entry" | jq -r '.branch // empty')
+        # Optional: list of strings sent via :sendMessage right after create
+        # (with built-in 404 retry). See jules_mcp.tools.lifecycle.jules_create.
+        initial_messages_json=$(echo "$entry" | jq -c '.initial_messages // []')
 
         if [ -z "$alias" ] || [ -z "$title" ] || [ -z "$prompt" ]; then
             echo "WARN: Skipping entry with missing alias, title, or prompt: $entry" >&2
             continue
         fi
-        
+
         if [ -z "$branch" ]; then
             branch="$DEFAULT_BRANCH"
         fi
 
         echo "Creating session for alias: $alias ..."
-        
+
         export JULES_TEMP_PROMPT="$prompt"
         export JULES_TEMP_TITLE="$title"
         export JULES_TEMP_BRANCH="$branch"
         export JULES_TEMP_SOURCE="$DEFAULT_SOURCE"
+        export JULES_TEMP_INITIAL_MESSAGES="$initial_messages_json"
         export SCRIPT_DIR="$DIR"
-local resp
+        local resp
         resp=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
 import json, os
 try:
-    from jules_mcp import server as mod
-    res = mod.jules_create(
+    from jules_mcp.tools.lifecycle import jules_create
+    initial_messages = json.loads(os.environ.get('JULES_TEMP_INITIAL_MESSAGES', '[]') or '[]')
+    res = jules_create(
         prompt=os.environ['JULES_TEMP_PROMPT'],
         source=os.environ['JULES_TEMP_SOURCE'],
         starting_branch=os.environ['JULES_TEMP_BRANCH'],
         title=os.environ.get('JULES_TEMP_TITLE', ''),
-        require_plan_approval=True
+        require_plan_approval=True,
+        initial_messages=initial_messages if initial_messages else None,
     )
     print(json.dumps({"ok": True, "res": res}))
 except Exception as e:
     print(json.dumps({"ok": False, "err": str(e)}))
 PY
-        )        
+        )
         local ok=$(echo "$resp" | jq -r '.ok')
         if [ "$ok" = "true" ]; then
-            local session_id
+            local session_id failed_count
             session_id=$(echo "$resp" | jq -r '.res.name // .res.id // empty' | sed 's|^sessions/||')
             echo "Session created: $session_id"
-            
+            failed_count=$(echo "$resp" | jq -r '.res.initial_messages_failed | length // 0')
+            if [ "$failed_count" != "0" ] && [ "$failed_count" != "null" ]; then
+                echo "  WARN: $failed_count initial_message(s) did not land — inspect .res.initial_messages_failed" >&2
+            fi
+
             python3 "$DIR/../lib/sessions_state.py" register --id "$session_id" --title "$title" --alias "$alias"
         else
             local err=$(echo "$resp" | jq -r '.err // "Unknown error"')
@@ -176,8 +186,8 @@ export SCRIPT_DIR="$DIR"
     all_sessions_json=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
 import json, os
 try:
-    from jules_mcp import server as mod
-    print(json.dumps(mod.jules_status_all()))
+    from jules_mcp.tools.bulk import jules_status_all
+    print(json.dumps(jules_status_all()))
 except Exception as e:
     print(json.dumps({"error": str(e)}))
 PY
@@ -234,8 +244,8 @@ cmd_approve_awaiting() {
     resp=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
 import json, os
 try:
-    from jules_mcp import server as mod
-    print(json.dumps(mod.jules_approve_awaiting()))
+    from jules_mcp.tools.bulk import jules_approve_awaiting
+    print(json.dumps(jules_approve_awaiting()))
 except Exception as e:
     print(json.dumps({"error": str(e)}))
 PY
@@ -293,8 +303,8 @@ cmd_quota() {
     resp=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
 import json, os
 try:
-    from jules_mcp import server as mod
-    print(json.dumps(mod.jules_quota()))
+    from jules_mcp.tools.bulk import jules_quota
+    print(json.dumps(jules_quota()))
 except Exception as e:
     print(json.dumps({"error": str(e)}))
 PY
