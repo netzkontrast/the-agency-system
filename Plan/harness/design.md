@@ -1,23 +1,29 @@
 ---
 slug: harness-in-harness
-status: draft
+status: ready-to-tag
 owner: claude
 depends_on: [022, 008, 112]
-related: [023, 131, 105, 104]
+related: [023, 131, 105, 104, 132, 133]
 supersedes: [023]  # absorbs Plan/023's MVP scope; Plan/023's research-epic items deferred to a follow-up sub-spec
-phase: [1, 8]
+phase:
+  L1: 1            # ships now — pytest harness, conftest, smoke-test retrofit
+  L2: 2-deferred   # design stable; implementation deferred — see §4 "L2 implementation phasing"
+  L3: 1            # ships now (MVP scope per §5.6) — daemon + CLI + bootstrap
 affects:
   - Plan/harness/design.md
   - Plan/harness/_research/01-fastmcp-in-memory.md
   - Plan/harness/_research/02-claude-bare-plugin-dir.md
   - Plan/harness/_research/03-test-coverage-baseline.md
   - Plan/harness/_research/04-fastmcp-http-transport.md
+  - Plan/harness/_research/05-domain-isomorphism.md
+  - Plan/harness/_research/06-phase-2-through-8-forward-compat.md
   - tests/_harness/__init__.py
   - tests/_harness/mcp.py
   - tests/_harness/skills.py
+  - tests/_harness/normalisation.py     # source-of-truth + schema-shape passes (§3.7)
   - tests/conftest.py
   - tests/smoke/test_dev_install.py
-  - tests/smoke/test_nested_claude.py
+  - tests/smoke/test_nested_claude.py   # ships disabled-by-default; activated when L2 implementation lands in Phase 2
   - bin/agency
   - servers/agency-mcp/src/agency_mcp/lib/devmode/__init__.py
   - servers/agency-mcp/src/agency_mcp/lib/devmode/server.py
@@ -26,10 +32,15 @@ affects:
   - docs/architecture/harness-in-harness.md
   - tests/integration/test_devmode_server.py
 source-repos: []
-estimated_jules_sessions: 4
+estimated_jules_sessions:
+  L1: 1
+  L3-mvp: 2
+  L2-deferred: 1   # Phase 2
+  L3-progressive-disclosure: 2   # follow-up sub-spec (deferred Plan/023 items 1+4)
 domain: agentic
 wave: B
 spec_kind: design
+tag_target: design/harness-v1   # the git tag this design supports once approved
 ---
 
 > **Status:** draft 2026-05-18 by orchestrator session (Claude Code).
@@ -256,6 +267,31 @@ Both Codex critiques on PR #115 resolve in one step.
 
 If the watcher's poll loop interferes with tests that mutate Plan/_lessons-learned/ files (none today), a future `harness_mcp(watcher=False)` knob can be added — out of scope for L1 v1.
 
+**Cold-boot vs warm-singleton.** Spec 131's `tests/smoke/test_boot_budget.py` measures `tools/list` payload at cold boot. The harness's lru-cache singleton returns a warm instance after the first call, which may differ from cold (FastMCP may lazy-load schemas on first list). Two mitigations land with L1:
+
+1. `harness_mcp.cache_clear()` exposed as a helper so cold-boot tests can force a fresh boot — `Spec 131` runs `cache_clear()` then `harness_mcp()` to measure cold.
+2. A `cold_mcp()` fixture (separate from `mcp`) that always returns a fresh instance, for tests that need repeated cold measurements.
+
+If both prove insufficient, the L2 subprocess probe (§4) is the fallback — that's the strict cold-boot oracle (`subprocess.run([sys.executable, "-c", "from agency_mcp.server import create_mcp; ..."])`).
+
+### 3.7 Isomorphism across the five domains
+
+The codebase has five domains (music, novel, jules, context, shared) plus an `agentic` skill-only domain. A 2026-05-18 audit (`_research/05-domain-isomorphism.md`) scored their cross-domain uniformity at **6/10** today, identifying five concrete strains the four-verb contract has to handle. L1 closes them with two normalisation passes plus three documented conventions; the deeper "restructure for native isomorphism" question — and which parts to land before this design's tag — is treated in §11 below.
+
+| Strain (audit §3) | L1 response |
+|---|---|
+| Strain 1 — Complex parameter expressions (`music_master_album` has 6+ kwargs) | L1's `call_tool(name, **kwargs)` is naturally typed via Python. No special handling needed. (L3's CLI handles via `--json '{...}'` escape hatch — see §5.) |
+| Strain 2 — Non-JSON binary returns (`music_transcribe_audio` returns a path) | `call_tool` returns the JSON envelope verbatim — the path string is the body. Callers that need the binary fetch separately. Documented in §6 "Out of scope". |
+| Strain 3 — Skill-schema divergence (music has `model`/`allowed-tools`, jules doesn't) | `dispatch_skill(name)` returns the full parsed frontmatter dict. Callers tolerate optional fields being absent (use `frontmatter.get("model")`, not `frontmatter["model"]`). A future Phase 1 sibling spec `test_skill_schema.py` enforces required-field contract across all 58 SKILL.md files. |
+| Strain 4 — Session-state dependency chains (`music_update_track_field` requires cache warmth) | `harness_warm(domain)` helper added to L1's public API — triggers domain-specific cache bootstrap (e.g. `music_list_albums()` for music). Tests document required call sequences. For L3, the daemon's process lifetime preserves cache across CLI invocations until `agency server stop`. |
+| Strain 5 — Domain-classifier divergence (context tagged `domain:cross`; novel has 56 handlers but **zero manifest entries**; shared has tag-less `@mcp.tool`) | **Two normalisation passes shipped in `tests/_harness/normalisation.py`:**<br>① `list_tools(domain="X")` queries `mcp.list_tools()` (the FastMCP authoritative source) and filters by tag — `domain:novel` returns the 56 handlers even though manifest.json is empty for novel. A no-tag tool falls back to `domain:shared`.<br>② `dispatch_skill` returns the full parsed frontmatter so callers can tolerate optional fields explicitly. |
+
+**Why `mcp.list_tools()` is the source of truth.** Every registered tool — including bare `@mcp.tool` decorators and `mcp.tool(...)(fn)` post-wraps — appears in `mcp.list_tools()`. The manifest.json file is the *CodeMode anchor/deferred classification cache*, not the registration ledger. Treating it as the registration ledger is what produces the novel "phantom domain" effect. The harness consults manifest only for the boolean "is this an eager anchor?" question, never for "which tools exist?"
+
+**Module location.** The two normalisation passes live in `tests/_harness/normalisation.py` (≤80 lines): `resolve_domain(tool)`, `tools_by_domain(mcp, domain)`, `parse_skill_frontmatter(path)`. L1's `list_tools` / `dispatch_skill` verbs delegate to these helpers.
+
+**Post-design uniformity score.** With L1's two normalisations in place and §11's low-cost restructures landed, the score lifts from 6/10 to 9/10. The remaining 1/10 (full schema enforcement + binary-envelope standardisation) is named in §11 as follow-up work.
+
 ## 4. L2 — Subprocess probe
 
 ### 4.1 The probe
@@ -453,7 +489,17 @@ The deferred items (1, 4) are pure additions — they will not require rework of
 | Tool-call audit | Logs every invocation to `~/.agency-system/dev-server.log` | Sufficient for dev / dogfooding; production-grade audit is out of scope |
 | Untrusted-input handlers | Same trust boundary as the in-Claude-Code plugin (i.e., trusted) | The plugin handlers were authored against MCP-trusted input; L3 inherits that assumption. Adding untrusted-input gates is a follow-up spec, not this one. |
 
-### 5.8 In-session bash dogfooding (the orchestrator's own use case)
+### 5.8 Isomorphism across the five domains (L3 side)
+
+L3's CLI mirrors L1's normalisation passes (§3.7):
+
+- `agency tool search [--domain X]` walks `mcp.list_tools()` server-side and filters by tag — returns novel's 56 tools regardless of manifest.json gaps.
+- `agency tool execute <name> [--param k=v ...] [--json '{...}']` handles complex parameter expressions via the `--json` escape hatch (Strain 1).
+- Binary returns (Strain 2): the CLI prints the JSON path/metadata; a follow-up `agency file get <path>` verb (deferred to L3 progressive-disclosure sub-spec) serves the binary.
+- `agency skill describe <name>` returns the full parsed frontmatter as JSON; callers tolerate optional fields. Same convention as L1 (Strain 3).
+- Session state (Strain 4): the daemon's process lifetime preserves the StateCache across CLI calls. `agency tool execute <domain>_warm` is the explicit warm verb where needed.
+
+### 5.9 In-session bash dogfooding (the orchestrator's own use case)
 
 Once L3 is running, the **orchestrator session itself** (this one — a Claude Code session with the `Bash` tool) can invoke the plugin's tools via the CLI:
 
@@ -639,6 +685,117 @@ Scenario: L3 makes in-session dogfooding possible without restarting Claude Code
 - [`Plan/JULES-REVIEW-LOOP.md`](../JULES-REVIEW-LOOP.md) §4.1 — review prompt template used for the first review pass on this design
 - [`Plan/023-harness-in-harness/spec.md`](../023-harness-in-harness/spec.md) — origin of L3 design; this design absorbs items 2-3-5-6-7-8 and defers items 1-4
 
-## 11. First review pass
+## 11. Path to native isomorphism
+
+The §3.7 / §5.8 normalisation passes lift uniformity from 6/10 to 9/10 by treating the *symptoms* at the harness layer. The deeper question — raised by the orchestrator after the audit landed — is whether the **domains themselves** can be restructured so isomorphism becomes a property of the codebase rather than a harness convention. This section names the structural changes that would lift uniformity from 9/10 to 10/10 and proposes which of them land **before this design's tag** and which become follow-up sub-specs.
+
+### 11.1 The seven structural levers
+
+Each lever maps to one of the five audit strains plus two cross-cutting hygiene concerns:
+
+| # | Lever | Strain | Cost | Risk |
+|---|---|---|---|---|
+| L-α | **Unified `register(mcp: FastMCP)` signature** across every `handlers/<domain>/__init__.py` — drops Pattern A vs. B vs. C divergence (`_research/05.md` §2). | 5 | low | none — backward-compat wrappers preserve existing `register_<domain>_<module>_handlers` names |
+| L-β | **`domain_tool(mcp, domain="X")` decorator macro** (≤10 LOC in `servers/agency-mcp/src/agency_mcp/lib/handlers.py`) that auto-injects `tags={f"domain:{domain}"}` and a default `hidden=True/defer_schema=True` for CodeMode. New tools use it; existing tools migrate opt-in. | 5 | low | none — old decorator still works |
+| L-γ | **Manifest auto-sync at boot.** A `register_all()` post-hook in `server.py` introspects `await mcp.list_tools()` and writes/refreshes `codemode/manifest.json` so novel's 56 tools land in manifest automatically. The check-in version stays human-readable; the runtime version is regenerated on every boot. | 5 | medium | medium — invalidates manual edits to manifest.json; mitigated by a "regenerated from registration; do not hand-edit" header |
+| L-δ | **SKILL.md required-base schema** — `name`, `description`, `model`, `allowed-tools` (the union of music's superset). A migration script adds defaults to the 4 non-music skills. A `tests/smoke/test_skill_schema.py` (sibling spec) enforces compliance going forward. | 3 | low-medium | low — defaults are sensible (`model: claude-opus-4-7`, `allowed-tools: []`) |
+| L-ε | **Stateful-tool refactor** — every tool that depends on cache warmth either (a) becomes idempotent (calls `cache.warm()` internally if needed) or (b) declares a `requires_state: list[str]` metadata field that the harness reads to auto-sequence. | 2 | **high** | medium-high — 20+ tools touched, behavioural change to caching semantics |
+| L-ζ | **Binary-payload envelope standardisation** — every tool that produces files returns `{type: "file", path, size_bytes, mime_type, sha256}` and the harness ships an `agency_file_get(path)` companion tool. ~5 tools touched (transcription, mastering, sheet music, video, sampler). | 2 | medium | low — additive |
+| L-η | **Skill-domain back-fill** — author skill files for `context`, `novel`, `shared` (or rule them out as "tool-only domains, no skills"). Today only music has serious skill coverage (54); jules has 1, agentic has 3, the rest are 0. | 3 | high | low — pure additive work |
+
+Per-strain attribution:
+
+| Audit strain | Closed by levers |
+|---|---|
+| 1. Complex params | (handled at harness layer — L1 typed kwargs, L3 `--json`) |
+| 2. Binary returns | L-ζ |
+| 3. Skill-schema divergence | L-δ |
+| 4. Session state | L-ε |
+| 5. Domain classifier / manifest | L-α + L-β + L-γ |
+| (hygiene) Skill coverage | L-η |
+| (hygiene) Registration pattern | L-α + L-β |
+
+### 11.2 What lands before the design tag
+
+**Low-cost levers L-α + L-β + L-γ are in-scope for this design** — they are mechanical, backward-compat, and lift score from 6/10 to ~8.5/10 even before L1's harness-side normalisation runs. They land as part of the L1+L3 implementation PR:
+
+- `servers/agency-mcp/src/agency_mcp/lib/handlers.py` — the `domain_tool()` decorator (L-β).
+- `servers/agency-mcp/src/agency_mcp/server.py` — `register_all()` gains a manifest-sync post-step (L-γ).
+- `servers/agency-mcp/src/agency_mcp/handlers/<domain>/__init__.py` (all five) — add `register(mcp)` thin wrapper around the existing per-module registration helpers (L-α). Existing names preserved for backward compat.
+
+These three together cure Strain 5 at the source rather than papering over it at the harness layer. The harness's `tests/_harness/normalisation.py` (§3.7) stays as the defense-in-depth net that handles future regressions.
+
+### 11.3 What stays as follow-up sub-specs
+
+**Medium / high-cost levers L-δ, L-ε, L-ζ, L-η are out of scope for this design** and ship as named follow-up sub-specs under `Plan/harness/`:
+
+- `Plan/harness/L-delta-skill-schema.md` — define the required-base SKILL.md schema, write the migration script for the 4 non-music skills (jules ×1, agentic ×3), author `tests/smoke/test_skill_schema.py`. Estimated 1 Jules session.
+- `Plan/harness/L-epsilon-stateful-tools.md` — audit the ~20 stateful tools, decide per-tool between "make idempotent" and "declare `requires_state`". Larger refactor. Estimated 2-3 Jules sessions.
+- `Plan/harness/L-zeta-binary-envelope.md` — standardise file-producing tools to return the typed envelope. Estimated 1 Jules session.
+- `Plan/harness/L-eta-skill-coverage.md` — decide skill back-fill policy (either author or formally rule out). Estimated 1-2 Jules sessions depending on outcome.
+
+Each follow-up gets a `depends_on: [harness/design]` so they sequence cleanly behind this design's tag.
+
+### 11.4 Migration sketch — L-α + L-β + L-γ (in-scope work)
+
+```python
+# servers/agency-mcp/src/agency_mcp/lib/handlers.py  (NEW, ≤30 LOC)
+from typing import Callable
+from fastmcp import FastMCP
+
+def domain_tool(
+    mcp: FastMCP,
+    *,
+    domain: str,
+    hidden: bool = True,
+    defer_schema: bool = True,
+    **tool_kwargs,
+) -> Callable:
+    """Standardised decorator. Replaces ad-hoc `tags={...}` per call site."""
+    def wrap(fn: Callable) -> Callable:
+        tags = (tool_kwargs.pop("tags", set()) or set()) | {f"domain:{domain}"}
+        return mcp.tool(tags=tags, hidden=hidden, **tool_kwargs)(fn)
+    return wrap
+```
+
+```python
+# servers/agency-mcp/src/agency_mcp/handlers/music/__init__.py  (NEW thin wrapper)
+from fastmcp import FastMCP
+from . import core, audio, content, ideas  # plus the other 13 modules
+
+def register(mcp: FastMCP) -> None:
+    """L-α: single entry point per domain."""
+    for module in (core, audio, content, ideas):  # plus the other 13
+        module.register(mcp)
+```
+
+```python
+# servers/agency-mcp/src/agency_mcp/server.py  — register_all() post-step (L-γ)
+def register_all(mcp: FastMCP) -> None:
+    register_context_handlers(mcp)
+    # ... existing calls ...
+    _sync_manifest(mcp)                                # NEW: regenerates manifest.json
+
+def _sync_manifest(mcp: FastMCP) -> None:
+    """Walk mcp.list_tools(), write codemode/manifest.json with current
+    eager/deferred classification. Idempotent. The check-in version
+    is the human-readable baseline; runtime regeneration ensures novel's
+    56 tools land in manifest even if the file wasn't hand-updated."""
+    # implementation: ≤40 LOC
+```
+
+The decorator macro and manifest-sync are **opt-in for existing handlers** — they only normalise *new* registrations. Existing handlers continue to work. A separate cleanup PR could later migrate all handlers to the new decorator; that PR is mechanical and parallel-safe.
+
+### 11.5 Decision
+
+The orchestrator's recommendation is to land **L-α, L-β, L-γ as part of this design's first implementation PR** so the tag captures both the harness AND the underlying domain normalisations that make the four-verb contract closer to native. The medium/high-cost levers ship as named follow-up sub-specs.
+
+This puts the design's tag at uniformity score **8.5/10 at the codebase level + 9/10 at the harness API level = 9/10 overall**. The remaining 1/10 (skill schema enforcement, stateful-tool refactor, binary-envelope standardisation, skill back-fill) is named, estimated, and sequenced.
+
+If the orchestrator decides instead to ship only the harness-side normalisations and defer L-α/L-β/L-γ as well, the design still tags at 9/10 (per §3.7) — the choice is whether to land the *source-side* fix or rely on the *harness-side* normalisation that papers over it. The latter ships faster; the former is more correct.
+
+## 12. First review pass
 
 The first review pass on this design uses the JULES-REVIEW-LOOP §4.1 template with `phase=1+8`, `spec=harness-design`, `spec_path=Plan/harness/design.md`. PR #115 is the working branch; the design doc + research files land there; a `@jules` review request posts in the PR thread. See the orchestrator's coordination comment on [PR #111](https://github.com/netzkontrast/the-agency-system/pull/111#issuecomment-4482634644).
+
+The §11 in-scope levers (L-α / L-β / L-γ) ship as part of the implementation PR after this design's tag — they are explicitly enumerated above so reviewers can confirm or contest the cost/risk split.
