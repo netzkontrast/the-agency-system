@@ -60,10 +60,10 @@ its tool list natively.
 
 For deeper behaviour, see the following reference files:
 
-- **State Machine:** See `@references/state-machine.md` for the full lifecycle and what to do in each state.
-- **Error Handling:** See `@references/error-normalization.md` for HTTP error codes and normalisation.
-- **Worked Examples:** See `@references/worked-examples.md` for concrete sequences of user requests.
-- **Parallel Orchestration:** See `@references/parallel-orchestration.md` for fan-out tasks and batching.
-- **Harvest Patterns:** See `@references/harvest-patterns.md` for the differences between PR harvest and patch harvest.
-- **Caveats:** See `@references/caveats.md` for what this skill does NOT do and edge-cases.
+- **State Machine:** See [`references/state-machine.md`](references/state-machine.md) for the full lifecycle and what to do in each state.
+- **Error Handling:** See [`references/error-normalization.md`](references/error-normalization.md) for HTTP error codes and normalisation.
+- **Worked Examples:** See [`references/worked-examples.md`](references/worked-examples.md) for concrete sequences of user requests.
+- **Parallel Orchestration:** See [`references/parallel-orchestration.md`](references/parallel-orchestration.md) for fan-out tasks and batching.
+- **Harvest Patterns:** See [`references/harvest-patterns.md`](references/harvest-patterns.md) for the differences between PR harvest and patch harvest.
+- **Caveats:** See [`references/caveats.md`](references/caveats.md) for what this skill does NOT do and edge-cases.
 - **Combined Watcher:** See [`references/combined_watcher.md`](references/combined_watcher.md) for the orchestrator's polling pattern (multi-session + multi-PR), plus the canonical Python script at [`references/combined_watcher.py`](references/combined_watcher.py). Use this when you have ≥2 in-flight Jules sessions or open PRs to track.

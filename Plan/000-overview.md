@@ -85,66 +85,177 @@ Cross-refs in frontmatter only; `:embed` suffix = composition vs bare slug = inv
 
 Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 
-## 3. Spec list (21 specs, ~30 Jules sessions, 3 waves)
+## 3. Spec list (46 specs as of 2026-05-18 — 15 done / 31 ready)
 
-| ID | Slug | Wave | Domain | Deps | Sessions |
+### Wave A — Scaffold + Music + Jules + Code Mode (DONE)
+
+| ID | Slug | Domain | Deps | Status | Sessions |
 |---|---|---|---|---|---|
-| 001 | scaffold-plugin-skeleton | A | scaffold | — | 1 |
-| 002 | manifest-and-marketplace | A | scaffold | 001 | 1 |
-| 003 | unified-statecache-port | A | cross | 001 | 2 |
-| 004 | music-handlers-port | A | music | 003 | 2 |
-| 005 | music-skills-port | A | music | 002, 004 | 1 |
-| 006 | jules-handlers-port | A | jules | 003 | 1 |
-| 007 | jules-skills-and-commands-port | A | jules | 002, 006 | 1 |
-| 008 | codemode-registry | A | cross | 003, 004 | 1 |
-| 009 | shared-handlers | B | cross | 003 | 1 |
-| 010 | novel-on-disk-layout | B | novel | 002 | 1 |
-| 011 | novel-handlers-core | B | novel | 003, 009, 010 | 2 |
-| 012 | dramatica-and-ncp-libs | B | novel | 010 | 2 |
-| 013 | novel-handlers-structural | B | novel | 011, 012 | 2 |
-| 014 | novel-gates-and-revision | B | novel | 013 | 1 |
-| 015 | novel-skills-catalogue | B | novel | 005, 014 | 2 |
-| 016 | agentic-handlers-and-skills | C | agentic | 009 | 2 |
-| 017 | hooks-port-and-extend | C | cross | 004, 013 | 1 |
-| 018 | overrides-and-config-migration | C | migration | 015 | 1 |
-| 019 | state-migration-from-bitwize | C | migration | 003 | 1 |
-| 020 | bitwize-deprecation-and-docs | C | cross | 005, 007, 015, 016, 019 | 1 |
-| 021 | novel-prompt-builder-family | B | novel | 013, 015 | 2 |
+| 001 | scaffold-plugin-skeleton | scaffold | — | ✅ done | 1 |
+| 002 | manifest-and-marketplace | scaffold | 001 | ✅ done | 1 |
+| 003 | unified-statecache-port | cross | 001 | ✅ done | 2 |
+| 004 | music-handlers-port | music | 003, 004a | ✅ done | 2 |
+| 004a | music-lib-port (subtree) | music | 003 | ✅ done | 1 |
+| 005 | music-skills-port | music | 002, 004 | ✅ done | 1 |
+| 006 | jules-handlers-port | jules | 003 | ✅ done | 1 |
+| 006a | jules-handlers hardening (implicit) | jules | 006 | ✅ done | 1 |
+| 007 | jules-skills-and-commands-port | jules | 002, 006 | ✅ done | 1 |
+| 008 | codemode-registry | cross | 003, 004, 006 | ✅ done | 1 |
+| 009 | shared-handlers | cross | 003 | ✅ done | 1 |
+| 010 | novel-on-disk-layout | novel | 002 | ✅ done | 1 |
+| 011 | novel-handlers-core (Wave B foundation) | novel | 003, 009, 010 | ✅ done | 2 |
+| 012 | dramatica-and-ncp-libs | novel | 010 | ✅ done | 2 |
+| 013 | novel-handlers-structural | novel | 011, 012 | ✅ done | 2 |
+| 019 | state-migration-from-bitwize | migration | 003 | ✅ done | 1 |
 
-**Critical path** (longest dependency chain): 001 → 003 → 011 → 013 → 014 → 015 → 020 ≈ 11 sessions. Spec 021 runs in parallel with 014–015 once 013 is done.
+### Wave A completion — enabler
 
-**Wave A** (specs 001–008): at end, unified plugin boots, music side serves 100% bitwize parity, jules side serves 100% jules-plugin parity, Code Mode registry in place. **Bitwize-music plugin can be uninstalled.**
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| **022** | **dev-mode-install** ⭐ first | cross | 002, 005, 007, 008 | ready | 1 |
 
-**Wave B** (specs 009–015, 021): novel domain ships. User can run `/agency-system:novel-work-conceptualizer`, write chapters, validate against NCP, pass the 6-gate.
+### Wave B remaining — novel completion
 
-**Wave C** (specs 016–020): agentic surface live, overrides merged, state migration executed, `jules-plugin/` removed, bitwize marked deprecated.
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 011a | novel-handlers-core hardening | novel | 011 | ready | 1 |
+| 014 | novel-gates-and-revision | novel | 011, 012, 013 | ready | 1 |
+| 015 | novel-skills-catalogue | novel | 005, 011, 014 | ready | 2 |
+| 021 | novel-prompt-builder-family | novel | 011, 012, 013, 015 | ready | 2 |
 
-## 4. Dependency DAG
+### Wave C — agentic + cutover
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 016 | agentic-handlers-and-skills | agentic | 002, 003, 008, 009 | ready | 2 |
+| 017 | hooks-port-and-extend | cross | 004, 012, 013 | ready | 1 |
+| 018 | overrides-and-config-migration | migration | 009, 015 | ready | 1 |
+| 020 | bitwize-deprecation-and-docs | cross | 005, 007, 015, 016, 017, 018, 019 | ready | 1 |
+
+### Wave A hardening
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 098 | wave-a-hardening (Codex P1 cleanup) | cross | 002, 003, 004a, 019 | ready | 1 |
+
+### Operational specs (from lessons + research)
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 099 | jules-orchestration-improvements (meta) | agentic | — | ready | 1 |
+| 100 | session-log-mcp (sidequest) | agentic | — | ready | 2 |
+| 101 | jules-mcp-tool-additions | agentic | 006 | ready | 1 |
+| 102 | pr-rebase-policy | cross | — | ready | 1 |
+
+### Token-efficiency
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 103 | view-fields-projection | cross | 008 | ready | 2 |
+| 104 | tool-search-anchor-triad | cross | 008 | ready | 2 |
+| 105 | toon-serializer | cross | 008 | ready | 1 |
+| 106 | github-mcp-summary-wrappers | cross | 008 | ready | 2 |
+| 107 | cache-breakpoint-ordering | cross | 008 | ready | 1 |
+
+### Context Mode (PICK ONE PATH — mutually exclusive)
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 108 | context-mode-integration (adopt mksglu) | cross | 002, 008, 100 | ready | 2 |
+| 111 | context-mode-manifest (build alt) | cross | 008, 104 | ready | 2 |
+| 112 | context-anchor-triad (build alt) | cross | 008, 104, 111 | ready | 2 |
+| 113 | context-cache-and-subscriptions (build alt) | cross | 008, 104, 111, 112 | ready | 2 |
+
+### Token-optimizer hook layer (orthogonal)
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 114 | read-cache-delta-mode | cross | — | ready | 1 |
+| 115 | structure-map-ast | cross | — | ready | 1 |
+| 116 | bash-output-compression | cross | — | ready | 1 |
+| 117 | tool-result-archive | cross | 009 | ready | 1 |
+| 118 | quality-score-telemetry | cross | 100 | ready | 1 |
+| 119 | loop-detection | cross | — | ready | 1 |
+| 120 | smart-compaction-checkpoints | cross | 100 | ready | 2 |
+| 121 | contextignore-hardblock | cross | — | ready | 1 |
+
+**Wave A — DONE** (16 specs incl. 006a): unified plugin boots, 113+ tools registered, music side 100% bitwize parity, jules side 100% jules-plugin parity, Code Mode registry in place (boot context 210 tokens), novel foundation + structural layer in. **Bitwize-music plugin can be uninstalled once Spec 020 cuts over.**
+
+**Wave A completion**: Spec 022 dev-mode-install (next-session enabler).
+
+**Wave B remaining** (4 specs): novel domain shipping. User can run `/agency-system:novel-work-conceptualizer`, write chapters, validate against NCP, pass the 6-gate.
+
+**Wave C** (4 specs): agentic surface live (32 tools per Spec 016), overrides merged, hooks ported, `jules-plugin/` removed, bitwize marked deprecated.
+
+**Cross-cutting backlog** (24 specs): hardening + operational + token-efficiency + Context Mode + token-optimizer. Most depend only on 008 (✅ done) so they ship in parallel waves.
+
+**Critical path to v1.0 cutover**: 022 → 014 → 015 → 020 ≈ **5 sessions** (down from original 11 because most of the chain is already on Master). Everything else compresses into parallel fan-out.
+
+## 4. Dependency DAG (updated 2026-05-18)
+
+✅ = merged on Master · ⭐ = next-session priority · ⏳ = ready, awaiting dispatch
+
+### Critical path to v1.0 cutover (5 sessions)
 
 ```
-              001 ───┬── 002 ──┬── 005 ──┐
-                     │         │         │
-                     └── 003 ──┼── 004 ──┤
-                               │         │
-                               ├── 006 ──┼── 007 ──┐
-                               │         │         │
-                               └── 008   │         │
-                                         │         │
-   010 ── 012 ──┐                        │         │
-    │           │                        │         │
-    ├── 011 ────┤                        │         │
-    │           │           009 ─────────┼─────────┤
-    │           │                        │         │
-    └── 013 ────┼── 014 ── 015 ──────────┤         │
-                │           │            │         │
-                ├── 021     │            │         │
-                │           │            │         │
-                017         │            │         │
-                            │            │         │
-                            └── 018 ─────┤         │
-                                         │         │
-                            019 ─────────┴── 020 ──┘
+        ┌── 022 ⭐ (enabler)
+        │
+✅ Wave A
+        │
+        ├── 014 ⏳ ── 015 ⏳ ── 020 ⏳ (v1.0)
+        │              │
+        │              └── 021 ⏳ (parallel)
+        │
+        ├── 016 ⏳ ──────────────┘
+        │
+        ├── 017 ⏳ ──────────────┘
+        │
+        ├── 018 ⏳ ──────────────┘
+        │
+        └── 011a ⏳ (parallel hardening, no downstream blocker)
 ```
+
+### Cross-cutting (parallelizable from session start)
+
+```
+Wave A hardening   098 ⏳ (Codex P1 cleanup — orthogonal)
+
+Token-efficiency   103 ⏳ ─┐
+                   104 ⏳ ─┤
+                   105 ⏳ ─┤  all depend only on 008 ✅
+                   106 ⏳ ─┤
+                   107 ⏳ ─┘
+
+Operational        099 ⏳ (meta) · 100 ⏳ (session-log-mcp) ·
+                   101 ⏳ (jules-mcp additions) · 102 ⏳ (rebase policy)
+
+Context Mode       108 ⏳ (adopt mksglu plugin)        ← PICK
+                          OR                             ONE
+                   111 ⏳ → 112 ⏳ → 113 ⏳ (build)    ← PATH
+
+Token-optimizer    114 ⏳ · 115 ⏳ · 116 ⏳ · 117 ⏳ ·
+hook layer         118 ⏳ · 119 ⏳ · 120 ⏳ · 121 ⏳
+                   (all near-orthogonal; 117 needs 009 ✅,
+                   118+120 want 100 ⏳ first)
+```
+
+### Recommended dispatch order
+
+**Session 1 (next session):**
+1. Dispatch **022** alone (enabler — gates everything; 1 Jules session)
+2. While waiting, invoke `sc-spec-panel` against the 31 ready specs
+3. Once 022 lands, parallel-dispatch: **011a + 014 + 098 + 103** (4 sessions)
+
+**Session 2 (post-merge of 011a/014/098/103):**
+- Dispatch **015 + 016 + 017 + 018 + 106** (5 sessions parallel)
+- Pick Context Mode path (108 vs 111-chain); dispatch first step
+- Decide on token-optimizer first 1-2 picks (e.g. 117 archive guardrail first)
+
+**Session 3 (cutover):**
+- Dispatch **020 + 021** (final Wave-B + cutover)
+- Continue token-eff backlog
+
+After Session 3: v1.0 plugin shipped; remaining specs are continuous-improvement.
 
 ## 5. Workflow trace (end-to-end coherence proof)
 
