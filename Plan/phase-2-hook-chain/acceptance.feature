@@ -1,11 +1,11 @@
-Feature: Phase 2 — Hook chain (PreToolUse + PostToolUse + UserPromptSubmit)
+Feature: Phase 2 — Hook chain
   As the token-optimizer orchestrator
   I want a chain of PreToolUse and PostToolUse hooks
   So that I can compress file reads, shell outputs, and tool results, saving 20-30% of session input and capping payloads at 4 KB
 
   Background:
     Given the agency-mcp server has successfully booted
-    And the Code Mode plugin configuration is active in .mcp.json
+    And the agency-mcp Code Mode wrapping is active
     And the hook chain is configured correctly in hooks/hooks.json
 
   # anchor: phase-2.pretooluse-chain-order
@@ -34,21 +34,31 @@ Feature: Phase 2 — Hook chain (PreToolUse + PostToolUse + UserPromptSubmit)
   Scenario: Any tool result > 4 KB is archived to disk
     Given the agent invokes a tool
     And the tool returns a payload of exactly 12000 bytes
+    And the payload is archived with id "abc12345"
     When the archive_hook processes the PostToolUse event
     Then the original payload is archived to disk
     And the payload sent back to the conversation is replaced with the first 200 characters of the original
-    And the payload contains the exact substring "[Full result archived (12000 chars). Use 'expand"
+    And the payload contains the exact substring "[Full result archived (12000 chars). Use 'expand abc12345' to retrieve.]"
     And the payload size is < 4096 bytes
 
-  # anchor: phase-2.read-cache-delta-mode
+  # anchor: phase-2.read-cache-delta-mode-unchanged-mtime
   Scenario: Re-read of the same file with unchanged mtime returns a diff
     Given the agent Reads a 2000-line Python file at "/tmp/foo.py"
     And the file content is cached by the read-cache PostToolUse hook
-    And the agent edits "/tmp/foo.py" changing exactly 1 line without altering the file's mtime (or it is handled properly as a fresh file edit)
+    And the agent edits "/tmp/foo.py" changing exactly 1 line without altering the file's mtime
     When the agent Reads "/tmp/foo.py" a second time with the exact same mtime
     Then the read_cache_hook emits additionalContext of kind="delta"
     And the body returned is a unified diff
     And the byte length of the diff is ≤ 10% of the file's full byte length
+
+  # anchor: phase-2.read-cache-delta-mode-changed-mtime
+  Scenario: Re-read of the same file with changed mtime behaves as fresh read
+    Given the agent Reads a 2000-line Python file at "/tmp/foo.py"
+    And the file content is cached by the read-cache PostToolUse hook
+    And the agent edits "/tmp/foo.py" changing exactly 1 line and the file's mtime advances
+    When the agent Reads "/tmp/foo.py" a second time
+    Then the read-cache hook lookup misses on mtime mismatch
+    And the next PostToolUse repopulates the cache with the new content
 
   # anchor: phase-2.structure-map-ast-python
   Scenario Outline: Massive code files return an AST skeleton instead of the full body
@@ -63,6 +73,13 @@ Feature: Phase 2 — Hook chain (PreToolUse + PostToolUse + UserPromptSubmit)
       | /tmp/huge.py   | 25000 | 900000   |
       | /tmp/large.py  | 1000  | 850000   |
       | /tmp/long.py   | 21000 | 400000   |
+
+  # anchor: phase-2.structure-map-ast-python-bypass
+  Scenario: Files below both thresholds bypass the AST hook
+    Given a file at "/tmp/small.py" with 1000 lines and 50000 bytes
+    When the agent invokes the Read tool on "/tmp/small.py"
+    Then the structure_map_hook exits 0 with no stdout
+    And the downstream read_cache_hook handles the call
 
   # anchor: phase-2.contextignore-hard-block
   Scenario: .contextignore hard-blocks Read, Glob, and Grep tools before any cache fires
