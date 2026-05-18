@@ -7,7 +7,7 @@ depends_on: [008, 111, 122]
 affects:
   - servers/agency-mcp/src/agency_mcp/handlers/ontology/
   - servers/agency-mcp/src/agency_mcp/handlers/ontology/__init__.py
-  - codemode/manifest.json
+  - servers/agency-mcp/src/agency_mcp/codemode/manifest.json
   - hooks/hooks.json
   - hooks/validate_ontology.py
 domain: cross
@@ -29,7 +29,7 @@ By extracting these tools and wrapping them as FastMCP Code Mode tools (Spec 008
 
 - The agency `fm` tooling and relevant `check-*.py` scripts MUST be ported to `agency_mcp/handlers/ontology/`.
 - Four eager anchor tools (`ontology_validate_frontmatter`, `ontology_check_graph_consistency`, `ontology_render_readme`, `ontology_query`) MUST be registered and documented. Combined token budget ≤ 170 tokens (≤ 5 % of Spec 008 baseline).
-- The `codemode/manifest.json` MUST classify each tool as `eager`, `deferred`, or `background` per the table in §Findings highlights below.
+- The `servers/agency-mcp/src/agency_mcp/codemode/manifest.json` MUST classify each tool as `eager`, `deferred`, or `background` per the table in §Findings highlights below.
 - A centralized `hooks/validate_ontology.py` MUST be registered in `hooks/hooks.json` to fire PostToolUse on edits to Markdown files with frontmatter; total wall-time MUST stay ≤ 500 ms.
 - Tool responses MUST adhere to the token-efficiency policy, returning summaries by default (`view=summary`, see Spec 103).
 - Stateful tools MUST support `dry_run=True` and return the `{would_apply, diff, warnings}` envelope.
@@ -58,7 +58,7 @@ cd ~/work/vendor/agency && git fetch origin pull/129/head:pr-129
 - `hooks/validate_ontology.py`
 
 **Modify:**
-- `codemode/manifest.json`
+- `servers/agency-mcp/src/agency_mcp/codemode/manifest.json`
 - `hooks/hooks.json`
 
 ## Approach
@@ -94,10 +94,11 @@ Scenario: Frontmatter validation on a representative file
   Then the tool MUST return an ERROR diagnostic citing the schema violation
 
 # anchor: 123.2
-Scenario: Graph-consistency check detects a broken edge
+Scenario: Graph-consistency check fails loud on a broken edge
   Given a spec artifact with a `depends_on` edge pointing to a non-existent slug
   When `ontology_check_graph_consistency()` is called
-  Then the tool MUST emit a dangling reference warning
+  Then the tool MUST emit a `BROKEN_EDGE` ERROR diagnostic
+  And the CLI MUST exit non-zero (per Spec 122 Q2 fail-loud policy)
 
 # anchor: 123.3
 Scenario: Readme auto-render is byte-identical
@@ -176,9 +177,9 @@ Scenario: `dry_run=True` behavior
 
 | # | Question | Resolution (this spec) |
 |---|---|---|
-| **Q3** | PR #129 ratification | Track upstream; ship against the 12-type subset and expand to 18-type via Spec 122. Tool MUST hot-reload schema files on first call after edit. |
+| **Q3** | PR #129 ratification | **Unratified upstream as of 2026-05-18 (user decision).** Validators in this spec enforce Spec 122's strict 18-type superset. The 12-type subset remains a future-merge-compatible subset (non-breaking). Tool MUST hot-reload schema files on first call after edit. |
 | **Q4** | Combined boot-token budget | ≤ 170 tokens for eager-anchor 4; re-measure via `bin/measure_token_budget` after merge. |
-| TBD | `ontology_edit_frontmatter` happy-path return envelope | Returns `{ok: True, new_frontmatter: {...}, lines_changed: int}`. Findings did not specify; this spec pins it. |
+| TBD | `ontology_edit_frontmatter` return envelopes | Wrapped in the shared `ToolResult` shape (overview §2.1 #9). Happy path: `{ok: True, data: {new_frontmatter: {...}, lines_changed: int}, warnings: [...], artefacts_written: [path], next_suggested_tools: [...]}`. Dry-run (`dry_run=True`) per §2.1 #7: `{would_apply, diff, warnings}` — never mutates disk. Findings did not specify; this spec pins both. |
 | TBD | Graph cache invalidation API | After any `ontology_edit_*` or `ontology_rename_*`, call `graph.invalidate_node(id)`; if Spec 124 is live, also triggers `graph_ingest_frontmatter`. |
 | TBD | Concurrency under asyncio | All stateful tools acquire a per-namespace `asyncio.Lock`; reads are lock-free against the in-memory schema cache. |
 | TBD | Diagnostic JSON schema | Pin: `{code: str (UPPER_SNAKE), severity: "error"|"warning"|"info", path: str, line: int|null, message: str, hint: str|null}`. Error codes enumerated in `_core.py`. |

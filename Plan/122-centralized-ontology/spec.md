@@ -107,7 +107,7 @@ Scenario: SUBDOC fenced div extracted by markdown-it-py
 
 | Domain | Types |
 |---|---|
-| Cross-cutting | `task`, `prompt`, `research`, `spec`, `readme`, `note`, `adr`, `gherkin`, `hook` |
+| Cross-cutting | `task`, `prompt`, `research`, `spec`, `readme`, `note`, `adr`, `gherkin` |
 | Music | `track`, `album` |
 | Novel | `work`, `chapter`, `ontology-entry` |
 | Jules / agentic | `lesson` |

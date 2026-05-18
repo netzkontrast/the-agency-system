@@ -39,7 +39,7 @@ The plugin's unified ontology (Spec 122) structures the relationships across mus
 
 - `graphqlite` is pinned in `servers/agency-mcp/pyproject.toml` (recommend `graphqlite>=0.4.4,<0.5` while upstream is pre-1.0).
 - A dedicated SQLite graph database is initialised at `~/.agency-system/cache/graph.sqlite` on MCP server boot, in WAL mode.
-- Three eager anchor tools (`graph_cypher`, `graph_describe_node`, `graph_run_algorithm`) are registered and classified in `codemode/manifest.json`.
+- Three eager anchor tools (`graph_cypher`, `graph_describe_node`, `graph_run_algorithm`) are registered and classified in `servers/agency-mcp/src/agency_mcp/codemode/manifest.json`.
 - `graph_cypher` supports `dry_run=True`, which MUST NOT mutate the database; mutating queries return `{would_apply, explain_sql, warnings}`.
 - `hooks/graph_ingest.py` is created and wired as `PostToolUse` on Markdown writes; integrates with Spec 113's watcher events.
 - `graph_describe_node(id, expand=1)` retrieves a node and its immediate inbound/outbound neighbours.
@@ -89,7 +89,7 @@ If the import smoke test fails on the Jules runner, open a draft PR labelled `[B
    - `graph_describe_node(id, expand=1)` fetches a node + both-direction adjacent edges in a single query.
    - `graph_run_algorithm` in `algorithms.py`. Supports `pagerank`, `louvain`, `shortest_path`, `bfs`, `dfs`, `components` (initial scope). Large scopes return `return_plan` envelope; small scopes return inline.
 4. **Ingestion hooks.** `hooks/graph_ingest.py` triggers on PostToolUse for Markdown writes. Maps frontmatter L1/L2 + relationship headers → Cypher UPSERT (MERGE semantics). After mutation, calls `g.reload_graph()` to refresh the CSR cache.
-5. **Code Mode classification.** `codemode/manifest.json`: `graph_cypher` + `graph_describe_node` = **eager**, `graph_run_algorithm` = **background** (companion `graph_run_algorithm_status(job_id)`), `graph_ingest_frontmatter` = **deferred**.
+5. **Code Mode classification.** `servers/agency-mcp/src/agency_mcp/codemode/manifest.json`: `graph_cypher` + `graph_describe_node` + `graph_run_algorithm` = **eager** (matches Done When). Within `graph_run_algorithm`, small scopes return inline; large scopes (e.g. PageRank on >100k nodes per the performance baseline) return the `return_plan` envelope and surface a `graph_run_algorithm_status(job_id)` poll companion — async hand-off is at the tool's discretion at *call time*, not at registration tier. `graph_ingest_frontmatter` = **deferred**.
 6. **Path B integration.** `server.py` intercepts file-change notifications from Spec 113's watcher and triggers incremental graph updates (single-file UPSERT + CSR reload) instead of full rebuild. Spec 112's `context_describe(id)` calls `graph_describe_node` internally to populate `neighbours`.
 7. **Bootstrap mode.** First-boot full rebuild uses `GraphManager.insert_nodes_bulk()` + `insert_edges_bulk()` (100-500× faster than Cypher CREATE) by walking the repo, parsing frontmatter, and bulk-inserting in a single transaction.
 8. **Gate 2 — TDD.**
@@ -177,7 +177,7 @@ Scenario: Bootstrap from cold cache uses bulk insert
 | Novel | `MATCH (w:work)-[:CONTAINS]->(c:chapter)-[:CONTAINS]->(s:scene) WHERE s.throughline = "Cost" RETURN s.id` | Find scenes tied to a Dramatica throughline |
 | Jules | `MATCH p = shortestPath((s1:spec {id:"plan:020"})-[:DEPENDS_ON*]->(s2:spec {id:"plan:003"})) RETURN p` | Shortest dependency path between two specs |
 | Agentic | `MATCH (s:spec)<-[:INFORMED]-(r:research) WHERE s.id = "plan:020" RETURN r.id` | All research briefs informing a given spec |
-| Shared | `CALL pagerank() YIELD node, score MATCH (n) WHERE n = node RETURN n.id, score ORDER BY score DESC LIMIT 10` | Top-10 most-cited artefacts across all domains |
+| Shared | `graph_run_algorithm("pagerank", limit=10)` → `[{id, score}, ...]` (algorithms run via the `graph_run_algorithm` tool, NOT via Cypher `CALL` — see "Cypher NOT supported" above) | Top-10 most-cited artefacts across all domains |
 
 **Schema mapping (EAV — Entity-Attribute-Value):**
 - Node id → external string (e.g. `plan:124-graphqlite-codemode:spec`)
