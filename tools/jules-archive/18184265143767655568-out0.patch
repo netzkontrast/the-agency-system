@@ -1,0 +1,1280 @@
+diff --git a/bin/jules-bulk b/bin/jules-bulk
+new file mode 100755
+index 0000000..afb2545
+--- /dev/null
++++ b/bin/jules-bulk
+@@ -0,0 +1,343 @@
++#!/bin/bash
++set -eo pipefail
++
++if [ "$1" != "--help" ] && [ -z "$JULES_API_KEY" ]; then
++    echo "ERROR: JULES_API_KEY is not set." >&2
++    exit 0
++fi
++
++JULES_API_BASE_URL="${JULES_API_BASE_URL:-https://jules.googleapis.com}"
++# DEFAULT_SOURCE is the source string handed to jules_create. The server
++# accepts either an opaque 'sources/<id>' or a GitHub 'owner/repo' shorthand
++# which it resolves via sources.list. We auto-detect 'owner/repo' from the
++# git remote so fan-out runs in different repos without manual config.
++detect_default_source() {
++    local url
++    url="$(git remote get-url origin 2>/dev/null || true)"
++    if [ -z "$url" ]; then
++        return 1
++    fi
++    # Strip scheme/host and any trailing .git, leaving owner/repo.
++    local path
++    path=$(echo "$url" \
++        | sed -E 's#^(git@|ssh://git@|https?://)([^:/]+)[:/]##' \
++        | sed -E 's#\.git$##')
++    if [ -z "$path" ] || [[ "$path" != */* ]]; then
++        return 1
++    fi
++    echo "$path"
++}
++DEFAULT_SOURCE="${JULES_DEFAULT_SOURCE:-$(detect_default_source || true)}"
++# git branch --show-current exits 0 with empty output in detached HEAD —
++# treat empty output as failure so the explicit fallback runs.
++_current_branch="$(git branch --show-current 2>/dev/null || true)"
++DEFAULT_BRANCH="${_current_branch:-main}"
++
++# Base directory for the script to find sessions_state.py
++DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
++
++usage() {
++    cat << 'USAGE'
++Usage: jules_bulk.sh <subcommand> [args...]
++
++This script is a thin facade over the MCP server's Python tools (jules-mcp/server.py).
++
++Subcommands:
++  fanout FILE          FILE is a JSON or YAML list of {alias, title, prompt} entries; creates one session per entry
++  dashboard            Prints a compact table of all active sessions: alias | id | state | title
++  approve-awaiting     Approves every session currently in AWAITING_PLAN_APPROVAL
++  stop-all             NOT SUPPORTED — the Jules API has no cancel method
++  quota                Prints the Jules daily session quota usage
++USAGE
++    exit 0
++}
++
++cmd_fanout() {
++    local file="$1"
++    if [ -z "$file" ] || [ ! -f "$file" ]; then
++        echo "ERROR: fanout requires a valid FILE argument." >&2
++        usage
++    fi
++
++    if [ -z "$DEFAULT_SOURCE" ]; then
++        echo "ERROR: no default source configured." >&2
++        echo "  Set JULES_DEFAULT_SOURCE to 'sources/<id>' or 'owner/repo'," >&2
++        echo "  or run this script from a git checkout with a GitHub remote." >&2
++        exit 0
++    fi
++
++    local temp_json
++    temp_json=$(mktemp)
++    trap 'rm -f "$temp_json"' EXIT
++
++    # Accept JSON directly; otherwise convert YAML to JSON via Python (always available).
++    if jq -e . "$file" >/dev/null 2>&1; then
++        cp "$file" "$temp_json"
++    elif command -v python3 >/dev/null 2>&1; then
++        python3 -c "import sys, json, yaml; json.dump(yaml.safe_load(open(sys.argv[1])), sys.stdout)" \
++            "$file" > "$temp_json" || {
++                echo "ERROR: could not parse $file as JSON or YAML." >&2; exit 1; }
++    else
++        echo "ERROR: python3 with PyYAML required for YAML input." >&2
++        exit 0
++    fi
++
++    jq -c '.[]' "$temp_json" | while read -r entry; do
++        local alias title prompt branch
++        alias=$(echo "$entry" | jq -r '.alias // empty')
++        title=$(echo "$entry" | jq -r '.title // empty')
++        prompt=$(echo "$entry" | jq -r '.prompt // empty')
++        branch=$(echo "$entry" | jq -r '.branch // empty')
++
++        if [ -z "$alias" ] || [ -z "$title" ] || [ -z "$prompt" ]; then
++            echo "WARN: Skipping entry with missing alias, title, or prompt: $entry" >&2
++            continue
++        fi
++        
++        if [ -z "$branch" ]; then
++            branch="$DEFAULT_BRANCH"
++        fi
++
++        echo "Creating session for alias: $alias ..."
++        
++        export JULES_TEMP_PROMPT="$prompt"
++        export JULES_TEMP_TITLE="$title"
++        export JULES_TEMP_BRANCH="$branch"
++        export JULES_TEMP_SOURCE="$DEFAULT_SOURCE"
++        export SCRIPT_DIR="$DIR"
++local resp
++        resp=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
++import json, os
++try:
++    from agency_mcp.handlers.jules.lifecycle import jules_create
++    from agency_mcp.handlers.jules.bulk import jules_status_all, jules_approve_awaiting, jules_quota
++
++    class mod:
++        jules_create = staticmethod(jules_create)
++        jules_status_all = staticmethod(jules_status_all)
++        jules_approve_awaiting = staticmethod(jules_approve_awaiting)
++        jules_quota = staticmethod(jules_quota)
++    res = mod.jules_create(
++        prompt=os.environ['JULES_TEMP_PROMPT'],
++        source=os.environ['JULES_TEMP_SOURCE'],
++        starting_branch=os.environ['JULES_TEMP_BRANCH'],
++        title=os.environ.get('JULES_TEMP_TITLE', ''),
++        require_plan_approval=True
++    )
++    print(json.dumps({"ok": True, "res": res}))
++except Exception as e:
++    print(json.dumps({"ok": False, "err": str(e)}))
++PY
++        )        
++        local ok=$(echo "$resp" | jq -r '.ok')
++        if [ "$ok" = "true" ]; then
++            local session_id
++            session_id=$(echo "$resp" | jq -r '.res.name // .res.id // empty' | sed 's|^sessions/||')
++            echo "Session created: $session_id"
++            
++            python3 "$DIR/../lib/sessions_state.py" register --id "$session_id" --title "$title" --alias "$alias"
++        else
++            local err=$(echo "$resp" | jq -r '.err // "Unknown error"')
++            echo "ERROR: Failed to create session. Error: $err" >&2
++        fi
++    done
++}
++
++cmd_dashboard() {
++    local registry_json
++    registry_json=$(python3 "$DIR/../lib/sessions_state.py" list --json)
++
++    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ] || [ "$registry_json" = '{"sessions": []}' ]; then
++        echo "No sessions in registry."
++        return 0
++    fi
++
++    local temp_out
++    temp_out=$(mktemp)
++    trap 'rm -f "$temp_out"' EXIT
++export SCRIPT_DIR="$DIR"
++    local all_sessions_json
++    all_sessions_json=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
++import json, os
++try:
++    from agency_mcp.handlers.jules.lifecycle import jules_create
++    from agency_mcp.handlers.jules.bulk import jules_status_all, jules_approve_awaiting, jules_quota
++
++    class mod:
++        jules_create = staticmethod(jules_create)
++        jules_status_all = staticmethod(jules_status_all)
++        jules_approve_awaiting = staticmethod(jules_approve_awaiting)
++        jules_quota = staticmethod(jules_quota)
++    print(json.dumps(mod.jules_status_all()))
++except Exception as e:
++    print(json.dumps({"error": str(e)}))
++PY
++    )
++    # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
++    echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
++        local id alias state title
++        id=$(echo "$item" | jq -r '.id')
++        alias=$(echo "$item" | jq -r '.alias')
++        
++        # Look up session info from bulk status JSON
++        local match
++        match=$(echo "$all_sessions_json" | jq -c --arg id "$id" '.sessions[]? | select(.id == $id)')
++        
++        if [ -n "$match" ]; then
++            state=$(echo "$match" | jq -r '.state // "STATE_UNSPECIFIED"')
++            title=$(echo "$match" | jq -r '.title // "<unknown>"')
++        else
++            state="UNKNOWN"
++            title="<not found>"
++        fi
++        
++        printf "%s\t%s\t%s\t%s\n" "$alias" "$id" "$state" "$title" >> "$temp_out"
++    done
++
++    if [ -s "$temp_out" ]; then
++        {
++            printf "%s\t%s\t%s\t%s\n" "ALIAS" "ID" "STATE" "TITLE"
++            cat "$temp_out"
++        } | awk -F'\t' '
++            { for (i=1;i<=NF;i++){ if(length($i)>w[i]) w[i]=length($i); rows[NR,i]=$i; cols=NF } }
++            END {
++                for (r=1;r<=NR;r++){
++                    line=""
++                    for (i=1;i<=cols;i++){
++                        sep = (i==cols ? "" : "  ")
++                        line = line sprintf("%-*s%s", w[i], rows[r,i], sep)
++                    }
++                    print line
++                    if (r==1) {
++                        sepline=""
++                        for (i=1;i<=cols;i++){ for(j=0;j<w[i];j++) sepline=sepline"-"; if(i<cols) sepline=sepline"  " }
++                        print sepline
++                    }
++                }
++            }'
++    fi
++}
++
++cmd_approve_awaiting() {
++    echo "Checking session states and approving..."
++    export SCRIPT_DIR="$DIR"
++    local resp
++    resp=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
++import json, os
++try:
++    from agency_mcp.handlers.jules.lifecycle import jules_create
++    from agency_mcp.handlers.jules.bulk import jules_status_all, jules_approve_awaiting, jules_quota
++
++    class mod:
++        jules_create = staticmethod(jules_create)
++        jules_status_all = staticmethod(jules_status_all)
++        jules_approve_awaiting = staticmethod(jules_approve_awaiting)
++        jules_quota = staticmethod(jules_quota)
++    print(json.dumps(mod.jules_approve_awaiting()))
++except Exception as e:
++    print(json.dumps({"error": str(e)}))
++PY
++    )
++    local err
++    err=$(echo "$resp" | jq -r '.error // empty')
++    if [ -n "$err" ]; then
++        echo "ERROR: Failed to run approve-awaiting. Error: $err" >&2
++        return 1
++    fi
++
++    local approved_count skipped_count errors_count
++    approved_count=$(echo "$resp" | jq -r '.approved | length')
++    skipped_count=$(echo "$resp" | jq -r '.skipped | length')
++    errors_count=$(echo "$resp" | jq -r '.errors | length')
++
++    if [ "$approved_count" -eq 0 ] && [ "$errors_count" -eq 0 ]; then
++        echo "No sessions are currently AWAITING_PLAN_APPROVAL."
++        return 0
++    fi
++
++    if [ "$approved_count" -gt 0 ]; then
++        echo "Approved the following sessions:"
++        echo "$resp" | jq -r '.approved[]'
++    fi
++
++    if [ "$errors_count" -gt 0 ]; then
++        echo "Failed to approve the following sessions:" >&2
++        echo "$resp" | jq -r '.errors[] | "\(.id): \(.error)"' >&2
++    fi
++}
++
++cmd_stop_all() {
++    # The Jules v1alpha REST API does not expose a delete/cancel/stop
++    # method on sessions, so bulk stop is impossible. Report this clearly
++    # rather than emitting fake "Stopped" lines.
++    cat >&2 <<'MSG'
++ERROR: stop-all is not supported.
++
++The Jules v1alpha API does not provide a way to cancel or delete a session.
++Documented session methods are: create, get, list, approvePlan, sendMessage.
++
++Workarounds:
++  * Send a stop instruction via jules_message ("please halt and leave
++    changes uncommitted"); the agent may comply.
++  * Wait for the session(s) to reach a terminal state (COMPLETED / FAILED).
++  * Use the Jules web UI for any cancellation that the dashboard exposes.
++MSG
++    return 2
++}
++
++cmd_quota() {
++    export SCRIPT_DIR="$DIR"
++    local resp
++    resp=$(PYTHONPATH="${CLAUDE_PLUGIN_ROOT}/mcp-server/src" python3 - <<'PY'
++import json, os
++try:
++    from agency_mcp.handlers.jules.lifecycle import jules_create
++    from agency_mcp.handlers.jules.bulk import jules_status_all, jules_approve_awaiting, jules_quota
++
++    class mod:
++        jules_create = staticmethod(jules_create)
++        jules_status_all = staticmethod(jules_status_all)
++        jules_approve_awaiting = staticmethod(jules_approve_awaiting)
++        jules_quota = staticmethod(jules_quota)
++    print(json.dumps(mod.jules_quota()))
++except Exception as e:
++    print(json.dumps({"error": str(e)}))
++PY
++    )    
++    local err
++    err=$(echo "$resp" | jq -r '.error // empty')
++    if [ -n "$err" ]; then
++        echo "ERROR: Failed to fetch quota. Error: $err" >&2
++        return 1
++    fi
++
++    local used remaining active
++    used=$(echo "$resp" | jq -r '.used_today // 0')
++    remaining=$(echo "$resp" | jq -r '.remaining_today // 0')
++    active=$(echo "$resp" | jq -r '.active_today // 0')
++
++    echo "Jules quota: $used/100 used, $remaining left, $active active"
++}
++
++case "$1" in
++    fanout)
++        shift
++        cmd_fanout "$@"
++        ;;
++    dashboard)
++        cmd_dashboard
++        ;;
++    approve-awaiting)
++        cmd_approve_awaiting
++        ;;
++    stop-all)
++        shift
++        cmd_stop_all "$@"
++        ;;
++    quota)
++        cmd_quota
++        ;;
++    *)
++        usage
++        ;;
++esac
+diff --git a/commands/jules-bulk.md b/commands/jules-bulk.md
+new file mode 100644
+index 0000000..d9d2dff
+--- /dev/null
++++ b/commands/jules-bulk.md
+@@ -0,0 +1,5 @@
++---
++description: Run Jules bulk operations.
++argument-hint: <args>
++---
++Run the `bin/jules-bulk` CLI with the provided arguments.
+diff --git a/commands/jules-create.md b/commands/jules-create.md
+new file mode 100644
+index 0000000..15b614a
+--- /dev/null
++++ b/commands/jules-create.md
+@@ -0,0 +1,5 @@
++---
++description: Create a new Jules session.
++argument-hint: <prompt>
++---
++Delegate to the `jules-orchestrator` skill to create a new session.
+diff --git a/commands/jules-list.md b/commands/jules-list.md
+new file mode 100644
+index 0000000..ed27036
+--- /dev/null
++++ b/commands/jules-list.md
+@@ -0,0 +1,5 @@
++---
++description: List Jules sessions.
++argument-hint: 
++---
++List active Jules sessions via `mcp__plugin_agency-system_agency-system-mcp__jules_list`. Return the result table verbatim.
+diff --git a/commands/jules-patch-summary.md b/commands/jules-patch-summary.md
+new file mode 100644
+index 0000000..7c05b66
+--- /dev/null
++++ b/commands/jules-patch-summary.md
+@@ -0,0 +1,5 @@
++---
++description: Get patch summary for a session.
++argument-hint: <session_id>
++---
++Get patch summary via `mcp__plugin_agency-system_agency-system-mcp__jules_patch_summary`. Return the result verbatim.
+diff --git a/commands/jules-watch.md b/commands/jules-watch.md
+new file mode 100644
+index 0000000..3e5db7f
+--- /dev/null
++++ b/commands/jules-watch.md
+@@ -0,0 +1,5 @@
++---
++description: Watch Jules sessions.
++argument-hint: 
++---
++Run the jules_start_watcher + jules_watcher_status loop via the `jules-orchestrator` skill.
+diff --git a/skills/jules/SKILL.md b/skills/jules/SKILL.md
+new file mode 100644
+index 0000000..3771dc0
+--- /dev/null
++++ b/skills/jules/SKILL.md
+@@ -0,0 +1,68 @@
++---
++name: jules-orchestrator
++description: >
++  Delegates long-running codebase tasks (refactors, multi-file edits, test
++  generation, feature implementation, automated PR creation) to the Google
++  Jules asynchronous coding agent. Supports fan-out parallel orchestration
++  across many concurrent sessions. Use when the user mentions "Jules",
++  "remote agent", "asynchronous task", asks for a cloud-side coding job
++  that would block the local terminal, or asks for parallel work.
++argument-hint: <action> [args...]   # actions: create | list | status | activities | approve | message | fanout | dashboard | help (note: stop is unsupported)
++model: claude-sonnet-4-6
++allowed-tools:
++  - Bash
++  - Read
++  - mcp__agency-system
++---
++
++## Your Task
++
++**Input:** `$ARGUMENTS`
++
++You are an orchestrator for the Google Jules asynchronous coding agent. The
++user's local terminal is a control plane; Jules is the remote worker. Your
++job is to start, monitor, decide on, interact with, and stop Jules sessions
++on the user's behalf — never to simulate the work locally.
++
++## Preferred path: MCP tools
++
++When the `jules` MCP server is connected, **always prefer its tools over
++raw API calls or scripts** — they are reliable, structured, and the model sees them in
++its tool list natively.
++
++| Tool | Purpose |
++|---|---|
++| `jules_create` | Start a new session. Required: `prompt`. Optional: `title`, `source`, `branch`, `auto_create_pr`. |
++| `jules_get` | Fetch session state (`IN_PROGRESS`, `AWAITING_PLAN_APPROVAL`, etc) and outputs. |
++| `jules_list` | List all sessions. Defaults to active only. |
++| `jules_activities` | Fetch activity log (events like plan generated, errors, etc). |
++| `jules_plan` | Fetch the current plan as Markdown. |
++| `jules_approve` | Approve a session waiting in `AWAITING_PLAN_APPROVAL`. |
++| `jules_message` | Send feedback to a session, either to answer a question or correct a plan. |
++| `jules_resolve_source` | Convert a GitHub `owner/repo` into a Jules opaque source resource ID. |
++| `jules_patch` | Fetch the full unified diff of a completed session. |
++| `jules_patch_apply` | Apply a completed session's diff to the local working tree (supports dry-run). |
++| `jules_patch_summary` | Get metadata for a patch (files changed, lines added/removed) without the full diff. |
++| `jules_status_all` | Fast overview of all sessions grouped by state. |
++| `jules_approve_awaiting` | Bulk-approve all sessions matching a title prefix. |
++| `jules_quota` | Check remaining daily session quota. |
++| `jules_resolve_alias` | Look up a session ID by its human-readable alias. |
++
++*(Note: `jules_stop` is NOT supported upstream. Do not attempt to stop sessions.)*
++
++## Critical Gotchas
++
++1. **Approve quickly.** The Jules backend discards sessions left in `AWAITING_PLAN_APPROVAL` too long. If a session is `COMPLETED` but has no patch artifacts, it timed out. Fetch the plan and approve it fast.
++2. **Stop is not supported.** The Jules API does not expose a stop/cancel method.
++3. **Harvest via patches.** The `auto_create_pr=True` flag is currently unreliable. The preferred harvest path is `jules_patch_apply(session_id)`. Alternatively, prompt the agent to push to `jules/<alias>` branches.
++
++## References
++
++For deeper behaviour, see the following reference files:
++
++- **State Machine:** See `@references/state-machine.md` for the full lifecycle and what to do in each state.
++- **Error Handling:** See `@references/error-normalization.md` for HTTP error codes and normalisation.
++- **Worked Examples:** See `@references/worked-examples.md` for concrete sequences of user requests.
++- **Parallel Orchestration:** See `@references/parallel-orchestration.md` for fan-out tasks and batching.
++- **Harvest Patterns:** See `@references/harvest-patterns.md` for the differences between PR harvest and patch harvest.
++- **Caveats:** See `@references/caveats.md` for what this skill does NOT do and edge-cases.
+diff --git a/skills/jules/references/caveats.md b/skills/jules/references/caveats.md
+new file mode 100644
+index 0000000..f09baf6
+--- /dev/null
++++ b/skills/jules/references/caveats.md
+@@ -0,0 +1,66 @@
++This file lists caveats and constraints of the Jules skill. Load this to understand what the skill does NOT do, and specific pitfalls to avoid during parallel work.
++
++
++- **Approve quickly.** The Jules backend appears to discard sessions
++  that sit in `AWAITING_PLAN_APPROVAL` for too long — they end up in
++  `COMPLETED` state with no patch artifacts. Treat `COMPLETED` with no
++  artifacts (verify via `jules_patch_summary`) as `AWAITING_PLAN_APPROVAL`:
++  fetch the plan and approve, or the work is lost.
++- **Scope tasks to disjoint files.** Parallel sessions branch from the
++  same base commit, so patches that touch the same file will conflict
++  on apply.
++- **Use aliases.** 19-digit ids are unusable in conversation; aliases
++  scale to dozens of sessions without confusion.
++- **Watch out for stale `list` responses.** `jules_list` can show a
++  session as `IN_PROGRESS` for a few seconds after `jules_get` reports
++  the real state. Use `jules_get` (per-session) as the authoritative
++  state, not `jules_list`.
++- **No more than 4 concurrent approves.** `jules_bulk.sh
++  approve-awaiting` uses `xargs -P 4`. Higher concurrency risks 429s.
++
++## What This Skill Does NOT Do
++
++- **Does not edit local files.** Jules works on its own VM and pushes to
++  the user's GitHub via the Jules GitHub app. The skill never modifies the
++  local working tree on the user's behalf as part of a Jules session.
++- **Does not commit or push.** The output is a Jules-generated PR URL.
++- **Does not poll in the background.** Each status check is initiated by
++  a fresh user prompt.
++- **Does not cache the API key.** It is read live from `JULES_API_KEY`
++  every invocation.
++- **Does not retry destructive failures automatically.** A failed
++  `approve` or `message` is reported, not silently re-attempted.
++- **Does not cancel sessions.** The Jules API does not expose a
++  cancel/delete/stop method, so `stop` requests are reported as
++  unsupported instead of issuing doomed HTTP requests.
++
++## Empirically observed traps (from PR #27 refactor)
++
++1. **COMPLETED without artifacts ≠ dead.** A session can show state
++   COMPLETED with no patch artifact and no PR output, yet still be
++   paused waiting on a UI gate (e.g. a "Create PR?" prompt). Do NOT
++   assume the work is lost. Recovery: send a jules_message asking the
++   agent to continue ("Please continue and complete the brief…"); the
++   state will transition to AWAITING_USER_FEEDBACK and the work
++   resumes. Only respawn if a nudge produces no transition within
++   ~10 minutes.
++2. **jules_message during plan-approval can kill the session.** When
++   a session is in AWAITING_PLAN_APPROVAL and you want to request
++   changes, sending jules_message instead of jules_approve sometimes
++   causes the session to interpret the message as a stop signal and
++   transition to COMPLETED with no plan and no work. Safer pattern:
++   if the plan is acceptable, jules_approve; if not, jules_message
++   with the change request AND then verify the next state is
++   PLANNING (re-plan in progress), not COMPLETED.
++3. **Patch artifacts are retrievable while state is IN_PROGRESS.**
++   jules_patch_summary and jules_patch_apply walk activities[]
++   artifacts; they do not require the session to be COMPLETED. If a
++   session is stuck IN_PROGRESS for >30 minutes but the latest
++   progressUpdated activity shows artifacts written, fetch and
++   integrate the patch immediately — don't wait for COMPLETED.
++4. **Watcher liveness is not free.** watch_jules.py is a separate
++   process; if it dies, state transitions stop being written to
++   notifications.jsonl and any monitor that tails the log goes
++   silent. Verify with `ps -p $(cat .claude/skills/jules/watcher.pid)`
++   or `claude/journal` log lines before assuming a session is
++   stalled. Restart with --daemonize.
+diff --git a/skills/jules/references/error-normalization.md b/skills/jules/references/error-normalization.md
+new file mode 100644
+index 0000000..a2c6b99
+--- /dev/null
++++ b/skills/jules/references/error-normalization.md
+@@ -0,0 +1,19 @@
++This file provides error handling and normalisation rules. Load this when a Jules API request fails or returns an HTTP error code to understand how to interpret and report it.
++
++
++Trap HTTP errors and translate, don't dump:
++
++| HTTP | Meaning | What to tell the user |
++|---|---|---|
++| `400` | Malformed payload | Echo the API's error message; check `--source` / `--branch` formats. |
++| `401` | Invalid `JULES_API_KEY` | "Jules rejected the API key. Re-export `JULES_API_KEY` and try again." |
++| `403` | No access to the source | "Jules cannot access `<source>`. Make sure the GitHub repo is connected via the Jules GitHub app." |
++| `404` | Unknown session | "No session `<id>` found. Use `/jules list` to see active sessions." |
++| `409` | Illegal state transition | E.g. approving a session that isn't awaiting approval. Run `/jules status` first. |
++| `429` | Quota exceeded | Stop polling. Tell the user to wait or check their billing/quota in the Jules console. |
++| `5xx` | Server error | Retryable. Suggest waiting a minute. Do not auto-retry more than once. |
++
++Use `curl -sS -o "$TMP" -w "%{http_code}"` so the status code is emitted,
++and inspect it. Then parse the body from the tempfile with `jq < "$TMP"`.
++
++---
+diff --git a/skills/jules/references/harvest-patterns.md b/skills/jules/references/harvest-patterns.md
+new file mode 100644
+index 0000000..83a9687
+--- /dev/null
++++ b/skills/jules/references/harvest-patterns.md
+@@ -0,0 +1,124 @@
++This file details how to harvest completed work from Jules sessions. Load this when a session is COMPLETED and you need to integrate its patch or pull request into the local repository.
++
++
++The integrator-via-PR pattern is conceptually appealing but
++**empirically unreliable on this account**: setting
++`auto_create_pr=True` is silently ignored (the response shows
++`automationMode: None`, no branch is pushed, no PR is opened —
++verified on session `4878612101900714069`). Prompt-level
++instructions to push or open PRs also fail or hallucinate
++completion. The working harvest path is patches:
++
++```python
++jules_patch_summary(session_id)         # metadata only — files, line counts
++jules_patch_apply(session_id, dry_run=True)   # validate cleanly
++jules_patch_apply(session_id)           # apply on disk, token-cheap
++```
++
++The full unidiff is written to a tempfile, fed to `git apply`, and
++discarded. Only metadata (`{applied, files, lines_added,
++lines_removed, base_commit, suggested_commit_message}`) flows back
++through the model — ~200 bytes vs. a diff that can be tens of KB.
++This works reliably even when PR / branch publishing does not.
++
++**The integrator-via-PR pattern remains valid in principle.** When
++you confirm it works on your account (i.e. setting
++`auto_create_pr=True` actually publishes a branch and opens a PR),
++use it — it's strictly better than patches (richer audit trail,
++multi-iteration history, cherry-pick granularity). The patch path
++is the *fallback* when the publish path is unavailable. Probe with
++one session before relying on either.
++
++**The instruction template for `jules_create`:**
++
++> "When done, make your work retrievable on the remote — your
++> choice of mechanism: push to a branch named `jules/<slug>` if
++> your tooling supports it, otherwise a draft PR or a regular
++> PR from such a branch. Reply with the exact branch name and
++> PR URL (if any). The PR is for integration, not necessarily
++> for merging."
++
++Equivalent in code: `jules_create(..., auto_create_pr=True)` is
++the most reliable signal, but for some setups the prompt-level
++instruction works too. When in doubt, set the flag AND include the
++prompt sentence.
++
++**The integrator flow once the branch lands:**
++
++```
++git fetch origin
++git branch -r | grep jules/                                   # discover
++git log --oneline <my-branch>..origin/jules/<slug>            # what's there
++git diff <my-branch>...origin/jules/<slug> --stat             # scope
++git diff <my-branch>...origin/jules/<slug> -- path/to/file    # only when needed
++gh pr view <pr-number>                                        # PR body & metadata, if a PR was opened
++```
++
++**Then integrate at the granularity you want:**
++
++```
++git cherry-pick <commit-on-jules-branch>                # one commit
++git checkout origin/jules/<slug> -- path/to/file        # one file
++git merge --no-ff origin/jules/<slug>                   # the whole branch
++```
++
++If a PR was opened, **close it without merging** when you've
++cherry-picked what you wanted — the closed PR is the audit
++record. If no PR was opened, the branch itself is the record;
++delete it from the remote once integrated, or leave it as a
++historical reference.
++
++**Why this beats both raw patches and "no PR please":**
++
++- Zero token cost for diff inspection (git output never enters the
++  model's context).
++- Works with Jules's actual capabilities — no instructions Jules
++  interprets the wrong way (the "don't open a PR" framing reliably
++  causes some sessions to conflate it with "don't push").
++- Real git history per session: blame, log, bisect, cherry-pick
++  all work normally.
++- The PR (when one exists) is metadata you can comment on / link
++  to — useful for multi-orchestrator coordination.
++- Multiple iterations on the same session push additional commits
++  to the same branch — defuses the "outputs[].gitPatch is set
++  only once" trap from principle #2 above.
++
++**When to fall back to patches:**
++
++- The target repo doesn't accept Jules's push or PR scope (rare).
++- You need to transform the diff in-context before applying
++  (e.g. strip unrelated changes). Use `jules_patch_summary` first,
++  then `jules_patch` with explicit `max_bytes` if truly necessary.
++- `jules_patch_apply(session_id, dry_run=True)` is still the
++  preferred way to land a unified-diff locally when the integrator
++  pattern doesn't apply.
++
++**Two `COMPLETED` traps you must defuse:**
++
++`Session.outputs[]` carries the **pull-request resource** when Jules opens
++a PR (typically with `automationMode=AUTO_CREATE_PR`). Patches do NOT live
++in `outputs` — they live as **activity artifacts**
++(`activities[].artifacts[].changeSet.gitPatch.unidiffPatch`). The
++`has_outputs` flag returned by `jules_get` therefore means "a PR was
++attached", not "this session produced any work".
++
++1. **`COMPLETED` with empty `outputs` AND no patch artifacts = abandoned.**
++   The plan-approval gate timed out before you approved, or the agent
++   produced nothing. Check via `jules_patch_summary(session_id)` — if it
++   reports "no patch artifact found", the session is dead.
++2. **`COMPLETED` with `has_outputs=True` may still be waiting on a
++   "Create PR?" UI prompt.** The patch is real and harvestable, but
++   the session is not finalized — it's sitting in the Jules web UI
++   asking the human whether to open a PR. To finalize cleanly when
++   you've already applied the patch locally:
++
++   ```python
++   jules_message(session_id, "Patch applied locally — no PR needed. Finalize.")
++   ```
++
++   To avoid the trap entirely on a fresh session, pass
++   `auto_create_pr=True` at create time and let Jules open the PR
++   without asking. Choose your default based on whether you want
++   patches piped into your branch (current default) or independent
++   PRs (auto mode).
++
+diff --git a/skills/jules/references/parallel-orchestration.md b/skills/jules/references/parallel-orchestration.md
+new file mode 100644
+index 0000000..2a4fc21
+--- /dev/null
++++ b/skills/jules/references/parallel-orchestration.md
+@@ -0,0 +1,142 @@
++This file explains how to orchestrate multiple Jules sessions in parallel. Load this when you are tasked with a fan-out operation or need to manage multiple sessions at once.
++
++
++You can run **many Jules sessions in parallel**. This is the canonical
++flow for fan-out work (e.g. apply the same change across N tracks,
++review N PRs, generate N test files):
++
++### 1. Fan out
++
++Provide a JSON or YAML file with one entry per task (see
++`.claude/skills/jules/examples/fanout-tasks.json`). Each entry has
++`{alias, title, prompt}` and optionally `{branch, source}`.
++
++**Every prompt should include the branch convention** so harvest
++goes through git, not patches:
++
++> "When done, push your work to branch `jules/<alias>` on the source
++> repository. Do NOT open a pull request."
++
++This makes the alias the link between the local registry and the
++remote branch — `jules_resolve_alias("auth-fix")` returns the
++session id, and `origin/jules/auth-fix` holds the work.
++
++Then:
++
++```bash
++# Either pass the opaque source explicitly:
++JULES_DEFAULT_SOURCE="sources/<id>" \
++  ./.claude/skills/jules/jules_bulk.sh fanout tasks.json
++# …or pass an owner/repo shorthand (resolved via sources.list at create time):
++JULES_DEFAULT_SOURCE="<org>/<repo>" \
++  ./.claude/skills/jules/jules_bulk.sh fanout tasks.json
++# …or omit and let jules_bulk.sh detect owner/repo from the git remote.
++```
++
++Each entry creates one session and registers it in `sessions.json` with
++its alias so you can refer to it by name (`auth-fix`) instead of the
++19-digit id.
++
++Equivalently in MCP: call `jules_create` once per task in a single
++turn. The Jules API accepts concurrent session creation; rate limits
++apply per account.
++
++### 2. Watch all of them at once
++
++```bash
++python3 .claude/skills/jules/watch_jules.py --daemonize
++```
++
++The watcher polls every session, writes one JSON line per state
++transition to `notifications.jsonl`, and pushes the latest state into
++the registry so `dashboard` always has fresh data.
++
++### 3. Use the dashboard to triage
++
++```bash
++./.claude/skills/jules/jules_bulk.sh dashboard
++```
++
++Lists every active session in a compact table: alias | id | state |
++title. Sessions in `AWAITING_PLAN_APPROVAL` are highlighted — those are
++the ones blocking on you.
++
++For an in-context check during a chat turn, call `jules_status_all`
++(one API request, all sessions grouped by state).
++
++### 4. Review the plan FIRST, then approve (do not auto-approve)
++
++**The plan-approval gate is your cheapest review point. Do not
++bypass it.** A misaligned plan caught at the AWAITING_PLAN_APPROVAL
++stage costs one `jules_message` to redirect; the same misalignment
++caught after the patch lands costs a re-spawn (a slot) and a full
++fresh planning cycle.
++
++The workflow for every fan-out:
++
++1. Wait for each session to reach `AWAITING_PLAN_APPROVAL` (watch
++   `jules_status_all` periodically, or run the watcher daemon).
++2. For each one, call `jules_plan(session_id)` and READ THE STEPS.
++   Check: are the right files in scope? Are the wrong files
++   excluded? Is the plan over-engineered? Under-scoped?
++3. If the plan is good, call `jules_approve(session_id)` —
++   manually, one at a time.
++4. If the plan needs refinement, call `jules_message(session_id,
++   "<specific feedback>")`. The session will replan; loop back to
++   step 1.
++5. **Bulk-approve (`jules_approve_awaiting`) is for the case where
++   you have ALREADY individually reviewed each plan and they are
++   all good.** It is not for "auto-approve everything that's
++   waiting" — that pattern wastes the review opportunity.
++
++Auto-approving drivers (`while AWAITING: approve()`) are an
++antipattern: they remove your cheapest course-correction lever and
++guarantee you'll integrate work you didn't actually want. Only use
++them when you've explicitly decided this batch doesn't warrant
++review (e.g. a known-safe templated fan-out you've validated
++before).
++
++When you have N plans waiting AND you have already inspected them
++in the dashboard or via `jules_plan`, you can batch-approve:
++
++```bash
++./.claude/skills/jules/jules_bulk.sh approve-awaiting
++```
++
++Or in MCP:
++
++```
++jules_approve_awaiting(only_titles_contain="lyric-review")
++```
++
++The `only_titles_contain` filter is your safety net — restrict the
++bulk-approve to a known prefix so a stray unrelated session can't be
++swept in.
++
++## Fan-out reliability checklist (from PR #27 refactor experience)
++
++1. Before dispatching a fan-out, verify the watcher daemon is alive
++   (ps -p $(cat .claude/skills/jules/watcher.pid)). A dead watcher
++   means silent failures.
++2. Each session prompt should include the exact branch name and the
++   EXACT shape of the expected reply (5-line summary + pytest verdict).
++   Vague prompts trigger more clarifying questions per session, which
++   multiplies under fan-out.
++3. Wave-based dispatch (groups of 3-6 sessions with no inter-wave
++   dependencies) integrates better than single-session-per-task
++   because review cycles batch across the wave instead of context
++   thrashing one at a time.
++4. When integrating multiple Jules patches that touch overlapping
++   files, use jules_patch_apply with only_files= to apply just the
++   in-scope subset. Letting two sessions both rewrite tools/lifecycle.py
++   via blind `git apply` lets the second one silently overwrite the
++   first.
++5. Quota cost of fan-out is len(unique_sessions), not retries. A
++   respawn or a fresh continuation each burns one slot of the
++   per-account daily quota. Budget 1.3x the expected session count
++   for safety (correction loops + stalled-session respawns).
++6. The plan-approval gate is your cheapest steering point. Spend the
++   time to read each plan before approve/correct rather than batching
++   blindly — the cost of a misaligned implementation is much higher
++   than the cost of one extra review pass.
++
+diff --git a/skills/jules/references/state-machine.md b/skills/jules/references/state-machine.md
+new file mode 100644
+index 0000000..45c0836
+--- /dev/null
++++ b/skills/jules/references/state-machine.md
+@@ -0,0 +1,25 @@
++This file documents the Jules session state machine. Load this when you need to understand the lifecycle of a session or what actions are permitted in a given state.
++
++
++Every status check (`get session`) returns a `state` enum. Your decision
++matrix:
++
++| State | What it means | Your next action |
++|---|---|---|
++| `STATE_UNSPECIFIED` | Backend can't determine state — transient/init failure | Report and ask user whether to retry. |
++| `QUEUED` | Accepted, waiting for compute | Tell the user it is queued; do not poll in a tight loop. Yield. |
++| `PLANNING` | Cloning repo, analysing, drafting plan | Same — report progress, yield to the prompt. |
++| `AWAITING_PLAN_APPROVAL` | **Circuit breaker tripped** — plan ready, needs human OK | Immediately call `list activities`, find the `planGenerated` event, render the plan as readable markdown, and ask the user "Approve this plan, request changes, or cancel?". |
++| `AWAITING_USER_FEEDBACK` | Jules has a question and is blocked | Call `list activities`, find the latest `userMessaged` from the agent, surface the question verbatim, await the user's reply, then send via `sendMessage`. |
++| `IN_PROGRESS` | Writing code, running tests, committing | Report status; yield. Do not poll continuously. |
++| `PAUSED` | Suspended (quota, rate limit, admin) | Surface any accompanying message; stop polling; let the user decide. |
++| `FAILED` | Terminal error | Pull recent activities for diagnostics, summarise the failure, close out the local task tracking. |
++| `COMPLETED` | **Ambiguous — the field lies in two distinct ways.** (1) `state=COMPLETED + outputs is null/empty` means the plan-approval gate timed out and Jules abandoned the session; treat as `AWAITING_PLAN_APPROVAL` and approve fast. (2) `state=COMPLETED + has_outputs=True` may still mean Jules is paused in the web UI asking whether to create a Pull Request for the patch it produced; the `state` field has flipped but the session is not finalized. The `sessionCompleted` activity does NOT distinguish the two — it appears in both. The only reliable resolutions are: (a) set `automationMode=AUTO_CREATE_PR` at create time so Jules opens the PR itself without asking; or (b) after harvesting the patch via `jules_patch`, send `jules_message(session_id, "no PR needed, patch applied locally")` to finalize the session.<br><br><ul><li>COMPLETED with patch artifact OR Session.outputs[].pullRequest → real terminal success</li><li>COMPLETED with NEITHER → session is paused on a UI gate; recovery is a continuation jules_message, not a respawn (see caveats: "COMPLETED without artifacts ≠ dead")</li></ul> | If outputs is empty, approve the plan. If outputs is present but Jules might be waiting on PR-creation, either set automation mode up front or send a finalize message after harvest. |
++
++**Never simulate a blocking poll loop.** The terminal is interactive; do
++not freeze it. The pattern is: do *one* status check, report, hand control
++back to the user. The user explicitly asks "check Jules" / "status?" to
++trigger the next check. The only exception is *immediately* after
++`create`, where one status check confirms `QUEUED` before yielding.
++
++---
+diff --git a/skills/jules/references/worked-examples.md b/skills/jules/references/worked-examples.md
+new file mode 100644
+index 0000000..f25b88c
+--- /dev/null
++++ b/skills/jules/references/worked-examples.md
+@@ -0,0 +1,68 @@
++This file contains worked examples of Jules interactions. Load this to see concrete examples of user requests and the corresponding API sequence, especially for creating and managing sessions.
++
++
++**Create:**
++```
++User: /jules create refactor the auth middleware to use JWT and cover it with integration tests
++Skill:
++  Detected repo:   netzkontrast/the-agency-system → sources/<resolved-id>
++  Detected branch: claude/create-jules-skill-x8QHA
++  Plan approval:   REQUIRED (default)
++
++  Created. ID: 7f3a91c2-…  State: QUEUED
++  Session URL: https://jules.google.com/session/7f3a91c2-…
++  → Polled once: state is now PLANNING.
++  Run "/jules status 7f3a91c2-…" in a minute to check progress.
++```
++
++**Mandatory:** every time a new session is created (single or via fan-out),
++print the **direct session URL** in the form
++`https://jules.google.com/session/<sessionId>` on its own line. The URL is
++returned in `jules_create`'s response as the `url` field. This is the link
++the user clicks to open the session in the Jules web UI for inspection,
++manual approval, or PR creation. Never omit it — even in compact bulk-create
++output, render `id + url` together. For fan-out:
++
++```
++Created 3 sessions:
++  - auth-fix         (7f3a91c2-…)  https://jules.google.com/session/7f3a91c2-…
++  - tests-gen        (a8b4d219-…)  https://jules.google.com/session/a8b4d219-…
++  - refactor-api     (c2e6f905-…)  https://jules.google.com/session/c2e6f905-…
++```
++
++**Status with plan ready:**
++```
++User: /jules status 7f3a91c2-…
++Skill:
++  State: AWAITING_PLAN_APPROVAL
++
++  Jules has drafted this plan:
++    1. Replace cookie-session middleware with jsonwebtoken in src/auth/
++    2. Add JWT secret env var (JWT_SECRET) with dotenv fallback
++    3. Add tests/integration/auth.spec.ts covering login + refresh
++    4. Update README env-var section
++
++  Approve, request changes, or cancel?
++```
++
++**Agent asks a question:**
++```
++User: /jules status 7f3a91c2-…
++Skill:
++  State: AWAITING_USER_FEEDBACK
++  Jules asks: "The auth module currently has no mock interface. Should I
++  add one in tests/mocks/, or wire the integration tests directly against
++  the real middleware?"
++  Reply with: /jules message 7f3a91c2-… <your answer>
++```
++
++**Completed:**
++```
++User: /jules status 7f3a91c2-…
++Skill:
++  State: COMPLETED
++  Jules opened a pull request:
++    https://github.com/netzkontrast/the-agency-system/pull/42
++```
++
++---
+diff --git a/tests/smoke/test_jules_bulk_cli.py b/tests/smoke/test_jules_bulk_cli.py
+new file mode 100644
+index 0000000..e0c7bd8
+--- /dev/null
++++ b/tests/smoke/test_jules_bulk_cli.py
+@@ -0,0 +1,7 @@
++import subprocess
++import pytest
++
++def test_help_exits_zero():
++    res = subprocess.run(["bin/jules-bulk", "--help"], capture_output=True, text=True)
++    assert res.returncode == 0
++    assert "usage:" in res.stdout.lower()
+diff --git a/tools/jules/__init__.py b/tools/jules/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/tools/jules/researcher/README.md b/tools/jules/researcher/README.md
+new file mode 100644
+index 0000000..62b7fa1
+--- /dev/null
++++ b/tools/jules/researcher/README.md
+@@ -0,0 +1,9 @@
++# Researcher Tool
++
++Usage examples:
++```bash
++./research.py fetch https://example.com --label "Example"
++./research.py list
++./research.py read Example
++./research.py summarize Example
++```
+diff --git a/tools/jules/researcher/cache/.gitkeep b/tools/jules/researcher/cache/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/tools/jules/researcher/requirements.txt b/tools/jules/researcher/requirements.txt
+new file mode 100644
+index 0000000..2d66ccb
+--- /dev/null
++++ b/tools/jules/researcher/requirements.txt
+@@ -0,0 +1,4 @@
++httpx==0.28.1
++beautifulsoup4==4.14.3
++markdownify==1.2.2
++rich==15.0.0
+diff --git a/tools/jules/researcher/research.py b/tools/jules/researcher/research.py
+new file mode 100755
+index 0000000..4cca9a7
+--- /dev/null
++++ b/tools/jules/researcher/research.py
+@@ -0,0 +1,272 @@
++#!/usr/bin/env python3
++"""
++Generalized Researcher Tool
++"""
++
++import argparse
++import hashlib
++import json
++import os
++import sys
++from datetime import datetime, timezone
++
++try:
++    import httpx
++    from bs4 import BeautifulSoup
++    from markdownify import markdownify as md
++    from rich.console import Console
++    from rich.table import Table
++    import rich.box as box
++except ImportError:
++    print("Dependencies missing. Please install from requirements.txt", file=sys.stderr)
++    sys.exit(1)
++
++console = Console()
++
++def get_cache_dir(args):
++    if args.cache_dir:
++        return os.path.abspath(args.cache_dir)
++    env_cache = os.environ.get("JULES_RESEARCH_CACHE")
++    if env_cache:
++        return os.path.abspath(env_cache)
++    return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cache')
++
++def get_index_file(cache_dir):
++    return os.path.join(cache_dir, 'index.json')
++
++def load_index(cache_dir):
++    index_file = get_index_file(cache_dir)
++    if not os.path.exists(index_file):
++        return {}
++    try:
++        with open(index_file, 'r', encoding='utf-8') as f:
++            return json.load(f)
++    except json.JSONDecodeError:
++        return {}
++
++def save_index(cache_dir, index):
++    os.makedirs(cache_dir, exist_ok=True)
++    with open(get_index_file(cache_dir), 'w', encoding='utf-8') as f:
++        json.dump(index, f, indent=2)
++
++def _find_entry(index, query):
++    for h, entry in index.items():
++        if entry.get('label') == query or entry.get('url') == query or h.startswith(query):
++            return h, entry
++    return None, None
++
++def fetch(args):
++    url = args.url
++    cache_dir = get_cache_dir(args)
++    os.makedirs(cache_dir, exist_ok=True)
++    
++    try:
++        with httpx.Client(follow_redirects=True, timeout=15.0) as client:
++            resp = client.get(url, headers={'User-Agent': 'Mozilla/5.0 (Researcher Bot)'})
++            resp.raise_for_status()
++            content_type = resp.headers.get('Content-Type', 'text/plain').lower()
++            data = resp.read()
++    except Exception as e:
++        console.print(f"[red]Failed to fetch {url}: {e}[/red]", style="bold")
++        sys.exit(1)
++
++    sha256 = hashlib.sha256(data).hexdigest()
++    
++    filename_raw = f"{sha256}.raw"
++    filename_md = f"{sha256}.md"
++    
++    filepath_raw = os.path.join(cache_dir, filename_raw)
++    filepath_md = os.path.join(cache_dir, filename_md)
++
++    with open(filepath_raw, 'wb') as f:
++        f.write(data)
++
++    parsed_len = 0
++    if 'html' in content_type:
++        soup = BeautifulSoup(data, 'html.parser')
++        
++        # Remove script and style elements completely
++        for script_or_style in soup(["script", "style", "nav", "footer", "header", "noscript", "svg"]):
++            script_or_style.decompose()
++            
++        cleaned_html = str(soup)
++        markdown_text = md(cleaned_html, heading_style="ATX").strip()
++        parsed_len = len(markdown_text.encode('utf-8'))
++        
++        with open(filepath_md, 'w', encoding='utf-8') as f:
++            f.write(markdown_text)
++    else:
++        # For non-HTML, just write text
++        with open(filepath_md, 'wb') as f:
++            f.write(data)
++        parsed_len = len(data)
++
++    index = load_index(cache_dir)
++    now = datetime.now(timezone.utc).isoformat()
++    
++    entry = {
++        'url': url,
++        'fetched_at': now,
++        'label': args.label,
++        'content_type': content_type,
++        'bytes_raw': len(data),
++        'bytes_md': parsed_len,
++        'file_raw': filename_raw,
++        'file_md': filename_md
++    }
++    
++    index[sha256] = entry
++    save_index(cache_dir, index)
++    
++    console.print(f"[green]Fetched {url} -> {sha256[:8]}[/green] (raw: {len(data)}b, md: {parsed_len}b)")
++
++def list_entries(args):
++    cache_dir = get_cache_dir(args)
++    index = load_index(cache_dir)
++    
++    if not index:
++        console.print("No entries in cache.")
++        return
++        
++    table = Table(title="Cached Documents", box=box.SIMPLE)
++    table.add_column("Hash", style="cyan", no_wrap=True)
++    table.add_column("Label", style="magenta")
++    table.add_column("URL", style="blue")
++    table.add_column("Size (MD)", justify="right")
++    table.add_column("Fetched At")
++    
++    for h, entry in index.items():
++        label = entry.get('label') or '-'
++        url = entry.get('url') or ''
++        if len(url) > 50:
++            url = url[:47] + '...'
++        size = f"{entry.get('bytes_md', 0) // 1024} KB"
++        fetched = entry.get('fetched_at', '')[:19].replace('T', ' ')
++        table.add_row(h[:8], label, url, size, fetched)
++        
++    console.print(table)
++
++def read_entry(args):
++    cache_dir = get_cache_dir(args)
++    index = load_index(cache_dir)
++    h, entry = _find_entry(index, args.query)
++    
++    if not h:
++        console.print(f"[red]Not found: {args.query}[/red]")
++        sys.exit(1)
++        
++    filename = entry['file_raw'] if args.raw else entry['file_md']
++    filepath = os.path.join(cache_dir, filename)
++    
++    if not os.path.exists(filepath):
++        console.print(f"[red]Cache file missing: {filepath}[/red]")
++        sys.exit(1)
++        
++    with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
++        content = f.read()
++        print(content)
++
++def search_entries(args):
++    cache_dir = get_cache_dir(args)
++    index = load_index(cache_dir)
++    query_str = args.query.lower()
++    
++    for h, entry in index.items():
++        filepath = os.path.join(cache_dir, entry['file_md'])
++        if not os.path.exists(filepath):
++            continue
++            
++        display_name = entry.get('label') or h[:8]
++        
++        with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
++            for i, line in enumerate(f):
++                if query_str in line.lower():
++                    clean_line = line.strip()
++                    if len(clean_line) > 100:
++                        clean_line = clean_line[:97] + '...'
++                    # Token efficiency: compact output
++                    print(f"{display_name}:{i+1}:{clean_line}")
++
++def summarize_entry(args):
++    cache_dir = get_cache_dir(args)
++    index = load_index(cache_dir)
++    h, entry = _find_entry(index, args.query)
++    
++    if not h:
++        console.print(f"[red]Not found: {args.query}[/red]")
++        sys.exit(1)
++        
++    filepath = os.path.join(cache_dir, entry['file_md'])
++    if not os.path.exists(filepath):
++        console.print(f"[red]Cache file missing: {filepath}[/red]")
++        sys.exit(1)
++        
++    if args.full:
++        with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
++            print(f.read())
++        return
++
++    with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
++        content = f.read()
++
++    lines = content.split('\n')
++    h1 = "No Heading Found"
++    first_p = "No Paragraph Found"
++    
++    for line in lines:
++        line = line.strip()
++        if not line:
++            continue
++        if line.startswith('# ') and h1 == "No Heading Found":
++            h1 = line
++        elif not line.startswith('#') and first_p == "No Paragraph Found":
++            first_p = line
++            
++        if h1 != "No Heading Found" and first_p != "No Paragraph Found":
++            break
++            
++    console.print(f"[bold cyan]{entry.get('label') or h[:8]}[/bold cyan]")
++    console.print(f"URL: {entry.get('url')}")
++    console.print(f"Heading: {h1}")
++    console.print(f"Summary: {first_p}")
++    if len(content) > 500:
++         console.print("\n[dim]Note: Use --full for full content.[/dim]")
++
++def main():
++    parser = argparse.ArgumentParser(description="Researcher Tool. Token efficient cache interface.")
++    parser.add_argument("--cache-dir", help="Override default cache directory")
++    
++    subparsers = parser.add_subparsers(dest="command", required=True)
++    
++    fetch_parser = subparsers.add_parser("fetch", help="Fetch a URL and cache it (Worst case size: ~100 bytes stdout)")
++    fetch_parser.add_argument("url")
++    fetch_parser.add_argument("--label", help="Label for this document")
++    
++    list_parser = subparsers.add_parser("list", help="List cached items (Worst case size: ~1KB per 10 items)")
++    
++    read_parser = subparsers.add_parser("read", help="Read a cached file (Worst case size: Entire markdown content. Warning: High token usage)")
++    read_parser.add_argument("query", help="Label, URL, or hash")
++    read_parser.add_argument("--raw", action="store_true", help="Return raw HTML instead of parsed Markdown")
++    
++    search_parser = subparsers.add_parser("search", help="Search inside markdown cache (Worst case size: ~100 bytes per match)")
++    search_parser.add_argument("query", help="Text to search for")
++    
++    sum_parser = subparsers.add_parser("summarize", help="Summarize a document (Worst case size: ~500 bytes. High efficiency)")
++    sum_parser.add_argument("query", help="Label, URL, or hash")
++    sum_parser.add_argument("--full", action="store_true", help="Return the full markdown content instead of summary")
++    
++    args = parser.parse_args()
++    
++    if args.command == "fetch":
++        fetch(args)
++    elif args.command == "list":
++        list_entries(args)
++    elif args.command == "read":
++        read_entry(args)
++    elif args.command == "search":
++        search_entries(args)
++    elif args.command == "summarize":
++        summarize_entry(args)
++
++if __name__ == "__main__":
++    main()

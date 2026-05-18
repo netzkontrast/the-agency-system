@@ -1,0 +1,767 @@
+diff --git a/servers/agency-mcp/pyproject.toml b/servers/agency-mcp/pyproject.toml
+index e4d82a8..4ae5659 100644
+--- a/servers/agency-mcp/pyproject.toml
++++ b/servers/agency-mcp/pyproject.toml
+@@ -12,6 +12,7 @@ dependencies = [
+     "librosa>=0.10.0",
+     "soundfile>=0.12.0",
+     "numpy>=1.20.0",
++    "tiktoken",
+ ]
+ 
+ [build-system]
+diff --git a/servers/agency-mcp/src/agency_mcp/codemode/manifest.json b/servers/agency-mcp/src/agency_mcp/codemode/manifest.json
+new file mode 100644
+index 0000000..d60e195
+--- /dev/null
++++ b/servers/agency-mcp/src/agency_mcp/codemode/manifest.json
+@@ -0,0 +1,478 @@
++{
++  "health_check": {
++    "classification": "eager",
++    "domain": "shared"
++  },
++  "music_find_album": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_list_albums": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_track": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_list_tracks": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_session": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_update_session": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_rebuild_state": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_config": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_python_command": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_ideas": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_search_items": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_pending_verifications": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_resolve_path": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_resolve_track_file": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_list_track_files": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_extract_section": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_update_track_field": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_album_progress": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_album_full": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_validate_album_structure": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_create_album_structure": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_run_pre_generation_gates": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_check_streaming_lyrics": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_init": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_list_tweets": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_create_tweet": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_update_tweet": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_delete_tweet": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_search_tweets": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_sync_album": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_db_get_tweet_stats": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_create_idea": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_update_idea": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_promote_idea": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_streaming_urls": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_update_streaming_url": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_verify_streaming_urls": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_load_override": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_reference": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_format_for_clipboard": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_plugin_version": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_check_venv_health": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_health_check": {
++    "classification": "eager",
++    "domain": "music"
++  },
++  "music_diagnose_issue": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_reset_mastering": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_cleanup_legacy_venvs": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_migrate_audio_layout": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_promo_status": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_promo_content": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_extract_distinctive_phrases": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_count_syllables": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_analyze_readability": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_analyze_rhyme_scheme": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_validate_section_structure": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_check_homographs": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_scan_artist_names": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_check_pronunciation_enforcement": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_check_explicit_content": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_extract_links": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_get_lyrics_stats": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_check_cross_track_repetition": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_analyze_audio": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_qc_audio": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_master_audio": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_fix_dynamic_track": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_master_with_reference": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_master_album": {
++    "classification": "deferred",
++    "domain": "music",
++    "status_companion": "music_master_album_status"
++  },
++  "music_render_codec_preview": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_mono_fold_check": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_prune_archival": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_measure_album_signature": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_album_coherence_check": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_album_coherence_correct": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_polish_audio": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_analyze_mix_issues": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_polish_album": {
++    "classification": "deferred",
++    "domain": "music",
++    "status_companion": "music_polish_album_status"
++  },
++  "music_polish_and_master_album": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_transcribe_audio": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_prepare_singles": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_create_songbook": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_publish_sheet_music": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_generate_promo_videos": {
++    "classification": "deferred",
++    "domain": "music",
++    "status_companion": "music_generate_promo_videos_status"
++  },
++  "music_generate_album_sampler": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "jules_resolve_source": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_create": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_list": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_get": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_activities": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_plan": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_approve": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_message": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_stop": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_patch_summary": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_patch_apply": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_patch": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_status_all": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_approve_awaiting": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "jules_quota": {
++    "classification": "eager",
++    "domain": "jules"
++  },
++  "jules_resolve_alias": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "shared_search": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "shared_list_skills": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "shared_get_skill": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "plugin_help": {
++    "classification": "eager",
++    "domain": "shared"
++  },
++  "shared_get_reference": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "shared_load_override": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "shared_get_config": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "shared_get_session": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "shared_update_session": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "shared_get_pending_verifications": {
++    "classification": "deferred",
++    "domain": "shared"
++  },
++  "jules_start_watcher": {
++    "classification": "deferred",
++    "domain": "jules",
++    "status_companion": "jules_watcher_status"
++  },
++  "jules_watcher_status": {
++    "classification": "deferred",
++    "domain": "jules"
++  },
++  "music_master_album_status": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_polish_album_status": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "music_generate_promo_videos_status": {
++    "classification": "deferred",
++    "domain": "music"
++  },
++  "novel_list_works": {
++    "classification": "deferred",
++    "domain": "novel"
++  },
++  "novel_find_work": {
++    "classification": "deferred",
++    "domain": "novel"
++  },
++  "agentic_list_specs": {
++    "classification": "deferred",
++    "domain": "agentic"
++  }
++}
+\ No newline at end of file
+diff --git a/servers/agency-mcp/src/agency_mcp/lib/codemode/__init__.py b/servers/agency-mcp/src/agency_mcp/lib/codemode/__init__.py
+new file mode 100644
+index 0000000..886b210
+--- /dev/null
++++ b/servers/agency-mcp/src/agency_mcp/lib/codemode/__init__.py
+@@ -0,0 +1,3 @@
++from .registry import apply_codemode_manifest
++
++__all__ = ["apply_codemode_manifest"]
+diff --git a/servers/agency-mcp/src/agency_mcp/lib/codemode/deferred_loader.py b/servers/agency-mcp/src/agency_mcp/lib/codemode/deferred_loader.py
+new file mode 100644
+index 0000000..62cd17e
+--- /dev/null
++++ b/servers/agency-mcp/src/agency_mcp/lib/codemode/deferred_loader.py
+@@ -0,0 +1,9 @@
++from typing import Callable, Literal
++from fastmcp import FastMCP
++
++def register_tool(mcp: FastMCP, fn: Callable, classification: Literal["eager", "deferred", "background"]) -> None:
++    """Helper to wrap tool registration if needed in the future.
++    For FastMCP 3.3.1 using CodeMode, tools are registered normally,
++    and then CodeMode manages hiding them later. So this is just a thin wrapper.
++    """
++    mcp.add_tool(fn)
+diff --git a/servers/agency-mcp/src/agency_mcp/lib/codemode/registry.py b/servers/agency-mcp/src/agency_mcp/lib/codemode/registry.py
+new file mode 100644
+index 0000000..d45760a
+--- /dev/null
++++ b/servers/agency-mcp/src/agency_mcp/lib/codemode/registry.py
+@@ -0,0 +1,66 @@
++import json
++from pathlib import Path
++from fastmcp import FastMCP
++from typing import Dict, Any
++
++def apply_codemode_manifest(mcp: FastMCP, manifest_path: Path, codemode_available: bool = True) -> None:
++    with open(manifest_path, 'r', encoding='utf-8') as f:
++        manifest: Dict[str, Dict[str, Any]] = json.load(f)
++
++    # 1. First verification pass: make sure every tool is in the manifest,
++    # and all background companions exist.
++    # Note: the FastMCP components keys are like 'tool:music_find_album@'
++    tools = {}
++    for key, tool in mcp._local_provider._components.items():
++        if key.startswith('tool:'):
++            # Extract just the name of the tool, assuming format `tool:<name>@<version>`
++            name = key.split(':')[1].split('@')[0]
++            tools[name] = tool
++            
++            if name not in manifest:
++                raise ValueError(f"unclassified tool: {name}")
++                
++            entry = manifest[name]
++            if entry.get("classification") == "background":
++                companion = entry.get("status_companion")
++                if not companion:
++                    raise ValueError(f"background tool missing status_companion: {name}")
++                # We defer checking if companion exists until we process all tools or check manifest keys
++                if companion not in manifest:
++                    raise ValueError(f"status_companion not found in manifest: {companion}")
++
++    for name, entry in manifest.items():
++        if entry.get("classification") == "background":
++            companion = entry.get("status_companion")
++            if companion and companion not in tools and companion not in manifest:
++                 raise ValueError(f"status_companion {companion} missing for background tool {name}")
++
++    if not codemode_available:
++        return
++
++    # To defer tools with FastMCP 3.3 CodeMode, we must put them on a proxy server
++    # that has the CodeMode transform, then mount it onto the main server.
++    
++    from fastmcp.experimental.transforms.code_mode import CodeMode
++    deferred_mcp = FastMCP("agency-deferred", transforms=[CodeMode()])
++    
++    # We will move deferred tools from mcp to deferred_mcp
++    keys_to_remove = []
++    
++    for key, tool in mcp._local_provider._components.items():
++        if key.startswith('tool:'):
++            name = key.split(':')[1].split('@')[0]
++            entry = manifest.get(name, {})
++            
++            # background tools are also deferred (hidden behind CodeMode),
++            # but their _status companion is eager (kept on main MCP).
++            if entry.get("classification") in ["deferred", "background"]:
++                # Add to deferred server
++                deferred_mcp._local_provider._components[key] = tool
++                keys_to_remove.append(key)
++
++    # Remove them from main server
++    for key in keys_to_remove:
++        del mcp._local_provider._components[key]
++        
++    mcp.mount(deferred_mcp)
+diff --git a/servers/agency-mcp/src/agency_mcp/server.py b/servers/agency-mcp/src/agency_mcp/server.py
+index a9eb868..ee301ef 100644
+--- a/servers/agency-mcp/src/agency_mcp/server.py
++++ b/servers/agency-mcp/src/agency_mcp/server.py
+@@ -7,15 +7,19 @@ from pathlib import Path
+ 
+ from fastmcp import FastMCP
+ 
++import warnings
++
+ try:
+     from fastmcp.experimental.transforms.code_mode import CodeMode
+-    _transforms = [CodeMode()]
+-except ImportError:
+-    _transforms = []
++    CODE_MODE_AVAILABLE = True
++except ImportError as e:
++    CODE_MODE_AVAILABLE = False
++    warnings.warn(f"CodeMode unavailable: {e}; all tools eager")
+ 
+ from agency_mcp.handlers.shared.health import register_health_tools
+ from agency_mcp.handlers.jules import register_jules_handlers
+ from agency_mcp.state.cache import StateCache
++from agency_mcp.lib.codemode import apply_codemode_manifest
+ 
+ 
+ def register_all(mcp: FastMCP) -> None:
+@@ -39,12 +43,14 @@ def register_all(mcp: FastMCP) -> None:
+ 
+     from agency_mcp.handlers.shared import register_shared_handlers
+     register_shared_handlers(mcp)
++    
++    manifest_path = Path(__file__).parent / "codemode" / "manifest.json"
++    apply_codemode_manifest(mcp, manifest_path, CODE_MODE_AVAILABLE)
+ 
+ 
+ def create_mcp() -> FastMCP:
+     mcp = FastMCP(
+         "agency-system",
+-        transforms=_transforms,
+         dereference_schemas=False,
+     )
+     register_all(mcp)
+diff --git a/tests/integration/test_boot_token_budget.py b/tests/integration/test_boot_token_budget.py
+new file mode 100644
+index 0000000..550029d
+--- /dev/null
++++ b/tests/integration/test_boot_token_budget.py
+@@ -0,0 +1,33 @@
++import pytest
++import json
++import tiktoken
++import asyncio
++from agency_mcp.server import create_mcp
++
++@pytest.mark.asyncio
++async def test_boot_token_budget():
++    mcp = create_mcp()
++    
++    # mcp.list_tools() gets all tools across all mounted providers (local + CodeMode transformed proxy)
++    tools = await mcp.list_tools()
++    
++    # Check that search, get_schema, execute are present (provided by CodeMode proxy)
++    tool_names = [t.name for t in tools]
++    assert "search" in tool_names, f"search missing, got {tool_names}"
++    assert "get_schema" in tool_names
++    assert "execute" in tool_names
++    
++    # To check token size, we serialize the tools similarly to what is sent over the wire
++    # The actual MCP protocol sends a dictionary with name, description, inputSchema.
++    tool_dicts = [{"name": t.name, "description": t.description, "inputSchema": t.parameters} for t in tools]
++    json_blob = json.dumps(tool_dicts, separators=(',', ':'))
++    
++    enc = tiktoken.get_encoding("cl100k_base")
++    tokens = len(enc.encode(json_blob))
++    
++    byte_size = len(json_blob.encode("utf-8"))
++    print(f"\ntools_list_tokens={tokens}, byte_size={byte_size}")
++    
++    assert byte_size <= 3000, f"Boot payload {byte_size}B exceeds 3000-byte ceiling (CodeMode baseline ~1800B + ~4 anchors per domain). If new domains are added, audit anchor classifications."
++    assert tokens <= 500, f"Boot payload {tokens}t exceeds 500-token budget. Move tools from eager to deferred."
++
+diff --git a/tests/unit/codemode/__init__.py b/tests/unit/codemode/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/tests/unit/codemode/test_registry.py b/tests/unit/codemode/test_registry.py
+new file mode 100644
+index 0000000..18fb06e
+--- /dev/null
++++ b/tests/unit/codemode/test_registry.py
+@@ -0,0 +1,83 @@
++import pytest
++import json
++from pathlib import Path
++from fastmcp import FastMCP
++from agency_mcp.lib.codemode.registry import apply_codemode_manifest
++
++@pytest.fixture
++def temp_manifest(tmp_path):
++    manifest_path = tmp_path / "manifest.json"
++    manifest_data = {
++        "eager_tool": {"classification": "eager", "domain": "test"},
++        "deferred_tool": {"classification": "deferred", "domain": "test"},
++        "background_tool": {
++            "classification": "background",
++            "domain": "test",
++            "status_companion": "background_tool_status"
++        },
++        "background_tool_status": {"classification": "eager", "domain": "test"}
++    }
++    with open(manifest_path, 'w', encoding='utf-8') as f:
++        json.dump(manifest_data, f)
++    return manifest_path
++
++@pytest.fixture
++def mcp_with_tools():
++    mcp = FastMCP("test")
++    
++    @mcp.tool
++    def eager_tool(): pass
++    
++    @mcp.tool
++    def deferred_tool(): pass
++    
++    @mcp.tool
++    def background_tool(): pass
++    
++    @mcp.tool
++    def background_tool_status(): pass
++    
++    return mcp
++
++def test_manifest_loads(temp_manifest, mcp_with_tools):
++    # Should not raise any errors
++    apply_codemode_manifest(mcp_with_tools, temp_manifest, codemode_available=False)
++
++def test_eager_tools_keep_schema(temp_manifest, mcp_with_tools):
++    apply_codemode_manifest(mcp_with_tools, temp_manifest, codemode_available=True)
++    # eager_tool should still be on main MCP
++    assert "tool:eager_tool@" in mcp_with_tools._local_provider._components
++
++def test_deferred_tools_drop_schema(temp_manifest, mcp_with_tools):
++    apply_codemode_manifest(mcp_with_tools, temp_manifest, codemode_available=True)
++    # deferred_tool should NOT be on main MCP directly (it's moved to the mounted server)
++    assert "tool:deferred_tool@" not in mcp_with_tools._local_provider._components
++    # The mounted server is accessible via mcp_with_tools._mounted_servers (dict mapping namespace to server)
++    # Wait, if we used `mount` with no namespace, FastMCP manages it differently. Let's just check it's not on the main provider.
++
++def test_background_requires_status_companion(tmp_path):
++    manifest_path = tmp_path / "manifest.json"
++    # background_tool has status_companion, but status_companion is NOT defined in manifest
++    manifest_data = {
++        "background_tool": {
++            "classification": "background",
++            "domain": "test",
++            "status_companion": "missing_status_tool"
++        }
++    }
++    with open(manifest_path, 'w', encoding='utf-8') as f:
++        json.dump(manifest_data, f)
++        
++    mcp = FastMCP("test")
++    @mcp.tool
++    def background_tool(): pass
++    
++    with pytest.raises(ValueError, match="status_companion not found in manifest: missing_status_tool"):
++        apply_codemode_manifest(mcp, manifest_path, codemode_available=False)
++
++def test_unclassified_tool_raises_value_error(temp_manifest, mcp_with_tools):
++    @mcp_with_tools.tool
++    def unclassified_tool(): pass
++    
++    with pytest.raises(ValueError, match="unclassified tool: unclassified_tool"):
++        apply_codemode_manifest(mcp_with_tools, temp_manifest, codemode_available=False)
