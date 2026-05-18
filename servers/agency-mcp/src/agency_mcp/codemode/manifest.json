@@ -1,6 +1,9 @@
 {
   "_version": "1.0.0",
   "anchor_tools": [
+    "context_search",
+    "context_describe",
+    "context_read",
     "health_check",
     "jules_quota",
     "music_health_check",
@@ -363,6 +366,9 @@
       "classification": "deferred",
       "domain": "jules"
     },
+    "context_search": { "classification": "eager", "domain": "cross", "anchor_kind": "context" },
+    "context_describe": { "classification": "eager", "domain": "cross", "anchor_kind": "context" },
+    "context_read": { "classification": "eager", "domain": "cross", "anchor_kind": "context" },
     "jules_activities": {
       "classification": "deferred",
       "domain": "jules"
