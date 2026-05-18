@@ -1,7 +1,7 @@
 ---
 spec_id: 123
 slug: agency-tooling-codemode
-status: draft
+status: ready
 owner: jules
 depends_on: [008, 111, 122]
 affects:

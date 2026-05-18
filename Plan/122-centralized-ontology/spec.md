@@ -1,7 +1,7 @@
 ---
 spec_id: 122
 slug: centralized-ontology
-status: draft
+status: ready
 owner: jules
 depends_on: [111, 112, 113]
 affects:

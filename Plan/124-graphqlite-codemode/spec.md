@@ -1,7 +1,7 @@
 ---
 spec_id: 124
 slug: graphqlite-codemode
-status: draft
+status: ready
 owner: jules
 depends_on: [008, 100, 111, 112, 113, 122]
 affects:
