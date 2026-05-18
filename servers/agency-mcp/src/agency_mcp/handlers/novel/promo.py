@@ -85,7 +85,7 @@ def novel_update_promo_field(work_id: str, kind: str, field: str, value: str, dr
         new_lines = []
         in_fm = False
         updated = False
-        if lines and lines[0].strip() == "---\n":
+        if lines and lines[0].strip() == "---":
             new_lines.append(lines[0])
             in_fm = True
             for i in range(1, len(lines)):
