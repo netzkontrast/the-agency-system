@@ -153,17 +153,30 @@ def iterate_review_until_clean(pr, max_rounds):
             source=pr.head_repo,
             starting_branch=pr.head_branch,            # IMPORTANT: stay on the PR branch
             require_plan_approval=True,
-            auto_create_pr=True,                       # MUST be True — default False returns a
-                                                       # patch that never lands on origin, so the
-                                                       # next review round sees the unchanged PR
-                                                       # and the loop pseudo-converges on stale code.
+            auto_create_pr=False,                      # IMPORTANT: do NOT auto-open a PR. With
+                                                       # starting_branch=pr.head_branch, an
+                                                       # auto-PR opens a STACKED PR targeting
+                                                       # the reviewed branch — leaving the
+                                                       # actual fixes off the PR under review.
+                                                       # We always apply the fix-session output
+                                                       # ONTO pr.head_branch via the §5 recovery
+                                                       # path with recover_onto=pr.head_branch
+                                                       # (treat every fix session as a planned
+                                                       # silent-fail recovery).
         )
         fix_sid = (fix_sid_res.get("name") or fix_sid_res.get("id") or "").replace("sessions/", "")
         wait_until_completed(fix_sid)
-        # On terminal COMPLETED, if no new commit landed on pr.head_branch
-        # (silent-fail), the watcher dispatches §5 recovery with
-        # recover_onto=pr.head_branch so the fix is replayed onto the
-        # open PR rather than producing a detached recovery PR.
+        # Always replay the fix onto the open PR's head branch. This is the
+        # contract-correct path: the session produces a patch (because
+        # auto_create_pr=False); the orchestrator parses it and applies via
+        # mcp__github__create_or_update_file / delete_file with branch=
+        # pr.head_branch, so the fix lands directly on the PR under review.
+        recover_completed_no_branch(
+            fix_sid,
+            phase_id=pr.phase_id,
+            spec_id=pr.spec_id,
+            recover_onto=pr.head_branch,
+        )
         # Loop continues: next round runs a fresh review against the new commits.
 
     raise NotConvergedError(f"PR #{pr.number} did not converge in {max_rounds} rounds")

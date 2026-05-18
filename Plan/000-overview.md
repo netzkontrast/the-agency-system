@@ -262,6 +262,7 @@ the-agency-system/                              ← the plugin
 ├── docs/architecture/ + domain/{music,novel,jules,agentic}.md
 ├── tests/{unit, integration, smoke}/
 ├── bin/                                        ← jules-bulk + jules-dev-install + agency-* helpers (re-homed from jules-plugin/ in Phase 0)
+├── lib/                                        ← runtime libs for bin/* scripts (sessions_state.py, watch_jules.py — re-homed from jules-plugin/lib/ in Phase 0)
 ├── artists/                                    ← KEEP music content
 ├── novels/                                     ← NEW novel content `{author}/works/{genre}/{slug}/`
 ├── audio/ documents/ genres/ overrides/ journals/   ← KEEP
@@ -298,14 +299,15 @@ Phase 0 is the only phase this overview implements directly (the rest are dispat
 
 - [ ] **Task 0.1** — Sub-spec audit (this overview) lands as PR #1 against `Master`. Jules-review-loop runs against PR #1 to validate the plan before any code moves.
 - [ ] **Task 0.2** — Phase 0 implementation PR (`Master ← phase-0-cleanup`):
-  - Move `jules-plugin/bin/*` → `bin/`; chmod +x preserved.
+  - **Move `jules-plugin/lib/*` → `lib/` at repo root**, specifically `sessions_state.py` and `watch_jules.py` — both are runtime dependencies of `bin/jules-bulk` (the script imports `../lib/sessions_state.py`). Without this move, deleting `jules-plugin/` orphans the session registry and the watcher referenced by the orchestrator loop.
+  - Move `jules-plugin/bin/*` → `bin/`; chmod +x preserved. Patch the broken `jules_mcp.server.jules_create` import path (`bin/jules-bulk` line 135 currently imports from `jules_mcp.server`, but the function lives in `jules_mcp.tools.lifecycle`).
   - Move `jules-plugin/tools/researcher/` → `tools/researcher/`.
   - Move `jules-plugin/tests/*` → `tests/jules/` (rename to avoid collision with handler tests).
   - Update `skills/agentic/jules-orchestrator-discipline/SKILL.md:131` to reference `skills/jules/references/combined_watcher.py` (already present at the new home via Spec 007) instead of the soon-to-be-deleted `jules-plugin/` path.
   - `rm -rf jules-plugin/`.
-  - Update `CLAUDE.md` install instructions.
-  - Smoke test: `python -c "from agency_mcp.server import create_mcp; print(len(create_mcp().tools))"` returns same count as before deletion (the Jules tools live in `handlers/jules/` already).
-  - `tests/smoke/test_no_jules_plugin.py` asserts `jules-plugin/` is absent AND `grep -rln 'jules-plugin/' skills/ commands/ hooks/ docs/ CLAUDE.md` returns no matches.
+  - Update `CLAUDE.md` install instructions and any `--plugin-dir ./jules-plugin` references.
+  - Smoke test: `python -c "from agency_mcp.server import create_mcp; print(len(create_mcp().tools))"` returns same count as before deletion (the Jules tools live in `handlers/jules/` already); `python lib/sessions_state.py --help` exits zero; `python lib/watch_jules.py --help` exits zero.
+  - `tests/smoke/test_no_jules_plugin.py` asserts `jules-plugin/` is absent AND `grep -rln 'jules-plugin/' skills/ commands/ hooks/ docs/ CLAUDE.md lib/ bin/ tools/ tests/` returns no matches.
 - [ ] **Task 0.3** — `Plan/000-overview.md` updates §2.1 to add 020 as **PARTIAL** Done (jules-plugin cleanup only) with PR# evidence. Spec 020's full `Done When:` (per `Plan/020-bitwize-deprecation-and-docs/spec.md`) also requires: README/domain docs refresh, CHANGELOG entry, plugin `version` bump to `1.0.0`, and `tests/smoke/test_doctrine_and_version.py`. Those remaining items move to **Phase 0b — Spec 020 finish** (sequenced AFTER Phase 1 anchor-triad lands so the version bump aligns with the first observable token-budget win), tracked separately to avoid silently dropping the unified-plugin doctrine work.
 - [ ] **Task 0.4** — Run JULES-REVIEW-LOOP §3 against Phase 0 PR — single Jules review session, iterate until clean, merge.
 
