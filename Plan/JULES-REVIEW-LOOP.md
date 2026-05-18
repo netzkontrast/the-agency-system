@@ -14,7 +14,7 @@ The loop is built from five primitives. Every one of them is already implemented
 |---|---|---|
 | **Dispatch** | Create one Jules session per spec, with a focused prompt | `jules_create` (MCP) iterated in Python, or `bin/jules-bulk fanout <file.json>` shell helper |
 | **Watch** | Poll all in-flight sessions for state transitions | `jules_status_all` (MCP) — or the Python script in `jules-plugin/lib/watch_jules.py` (re-homed to `bin/watch_jules.py` in Phase 0 cleanup; until that ships, the path is `jules-plugin/lib/watch_jules.py`). The orchestrator's own canonical watcher is a single persistent `Monitor` (see §3). |
-| **Recover** | When `state=COMPLETED` but no branch on origin: probe, then run `tools/jules-patch-extract.py <sid>` (writes the patch to `/tmp/jules-patches/{sid}-out{i}.patch` and emits stats only — does NOT return file bodies), then parse that on-disk patch and push via GitHub MCP | `jules_message` → `tools/jules-patch-extract.py` → parse `.patch` → `mcp__github__create_branch` + `create_or_update_file` (per file) + `create_pull_request` |
+| **Recover** | When `state=COMPLETED` but no branch on origin: probe, then run `tools/jules-patch-extract.py <sid>` (writes the patch to `/tmp/jules-patches/{sid}-out{i}.patch` and emits stats only — does NOT return file bodies), then parse that on-disk patch and push via GitHub MCP | `jules_message` → `tools/jules-patch-extract.py` → parse `.patch` → `mcp__github__create_branch` + per-`file_change.op` routing (`create_or_update_file` for add/modify, `delete_file` for delete + rename-source — see §5 `apply_change`) + `create_pull_request` |
 | **Review** | Dispatch a Jules session whose entire job is to review an open PR and post comments | `jules_create` with `REVIEW_PROMPT_TEMPLATE` below |
 | **Merge** | Close the loop when a review session returns < 1 substantive comment | `mcp__github__merge_pull_request` |
 
@@ -52,7 +52,7 @@ for group in groups_of(spec_dirs):                  # see §2.5 grouping rule
                                                     # convergence detection works.
         )
         sid = (res.get("name") or res.get("id") or "").replace("sessions/", "")
-        register_session(sid, phase_id, spec.id)    # writes ~/.agency-system/sessions.json
+        register_session(sid, phase_id, spec.id)    # writes ~/.agency-system/cache/sessions.json
         all_sids.append(sid)
 
 # 2.b Watch (one persistent Monitor; runs until every this-phase session hits
@@ -117,6 +117,8 @@ def iterate_review_until_clean(pr, max_rounds):
                 pr_url=pr.html_url,
                 phase=pr.phase_id,
                 spec=pr.spec_id,
+                spec_path=pr.spec_paths_str,           # e.g. "Plan/104-tool-search-anchor-triad/spec.md"
+                                                       # OR for meta-reviews "Plan/000-overview.md + Plan/JULES-REVIEW-LOOP.md"
                 round=round + 1,
             ),
             source=pr.head_repo,
@@ -130,7 +132,7 @@ def iterate_review_until_clean(pr, max_rounds):
         # and their associated comments"). No separate get_review_threads
         # method is needed — the thread metadata is on the same response.
         threads = mcp_github_pull_request_read(
-            method="get_review_comments", pull_number=pr.number,
+            method="get_review_comments", pullNumber=pr.number,    # camelCase per MCP schema
         )
         substantive = triage(threads, since=round_started_at)  # see §4.2
 
@@ -166,7 +168,7 @@ You are the independent reviewer for PR #{pr_number} on `netzkontrast/the-agency
 
 CONTEXT:
 - Phase: {phase} (see Plan/000-overview.md)
-- Spec:  {spec} (see Plan/{spec}/spec.md)
+- Spec:  {spec} (see {spec_path} — for meta/multi-doc reviews this may list multiple paths, e.g. "Plan/000-overview.md + Plan/JULES-REVIEW-LOOP.md")
 - Round: {round}/5
 
 YOUR JOB:
@@ -227,9 +229,15 @@ def triage(threads, since: str):
 def severity_prefix(body: str) -> str:
     """Map both Jules-style explicit prefixes and external-bot badges to
     the same three-level severity. External bots (Codex, Copilot) use
-    `P1`/`P2`/`P3` images; map P1 -> BLOCKING and P2 -> SUBSTANTIVE so
-    bot reviews compose with Jules reviews in the same convergence test."""
-    if body.startswith("[BLOCKING]") or "P1 Badge" in body:
+    `P0`/`P1`/`P2`/`P3` images; map `P0` and `P1` -> [BLOCKING],
+    `P2` -> [SUBSTANTIVE], everything else -> [NIT]. `P0` would otherwise
+    fall through and let a release-blocking issue land unaddressed —
+    explicit handling is mandatory."""
+    if (
+        body.startswith("[BLOCKING]")
+        or "P0 Badge" in body                       # release-blocker
+        or "P1 Badge" in body
+    ):
         return "[BLOCKING]"
     if body.startswith("[SUBSTANTIVE]") or "P2 Badge" in body:
         return "[SUBSTANTIVE]"
@@ -400,7 +408,7 @@ def recover_completed_no_branch(sid, *, phase_id, spec_id, recover_onto):
         return None
 ```
 
-`parse_unified_diff(path, base_branch)` is a Phase 0 sub-task (~30 LOC in `tools/lib/unidiff_to_files.py`): walks `--- a/<path>` / `+++ b/<path>` headers, fetches each base blob via `mcp__github__get_file_contents(branch=base_branch)`, applies hunks, and yields `(target_path, final_content)` tuples. The `tools/jules-patch-extract.py` script's `--apply` mode is NOT used for the orchestrator path because its `git apply` commits cannot be signed by the CODESIGN_MCP backend; `--apply` remains useful for local dev inspection only.
+`parse_unified_diff(path, base_branch)` is a Phase 0 sub-task (~30 LOC in `tools/lib/unidiff_to_files.py`): walks `--- a/<path>` / `+++ b/<path>` headers, fetches each base blob via `mcp__github__get_file_contents(ref=base_branch)` (the MCP schema uses `ref` for branch/tag/sha selection, not `branch`), applies hunks, and yields `(target_path, final_content)` tuples. The `tools/jules-patch-extract.py` script's `--apply` mode is NOT used for the orchestrator path because its `git apply` commits cannot be signed by the CODESIGN_MCP backend; `--apply` remains useful for local dev inspection only.
 
 The recovery path is **NEVER** a re-dispatch of a fresh Jules session for the same work — that wastes a slot of the 60-session quota and risks divergent output. Re-dispatch is reserved for genuine implementation failures.
 
@@ -452,7 +460,7 @@ The orchestrator can crash and resume mid-phase. Resume guarantees:
 
 | State on disk | After crash, orchestrator does |
 |---|---|
-| `~/.agency-system/sessions.json` | Re-loads in-flight session list; resumes §2.b watcher |
+| `~/.agency-system/cache/sessions.json` | Re-loads in-flight session list; resumes §2.b watcher (canonical path per 000-overview.md §7) |
 | Open PRs without `claude-review-cycle:*` label | Treats as awaiting review; starts §4 loop at round 1 |
 | Open PRs with `claude-review-cycle: round-N-started` label, no `…round-N-done` label | Resumes §4 loop at round **N** (the in-flight round whose work hadn't finished) |
 | Open PRs with `claude-review-cycle: round-N-done` label | Resumes §4 loop at round **N+1** |

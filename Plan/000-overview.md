@@ -328,11 +328,11 @@ For each phase below: `Specs` lists the sub-spec directories Jules will work fro
 ### Phase 2 — Hook chain
 
 - **Specs:** 121 (contextignore), 115 (structure-map), 114 (read-cache-delta), 116 (bash-compress), 117 (archive)
-- **Parallel-safe (impl files only):** each spec owns its own `hooks/*_hook.py` file with no overlap.
-- **NOT parallel-safe (shared file):** all five specs need to register an entry in `hooks/hooks.json` in the canonical chain order from §3.2. Concurrent edits race.
-- **Sequential:** the **chain order** is enforced at runtime via `hooks.json` entries; PR merges therefore happen in chain order (121 → 115 → 114 → 116 → 117).
+- **Shared file:** all five specs need to register an entry in `hooks/hooks.json` in the canonical chain order from §3.2. Concurrent edits race; parallel dispatch is unsafe.
+- **Strategy: sequential dispatch (one Jules session at a time).** Order: 121 → 115 → 114 → 116 → 117 (matches the canonical chain order from §3.2). Each session writes its own `hooks/*_hook.py` AND appends its `hooks.json` entry in the right position. The next session is only dispatched after the prior has merged; the new session's `starting_branch=Master` so it sees the prior merge.
+- This obeys the JULES-REVIEW-LOOP.md §1 rule that "the orchestrator never edits Jules's branches itself except via the recovery path" — Jules itself owns every `hooks.json` edit. The trade-off is wall-clock time (5 serial review cycles instead of 1 parallel cycle); the win is contract-purity and no race.
 - **Token win:** 20-30% of session input + 4 KB cap on any single result.
-- **PR strategy:** 5 PRs dispatched in parallel — but each Jules prompt is constrained to author its `hooks/*_hook.py` file only; `hooks/hooks.json` is updated by the orchestrator in a follow-up commit on each PR after the prior PR in the chain has merged (rebase-then-append pattern). This keeps Jules's work parallel while serialising the shared-file edit through the orchestrator.
+- **PR strategy:** 5 sequential PRs (one fanout entry at a time, gated on prior merge).
 
 ### Phase 3 — GitHub sink wrapper
 
