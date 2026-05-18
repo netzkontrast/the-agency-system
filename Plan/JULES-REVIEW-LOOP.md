@@ -41,6 +41,15 @@ for group in groups_of(spec_dirs):                  # see §2.5 grouping rule
             starting_branch="Master",               # the supported kwarg
             title=f"Spec {spec.id} — {spec.slug}",
             require_plan_approval=True,
+            auto_create_pr=True,                    # IMPORTANT: jules_create defaults
+                                                    # auto_create_pr=False, which lets
+                                                    # sessions complete without ever
+                                                    # publishing a branch — the watcher
+                                                    # would then misclassify them as
+                                                    # silent-fail. Always pass True for
+                                                    # implementation sessions; review
+                                                    # sessions in §4 also pass True so
+                                                    # convergence detection works.
         )
         sid = (res.get("name") or res.get("id") or "").replace("sessions/", "")
         register_session(sid, phase_id, spec.id)    # writes ~/.agency-system/sessions.json
@@ -365,9 +374,18 @@ def recover_completed_no_branch(sid, *, phase_id, spec_id, recover_onto):
         if recover_onto == "Master"
         else f"fix(review): recovered fix commit from sid {sid[-8:]} —"
     )
+    # IMPORTANT: each patch in a multi-output session may depend on prior
+    # patches. parse_unified_diff therefore takes a *current* base — for the
+    # first patch it's `recover_onto`; for every subsequent patch it must be
+    # the in-progress branch (target_branch) AS IT EXISTS NOW on origin, so
+    # that hunks computed against an earlier patch's output line up. The
+    # `tools/jules-patch-extract.py --apply` mode stops on first apply
+    # failure for exactly this reason; we replicate that ordering invariant.
+    current_base = recover_onto
     for patch_path in patch_paths:                               # iterate ALL outputs, not just out0
-        for file_change in parse_unified_diff(patch_path, base_branch=recover_onto):
+        for file_change in parse_unified_diff(patch_path, base_branch=current_base):
             apply_change(file_change, msg_prefix)
+        current_base = target_branch                             # subsequent patches see the prior patch's commits
 
     if recover_onto == "Master":
         # Fresh implementation recovery → open a new PR

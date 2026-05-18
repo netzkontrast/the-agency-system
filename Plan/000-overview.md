@@ -60,7 +60,7 @@ The repository is **further along than v1 of this overview implied**. Sub-agent 
 
 Phases 1-8 below assign each of these to a phase or mark them superseded:
 
-- **Token efficiency**: 104, 105, 106, 107, 114, 115, 116, 117, 121
+- **Token efficiency**: 104, 105, 106, 107, 114, 115, 116, 117, 121 (all assigned: Phase 1 → 104/105/107/130/131; Phase 2 → 114/115/116/117/121; Phase 3 → 106)
 - **Context layer (Path B)**: 111 only (112 and 113 already done — see §2.1) — competing with 108 (see drift §3.1)
 - **Token-optimiser hook layer**: 114-121 (composes with Path B)
 - **Quality / loop / compaction**: 118, 119, 120
@@ -148,7 +148,7 @@ Eight phases. Each phase is one PR-set (1-N PRs depending on independence). Each
 | Phase | Name | Specs (existing sub-spec dirs) | Token-budget win | Blocking deps |
 |---|---|---|---|---|
 | **0** | Foundation cleanup | 020 (extended), 099 stub | none directly; removes confusion | none |
-| **1** | Anchor triad + envelope (cold-start) | 104, 107, 130, 131 | tools/list 38k → <4k tokens | Phase 0 |
+| **1** | Anchor triad + envelope (cold-start) | 104, 107, 130, 131, 105 | tools/list 38k → <4k tokens + 40-60% on list returns (TOON) | Phase 0 |
 | **2** | Hook chain | 121, 115, 114, 116, 117 | 20-30% of session input | Phase 1 (envelope) |
 | **3** | GitHub sink wrapper | 106 | 40-80k → <2.5k per PR/issue read | Phase 1 (envelope), Phase 2 (archive) |
 | **4** | Context Mode (Path B) | 111 + 108-stub (Specs 112 + 113 already merged — PRs #104, #113) | defers ≥200k of inline docs | Phase 1 (anchors) |
@@ -166,7 +166,7 @@ When phase work is parallelised, this ordering preserves the most token savings 
 3. **121 + 115 + 114** (Phase 2 first half) — PreToolUse chain. Lands the 20-30% of session input from re-reads.
 4. **117** (Phase 2 second half) — universal 4 KB archive guardrail. Final-net for anything that escapes upstream compression.
 5. **106** (Phase 3) — GitHub PR/issue subagent wrapper. Single largest measured leak (40-80k tokens/call).
-6. **111 + 112 + 113** (Phase 4) — Path B documents.
+6. **111** (Phase 4) — Path B documents (manifest only; 112 + 113 already merged via PRs #104, #113).
 
 Phase 5 (Wave D), Phase 6 (quality/loop/compact), and Phase 7 (domain completion) multiply the above value but assume the spine is wired.
 
@@ -200,7 +200,7 @@ For each phase:
   3. Watch: poll jules_status_all every 3 minutes via persistent Monitor
   4. On COMPLETED:
        - Verify branch on remote (mcp__github__list_branches)
-       - If absent → JULES_PROTOCOL §8-Appendix recovery (probe → API extract → mcp__github__create_branch + create_or_update_file per file + create_pull_request)
+       - If absent → JULES_PROTOCOL §8-Appendix recovery (probe → API extract → mcp__github__create_branch + create_or_update_file (adds/modifies) + delete_file (deletes/rename-source) + create_pull_request — see JULES-REVIEW-LOOP.md §5 for the exact routing on file_change.op)
        - If present → PR is open against Master
   5. Review loop (the back-and-forth requested in this plan's goal):
        a. Dispatch a Jules-driven review session against the open PR:
@@ -317,21 +317,22 @@ Phase 0 is also the smoke test for the entire orchestration mechanism. If the re
 
 For each phase below: `Specs` lists the sub-spec directories Jules will work from; `Parallel-safe` lists which specs can be dispatched simultaneously (no file-overlap); `Sequential` lists ordering constraints.
 
-### Phase 1 — Anchor triad + envelope
+### Phase 1 — Anchor triad + envelope + TOON
 
-- **Specs:** `Plan/104-tool-search-anchor-triad/`, `Plan/107-cache-breakpoint-ordering/`, `Plan/130-shared-toolresult-envelope/`, `Plan/131-manifest-coverage-lint/`
-- **Parallel-safe:** 130 + 131 (envelope and lint touch different files); then 104 (uses envelope); 107 must land after 104 (reorders registration around the triad).
-- **Token win:** boot context 34k → <500
-- **PR strategy:** 4 PRs, dispatched as one fanout. 130 + 131 open first; 104 opens after either of them merges; 107 opens last.
-- **Smoke test:** `tests/smoke/test_boot_budget.py` (Spec 131 ships it; runs in CI).
+- **Specs:** `Plan/104-tool-search-anchor-triad/`, `Plan/107-cache-breakpoint-ordering/`, `Plan/130-shared-toolresult-envelope/`, `Plan/131-manifest-coverage-lint/`, `Plan/105-toon-serializer/`
+- **Parallel-safe:** 130 + 131 + 105 (envelope, lint, and TOON middleware touch different files); then 104 (uses envelope); 107 must land after 104 (reorders registration around the triad).
+- **Token win:** boot context 34k → <500 + 40-60% on list-shape returns via TOON middleware (gates on homogeneous list[dict] with len≥3).
+- **PR strategy:** 5 PRs, dispatched as one fanout. 130 + 131 + 105 open first; 104 opens after either of 130/131 merges; 107 opens last.
+- **Smoke test:** `tests/smoke/test_boot_budget.py` (Spec 131 ships it; runs in CI); `tests/smoke/test_toon_gate.py` (Spec 105).
 
 ### Phase 2 — Hook chain
 
 - **Specs:** 121 (contextignore), 115 (structure-map), 114 (read-cache-delta), 116 (bash-compress), 117 (archive)
-- **Parallel-safe:** all five — each owns its own `hooks/*_hook.py` file and a tightly-scoped `hooks.json` section.
-- **Sequential:** none within the phase; the **chain order** is enforced at runtime via `hooks.json` ordering, not by PR order.
+- **Parallel-safe (impl files only):** each spec owns its own `hooks/*_hook.py` file with no overlap.
+- **NOT parallel-safe (shared file):** all five specs need to register an entry in `hooks/hooks.json` in the canonical chain order from §3.2. Concurrent edits race.
+- **Sequential:** the **chain order** is enforced at runtime via `hooks.json` entries; PR merges therefore happen in chain order (121 → 115 → 114 → 116 → 117).
 - **Token win:** 20-30% of session input + 4 KB cap on any single result.
-- **PR strategy:** 5 PRs as one fanout. All 5 in parallel.
+- **PR strategy:** 5 PRs dispatched in parallel — but each Jules prompt is constrained to author its `hooks/*_hook.py` file only; `hooks/hooks.json` is updated by the orchestrator in a follow-up commit on each PR after the prior PR in the chain has merged (rebase-then-append pattern). This keeps Jules's work parallel while serialising the shared-file edit through the orchestrator.
 
 ### Phase 3 — GitHub sink wrapper
 
@@ -362,9 +363,9 @@ For each phase below: `Specs` lists the sub-spec directories Jules will work fro
 
 ### Phase 7 — Domain handler completion
 
-- **Specs:** 014 (novel gates + revision), 015 (novel skills catalogue), 016 (agentic handlers + skills), 018 (overrides migration), 021 (novel prompt-builders)
-- **Parallel-safe:** all five (different handler subdirs).
-- **PR strategy:** 5 PRs as one fanout.
+- **Specs:** 015 (novel skills catalogue), 016 (agentic handlers + skills), 018 (overrides migration), 021 (novel prompt-builders). **Spec 014 (novel gates + revision) already merged** via PR #108 (commit `5954832`).
+- **Parallel-safe:** all four (different handler subdirs).
+- **PR strategy:** 4 PRs as one fanout.
 
 ### Phase 8 — Operational hardening
 
