@@ -10,7 +10,7 @@ affects:
   - servers/agency-mcp/src/agency_mcp/handlers/novel/content.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/ideas.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/status.py
-  - servers/agency-mcp/src/agency_mcp/handlers/novel/novel_indexer.py
+  - servers/agency-mcp/src/agency_mcp/state/indexers/novel_indexer.py
   - tests/unit/novel/test_dry_run_coverage.py
   - tests/unit/novel/test_singleton_cache.py
   - tests/unit/novel/test_indexer_atomicity.py
