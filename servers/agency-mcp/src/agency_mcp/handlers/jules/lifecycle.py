@@ -212,12 +212,21 @@ def _activity_kind(a: dict) -> str:
 def jules_activities(session_id: str, page_size: int = 10, only_kinds: str = "", page_token: str = "", summary_only: bool = True) -> dict:
     """List activities for a session. Aggressively filtered.
 
+    Orchestrator default is ``summary_only=True`` (L14 token-postmortem):
+    the supervisory loop only needs trimmed entries to decide its next
+    action. Pass ``summary_only=False`` as the explicit opt-out when you
+    are running a post-mortem and need full activity bodies (audit log,
+    debugging a failed session) — token cost rises accordingly.
+
     Args:
         session_id: The session id.
         page_size: 1..100, default 10.
         only_kinds: Comma-separated activity kinds to keep, e.g.
             'planGenerated,agentMessaged,sessionFailed'. Empty = all kinds.
         page_token: Pagination cursor from a previous response's nextPageToken.
+        summary_only: When True (default), each entry is trimmed via
+            apply_summary. Set False for the full activity dict — only for
+            post-mortems (L14).
 
     Returns: {"activities": [...], "nextPageToken": "..."} — each entry is
     trimmed to {id, originator, kind, summary} so context isn't blown.
@@ -299,8 +308,13 @@ def jules_approve(session_id: str) -> dict:
 
 
 def jules_message(session_id: str, prompt: str) -> dict:
-    """Send a user message to a session — e.g. answer a question or
-    request a plan revision.
+    """Send free-form text to a paused or in-progress session. Input only,
+    not a control plane — does not guarantee resumption.
+
+    Use for answering a Jules question, requesting a plan revision, or
+    nudging a silent-fail session. The Jules backend does NOT expose a
+    documented resume primitive; sending a message often (but not
+    reliably) transitions a COMPLETED session back to IN_PROGRESS (L10).
 
     Args:
         session_id: The session id.
@@ -311,6 +325,115 @@ def jules_message(session_id: str, prompt: str) -> dict:
     sid = _short_id(session_id)
     _request("POST", f"/v1alpha/sessions/{sid}:sendMessage", body={"prompt": prompt})
     return {"ok": True, "session_id": sid}
+
+
+def _extract_pr_url(session: dict) -> str | None:
+    """Pull the PR URL from a raw Jules session response.
+
+    Jules populates ``Session.outputs[].pullRequest`` when a session was
+    created with ``auto_create_pr=True`` and the backend successfully
+    opened a PR. The PR URL is exposed as ``.pullRequest.url`` with
+    ``.pullRequest.htmlUrl`` and ``.pullRequest.pullRequestUrl`` as
+    occasional alternate keys observed in legacy responses. Returns the
+    first non-empty match, or None when no PR resource is present.
+    """
+    for output in session.get("outputs") or []:
+        pr = output.get("pullRequest") or {}
+        for key in ("url", "htmlUrl", "pullRequestUrl"):
+            val = pr.get(key)
+            if val:
+                return val
+    return None
+
+
+def _count_patch_lines(activities: list[dict]) -> int:
+    """Count added+removed lines in the most recent activity's patch.
+
+    Mirrors patches.py:_fetch_patch — patches live as activity artifacts
+    at ``activities[].artifacts[].changeSet.gitPatch.unidiffPatch``. The
+    Jules activities endpoint does not document a sort order, so we pick
+    the artifact with the largest ``createTime``. Returns 0 when no
+    patch artifact is found.
+    """
+    best_patch = ""
+    best_time = ""
+    for a in activities:
+        for art in a.get("artifacts") or []:
+            cs = art.get("changeSet") or {}
+            gp = cs.get("gitPatch") or {}
+            patch = gp.get("unidiffPatch")
+            if not patch:
+                continue
+            ct = a.get("createTime", "")
+            if not best_patch or ct > best_time:
+                best_patch = patch
+                best_time = ct
+    if not best_patch:
+        return 0
+    added = 0
+    removed = 0
+    for line in best_patch.splitlines():
+        if line.startswith("+") and not line.startswith("+++"):
+            added += 1
+        elif line.startswith("-") and not line.startswith("---"):
+            removed += 1
+    return added + removed
+
+
+def jules_session_summary(session_id: str) -> dict:
+    """One-call supervisory summary of a Jules session — Spec 101.
+
+    Wraps ``jules_get`` + ``jules_activities`` so the orchestrator's poll
+    loop pays one MCP round-trip instead of four. Result keys are fixed
+    (the orchestrator-discipline skill in spec 099 codes against the
+    exact contract): state, title, last_5_activities, pr_url,
+    patch_size_lines.
+
+    Args:
+        session_id: The session id.
+
+    Returns:
+        {
+          "state": str,                  # e.g. IN_PROGRESS, COMPLETED
+          "title": str,
+          "last_5_activities": list,     # min(5, total), summary-trimmed
+          "pr_url": str | None,          # from outputs[].pullRequest
+          "patch_size_lines": int,       # added + removed in newest patch
+        }
+    """
+    sid = _short_id(session_id)
+    raw_session = _request("GET", f"/v1alpha/sessions/{sid}")
+    state = raw_session.get("state")
+    title = raw_session.get("title", "")
+    pr_url = _extract_pr_url(raw_session)
+
+    # Fetch summary-trimmed activities (page_size=5 — we only keep five).
+    q = urllib.parse.urlencode({"pageSize": 5})
+    raw_acts = _request("GET", f"/v1alpha/sessions/{sid}/activities?{q}")
+    raw_activity_list = raw_acts.get("activities", []) or []
+    trimmed: list[dict] = []
+    for a in raw_activity_list[:5]:
+        trimmed.append(apply_summary(a))
+
+    patch_size_lines = _count_patch_lines(raw_activity_list)
+
+    return {
+        "state": state,
+        "title": title,
+        "last_5_activities": trimmed,
+        "pr_url": pr_url,
+        "patch_size_lines": patch_size_lines,
+    }
+
+
+def jules_pr_url(session_id: str) -> str | None:
+    """Return the PR URL for a session, or None when no PR exists.
+
+    Sourced from Session.outputs[].pullRequest (Spec 101).
+    """
+    sid = _short_id(session_id)
+    raw_session = _request("GET", f"/v1alpha/sessions/{sid}")
+    return _extract_pr_url(raw_session)
 
 
 def jules_stop(session_id: str) -> dict:
@@ -347,3 +470,5 @@ def register_lifecycle_tools(mcp: FastMCP) -> None:
     mcp.tool(tags={"domain:jules"})(jules_approve)
     mcp.tool(tags={"domain:jules"})(jules_message)
     mcp.tool(tags={"domain:jules"})(jules_stop)
+    mcp.tool(tags={"domain:jules"})(jules_session_summary)
+    mcp.tool(tags={"domain:jules"})(jules_pr_url)
