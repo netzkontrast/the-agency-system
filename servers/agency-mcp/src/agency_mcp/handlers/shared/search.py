@@ -2,6 +2,7 @@ from pathlib import Path
 from typing import Any
 
 from agency_mcp.state.cache import StateCache
+from agency_mcp.lib.codemode.projection import apply_view
 
 _cache: StateCache | None = None
 
@@ -73,6 +74,7 @@ def _search_files(
                 pass
 
 
+@apply_view
 async def shared_search(
     query: str, namespaces: list[str] | None = None, full: bool = False
 ) -> dict[str, Any]:
