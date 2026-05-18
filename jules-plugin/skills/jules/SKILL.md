@@ -60,6 +60,17 @@ its tool list natively.
 4. **Harvest via patches.** The `auto_create_pr=True` flag is currently unreliable. The preferred harvest path is `jules_patch_apply(session_id)` or `tools/jules-patch-extract.py <sid>`. Alternatively, prompt the agent to push to `jules/<alias>` branches.
 5. **Always verify branch on remote before trusting `COMPLETED`.** Use `mcp__github__list_branches` to confirm the work was published. State alone is not evidence of delivery.
 
+## Writing prompts Jules can act on
+
+Name the tools Jules actually has so it picks them naturally — e.g. cite
+`replace_with_git_merge_diff` for partial edits, `run_in_bash_session` for
+shell work, `pre_commit_instructions()` before `submit`, and
+`request_code_review()` for a Critic pass before the human sees the PR.
+Point Jules at `Plan/JULES_PROTOCOL.md` and any local `AGENTS.md` so it loads
+the binding rules during exploration. For multi-file tasks, request a
+`list_files` + `read_file` pass first. Full cheatsheet (environment, AGENTS.md
+scoping, Standard + Special tools): [`references/jules-native-toolset.md`](references/jules-native-toolset.md).
+
 ## References
 
 For deeper behaviour, see the following reference files:
@@ -71,3 +82,4 @@ For deeper behaviour, see the following reference files:
 - **Harvest Patterns:** See [`references/harvest-patterns.md`](references/harvest-patterns.md) for the differences between PR harvest and patch harvest.
 - **Caveats:** See [`references/caveats.md`](references/caveats.md) for what this skill does NOT do and edge-cases.
 - **Combined Watcher:** See [`references/combined_watcher.md`](references/combined_watcher.md) for the orchestrator's polling pattern (multi-session + multi-PR), plus the canonical Python script at [`references/combined_watcher.py`](references/combined_watcher.py). Use this when you have ≥2 in-flight Jules sessions or open PRs to track.
+- **Jules native toolset & DSL:** See [`references/jules-native-toolset.md`](references/jules-native-toolset.md) — what tools Jules actually has, and how to instruct it to use them.
