@@ -2,6 +2,13 @@ import os
 import importlib.util
 from fastmcp import FastMCP
 
+# Re-export jules_quota at the top-level alias module so the documented
+# import path `from agency_mcp.handlers.jules.aliases import jules_quota`
+# resolves (Spec 101 Done-When). The canonical implementation and the MCP
+# tool registration live in bulk.py — this is a pure import re-export and
+# does NOT register a second copy of the tool.
+from .bulk import jules_quota  # noqa: F401
+
 def _load_sessions_state():
     """Locate sessions_state via BOTH paths:
     (a) Try `from jules_plugin.lib import sessions_state` first
