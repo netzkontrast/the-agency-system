@@ -146,7 +146,10 @@ def infer_tags(path: str, body: str) -> list[str]:
             try:
                 fm = yaml.safe_load(parts[1])
                 if fm:
-                    if 'spec_id' in fm: tags.append(f"spec:{fm['spec_id']:03d}")
+                    if 'spec_id' in fm:
+                        sid = fm['spec_id']
+                        sid_str = f"{sid:03d}" if isinstance(sid, int) else str(sid)
+                        tags.append(f"spec:{sid_str}")
                     if 'slug' in fm: tags.append(f"slug:{fm['slug']}")
                     if 'domain' in fm: tags.append(f"domain:{fm['domain']}")
                     if 'lesson_id' in fm: tags.append(f"lesson_id:{fm['lesson_id']}")

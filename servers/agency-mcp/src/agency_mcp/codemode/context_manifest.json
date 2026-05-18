@@ -491,6 +491,9 @@
       "size_bytes": 12820,
       "summary": "Spec 004a \u2014 Music Lib Port - Spec 004 (PR #36, currently `[BLOCKED]`) tried to port bitwize-music's 16 handler modules but those handlers import from `tools.mastering.*` (~17 submodules), `tools.shared.*` (2 submodules), `tools.state.*` (2 submodules), and dynamically from `tools.cloud.*` and `tools.sheet-music.*`. None of those packages existed on the work branch, so the resulting PR couldn't\u2026",
       "tags": [
+        "spec:004a",
+        "slug:music-lib-port",
+        "domain:music",
         "kind:spec"
       ],
       "title": "Spec 004a \u2014 Music Lib Port",
@@ -648,6 +651,9 @@
       "size_bytes": 12519,
       "summary": "Spec 008 \u2014 Code Mode Registry - Once all four domains are registered, the unified plugin will expose ~180 tools (~67 music + ~73 novel + ~12 jules + ~32 agentic). Without intervention, every `tools/list` MCP call dumps every tool schema into the model's context \u2014 measured at ~34k tokens in the bitwize baseline. Code Mode + `defer_schema=True` is the FastMCP feature that solves this: ~4 anchor\u2026",
       "tags": [
+        "spec:008",
+        "slug:codemode-registry",
+        "domain:cross",
         "kind:spec"
       ],
       "title": "Spec 008 \u2014 Code Mode Registry",
@@ -678,6 +684,9 @@
       "size_bytes": 11178,
       "summary": "Spec 009 \u2014 Shared Handlers - Cross-domain queries (search across `music + novel + jules + agentic`, list-all-skills, get-any-reference, read shared config, persist a shared session) must not live inside a per-domain namespace. They belong in `handlers/shared/` so a caller never has to guess which domain owns a given primitive. This module is also the single home for `plugin_help(domain)`, the\u2026",
       "tags": [
+        "spec:009",
+        "slug:shared-handlers",
+        "domain:cross",
         "kind:spec"
       ],
       "title": "Spec 009 \u2014 Shared Handlers",
@@ -804,6 +813,9 @@
       "size_bytes": 10367,
       "summary": "Spec 011a \u2014 Novel Handlers Core Hardening - PR #44 (Spec 011 novel-handlers-core) merged on Master via PR #45 but the independent review surfaced one Done-When violation (P1) and five \u00a72.1 contract drifts (P2). They are individually small but compound badly the moment a second domain writes concurrently with novel. This spec is a single-session correctness pass that lands the missing `dry_run`\u2026",
       "tags": [
+        "spec:011a",
+        "slug:novel-handlers-core-hardening",
+        "domain:novel",
         "kind:spec"
       ],
       "title": "Spec 011a \u2014 Novel Handlers Core Hardening",
@@ -1144,6 +1156,9 @@
       "size_bytes": 12303,
       "summary": "Spec 018 \u2014 Overrides and Config Migration - bitwize-music ships a curated `overrides/` directory (lyric craft guide, mastering presets, voice principles, pronunciation, suno preferences, research preferences, promotion preferences, release preferences) that the music skills load at session start via `shared_load_override`. The unified plugin must extend that surface so the novel side has\u2026",
       "tags": [
+        "spec:018",
+        "slug:overrides-and-config-migration",
+        "domain:migration",
         "kind:spec"
       ],
       "title": "Spec 018 \u2014 Overrides and Config Migration",
@@ -1174,6 +1189,9 @@
       "size_bytes": 15073,
       "summary": "Spec 019 \u2014 State Migration From bitwize-music - Existing bitwize-music users have lived state under `~/.bitwize-music/` \u2014 specifically `~/.bitwize-music/cache/state.json` (artist/album/track index) and `~/.bitwize-music/config.yaml` (user-edited preferences derived from the bitwize template). When they install the unified plugin and reach for `/agency-system:music-resume`, that state must already\u2026",
       "tags": [
+        "spec:019",
+        "slug:state-migration-from-bitwize",
+        "domain:migration",
         "kind:spec"
       ],
       "title": "Spec 019 \u2014 State Migration From bitwize-music",
@@ -1364,6 +1382,9 @@
       "size_bytes": 12745,
       "summary": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup) - The Codex bot reviewed PRs #34 (Spec 003 StateCache), #37 (Spec 019 migration), #38 (Spec 004a tools port), and #32 (Spec 002 manifest) and flagged **~17 P1 findings** that landed unfixed because the PRs merged before the comments arrived (Codex review is async). These are the kind of correctness bugs that downstream specs (011, 013, 014, ...)\u2026",
       "tags": [
+        "spec:098",
+        "slug:wave-a-hardening",
+        "domain:cross",
         "kind:spec"
       ],
       "title": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup)",
@@ -1394,6 +1415,9 @@
       "size_bytes": 18726,
       "summary": "Skill-frontmatter migration sweep (Approach \u00a713 + Done-When item - skill_migration_roots: - skills/ - jules-plugin/skills/ source-repos: [] estimated_jules_sessions: 2 domain: cross wave: C ---",
       "tags": [
+        "spec:099",
+        "slug:jules-orchestration-improvements",
+        "domain:cross",
         "kind:spec"
       ],
       "title": "Skill-frontmatter migration sweep (Approach \u00a713 + Done-When item",

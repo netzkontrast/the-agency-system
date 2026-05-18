@@ -51,9 +51,21 @@ def main():
     crawl_dirs = list(CRAWL_CONFIG.keys())
 
     if not args.no_include_vendor:
-        if vendor_dir.exists():
-             crawl_dirs.append(str(vendor_dir))
-             CRAWL_CONFIG[str(vendor_dir)] = {".md"}
+        sources_file = root_path / "Plan" / "SOURCES.md"
+        vendor_targets = []
+        if sources_file.exists():
+            import re
+            sources_content = sources_file.read_text()
+            # Extract vendor repos from e.g. ~/work/vendor/bitwize-music
+            for match in re.finditer(r"~/work/vendor/([a-zA-Z0-9_\-]+)", sources_content):
+                vendor_targets.append(match.group(1))
+
+        if vendor_targets and vendor_dir.exists():
+             for target in vendor_targets:
+                 target_dir = vendor_dir / target
+                 if target_dir.exists():
+                     crawl_dirs.append(str(target_dir))
+                     CRAWL_CONFIG[str(target_dir)] = {".md"}
 
     entries = []
     seen_ids = set()

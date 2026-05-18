@@ -43,7 +43,12 @@ class ContextManifest:
                     raise ContextManifestError(f"Tag '{tag}' in entry {entry['id']} does not start with an allowed prefix: {allowed_prefixes}")
 
             # File existence check
-            path = Path(self.repo_root) / entry["path"]
+            if entry["path"].startswith("vendor/"):
+                vendor_subpath = entry["path"].replace("vendor/", "", 1)
+                path = Path.home() / "work" / "vendor" / vendor_subpath
+            else:
+                path = Path(self.repo_root) / entry["path"]
+
             if not path.exists():
                  raise ContextManifestError(f"File referenced in manifest not found: {entry['path']}")
 
@@ -60,6 +65,9 @@ class ContextManifest:
         return self.by_id.get(id)
 
     def search(self, query: str, *, domain: str = None, tags: list[str] = None, limit: int = 20):
+        if not query or not query.strip():
+            return []
+
         # Filter entries
         filtered = []
         for entry in self.entries:
