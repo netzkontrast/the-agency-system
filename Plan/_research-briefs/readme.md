@@ -13,8 +13,12 @@ Each `NN-<slug>.md` in this folder is the verbatim prompt body of a Jules resear
 
 | # | Slug | Dispatched | Session ID | Status | Output |
 |---|---|---|---|---|---|
-| 01 | centralized-ontology | 2026-05-18 | (see `fanout-log.txt`) | dispatched | `Plan/_research/centralized-ontology/` |
-| 02 | agency-tooling-codemode | 2026-05-18 | (see `fanout-log.txt`) | dispatched | `Plan/_research/agency-tooling-codemode/` |
+| 01 | centralized-ontology | 2026-05-18 | [13927980186995922904](https://jules.google.com/session/13927980186995922904) | dispatched + rebase-msg sent | `Plan/_research/centralized-ontology/` |
+| 02 | agency-tooling-codemode | 2026-05-18 | [18243598847213256634](https://jules.google.com/session/18243598847213256634) | dispatched + rebase-msg sent | `Plan/_research/agency-tooling-codemode/` |
+
+**Note (2026-05-18):** Both sessions were initially created with `starting_branch=Master`. A follow-up `jules_message` was sent to each session instructing them to fetch `claude/document-context-mode-specs-qX8h7` and branch their work from there (so output PRs target this branch, not Master). Both messages acknowledged `ok`. Verify on first plan-approval that Jules adopted the rebase before approving.
+
+**Note (2026-05-18):** `jules-plugin/bin/jules-bulk fanout` has a known shim bug — it imports `jules_create` from `jules_mcp.server` but the function lives in `jules_mcp.tools.lifecycle`. Dispatched directly via the `lifecycle` import to work around. Track as a Spec 101 (`jules-mcp-tool-additions`) sub-task.
 
 ## How to fan out a new brief
 
