@@ -3,7 +3,7 @@ spec_id: 017
 slug: hooks-port-and-extend
 status: ready
 owner: jules
-depends_on: [004, 013]
+depends_on: [004, 012, 013]
 affects:
   - hooks/hooks.json
   - hooks/validate_track.py

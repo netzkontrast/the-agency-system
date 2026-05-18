@@ -10,6 +10,7 @@ affects:
   - servers/agency-mcp/src/agency_mcp/lib/codemode/deferred_loader.py
   - servers/agency-mcp/src/agency_mcp/codemode/manifest.json
   - servers/agency-mcp/src/agency_mcp/server.py
+  - servers/agency-mcp/pyproject.toml
   - tests/unit/codemode/__init__.py
   - tests/unit/codemode/test_registry.py
   - tests/integration/__init__.py

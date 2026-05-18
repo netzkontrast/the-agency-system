@@ -3,7 +3,7 @@ spec_id: 018
 slug: overrides-and-config-migration
 status: ready
 owner: jules
-depends_on: [015]
+depends_on: [009, 015]
 affects:
   - overrides/prose-style-guide.md
   - overrides/narrative-preferences.md

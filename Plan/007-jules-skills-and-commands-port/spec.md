@@ -11,8 +11,11 @@ affects:
   - commands/jules-watch.md
   - commands/jules-bulk.md
   - commands/jules-patch-summary.md
+  - tools/jules/__init__.py
   - tools/jules/researcher/
   - bin/jules-bulk
+  - tests/smoke/__init__.py
+  - tests/smoke/test_jules_bulk_cli.py
 source-repos: []
 estimated_jules_sessions: 1
 domain: jules

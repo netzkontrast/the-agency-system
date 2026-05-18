@@ -3,8 +3,9 @@ spec_id: 014
 slug: novel-gates-and-revision
 status: ready
 owner: jules
-depends_on: [013]
+depends_on: [011, 012, 013]
 affects:
+  - state/schema/state.schema.json
   - servers/agency-mcp/src/agency_mcp/handlers/novel/gates.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/revision.py
   - servers/agency-mcp/src/agency_mcp/handlers/novel/promo.py
