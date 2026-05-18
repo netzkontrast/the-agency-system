@@ -1,7 +1,7 @@
 ---
 spec_id: 004
 slug: music-handlers-port
-status: ready
+status: done
 owner: jules
 depends_on: [003, 004a]
 affects:

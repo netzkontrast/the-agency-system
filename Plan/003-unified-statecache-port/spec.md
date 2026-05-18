@@ -1,7 +1,7 @@
 ---
 spec_id: 003
 slug: unified-statecache-port
-status: ready
+status: done
 owner: jules
 depends_on: [001]
 affects:

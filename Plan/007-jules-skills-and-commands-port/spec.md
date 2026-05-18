@@ -1,7 +1,7 @@
 ---
 spec_id: 007
 slug: jules-skills-and-commands-port
-status: ready
+status: done
 owner: jules
 depends_on: [002, 006]
 affects:

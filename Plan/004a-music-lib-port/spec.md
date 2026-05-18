@@ -1,7 +1,7 @@
 ---
 spec_id: 004a
 slug: music-lib-port
-status: ready
+status: done
 owner: jules
 depends_on: [003]
 affects:

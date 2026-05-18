@@ -1,7 +1,7 @@
 ---
 spec_id: 010
 slug: novel-on-disk-layout
-status: ready
+status: done
 owner: jules
 depends_on: [002]
 affects:

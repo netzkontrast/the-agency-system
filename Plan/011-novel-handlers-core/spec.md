@@ -1,7 +1,7 @@
 ---
 spec_id: 011
 slug: novel-handlers-core
-status: ready
+status: done
 owner: jules
 depends_on: [003, 009, 010]
 affects:

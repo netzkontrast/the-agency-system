@@ -1,7 +1,7 @@
 ---
 spec_id: 005
 slug: music-skills-port
-status: ready
+status: done
 owner: jules
 depends_on: [002, 004]
 affects:
