@@ -16,6 +16,9 @@ dependencies = [
     "textstat>=0.7",
 ]
 
+[project.scripts]
+agency-mcp = "agency_mcp.server:cli"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
