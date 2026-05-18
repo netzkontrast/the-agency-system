@@ -25,20 +25,16 @@ def _ensure_server_src_on_path():
     yield
 
 
-def test_create_mcp_returns_fastmcp_instance():
+def test_create_mcp_returns_fastmcp_instance(mcp_instance):
     from fastmcp import FastMCP
-    from agency_mcp.server import create_mcp
 
-    mcp = create_mcp()
-    assert isinstance(mcp, FastMCP)
-    assert mcp.name == "agency-system"
+    assert isinstance(mcp_instance, FastMCP)
+    assert mcp_instance.name == "agency-system"
 
 
-def test_health_check_tool_registered():
-    from agency_mcp.server import create_mcp
-
-    mcp = create_mcp()
-    tool = asyncio.run(mcp.get_tool("health_check"))
+@pytest.mark.asyncio
+async def test_health_check_tool_registered(mcp_instance):
+    tool = await mcp_instance.get_tool("health_check")
     assert tool is not None
     assert tool.name == "health_check"
 
