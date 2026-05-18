@@ -1,9 +1,10 @@
 import datetime
 from fastmcp import FastMCP
 from agency_mcp.state.cache import StateCache
+from agency_mcp.handlers.novel import _shared
 
 def _get_cache() -> StateCache:
-    return StateCache()
+    return _shared.get_cache()
 
 def _get_empty_state() -> dict:
     return {"authors": {}}
@@ -35,12 +36,22 @@ async def _update_work_data(author: str, slug: str, work_data: dict):
     state["novel"]["authors"][author]["works"][slug] = work_data
     await cache.write("novel", state["novel"])
 
-async def novel_mark_revision_pass(work_id: str, pass_kind: str) -> dict:
+async def novel_mark_revision_pass(work_id: str, pass_kind: str, dry_run: bool = False) -> dict:
     valid_passes = {"structural", "line", "copy", "proof"}
     if pass_kind not in valid_passes:
         return {"ok": False, "warnings": [f"Invalid pass_kind '{pass_kind}'"]}
 
     author, _, slug, work_data = await _get_work_data(work_id)
+
+    if dry_run:
+        return {
+            "ok": True,
+            "data": {
+                "would_apply": True,
+                "diff": [f"Mark revision pass '{pass_kind}' for work '{work_id}'"]
+            },
+            "warnings": []
+        }
 
     if not work_data:
         # Fallback to test mock so test can run
