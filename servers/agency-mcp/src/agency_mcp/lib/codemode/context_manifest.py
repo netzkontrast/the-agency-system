@@ -117,9 +117,14 @@ class ContextManifest:
         results = []
         for i, score in enumerate(doc_scores):
             if score > 0:
-                entry = filtered[i].copy()
-                entry["score"] = float(score)
-                results.append(entry)
+                entry = filtered[i]
+                results.append({
+                    "id": entry.get("id"),
+                    "title": entry.get("title"),
+                    "summary": entry.get("summary"),
+                    "tags": entry.get("tags", []),
+                    "score": float(score)
+                })
 
         results.sort(key=lambda x: x["score"], reverse=True)
         return results[:limit]
@@ -153,10 +158,28 @@ class ContextManifest:
         return scores
 
 
-def load_context_manifest(path: str) -> ContextManifest:
+def load_context_manifest(path: str, repo_root: str = None) -> ContextManifest:
     with open(path, "r") as f:
         data = json.load(f)
 
-    manifest = ContextManifest.from_dict(data, repo_root=str(Path(path).parent.parent.parent.parent.parent))
+    p = Path(path).resolve()
+
+    if repo_root is None:
+        # Walk upwards to find .git or Plan
+        current = p.parent
+        found = False
+        while current != current.parent:
+            if (current / ".git").exists() or (current / "Plan").exists():
+                repo_root = str(current)
+                found = True
+                break
+            current = current.parent
+        if not found:
+            try:
+                repo_root = str(p.parents[5])
+            except IndexError:
+                repo_root = str(p.parent)
+
+    manifest = ContextManifest.from_dict(data, repo_root=repo_root)
     manifest.validate_against_schema()
     return manifest

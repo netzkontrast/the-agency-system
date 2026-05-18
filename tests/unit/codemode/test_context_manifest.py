@@ -57,16 +57,11 @@ def test_id_collision_raises():
 
     with tempfile.TemporaryDirectory() as d:
         p = Path(d)
-        (p / "Plan").mkdir()
-        (p / "Plan/dir1").mkdir()
+        (p / "reference").mkdir()
 
-        # In build script, ID is based on relative path from root.
-        # But wait, if two files map to the same id?
-        # Actually, if I write to Plan/docs/a.md and Plan/docs/a.json?
-        # They map to the same id: plan:docs:a! That's a perfect collision.
-        with open(p / "Plan/collision.md", "w") as f:
+        with open(p / "reference/collision.md", "w") as f:
             f.write("# A\nbody")
-        with open(p / "Plan/collision.json", "w") as f:
+        with open(p / "reference/collision.json", "w") as f:
             f.write('{"title": "B"}')
 
         cmd = [sys.executable, "servers/agency-mcp/bin/build_context_manifest.py", "--root", d, "--out", f"{d}/out.json"]

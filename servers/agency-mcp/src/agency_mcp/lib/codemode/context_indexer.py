@@ -30,17 +30,13 @@ def extract_summary(path: str, body: str) -> str:
     ext = os.path.splitext(path)[1].lower()
 
     if ext == '.md':
-        # Remove frontmatter
-        if body.startswith("---"):
-            parts = body.split("---", 2)
-            if len(parts) == 3:
-                body = parts[2]
-
         lines = body.splitlines()
         h1 = None
-        for line in lines:
-            if line.strip().startswith("# "):
-                h1 = line.strip()[2:].strip()
+        h1_index = -1
+        for i, line in enumerate(lines):
+            if line.startswith("# "):
+                h1 = line[2:].strip()
+                h1_index = i
                 break
 
         if not h1:
@@ -48,9 +44,11 @@ def extract_summary(path: str, body: str) -> str:
 
         p = ""
         in_p = False
-        for line in lines:
+
+        scan_lines = lines[h1_index+1:] if h1_index != -1 else []
+        for line in scan_lines:
             line_strip = line.strip()
-            if line.startswith("#"):
+            if line_strip.startswith("#"):
                 continue
             if line_strip:
                 if not in_p and p:
@@ -92,26 +90,43 @@ def extract_summary(path: str, body: str) -> str:
     else:
         return _truncate_on_word_boundary(f"{os.path.basename(path)} - {body[:200]}", 400)
 
+def _find_byte_length_for_budget(body_bytes: bytes, budget: int) -> int:
+    low = 0
+    high = len(body_bytes)
+    best = 0
+    while low <= high:
+        mid = (low + high) // 2
+        chunk = body_bytes[:mid]
+        tokens = estimate_tokens(chunk)
+        if tokens <= budget:
+            best = mid
+            low = mid + 1
+        else:
+            high = mid - 1
+    return best
+
 def extract_views(path: str, body_bytes: bytes) -> dict:
     body_str = body_bytes.decode('utf-8', errors='ignore')
     summary_str = extract_summary(path, body_str)
-
     summary_bytes = summary_str.encode('utf-8')
-    # Summary is max 400 chars, so ~400 bytes
-    summary_bytes = summary_bytes[:400]
 
-    preview_bytes = body_bytes[:3200]
+    # Binary search for sizes
+    summary_len = _find_byte_length_for_budget(summary_bytes, 120)
+    summary_final_bytes = summary_bytes[:summary_len]
+
+    preview_len = _find_byte_length_for_budget(body_bytes, 800)
+    preview_final_bytes = body_bytes[:preview_len]
 
     return {
         "summary": {
-            "token_estimate": estimate_tokens(summary_bytes),
+            "token_estimate": estimate_tokens(summary_final_bytes),
             "byte_offset": 0,
-            "byte_length": len(summary_bytes)
+            "byte_length": len(summary_final_bytes)
         },
         "preview": {
-            "token_estimate": estimate_tokens(preview_bytes),
+            "token_estimate": estimate_tokens(preview_final_bytes),
             "byte_offset": 0,
-            "byte_length": len(preview_bytes)
+            "byte_length": len(preview_final_bytes)
         },
         "full": {
             "token_estimate": estimate_tokens(body_bytes),

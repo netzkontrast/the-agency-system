@@ -19,7 +19,11 @@ def derive_id(rel_path: str) -> str:
         p_str = str(path)
 
     # Replace / with :
-    return p_str.replace(os.sep, ':').replace('/', ':').lower()
+    res = p_str.replace(os.sep, ':').replace('/', ':').lower()
+
+    import re
+    res = re.sub(r"[^a-z0-9_\-:/]", "-", res)
+    return res
 
 def main():
     parser = argparse.ArgumentParser(description="Build Context Mode Manifest")
@@ -28,23 +32,28 @@ def main():
     parser.add_argument("--check", action="store_true", help="Check mode: compare on-disk vs fresh crawl")
     parser.add_argument("--no-include-vendor", action="store_true", help="Exclude vendor docs")
 
+    from datetime import timezone
     args = parser.parse_args()
 
     root_path = Path(args.root).resolve()
+    vendor_dir = Path.home() / "work" / "vendor"
 
-    # Define directories to crawl
-    crawl_dirs = [
-        "Plan",
-        "overrides",
-        "reference",
-        "docs",
-        "genres",
-    ]
+    # Define directories to crawl and their allowed extensions
+    # Fix 5
+    CRAWL_CONFIG = {
+        "Plan": {".md"},
+        "overrides": {".md", ".yaml"},
+        "reference": {".md", ".json"},
+        "docs": {".md"},
+        "genres": {".md"}
+    }
+
+    crawl_dirs = list(CRAWL_CONFIG.keys())
 
     if not args.no_include_vendor:
-        vendor_dir = Path.home() / "work" / "vendor"
         if vendor_dir.exists():
              crawl_dirs.append(str(vendor_dir))
+             CRAWL_CONFIG[str(vendor_dir)] = {".md"}
 
     entries = []
     seen_ids = set()
@@ -59,17 +68,23 @@ def main():
         if not base_search.exists():
             continue
 
+        allowed_exts = CRAWL_CONFIG.get(crawl_dir, {".md", ".json", ".yaml", ".yml"})
+
         for path in base_search.rglob("*"):
             if not path.is_file():
                 continue
-            if path.suffix not in ('.md', '.json', '.yaml', '.yml'):
+            if path.suffix not in allowed_exts:
                 continue
 
+            # Fix 2: relative path helper
             try:
                 rel_path = str(path.relative_to(root_path))
             except ValueError:
-                # Fallback for absolute paths like vendor
-                rel_path = str(path)
+                try:
+                    rel_path = "vendor/" + str(path.relative_to(vendor_dir))
+                except ValueError:
+                    print(f"Warning: File {path} is outside both root and vendor. Skipping.", file=sys.stderr)
+                    continue
 
             id_str = derive_id(rel_path)
             if id_str in seen_ids:
@@ -103,6 +118,10 @@ def main():
             mime_map = {'.md': 'text/markdown', '.json': 'application/json', '.yaml': 'text/yaml', '.yml': 'text/yaml'}
             mime = mime_map.get(path.suffix, 'text/plain')
 
+            # Fix 6: Timezone
+            mtime = path.stat().st_mtime
+            iso_time = datetime.fromtimestamp(mtime, tz=timezone.utc).isoformat().replace("+00:00", "Z")
+
             entry = {
                 "id": id_str,
                 "title": title[:120],
@@ -111,7 +130,7 @@ def main():
                 "path": rel_path,
                 "mime": mime,
                 "size_bytes": len(body_bytes),
-                "last_modified": datetime.fromtimestamp(path.stat().st_mtime).isoformat() + "Z",
+                "last_modified": iso_time,
                 "sha256": compute_sha256(body_bytes),
                 "views": extract_views(str(path), body_bytes)
             }
@@ -134,15 +153,31 @@ def main():
         old_entries = {e['id']: e for e in old_data.get('entries', [])}
         new_entries = {e['id']: e for e in entries}
 
-        if old_entries.keys() != new_entries.keys():
+        drift = False
+
+        old_keys = set(old_entries.keys())
+        new_keys = set(new_entries.keys())
+
+        if old_keys != new_keys:
             print("Check mode failed: keys drift detected.", file=sys.stderr)
-            sys.exit(1)
+            added = new_keys - old_keys
+            missing = old_keys - new_keys
+            if added: print(f"Added IDs: {added}", file=sys.stderr)
+            if missing: print(f"Missing IDs: {missing}", file=sys.stderr)
+            drift = True
 
         for id_str, new_entry in new_entries.items():
-            if old_entries[id_str]['sha256'] != new_entry['sha256']:
-                print(f"Check mode failed: drift detected in {new_entry['path']}", file=sys.stderr)
-                print(f"Expected: {old_entries[id_str]['sha256']}, Actual: {new_entry['sha256']}", file=sys.stderr)
-                sys.exit(1)
+            if id_str not in old_entries:
+                continue
+            old_entry = old_entries[id_str]
+            for field in ['sha256', 'size_bytes', 'last_modified']:
+                if str(old_entry[field]) != str(new_entry[field]):
+                    print(f"Check mode failed: drift detected in {new_entry['path']} for field {field}", file=sys.stderr)
+                    print(f"Expected: {old_entry[field]}, Actual: {new_entry[field]}", file=sys.stderr)
+                    drift = True
+
+        if drift:
+            sys.exit(1)
 
         print("Check mode: ok")
         sys.exit(0)

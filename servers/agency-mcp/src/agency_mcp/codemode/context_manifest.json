@@ -45,9 +45,9 @@
           "token_estimate": 3659
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3001,
           "byte_offset": 0,
-          "token_estimate": 848
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 189,
@@ -73,14 +73,14 @@
           "token_estimate": 3677
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3472,
           "byte_offset": 0,
-          "token_estimate": 740
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 80
+          "token_estimate": 81
         }
       }
     },
@@ -103,9 +103,9 @@
           "token_estimate": 1492
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3491,
           "byte_offset": 0,
-          "token_estimate": 717
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 239,
@@ -133,9 +133,9 @@
           "token_estimate": 2052
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2863,
           "byte_offset": 0,
-          "token_estimate": 876
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 227,
@@ -163,9 +163,9 @@
           "token_estimate": 1130
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3385,
           "byte_offset": 0,
-          "token_estimate": 763
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 198,
@@ -193,9 +193,9 @@
           "token_estimate": 2357
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2943,
           "byte_offset": 0,
-          "token_estimate": 893
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 225,
@@ -223,9 +223,9 @@
           "token_estimate": 1490
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3698,
           "byte_offset": 0,
-          "token_estimate": 680
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 299,
@@ -253,9 +253,9 @@
           "token_estimate": 1714
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3416,
           "byte_offset": 0,
-          "token_estimate": 749
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 259,
@@ -283,9 +283,9 @@
           "token_estimate": 828
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3725,
           "byte_offset": 0,
-          "token_estimate": 688
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 259,
@@ -311,14 +311,14 @@
           "token_estimate": 4704
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3483,
           "byte_offset": 0,
-          "token_estimate": 744
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 110
+          "token_estimate": 111
         }
       }
     },
@@ -329,7 +329,7 @@
       "path": "Plan/001-scaffold-plugin-skeleton/spec.md",
       "sha256": "9a0b11c2aca47da295584d428efda2acb83972bf9e3cc96616989b1cad6c0e65",
       "size_bytes": 6687,
-      "summary": "Spec 001 \u2014 Scaffold Plugin Skeleton - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 001 \u2014 Scaffold Plugin Skeleton - The unified plugin needs a clean root layout before any handler, skill, or state work can begin. The existing `jules-plugin/` already wires FastMCP + Code Mode but is the wrong shape \u2014 the manifest must move to repo root per Claude Code plugin conventions (`.claude-plugin/` only holds `plugin.json`). This spec lays down the entire directory tree from \u00a71 of\u2026",
       "tags": [
         "spec:001",
         "slug:scaffold-plugin-skeleton",
@@ -344,14 +344,14 @@
           "token_estimate": 1904
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2747,
           "byte_offset": 0,
-          "token_estimate": 940
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 88
         }
       }
     },
@@ -362,7 +362,7 @@
       "path": "Plan/002-manifest-and-marketplace/spec.md",
       "sha256": "367b132253bde806c0867f316bf19eccca5ba4095806d666a3a40b15f6bee0c8",
       "size_bytes": 6978,
-      "summary": "Spec 002 \u2014 Manifest and Marketplace - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 002 \u2014 Manifest and Marketplace - Claude Code resolves a plugin by reading `.claude-plugin/plugin.json` at the repo root; without a valid manifest the plugin does not appear in `/plugin install`, `/plugin list`, or `/help`. The existing `jules-plugin/.claude-plugin/plugin.json` would collide with the new root manifest at install time, so it must be marked deprecated in the same change. A\u2026",
       "tags": [
         "spec:002",
         "slug:manifest-and-marketplace",
@@ -377,14 +377,14 @@
           "token_estimate": 1771
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3161,
           "byte_offset": 0,
-          "token_estimate": 808
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 399,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 86
         }
       }
     },
@@ -395,7 +395,7 @@
       "path": "Plan/003-unified-statecache-port/spec.md",
       "sha256": "653c148f2fd01c951e44ea3a4df686e5dd630206a79ad96f7a1a65b92d105946",
       "size_bytes": 8940,
-      "summary": "Spec 003 \u2014 Unified StateCache Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 003 \u2014 Unified StateCache Port - bitwize's thread-safe `StateCache` is the lynchpin that lets handlers share a single in-memory state without re-parsing markdown on every tool call. Porting it with namespaced top-level keys (`music`, `novel`, `jules`, `agentic`) gives all four domains one cache, one `asyncio.Lock`, and one mtime-staleness check against `~/.agency-system/cache/state.json`.\u2026",
       "tags": [
         "spec:003",
         "slug:unified-statecache-port",
@@ -410,14 +410,14 @@
           "token_estimate": 2405
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2961,
           "byte_offset": 0,
-          "token_estimate": 873
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 400,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 99
         }
       }
     },
@@ -428,7 +428,7 @@
       "path": "Plan/004-music-handlers-port/spec.md",
       "sha256": "b42dd1a67eb067de543d138168e9f2831c667cc394e489f55db4c0cdf0c506c7",
       "size_bytes": 11275,
-      "summary": "Spec 004 \u2014 Music Handlers Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 004 \u2014 Music Handlers Port - bitwize-music ships 14 handler modules totalling ~67 tools (`find_album`, `create_track`, `master_album`, `qc_audio`, `analyze_rhyme_scheme`, `db_search_tweets`, etc.) that are battle-tested across the existing music corpus. Re-implementing them from scratch inside the unified `agency-mcp` would burn 4+ Jules sessions and risk silent behavioural drift. Porting\u2026",
       "tags": [
         "spec:004",
         "slug:music-handlers-port",
@@ -443,14 +443,14 @@
           "token_estimate": 3126
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2687,
           "byte_offset": 0,
-          "token_estimate": 932
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 400,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 95
         }
       }
     },
@@ -489,7 +489,7 @@
       "path": "Plan/004a-music-lib-port/spec.md",
       "sha256": "40c4ea992d0023ee4f3e58cc988ccb5f96e4aa0f92625e36eee486ec3a0be4b9",
       "size_bytes": 12820,
-      "summary": "Spec 004a \u2014 Music Lib Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 004a \u2014 Music Lib Port - Spec 004 (PR #36, currently `[BLOCKED]`) tried to port bitwize-music's 16 handler modules but those handlers import from `tools.mastering.*` (~17 submodules), `tools.shared.*` (2 submodules), `tools.state.*` (2 submodules), and dynamically from `tools.cloud.*` and `tools.sheet-music.*`. None of those packages existed on the work branch, so the resulting PR couldn't\u2026",
       "tags": [
         "kind:spec"
       ],
@@ -501,14 +501,14 @@
           "token_estimate": 3457
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2877,
           "byte_offset": 0,
-          "token_estimate": 892
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 398,
+          "byte_length": 401,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 105
         }
       }
     },
@@ -529,9 +529,9 @@
           "token_estimate": 2386
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3270,
           "byte_offset": 0,
-          "token_estimate": 787
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 207,
@@ -547,7 +547,7 @@
       "path": "Plan/005-music-skills-port/spec.md",
       "sha256": "712c0db84a19672b513dfc7ee4b8d9905b525ba16620e540f39360edf09f5bc2",
       "size_bytes": 8551,
-      "summary": "Spec 005 \u2014 Music Skills Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 005 \u2014 Music Skills Port - bitwize-music ships 54 skills covering the entire music production pipeline: `lyric-writer`, `lyric-reviewer`, `pronunciation-specialist`, `mastering-engineer`, `mix-engineer`, `album-conceptualizer`, `release-director`, `suno-engineer`, the 9 `researchers-*` skills, and the import / promo / validation skills. These represent thousands of hours of craft codification\u2026",
       "tags": [
         "spec:005",
         "slug:music-skills-port",
@@ -562,14 +562,14 @@
           "token_estimate": 2362
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2867,
           "byte_offset": 0,
-          "token_estimate": 898
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 100
         }
       }
     },
@@ -580,7 +580,7 @@
       "path": "Plan/006-jules-handlers-port/spec.md",
       "sha256": "1ca55b7eabbe4b4abf709c4db07fea9fc62ccc5c8ab15496316b575bb6b81f86",
       "size_bytes": 11331,
-      "summary": "Spec 006 \u2014 Jules Handlers Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 006 \u2014 Jules Handlers Port - The existing `jules-plugin/mcp-server/src/jules_mcp/tools/` package ships 12 working tools (`create`, `list`, `get`, `start_watcher`, `stop_watcher`, `send_message`, `approve_plan`, `patch_summary`, etc.) that the human already relies on for asynchronous Jules orchestration. They are battle-tested, but live in the wrong server (the standalone `jules-plugin` MCP),\u2026",
       "tags": [
         "spec:006",
         "slug:jules-handlers-port",
@@ -595,14 +595,14 @@
           "token_estimate": 3100
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2908,
           "byte_offset": 0,
-          "token_estimate": 895
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 100
         }
       }
     },
@@ -613,7 +613,7 @@
       "path": "Plan/007-jules-skills-and-commands-port/spec.md",
       "sha256": "d971893ab2fb29f2901361fac1a1ccb3b65d40842c1b7bf64bb294a8bfc2c7ee",
       "size_bytes": 9331,
-      "summary": "Spec 007 \u2014 Jules Skills and Commands Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only\u2026",
+      "summary": "Spec 007 \u2014 Jules Skills and Commands Port - `jules-plugin/` ships a `skills/jules/` skill (`SKILL.md` + `references/`) that codifies the Jules orchestration workflow (gate discipline, watcher patterns, bulk dispatch), plus a `tools/researcher/` helper used during research-prompt runs and a `bin/jules-bulk` CLI for fan-out. With Spec 006 having ported the MCP tools into the unified server, users\u2026",
       "tags": [
         "spec:007",
         "slug:jules-skills-and-commands-port",
@@ -628,14 +628,14 @@
           "token_estimate": 2591
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2955,
           "byte_offset": 0,
-          "token_estimate": 876
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 102
         }
       }
     },
@@ -646,7 +646,7 @@
       "path": "Plan/008-codemode-registry/spec.md",
       "sha256": "90aa44918dafa66f2af3e0754338a5c3778891e39a7bce89bb2f5b9fffcf56aa",
       "size_bytes": 12519,
-      "summary": "Spec 008 \u2014 Code Mode Registry - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 008 \u2014 Code Mode Registry - Once all four domains are registered, the unified plugin will expose ~180 tools (~67 music + ~73 novel + ~12 jules + ~32 agentic). Without intervention, every `tools/list` MCP call dumps every tool schema into the model's context \u2014 measured at ~34k tokens in the bitwize baseline. Code Mode + `defer_schema=True` is the FastMCP feature that solves this: ~4 anchor\u2026",
       "tags": [
         "kind:spec"
       ],
@@ -658,14 +658,14 @@
           "token_estimate": 3273
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3033,
           "byte_offset": 0,
-          "token_estimate": 841
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 96
         }
       }
     },
@@ -676,7 +676,7 @@
       "path": "Plan/009-shared-handlers/spec.md",
       "sha256": "469784b7f2998e3ffe4e4d2aefd99d2b6cf712aa31db7f1a5628367883d21287",
       "size_bytes": 11178,
-      "summary": "Spec 009 \u2014 Shared Handlers - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 009 \u2014 Shared Handlers - Cross-domain queries (search across `music + novel + jules + agentic`, list-all-skills, get-any-reference, read shared config, persist a shared session) must not live inside a per-domain namespace. They belong in `handlers/shared/` so a caller never has to guess which domain owns a given primitive. This module is also the single home for `plugin_help(domain)`, the\u2026",
       "tags": [
         "kind:spec"
       ],
@@ -688,14 +688,14 @@
           "token_estimate": 2934
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3005,
           "byte_offset": 0,
-          "token_estimate": 866
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 398,
+          "byte_length": 400,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 89
         }
       }
     },
@@ -736,7 +736,7 @@
       "path": "Plan/010-novel-on-disk-layout/spec.md",
       "sha256": "37e2831be6d8b137da5f86075a75ad8457c6b6c2c71d24ca6123ade8d8038c7c",
       "size_bytes": 9710,
-      "summary": "Spec 010 \u2014 Novel On-Disk Layout - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 010 \u2014 Novel On-Disk Layout - Novel work must mirror the music side's `artists/{name}/albums/{genre}/{album}/` shape so a single mental model serves both domains (overview \u00a71). The novel equivalent is `novels/{author-slug}/works/{genre-slug}/{work-slug}/`, and every new work must be scaffolded from the same set of templates so downstream handlers (spec 011 `novel_create_work`, spec 013\u2026",
       "tags": [
         "spec:008",
         "slug:novel-on-disk-layout",
@@ -751,14 +751,14 @@
           "token_estimate": 2575
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2924,
           "byte_offset": 0,
-          "token_estimate": 882
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 398,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 98
         }
       }
     },
@@ -769,7 +769,7 @@
       "path": "Plan/011-novel-handlers-core/spec.md",
       "sha256": "ac6d9a0c01f6adee2e43b0f02d96e371bc9d1d21b03704e7995f5caa04b8e558",
       "size_bytes": 14789,
-      "summary": "Spec 011 \u2014 Novel Handlers Core - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 011 \u2014 Novel Handlers Core - The novel domain needs the spirit-isomorphic equivalent of bitwize's `album_ops + content + ideas + status` handlers: CRUD over works, chapters, scenes, characters, and premises, plus a lifecycle for premise-ideas (draft \u2192 promote \u2192 work). Music maps author\u2194artist, work\u2194album, chapter\u2194track-section, scene\u2194track-bar; this spec lays the same shape on the novel side\u2026",
       "tags": [
         "spec:009",
         "slug:novel-handlers-core",
@@ -784,14 +784,14 @@
           "token_estimate": 4140
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2763,
           "byte_offset": 0,
-          "token_estimate": 919
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 415,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 96
         }
       }
     },
@@ -802,7 +802,7 @@
       "path": "Plan/011a-novel-handlers-core-hardening/spec.md",
       "sha256": "7398a86f7d3098bca6409ff877dfee21756abdaa124068e45eae45c0f13c70c1",
       "size_bytes": 10367,
-      "summary": "Spec 011a \u2014 Novel Handlers Core Hardening - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 011a \u2014 Novel Handlers Core Hardening - PR #44 (Spec 011 novel-handlers-core) merged on Master via PR #45 but the independent review surfaced one Done-When violation (P1) and five \u00a72.1 contract drifts (P2). They are individually small but compound badly the moment a second domain writes concurrently with novel. This spec is a single-session correctness pass that lands the missing `dry_run`\u2026",
       "tags": [
         "kind:spec"
       ],
@@ -814,14 +814,14 @@
           "token_estimate": 2732
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2957,
           "byte_offset": 0,
-          "token_estimate": 868
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 91
         }
       }
     },
@@ -832,7 +832,7 @@
       "path": "Plan/012-dramatica-and-ncp-libs/spec.md",
       "sha256": "2dcacf4e1aaa8f647c014948a9bd45966b02b7407780c32ec628dcf1c3c09c0f",
       "size_bytes": 14734,
-      "summary": "Spec 012 \u2014 Dramatica + NCP Libraries - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "summary": "Spec 012 \u2014 Dramatica + NCP Libraries - The novel coherence checks (spec 013 structural ops, spec 014 6-gate pre-drafting validator) need two foundations: a navigable Dramatica ontology and an NCP-v1.3.0 compiler + validator. The Dramatica ontology (304 entries: 4 Classes, 16 Types, 64 Variations, 64 Elements, plus 156 supporting term entries) plus 12 scenario archetypes is the theoretical\u2026",
       "tags": [
         "spec:010",
         "slug:dramatica-and-ncp-libs",
@@ -847,14 +847,14 @@
           "token_estimate": 4000
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2915,
           "byte_offset": 0,
-          "token_estimate": 880
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 396,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 101
         }
       }
     },
@@ -875,9 +875,9 @@
           "token_estimate": 2056
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2966,
           "byte_offset": 0,
-          "token_estimate": 863
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 333,
@@ -893,7 +893,7 @@
       "path": "Plan/013-novel-handlers-structural/spec.md",
       "sha256": "7d3393c811f9f79edb2d8a1b704ff8797c0a15601e0b0c6c0d18eade67480037",
       "size_bytes": 16950,
-      "summary": "Spec 013 \u2014 Novel Handlers (Structural) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 013 \u2014 Novel Handlers (Structural) - Structural integrity for novels = Dramatica coherence. `novel_coherence_check` is the sibling of bitwize's `album_coherence_check` and fans out over **11 decidable checks** (dynamic-pair reciprocity, KTAD coherence, throughline uniqueness, signpost ordering, MC Resolve \u2194 Outcome \u2194 Judgment, etc.) per the embedded Dramatica decidability brief \u2014 *\"tools\u2026",
       "tags": [
         "spec:011",
         "slug:novel-handlers-structural",
@@ -908,14 +908,14 @@
           "token_estimate": 4503
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2950,
           "byte_offset": 0,
-          "token_estimate": 871
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 91
         }
       }
     },
@@ -926,7 +926,7 @@
       "path": "Plan/014-novel-gates-and-revision/spec.md",
       "sha256": "b219b601a08f43ade35de2c4f4ec2ede12a1b01753f3c9b76c86330328d45c7e",
       "size_bytes": 16062,
-      "summary": "Spec 014 \u2014 Novel Gates and Revision - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 014 \u2014 Novel Gates and Revision - bitwize-music's `pre-generation-check` blocks lyric drafting until **6 gates pass** (sources, lyrics-stats, pronunciation, explicit, style box, artist names). It is the single most load-bearing pre-flight in the music plugin \u2014 without it, generated tracks ship with mispronounced proper nouns, unverified historical claims, and missing metadata. The novel-side\u2026",
       "tags": [
         "spec:012",
         "slug:novel-gates-and-revision",
@@ -941,14 +941,14 @@
           "token_estimate": 4408
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2927,
           "byte_offset": 0,
-          "token_estimate": 877
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 85
         }
       }
     },
@@ -969,9 +969,9 @@
           "token_estimate": 3021
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3108,
           "byte_offset": 0,
-          "token_estimate": 819
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 365,
@@ -987,7 +987,7 @@
       "path": "Plan/015-novel-skills-catalogue/spec.md",
       "sha256": "6edc52165182a52934f6f669737f86c4e720b9eaee8fbb34a525456cd8dd48ef",
       "size_bytes": 16219,
-      "summary": "Spec 015 \u2014 Novel Skills Catalogue - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 015 \u2014 Novel Skills Catalogue - Skills are **the user interface** of a Claude Code plugin \u2014 they are the slash commands a human types and the agentic surface other skills reference. Spec 005 ports 54 music skills with parity and the L1+L2 frontmatter discipline; this spec authors the **28 spirit-isomorphic novel skills** (per the embedded parity brief \u2014 `prose-drafter`,\u2026",
       "tags": [
         "spec:013",
         "slug:novel-skills-catalogue",
@@ -1002,14 +1002,14 @@
           "token_estimate": 4407
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2877,
           "byte_offset": 0,
-          "token_estimate": 889
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 385,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 87
         }
       }
     },
@@ -1030,9 +1030,9 @@
           "token_estimate": 2472
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2977,
           "byte_offset": 0,
-          "token_estimate": 865
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 321,
@@ -1048,7 +1048,7 @@
       "path": "Plan/016-agentic-handlers-and-skills/spec.md",
       "sha256": "4e501201d10253a4b79f442554811a7b0aed3d2b3f29b82cb5d7f9dfa7b903f3",
       "size_bytes": 15779,
-      "summary": "Spec 016 \u2014 Agentic Handlers and Skills - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 016 \u2014 Agentic Handlers and Skills - The plugin's spec-driven workflow only works if its operational primitives \u2014 spec validation, plan tracking, workflow decomposition, research brief rendering, Ralph file generation, and pre-implementation confidence gating \u2014 are first-class MCP tools, not ad-hoc skill prose. The embedded agentic-orchestration brief (`references/agentic-tool-catalog.md`,\u2026",
       "tags": [
         "spec:014",
         "slug:agentic-handlers-and-skills",
@@ -1063,14 +1063,14 @@
           "token_estimate": 4298
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2835,
           "byte_offset": 0,
-          "token_estimate": 892
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 79
         }
       }
     },
@@ -1081,7 +1081,7 @@
       "path": "Plan/017-hooks-port-and-extend/spec.md",
       "sha256": "651d17e284bdd4fd20fa5d14ddc6b6a5639fd2273353d912e7990b228dd92adb",
       "size_bytes": 13385,
-      "summary": "Spec 017 \u2014 Hooks Port and Extend - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 017 \u2014 Hooks Port and Extend - bitwize-music ships PostToolUse hooks that fire on `Write`/`Edit` of track files: `validate_track.py` enforces frontmatter shape (status, explicit, key metadata fields), and `check_version_sync.py` warns when the on-disk `state.json:_version` drifts from the installed plugin version. The unified plugin must keep both behaviours for the music side or every track\u2026",
       "tags": [
         "spec:015",
         "slug:hooks-port-and-extend",
@@ -1096,14 +1096,14 @@
           "token_estimate": 3494
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3111,
           "byte_offset": 0,
-          "token_estimate": 821
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 94
         }
       }
     },
@@ -1124,9 +1124,9 @@
           "token_estimate": 1300
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3004,
           "byte_offset": 0,
-          "token_estimate": 860
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 374,
@@ -1142,7 +1142,7 @@
       "path": "Plan/018-overrides-and-config-migration/spec.md",
       "sha256": "f9680368eef6008cae8b662201273f478b709fda2f6c307424bba1c508433fc7",
       "size_bytes": 12303,
-      "summary": "Spec 018 \u2014 Overrides and Config Migration - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 018 \u2014 Overrides and Config Migration - bitwize-music ships a curated `overrides/` directory (lyric craft guide, mastering presets, voice principles, pronunciation, suno preferences, research preferences, promotion preferences, release preferences) that the music skills load at session start via `shared_load_override`. The unified plugin must extend that surface so the novel side has\u2026",
       "tags": [
         "kind:spec"
       ],
@@ -1154,14 +1154,14 @@
           "token_estimate": 3100
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3127,
           "byte_offset": 0,
-          "token_estimate": 817
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 395,
           "byte_offset": 0,
-          "token_estimate": 117
+          "token_estimate": 76
         }
       }
     },
@@ -1172,7 +1172,7 @@
       "path": "Plan/019-state-migration-from-bitwize/spec.md",
       "sha256": "cf03271c785c6a4d875a0c053edcdcf950f385bbba60d4be9c1aa28bda6f6a56",
       "size_bytes": 15073,
-      "summary": "Spec 019 \u2014 State Migration From bitwize-music - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are\u2026",
+      "summary": "Spec 019 \u2014 State Migration From bitwize-music - Existing bitwize-music users have lived state under `~/.bitwize-music/` \u2014 specifically `~/.bitwize-music/cache/state.json` (artist/album/track index) and `~/.bitwize-music/config.yaml` (user-edited preferences derived from the bitwize template). When they install the unified plugin and reach for `/agency-system:music-resume`, that state must already\u2026",
       "tags": [
         "kind:spec"
       ],
@@ -1184,14 +1184,14 @@
           "token_estimate": 4002
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2948,
           "byte_offset": 0,
-          "token_estimate": 866
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 392,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 103
         }
       }
     },
@@ -1202,7 +1202,7 @@
       "path": "Plan/020-bitwize-deprecation-and-docs/spec.md",
       "sha256": "c146556b428a42bdaeee40935d6b363d236a67082a87382f74492f3c2fd41c99",
       "size_bytes": 15864,
-      "summary": "Spec 020 \u2014 bitwize Deprecation and Docs - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 020 \u2014 bitwize Deprecation and Docs - This is the final cutover. After spec 020 lands, the unified plugin is the only thing the user needs to install \u2014 `jules-plugin/` is gone from the repo, `bitwize-music` is marked deprecated upstream, and the doctrine / domain documentation reflects the unified architecture rather than the three legacy plugins. Without this spec, users see three install\u2026",
       "tags": [
         "spec:016",
         "slug:bitwize-deprecation-and-docs",
@@ -1217,14 +1217,14 @@
           "token_estimate": 4348
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2952,
           "byte_offset": 0,
-          "token_estimate": 866
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 122
+          "token_estimate": 90
         }
       }
     },
@@ -1245,9 +1245,9 @@
           "token_estimate": 2021
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3320,
           "byte_offset": 0,
-          "token_estimate": 767
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 399,
@@ -1263,7 +1263,7 @@
       "path": "Plan/021-novel-prompt-builder-family/spec.md",
       "sha256": "15f9b6720fca06cbda21c509a074133505f0fe602130a43d2b12c0dace7f962d",
       "size_bytes": 19251,
-      "summary": "Spec 021 \u2014 Novel Prompt-Builder Family - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 021 \u2014 Novel Prompt-Builder Family - Per the embedded prompt-builder methods brief (12 method families across 8 sources \u2014 Anthropic long-context, Sudowrite Beat-then-prose, NovelCrafter Entity-hydration, Lee CHI 2024 sentence-granularity, Weaver hierarchical chains, DraftSmith psycho-model serialization, K.M. Weiland Q-audit, Matt Bell three-pass discipline), novelists drafting on top of an\u2026",
       "tags": [
         "spec:017",
         "slug:novel-prompt-builder-family",
@@ -1278,14 +1278,14 @@
           "token_estimate": 5081
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3000,
           "byte_offset": 0,
-          "token_estimate": 851
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 93
         }
       }
     },
@@ -1296,7 +1296,7 @@
       "path": "Plan/022-dev-mode-install/spec.md",
       "sha256": "a5b61bcb5eff7ba29667c104195ebb22b5d52b535e9e4185423c639f39b1ced0",
       "size_bytes": 11458,
-      "summary": "Spec 022 \u2014 Dev-mode Plugin Install - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 022 \u2014 Dev-mode Plugin Install - The whole orchestration value-prop collapses if we cannot USE the plugin we're building. Today the orchestrator writes specs that produce code, the code lands in Master, but no live Claude Code session can actually load `agency-system` to invoke its skills + MCP tools \u2014 the plugin only becomes loadable after a final marketplace install + manifest publication.\u2026",
       "tags": [
         "spec:018",
         "slug:dev-mode-install",
@@ -1311,14 +1311,14 @@
           "token_estimate": 2983
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3087,
           "byte_offset": 0,
-          "token_estimate": 831
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 78
         }
       }
     },
@@ -1329,7 +1329,7 @@
       "path": "Plan/023-harness-in-harness/spec.md",
       "sha256": "66ae4b1d6f632d5a1c3de570c8a6510160577cf32b561a179935538827bef6f5",
       "size_bytes": 19378,
-      "summary": "Spec 023 \u2014 Harness in a Harness (research epic) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into `~/work/vendor/`;\u2026",
+      "summary": "Spec 023 \u2014 Harness in a Harness (research epic) - The `agency-system` plugin works inside Claude Code via the standard MCP transport, but **any other agent without MCP integration is locked out** \u2014 Jules sandboxes, Cursor, Codex CLI, Continue, raw bash-only LLM harnesses. These agents can run scripts but cannot natively load MCP tools or auto-discover skills.",
       "tags": [
         "spec:019",
         "slug:harness-in-harness",
@@ -1344,14 +1344,14 @@
           "token_estimate": 4752
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3233,
           "byte_offset": 0,
-          "token_estimate": 791
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 365,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 81
         }
       }
     },
@@ -1362,7 +1362,7 @@
       "path": "Plan/098-wave-a-hardening/spec.md",
       "sha256": "25172adcf7785fa1617f14a512ac18b78f9ed6135c03ab2e01fe3c1567a3f1dd",
       "size_bytes": 12745,
-      "summary": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > If\u2026",
+      "summary": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup) - The Codex bot reviewed PRs #34 (Spec 003 StateCache), #37 (Spec 019 migration), #38 (Spec 004a tools port), and #32 (Spec 002 manifest) and flagged **~17 P1 findings** that landed unfixed because the PRs merged before the comments arrived (Codex review is async). These are the kind of correctness bugs that downstream specs (011, 013, 014, ...)\u2026",
       "tags": [
         "kind:spec"
       ],
@@ -1374,14 +1374,14 @@
           "token_estimate": 3474
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2888,
           "byte_offset": 0,
-          "token_estimate": 900
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 124
+          "token_estimate": 110
         }
       }
     },
@@ -1392,7 +1392,7 @@
       "path": "Plan/099-jules-orchestration-improvements/spec.md",
       "sha256": "0e4348173c2342f22e861311aa4ee7f18cea1e01fcc1c3d712c16fbf6085214c",
       "size_bytes": 18726,
-      "summary": "Spec 099 \u2014 Jules Orchestration Improvements - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos\u2026",
+      "summary": "Skill-frontmatter migration sweep (Approach \u00a713 + Done-When item - skill_migration_roots: - skills/ - jules-plugin/skills/ source-repos: [] estimated_jules_sessions: 2 domain: cross wave: C ---",
       "tags": [
         "kind:spec"
       ],
@@ -1404,14 +1404,14 @@
           "token_estimate": 4753
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3108,
           "byte_offset": 0,
-          "token_estimate": 827
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 194,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 50
         }
       }
     },
@@ -1422,7 +1422,7 @@
       "path": "Plan/100-session-log-mcp/spec.md",
       "sha256": "6cf4b9adc12fc04ebb8e15f304482c772fbe8494a3077bcba9bae8b05f6307d9",
       "size_bytes": 11526,
-      "summary": "Spec 100 \u2014 Session-Log MCP Server - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 100 \u2014 Session-Log MCP Server - Wave A and Wave B taught us (L11, L12, L14) that the orchestrator has no durable, queryable record of *what happened* across Jules sessions. Today, post-mortems require scraping shell history, GitHub PR comments, and `jules_activities` dumps that blow the token budget every time (L14). When a session reports `completed` but no PR was opened (L12), there is no\u2026",
       "tags": [
         "spec:100",
         "slug:session-log-mcp",
@@ -1437,14 +1437,14 @@
           "token_estimate": 2995
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3065,
           "byte_offset": 0,
-          "token_estimate": 840
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 100
         }
       }
     },
@@ -1455,7 +1455,7 @@
       "path": "Plan/101-jules-mcp-tool-additions/spec.md",
       "sha256": "7b958099e146043e8378dd215ed0d3b5c87264b9f8585bae80e202991c209ed8",
       "size_bytes": 9245,
-      "summary": "Spec 101 \u2014 Jules MCP Tool Additions - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 101 \u2014 Jules MCP Tool Additions - L14's token postmortem proved that the orchestrator's most expensive primitive is `jules_activities` \u2014 every call returns the full activity stream and the loop pastes it back into context. The actual signal the orchestrator needs at every poll is a five-line summary: state, title, last five activities, PR URL, patch size. Today that requires four MCP calls\u2026",
       "tags": [
         "spec:101",
         "slug:jules-mcp-tool-additions",
@@ -1470,14 +1470,14 @@
           "token_estimate": 2412
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2980,
           "byte_offset": 0,
-          "token_estimate": 861
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 88
         }
       }
     },
@@ -1488,7 +1488,7 @@
       "path": "Plan/102-pr-rebase-policy/spec.md",
       "sha256": "8bc137360208a7b7d63ea96a77409ac1d64bdc30f968fe65ebfe0815f1d8c52c",
       "size_bytes": 8297,
-      "summary": "Spec 102 \u2014 PR Rebase Policy - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 102 \u2014 PR Rebase Policy - PRs #39, #40, #41, and #42 all hit the same stale-merge-base failure pattern: after a sibling PR merged into `Master`, the remaining open spec-PRs continued to report green CI while silently sitting on a base commit that no longer represented the integration target. Codex reviewers (L13) and the merge bot both produced false greens, and the orchestrator only caught\u2026",
       "tags": [
         "spec:102",
         "slug:pr-rebase-policy",
@@ -1503,14 +1503,14 @@
           "token_estimate": 2170
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3078,
           "byte_offset": 0,
-          "token_estimate": 835
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 395,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 93
         }
       }
     },
@@ -1521,7 +1521,7 @@
       "path": "Plan/103-view-fields-projection/spec.md",
       "sha256": "ea29347ae4fcbd22a96c946573e02ce9dc0c235213a4abf7b1b79c538b4c7ddf",
       "size_bytes": 9104,
-      "summary": "Spec 103 \u2014 View Tiers & Fields Projection on Read Tools - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 103 \u2014 View Tiers & Fields Projection on Read Tools - Per the `Plan/_lessons-learned/14-token-consumption-postmortem.md` analysis, every `*_get` / `*_read` / `*_list` MCP tool currently returns the full Pydantic object \u2014 even when the caller only needs the `id`. A single `music_album_get` round-trip can burn 3-5k tokens when the caller is just resolving a foreign key. Adopting Pydantic's\u2026",
       "tags": [
         "spec:103",
         "slug:view-fields-projection",
@@ -1536,14 +1536,14 @@
           "token_estimate": 2420
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2831,
           "byte_offset": 0,
-          "token_estimate": 892
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 401,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 107
         }
       }
     },
@@ -1554,7 +1554,7 @@
       "path": "Plan/104-tool-search-anchor-triad/spec.md",
       "sha256": "d7e97ce43ba8657798825504a3242685ce024820ade703ccaeea6ea850468dd6",
       "size_bytes": 9344,
-      "summary": "Spec 104 \u2014 Anchor-Triad Tool Discovery (Atlassian mcp-compressor pattern) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under\u2026",
+      "summary": "Spec 104 \u2014 Anchor-Triad Tool Discovery (Atlassian mcp-compressor pattern) - The unified agency-mcp now exposes ~180 tools across music/jules/novel/shared/agentic domains. Every Claude turn pays the full `tools/list` payload \u2014 measured at ~38k tokens on a cold start (`Plan/_lessons-learned/14-token-consumption-postmortem.md` \u00a73). Atlassian's mcp-compressor pattern collapses this to **three eager\u2026",
       "tags": [
         "spec:104",
         "slug:tool-search-anchor-triad",
@@ -1569,14 +1569,14 @@
           "token_estimate": 2384
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3033,
           "byte_offset": 0,
-          "token_estimate": 847
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 98
         }
       }
     },
@@ -1587,7 +1587,7 @@
       "path": "Plan/105-toon-serializer/spec.md",
       "sha256": "72b4f4e4742fc4198b156436cc087ede7cb540ec6041fdc28474ef164ee459fe",
       "size_bytes": 8401,
-      "summary": "Spec 105 \u2014 TOON Serializer Middleware for Uniform Array Returns - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:`\u2026",
+      "summary": "Spec 105 \u2014 TOON Serializer Middleware for Uniform Array Returns - Paginated list tools (`music_album_list`, `jules_session_list`, `skill_list`, `search_tools`) return homogeneous arrays where every element shares the same Pydantic schema. Encoding these as JSON re-emits the same key names on every row, which dominates the payload \u2014 measured at ~62% redundant bytes across the top-10 list returns\u2026",
       "tags": [
         "spec:105",
         "slug:toon-serializer",
@@ -1602,14 +1602,14 @@
           "token_estimate": 2228
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2934,
           "byte_offset": 0,
-          "token_estimate": 876
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 116
+          "token_estimate": 85
         }
       }
     },
@@ -1620,7 +1620,7 @@
       "path": "Plan/106-github-mcp-summary-wrappers/spec.md",
       "sha256": "d3788315027ac516ba8c882a3dbac74eee4d519ddfe2a9ac1f76e02047d441e0",
       "size_bytes": 9772,
-      "summary": "Spec 106 \u2014 GitHub MCP Summary Wrappers (Subagent-Dispatched) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 106 \u2014 GitHub MCP Summary Wrappers (Subagent-Dispatched) - Per `Plan/_lessons-learned/14-token-consumption-postmortem.md`, `mcp__github__pull_request_read` is the **#1 token sink** in the entire system \u2014 a single call can return 40-80k tokens (full PR body, every file diff, every review comment, every commit). The main session almost never needs the raw payload; it needs a ~1-2k-token summary\u2026",
       "tags": [
         "spec:106",
         "slug:github-mcp-summary-wrappers",
@@ -1635,14 +1635,14 @@
           "token_estimate": 2522
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3022,
           "byte_offset": 0,
-          "token_estimate": 852
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 121
+          "token_estimate": 107
         }
       }
     },
@@ -1653,7 +1653,7 @@
       "path": "Plan/107-cache-breakpoint-ordering/spec.md",
       "sha256": "336ae87528042b4fb739f33a42a7f56b2ba54b916bea6b73905c96644ad0e175",
       "size_bytes": 9153,
-      "summary": "Spec 107 \u2014 Cache Breakpoint Ordering & TTL Pinning - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source\u2026",
+      "summary": "Spec 107 \u2014 Cache Breakpoint Ordering & TTL Pinning - Anthropic's prompt caching for tool definitions dropped its **default TTL from 1 hour to 5 minutes in January 2026** (see reference). Our watcher cadence (`jules-bulk` poll, lyric-reviewer auto-rerun, mastering qc loops) routinely exceeds 5 minutes between turns, so we are silently re-paying the full tools-schema prefix on every turn. The fix\u2026",
       "tags": [
         "spec:107",
         "slug:cache-breakpoint-ordering",
@@ -1668,14 +1668,14 @@
           "token_estimate": 2324
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3072,
           "byte_offset": 0,
-          "token_estimate": 837
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 94
         }
       }
     },
@@ -1686,7 +1686,7 @@
       "path": "Plan/108-context-mode-integration/spec.md",
       "sha256": "0143cb22270a679fa0334390168e598d712934e401f22dc72d261cb3b02f7d89",
       "size_bytes": 12648,
-      "summary": "Spec 108 \u2014 Context Mode Integration - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 108 \u2014 Context Mode Integration - The [`context-mode`](https://github.com/mksglu/context-mode) plugin ([context-mode.com](https://context-mode.com/)) implements a sibling pattern to FastMCP's Code Mode but at the **Claude Code hook layer**: it intercepts `PreToolUse` / `PostToolUse` / `SessionStart` / `PreCompact` / `UserPromptSubmit` events, routes large tool outputs into a sandboxed\u2026",
       "tags": [
         "spec:108",
         "slug:context-mode-integration",
@@ -1701,14 +1701,14 @@
           "token_estimate": 3164
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3068,
           "byte_offset": 0,
-          "token_estimate": 830
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 396,
           "byte_offset": 0,
-          "token_estimate": 117
+          "token_estimate": 99
         }
       }
     },
@@ -1719,7 +1719,7 @@
       "path": "Plan/111-context-mode-manifest/spec.md",
       "sha256": "d55bd5789828e3558d9c0d9af647f5e1119adf11ef13fcf6c56d14f3bbdc559e",
       "size_bytes": 17868,
-      "summary": "Spec 111 \u2014 Context Mode Manifest - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 111 \u2014 Context Mode Manifest - Spec 008 solved boot-time *tool* schema bloat (~34k \u2192 ~315 tokens) via `defer_schema=True` and FastMCP's CodeMode triad. The mirror problem for *documents* remains: every session that wants to consult the 22 Plan specs, 14 lessons-learned, 304-entry Dramatica ontology, NCP schema, vendor docs, override files, audit reports, and album research preemptively reads\u2026",
       "tags": [
         "spec:111",
         "slug:context-mode-manifest",
@@ -1736,14 +1736,14 @@
           "token_estimate": 4529
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2976,
           "byte_offset": 0,
-          "token_estimate": 876
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 118
+          "token_estimate": 99
         }
       }
     },
@@ -1754,7 +1754,7 @@
       "path": "Plan/112-context-anchor-triad/spec.md",
       "sha256": "7dfbda4b0f761f955f70906c848b6a6aaae9181820211fd22ac9f3ef4215aebf",
       "size_bytes": 18497,
-      "summary": "Spec 112 \u2014 Context Anchor-Triad (`context_search` / `context_describe` / `context_read`) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "summary": "Spec 112 \u2014 Context Anchor-Triad (`context_search` / `context_describe` / `context_read`) - Spec 111 ships the `context_manifest.json` catalogue (\u226540 entries, \u2265200k deferred tokens). This spec exposes that catalogue to the model through **three eager MCP tools**, mirroring Spec 104's tool-side triad (`agency_tool_search` / `agency_tool_describe` / `agency_tool_invoke`). Without this layer, the\u2026",
       "tags": [
         "spec:112",
         "slug:context-anchor-triad",
@@ -1769,14 +1769,14 @@
           "token_estimate": 4594
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3046,
           "byte_offset": 0,
-          "token_estimate": 841
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 122
+          "token_estimate": 96
         }
       }
     },
@@ -1787,7 +1787,7 @@
       "path": "Plan/113-context-cache-and-subscriptions/spec.md",
       "sha256": "2cdf619eedbd51585747b5f676b0c363960d78618d7737811c0eb4ee6caf689e",
       "size_bytes": 19259,
-      "summary": "Spec 113 \u2014 Context Cache & Subscriptions - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "summary": "Spec 113 \u2014 Context Cache & Subscriptions - Specs 108 + 109 make Context Mode functional but na\u00efve: `context_read` re-loads files from disk on every call, the manifest is read once at boot and never re-checked, and MCP `resources/subscribe` is unwired so clients can't be told when a spec, lesson, or override changes mid-session. Three concrete failure modes follow: (1) a Jules session that edits\u2026",
       "tags": [
         "spec:113",
         "slug:context-cache-and-subscriptions",
@@ -1802,14 +1802,14 @@
           "token_estimate": 4757
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3053,
           "byte_offset": 0,
-          "token_estimate": 836
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 94
         }
       }
     },
@@ -1820,7 +1820,7 @@
       "path": "Plan/114-read-cache-delta-mode/spec.md",
       "sha256": "a2f4b41b8e8293cc87b26dca52a7b3bc5835a6bee7db104b34dd7aa6c91c3269",
       "size_bytes": 10951,
-      "summary": "Spec 114 \u2014 Read-Cache Delta Mode (re-read returns diff only) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 114 \u2014 Read-Cache Delta Mode (re-read returns diff only) - `token-optimizer` reports that **65% of Read calls in real sessions are re-reads** of the same file, and code-heavy sessions re-read identical files 3-17 times. Their fix \u2014 a PreToolUse hook that caches file content (\u226450KB/file) and returns a unified diff against the cached snapshot on the next read \u2014 saves **~97% on the\u2026",
       "tags": [
         "spec:114",
         "slug:read-cache-delta-mode",
@@ -1835,14 +1835,14 @@
           "token_estimate": 2885
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2996,
           "byte_offset": 0,
-          "token_estimate": 854
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 396,
           "byte_offset": 0,
-          "token_estimate": 121
+          "token_estimate": 98
         }
       }
     },
@@ -1853,7 +1853,7 @@
       "path": "Plan/115-structure-map-ast/spec.md",
       "sha256": "b685f3331c7e34b1ec8cd321d94a2d3fd182a82167dc5dec04661b6cbaa115c3",
       "size_bytes": 11146,
-      "summary": "Spec 115 \u2014 Structure Map (AST skeleton for large code files) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 115 \u2014 Structure Map (AST skeleton for large code files) - token-optimizer reports the most extreme single-file compression in their stack: **a 2,000-line / 180,000-token Python file collapses to a 250-token skeleton \u2014 a 99% reduction**. The technique: when the agent re-reads a large code file, instead of returning the body (or even a unified diff per Spec 114), the PreToolUse hook returns an\u2026",
       "tags": [
         "spec:115",
         "slug:structure-map-ast",
@@ -1868,14 +1868,14 @@
           "token_estimate": 2874
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3100,
           "byte_offset": 0,
-          "token_estimate": 821
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 97
         }
       }
     },
@@ -1886,7 +1886,7 @@
       "path": "Plan/116-bash-output-compression/spec.md",
       "sha256": "456e71f8b4f2c740b1d8a1a783e3e31fbc4fe5e4d175c4c6ae9e3e8bd3971f8d",
       "size_bytes": 12086,
-      "summary": "Spec 116 \u2014 Bash Output Compression (PostToolUse rewrite) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 116 \u2014 Bash Output Compression (PostToolUse rewrite) - token-optimizer ships **sixteen CLI handlers** that intercept Bash invocations at the PreToolUse layer and rewrite the **output** before the model sees it: a 60-file `ls -la` truncates to 50, a 564-token pytest summary becomes 115 tokens, full git logs collapse to the diff-only view, lint runs trim to error lines. Their measured impact:\u2026",
       "tags": [
         "spec:116",
         "slug:bash-output-compression",
@@ -1901,14 +1901,14 @@
           "token_estimate": 3120
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2952,
           "byte_offset": 0,
-          "token_estimate": 879
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 95
         }
       }
     },
@@ -1919,7 +1919,7 @@
       "path": "Plan/117-tool-result-archive/spec.md",
       "sha256": "16c3fc9988a91b41a0abbc62c080fc8fad6192b182b4951cebf3dcc6595b0f20",
       "size_bytes": 11456,
-      "summary": "Spec 117 \u2014 Tool Result Archive (>4 KB outputs \u2192 disk + inline hint + `expand` retrieval) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "summary": "Spec 117 \u2014 Tool Result Archive (>4 KB outputs \u2192 disk + inline hint + `expand` retrieval) - token-optimizer's most general-purpose compression mechanism: **any tool output above 4 KB is automatically archived to disk; the conversation sees a short preview plus an inline hint `[Full result archived (12,400 chars). Use 'expand abc123' to retrieve.]`**. The model retrieves the full body on demand via\u2026",
       "tags": [
         "spec:117",
         "slug:tool-result-archive",
@@ -1934,14 +1934,14 @@
           "token_estimate": 2879
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3103,
           "byte_offset": 0,
-          "token_estimate": 827
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 89
         }
       }
     },
@@ -1952,7 +1952,7 @@
       "path": "Plan/118-quality-score-telemetry/spec.md",
       "sha256": "e16dcdb67890cd50c4997d958e6e4a31c49f9200a743f34ea8f300d98b026a04",
       "size_bytes": 12587,
-      "summary": "Spec 118 \u2014 Quality Score Telemetry (7-signal weighted + nudges + session-log integration) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "summary": "Spec 118 \u2014 Quality Score Telemetry (7-signal weighted + nudges + session-log integration) - token-optimizer's most measurable lever for human-loop steering: a **seven-signal weighted quality score** (0-100, letter grade S-F) computed every `UserPromptSubmit` from cheap session telemetry. When the score drops 15+ points OR below 60, an inline `[Quality dropped to 58. Consider /compact to protect\u2026",
       "tags": [
         "spec:118",
         "slug:quality-score-telemetry",
@@ -1967,14 +1967,14 @@
           "token_estimate": 3236
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2996,
           "byte_offset": 0,
-          "token_estimate": 872
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 93
         }
       }
     },
@@ -1985,7 +1985,7 @@
       "path": "Plan/119-loop-detection/spec.md",
       "sha256": "5d3def61e31b767ae87a02ca47fa22b172f49d35b250272f0037753538101215",
       "size_bytes": 9349,
-      "summary": "Spec 119 \u2014 Loop Detection (similarity scoring on last 4 user msgs + last 5 tool results) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "summary": "Spec 119 \u2014 Loop Detection (similarity scoring on last 4 user msgs + last 5 tool results) - token-optimizer reports **loop sessions waste 47K tokens on average** \u2014 the model repeats the same diagnostic move (re-read same file, retry same command, ask the same clarifying question) until the user manually intervenes. Their fix: a UserPromptSubmit hook computes Jaccard similarity over the **last 4\u2026",
       "tags": [
         "spec:119",
         "slug:loop-detection",
@@ -2000,14 +2000,14 @@
           "token_estimate": 2461
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3062,
           "byte_offset": 0,
-          "token_estimate": 832
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 122
+          "token_estimate": 91
         }
       }
     },
@@ -2018,7 +2018,7 @@
       "path": "Plan/120-smart-compaction-checkpoints/spec.md",
       "sha256": "2941e8500072b0f3fd6967ad0d018b949653a6ec61123846cc837100a84c90df",
       "size_bytes": 13215,
-      "summary": "Spec 120 \u2014 Smart Compaction Checkpoints (PreCompact snapshots + decision digest restore) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "summary": "Spec 120 \u2014 Smart Compaction Checkpoints (PreCompact snapshots + decision digest restore) - token-optimizer reports: **\"When auto-compact fires, 60-70% of your conversation vanishes. Decisions, error-fix sequences, agent state \u2014 all gone.\"** Their fix: at each of 5 fill thresholds (20%, 35%, 50%, 65%, 80%) **plus** quality-drop triggers (below 80/70/50/40), capture a checkpoint of `{user_messages,\u2026",
       "tags": [
         "spec:120",
         "slug:smart-compaction-checkpoints",
@@ -2033,14 +2033,14 @@
           "token_estimate": 3315
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3009,
           "byte_offset": 0,
-          "token_estimate": 843
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 117
+          "token_estimate": 107
         }
       }
     },
@@ -2051,7 +2051,7 @@
       "path": "Plan/121-contextignore-hardblock/spec.md",
       "sha256": "005ec27297401198c0ee4f9de3ca294f99b1af62b335f0e152264888e7375f89",
       "size_bytes": 10482,
-      "summary": "Spec 121 \u2014 `.contextignore` Hard Block (gitignore-style file blocklist) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under\u2026",
+      "summary": "Spec 121 \u2014 `.contextignore` Hard Block (gitignore-style file blocklist) - token-optimizer ships a tiny but high-leverage primitive: **`.contextignore` is a gitignore-syntax file that hard-blocks the `Read` tool from loading the listed paths**. Their canonical example:",
       "tags": [
         "spec:121",
         "slug:contextignore-hardblock",
@@ -2066,14 +2066,14 @@
           "token_estimate": 2688
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3031,
           "byte_offset": 0,
-          "token_estimate": 844
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 270,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 62
         }
       }
     },
@@ -2084,7 +2084,7 @@
       "path": "Plan/130-shared-toolresult-envelope/spec.md",
       "sha256": "548c5f190f93682b39800b9b6704606309e3d20455895b41a4ebee5e667cf53b",
       "size_bytes": 15257,
-      "summary": "Spec 130 \u2014 Shared `ToolResult` Envelope + Conformance Gate - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 130 \u2014 Shared `ToolResult` Envelope + Conformance Gate - Overview \u00a72.1 #9 declares the plugin-wide response envelope `{ok, data, warnings, artefacts_written, next_suggested_tools}` as a non-negotiable contract. Today the contract is hand-rolled per handler: `servers/agency-mcp/src/agency_mcp/handlers/shared/config.py:13-19` and `handlers/shared/reference.py:24-25` build the dict literal\u2026",
       "tags": [
         "spec:130",
         "slug:shared-toolresult-envelope",
@@ -2099,14 +2099,14 @@
           "token_estimate": 3948
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3058,
           "byte_offset": 0,
-          "token_estimate": 846
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 399,
           "byte_offset": 0,
-          "token_estimate": 121
+          "token_estimate": 101
         }
       }
     },
@@ -2117,7 +2117,7 @@
       "path": "Plan/131-manifest-coverage-lint/spec.md",
       "sha256": "22fe12f21b08d826e788fb3852d9327ffb8687897fd76b05b7b1faab557bee24",
       "size_bytes": 13881,
-      "summary": "Spec 131 \u2014 Code Mode Manifest Coverage Lint (drift detector) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 131 \u2014 Code Mode Manifest Coverage Lint (drift detector) - Spec 008's `lib/codemode/registry.py:classify()` raises `ValueError(\"unclassified tool: <name>\")` at boot when a tool is registered without a manifest entry \u2014 the loud-fail discipline is correct, but it fires only **after** a developer has shipped the new handler and tried to start the server. For Jules-fanned-out sessions that don't\u2026",
       "tags": [
         "spec:131",
         "slug:manifest-coverage-lint",
@@ -2132,14 +2132,14 @@
           "token_estimate": 3472
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3052,
           "byte_offset": 0,
-          "token_estimate": 834
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 96
         }
       }
     },
@@ -2150,7 +2150,7 @@
       "path": "Plan/132-skill-tool-hooks/spec.md",
       "sha256": "38b123b7d1a807d0c0b9bd42ce186c6a7f1181cfb09dc01509bb8963370a4aef",
       "size_bytes": 20335,
-      "summary": "Spec 132 \u2014 Skill-Tool Hooks (PreToolUse + PostToolUse on `Skill|Agent` matcher) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under\u2026",
+      "summary": "Spec 132 \u2014 Skill-Tool Hooks (PreToolUse + PostToolUse on `Skill|Agent` matcher) - The `agency-system` plugin will ship ~140 skills once Specs 005, 007, 015, 016 land. Today there is **no mechanical guard between a `Skill` tool invocation and the skill body actually existing on disk** \u2014 a typo in the slash command (`/agency-system:music-lyric-wrier`), a stale skill reference from another skill's\u2026",
       "tags": [
         "spec:132",
         "slug:skill-tool-hooks",
@@ -2165,14 +2165,14 @@
           "token_estimate": 5098
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3115,
           "byte_offset": 0,
-          "token_estimate": 817
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 124
+          "token_estimate": 103
         }
       }
     },
@@ -2183,7 +2183,7 @@
       "path": "Plan/133-skill-subagent-pressure-tests/spec.md",
       "sha256": "af6830a8ad5936672b719c52c621eb7da948ae680a1a705e1d8203472e28d03e",
       "size_bytes": 23682,
-      "summary": "Spec 133 \u2014 Skill Subagent-Pressure Test Framework - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source\u2026",
+      "summary": "Spec 133 \u2014 Skill Subagent-Pressure Test Framework - The plugin ships ~140 skills. Spec 015's `skill_qc_lint.py` validates **frontmatter shape** (10-item L1+L2 checklist). Spec 132's PreToolUse hook validates **runtime resolution** (slug \u2192 SKILL.md). Neither tool can answer the question that matters for **discipline-kind** and **orchestrator-kind** skills: *does the skill actually change agent\u2026",
       "tags": [
         "spec:133",
         "slug:skill-subagent-pressure-tests",
@@ -2198,14 +2198,14 @@
           "token_estimate": 5920
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3163,
           "byte_offset": 0,
-          "token_estimate": 812
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 98
         }
       }
     },
@@ -2216,7 +2216,7 @@
       "path": "Plan/134-plan-adr-convention/spec.md",
       "sha256": "c95a0fc72b83521e44edebc41901caede63fd6d99e75adafacd6c38d77f58d04",
       "size_bytes": 12914,
-      "summary": "Spec 134 \u2014 Plan-level ADR Convention (MADR-shaped Decision Records) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:`\u2026",
+      "summary": "Spec 134 \u2014 Plan-level ADR Convention (MADR-shaped Decision Records) - Three repo-wide decisions made during Wave A live nowhere binding: (a) \"default base branch is `Master`, not `main`\" (cited only as a `<!-- comment -->` in JULES_PROTOCOL.md \u00a78 step 4), (b) \"Plan/ uses zero-padded `NNN-slug/` folders, not flat files\" (only implicit in the existing tree), (c) \"lessons-learned files are advisory,\u2026",
       "tags": [
         "spec:134",
         "slug:plan-adr-convention",
@@ -2231,14 +2231,14 @@
           "token_estimate": 3480
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2998,
           "byte_offset": 0,
-          "token_estimate": 861
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 119
+          "token_estimate": 111
         }
       }
     },
@@ -2249,7 +2249,7 @@
       "path": "Plan/135-spec-test-anchor-traceability/spec.md",
       "sha256": "1b9f94ea5fe65bd6cf448277cff5f981f47565cad79b2280ec05fe4bcee7ad79",
       "size_bytes": 12895,
-      "summary": "Spec 135 \u2014 Spec \u2194 Test Anchor Traceability Lint - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos\u2026",
+      "summary": "Spec 135 \u2014 Spec \u2194 Test Anchor Traceability Lint - Every shipped spec carries Gherkin `Scenario:` blocks tagged with `# anchor: <spec_id>.<n>` (e.g. `# anchor: 099.1` through `# anchor: 099.5`). The anchors are intended as the bridge between a normative scenario and a concrete pytest case: a test for `099.3` is supposed to declare its bound anchor so a human or linter can prove every Done-When\u2026",
       "tags": [
         "spec:135",
         "slug:spec-test-anchor-traceability",
@@ -2264,14 +2264,14 @@
           "token_estimate": 3360
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3072,
           "byte_offset": 0,
-          "token_estimate": 830
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 106
         }
       }
     },
@@ -2282,7 +2282,7 @@
       "path": "Plan/136-agents-yaml-role-manifest/spec.md",
       "sha256": "45051cefeaba423b49b85cb85dc9d801cdc15098e85e6785cd12dadda82b287e",
       "size_bytes": 16888,
-      "summary": "Spec 136 \u2014 `agents.yaml` Role Manifest + Hand-off Registry - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 136 \u2014 `agents.yaml` Role Manifest + Hand-off Registry - `Plan/JULES_PROTOCOL.md` describes how *Jules* should behave but the repository already coordinates **four** distinct agent classes: **Jules** (async cloud worker, fan-out, \u22645 daily slots), **Codex** (PR-bot reviewer, asynchronous comment author), **Cursor / Continue** (interactive IDE-side MCP clients addressed by Spec 023), and\u2026",
       "tags": [
         "spec:136",
         "slug:agents-yaml-role-manifest",
@@ -2297,14 +2297,14 @@
           "token_estimate": 4291
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3131,
           "byte_offset": 0,
-          "token_estimate": 822
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 399,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 92
         }
       }
     },
@@ -2315,7 +2315,7 @@
       "path": "Plan/137-watcher-sdk-composability/spec.md",
       "sha256": "7731fedbfd8c305f8f70ad5ce7f32ea4d07ab0e804351a83b2c54f09d2fe20d9",
       "size_bytes": 18084,
-      "summary": "Spec 137 \u2014 Watcher SDK + Composable Polling - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos\u2026",
+      "summary": "Spec 137 \u2014 Watcher SDK + Composable Polling - `jules-plugin/skills/jules/references/combined_watcher.py` is the orchestrator's most-reused snippet (Lesson 09: \"the combined-poller watcher pattern works\") \u2014 it polls Jules sessions + GitHub PR comments in one ~100-line file, persists state across restarts to `/tmp/jules_combined_watcher_state.json`, and exits the moment a wake-event fires. But it\u2026",
       "tags": [
         "spec:137",
         "slug:watcher-sdk-composability",
@@ -2330,14 +2330,14 @@
           "token_estimate": 4633
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3100,
           "byte_offset": 0,
-          "token_estimate": 822
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 121
+          "token_estimate": 97
         }
       }
     },
@@ -2348,7 +2348,7 @@
       "path": "Plan/138-frustration-log-protocol/spec.md",
       "sha256": "f9c692dcc6914642d78ed2c9889f393a73d45165d54ec6aa03a382c1ac88fb37",
       "size_bytes": 12989,
-      "summary": "Spec 138 \u2014 Mandatory Per-PR Frustration-Log Protocol (FL0\u2013FL3) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below.\u2026",
+      "summary": "Spec 138 \u2014 Mandatory Per-PR Frustration-Log Protocol (FL0\u2013FL3) - `netzkontrast/agency` enforces a discipline that `the-agency-system` does not: **every session, including the ones that went perfectly, ends with a structured Frustration-Level declaration (`FL0` \u2013 `FL3`)**. The Agency spec lives in [`FRUSTRATED.md`](../../../home/user/agency/FRUSTRATED.md) (~8 KB) and is mechanically validated by\u2026",
       "tags": [
         "spec:138",
         "slug:frustration-log-protocol",
@@ -2363,14 +2363,14 @@
           "token_estimate": 3350
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3256,
           "byte_offset": 0,
-          "token_estimate": 787
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 125
+          "token_estimate": 110
         }
       }
     },
@@ -2381,7 +2381,7 @@
       "path": "Plan/139-evidence-snapshot-helper/spec.md",
       "sha256": "ff873412eaa908d58ca3fb337d79a05b280931e18ccb8c6f84a59220db3cdf12",
       "size_bytes": 14718,
-      "summary": "Spec 139 \u2014 Clean-Install Evidence-Snapshot Helper for Gate 3 - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "summary": "Spec 139 \u2014 Clean-Install Evidence-Snapshot Helper for Gate 3 - JULES_PROTOCOL Gate 3 requires every `[x]` ticked in a spec's `Done When:` list to be backed by an artefact pasted into the PR body's `## Evidence` block. Today the artefact-capture step is **manual**: Jules runs `pytest`, eyeballs the last twenty lines, and pastes them by hand. Two failure modes have already burned PRs:",
       "tags": [
         "spec:139",
         "slug:evidence-snapshot-helper",
@@ -2396,14 +2396,14 @@
           "token_estimate": 3720
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3096,
           "byte_offset": 0,
-          "token_estimate": 822
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 387,
           "byte_offset": 0,
-          "token_estimate": 120
+          "token_estimate": 100
         }
       }
     },
@@ -2433,9 +2433,9 @@
           "token_estimate": 468
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 401,
           "byte_offset": 0,
-          "token_estimate": 102
+          "token_estimate": 103
         }
       }
     },
@@ -2721,9 +2721,9 @@
           "token_estimate": 537
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 401,
           "byte_offset": 0,
-          "token_estimate": 106
+          "token_estimate": 107
         }
       }
     },
@@ -2748,7 +2748,7 @@
           "token_estimate": 852
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3202,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -2812,9 +2812,9 @@
           "token_estimate": 976
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3156,
           "byte_offset": 0,
-          "token_estimate": 809
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 271,
@@ -2844,9 +2844,9 @@
           "token_estimate": 1455
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3009,
           "byte_offset": 0,
-          "token_estimate": 849
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 302,
@@ -2876,9 +2876,9 @@
           "token_estimate": 2211
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3038,
           "byte_offset": 0,
-          "token_estimate": 839
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 311,
@@ -2937,9 +2937,9 @@
           "token_estimate": 3175
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3171,
           "byte_offset": 0,
-          "token_estimate": 812
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 303,
@@ -2967,72 +2967,14 @@
           "token_estimate": 3302
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3131,
           "byte_offset": 0,
-          "token_estimate": 818
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 269,
           "byte_offset": 0,
           "token_estimate": 61
-        }
-      }
-    },
-    {
-      "id": "plan:_research-briefs:fanout",
-      "last_modified": "2026-05-18T16:55:33.259010Z",
-      "mime": "application/json",
-      "path": "Plan/_research-briefs/fanout.json",
-      "sha256": "e47113a16a4e5688d677f6594105464d8c2e2cd707c070d9da9d7007773f40b9",
-      "size_bytes": 25128,
-      "summary": "fanout.json - [\n  {\n    \"alias\": \"research-122-ontology\",\n    \"title\": \"Research: Centralized Ontology for Plugin Domains (Brief 1)\",\n    \"branch\": \"Master\",\n    \"prompt\": \"---\\ntype: research-brief\\nstatus: dispat",
-      "tags": [
-        "topic:research-discipline"
-      ],
-      "title": "fanout.json",
-      "views": {
-        "full": {
-          "byte_length": 25128,
-          "byte_offset": 0,
-          "token_estimate": 6854
-        },
-        "preview": {
-          "byte_length": 3200,
-          "byte_offset": 0,
-          "token_estimate": 833
-        },
-        "summary": {
-          "byte_length": 214,
-          "byte_offset": 0,
-          "token_estimate": 62
-        }
-      }
-    },
-    {
-      "id": "plan:_research-briefs:fanout-results",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
-      "mime": "application/json",
-      "path": "Plan/_research-briefs/fanout-results.json",
-      "sha256": "98e6c736b82dc294d908659567aabe17924dcbc0fd4192e85af962f6b54cbb2e",
-      "size_bytes": 504,
-      "summary": "fanout-results.json - [\n  {\n    \"alias\": \"research-122-ontology\",\n    \"session_id\": \"13927980186995922904\",\n    \"state\": \"?\",\n    \"url\": \"https://jules.google.com/session/13927980186995922904\",\n    \"title\": \"Research: Cent",
-      "tags": [],
-      "title": "fanout-results.json",
-      "views": {
-        "full": {
-          "byte_length": 504,
-          "byte_offset": 0,
-          "token_estimate": 154
-        },
-        "preview": {
-          "byte_length": 504,
-          "byte_offset": 0,
-          "token_estimate": 154
-        },
-        "summary": {
-          "byte_length": 222,
-          "byte_offset": 0,
-          "token_estimate": 68
         }
       }
     },
@@ -3053,9 +2995,9 @@
           "token_estimate": 830
         },
         "preview": {
-          "byte_length": 3065,
+          "byte_length": 2966,
           "byte_offset": 0,
-          "token_estimate": 830
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 356,
@@ -3086,9 +3028,9 @@
           "token_estimate": 1558
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3015,
           "byte_offset": 0,
-          "token_estimate": 840
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 377,
@@ -3114,9 +3056,9 @@
           "token_estimate": 9727
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3230,
           "byte_offset": 0,
-          "token_estimate": 789
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 292,
@@ -3147,14 +3089,14 @@
           "token_estimate": 1186
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3309,
           "byte_offset": 0,
-          "token_estimate": 777
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 86
+          "token_estimate": 87
         }
       }
     },
@@ -3175,14 +3117,14 @@
           "token_estimate": 14788
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3314,
           "byte_offset": 0,
-          "token_estimate": 771
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 401,
           "byte_offset": 0,
-          "token_estimate": 79
+          "token_estimate": 80
         }
       }
     },
@@ -3193,7 +3135,7 @@
       "path": "Plan/_research/graphqlite-codemode/draft-spec.md",
       "sha256": "84f257392d38e6f49cc92e18401f5c87633e588fc8fafa4e478eea72af19e152",
       "size_bytes": 9433,
-      "summary": "Spec 124 \u2014 GraphQLite Code Mode Integration - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/document-context-mode-specs-qX8h7`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are\u2026",
+      "summary": "Spec 124 \u2014 GraphQLite Code Mode Integration - The plugin's unified ontology (Brief 1 / Spec 122) structures the relationships across music, novel, jules, and agentic domains. However, Path B (Specs 111-113) only provides a flat, BM25-searchable text manifest. To unlock the value of the ontology graph, we need a query mechanism. By integrating `colliery-io/graphqlite` as an SQLite loadable\u2026",
       "tags": [
         "spec:124",
         "slug:graphqlite-codemode",
@@ -3208,14 +3150,14 @@
           "token_estimate": 2424
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3046,
           "byte_offset": 0,
-          "token_estimate": 838
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 395,
+          "byte_length": 396,
           "byte_offset": 0,
-          "token_estimate": 117
+          "token_estimate": 95
         }
       }
     },
@@ -3236,9 +3178,9 @@
           "token_estimate": 16911
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3529,
           "byte_offset": 0,
-          "token_estimate": 727
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 304,
@@ -3254,7 +3196,7 @@
       "path": "Plan/_session-state/2026-05-18-jules-research-1-context-engineering.md",
       "sha256": "3aa1563a5c791c02b9c7cbf7aa7621c9ced794ff3726ceacc7d2c97733d0f2d5",
       "size_bytes": 5639,
-      "summary": "2026-05-18-jules-research-1-context-engineering.md - The highest-leverage pattern discovered is the **PM Agent Confidence Check** from the SuperClaude Framework, which yields a 25-250x token ROI by enforcing a pre-execution requirement check. While hybrid search and subagent workflows offer value, shifting confidence validation to the start of the orchestration pipeline prevents compounding\u2026",
+      "summary": "2026-05-18-jules-research-1-context-engineering.md",
       "tags": [],
       "title": "2026-05-18-jules-research-1-context-engineering.md",
       "views": {
@@ -3264,14 +3206,14 @@
           "token_estimate": 1319
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3275,
           "byte_offset": 0,
-          "token_estimate": 787
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 396,
+          "byte_length": 50,
           "byte_offset": 0,
-          "token_estimate": 82
+          "token_estimate": 16
         }
       }
     },
@@ -3292,9 +3234,9 @@
           "token_estimate": 1606
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3476,
           "byte_offset": 0,
-          "token_estimate": 732
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 396,
@@ -3310,7 +3252,7 @@
       "path": "Plan/_session-state/2026-05-18-jules-research-3-spec-driven-dev.md",
       "sha256": "3776a977623c10e1fed5a34827511dcf3ce4bdf2ad6e5b3deb0e8a10a8017055",
       "size_bytes": 6302,
-      "summary": "2026-05-18-jules-research-3-spec-driven-dev.md - The highest-leverage spec-driven-development gap for the Jules plugin is the lack of a structured, multi-phase planning ladder that precedes code execution, and an explicit mechanism to update tasks as code naturally drifts. While `JULES_PROTOCOL.md` and Spec 099 enforce pre-commit checks and token discipline, they omit the rigorous pre-code\u2026",
+      "summary": "2026-05-18-jules-research-3-spec-driven-dev.md",
       "tags": [],
       "title": "2026-05-18-jules-research-3-spec-driven-dev.md",
       "views": {
@@ -3320,14 +3262,14 @@
           "token_estimate": 1466
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3401,
           "byte_offset": 0,
-          "token_estimate": 753
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 395,
+          "byte_length": 46,
           "byte_offset": 0,
-          "token_estimate": 87
+          "token_estimate": 16
         }
       }
     },
@@ -3338,7 +3280,7 @@
       "path": "Plan/_session-state/2026-05-18-jules-research-4-large-context-ingestion.md",
       "sha256": "23142233cfb3cb25e255bf1193b36ca346617d3b5cb7b0de71074feb61a3e4a2",
       "size_bytes": 6430,
-      "summary": "2026-05-18-jules-research-4-large-context-ingestion.md - The highest-leverage pattern for handling large contexts in the agency-system is **Ephemeral Subagent Distillation** (as seen in Spec 106 and superpowers). Instead of streaming massive payloads (e.g., 50KB GitHub PRs or deep codebase reads) into the orchestrator\u2019s main context window, a subagent is dispatched into an isolated environment\u2026",
+      "summary": "2026-05-18-jules-research-4-large-context-ingestion.md",
       "tags": [],
       "title": "2026-05-18-jules-research-4-large-context-ingestion.md",
       "views": {
@@ -3348,14 +3290,14 @@
           "token_estimate": 1597
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3019,
           "byte_offset": 0,
-          "token_estimate": 844
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 54,
           "byte_offset": 0,
-          "token_estimate": 91
+          "token_estimate": 17
         }
       }
     },
@@ -3366,7 +3308,7 @@
       "path": "Plan/_session-state/2026-05-18-jules-research-5-pipeline-and-plugin.md",
       "sha256": "c33bc24b5075196a5329c38ee8f74621ccdddf22da0d4173d705bcb8362be635",
       "size_bytes": 5762,
-      "summary": "2026-05-18-jules-research-5-pipeline-and-plugin.md - The next major architectural wave for the agency-system plugin must unify context discovery, token conservation, and agent orchestration under a single \"progressive disclosure\" paradigm. Currently, token sinks (like massive GitHub PR reads or eager file loads) and context blindness (lacking a global manifest) force the LLM to choose between\u2026",
+      "summary": "2026-05-18-jules-research-5-pipeline-and-plugin.md",
       "tags": [],
       "title": "2026-05-18-jules-research-5-pipeline-and-plugin.md",
       "views": {
@@ -3376,14 +3318,14 @@
           "token_estimate": 1332
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3381,
           "byte_offset": 0,
-          "token_estimate": 758
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 398,
+          "byte_length": 50,
           "byte_offset": 0,
-          "token_estimate": 83
+          "token_estimate": 17
         }
       }
     },
@@ -3404,9 +3346,9 @@
           "token_estimate": 1732
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3046,
           "byte_offset": 0,
-          "token_estimate": 840
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 362,
@@ -3432,9 +3374,9 @@
           "token_estimate": 2201
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2763,
           "byte_offset": 0,
-          "token_estimate": 909
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 156,
@@ -3462,12 +3404,12 @@
           "token_estimate": 1932
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2835,
           "byte_offset": 0,
-          "token_estimate": 888
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 401,
           "byte_offset": 0,
           "token_estimate": 120
         }
@@ -3490,9 +3432,9 @@
           "token_estimate": 2167
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2711,
           "byte_offset": 0,
-          "token_estimate": 948
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 237,
@@ -3518,14 +3460,14 @@
           "token_estimate": 1979
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2820,
           "byte_offset": 0,
-          "token_estimate": 908
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 106
+          "token_estimate": 107
         }
       }
     },
@@ -3546,14 +3488,14 @@
           "token_estimate": 2685
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3202,
           "byte_offset": 0,
           "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 89
+          "token_estimate": 90
         }
       }
     },
@@ -3574,9 +3516,9 @@
           "token_estimate": 1779
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3051,
           "byte_offset": 0,
-          "token_estimate": 840
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 400,
@@ -3602,9 +3544,9 @@
           "token_estimate": 7830
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2880,
           "byte_offset": 0,
-          "token_estimate": 896
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 365,
@@ -3630,9 +3572,9 @@
           "token_estimate": 969
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2834,
           "byte_offset": 0,
-          "token_estimate": 903
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 191,
@@ -3658,9 +3600,9 @@
           "token_estimate": 3677
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2819,
           "byte_offset": 0,
-          "token_estimate": 898
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 179,
@@ -3686,9 +3628,9 @@
           "token_estimate": 3418
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3105,
           "byte_offset": 0,
-          "token_estimate": 819
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 183,
@@ -3714,9 +3656,9 @@
           "token_estimate": 904
         },
         "preview": {
-          "byte_length": 2919,
+          "byte_length": 2630,
           "byte_offset": 0,
-          "token_estimate": 904
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 222,
@@ -3744,14 +3686,14 @@
           "token_estimate": 7236
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 4566,
           "byte_offset": 0,
-          "token_estimate": 576
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 72
+          "token_estimate": 74
         }
       }
     },
@@ -3772,9 +3714,9 @@
           "token_estimate": 37921
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2962,
           "byte_offset": 0,
-          "token_estimate": 865
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 216,
@@ -3784,7 +3726,7 @@
       }
     },
     {
-      "id": "reference:novel:dramatica:ontology.schema",
+      "id": "reference:novel:dramatica:ontology-schema",
       "last_modified": "2026-05-18T16:55:33.351010Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/ontology.schema.json",
@@ -3800,9 +3742,9 @@
           "token_estimate": 1898
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3019,
           "byte_offset": 0,
-          "token_estimate": 844
+          "token_estimate": 800
         },
         "summary": {
           "byte_length": 327,
@@ -3840,7 +3782,7 @@
       }
     },
     {
-      "id": "reference:novel:dramatica:scenarios.schema",
+      "id": "reference:novel:dramatica:scenarios-schema",
       "last_modified": "2026-05-18T16:55:33.355011Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/scenarios.schema.json",
@@ -3868,7 +3810,7 @@
       }
     },
     {
-      "id": "reference:novel:dramatica:term-frontmatter.schema",
+      "id": "reference:novel:dramatica:term-frontmatter-schema",
       "last_modified": "2026-05-18T16:55:33.355011Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/term-frontmatter.schema.json",
@@ -3884,14 +3826,14 @@
           "token_estimate": 1125
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2525,
           "byte_offset": 0,
-          "token_estimate": 1011
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 400,
+          "byte_length": 402,
           "byte_offset": 0,
-          "token_estimate": 87
+          "token_estimate": 88
         }
       }
     },
@@ -3902,7 +3844,7 @@
       "path": "reference/novel/dramatica/terms/archetypes.md",
       "sha256": "fe312f36b42cfb1b7e7df270ffc44f865646060d843139e124429f30fb40995e",
       "size_bytes": 13293,
-      "summary": "Archetype (8) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/archetypes.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Archetype (8) - The eight quintessential character arrangements. Each Archetype carries a fixed motivation Element pair.",
       "tags": [],
       "title": "Archetype (8)",
       "views": {
@@ -3912,14 +3854,14 @@
           "token_estimate": 3214
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2998,
           "byte_offset": 0,
-          "token_estimate": 845
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 147,
+          "byte_length": 120,
           "byte_offset": 0,
-          "token_estimate": 46
+          "token_estimate": 23
         }
       }
     },
@@ -3930,7 +3872,7 @@
       "path": "reference/novel/dramatica/terms/character-appreciations.md",
       "sha256": "5570ff78c057262c70b225e09a5140878f5068d7ef68d20739f5b5d64d02817c",
       "size_bytes": 2006,
-      "summary": "Character Appreciation (2) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/character-appreciations.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Character Appreciation (2) - Higher-order character categories used during analysis.",
       "tags": [],
       "title": "Character Appreciation (2)",
       "views": {
@@ -3945,9 +3887,9 @@
           "token_estimate": 439
         },
         "summary": {
-          "byte_length": 173,
+          "byte_length": 84,
           "byte_offset": 0,
-          "token_estimate": 50
+          "token_estimate": 15
         }
       }
     },
@@ -3958,7 +3900,7 @@
       "path": "reference/novel/dramatica/terms/character-dynamics.md",
       "sha256": "7b8eafa351407869e0d64fc1f9bf416f8b3419c6fa4563efcfb14dd68d9e698e",
       "size_bytes": 17144,
-      "summary": "Character Dynamic (11) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/character-dynamics.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Character Dynamic (11) - Four-axis configuration of the Main Character \u2014 Resolve, Growth, Approach, Mental Sex.",
       "tags": [],
       "title": "Character Dynamic (11)",
       "views": {
@@ -3968,14 +3910,14 @@
           "token_estimate": 3828
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3358,
           "byte_offset": 0,
-          "token_estimate": 766
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 164,
+          "byte_length": 113,
           "byte_offset": 0,
-          "token_estimate": 48
+          "token_estimate": 23
         }
       }
     },
@@ -3986,7 +3928,7 @@
       "path": "reference/novel/dramatica/terms/classes.md",
       "sha256": "91270096cf3431a8152e547aa3b32f72ffe9eb4e14b4dff95f15737d8c47a24d",
       "size_bytes": 2350,
-      "summary": "Class (3) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/classes.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Class (3) - The four broadest territories a story can explore. Each Throughline lives in exactly one Class.",
       "tags": [],
       "title": "Class (3)",
       "views": {
@@ -4001,9 +3943,9 @@
           "token_estimate": 574
         },
         "summary": {
-          "byte_length": 140,
+          "byte_length": 107,
           "byte_offset": 0,
-          "token_estimate": 44
+          "token_estimate": 24
         }
       }
     },
@@ -4014,7 +3956,7 @@
       "path": "reference/novel/dramatica/terms/domains.md",
       "sha256": "0f3261cb5ebd59a800ab235e4fcf18f09af84078230cf3cfbeaec3a1cb15e992",
       "size_bytes": 6480,
-      "summary": "Domain (2) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/domains.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Domain (2) - Throughline domains \u2014 the four perspective lenses through which a story argues its meaning.",
       "tags": [],
       "title": "Domain (2)",
       "views": {
@@ -4024,14 +3966,14 @@
           "token_estimate": 1421
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3863,
           "byte_offset": 0,
-          "token_estimate": 663
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 141,
+          "byte_length": 106,
           "byte_offset": 0,
-          "token_estimate": 45
+          "token_estimate": 21
         }
       }
     },
@@ -4042,7 +3984,7 @@
       "path": "reference/novel/dramatica/terms/dramatica-definitions.md",
       "sha256": "e8ee08884c5724a1b08fa7b3fbb7a2bd12be3fd16457432cdb67ff53cd954d53",
       "size_bytes": 2010,
-      "summary": "Dramatica Definition (3) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dramatica-definitions.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Dramatica Definition (3) - Core definitions of the Dramatica framework itself.",
       "tags": [],
       "title": "Dramatica Definition (3)",
       "views": {
@@ -4057,9 +3999,9 @@
           "token_estimate": 452
         },
         "summary": {
-          "byte_length": 169,
+          "byte_length": 78,
           "byte_offset": 0,
-          "token_estimate": 51
+          "token_estimate": 17
         }
       }
     },
@@ -4070,7 +4012,7 @@
       "path": "reference/novel/dramatica/terms/dramatica-fundamentals.md",
       "sha256": "197ffdbd4013220b88b418be21e48b9592cc315df3715dd112bf311f5f2991a1",
       "size_bytes": 10648,
-      "summary": "Dramatica Fundamentals \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dramatica-fundamentals.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Dramatica Fundamentals \u2014 Extended Content - > **\u26a0 EXTENSION NOTE \u2014 Read first.** > > This file fills gaps left by the source-PDF extraction (Dramatica Dictionary \u00a9 Screenplay Systems Inc. 2001) and the resulting per-term reference files. Concepts here that are absent from the term files (`Universe` and `Mind` as Class entries; substantive `Resolve`, `Steadfast`, `Change-as-Resolve-value`,\u2026",
       "tags": [],
       "title": "Dramatica Fundamentals \u2014 Extended Content",
       "views": {
@@ -4080,14 +4022,14 @@
           "token_estimate": 2361
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3506,
           "byte_offset": 0,
-          "token_estimate": 739
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 189,
+          "byte_length": 401,
           "byte_offset": 0,
-          "token_estimate": 53
+          "token_estimate": 96
         }
       }
     },
@@ -4098,7 +4040,7 @@
       "path": "reference/novel/dramatica/terms/dramatica-terms.md",
       "sha256": "f68f83ce970a60dbb7e969e906fab9cd7b576f46eff167923556421ef28cdada",
       "size_bytes": 8625,
-      "summary": "Dramatica Term (5) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dramatica-terms.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Dramatica Term (5) - Foundational terms used throughout the theory.",
       "tags": [],
       "title": "Dramatica Term (5)",
       "views": {
@@ -4108,14 +4050,14 @@
           "token_estimate": 1932
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3519,
           "byte_offset": 0,
-          "token_estimate": 731
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 157,
+          "byte_length": 67,
           "byte_offset": 0,
-          "token_estimate": 51
+          "token_estimate": 16
         }
       }
     },
@@ -4126,7 +4068,7 @@
       "path": "reference/novel/dramatica/terms/dynamic-pairs-index.md",
       "sha256": "9d3e863dde607e76ac491929e5c53b17eb325c8e9c598c235b8605e4554e67bb",
       "size_bytes": 2874,
-      "summary": "Index by Dynamic Pair - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dynamic-pairs-index.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Index by Dynamic Pair - Dramatica builds meaning through reciprocal pairs: each term implies its opposite. Knowing one half points to the other. Below: 75 unique pairs extracted from the term files.",
       "tags": [],
       "title": "Index by Dynamic Pair",
       "views": {
@@ -4136,14 +4078,14 @@
           "token_estimate": 827
         },
         "preview": {
-          "byte_length": 2874,
+          "byte_length": 2784,
           "byte_offset": 0,
-          "token_estimate": 827
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 164,
+          "byte_length": 198,
           "byte_offset": 0,
-          "token_estimate": 48
+          "token_estimate": 39
         }
       }
     },
@@ -4154,7 +4096,7 @@
       "path": "reference/novel/dramatica/terms/dynamic-terms.md",
       "sha256": "9aa8d8e5dc184ebc8348fc5c0ebad95df817af7581166216959a56237f2ada79",
       "size_bytes": 2412,
-      "summary": "Dynamic Term (6) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dynamic-terms.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Dynamic Term (6) - Theory-internal terms describing how Dramatica's structure works.",
       "tags": [],
       "title": "Dynamic Term (6)",
       "views": {
@@ -4169,9 +4111,9 @@
           "token_estimate": 574
         },
         "summary": {
-          "byte_length": 153,
+          "byte_length": 84,
           "byte_offset": 0,
-          "token_estimate": 48
+          "token_estimate": 18
         }
       }
     },
@@ -4182,7 +4124,7 @@
       "path": "reference/novel/dramatica/terms/element-quads.md",
       "sha256": "a74824616dcb7df9b896807cf7b7925bac019026347afb94701aa00645f36c6e",
       "size_bytes": 9102,
-      "summary": "Element Quads \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/element-quads.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Element Quads \u2014 Extended Content - > **\u26a0 EXTENSION NOTE.** Quads are the structural unit Dramatica is built on, but the source term files don't list them \u2014 they describe the concept of a Quad and they describe individual Elements, but no file lists the 16 actual Element-Quads. This file fills that gap from Dramatica's published documentation (storymind.com Element charts) and Claude's training\u2026",
       "tags": [],
       "title": "Element Quads \u2014 Extended Content",
       "views": {
@@ -4192,14 +4134,14 @@
           "token_estimate": 2392
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3311,
           "byte_offset": 0,
-          "token_estimate": 770
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 171,
+          "byte_length": 405,
           "byte_offset": 0,
-          "token_estimate": 49
+          "token_estimate": 88
         }
       }
     },
@@ -4210,7 +4152,7 @@
       "path": "reference/novel/dramatica/terms/elements.md",
       "sha256": "715545b3560e997ad8552a6d55980a8edf96989598c4ba5a1eca725cd2433cbf",
       "size_bytes": 94865,
-      "summary": "Element (70) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/elements.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Element (70) - The 64 highest-resolution descriptions of approaches and attitudes \u2014 the atomic level of Dramatica. Characters are built from Element quads.",
       "tags": [],
       "title": "Element (70)",
       "views": {
@@ -4220,14 +4162,14 @@
           "token_estimate": 22756
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2833,
           "byte_offset": 0,
-          "token_estimate": 899
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 144,
+          "byte_length": 157,
           "byte_offset": 0,
-          "token_estimate": 45
+          "token_estimate": 31
         }
       }
     },
@@ -4238,7 +4180,7 @@
       "path": "reference/novel/dramatica/terms/encoding-patterns.md",
       "sha256": "ffd173b8f0ea7f325edb0284d537caecb89796cca5fe0aa5ec880bcd66378527",
       "size_bytes": 10958,
-      "summary": "Encoding Patterns \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/encoding-patterns.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Encoding Patterns \u2014 Extended Content - > **\u26a0 EXTENSION NOTE.** This file is encoding pedagogy: how the abstract storyform translates into concrete story moments. The original term files contain *definitions* but no patterns or worked examples. Examples here are reconstructed from publicly available Dramatica analyses (e.g., narrativefirst.com Casablanca/Star Wars analyses) and Claude's training\u2026",
       "tags": [],
       "title": "Encoding Patterns \u2014 Extended Content",
       "views": {
@@ -4248,14 +4190,14 @@
           "token_estimate": 2500
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3530,
           "byte_offset": 0,
-          "token_estimate": 721
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 179,
+          "byte_length": 404,
           "byte_offset": 0,
-          "token_estimate": 48
+          "token_estimate": 81
         }
       }
     },
@@ -4266,7 +4208,7 @@
       "path": "reference/novel/dramatica/terms/essential-questions.md",
       "sha256": "cbc8bf55f82ab12d29feb601e45d6603a9c592dce1a37c723b7bf9db2d69eb28",
       "size_bytes": 9294,
-      "summary": "Essential Questions \u2014 Storyform Workflow - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/essential-questions.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Essential Questions \u2014 Storyform Workflow - > **\u26a0 EXTENSION NOTE.** The \"Essential Questions\" framing is from Phillips & Huntley's published Dramatica documentation; the specific list and ordering presented here is a synthesis of public sources (storymind.com, *Dramatica: A New Theory of Story*) and Claude's training knowledge. Different sources present slightly different orderings; this one is\u2026",
       "tags": [],
       "title": "Essential Questions \u2014 Storyform Workflow",
       "views": {
@@ -4276,14 +4218,14 @@
           "token_estimate": 2183
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3440,
           "byte_offset": 0,
-          "token_estimate": 751
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 185,
+          "byte_length": 403,
           "byte_offset": 0,
-          "token_estimate": 50
+          "token_estimate": 84
         }
       }
     },
@@ -4294,7 +4236,7 @@
       "path": "reference/novel/dramatica/terms/main-vs-impact-character.md",
       "sha256": "b46149e5357e2b4e3301fddf2c7e5fcb3ec5769856af79c17a653825e7f6d985",
       "size_bytes": 2307,
-      "summary": "Main vs. Impact Throughline Character (1) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/main-vs-impact-character.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Main vs. Impact Throughline Character (1) - Specific to the MC\u2194IC throughline relationship.",
       "tags": [],
       "title": "Main vs. Impact Throughline Character (1)",
       "views": {
@@ -4309,9 +4251,9 @@
           "token_estimate": 533
         },
         "summary": {
-          "byte_length": 189,
+          "byte_length": 93,
           "byte_offset": 0,
-          "token_estimate": 54
+          "token_estimate": 22
         }
       }
     },
@@ -4322,7 +4264,7 @@
       "path": "reference/novel/dramatica/terms/overview-appreciations.md",
       "sha256": "7f83f0c8a5c52629e2a567b86edd7b980e8e332f3febaee4593ae2e35b45e19c",
       "size_bytes": 20381,
-      "summary": "Overview Appreciation (17) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/overview-appreciations.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Overview Appreciation (17) - Story-wide structural appreciations \u2014 the things you can say about a story as a whole.",
       "tags": [],
       "title": "Overview Appreciation (17)",
       "views": {
@@ -4332,14 +4274,14 @@
           "token_estimate": 4593
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3227,
           "byte_offset": 0,
-          "token_estimate": 794
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 172,
+          "byte_length": 117,
           "byte_offset": 0,
-          "token_estimate": 50
+          "token_estimate": 25
         }
       }
     },
@@ -4350,7 +4292,7 @@
       "path": "reference/novel/dramatica/terms/plot-dynamics.md",
       "sha256": "4bb4b12979f899e372c72007c992545d2b20cadd3f6a234c31a56e5bad58feb6",
       "size_bytes": 18835,
-      "summary": "Plot Dynamic (12) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/plot-dynamics.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Plot Dynamic (12) - Story-level dynamics: Driver, Limit, Outcome, Judgment. These set the shape of the dramatic argument.",
       "tags": [],
       "title": "Plot Dynamic (12)",
       "views": {
@@ -4360,14 +4302,14 @@
           "token_estimate": 4302
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3319,
           "byte_offset": 0,
-          "token_estimate": 780
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 154,
+          "byte_length": 121,
           "byte_offset": 0,
-          "token_estimate": 48
+          "token_estimate": 27
         }
       }
     },
@@ -4378,7 +4320,7 @@
       "path": "reference/novel/dramatica/terms/plot-structures.md",
       "sha256": "4c2e9299f33ce51cc8fc86b601520cd9425c48ffb859b3dcd5a5ee99fb8c5348",
       "size_bytes": 1179,
-      "summary": "Plot Structure (2) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/plot-structures.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Plot Structure (2) - Plot-level structural patterns.",
       "tags": [],
       "title": "Plot Structure (2)",
       "views": {
@@ -4393,9 +4335,9 @@
           "token_estimate": 281
         },
         "summary": {
-          "byte_length": 157,
+          "byte_length": 52,
           "byte_offset": 0,
-          "token_estimate": 48
+          "token_estimate": 11
         }
       }
     },
@@ -4406,7 +4348,7 @@
       "path": "reference/novel/dramatica/terms/storyform-mechanics.md",
       "sha256": "d5974e9656021dbf111ba80696bd69ae73aefeead359f5f3bdf5c7b58bf3f9ba",
       "size_bytes": 9287,
-      "summary": "Storyform Mechanics \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/storyform-mechanics.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Storyform Mechanics \u2014 Extended Content - > **\u26a0 EXTENSION NOTE.** This file documents the *rules* by which a Dramatica storyform is built \u2014 rules that govern which choices are compatible with which others. The original term files describe the *parts* but not how they fit together. This is reconstructed from public Dramatica documentation (storymind.com, dramaticapedia.com, narrativefirst.com) and\u2026",
       "tags": [],
       "title": "Storyform Mechanics \u2014 Extended Content",
       "views": {
@@ -4416,14 +4358,14 @@
           "token_estimate": 2009
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3702,
           "byte_offset": 0,
-          "token_estimate": 700
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 183,
+          "byte_length": 407,
           "byte_offset": 0,
-          "token_estimate": 51
+          "token_estimate": 85
         }
       }
     },
@@ -4434,7 +4376,7 @@
       "path": "reference/novel/dramatica/terms/storytelling.md",
       "sha256": "6990a215028daf7f78d988dfbfca8438f1da6ce8c31b2e0e82accc46920c499d",
       "size_bytes": 8261,
-      "summary": "Storytelling (5) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/storytelling.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Storytelling (5) - Terms for the layer above storyform \u2014 how the form is presented.",
       "tags": [],
       "title": "Storytelling (5)",
       "views": {
@@ -4444,14 +4386,14 @@
           "token_estimate": 1804
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3544,
           "byte_offset": 0,
-          "token_estimate": 725
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 152,
+          "byte_length": 85,
           "byte_offset": 0,
-          "token_estimate": 48
+          "token_estimate": 21
         }
       }
     },
@@ -4462,7 +4404,7 @@
       "path": "reference/novel/dramatica/terms/structural-terms.md",
       "sha256": "dfc27ebdcb08b5cfebde1a5b815cd5d7a36130a57451f7d39b8ea0758828afb3",
       "size_bytes": 14972,
-      "summary": "Structural Term (15) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/structural-terms.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Structural Term (15) - Dramatica's structural vocabulary: Acts, Signposts, Journeys, the components of story progression.",
       "tags": [],
       "title": "Structural Term (15)",
       "views": {
@@ -4472,14 +4414,14 @@
           "token_estimate": 3487
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3174,
           "byte_offset": 0,
-          "token_estimate": 807
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 160,
+          "byte_length": 121,
           "byte_offset": 0,
-          "token_estimate": 49
+          "token_estimate": 28
         }
       }
     },
@@ -4490,7 +4432,7 @@
       "path": "reference/novel/dramatica/terms/types.md",
       "sha256": "4ea48363436ea0bd3d533a64e0c80fa83fe87ddf4251f7b55209609ac588a363",
       "size_bytes": 38674,
-      "summary": "Type (40) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/types.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Type (40) - The 16 Types are the second-resolution layer beneath Class. Each Class contains four Types; the Throughline's Acts traverse them in sequence.",
       "tags": [],
       "title": "Type (40)",
       "views": {
@@ -4500,14 +4442,14 @@
           "token_estimate": 9089
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3164,
           "byte_offset": 0,
-          "token_estimate": 810
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 138,
+          "byte_length": 153,
           "byte_offset": 0,
-          "token_estimate": 44
+          "token_estimate": 33
         }
       }
     },
@@ -4518,7 +4460,7 @@
       "path": "reference/novel/dramatica/terms/variations.md",
       "sha256": "0b5e7a2500cfa3fa2c0050b327776d7d17981905215a9997bc351d76218bfb2f",
       "size_bytes": 86696,
-      "summary": "Variation (63) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/variations.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "Variation (63) - Variations are the third-resolution layer (16 per Class, 64 total). Concerns and Issues live here.",
       "tags": [],
       "title": "Variation (63)",
       "views": {
@@ -4528,19 +4470,19 @@
           "token_estimate": 20626
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 2788,
           "byte_offset": 0,
-          "token_estimate": 926
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 148,
+          "byte_length": 115,
           "byte_offset": 0,
-          "token_estimate": 46
+          "token_estimate": 29
         }
       }
     },
     {
-      "id": "reference:novel:dramatica:theory-chunk.schema",
+      "id": "reference:novel:dramatica:theory-chunk-schema",
       "last_modified": "2026-05-18T16:55:33.363010Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/theory-chunk.schema.json",
@@ -4568,13 +4510,13 @@
       }
     },
     {
-      "id": "reference:novel:ncp:ncp-spec-v1.3.0",
+      "id": "reference:novel:ncp:ncp-spec-v1-3-0",
       "last_modified": "2026-05-18T16:55:33.367010Z",
       "mime": "text/markdown",
       "path": "reference/novel/ncp/ncp-spec-v1.3.0.md",
       "sha256": "42d7ef3e04f565ea530bcea33b04a521fcd4abadfdc56166efd05a937e68a3fc",
       "size_bytes": 30099,
-      "summary": "SPECIFICATION - <!-- Vendored from agency repo: skills/ncp-author/upstream/SPECIFICATION.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "summary": "SPECIFICATION - The NCP schema supports an optional pre-narrative ideation layer alongside two complementary narrative layers\u2014**Subtext** and **Storytelling**:",
       "tags": [],
       "title": "SPECIFICATION",
       "views": {
@@ -4584,14 +4526,14 @@
           "token_estimate": 6118
         },
         "preview": {
-          "byte_length": 3200,
+          "byte_length": 3404,
           "byte_offset": 0,
-          "token_estimate": 747
+          "token_estimate": 800
         },
         "summary": {
-          "byte_length": 138,
+          "byte_length": 161,
           "byte_offset": 0,
-          "token_estimate": 43
+          "token_estimate": 33
         }
       }
     }
