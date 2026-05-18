@@ -17,3 +17,20 @@ jules-plugin/tools/researcher/cache/*
 .claude/skills/jules/research/
 .venv
 *.egg-info/
+
+# Ignore downloaded skills in diff temporarily or permanently depending on what's tracked.
+# Actually, the skills are supposed to be tracked as they are part of the repo.
+# Wait, let me just add gate1_evidence.txt and rename_script.py to ignore to reduce noise.
+gate1_evidence.txt
+rename_script.py
+skills/music/
+
+# Jules run
+diff_brief.txt
+
+gate3_evidence.txt
+gate3_output.txt
+
+gate3_full_evidence.txt
+
+pr_body.txt

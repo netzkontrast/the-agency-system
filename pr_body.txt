@@ -1,0 +1,29 @@
+## Spec
+Plan/005-music-skills-port/spec.md
+
+## Confidence
+1. **Gate 1 - Confidence Check**:
+   - Spec 002 has shipped `.claude-plugin/plugin.json` with `name: agency-system` (verified via `cat .claude-plugin/plugin.json`).
+   - `skills/music/` exists and is scaffolded (verified via `ls -la skills/music/`).
+   - Spec 004 has registered tools with `mcp__plugin_agency-system_*` and `music_` prefix (verified via checking `servers/agency-mcp/src/agency_mcp/handlers/music/core.py`).
+   - Confirmed 54 skills cloned from vendor source.
+
+## Evidence
+```bash
+(a) find skills/music -name SKILL.md | wc -l
+54
+
+(b) python -c "import yaml,glob; [yaml.safe_load(open(p).read().split('---')[1]) for p in glob.glob('skills/music/*/SKILL.md')]"
+exits 0
+
+(c) find skills/music -name SKILL.md -exec grep -l '^name: music-' {} \; | wc -l
+54
+
+(d) claude --plugin-dir . /help 2>&1 | grep -c '/agency-system:music-'
+54
+```
+
+## Self-Review
+1. **Did I drift from the spec?** No drift. All 54 files were copied over strictly from the cloned source repo and mapping table was written as defined. `name:` fields and `allowed-tools:` were rewritten using regex logic to avoid any body drift. Verified with `diff -r --brief`.
+2. **What residual risk remains?** None observed. This is a configuration-only change renaming pointers.
+3. **What pattern would I apply differently next time?** The process for porting over vendor references dynamically requires extremely tight regex bounds to ensure no tool instructions bleed. Using structural YAML parsing to overwrite frontmatter directly instead of regex string replacing is generally safer, though `split('---')` worked effectively here.
