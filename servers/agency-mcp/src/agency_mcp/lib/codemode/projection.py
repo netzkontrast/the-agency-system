@@ -105,6 +105,9 @@ def apply_view(func: Callable) -> Callable:
         new_params = regular_params + [view_param, fields_param]
 
         async_wrapper.__signature__ = sig.replace(parameters=new_params) # type: ignore
+        async_wrapper.__annotations__ = getattr(func, '__annotations__', {}).copy()
+        async_wrapper.__annotations__['view'] = View
+        async_wrapper.__annotations__['fields'] = list[str] | None
         return async_wrapper
     else:
         @wraps(func)
@@ -133,6 +136,9 @@ def apply_view(func: Callable) -> Callable:
         new_params = regular_params + [view_param, fields_param]
 
         sync_wrapper.__signature__ = sig.replace(parameters=new_params) # type: ignore
+        sync_wrapper.__annotations__ = getattr(func, '__annotations__', {}).copy()
+        sync_wrapper.__annotations__['view'] = View
+        sync_wrapper.__annotations__['fields'] = list[str] | None
         return sync_wrapper
 
 def _handle_result(result: Any, view: View, fields: list[str] | None) -> Any:
