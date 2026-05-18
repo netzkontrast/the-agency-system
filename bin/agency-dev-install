@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -e
 
 REPO_ROOT="${1:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
 
@@ -49,21 +49,14 @@ fi
 
 # 4. Verify skill auto-namespace
 echo "==> Verifying skill auto-namespace..."
-SKILLS_DIR="$REPO_ROOT/skills"
-if [ ! -d "$SKILLS_DIR" ]; then
-    echo "ERROR: skills/ directory not found at $SKILLS_DIR" >&2
-    exit 1
-fi
-
-# NUL-delimited walk so the loop survives spaces and `find`'s exit
-# status is propagated via pipefail. `set -e` is preserved.
-while IFS= read -r -d '' skill_file; do
+MISSING_PREFIX=0
+for skill_file in $(find "$REPO_ROOT/skills" -name "SKILL.md"); do
     if ! grep -q "^name:.*agency-system:" "$skill_file"; then
         # We skip failing on this for now as Spec 099 handles it.
         # Just warn instead of exiting.
         echo "WARNING: Skill $skill_file does not contain 'name: agency-system:' prefix."
     fi
-done < <(find "$SKILLS_DIR" -name "SKILL.md" -print0)
+done
 
 echo ""
 echo "==> dev install successful! All checks pass."

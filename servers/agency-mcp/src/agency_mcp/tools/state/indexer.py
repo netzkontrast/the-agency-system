@@ -42,9 +42,11 @@ LOCK_TIMEOUT_SECONDS = 10
 # Ensure project root is on sys.path so this file works both as:
 #   python3 tools/state/indexer.py rebuild
 #   python3 -m tools.state.indexer rebuild
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-if str(_PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(_PROJECT_ROOT))
+_REPO_ROOT = Path(__file__).resolve().parents[6]
+if str(_REPO_ROOT / "servers" / "agency-mcp" / "src") not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT / "servers" / "agency-mcp" / "src"))
+
+_PROJECT_ROOT = _REPO_ROOT
 
 # Try to import yaml, provide helpful error if missing
 try:
@@ -366,7 +368,7 @@ def scan_skills(plugin_root: Path) -> dict[str, Any]:
     model_counts: dict[str, int] = {}
     items: dict[str, dict[str, Any]] = {}
 
-    for skill_path in sorted(skills_dir.glob("*/SKILL.md")):
+    for skill_path in sorted(skills_dir.rglob("SKILL.md")):
         skill_data = parse_skill_file(skill_path)
         if '_error' in skill_data:
             logger.warning("Skipping skill %s: %s", skill_path, skill_data['_error'])
