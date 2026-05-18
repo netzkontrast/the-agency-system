@@ -42,13 +42,23 @@ notes, and generation log. Research-driven albums add `RESEARCH.md` and
 
 ## Plugin install
 
-**Local development (from source)**:
+**Local development (from source)** — Spec 022 dev-install:
+```bash
+bash bin/agency-dev-install
+```
+
+Then load the plugin locally:
 ```bash
 claude --plugin-dir .
 ```
+
+> The dev-install script is invoked via `bash` so it works regardless
+> of the file's executable bit. If you prefer the bare form, run
+> `chmod +x bin/agency-dev-install` once after clone.
 
 **From marketplace**:
 ```bash
 /plugin install agency-system@netzkontrast
 ```
 <!-- Spec: Plan/002-manifest-and-marketplace/spec.md -->
+<!-- Spec: Plan/022-dev-mode-install/spec.md -->
