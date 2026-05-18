@@ -7,15 +7,22 @@ printed.  Only counts + filenames + sizes are emitted to stdout — kilobytes,
 not megabytes.  The patch body itself stays on disk.
 
 Usage:
-  python3 /tmp/jules_extract_patch.py <session_id> [--apply] [--branch <name>]
+  python3 /tmp/jules_extract_patch.py <session_id> [--apply] [--branch <name>] [--repo <path>]
 
 Without --apply: just downloads + emits stats.
 With --apply:    downloads, runs `git apply --stat` (filenames only, no diff
                  lines), then `git apply` quietly, leaving uncommitted changes
                  ready for the orchestrator to commit + push.
 
+Repo root resolution (when --apply is used):
+  1. --repo CLI arg, if given.
+  2. $AGENCY_REPO_ROOT environment variable, if set.
+  3. `git rev-parse --show-toplevel` from current working directory.
+  Failure at step 3 (not inside a git repo) -> JSON error + exit 1.
+
 ENV:
-  JULES_API_KEY  required
+  JULES_API_KEY        required
+  AGENCY_REPO_ROOT     optional, overrides auto-detection
 """
 from __future__ import annotations
 import json
@@ -107,15 +114,77 @@ def apply_patch(path: pathlib.Path, repo: pathlib.Path) -> dict:
     }
 
 
+def resolve_repo_root(cli_repo: str | None) -> pathlib.Path:
+    """Resolve repo root via --repo > $AGENCY_REPO_ROOT > git rev-parse.
+
+    On failure (not in a repo and no override), print JSON error + exit 1.
+    """
+    if cli_repo:
+        return pathlib.Path(cli_repo)
+    env_root = os.environ.get("AGENCY_REPO_ROOT")
+    if env_root:
+        return pathlib.Path(env_root)
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        return pathlib.Path(result.stdout.strip())
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        stderr = getattr(e, "stderr", "") or ""
+        print(json.dumps({
+            "error": "repo_root_unresolved",
+            "detail": (
+                "Could not determine repo root. Pass --repo <path>, set "
+                "$AGENCY_REPO_ROOT, or run from inside a git working tree."
+            ),
+            "git_stderr": stderr[:500],
+        }))
+        sys.exit(1)
+
+
 def main() -> int:
     if len(sys.argv) < 2:
-        print("usage: jules_extract_patch.py <session_id> [--apply] [--branch NAME]", file=sys.stderr)
+        print(
+            "usage: jules_extract_patch.py <session_id> [--apply] "
+            "[--branch NAME] [--repo PATH]",
+            file=sys.stderr,
+        )
         return 1
     sid = sys.argv[1]
     do_apply = "--apply" in sys.argv
+
     branch = None
     if "--branch" in sys.argv:
-        branch = sys.argv[sys.argv.index("--branch") + 1]
+        try:
+            branch = sys.argv[sys.argv.index("--branch") + 1]
+            if branch.startswith("--"):
+                raise IndexError
+        except IndexError:
+            print(
+                "usage: jules_extract_patch.py <session_id> [--apply] "
+                "[--branch NAME] [--repo PATH]\n"
+                "error: --branch requires a value",
+                file=sys.stderr,
+            )
+            return 1
+
+    cli_repo = None
+    if "--repo" in sys.argv:
+        try:
+            cli_repo = sys.argv[sys.argv.index("--repo") + 1]
+            if cli_repo.startswith("--"):
+                raise IndexError
+        except IndexError:
+            print(
+                "usage: jules_extract_patch.py <session_id> [--apply] "
+                "[--branch NAME] [--repo PATH]\n"
+                "error: --repo requires a value",
+                file=sys.stderr,
+            )
+            return 1
 
     session = fetch_session(sid)
     paths = save_patches(sid, session)
@@ -128,20 +197,47 @@ def main() -> int:
         s = stat_patch(p)
         report["patches"].append({"path": str(p), **s})
 
+    apply_failed = False
     if do_apply:
-        repo = pathlib.Path("/home/user/the-agency-system")
+        repo = resolve_repo_root(cli_repo)
         if branch:
-            subprocess.run(["git", "checkout", "Master"], cwd=repo, check=False, capture_output=True)
-            subprocess.run(["git", "pull", "origin", "Master"], cwd=repo, check=False, capture_output=True)
-            subprocess.run(
-                ["git", "checkout", "-B", branch], cwd=repo, check=False, capture_output=True
-            )
-        for p in paths:
+            # Fail fast on base-branch prep errors -- swallowing these
+            # silently is how Jules silent-fail bugs slip past review.
+            for cmd in (
+                ["git", "checkout", "Master"],
+                ["git", "pull", "origin", "Master"],
+                ["git", "checkout", "-B", branch],
+            ):
+                proc = subprocess.run(cmd, cwd=repo, capture_output=True, text=True)
+                if proc.returncode != 0:
+                    print(json.dumps({
+                        "error": "base_branch_prep_failed",
+                        "command": cmd,
+                        "returncode": proc.returncode,
+                        "stderr": proc.stderr[:500],
+                    }))
+                    return 1
+        for idx, p in enumerate(paths):
             outcome = apply_patch(p, repo)
-            report["patches"][paths.index(p)]["apply"] = outcome
+            report["patches"][idx]["apply"] = outcome
+            if outcome["apply_returncode"] != 0:
+                apply_failed = True
+                # Stop on first apply failure -- subsequent patches likely
+                # depend on earlier ones, and continuing produces a mess.
+                skipped = len(paths) - idx - 1
+                if skipped > 0:
+                    report["skipped_after_failure"] = {
+                        "count": skipped,
+                        "note": (
+                            "Subsequent patches were not applied because an "
+                            "earlier patch failed; resolve the failure and "
+                            "re-run."
+                        ),
+                    }
+                break
 
     print(json.dumps(report, indent=2))
-    return 0
+    return 1 if apply_failed else 0
 
 
 if __name__ == "__main__":

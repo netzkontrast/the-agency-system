@@ -132,7 +132,7 @@ When the orchestrator (Claude or a human) detects this — i.e., the session is 
 1. `GET https://jules.googleapis.com/v1alpha/sessions/{sid}`
 2. Read `outputs[*].changeSet.gitPatch.unidiffPatch` from the response — that is the canonical work artefact.
 3. Save the patch to disk (never echo its body into the orchestrator's stdout — large patches will pollute the LLM context window). The repo ships a context-safe extractor at `tools/jules-patch-extract.py` (or `/tmp/jules_extract_patch.py` during a session) that writes the patch to `/tmp/jules-patches/{sid}-out{i}.patch` and prints only `{bytes, files, first_files[]}` stats.
-4. Apply locally with `git apply --whitespace=nowarn` from a fresh branch off `Master`.
+4. Apply locally with `git apply --whitespace=nowarn` from a fresh branch off `Master`. <!-- Default branch verified as `Master` via `git remote show origin` (HEAD branch: Master). The GitHub API endpoint was unreachable from the sandbox (`401 Bad credentials` on `/repos/netzkontrast/the-agency-system`), but the proxied git remote is the authoritative mirror and reports HEAD = `Master`. Codex's flag suggesting this might be `main` is dismissed. -->
 5. Commit (preserve Jules's authorship via `Co-authored-by: google-labs-jules[bot] <…>`) and push.
 6. Open the PR manually with the standard four-section body, noting in `## Spec` that publication was via API extraction rather than the auto-flow.
 
