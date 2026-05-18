@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from . import _shared
+from agency_mcp.lib.codemode.projection import apply_view
 from ._atomic import atomic_write_text
 from ._shared import (
     _CODE_BLOCK_SECTIONS,
@@ -169,6 +170,7 @@ async def music_find_album(name: str) -> str:
         })
 
 
+@apply_view
 async def music_list_albums(status_filter: str = "") -> str:
     """List all albums with summary info.
 
@@ -201,6 +203,7 @@ async def music_list_albums(status_filter: str = "") -> str:
     return _safe_json({"albums": result, "count": len(result)})
 
 
+@apply_view
 async def music_get_track(album_slug: str, track_slug: str) -> str:
     """Get details for a specific track.
 
@@ -243,6 +246,7 @@ async def music_get_track(album_slug: str, track_slug: str) -> str:
     })
 
 
+@apply_view
 async def music_list_tracks(album_slug: str) -> str:
     """List all tracks for an album in one call (avoids N+1 queries).
 
