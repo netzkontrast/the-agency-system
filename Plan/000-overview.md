@@ -49,10 +49,12 @@ The repository is **further along than v1 of this overview implied**. Sub-agent 
 | 103 | view-fields-projection | wired (PR #100 merged per recent git log) |
 | 022 | dev-mode-install | merged via PR #73 (commit `cd15d09`); `bin/agency-dev-install` present |
 | 112 | context-anchor-triad | merged via PR #104 (commit `85a8e51`); `servers/agency-mcp/src/agency_mcp/lib/codemode/context_anchor_triad.py` present |
+| 113 | context-cache-and-subscriptions | merged via PR #113 (commit `883eb45`) during this PR's review-loop; Phase 4 spec count drops further |
+| 014 | novel-gates-and-revision | merged via PR #108 (commit `5954832`) during this PR's review-loop; §2.2 now empty |
 
-### 2.2 In-progress (1)
+### 2.2 In-progress (0)
 
-- **014** novel-gates-and-revision
+(empty — Spec 014 merged during this PR's review loop)
 
 ### 2.3 Scaffolded specs without implementation (~40)
 
@@ -149,7 +151,7 @@ Eight phases. Each phase is one PR-set (1-N PRs depending on independence). Each
 | **1** | Anchor triad + envelope (cold-start) | 104, 107, 130, 131 | tools/list 38k → <4k tokens | Phase 0 |
 | **2** | Hook chain | 121, 115, 114, 116, 117 | 20-30% of session input | Phase 1 (envelope) |
 | **3** | GitHub sink wrapper | 106 | 40-80k → <2.5k per PR/issue read | Phase 1 (envelope), Phase 2 (archive) |
-| **4** | Context Mode (Path B) | 111, 113 + 108-stub (Spec 112 already merged — PR #104) | defers ≥200k of inline docs | Phase 1 (anchors), Phase 2 (cache+watcher idioms) |
+| **4** | Context Mode (Path B) | 111 + 108-stub (Specs 112 + 113 already merged — PRs #104, #113) | defers ≥200k of inline docs | Phase 1 (anchors) |
 | **5** | Ontology + Graph (Wave D) | 122, 123, 124, 135 | cross-domain queryability | Phase 4 (manifest schema sharing) |
 | **6** | Quality / loop / compaction | 118, 119, 120, 100 | self-healing context, ~47k saved per loop | Phase 2 (session-log canon) |
 | **7** | Domain handler completion | 014, 015, 016, 018, 021 | feature completeness | Phase 1 (envelope), Phase 5 (ontology) |
@@ -340,10 +342,10 @@ For each phase below: `Specs` lists the sub-spec directories Jules will work fro
 
 ### Phase 4 — Context Mode (Path B)
 
-- **Specs:** 111 (manifest), 113 (cache + subscriptions), 108-stub (supersession marker). **Spec 112 (anchor-triad) is already merged** via PR #104 (commit `85a8e51`); only the manifest + cache/subscriptions remain.
-- **Sequential:** 111 → 113 (113 builds on the manifest from 111 and on the already-merged 112 triad). 108-stub lands in parallel with 111.
-- **Token win:** 200 k+ deferred.
-- **PR strategy:** 3 PRs. 111 + 108-stub fanout together; 113 dispatched on 111 merge.
+- **Specs:** 111 (manifest), 108-stub (supersession marker). **Spec 112 (anchor-triad) is already merged** via PR #104 (commit `85a8e51`); **Spec 113 (cache + subscriptions) is already merged** via PR #113 (commit `883eb45`); only the manifest remains.
+- **Sequential:** 111 first; 108-stub in parallel.
+- **Token win:** 200 k+ deferred (anchor triad + cache already shipping; manifest closes the loop).
+- **PR strategy:** 2 PRs as one fanout. Audit: re-verify post-merge that `context_search` / `context_describe` / `context_read` actually consult a *populated* manifest — if 113 was merged before 111, the cache may be subscribing to an empty index.
 
 ### Phase 5 — Ontology + Graph (Wave D)
 
