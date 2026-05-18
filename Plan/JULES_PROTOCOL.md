@@ -101,10 +101,10 @@ Each of these is a stop-the-line event. If Jules notices it post-hoc, revert the
 
 ## 6. Escalation
 
-Jules has no synchronous user. Two escalation primitives, used for different cases:
+Jules has no synchronous user. Two escalation primitives, both used **before `submit()`** — after `submit()` Jules is terminal (§3) and does not message the user:
 
-- **Blocking, pre-PR:** `request_user_input(message)` — pauses the session until the human answers. Use for ambiguity that prevents progress before any PR exists.
-- **Non-blocking / post-PR:** `message_user(message, continue_working=False)` or a comment on the open PR prefixed `@human:` and labelled `[BLOCKED: <reason>]`. Use to surface status the human should see at next check-in.
+- **Blocking:** `request_user_input(message)` — pauses the session until the human answers. Use for ambiguity that prevents progress.
+- **Non-blocking:** `message_user(message, continue_working=True)` — fires a status update to the UI and continues immediately. **Always pass `continue_working=True`** here; `continue_working=False` suspends the session and is only appropriate when you actually need to wait, in which case prefer `request_user_input`.
 
 Stop work and escalate when any of these occur:
 
@@ -137,8 +137,8 @@ Key conventions for the unified plugin:
 
 **Jules: this is your terminal step.** When gates 1–4 are green and all `Done When` items are evidence-backed:
 
-1. Call `pre_commit_instructions()`. Run every checklist item it returns in `run_in_bash_session` and capture the output for `## Evidence`.
-2. (Optional but recommended) call `request_code_review()` and address Critic findings.
+1. (Optional but recommended) call `request_code_review()` and address Critic findings. Doing this **first** means any Critic-driven edits land before pre-commit, so the checklist evidence in step 2 reflects the final bytes that will ship.
+2. Call `pre_commit_instructions()`. Run every checklist item it returns in `run_in_bash_session` and capture the output for `## Evidence`. If step 1 produced edits, this run is your authoritative evidence — do not reuse output from before Critic.
 3. Call `submit(branch_name, commit_message, title, description)`. That call opens the PR.
 
 After `submit()` returns, you are done. Stop. Do not re-verify, do not query GitHub, do not poll.
