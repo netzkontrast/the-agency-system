@@ -1,4 +1,4 @@
-Feature: Phase 4 — Context Mode (Path B) — document manifest
+Feature: Phase 4 — Context Mode (Path B)
   As an AI agent operating the agency-system
   I want a deferred-loading context manifest
   So that the boot token budget stays under 500 tokens while allowing structured search over >= 200 KB of documents
@@ -12,14 +12,14 @@ Feature: Phase 4 — Context Mode (Path B) — document manifest
   # anchor: phase-4.manifest-builder-determinism
   Scenario: Manifest builder produces a deterministic JSON catalogue
     Given the corpus of spec, lesson, override, and reference files exists
-    When the operator runs "python bin/build_context_manifest.py --root . --out codemode/context_manifest.json"
+    When the operator runs "python bin/build_context_manifest.py --root . --out servers/agency-mcp/src/agency_mcp/codemode/context_manifest.json"
     Then the process exits with status 0
     And the generated JSON file contains an array of context entries
     And running the command a second time produces a byte-identical JSON file
 
   # anchor: phase-4.manifest-entry-schema
   Scenario Outline: Each manifest entry conforms to the required schema and taxonomy
-    Given the generated "codemode/context_manifest.json"
+    Given the generated "servers/agency-mcp/src/agency_mcp/codemode/context_manifest.json"
     When I inspect the entry for <file_type>
     Then it has the fields "id", "title", "summary", "sha256", "tags", "mime", "path", "views", and "graph_id"
     And the "views" object contains "summary", "preview", and "full"
@@ -34,16 +34,16 @@ Feature: Phase 4 — Context Mode (Path B) — document manifest
 
   # anchor: phase-4.anchor-triad-integration
   Scenario: The context_anchor_triad consults the populated manifest
-    Given the manifest is populated in "codemode/context_manifest.json"
+    Given the manifest is populated in "servers/agency-mcp/src/agency_mcp/codemode/context_manifest.json"
     When I call the "context_search" tool with query "dramatica"
     Then the tool returns a list of ranked hits from the manifest
-    And the top hits include files tagged with "topic:dramatica"
+    And the highest-ranked hit is tagged "topic:dramatica"
 
   # anchor: phase-4.cache-and-subscriptions
   Scenario: Cache and subscriptions emit notifications on manifest change
-    Given an active MCP client is subscribed to context resources
-    When the manifest file is modified
-    Then the server emits a resource/updated notification to the client
+    Given an active MCP client is subscribed to context resources via "notifications/resources/updated"
+    When the manifest file's mtime or sha256 is modified
+    Then the server emits a "notifications/resources/updated" notification to the client
 
   # anchor: phase-4.108-supersession
   Scenario: Spec 108-stub points to Path B
