@@ -79,16 +79,40 @@ def _is_historical_genre(work_dir: Path) -> bool:
     return genre.startswith("historical-")
 
 def _gate_dramatica_confirmed(work_id: str) -> dict:
+    cache = _get_cache()
+    try:
+        import asyncio
+        try:
+            loop = asyncio.get_event_loop()
+            if loop.is_running():
+                state = None
+            else:
+                state = loop.run_until_complete(cache.snapshot())
+        except RuntimeError:
+            state = asyncio.run(cache.snapshot())
+
+        if state is None:
+            cache._load_from_disk()
+            state = cache._state or {}
+    except Exception:
+        state = {}
+
+    # Check if dramatica is locked
+    novel_state = state.get("novel", {})
+    # Look through authors to find work_id
+    dramatica_locked = False
+    for author_data in novel_state.get("authors", {}).values():
+        if work_id in author_data.get("works", {}):
+            dramatica_locked = author_data["works"][work_id].get("dramatica_locked", False)
+            break
+
     coherence = novel_coherence_check(work_id)
-    # The actual implementation checks if dramatica is locked in state + coherence pass
-    # For now, just coherence pass
-    # Actually check state if possible, but currently novel_coherence_check handles validation
     coherence_pass = coherence.get("status") == "PASS"
 
-    if coherence_pass:
-        return {"name": "dramatica_confirmed", "pass": True, "hint": "Dramatica locked and coherence check passed", "evidence": "All checks green"}
+    if dramatica_locked and coherence_pass:
+        return {"name": "dramatica_confirmed", "pass": True, "hint": "Dramatica locked and coherence check passed", "evidence": "dramatica_locked=true, coherence=PASS"}
     else:
-        return {"name": "dramatica_confirmed", "pass": False, "hint": "Dramatica not locked or coherence check failed", "evidence": f"Violations: {coherence.get('violations', 1)}"}
+        return {"name": "dramatica_confirmed", "pass": False, "hint": "Dramatica not locked or coherence check failed", "evidence": f"locked={dramatica_locked}, coherence={coherence.get('status')}"}
 
 def _gate_ncp_valid(work_id: str) -> dict:
     work_dir = _resolve_work_dir(work_id)
@@ -211,6 +235,60 @@ def novel_run_pre_drafting_gates(work_id: str) -> dict:
 
 def _chapter_create_guard(work_id: str, force: bool = False) -> dict:
     if force:
+        import asyncio
+        cache = _get_cache()
+        try:
+            try:
+                loop = asyncio.get_event_loop()
+                if loop.is_running():
+                    state = None
+                else:
+                    state = loop.run_until_complete(cache.snapshot())
+            except RuntimeError:
+                state = asyncio.run(cache.snapshot())
+
+            if state is None:
+                cache._load_from_disk()
+                state = cache._state or {}
+        except Exception:
+            state = {}
+
+        novel_state = state.get("novel", {})
+        authors = novel_state.get("authors", {})
+
+        for author, author_data in authors.items():
+            works = author_data.get("works", {})
+            if work_id in works:
+                work_data = works[work_id]
+                overrides = work_data.get("force_overrides", [])
+
+                # Try to run gates to get blocking list, but don't fail if it doesn't pass
+                res = novel_run_pre_drafting_gates(work_id)
+                blocking = res.get("blocking", [])
+
+                overrides.append({
+                    "at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                    "caller": "novel_chapter_create",
+                    "blocking": blocking
+                })
+                work_data["force_overrides"] = overrides
+
+                # Use proper cache write
+                try:
+                    try:
+                        loop = asyncio.get_event_loop()
+                        if loop.is_running():
+                            # Synchronous fallback: modify disk directly if absolutely necessary, but shouldn't happen here
+                            with open(PLUGIN_ROOT / "state.json", "w", encoding="utf-8") as f:
+                                json.dump(state, f, indent=2)
+                        else:
+                            loop.run_until_complete(cache.write("novel", novel_state))
+                    except RuntimeError:
+                        asyncio.run(cache.write("novel", novel_state))
+                except Exception:
+                    pass
+                break
+
         return {"ok": True}
 
     res = novel_run_pre_drafting_gates(work_id)
