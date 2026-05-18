@@ -12,4 +12,11 @@ This phase implements a robust token-optimizer middleware layer using Claude Cod
 **Token-budget win:**
 Expect a 20-30% reduction in total session input tokens for code-heavy workloads, and absolute protection against single-tool context blowouts (hard-capped at 4 KB).
 
+**Relation to the harness ladder:**
+Phase 2 is orthogonal to the harness three-layer ladder — it operates at the runtime tool-output compression layer (PreToolUse/PostToolUse hooks), while the harness layers L1/L2/L3 (see [`Plan/harness/VOCABULARY.md`](../harness/VOCABULARY.md) §2) cover *how the plugin's tool surface is reached*. The 4 KB archive cap (Spec 117) is what makes the L1 harness's `call_tool` returns predictable in test fixtures — a single tool result will never blow past 4 KB into the harness's parsed JSON envelope.
+
+**Producer for Phase 6:**
+The same archive (Spec 117) and the same session-log (Spec 100, Phase 6) are the data feeds for Phase 6's quality / loop detection — Phase 2 is the *producer*, Phase 6 is the *consumer*.
+
+**Canonical naming:** see [`Plan/harness/VOCABULARY.md`](../harness/VOCABULARY.md).
 See [Plan/000-overview.md §4](../000-overview.md#4-dependency-dag-updated-2026-05-18) for the phase map and integration points.

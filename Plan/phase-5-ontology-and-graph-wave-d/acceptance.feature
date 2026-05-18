@@ -12,7 +12,7 @@ Feature: Phase 5 — Ontology + Graph (Wave D)
   Scenario: header-ontology.json declares 18 artefact types with typed edges and cardinality
     Given the centralized L1 schema is active
     When the schema parser loads "servers/agency-mcp/src/agency_mcp/lib/ontology/header-ontology.json"
-    Then the schema MUST declare exactly 18 distinct artefact types covering music, novel, and agentic domains
+    Then the schema MUST declare exactly 18 distinct artefact types covering the music, novel, agentic, and shared domain artefacts
     And each type MUST define its allowable incoming and outgoing edges
     And each edge MUST explicitly define cardinality constraints (e.g. one-to-many, one-to-one)
 

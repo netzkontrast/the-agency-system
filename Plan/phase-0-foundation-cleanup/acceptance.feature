@@ -3,7 +3,7 @@ Feature: Phase 0 — Foundation cleanup
   Background:
     Given the plugin repository is loaded as the working directory
     And the agency-mcp FastMCP server boots successfully
-    And Spec 020 and Spec 099 have been applied
+    And Spec 020 (jules-plugin cleanup scope) and Spec 099-stub (orchestration-improvements stub) have been applied
 
   # anchor: phase-0.legacy-dir-removed
   Scenario: jules-plugin/ does not exist after the phase merges
@@ -42,10 +42,10 @@ Feature: Phase 0 — Foundation cleanup
 
   # anchor: phase-0.mcp-tool-count-stable
   Scenario: The agency-mcp server still boots and maintains tool capacity
-    When the operator starts the FastMCP server at `servers/agency-mcp/src/agency_mcp/server.py`
-    And requests `mcp.list_tools()`
+    When the operator boots the server via the L1 in-process harness `tests/_harness.harness_mcp()` (shipped in PR #127)
+    And requests `list_tools(mcp_instance)` (the four-verb contract — see `Plan/harness/VOCABULARY.md` §3)
     Then mcp.list_tools() returns the same total tool count captured before jules-plugin/ deletion
-    And the boot context token count remains < 500
+    And the boot context token count remains < 500 (source: `Plan/000-overview.md` §5; smoke test authored by Phase 1 Spec 131)
 
   # anchor: phase-0.pr-review-loop-converged
   Scenario: The Phase 0 PR is reviewed and converged via the JULES-REVIEW-LOOP.md mechanism
