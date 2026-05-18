@@ -82,7 +82,7 @@ Provide pytest stdout output and MCP local tool invocation payloads proving the 
 
 ### Gate 4 — Self-Review
 
-Verify `return_plan` usage, ensure the correct tag namespaces are utilized (`domain:agentic`, `kind:ontology`, `anchor_kind:eager`), and confirm hook timing constraints are satisfied. Document explicitly if any structural logic deviates from PR #129.
+Verify `return_plan` usage, ensure the correct tag namespaces are utilized (`domain:cross`, `kind:ontology`, `anchor_kind:eager` — Spec 123 is cross-cutting per its frontmatter `domain: cross`, NOT agentic; the ontology anchors are consumed by music / novel / jules / agentic Path B surfaces alike), and confirm hook timing constraints are satisfied. Document explicitly if any structural logic deviates from PR #129.
 
 ## Acceptance (Gherkin)
 

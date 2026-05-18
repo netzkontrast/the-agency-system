@@ -141,7 +141,7 @@ Scenario: Ingest hook triggers on Markdown modification (Edit + Write paths)
 Scenario: Graceful error handling on bad Cypher
   Given an unparseable Cypher query is passed to graph_cypher
   When the tool executes
-  Then it returns `{ok: False, error: "<exact graphqlite error>"}`
+  Then it returns the shared `ToolResult` envelope per overview §2.1 #9 with `ok: False, data: null, warnings: [<exact graphqlite error>], artefacts_written: [], next_suggested_tools: []`
   And it does NOT raise an unhandled exception
 
 # anchor: 124.7
