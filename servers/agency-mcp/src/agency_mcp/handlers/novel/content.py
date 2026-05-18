@@ -4,6 +4,8 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 from fastmcp import FastMCP
+from .gates import _chapter_create_guard
+
 from agency_mcp.state.cache import StateCache
 
 try:
@@ -38,7 +40,11 @@ async def _get_work_details(author: str, work_slug: str) -> dict:
     author_data = novel_state.get("authors", {}).get(author, {})
     return author_data.get("works", {}).get(work_slug)
 
-async def novel_create_chapter(author: str, work_slug: str, chapter_number: int, title: str, dry_run: bool = False) -> dict:
+async def novel_create_chapter(author: str, work_slug: str, chapter_number: int, title: str, dry_run: bool = False, force: bool = False) -> dict:
+    guard = _chapter_create_guard(work_slug, force)
+    if not guard["ok"]:
+        return guard
+
     work_data = await _get_work_details(author, work_slug)
     if not work_data:
         return {"ok": False, "warnings": [f"Work not found: {author}/{work_slug}"]}

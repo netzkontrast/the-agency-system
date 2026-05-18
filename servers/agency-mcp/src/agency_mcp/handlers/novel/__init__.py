@@ -10,6 +10,9 @@ from . import structure
 from . import characters
 from . import world
 from . import prose_analysis
+from . import gates
+from . import revision
+from . import promo
 
 
 def register_novel_core_handlers(mcp: FastMCP) -> None:
@@ -25,3 +28,6 @@ def register_novel_core_handlers(mcp: FastMCP) -> None:
     characters.register(mcp)
     world.register(mcp)
     prose_analysis.register(mcp)
+    gates.register(mcp)
+    revision.register(mcp)
+    promo.register(mcp)
