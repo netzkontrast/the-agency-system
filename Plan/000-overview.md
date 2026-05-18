@@ -85,7 +85,7 @@ Cross-refs in frontmatter only; `:embed` suffix = composition vs bare slug = inv
 
 Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 
-## 3. Spec list (46 specs as of 2026-05-18 — 15 done / 31 ready)
+## 3. Spec list (49 specs as of 2026-05-18 — 15 done / 34 ready)
 
 ### Wave A — Scaffold + Music + Jules + Code Mode (DONE)
 
@@ -165,6 +165,16 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 | 111 | context-mode-manifest (build alt) | cross | 008, 104 | ready | 2 |
 | 112 | context-anchor-triad (build alt) | cross | 008, 104, 111 | ready | 2 |
 | 113 | context-cache-and-subscriptions (build alt) | cross | 008, 104, 111, 112 | ready | 2 |
+
+### Wave D — Path B content layer (extends 111-113)
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 122 | centralized-ontology | cross | 111, 112, 113 | ready | 1 |
+| 123 | agency-tooling-codemode | cross | 008, 111, 122 | ready | 2 |
+| 124 | graphqlite-codemode | cross | 008, 100, 111, 112, 113, 122 | ready | 3 |
+
+See `Plan/_research/_synthesis-122-123-124.md` for the interlocking design (data shape → machinery → graph layer). Three Jules research outputs landed on Master via PRs #82 / #84 / #86 with full findings docs under `Plan/_research/<slug>/`.
 
 ### Token-optimizer hook layer (orthogonal)
 
