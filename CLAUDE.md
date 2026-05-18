@@ -318,6 +318,53 @@ export CLAUDE_PLUGIN_ROOT=$(pwd)/jules-plugin
 session-registry directory at `${CLAUDE_PLUGIN_DATA:-$HOME/.jules}`. Re-running
 is a no-op once the deps are present.
 
+### Jules session state semantics (silent-fail recovery)
+
+**`state=COMPLETED` does NOT mean "done, success".** It means *"session
+is idle, waiting for input"*. A `COMPLETED` session can be resumed by
+sending `jules_message(sid, ...)` — it transitions back to `IN_PROGRESS`
+and continues working. Sessions persist indefinitely in `COMPLETED`;
+only `AWAITING_PLAN_APPROVAL` has a timeout risk.
+
+**Always verify the branch on remote before trusting `COMPLETED`.**
+The state field flips even when Jules paused before pushing — the work
+sits in the patch but never lands on `origin`. Use
+`mcp__github__list_branches` and look for a branch matching the
+session's work. If none is present, the session is in a recoverable
+silent-fail state, not a terminal one.
+
+**Recovery flow (JULES_PROTOCOL §8):**
+
+1. Verify branch on remote → if missing, do NOT trust `COMPLETED`.
+2. Extract the patch:
+   `PYTHONPATH=jules-plugin/mcp-server/src python3 tools/jules-patch-extract.py <sid>`
+   (writes to `/tmp/jules-patches/<sid>-out0.patch`, emits stats only —
+   never `cat`/`head`/`grep` patches > 2 KB).
+3. **Probe Jules first** — one focused message: "your state is
+   COMPLETED but no branch on origin — please push and reply with PR
+   URL". Jules normally answers within ~5 minutes; if it pushes, you're
+   done.
+4. After 2-3 probes with still no branch, switch to a **local
+   subagent** that applies the extracted patch via
+   `mcp__github__create_branch` + `mcp__github__create_or_update_file`
+   (signed `web-flow` commits) + `mcp__github__create_pull_request`.
+   **Never re-dispatch a fresh Jules session for the same work** — the
+   patch is already in the API and a respawn wastes a slot and risks
+   divergent output.
+
+**Common silent-fail variants:**
+
+| Symptom | Cause | Action |
+|---|---|---|
+| `COMPLETED` + non-empty patch + no branch | Jules paused on the "open PR?" UI gate | Probe via `jules_message`. If still nothing, apply patch locally. |
+| `COMPLETED` + empty patch (0 files) | Jules completed without doing the work | Probe: tell Jules to actually produce the artifact. If still empty after 2 probes, dispatch a fresh session ONLY because there's no patch to recover from. |
+| `COMPLETED` + patch contains files outside the spec `affects:` allow-list | Scope creep | First check whether the extra changes are legitimate (e.g. align with a parallel spec). If yes, keep them. If no, probe Jules to drop the out-of-scope diffs before pushing. |
+
+The `tools/jules-patch-extract.py` script and `mcp__github__*` paths
+are the only context-safe routes — bash `git apply` + `git push` of
+extracted patches breaks signed commits because the local
+CODESIGN_MCP backend currently returns HTTP 400.
+
 ## Most important commands & skills
 
 Invoke as slash commands: `/bitwize-music:<name>`.
