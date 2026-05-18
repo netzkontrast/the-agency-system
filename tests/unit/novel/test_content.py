@@ -43,7 +43,7 @@ async def test_novel_create_chapter(temp_workspace):
         }
     })
 
-    res = await content.novel_create_chapter("ms", "test", 1, "The Beginning", dry_run=False)
+    res = await content.novel_create_chapter("ms", "test", 1, "The Beginning", dry_run=False, force=True)
 
     assert res["ok"] is True
 
