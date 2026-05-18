@@ -991,17 +991,17 @@ Migration is module-by-module: each handler module currently uses `mcp.tool(tags
 
 Each follow-up sub-spec under Paths A and C gets a `depends_on: [harness/design]` so they sequence cleanly behind this design's tag.
 
-### 11.8 Open question for the orchestrator
+### 11.8 Decision (locked 2026-05-18)
 
-The three paths are equally valid; the choice is a sequencing decision, not a correctness one. **Pick one before opening the L1+L3 implementation PR.**
+**Path A ships now; Path B is on record as a `vision` spec.**
 
-Suggested decision matrix:
+- **Path A is the active implementation path** for this design's first tag. L-α (`register(mcp)` signature normalisation), L-β (`domain_tool` decorator), and L-γ (manifest auto-sync at boot) land alongside the L1+L3 implementation PR. The four high-cost levers ship as named follow-up sub-specs (`Plan/harness/L-delta-...`, `L-epsilon-...`, `L-zeta-...`, `L-eta-...`) over the following weeks. Target uniformity score at tag: **9/10**.
 
-- **Pick Path A if:** the immediate goal is shipping L1+L3 this week so the L1 harness lands as substrate for Phase 1's Spec 131 + Spec 105 smoke tests. Follow-up sub-specs L-δ/ε/ζ/η dispatched in parallel with Phase 2-8.
-- **Pick Path C if:** willing to invest one week into structural cleanup before the harness ships; want the skills tree to be domain-owned without committing to the full `Domain` class.
-- **Pick Path B if:** willing to halt Phase 7 dispatches for 2-3 weeks while the restructure lands; want the codebase itself to be the source of truth and to retire all harness-side normalisation logic.
+- **Path B is documented as a vision spec at [`Plan/harness/restructure/spec.md`](restructure/spec.md)** — `status: vision`. It does NOT dispatch Jules now. It's on record so the endgame is reviewable before it's scheduled, and so the next time the orchestrator considers a structural handler refactor there's a clean place to land it. When promoted to `status: ready`, the spec runs an 8-PR sequence (1 base-class PR + 5 per-domain PRs + 1 server-collapse PR + 1 cleanup PR) — see `restructure/spec.md` §5 for the full migration strategy. Target uniformity score after Path B: **10/10**.
 
-The orchestrator (or a reviewer on this PR) names the choice in a follow-up comment; the implementation PR then references that choice in its body.
+- **Path C is rejected as a standalone option.** Its only contribution over Path A is the skill-tree colocation move, which Path B does anyway — and Path A alone is sufficient for the harness's immediate consumers. If the skill colocation becomes valuable independently of the full restructure, it can be authored as a tiny follow-up.
+
+The implementation PR for the harness references this decision in its body (Path A levers L-α/β/γ are part of the PR's `affects:` list). Reviewers of the harness PR can confirm or contest the Path-A scope; reviewers of `restructure/spec.md` can confirm or contest the Path-B endgame independently.
 
 ## 12. First review pass
 
