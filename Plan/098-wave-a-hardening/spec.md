@@ -6,7 +6,7 @@ owner: jules
 depends_on: [003, 019, 004a, 002]
 affects:
   - servers/agency-mcp/src/agency_mcp/state/cache.py
-  - servers/agency-mcp/src/agency_mcp/state/migrators/bitwize_v091_to_agency.py
+  - state/migrators/bitwize_v091_to_agency.py
   - servers/agency-mcp/src/agency_mcp/tools/validate_help_completeness.py
   - servers/agency-mcp/src/agency_mcp/tools/state/indexer.py
   - servers/agency-mcp/src/agency_mcp/tools/cloud/upload_to_cloud.py
