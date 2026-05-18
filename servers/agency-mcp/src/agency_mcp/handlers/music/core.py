@@ -9,6 +9,7 @@ from typing import Any
 
 from . import _shared
 from agency_mcp.lib.codemode.projection import apply_view
+from agency_mcp.lib.codemode.views import View
 from ._atomic import atomic_write_text
 from ._shared import (
     _CODE_BLOCK_SECTIONS,
@@ -409,6 +410,7 @@ async def music_get_python_command() -> str:
     return _safe_json(result)
 
 
+@apply_view
 async def music_get_ideas(status_filter: str = "") -> str:
     """Get album ideas with status counts.
 
@@ -510,6 +512,7 @@ async def music_search_items(query: str, scope: str = "all") -> str:
 
     return _safe_json(results)
 
+@apply_view
 
 async def music_get_pending_verifications(
     album_slug: str = "",
@@ -719,6 +722,7 @@ async def music_resolve_track_file(album_slug: str, track_slug: str) -> str:
     })
 
 
+@apply_view
 async def music_list_track_files(album_slug: str, status_filter: str = "") -> str:
     """List all tracks for an album with file paths and optional status filtering.
 

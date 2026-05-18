@@ -9,6 +9,7 @@ from agency_mcp.lib.codemode.registry import (
     load_manifest,
 )
 from agency_mcp.lib.codemode.deferred_loader import register_tool
+from agency_mcp.lib.codemode.context_anchor_triad import register_context_anchor_triad
 
 __all__ = [
     "anchor_tools",
@@ -16,4 +17,5 @@ __all__ = [
     "classify",
     "load_manifest",
     "register_tool",
+    "register_context_anchor_triad",
 ]

@@ -63,6 +63,9 @@ def register_all(mcp: FastMCP) -> None:
     Wave-A specs 004-009 extend this stub by importing their own
     ``register_<domain>_handlers`` entry points here.
     """
+    from agency_mcp.handlers.context import register_context_handlers
+    register_context_handlers(mcp)
+    
     from agency_mcp.handlers.music import register_music_handlers
     from agency_mcp.handlers.music import _shared
 

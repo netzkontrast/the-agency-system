@@ -1,7 +1,7 @@
 ---
 spec_id: 017
 slug: hooks-port-and-extend
-status: ready
+status: done
 owner: jules
 depends_on: [004, 012, 013]
 affects:

@@ -1,7 +1,7 @@
 ---
 spec_id: 011a
 slug: novel-handlers-core-hardening
-status: ready
+status: done
 owner: jules
 depends_on: [011]
 affects:
