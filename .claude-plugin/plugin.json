@@ -1,7 +1,7 @@
 {
   "name": "agency-system",
-  "version": "0.1.0",
-  "description": "Complete suite for orchestrating Jules asynchronous coding sessions.",
+  "version": "0.1.0-dev",
+  "description": "Complete suite for orchestrating Jules asynchronous coding sessions. Supports local dev install via bin/agency-dev-install.",
   "author": {
     "name": "The Agency System"
   },
