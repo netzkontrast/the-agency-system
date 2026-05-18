@@ -6,6 +6,20 @@ if [ -z "$JULES_API_KEY" ]; then
     exit 1
 fi
 
+# Preflight: jules-bulk loads jules_mcp.server which depends on
+# fastmcp[code-mode]. When this script is invoked outside a Claude Code
+# session that has already installed the plugin, the import can fail
+# cryptically with "No module named 'fastmcp'". Detect and direct the
+# user to bin/jules-dev-install before we hit the import boundary.
+_JULES_BULK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+if ! PYTHONPATH="${_JULES_BULK_DIR}/../mcp-server/src" python3 -c \
+        'import fastmcp; from fastmcp.experimental.transforms.code_mode import CodeMode' \
+        >/dev/null 2>&1; then
+    echo "ERROR: jules-mcp Python deps missing (fastmcp[code-mode])." >&2
+    echo "  Run: ${_JULES_BULK_DIR}/jules-dev-install" >&2
+    exit 1
+fi
+
 JULES_API_BASE_URL="${JULES_API_BASE_URL:-https://jules.googleapis.com}"
 # DEFAULT_SOURCE is the source string handed to jules_create. The server
 # accepts either an opaque 'sources/<id>' or a GitHub 'owner/repo' shorthand

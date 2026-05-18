@@ -299,6 +299,25 @@ For details, see the [refactor design spec](docs/superpowers/specs/2026-05-16-ju
 - **Local dev install:** `claude --plugin-dir ./jules-plugin`
 - **Marketplace install:** `/plugin install jules-orchestrator@netzkontrast`
 
+### Driving the CLI helpers outside Claude Code
+
+When you run `bin/jules-bulk` (fanout / dashboard / approve-awaiting) from a
+fresh shell — for example, from a Claude Code agent that has not yet loaded
+the plugin — `fastmcp[code-mode]` is not on the Python path and the script
+fails preflight. Bootstrap with:
+
+```bash
+./jules-plugin/bin/jules-dev-install      # idempotent: installs fastmcp[code-mode], httpx, PyYAML
+export JULES_API_KEY=…
+export CLAUDE_PLUGIN_ROOT=$(pwd)/jules-plugin
+./jules-plugin/bin/jules-bulk dashboard   # smoke
+```
+
+`bin/jules-dev-install` verifies the imports the helpers need
+(`FastMCP`, `CodeMode`, `jules_create`, `create_mcp`) and pre-creates the
+session-registry directory at `${CLAUDE_PLUGIN_DATA:-$HOME/.jules}`. Re-running
+is a no-op once the deps are present.
+
 ## Most important commands & skills
 
 Invoke as slash commands: `/bitwize-music:<name>`.
