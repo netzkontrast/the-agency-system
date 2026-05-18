@@ -86,12 +86,23 @@ servers/agency-mcp/src/agency_mcp/
     │   ├── state.py           # class DomainState — base cache abstraction; warm() / invalidate()
     │   ├── handlers.py        # @tool(domain="X", requires_state=[...]) decorator
     │   ├── manifest.py        # sync_manifest_from_registrations(mcp) — boot-time regeneration
-    │   └── conventions.py     # invariants:
+    │   └── conventions.py     # invariants (per Plan/harness/VOCABULARY.md):
     │                          #   - DOMAIN_RE = r'^[a-z]+$'
     │                          #   - TOOL_NAME_RE = r'^[a-z]+_[a-z_]+$'  (<domain>_<verb>)
     │                          #   - TAG_FMT = "domain:{name}"
-    │                          #   - SKILL_SCHEMA = { name, description, model?, allowed-tools? }
+    │                          #   - SKILL_SCHEMA = required keys per VOCABULARY §6A
+    │                          #     + skill_kind enum per VOCABULARY §4.2
+    │                          #     (domain | tool | orchestrator | meta | discipline |
+    │                          #      workflow | persona | analysis | agent-template)
+    │                          #   - SUMMARY_CAP_SKILLS = 120   # per VOCABULARY §6A
+    │                          #   - SUMMARY_CAP_SPECS = 240    # per VOCABULARY §6A
+    │                          #   - CONTENT_TIER_T1_CAP = 200  # chars (VOCABULARY §6D)
+    │                          #   - CONTENT_TIER_T2_CAP = 5120 # bytes (VOCABULARY §6D)
+    │                          #   - RECIPROCITY = { supersedes → superseded_by, ... }
+    │                          #     (VOCABULARY §6B reciprocity rules)
+    │                          #   - REPAIR_TIER_RE = r'^T[1-4]$' (VOCABULARY §6C)
     │                          #   - BinaryEnvelope = TypedDict[type, path, size_bytes, mime_type, sha256]
+    │                          #   - ADR_FM_SCHEMA = MADR 4.0.0 per Plan/decisions/readme.md
     │
     ├── music/
     │   ├── __init__.py        # class MusicDomain(Domain):
