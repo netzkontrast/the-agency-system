@@ -15,7 +15,8 @@ Feature: Phase 6 — Quality / loop / compaction
     When a PreToolUse event is emitted
     And a PostToolUse event is emitted
     And a UserPromptSubmit event is emitted
-    Then the session-log database records each of the 3 events idempotently
+    And the same PreToolUse event is submitted twice with an identical event_id
+    Then exactly one row exists for that PreToolUse event in the session-log database
 
   # anchor: phase-6.quality-score-computation-and-nudge
   Scenario Outline: Quality score computed on UserPromptSubmit and emits nudges
@@ -31,6 +32,8 @@ Feature: Phase 6 — Quality / loop / compaction
       | 65            | 55        | emits        |
       | 70            | 68        | does not emit|
       | 80            | 85        | does not emit|
+      | 62            | 59        | emits        |
+      | 95            | 78        | emits        |
 
   # anchor: phase-6.quality-score-weights
   Scenario: The 7-signal quality score uses specific weights
@@ -54,24 +57,35 @@ Feature: Phase 6 — Quality / loop / compaction
     Then a loop detection event is triggered
     And an inline nudge is emitted advising a different approach
 
-  # anchor: phase-6.loop-notes-cap-and-cooldown
-  Scenario: Loop notes are capped at 2 per session with a 3-turn cooldown
+  # anchor: phase-6.loop-notes-cooldown
+  Scenario: Loop note cooldown suppresses nudges within 3 turns
     Given a session has already recorded 1 loop note
     And the last loop note was emitted 2 turns ago
     When the loop detection algorithm detects another loop
     Then no loop note is emitted due to the 3-turn cooldown
-    When 2 more turns pass and another loop is detected
+
+  # anchor: phase-6.loop-notes-second-emission
+  Scenario: Second loop note is emitted after cooldown expires
+    Given a session has already recorded 1 loop note
+    And the last loop note was emitted 4 turns ago
+    When the loop detection algorithm detects another loop
     Then a second loop note is emitted
-    When 4 more turns pass and another loop is detected
+
+  # anchor: phase-6.loop-notes-session-cap
+  Scenario: Loop notes are strictly capped at 2 per session
+    Given a session has already recorded 2 loop notes
+    And the last loop note was emitted 5 turns ago
+    When the loop detection algorithm detects another loop
     Then no loop note is emitted due to the 2-note per session cap
 
   # anchor: phase-6.smart-compaction-checkpoints
   Scenario: PreCompact hook snapshots and CompactionEnd restores richest checkpoint
     Given the session triggers a PreCompact event due to hitting 1 of 5 fill thresholds or 1 of 4 quality thresholds
+    And there are two checkpoints available: Checkpoint A with 80% fill_pct and 1 decision, and Checkpoint B with 50% fill_pct and 9 decisions
     When the precompact_hook executes
     Then a snapshot checkpoint is taken containing the decisions, recent tool invocations, and quality score
     When a CompactionEnd event is later triggered
-    Then the compaction_end_hook selects the checkpoint with the highest richness score
+    Then the compaction_end_hook selects Checkpoint B as it is the richest checkpoint based on the formula
     And the hook injects a decision digest into additionalContext
 
   # anchor: phase-6.archive-ids-survive-compaction
