@@ -59,7 +59,7 @@ def novel_get_promo_content(work_id: str, kind: str) -> dict:
         return {"ok": False, "warnings": [f"Kind '{kind}' not generated"]}
     return {"ok": True, "data": {"content": res["data"][kind]}}
 
-def novel_update_promo_field(work_id: str, kind: str, field: str, value: str) -> dict:
+def novel_update_promo_field(work_id: str, kind: str, field: str, value: str, dry_run: bool = False) -> dict:
     work_dir = _resolve_work_dir(work_id)
     if not work_dir:
         return {"ok": False, "warnings": ["Work not found"]}
@@ -67,6 +67,16 @@ def novel_update_promo_field(work_id: str, kind: str, field: str, value: str) ->
     readme_path = work_dir / "README.md"
     if not readme_path.exists():
         return {"ok": False, "warnings": ["Missing README.md"]}
+
+    if dry_run:
+        return {
+            "ok": True,
+            "data": {
+                "would_apply": True,
+                "diff": [f"Update field '{field}' in {readme_path} to '{value}'"]
+            },
+            "warnings": []
+        }
 
     try:
         with open(readme_path, "r", encoding="utf-8") as f:
