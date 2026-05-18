@@ -156,7 +156,7 @@ Scenario: `dry_run=True` behavior
 | `ontology_fix_auto_repairs` | deferred | — | Auto-repair recipe engine → `dry_run` required. |
 
 **PostToolUse hook (`hooks/validate_ontology.py`):**
-1. MCP fires hook after successful `Write` on `*.md` files containing `---` frontmatter.
+1. MCP fires hook after successful `Write` or `Edit` on `*.md` files containing `---` frontmatter (Claude Code exposes both tools — the matcher in `hooks/hooks.json` MUST be `"Edit|Write"` so frontmatter-touching edits via `Edit` are not bypassed).
 2. Hook invokes `ontology_validate_frontmatter(path)` synchronously.
 3. Diagnostics returned to agent context.
 4. Hook is **read-only** — never mutates files; graph traversal deferred to `ontology_govern`.

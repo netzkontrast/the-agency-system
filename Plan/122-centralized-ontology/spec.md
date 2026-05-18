@@ -80,10 +80,12 @@ Scenario: Auto-readme renderer is byte-identical on second run
   Then the output MUST be byte-identical
 
 # anchor: 122.4
-Scenario: A missing required L2 field fails CI
-  Given a track artifact missing the required "track_bpm" L2 field
+Scenario: A missing required L2 readme field fails CI
+  Given a readme artifact (type = "readme") missing a required L2 field declared in `l2-readme.schema.json`
   When the linter evaluates the file
-  Then it MUST fail validation with a specific L2 error
+  Then it MUST fail validation with a specific L2 error citing the missing field name
+  And the error MUST identify the L2 schema (`l2-readme.schema.json`) as the source of the rejection
+  (Per-domain L2 schemas — `l2-music-track.schema.json`, `l2-novel-work.schema.json`, etc. — are out of scope for this spec; they ship in their respective domain specs and reuse this validator.)
 
 # anchor: 122.5
 Scenario: Path B context_search returns ontology-typed results
