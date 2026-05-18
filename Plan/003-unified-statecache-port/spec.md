@@ -33,7 +33,7 @@ wave: A
 
 ## Why
 
-bitwize's thread-safe `StateCache` is the lynchpin that lets handlers share a single in-memory state without re-parsing markdown on every tool call. Porting it with namespaced top-level keys (`music`, `novel`, `jules`, `agentic`) gives all four domains one cache, one `asyncio.Lock`, and one mtime-staleness check against `~/.agency-system/cache/state.json`. Without this spec, every domain handler in waves A–C would invent its own cache layer and the Code Mode token budget would regress past its 315-token target (§2.1.4 of the overview). Per-domain indexer stubs are wired here so Specs 004 (music), 011 (novel), 006 (jules), and 016 (agentic) can populate them without touching the cache.
+bitwize's thread-safe `StateCache` is the lynchpin that lets handlers share a single in-memory state without re-parsing markdown on every tool call. Porting it with namespaced top-level keys (`music`, `novel`, `jules`, `agentic`) gives all four domains one cache, one `asyncio.Lock`, and one mtime-staleness check against `~/.agency-system/cache/state.json`. (Note: "four domains" here means the four state-cache namespaces per `Plan/harness/VOCABULARY.md` §4.1; the canonical handler-bearing domain count is five — `music`, `novel`, `jules`, `context`, `shared` — plus the `agentic` skill-only domain.) Without this spec, every domain handler in waves A–C would invent its own cache layer and the Code Mode token budget would regress past its 315-token target (§2.1.4 of the overview). Per-domain indexer stubs are wired here so Specs 004 (music), 011 (novel), 006 (jules), and 016 (agentic) can populate them without touching the cache.
 
 ## Done When
 

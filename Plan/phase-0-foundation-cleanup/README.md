@@ -2,7 +2,7 @@
 
 This phase focuses on clearing legacy artefacts and standardising the orchestrator foundations, unblocking Phase 1 of the agency system refactor. It composes two core specifications:
 
-- **Spec 020 (extended):** Deprecates and removes `jules-plugin/`, completing the unification of the workspace and standardising the four domain docs.
+- **Spec 020 (extended):** Deprecates and removes `jules-plugin/`, completing the unification of the workspace and standardising the **four user-facing domain documentation files** at `docs/domain/{music,novel,jules,agentic}.md` (per `Plan/harness/VOCABULARY.md` §4.1; the canonical handler-bearing domain count is five — `music`, `novel`, `jules`, `context`, `shared` — plus the `agentic` skill-only domain, but `context` and `shared` are infrastructural and do not warrant standalone user guides).
 - **Spec 099 (stub only):** Authors the orchestration-improvements stub plus lint scripts for missing `affects:` clauses. The full Spec 099 (§2.2 skill-schema lockdown and token-discipline enforcement across the orchestrator surface) lands in **Phase 8**.
 
 **What this unblocks downstream:**

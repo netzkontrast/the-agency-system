@@ -47,6 +47,7 @@ tag_target: design/harness-v1   # the git tag this design supports once approved
 > **Working branch:** `claude/fix-pr-merge-issues-sn1CS`
 > **Reference PR:** [#115](https://github.com/netzkontrast/the-agency-system/pull/115) — coordination point for all parallel sessions working on this.
 > **Cross-link:** [PR #111](https://github.com/netzkontrast/the-agency-system/pull/111) (`Plan/000-overview.md` v2) places this design's deliverables in Phase 1 alongside specs 131, 105, 104, 107, 130.
+> **Naming canon:** [`Plan/harness/VOCABULARY.md`](VOCABULARY.md) extracts this design's canonical terms (three layers, four-verb contract, five domains + agentic, Harness Path A/B vs. Context Mode Path A/B). All downstream documents are expected to cite VOCABULARY.md for definitions rather than this design's prose.
 
 # Harness in a Harness — Three-layer access ladder for the agency-system plugin
 

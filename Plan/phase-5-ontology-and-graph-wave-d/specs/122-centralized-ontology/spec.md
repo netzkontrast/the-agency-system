@@ -88,7 +88,7 @@ Scenario: A missing required L2 readme field fails CI
   (Per-domain L2 schemas — `l2-music-track.schema.json`, `l2-novel-work.schema.json`, etc. — are out of scope for this spec; they ship in their respective domain specs and reuse this validator.)
 
 # anchor: 122.5
-Scenario: Path B context_search returns ontology-typed results
+Scenario: Context Mode Path B `context_search` returns ontology-typed results
   Given the context manifest is built with the new ontology
   When context_search is queried
   Then the returned entries MUST include the correct ontology "type" tag
@@ -126,9 +126,9 @@ Scenario: SUBDOC fenced div extracted by markdown-it-py
 
 **Templating decision:** Jinja2 + Cog with a base `readme.j2` plus domain overrides (`skill_readme.j2`, `spec_readme.j2`, etc.). Data context includes parsed frontmatter + incoming/outgoing edges resolved from the manifest.
 
-## Path B integration
+## Context Mode Path B integration
 
-| Path B surface | Integration point |
+| Context Mode Path B surface | Integration point |
 |---|---|
 | **Spec 111 manifest** | `context_indexer.py` reads L1 frontmatter via `validate.py`. Tag taxonomy formalised: `domain:*`, `kind:*`, `topic:*`. Artefacts failing schema validation are EXCLUDED from the manifest (linter exit ≠ 0). |
 | **Spec 112 describe** | `context_describe(id)` returns the L1 fields plus the `neighbours` object computed from `header-ontology.json` edges. Resolved edge targets are looked up against the same manifest. |

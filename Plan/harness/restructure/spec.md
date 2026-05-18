@@ -34,7 +34,7 @@ supersedes_in_part_of: [023]  # the daemon work that Plan/023 owned is in harnes
 
 > **Status:** `vision` — this is a "someday" 10/10 target. The active implementation path is `Plan/harness/design.md` Path A (9/10 via low-cost source levers + harness normalisation). This spec is on record so the path is visible and reviewable; it should not start until the Phase 2-8 surge from Plan/000-v2 has slowed enough that a 2-3 week refactor PR will not collide with concurrent Jules dispatches.
 >
-> **Working branch (when scheduled):** to be assigned. **Reference design:** `Plan/harness/design.md` §11.4 (Path B).
+> **Working branch (when scheduled):** to be assigned. **Reference design:** `Plan/harness/design.md` §11.4 (Harness Path B). **Naming canon:** [`Plan/harness/VOCABULARY.md`](../VOCABULARY.md) §6 documents the disambiguation between Harness Path A/B (this spec) and Context Mode Path A/B (Phase 4); never use the bare form once both contexts are in scope.
 
 # Restructure for native isomorphism — `domains/<name>/` tree with `Domain` base class
 

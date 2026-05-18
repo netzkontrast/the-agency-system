@@ -33,7 +33,7 @@ research: Plan/_research/graphqlite-codemode/findings.md
 
 ## Why
 
-The plugin's unified ontology (Spec 122) structures the relationships across music, novel, jules, and agentic domains. However, Path B (Specs 111-113) only provides a flat, BM25-searchable text manifest. To unlock the value of the ontology graph, we need a query mechanism. By integrating `colliery-io/graphqlite` as an SQLite loadable extension, we gain the ability to execute expressive Cypher queries (`MATCH`) and standard graph algorithms (PageRank, Shortest Path) over our data. This allows the model to answer complex relational questions (e.g. shortest dependency path between specs) entirely locally without requiring heavy external graph database servers like Neo4j.
+The plugin's unified ontology (Spec 122) structures the relationships across music, novel, jules, and agentic domains. However, Context Mode Path B (Specs 111-113) only provides a flat, BM25-searchable text manifest. To unlock the value of the ontology graph, we need a query mechanism. By integrating `colliery-io/graphqlite` as an SQLite loadable extension, we gain the ability to execute expressive Cypher queries (`MATCH`) and standard graph algorithms (PageRank, Shortest Path) over our data. This allows the model to answer complex relational questions (e.g. shortest dependency path between specs) entirely locally without requiring heavy external graph database servers like Neo4j.
 
 ## Done When
 
@@ -90,7 +90,7 @@ If the import smoke test fails on the Jules runner, open a draft PR labelled `[B
    - `graph_run_algorithm` in `algorithms.py`. Supports `pagerank`, `louvain`, `shortest_path`, `bfs`, `dfs`, `components` (initial scope). Large scopes return `return_plan` envelope; small scopes return inline.
 4. **Ingestion hooks.** `hooks/graph_ingest.py` triggers on PostToolUse for Markdown writes. Maps frontmatter L1/L2 + relationship headers → Cypher UPSERT (MERGE semantics). After mutation, calls `g.reload_graph()` to refresh the CSR cache.
 5. **Code Mode classification.** `servers/agency-mcp/src/agency_mcp/codemode/manifest.json`: `graph_cypher` + `graph_describe_node` + `graph_run_algorithm` = **eager** (matches Done When). Within `graph_run_algorithm`, small scopes return inline; large scopes (e.g. PageRank on >100k nodes per the performance baseline) return the `return_plan` envelope and surface a `graph_run_algorithm_status(job_id)` poll companion — async hand-off is at the tool's discretion at *call time*, not at registration tier. `graph_ingest_frontmatter` = **deferred**.
-6. **Path B integration.** `server.py` intercepts file-change notifications from Spec 113's watcher and triggers incremental graph updates (single-file UPSERT + CSR reload) instead of full rebuild. Spec 112's `context_describe(id)` calls `graph_describe_node` internally to populate `neighbours`.
+6. **Context Mode Path B integration.** `server.py` intercepts file-change notifications from Spec 113's watcher and triggers incremental graph updates (single-file UPSERT + CSR reload) instead of full rebuild. Spec 112's `context_describe(id)` calls `graph_describe_node` internally to populate `neighbours`.
 7. **Bootstrap mode.** First-boot full rebuild uses `GraphManager.insert_nodes_bulk()` + `insert_edges_bulk()` (100-500× faster than Cypher CREATE) by walking the repo, parsing frontmatter, and bulk-inserting in a single transaction.
 8. **Gate 2 — TDD.**
    - **RED:** `test_schema.py` (EAV mapping), `test_anchors.py` (tool envelopes), `test_ingest.py` (UPSERT idempotence). Integration: `test_graph_cypher_roundtrip.py` (CREATE → MATCH → DELETE), `test_graph_algorithms.py` (PageRank sums ≈ 1.0, BFS reaches all reachable nodes).
@@ -193,9 +193,9 @@ Scenario: Bootstrap from cold cache uses bulk insert
 - `gql_load_graph()` on 100k nodes: 50–100 ms
 - PageRank on 100k nodes: ~180 ms; on 1M nodes: ~38 s
 
-## Path B integration
+## Context Mode Path B integration
 
-| Path B surface | Integration point |
+| Context Mode Path B surface | Integration point |
 |---|---|
 | **Spec 111 manifest** | Bootstrap path: `bin/build_context_manifest.py` reads frontmatter, calls `GraphManager.insert_nodes_bulk()` + `insert_edges_bulk()` directly (bypasses Cypher parser for speed). Manifest entries get `graph_id` field pointing to the corresponding node. |
 | **Spec 112 describe** | `context_describe(id)` enriches its payload with `graph_describe_node(id, expand=1).neighbours`. Adds `{incoming: [...], outgoing: [...]}` to the describe envelope. |

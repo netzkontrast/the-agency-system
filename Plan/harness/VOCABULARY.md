@@ -112,6 +112,20 @@ about "all domains" should explicitly say either "five handler-bearing
 domains" or "five handler-bearing domains plus the agentic skill-only
 domain", depending on scope.
 
+### 4.1 Three different "four / five" enumerations — disambiguate
+
+The string "four domains" appears in three unrelated contexts. Always
+qualify which one is meant; never use bare "four domains" without
+saying which enumeration:
+
+| Enumeration | Count | Members | Why this count | Authoritative |
+|---|---|---|---|---|
+| **State-cache namespaces** | 4 | `music`, `novel`, `jules`, `agentic` | These four domains carry session state worth caching in `~/.agency-system/cache/state.json`. `context` queries the manifest directly (no state). `shared` is utility tools (no state). | `Plan/000-overview.md` §7 ("State on disk"); `Plan/003-unified-statecache-port/spec.md`. |
+| **Domain-documentation files** | 4 | `docs/domain/{music,novel,jules,agentic}.md` | User-facing reading guides. `context` and `shared` are infrastructural and do not warrant a standalone user guide. | `Plan/020-bitwize-deprecation-and-docs/spec.md`. |
+| **Handler-bearing domains** | 5 (+ 1) | `music`, `novel`, `jules`, `context`, `shared` (+ `agentic` skill-only) | The full FastMCP tool surface — every domain that registers tools or skills. **This is the canonical "domain count" for the harness vision.** | §4 above; `Plan/harness/design.md` §3.7. |
+
+Older specs (e.g. `Plan/008-codemode-registry/spec.md`, `Plan/003-unified-statecache-port/spec.md`, `Plan/020-bitwize-deprecation-and-docs/spec.md`) predate the §4 canon and use "four domains" to mean the cache/doc enumerations. Those usages are *historically correct in context* but should be qualified inline (e.g. "four state-cache domains" or "four user-facing domain docs") when re-read against the canon.
+
 ---
 
 ## 5. Naming conventions

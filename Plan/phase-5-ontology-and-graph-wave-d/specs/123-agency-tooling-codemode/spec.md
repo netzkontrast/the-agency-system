@@ -82,7 +82,7 @@ Provide pytest stdout output and MCP local tool invocation payloads proving the 
 
 ### Gate 4 — Self-Review
 
-Verify `return_plan` usage, ensure the correct tag namespaces are utilized (`domain:cross`, `kind:ontology`, `anchor_kind:eager` — Spec 123 is cross-cutting per its frontmatter `domain: cross`, NOT agentic; the ontology anchors are consumed by music / novel / jules / agentic Path B surfaces alike), and confirm hook timing constraints are satisfied. Document explicitly if any structural logic deviates from PR #129.
+Verify `return_plan` usage, ensure the correct tag namespaces are utilized (`domain:cross`, `kind:ontology`, `anchor_kind:eager` — Spec 123 is cross-cutting per its frontmatter `domain: cross`, NOT agentic; the ontology anchors are consumed by music / novel / jules / agentic Context Mode Path B surfaces alike), and confirm hook timing constraints are satisfied. Document explicitly if any structural logic deviates from PR #129.
 
 ## Acceptance (Gherkin)
 
@@ -162,9 +162,9 @@ Scenario: `dry_run=True` behavior
 4. Hook is **read-only** — never mutates files; graph traversal deferred to `ontology_govern`.
 5. 500 ms budget achieved by eager-loading schemas at module init + `jsonschema` caching.
 
-## Path B integration
+## Context Mode Path B integration
 
-| Path B surface | Integration point |
+| Context Mode Path B surface | Integration point |
 |---|---|
 | **Spec 111 manifest** | The manifest builder calls `ontology_validate_frontmatter` per file; violations downgrade `status` and exclude the entry from search results. |
 | **Spec 112 describe** | `context_describe(id)` enriches its payload with `ontology_query(id, expand=neighbours)` to add the resolved edge graph. |
