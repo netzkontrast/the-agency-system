@@ -41,7 +41,7 @@ The plugin's unified ontology (Spec 122) structures the relationships across mus
 - A dedicated SQLite graph database is initialised at `~/.agency-system/cache/graph.sqlite` on MCP server boot, in WAL mode.
 - Three eager anchor tools (`graph_cypher`, `graph_describe_node`, `graph_run_algorithm`) are registered and classified in `servers/agency-mcp/src/agency_mcp/codemode/manifest.json`.
 - `graph_cypher` supports `dry_run=True`, which MUST NOT mutate the database; mutating queries return the shared `{would_apply, diff, warnings}` envelope (overview §2.1 rule 7) — `diff` is the EXPLAIN-SQL text plus a Cypher-level description of what would change.
-- `hooks/graph_ingest.py` is created and wired as `PostToolUse` on `Edit|Write` of Markdown files as the **fast path** for keeping the graph fresh. Because overview §2.1 rule 11 requires correctness-critical state invalidation to be synchronous inside the tool, the hook's first action is to append the changed path to `~/.agency-system/cache/graph_pending_writes.json` (a JSON array under the canonical agency cache root, atomic-write under flock); the hook then attempts the incremental ingest and, on success, removes the path from the queue. Every graph **read** tool (`graph_cypher`, `graph_describe_node`, `graph_run_algorithm`) MUST also run a staleness check on entry: if `graph_pending_writes.json` is non-empty, the read tool runs an inline `graph_ingest_frontmatter` for each pending path (draining the queue) before serving the query. Producer = the PostToolUse hook itself (path append always happens, even if the ingest body fails); consumer = the hook (success path) AND the read tools (drain fallback). This guarantees the queue is populated whenever a write happened and a graph read has not yet caught up, so the backstop is never silently empty.
+- `hooks/graph_ingest.py` is created and wired as `PostToolUse` on `Edit|Write` of Markdown files as the **fast path** for keeping the graph fresh. Because overview §2.1 rule 11 requires correctness-critical state invalidation to be synchronous inside the tool, the hook's first action is to append the changed path to `~/.agency-system/cache/graph_pending_writes.json` (a JSON array under the canonical agency cache root, atomic-write under flock); the hook then attempts the incremental ingest and, on success, removes the path from the queue. Every graph **read** tool (`graph_cypher`, `graph_describe_node`, `graph_run_algorithm`) MUST also run a staleness check on entry: if `graph_pending_writes.json` is non-empty, the read tool runs an inline `graph_ingest_frontmatter` for each pending path (draining the queue) before serving the query. Producer set = (a) the `Edit|Write` PostToolUse hook for in-Claude-Code edits, AND (b) Spec 113's filesystem watcher's `ChangeEvent` handler for source-agnostic FS changes (Bash-written files, external editors, `git pull`, etc.) — the watcher appends to the same queue before calling ingest, so Bash writes do NOT bypass the staleness guarantee. Consumer = the hook (success path) AND the read tools (drain fallback). Path append always happens (in either producer) even if the ingest body fails, so the backstop is never silently empty.
 - `graph_describe_node(id, expand=1)` retrieves a node and its immediate inbound/outbound neighbours.
 - `pytest` integration tests verify Cypher read/write operations and graph algorithm accuracy (PageRank sums to ≈1.0, etc.).
 - Boot token budget impact of the graph anchors MUST keep `tools/list` within 1.10× of the pre-graph baseline.
@@ -113,7 +113,7 @@ Scenario: graph_cypher honors dry_run
   Given the caller executes graph_cypher with `CREATE ... RETURN id` and dry_run=True
   When the tool processes the request
   Then the graph database is NOT mutated
-  And the tool returns `{would_apply, explain_sql, warnings}`
+  And the tool returns `{would_apply, diff, warnings}` (shared dry_run contract per overview §2.1 rule 7; `diff` holds the EXPLAIN-SQL text plus a Cypher-level description of what would change)
 
 # anchor: 124.3
 Scenario: graph_describe_node retrieves neighbours
@@ -130,10 +130,10 @@ Scenario: PageRank execution yields normalised scores
   And the sum of all scores is ≈ 1.0
 
 # anchor: 124.5
-Scenario: Ingest hook triggers on Markdown modification
+Scenario: Ingest hook triggers on Markdown modification (Edit + Write paths)
   Given a Markdown file containing L1 frontmatter
-  When the file is modified via a Write tool
-  Then hooks/graph_ingest.py is triggered
+  When the file is modified via Claude Code's `Write` tool OR the `Edit` tool
+  Then hooks/graph_ingest.py is triggered for both paths (matcher = `Edit|Write`)
   And the corresponding graph node's properties are updated within 500 ms
   And the CSR cache is reloaded
 
@@ -215,7 +215,7 @@ Scenario: Bootstrap from cold cache uses bulk insert
 | **Q6** | Schema migration when Spec 122 evolves | **DEFERRED**: graph.sqlite is a derived index. On breaking ontology change, delete + rebuild on next boot. Forward-migration policy is a follow-up spec. |
 | TBD | Cross-platform extension loading | `.dylib` / `.so` / `.dll` auto-selected by `graphqlite.get_loadable_path()`. CI MUST test on all three. If a platform fails wheel install, open `[BLOCKED: graphqlite-install]` PR. |
 | TBD | Multi-writer safety | SQLite WAL mode + per-connection `asyncio.Lock` on mutations. Reads are concurrent. |
-| TBD | dry_run return envelope | `{would_apply: bool, explain_sql: str, warnings: [str]}`. NOT a unified diff — graphqlite EXPLAIN returns generated SQL, not row-level deltas. |
+| TBD | dry_run return envelope | `{would_apply: bool, diff: str, warnings: [str]}` (matches the shared dry_run contract — overview §2.1 rule 7). The `diff` field holds the EXPLAIN-SQL text plus a Cypher-level description; it is NOT a unified line-diff (graphqlite EXPLAIN returns generated SQL, not row-level deltas). |
 | TBD | CSR reload trigger frequency | Coalesced: a debounced reload fires 250 ms after the last write to avoid thrashing when many files change at once (e.g. a batch script run). |
 
 ## Out of scope

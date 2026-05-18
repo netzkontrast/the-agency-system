@@ -28,7 +28,7 @@ By extracting these tools and wrapping them as FastMCP Code Mode tools (Spec 008
 ## Done When
 
 - The agency `fm` tooling and relevant `check-*.py` scripts MUST be ported to `agency_mcp/handlers/ontology/`.
-- Four eager anchor tools (`ontology_validate_frontmatter`, `ontology_check_graph_consistency`, `ontology_render_readme`, `ontology_query`) MUST be registered and documented. Combined token budget ≤ 170 tokens (≤ 5 % of Spec 008 baseline).
+- Four eager anchor tools (`ontology_validate_frontmatter`, `ontology_check_graph_consistency`, `ontology_render_readme`, `ontology_query`) MUST be registered and documented. Combined token budget ≤ 170 tokens absolute. (The "5 % of baseline" framing from earlier drafts was incorrect: Spec 008's Code-Mode baseline is ~315 tokens per overview §2.1 rule 4, so 170 is ~54 % of that absolute number. The operative budget gate for Wave D is the *cumulative* `tools/list` size staying within 1.10× of the pre-Wave-D baseline — see synthesis §4 Q4 and acceptance 123.4 — verified by `bin/measure_token_budget` after each spec lands.)
 - The `servers/agency-mcp/src/agency_mcp/codemode/manifest.json` MUST classify each tool as `eager`, `deferred`, or `background` per the table in §Findings highlights below.
 - A centralized `hooks/validate_ontology.py` MUST be registered in `hooks/hooks.json` to fire PostToolUse on edits to Markdown files with frontmatter; total wall-time MUST stay ≤ 500 ms.
 - Tool responses MUST adhere to the token-efficiency policy, returning summaries by default (`view=summary`, see Spec 103).
@@ -156,7 +156,7 @@ Scenario: `dry_run=True` behavior
 | `ontology_fix_auto_repairs` | deferred | — | Auto-repair recipe engine → `dry_run` required. |
 
 **PostToolUse hook (`hooks/validate_ontology.py`):**
-1. MCP fires hook after successful `Write` or `Edit` on `*.md` files containing `---` frontmatter (Claude Code exposes both tools — the matcher in `hooks/hooks.json` MUST be `"Edit|Write"` so frontmatter-touching edits via `Edit` are not bypassed).
+1. MCP fires hook after successful `Write` or `Edit` on `*.md` files containing `---` frontmatter (Claude Code exposes both tools — the matcher in `hooks/hooks.json` MUST be `"Edit|Write"` so frontmatter-touching edits via `Edit` are not bypassed). **Bash-written files** (e.g. `echo ... > file.md`, `cat << EOF > file.md`) do NOT trigger PostToolUse for `Edit|Write` — those are caught by the FS-level safety net at Spec 113's watcher, which dispatches `validate_ontology.py` on every `ChangeEvent` regardless of the tool that produced the change. The hook is the fast path for in-Claude-Code edits; the watcher is the source-agnostic backstop.
 2. Hook invokes `ontology_validate_frontmatter(path)` synchronously.
 3. Diagnostics returned to agent context.
 4. Hook is **read-only** — never mutates files; graph traversal deferred to `ontology_govern`.
