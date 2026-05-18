@@ -1,21 +1,31 @@
-"""Code Mode registry — manifest-driven tool classification.
-
-Spec: Plan/008-codemode-registry/spec.md
-"""
 from agency_mcp.lib.codemode.registry import (
-    anchor_tools,
-    background_companions,
     classify,
+    anchor_tools,
     load_manifest,
 )
-from agency_mcp.lib.codemode.deferred_loader import register_tool
-from agency_mcp.lib.codemode.context_anchor_triad import register_context_anchor_triad
+from agency_mcp.lib.codemode.context_manifest import (
+    ContextManifest,
+    load_context_manifest,
+)
+from agency_mcp.lib.codemode.context_cache import (
+    ContextCache,
+    ContextBody,
+    CacheEntry,
+)
+from agency_mcp.lib.codemode.context_watcher import (
+    ContextWatcher,
+    ChangeEvent,
+)
 
 __all__ = [
-    "anchor_tools",
-    "background_companions",
     "classify",
+    "anchor_tools",
     "load_manifest",
-    "register_tool",
-    "register_context_anchor_triad",
+    "ContextManifest",
+    "load_context_manifest",
+    "ContextCache",
+    "ContextBody",
+    "CacheEntry",
+    "ContextWatcher",
+    "ChangeEvent",
 ]
