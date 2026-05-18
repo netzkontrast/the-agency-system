@@ -180,7 +180,7 @@ Every phase's PR must paste these counters into `## Evidence`:
 |---|---|---|---|
 | `tools/list` payload (cold) | ~38 KB | < 4 KB | `tests/smoke/test_boot_budget.py` (Phase 1) |
 | Boot context tokens | ~34 000 | < 500 | same |
-| Average `mcp__github__pull_request_read` cost | 40-80 k tokens | ≤ 2.5 KB envelope | manual: 3 sample PRs (Phase 3) |
+| Average `mcp__github__pull_request_read` cost | 40-80 k tokens (≈ 160-320 KB) | ≤ 2.5 KB envelope (≈ 625 tokens) | manual: 3 sample PRs (Phase 3) |
 | Per-tool result max in context | unbounded | ≤ 4 KB → archived | `tests/smoke/test_archive_threshold.py` (Phase 2) |
 | Doc inlining (specs + lessons + overrides) | ≥ 200 KB summed | 0 by default; triad + on-demand | `tests/smoke/test_path_b_defers.py` (Phase 4) |
 | Cross-domain query (e.g. `spec → spec`) | 22 spec reads | 1 Cypher MATCH | `tests/smoke/test_graph_queries.py` (Phase 5) |

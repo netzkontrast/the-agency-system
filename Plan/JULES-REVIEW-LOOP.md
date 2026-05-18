@@ -35,6 +35,18 @@ OUTPUT: list[merged_pr_url]
 all_sids = []                                       # accumulate across groups
 for group in groups_of(spec_dirs):                  # see §2.5 grouping rule
     for spec in group:
+        # IDEMPOTENCY: write a "pending" row to sessions.json BEFORE
+        # calling jules_create. The row carries an idempotency_key (a
+        # deterministic hash of {phase, spec, title, prompt-sha256}) so
+        # the resume scan can reconcile against jules_status_all by
+        # title/createTime to find the real sid even if the dispatch
+        # script crashed between create-and-register. Without this, a
+        # crash between jules_create() and register_session(sid) leaks
+        # the backend session: quota consumed, branch may push, watcher
+        # never polls — see §8 idempotency rules below.
+        idempotency_key = sha256(f"{phase_id}|{spec.id}|{spec.slug}|{prompt_sha}")
+        register_pending(idempotency_key, phase_id, spec.id, title=f"Spec {spec.id} — {spec.slug}")
+
         res = jules_create(
             prompt=render_prompt("templates/spec-impl.md.j2", spec=spec, phase=phase_id),
             source="netzkontrast/the-agency-system",
@@ -52,7 +64,10 @@ for group in groups_of(spec_dirs):                  # see §2.5 grouping rule
                                                     # convergence detection works.
         )
         sid = (res.get("name") or res.get("id") or "").replace("sessions/", "")
-        register_session(sid, phase_id, spec.id)    # writes ~/.agency-system/cache/sessions.json
+        # Promote the pending row to a registered row with the real sid.
+        # Both writes are fcntl-locked; on crash, the pending row is the
+        # forensic trail for the resume scan in §8.
+        promote_pending_to_session(idempotency_key, sid)
         all_sids.append(sid)
 
 # 2.b Watch (one persistent Monitor; runs until every this-phase session hits
@@ -93,9 +108,13 @@ The watcher emits one JSON line per state transition. Routing:
 
 | Event | Action |
 |---|---|
+| `state=* → QUEUED` | Newly-created session waiting for a backend slot. No action; the next poll observes the transition to `PLANNING` or `IN_PROGRESS`. |
+| `state=* → PLANNING` | Jules is drafting its plan. No action; the next poll observes the transition to `AWAITING_PLAN_APPROVAL` or `IN_PROGRESS` (the latter when `require_plan_approval=False`). |
 | `state=IN_PROGRESS → AWAITING_PLAN_APPROVAL` | Check the plan body via `jules_plan(sid)`. If confidence ≥ 0.90 (gate 1 from `JULES_PROTOCOL`), call `jules_approve`. **Escalation channel:** at this state no PR exists yet, so the `@human:` PR-comment path is wrong. Escalate via `jules_message(sid, "@human: plan requires clarification — <text>")` (lands in the session timeline), AND write the same text to `~/.agency-system/cache/orchestrator-escalations/{phase}-{sid}.md` so it survives a session-end. Once the human responds or unblocks the session externally, the orchestrator resumes normally. |
+| `state=IN_PROGRESS → AWAITING_USER_FEEDBACK` | Jules has stopped mid-task and is asking the orchestrator a question. **The loop WILL stall without explicit routing** (this very PR's round-2 review hit this state and only progressed because a human messaged Jules via the UI). The watcher MUST: (a) call `jules_activities(sid, page_size=20, summary_only=False)` and extract the last `agentMessaged` payload; (b) read the question; (c) if it's a question whose answer is in the spec or PR body (e.g. "should I flag this as substantive?"), reply via `jules_message(sid, answer)` to unblock the session; (d) otherwise escalate via `@human:` on the PR (if a PR exists) or via the durable escalation file. |
 | `state=* → COMPLETED` | Wait 60 s (Jules's auto-publication flow may still be in-flight), then check `mcp__github__list_branches`. If branch present → §4. If absent → §5 recovery. |
 | `state=* → FAILED` | Read last activity via `jules_activities` (summary_only=true). If retryable (transient API error), restart the same session via `jules_message` with the same prompt. If genuine failure (e.g. spec ambiguity), append to `Plan/_lessons-learned/` and stop. |
+| `state=* → CANCELLED` | Either human-initiated stop or backend-initiated termination. Read the last activity to distinguish. Log to `Plan/_lessons-learned/` with the cause, then drop the session from `sessions.json` and reclaim its phase/spec for a fresh dispatch (do NOT auto-redispatch — the cancellation may be intentional). |
 | `inactivity for > 2 h while IN_PROGRESS` | Probe with `jules_message`: "status?". One probe only. If no response in 30 min → treat as silent-fail; escalate. |
 
 The watcher itself is persistent (a single `Monitor` invocation for the entire phase), so the orchestrator's main context only sees one notification per terminal event — never the raw API response.
@@ -370,58 +389,65 @@ def recover_completed_no_branch(sid, *, phase_id, spec_id, recover_onto):
     # currently rejects locally-signed commits.
     branch = f"jules-recovered/{sid[-8:]}"
     target_branch = branch if recover_onto == "Master" else recover_onto
-    if recover_onto == "Master":
-        mcp_github_create_branch(branch, from_branch="Master")
-
-    def apply_change(file_change, msg_prefix):
-        """Route to the right GitHub MCP tool. `parse_unified_diff` yields
-        file_change.op in {"add", "modify", "delete", "rename"}; delete
-        and rename's source-side need delete_file because
-        create_or_update_file cannot remove files."""
-        if file_change.op == "delete":
-            mcp_github_delete_file(
-                path=file_change.source_path,
-                branch=target_branch,
-                message=f"{msg_prefix} delete {file_change.source_path}",
-            )
-        elif file_change.op == "rename":
-            # GitHub has no atomic rename; emulate as delete-old + add-new.
-            mcp_github_delete_file(
-                path=file_change.source_path,
-                branch=target_branch,
-                message=f"{msg_prefix} rename: delete {file_change.source_path}",
-            )
-            mcp_github_create_or_update_file(
-                path=file_change.target_path,
-                content=file_change.final_content,
-                branch=target_branch,
-                message=f"{msg_prefix} rename: add {file_change.target_path}",
-            )
-        else:  # "add" or "modify"
-            mcp_github_create_or_update_file(
-                path=file_change.target_path,
-                content=file_change.final_content,
-                branch=target_branch,
-                message=f"{msg_prefix} {file_change.target_path}",
-            )
+    try:
+        if recover_onto == "Master":
+            mcp_github_create_branch(branch, from_branch="Master")
+    except BranchAlreadyExistsError:
+        pass                                                     # idempotent
 
     msg_prefix = (
         f"feat: recovered Spec {spec_id} (phase {phase_id}) from Jules sid {sid[-8:]}"
         if recover_onto == "Master"
         else f"fix(review): recovered fix commit from sid {sid[-8:]} —"
     )
+
     # IMPORTANT: each patch in a multi-output session may depend on prior
     # patches. parse_unified_diff therefore takes a *current* base — for the
     # first patch it's `recover_onto`; for every subsequent patch it must be
     # the in-progress branch (target_branch) AS IT EXISTS NOW on origin, so
-    # that hunks computed against an earlier patch's output line up. The
-    # `tools/jules-patch-extract.py --apply` mode stops on first apply
-    # failure for exactly this reason; we replicate that ordering invariant.
+    # that hunks computed against an earlier patch's output line up.
     current_base = recover_onto
-    for patch_path in patch_paths:                               # iterate ALL outputs, not just out0
-        for file_change in parse_unified_diff(patch_path, base_branch=current_base):
-            apply_change(file_change, msg_prefix)
-        current_base = target_branch                             # subsequent patches see the prior patch's commits
+
+    for patch_path in patch_paths:                               # iterate ALL outputs
+        # Collect adds/modifies into a single batched commit via
+        # mcp__github__push_files (one commit, up to ~hundreds of files).
+        # Deletes still need individual delete_file calls because
+        # push_files does not accept a delete flag. Result for a 100-file
+        # patch with 50 renames + 50 modifies: 1 push_files commit + 50
+        # delete_file commits = 51 commits, not 150. Avoids GitHub's
+        # secondary rate limits and keeps git history readable.
+        try:
+            changes = list(parse_unified_diff(patch_path, base_branch=current_base))
+        except BranchNotFoundError:
+            # The PR head branch was deleted while the loop ran
+            # (P1 failure mode 5). Escalate via PR comment and stop.
+            escalate_branch_missing(sid, phase_id, spec_id, target_branch)
+            return None
+
+        add_or_mod = [c for c in changes if c.op in ("add", "modify", "rename")]
+        deletes    = [c for c in changes if c.op in ("delete",)] + [
+            c for c in changes if c.op == "rename"               # rename's source-side
+        ]
+
+        if add_or_mod:
+            mcp_github_push_files(
+                owner="netzkontrast", repo="the-agency-system",
+                branch=target_branch,
+                files=[
+                    {"path": c.target_path, "content": c.final_content}
+                    for c in add_or_mod
+                ],
+                message=f"{msg_prefix} {patch_path.split('/')[-1]} ({len(add_or_mod)} files)",
+            )
+        for c in deletes:
+            mcp_github_delete_file(
+                owner="netzkontrast", repo="the-agency-system",
+                path=c.source_path,
+                branch=target_branch,
+                message=f"{msg_prefix} delete {c.source_path}",
+            )
+
+        current_base = target_branch                             # next patch sees prior commits
 
     if recover_onto == "Master":
         # Fresh implementation recovery → open a new PR
@@ -488,9 +514,9 @@ The orchestrator can crash and resume mid-phase. Resume guarantees:
 
 | State on disk | After crash, orchestrator does |
 |---|---|
-| `~/.agency-system/cache/sessions.json` | Re-loads in-flight session list; resumes §2.b watcher (canonical path per 000-overview.md §7) |
+| `~/.agency-system/cache/sessions.json` | Re-loads in-flight session list; resumes §2.b watcher (canonical path per 000-overview.md §7). On resume, also scan rows with `state="pending"` (idempotency-leak forensic rows from a crash between `jules_create` and `register_session`); for each, call `jules_status_all` and match by `title` + `createTime > pending_row.created_at - 60s` to recover the orphaned session id. If no match, the create call never completed — drop the pending row. |
 | Open PRs without `claude-review-cycle:*` label | Treats as awaiting review; starts §4 loop at round 1 |
-| Open PRs with `claude-review-cycle: round-N-started` label, no `…round-N-done` label | Resumes §4 loop at round **N** (the in-flight round whose work hadn't finished) |
+| Open PRs with `claude-review-cycle: round-N-started` label, no `…round-N-done` label | **Race-safe resume**: before dispatching a new round-N review session, scan `sessions.json` for any row with `phase_id=… AND spec_id=… AND label="review-r{N}"`. If found AND `jules_get(sid).state` is non-terminal, the prior round is still running — attach the watcher to it instead of spawning a duplicate. Only if no live session matches does the resume actually dispatch round N (which then writes its own `review-r{N}` row before calling `jules_create`). |
 | Open PRs with `claude-review-cycle: round-N-done` label | Resumes §4 loop at round **N+1** |
 | Closed PRs with `claude-merged` label | Skip; included in §2.f overview update |
 
@@ -507,6 +533,9 @@ The orchestrator writes the `claude-review-cycle: round-N-started` label via `mc
 | Convergence stalls but smoke test passes anyway | Tests may be missing coverage | Add a [SUBSTANTIVE] review comment requesting test addition; continue loop |
 | `jules_quota()` reports `remaining_today == 0` or `active_today >= 60` | Hit the daily or concurrency ceiling. (`jules_status_all` has no `quota_exceeded` field — it returns `{by_state, sessions, pages_scanned, truncated}` — so quota pressure must be queried via `jules_quota` per §7.) | Pause fanout; wait for completions; resume |
 | `tools/jules-patch-extract.py` returns 0-file patch | Genuine empty session (Jules did nothing) | Mark spec for re-dispatch with revised prompt; log to `_lessons-learned/` |
+| PR head branch deleted mid-loop (a human force-deleted it via the GitHub UI) | Loop attempts `jules_create(starting_branch=pr.head_branch)` or recovery `parse_unified_diff(base_branch=pr.head_branch)` and gets a 404 / `BranchNotFoundError` | Catch the error in the dispatch and recovery paths. Escalate via `@human:` PR comment on the original PR (the PR itself remains as the audit trail). Drop the spec's `claude-review-cycle:*` labels so a fresh resume doesn't mis-route. Stop the loop for that PR. |
+| Two concurrent reviews of the same PR for round N | Crash-resume race or operator error spawned a duplicate session | The `round-N-started`-label resume rule (§8) now checks for a live session in `sessions.json` before dispatching. If two slip through anyway, the second one's `jules_message`-reply path will see the first one's review comments and converge naturally; cost is one extra quota slot, not correctness. |
+| Quota check-then-act race (§7) when multiple orchestrator instances overlap | The `60 - in_flight` budget is approximate, not a transactional lock | Accepted limitation. The MCP layer enforces a hard 100/day; over-budget concurrent dispatch fails the create call with HTTP 429, which §9 already handles. Document this in `_lessons-learned/` if it ever binds; do not add distributed locks without measured pain. |
 
 **Escalation channel depends on session state — see §3 for the contract.** Post-COMPLETED escalations (PR-stage problems) go to `@human:` PR comments; pre-PR escalations (sessions still in `AWAITING_PLAN_APPROVAL` where no PR has been opened yet) go through `jules_message(sid, "@human: …")` plus the durable file at `~/.agency-system/cache/orchestrator-escalations/{phase}-{sid}.md`. Either way the PR thread is the canon once a PR exists; never DMs, never external channels.
 
