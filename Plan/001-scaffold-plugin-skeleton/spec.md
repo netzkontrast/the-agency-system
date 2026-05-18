@@ -1,7 +1,7 @@
 ---
 spec_id: 001
 slug: scaffold-plugin-skeleton
-status: ready
+status: done
 owner: jules
 depends_on: []
 affects:

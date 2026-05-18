@@ -1,7 +1,7 @@
 ---
 spec_id: 008
 slug: codemode-registry
-status: ready
+status: done
 owner: jules
 depends_on: [003, 004, 006]
 affects:

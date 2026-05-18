@@ -1,7 +1,7 @@
 ---
 spec_id: 002
 slug: manifest-and-marketplace
-status: ready
+status: done
 owner: jules
 depends_on: [001]
 affects:

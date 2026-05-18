@@ -1,7 +1,7 @@
 ---
 spec_id: 019
 slug: state-migration-from-bitwize
-status: ready
+status: done
 owner: jules
 depends_on: [003]
 affects:

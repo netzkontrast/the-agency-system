@@ -1,7 +1,7 @@
 ---
 spec_id: 006
 slug: jules-handlers-port
-status: ready
+status: done
 owner: jules
 depends_on: [003]
 affects:

@@ -1,7 +1,7 @@
 ---
 spec_id: 009
 slug: shared-handlers
-status: ready
+status: done
 owner: jules
 depends_on: [003]
 affects:

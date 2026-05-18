@@ -1,7 +1,7 @@
 ---
 spec_id: 012
 slug: dramatica-and-ncp-libs
-status: ready
+status: done
 owner: jules
 depends_on: [010]
 affects:
