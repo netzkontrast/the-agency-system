@@ -227,7 +227,7 @@ Imported from `netzkontrast/agency` (`/tmp/agency-research/AGENTS.md:387, 396`) 
 | Key | Required? | Type | Description | Example |
 |---|---|---|---|---|
 | `slug` | yes | string | kebab; equals dir name without numeric prefix | `harness-vocabulary` |
-| `summary` | yes | string ≤ 240 chars | one-line abstract the manifest indexes for "read before opening body" | `"Canonical naming reference for ..."` |
+| `summary` | yes | string — ≤ 240 chars for specs/ADRs/research; ≤ 120 chars for skills (tighter cap aids slash-command display) | one-line abstract the manifest indexes for "read before opening body" | `"Canonical naming reference for ..."` |
 | `status` | yes | enum | `draft \| in-progress \| ready \| ready-to-tag \| vision \| complete \| superseded \| abandoned` | `ready` |
 | `type` | yes | enum | `spec \| design \| research \| adr \| reference \| task \| note` | `reference` |
 | `owner` | yes | string | role or handle responsible | `claude` |
@@ -241,7 +241,10 @@ Imported from `netzkontrast/agency` (`/tmp/agency-research/AGENTS.md:387, 396`) 
 | `domain` | optional | enum | per §4: `music \| novel \| jules \| context \| shared \| agentic \| cross` | `agentic` |
 | `wave` | optional | enum | `A \| B \| C \| D` per `Plan/000-overview.md` | `B` |
 
-**`summary` is the primary token-saving lever** — readers should be able to decide whether to open a body purely from the manifest's `summary` view. Cap at 240 chars; longer summaries are an FL2 trigger (per `Plan/138-frustration-log-protocol/spec.md`).
+**`summary` is the primary token-saving lever** — readers should be able to decide whether to open a body purely from the manifest's `summary` view. Two caps apply by artefact kind:
+- **Skills** (`skills/<domain>/<slug>/SKILL.md`): **≤ 120 chars** (Spec 015 Done When item 3). Tighter cap aids `/help` slash-command listing readability.
+- **Specs / ADRs / research / reference docs**: **≤ 240 chars** (agency convention per `/tmp/agency-research/decisions/readme.md:20`).
+Summaries longer than the applicable cap are an FL2 trigger (per `Plan/138-frustration-log-protocol/spec.md`).
 
 Research source: `Plan/_research/agency-repo-analysis/findings.md` §1.1.
 
