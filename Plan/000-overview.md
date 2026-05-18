@@ -306,7 +306,7 @@ Phase 0 is the only phase this overview implements directly (the rest are dispat
   - Update `CLAUDE.md` install instructions.
   - Smoke test: `python -c "from agency_mcp.server import create_mcp; print(len(create_mcp().tools))"` returns same count as before deletion (the Jules tools live in `handlers/jules/` already).
   - `tests/smoke/test_no_jules_plugin.py` asserts `jules-plugin/` is absent AND `grep -rln 'jules-plugin/' skills/ commands/ hooks/ docs/ CLAUDE.md` returns no matches.
-- [ ] **Task 0.3** — `Plan/000-overview.md` updates §2.1 to add 020 to Done with PR# evidence.
+- [ ] **Task 0.3** — `Plan/000-overview.md` updates §2.1 to add 020 as **PARTIAL** Done (jules-plugin cleanup only) with PR# evidence. Spec 020's full `Done When:` (per `Plan/020-bitwize-deprecation-and-docs/spec.md`) also requires: README/domain docs refresh, CHANGELOG entry, plugin `version` bump to `1.0.0`, and `tests/smoke/test_doctrine_and_version.py`. Those remaining items move to **Phase 0b — Spec 020 finish** (sequenced AFTER Phase 1 anchor-triad lands so the version bump aligns with the first observable token-budget win), tracked separately to avoid silently dropping the unified-plugin doctrine work.
 - [ ] **Task 0.4** — Run JULES-REVIEW-LOOP §3 against Phase 0 PR — single Jules review session, iterate until clean, merge.
 
 Phase 0 is also the smoke test for the entire orchestration mechanism. If the review-loop doesn't work on a 4-task cleanup PR, fix the loop before attempting Phase 1.
@@ -324,12 +324,17 @@ For each phase below: `Specs` lists the sub-spec directories Jules will work fro
 - **Token win:** boot context 34k → <500 + 40-60% on list-shape returns via TOON middleware (gates on homogeneous list[dict] with len≥3).
 - **PR strategy:** 5 PRs, dispatched as one fanout. 130 + 131 + 105 open first; 104 opens after either of 130/131 merges; 107 opens last.
 - **Smoke test:** `tests/smoke/test_boot_budget.py` (Spec 131 ships it; runs in CI); `tests/smoke/test_toon_gate.py` (Spec 105).
+- **Cross-PR coordination (added 2026-05-18 mid-loop):** the smoke tests above need an in-process harness that boots `create_mcp()` via FastMCP's in-memory transport — separate from any single Spec 131/105 PR. **PR #115** (branch `claude/fix-pr-merge-issues-sn1CS`) is the working reference point for that harness. Two layers are scoped IN Phase 1 alongside it:
+  - **L1 — In-process harness module**: `tests/_harness/` + `conftest.py` exposing `mcp_instance`, `call_tool(name, **kwargs)`, `load_skill(path)`, `dispatch_skill(name)` fixtures. Substrate for Spec 131 and Spec 105 smoke tests.
+  - **L2 — Subprocess probe**: `tests/smoke/test_nested_claude.py` spawning `claude --bare --plugin-dir <repo> -p ...` to assert end-to-end boot. Replaces the manifest-only `claude plugin validate` check (per the Codex P1 critique on PR #115).
+  - **L3 — Sidecar daemon for non-Claude-Code harnesses** = Spec 023 stays in Phase 8; unchanged.
+  - Coordination protocol: Jules/Codex/Claude sessions touching Phase 1 smoke tests in the next 24h MUST rebase onto PR #115's branch rather than authoring a parallel harness; the in-flight design doc is at `docs/superpowers/specs/2026-05-18-harness-in-harness-design.md`.
 
 ### Phase 2 — Hook chain
 
 - **Specs:** 121 (contextignore), 115 (structure-map), 114 (read-cache-delta), 116 (bash-compress), 117 (archive)
 - **Shared file:** all five specs need to register an entry in `hooks/hooks.json` in the canonical chain order from §3.2. Concurrent edits race; parallel dispatch is unsafe.
-- **Strategy: sequential dispatch (one Jules session at a time).** Order: 121 → 115 → 114 → 116 → 117 (matches the canonical chain order from §3.2). Each session writes its own `hooks/*_hook.py` AND appends its `hooks.json` entry in the right position. The next session is only dispatched after the prior has merged; the new session's `starting_branch=Master` so it sees the prior merge.
+- **Strategy: sequential dispatch (one Jules session at a time).** Order: **114 → 121 → 115 → 116 → 117**. Note: this dispatch order differs from the runtime *chain* order (§3.2: `contextignore (121) → structure-map (115) → read-cache-delta (114) → …`). Why: `Plan/121-contextignore-hardblock/spec.md` and `Plan/115-structure-map-ast/spec.md` both declare a `deps:` on Spec 114 (the read-cache-delta primitives both hooks build on). Dispatch order respects dependency frontmatter; runtime order is what `hooks/hooks.json` encodes. Each session writes its own `hooks/*_hook.py` AND appends/reorders its `hooks.json` entry to match the canonical chain. The next session is only dispatched after the prior has merged; new session's `starting_branch=Master` so it sees the prior merge.
 - This obeys the JULES-REVIEW-LOOP.md §1 rule that "the orchestrator never edits Jules's branches itself except via the recovery path" — Jules itself owns every `hooks.json` edit. The trade-off is wall-clock time (5 serial review cycles instead of 1 parallel cycle); the win is contract-purity and no race.
 - **Token win:** 20-30% of session input + 4 KB cap on any single result.
 - **PR strategy:** 5 sequential PRs (one fanout entry at a time, gated on prior merge).

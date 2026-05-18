@@ -153,9 +153,17 @@ def iterate_review_until_clean(pr, max_rounds):
             source=pr.head_repo,
             starting_branch=pr.head_branch,            # IMPORTANT: stay on the PR branch
             require_plan_approval=True,
+            auto_create_pr=True,                       # MUST be True — default False returns a
+                                                       # patch that never lands on origin, so the
+                                                       # next review round sees the unchanged PR
+                                                       # and the loop pseudo-converges on stale code.
         )
         fix_sid = (fix_sid_res.get("name") or fix_sid_res.get("id") or "").replace("sessions/", "")
         wait_until_completed(fix_sid)
+        # On terminal COMPLETED, if no new commit landed on pr.head_branch
+        # (silent-fail), the watcher dispatches §5 recovery with
+        # recover_onto=pr.head_branch so the fix is replayed onto the
+        # open PR rather than producing a detached recovery PR.
         # Loop continues: next round runs a fresh review against the new commits.
 
     raise NotConvergedError(f"PR #{pr.number} did not converge in {max_rounds} rounds")
@@ -216,13 +224,20 @@ def triage(threads, since: str):
         # MCP responses are JSON dicts, not objects with attributes.
         # Use .get() consistently. Camel-case keys match the schema.
         if thread.get("isResolved", False):
-            continue
+            continue                                    # addressed in a prior round
+        # NOTE: NO time filter on [BLOCKING]/[SUBSTANTIVE] threads.
+        # A previously-flagged unresolved thread MUST keep blocking
+        # convergence even if it predates this round. The `isResolved`
+        # state is the only legitimate gate for "addressed"; a thread
+        # that's old but unresolved means the fix didn't land or didn't
+        # take. Dropping it by createdAt < since was a P1 bug — a fresh
+        # reviewer could miss the same issue and the loop would
+        # pseudo-converge on uncorrected code.
         for c in thread.get("comments", []):
-            if c.get("createdAt", "") < since:
-                continue
             severity = severity_prefix(c.get("body", ""))   # see below
             if severity in ("[BLOCKING]", "[SUBSTANTIVE]"):
                 out.append(c)
+                break                                     # one finding per thread is enough
     return out
 
 
