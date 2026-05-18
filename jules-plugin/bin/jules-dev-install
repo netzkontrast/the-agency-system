@@ -28,40 +28,70 @@ note "Python $(python3 --version | cut -d' ' -f2) OK"
 # 2. Pick an installer. Bind to the *exact* python3 used for the smoke
 #    test below — otherwise uv may install into a different interpreter
 #    than the one verifying the imports.
+#
+#    uv with `--system` targets the system site-packages, which on
+#    managed Pythons (Homebrew, distro packages, /usr/bin/python3) often
+#    requires elevated privileges. If `uv pip install --system` is not
+#    writable for the current user, we transparently fall back to
+#    `python3 -m pip install --user` so the bootstrap still succeeds
+#    on developer machines that have uv installed but lack system
+#    write access.
 PY_BIN="$(command -v python3)"
-if command -v uv >/dev/null 2>&1; then
-    INSTALL=(uv pip install --python "$PY_BIN" --system)
-    note "Using uv pip install (target: $PY_BIN)"
-else
-    INSTALL=("$PY_BIN" -m pip install)
-    note "Using $PY_BIN -m pip install (uv not on PATH)"
+PIP_USER_FLAG=()
+if [ -z "${VIRTUAL_ENV:-}" ] && [ -z "${CONDA_PREFIX:-}" ]; then
+    PIP_USER_FLAG=(--user)
 fi
 
-# 3. Install fastmcp[code-mode] — required for the Code Mode transform
-#    referenced in jules_mcp/server.py. Without the extra, jules-bulk
-#    fails cryptically with "No module named 'fastmcp'" or with a silent
-#    skip of CodeMode().
-note "Installing fastmcp[code-mode] + httpx + PyYAML"
-"${INSTALL[@]}" 'fastmcp[code-mode]>=3.1.0' httpx 'PyYAML>=6.0'
+run_install() {
+    local installer_desc="$1"; shift
+    note "$installer_desc"
+    "$@"
+}
 
-# 4. Verify imports — this is the canonical smoke test the README points at.
+INSTALL_OK=0
+if command -v uv >/dev/null 2>&1; then
+    if run_install "Trying uv pip install --system (target: $PY_BIN)" \
+            uv pip install --python "$PY_BIN" --system \
+                'fastmcp[code-mode]>=3.1.0' httpx 'PyYAML>=6.0'; then
+        INSTALL_OK=1
+    else
+        note "uv --system failed (likely non-writable system Python); falling back to pip --user"
+    fi
+fi
+if [ "$INSTALL_OK" -ne 1 ]; then
+    run_install "Using $PY_BIN -m pip install ${PIP_USER_FLAG[*]}" \
+        "$PY_BIN" -m pip install "${PIP_USER_FLAG[@]}" \
+            'fastmcp[code-mode]>=3.1.0' httpx 'PyYAML>=6.0' \
+        || die "pip install failed"
+fi
+
+# 3. Verify imports — this is the canonical smoke test the README points at.
+#    CodeMode is treated as OPTIONAL to match `jules_mcp/server.py` (which
+#    falls back to `_transforms = []` if the extra is unavailable) and
+#    `jules-bulk` (which only warns when CodeMode is missing). Hard-
+#    requiring CodeMode here would regress envs where only plain
+#    `fastmcp` resolves — the same blocking failure path the new preflight
+#    logic explicitly avoided.
 PYTHONPATH="$MCP_SERVER_DIR/src" python3 - <<'PY' || die "import smoke test failed"
-import sys
-from fastmcp import FastMCP                                     # noqa: F401
-from fastmcp.experimental.transforms.code_mode import CodeMode  # noqa: F401
-from jules_mcp.tools.lifecycle import jules_create               # noqa: F401
-from jules_mcp.server import create_mcp                          # noqa: F401
-print("[jules-dev-install] imports OK: FastMCP, CodeMode, jules_create, create_mcp")
+from fastmcp import FastMCP                              # noqa: F401
+from jules_mcp.tools.lifecycle import jules_create        # noqa: F401
+from jules_mcp.server import create_mcp                   # noqa: F401
+try:
+    from fastmcp.experimental.transforms.code_mode import CodeMode  # noqa: F401
+    codemode_status = "CodeMode"
+except ImportError:
+    codemode_status = "CodeMode (missing — server will run without it)"
+print(f"[jules-dev-install] imports OK: FastMCP, {codemode_status}, jules_create, create_mcp")
 PY
 
-# 5. Pre-create the sessions registry directory so jules-bulk's first
+# 4. Pre-create the sessions registry directory so jules-bulk's first
 #    run does not race on an empty parent dir. Honours CLAUDE_PLUGIN_DATA
 #    when set (matches sessions_state.py).
 REG_DIR="${CLAUDE_PLUGIN_DATA:-$HOME/.jules}"
 mkdir -p "$REG_DIR"
 note "Session registry dir ready: $REG_DIR"
 
-# 6. JULES_API_KEY check (warn-only — install can still succeed without it).
+# 5. JULES_API_KEY check (warn-only — install can still succeed without it).
 if [ -z "${JULES_API_KEY:-}" ]; then
     note "WARNING: JULES_API_KEY is not set. Export it before running bin/jules-bulk."
 fi
