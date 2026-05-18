@@ -34,31 +34,37 @@ duration_hours: ~14 (across two context-windows joined via /compact)
 - Repo state: Master at HEAD; refactor branch `claude/agency-plugin-refactor-PgMQ4` retired (force-synced to Master, kept as historical artefact only).
 - Spec status: **15 done, 30 ready** in `Plan/`.
 
-## Open dependency graph for next session
+## Open dependency graph for next session (refreshed 2026-05-18)
 
-Wave B remaining (014/015/021 ready to dispatch; 011a parallel):
+**MUST FIRST:** Spec 022 dev-mode-install (single session, ~30 min). Unblocks all downstream because it makes the in-progress plugin live-usable via `claude --plugin-dir`.
+
+Wave B remaining (4 specs):
 ```
-011 ✅ → 013 ✅ → 014 (gates+revision) → 015 (skills catalogue 28+10 = 38 novel skills)
+011 ✅ → 013 ✅ → 014 (gates+revision) → 015 (skills catalogue 38 novel skills)
                                       ↓
                                       021 (prompt-builder family, 10 read-only tools)
-011a (hardening) — parallel, no downstream blockers
+011a (hardening) — parallel, no downstream blocker
 ```
 
-Wave C:
+Wave C (4 specs):
 ```
-009 ✅ → 016 (agentic handlers + 32 tools)
-       ↓
-       017 (hooks port + extend) → 020 (bitwize deprecation + docs)
-       ↓
-018 (overrides + config migration)
+009 ✅ → 016 (agentic handlers + 32 tools) ─┐
+                                            │
+       017 (hooks port + extend) ──────────┼─→ 020 (bitwize deprecation + docs, v1.0 cutover)
+                                            │
+       018 (overrides + config migration) ─┘
 ```
 
-Cross-cutting (independent, dispatchable anytime):
-- 098 — Wave A hardening (Codex P1 cleanup, ~17 items)
-- 103-107 — Token-efficiency (depend on 008 ✅; can ship in any order)
-- 108 — Context Mode integration (adopts mksglu/context-mode plugin)
-- 111-113 — Context Mode build-from-scratch alternative (mutually exclusive with 108; pick one path)
-- 114-121 — Token-optimizer-inspired (orthogonal to 103-107)
+Cross-cutting (24 specs, independent, dispatchable anytime — most need only 008 ✅):
+- **098** — Wave A hardening (Codex P1 cleanup, ~17 items)
+- **103-107** — Token-efficiency (view/fields, anchor triad, TOON, GitHub wrappers, cache breakpoint)
+- **108** OR **111-113** — Context Mode (adopt mksglu plugin, OR build-from-scratch; mutually exclusive)
+- **114-121** — Token-optimizer hook layer (Read cache delta, AST skeleton, Bash compression, archive guardrail, quality score, loop detection, smart checkpoints, .contextignore)
+- **099-102** — Operational specs (meta, session-log-mcp, jules-mcp-additions, PR rebase policy)
+
+See `Plan/000-overview.md §4` for the full updated DAG diagram + recommended dispatch order across Session 1 / Session 2 / Session 3.
+
+**Critical path to v1.0:** 022 → 014 → 015 → 020 ≈ **5 sessions** (down from the original 11-session path because Wave A is fully merged).
 
 ## Today's hardest lessons (captured in lessons-learned/)
 

@@ -66,22 +66,52 @@ within 5 minutes of session start.
 
 ## Recommended first moves (in order)
 
-1. Dispatch **Spec 022** (dev-mode install) FIRST — single Jules session,
-   small scope, unblocks everything else.
-2. Once 022 lands and you can boot agency-system via `--plugin-dir`,
-   invoke `sc-spec-panel` against the 30 ready specs in Plan/ to surface
-   architectural drift, stale references, BCP-14 violations.
-3. Invoke `skill-creator` to formalize three operational patterns from
+1. **Dispatch Spec 022 (dev-mode install) FIRST** — single Jules session,
+   small scope, unblocks everything else. Once 022 lands on Master, you
+   can boot the in-progress plugin via:
+   ```bash
+   claude --plugin-dir /path/to/the-agency-system
+   ```
+   This is the dev-install pathway — no marketplace round-trip needed.
+2. While 022 is running, invoke `sc-spec-panel` against the 31 ready
+   specs in Plan/ to surface architectural drift, stale references,
+   BCP-14 violations. Capture findings as a single review comment that
+   can be triaged into spec-patches.
+3. Once 022 has merged, parallel-dispatch the **first fanout batch**:
+   - **011a** (novel hardening — depends on 011 ✅)
+   - **014** (novel gates+revision — critical-path step)
+   - **098** (Wave A hardening — Codex P1 cleanup, orthogonal)
+   - **103** (token-eff: view/fields projection — depends on 008 ✅)
+4. Invoke `skill-creator` to formalize three operational patterns from
    yesterday's lessons-learned into reusable Skills under
    `skills/agentic/`:
    - `jules-orchestrator-discipline` (the 6-rule list above)
    - `silent-fail-recovery` (the §8 patch-extraction flow)
    - `context-safe-patch-handling` (extractor script + never-echo rule)
-4. `git log --oneline origin/Master -10` — confirm tip and spot any
-   drift between the handoff doc and live state.
-5. Read both Context Mode spec heads (`Plan/108-…/spec.md` vs
-   `Plan/111-…/spec.md`) and **make the path decision** before any
-   downstream context-mode work.
+5. Read both Context Mode spec heads (`Plan/108-…/spec.md` vs the
+   `Plan/111-/112-/113-` chain) and **make the path decision** before
+   any downstream context-mode work.
+
+## Critical path to v1.0 (5 sessions)
+
+```
+022 ⭐ (enabler, dispatch alone first)
+        │
+        └── 014 → 015 → 020 (v1.0 cutover)
+                   │
+                   └── 021 (parallel)
+
+        Parallel from session start:
+        - 016 → 020
+        - 017 → 020
+        - 018 → 020
+        - 011a (no downstream blocker)
+        - 098 (hardening)
+        - 103-107 (token-eff)
+```
+
+After Session 3 (estimate): bitwize-music uninstallable, agency-system
+v1.0 shipped. Remaining 24+ specs become continuous improvement.
 
 ## Decisions deferred to your judgment
 
