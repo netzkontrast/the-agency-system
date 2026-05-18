@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.3.0",
+  "work_id": "good_work",
+  "storybeats": [
+    {
+      "id": "sb.1"
+    }
+  ],
+  "moments": [
+    {
+      "storybeat_ref": "sb.1"
+    }
+  ],
+  "storyform": {
+    "crucial_element_id": "el.knowledge",
+    "throughlines": {
+      "mc": {
+        "class_id": "class.universe",
+        "approach": "do-er",
+        "mental_sex": "linear",
+        "resolve": "change",
+        "concern_id": "t.past",
+        "signposts": [
+          "t.past",
+          "t.progress",
+          "t.future",
+          "t.present"
+        ],
+        "problem_id": "el.self-interest",
+        "solution_id": "el.morality",
+        "dynamic": "thought"
+      },
+      "os": {
+        "class_id": "class.physics",
+        "signposts": [
+          "t.learning",
+          "t.doing",
+          "t.obtaining",
+          "t.understanding"
+        ],
+        "outcome": "success",
+        "judgment": "good",
+        "dynamic": "knowledge"
+      },
+      "ic": {
+        "class_id": "class.mind",
+        "signposts": [
+          "t.memory",
+          "t.preconscious",
+          "t.subconscious",
+          "t.conscious"
+        ]
+      },
+      "rs": {
+        "class_id": "class.psychology",
+        "signposts": [
+          "t.conceptualizing",
+          "t.being",
+          "t.becoming",
+          "t.conceiving"
+        ]
+      }
+    }
+  }
+}
