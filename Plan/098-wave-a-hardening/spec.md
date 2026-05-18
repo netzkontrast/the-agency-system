@@ -1,7 +1,7 @@
 ---
 spec_id: 098
 slug: wave-a-hardening
-status: ready
+status: done
 owner: jules
 depends_on: [003, 019, 004a, 002]
 affects:
