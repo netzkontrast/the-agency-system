@@ -126,6 +126,30 @@ saying which enumeration:
 
 Older specs (e.g. `Plan/008-codemode-registry/spec.md`, `Plan/003-unified-statecache-port/spec.md`, `Plan/020-bitwize-deprecation-and-docs/spec.md`) predate the §4 canon and use "four domains" to mean the cache/doc enumerations. Those usages are *historically correct in context* but should be qualified inline (e.g. "four state-cache domains" or "four user-facing domain docs") when re-read against the canon.
 
+### 4.2 The `skill_kind` orthogonal dimension
+
+Imported from `netzkontrast/agency` (`/tmp/agency-research/SKILLS.md:68`; ADR-0007). Every skill in the corpus carries a `skill_kind:` frontmatter field whose value is one of a **closed 9-value enum**:
+
+`domain | tool | orchestrator | meta | discipline | workflow | persona | analysis | agent-template`
+
+The `skill_kind` dimension is **orthogonal to the domain prefix** — `skills/music/lyric-writer/SKILL.md` has `domain=music` AND `skill_kind=domain`; `skills/agentic/jules-orchestrator-discipline/SKILL.md` has `domain=agentic` AND `skill_kind=discipline`.
+
+| Kind | Purpose | Example |
+|---|---|---|
+| `domain` | Primary domain workflow (music-lyric-writer, novel-chapter-writer) | `skills/music/lyric-writer/SKILL.md` |
+| `tool` | Wraps a single MCP tool with thin process | `skills/music/clipboard/SKILL.md` |
+| `orchestrator` | Coordinates multiple skills toward a goal | `skills/music/release-director/SKILL.md` |
+| `meta` | Skill about skills (creator, validator) | `skills/agentic/skill-creator/SKILL.md` (Phase 7 candidate) |
+| `discipline` | Cross-cutting process rules (TDD, debugging, review) | `skills/agentic/jules-orchestrator-discipline/SKILL.md` |
+| `workflow` | Multi-step procedural recipe (no domain affinity) | `skills/agentic/research-prompt-optimizer/SKILL.md` (Phase 7 candidate) |
+| `persona` | Role-fronted skill (architect, reviewer) | imported `sc-backend-architect`, `sc-frontend-architect` |
+| `analysis` | Read-only investigation procedure | `skills/agentic/sc-analyze/SKILL.md` (Phase 7 candidate) |
+| `agent-template` | Boilerplate for spawning a subagent | `skills/agentic/sc-deep-research-agent/SKILL.md` (Phase 7 candidate) |
+
+Adoption phase: Phase 7 specs 015 (novel) + 016 (agentic) — `skill_kind:` is required from day one, on every SKILL.md including imports.
+
+Research source: `Plan/_research/agency-repo-analysis/findings.md` §1.3.
+
 ---
 
 ## 5. Naming conventions
@@ -193,6 +217,77 @@ When both contexts might be in scope:
 - Phase 4 docs say **"Context Mode Path B"** (never bare "Path B").
 - Harness docs say **"Harness Path A"** or **"Harness Path B"** (never bare).
 - Phase READMEs that talk about both contexts cite the explicit form.
+
+---
+
+## 6A. Frontmatter conventions (canon for every Plan/ artefact)
+
+Imported from `netzkontrast/agency` (`/tmp/agency-research/AGENTS.md:387, 396`) and adapted. **Every artefact under `Plan/` MUST carry a frontmatter block with these L1 keys; YAML depth ≤ 1 (no nested objects in frontmatter — sidecar JSON for L3 metadata).**
+
+| Key | Required? | Type | Description | Example |
+|---|---|---|---|---|
+| `slug` | yes | string | kebab; equals dir name without numeric prefix | `harness-vocabulary` |
+| `summary` | yes | string ≤ 240 chars | one-line abstract the manifest indexes for "read before opening body" | `"Canonical naming reference for ..."` |
+| `status` | yes | enum | `draft \| in-progress \| ready \| ready-to-tag \| vision \| complete \| superseded \| abandoned` | `ready` |
+| `type` | yes | enum | `spec \| design \| research \| adr \| reference \| task \| note` | `reference` |
+| `owner` | yes | string | role or handle responsible | `claude` |
+| `created` | recommended | date | `YYYY-MM-DD` | `2026-05-18` |
+| `updated` | recommended | date | `YYYY-MM-DD` | `2026-05-18` |
+| `depends_on` | optional | list[slug] | forward dependency links | `[022, 008, 112]` |
+| `related` | optional | list[slug] | informational cross-links | `[023, 131]` |
+| `supersedes` | optional | list[slug] | forward supersession links; predecessor must carry `superseded_by` (reciprocity §6B) | `[023]` |
+| `superseded_by` | optional | list[slug] | backward supersession links | populated by successor |
+| `affects` | optional | list[path] | filesystem paths this artefact mutates | `[Plan/harness/VOCABULARY.md]` |
+| `domain` | optional | enum | per §4: `music \| novel \| jules \| context \| shared \| agentic \| cross` | `agentic` |
+| `wave` | optional | enum | `A \| B \| C \| D` per `Plan/000-overview.md` | `B` |
+
+**`summary` is the primary token-saving lever** — readers should be able to decide whether to open a body purely from the manifest's `summary` view. Cap at 240 chars; longer summaries are an FL2 trigger (per `Plan/138-frustration-log-protocol/spec.md`).
+
+Research source: `Plan/_research/agency-repo-analysis/findings.md` §1.1.
+
+## 6B. Reciprocity-as-invariant rules
+
+Every cross-link in `Plan/` frontmatter MUST be **reciprocal**, enforced mechanically (planned: `bin/agency-lint frontmatter-reciprocity`):
+
+| Forward link | Backward link |
+|---|---|
+| `depends_on` | (no backward — `depends_on` is one-way per design) |
+| `supersedes` | `superseded_by` |
+| `task_uses_prompts` | `prompt_relates_to_task` (when prompt artefacts exist) |
+| `task_spawns_research` | `research_executes_prompt` (when research artefacts exist) |
+| `adr_supersedes` | `adr_superseded_by` |
+| `informs` (research) | (no backward; informs is one-way) |
+
+Research source: `Plan/_research/agency-repo-analysis/findings.md` §6.3.
+
+## 6C. Repair-authority tiers (T1/T2/T3/T4) on every CHANGE
+
+Imported from agency ADR-0005 (`/tmp/agency-research/decisions/0005-repair-authority-tiers.md`). **Every change** must be classified before being made:
+
+| Tier | Scope | Permitted via | Example |
+|---|---|---|---|
+| **T1 Mechanical** | typos, broken links, `updated:` bump, lint-fix | `Edit` tool in-place | "fix typo in §3" |
+| **T2 Additive** | new sentence / paragraph / row that does not alter existing claims | `Edit` tool in-place | "add VOCABULARY §4.1" |
+| **T3 Structural** | rewording, section reorganisation, claim changes, schema additions | **Must open a Task/spec** — not edited in place | "rewrite Phase 4 framing" |
+| **T4 Immutable** | closed research workspaces, Accepted ADRs, merged PR transcripts | **MUST NOT mutate at any tier** — successor record only | "amend ADR-0005 → file ADR-0042 that supersedes" |
+
+The L1 harness's `call_tool` (when ever a future MCP mutation tool exists) carries a `tier:` parameter and refuses T3/T4 by construction. ADR-0001 (forthcoming, `Plan/decisions/0001-deprecate-phase-specs-mirror.md`) is the first concrete application — that mirror-deprecation decision is T3, lands as an ADR, not as a quiet in-place edit.
+
+Research source: `Plan/_research/agency-repo-analysis/findings.md` §1.5.
+
+## 6D. Three-tier content ladder (T1/T2/T3 — distinct from §6C)
+
+Imported from agency `/tmp/agency-research/SKILLS.md:227-235`. **Every artefact has three content tiers** loaded progressively:
+
+| Content tier | Size cap | Loaded when | Lives at |
+|---|---|---|---|
+| **T1 Trigger** | ≤ 200 chars | always (in manifest) | first 200 chars of body (after frontmatter) |
+| **T2 Body** | ≤ 5 KB | on dispatch (`dispatch_skill` / `context_read`) | the full SKILL.md / spec.md body |
+| **T3 References** | unlimited | on explicit demand only | `references/` subdirectory |
+
+This is the progressive-disclosure ladder that `Plan/harness/L3-progressive-disclosure.md` (deferred follow-up sub-spec) will codify for the L3 daemon. **§6C and §6D both use T1/T2/T3 because the canonical names map** — content tier T1 is what triggers a T1 repair decision; content tier T3 (`references/`) is governed by T4 immutability when the parent is closed.
+
+Research source: `Plan/_research/agency-repo-analysis/findings.md` §1.2.
 
 ---
 
