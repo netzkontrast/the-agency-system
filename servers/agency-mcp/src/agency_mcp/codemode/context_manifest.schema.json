@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Context Manifest Schema",
+  "type": "object",
+  "properties": {
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-:/]+$"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "path": {
+            "type": "string"
+          },
+          "mime": {
+            "type": "string",
+            "enum": ["text/markdown", "application/json", "text/yaml", "text/plain"]
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "last_modified": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "views": {
+            "type": "object",
+            "properties": {
+              "summary": {
+                "type": "object",
+                "properties": {
+                  "token_estimate": { "type": "integer" },
+                  "byte_offset": { "type": "integer" },
+                  "byte_length": { "type": "integer" }
+                },
+                "required": ["token_estimate"]
+              },
+              "preview": {
+                "type": "object",
+                "properties": {
+                  "token_estimate": { "type": "integer" },
+                  "byte_offset": { "type": "integer" },
+                  "byte_length": { "type": "integer" }
+                },
+                "required": ["token_estimate"]
+              },
+              "full": {
+                "type": "object",
+                "properties": {
+                  "token_estimate": { "type": "integer" },
+                  "byte_offset": { "type": "integer" },
+                  "byte_length": { "type": "integer" }
+                },
+                "required": ["token_estimate"]
+              }
+            },
+            "required": ["summary", "preview", "full"]
+          }
+        },
+        "required": [
+          "id", "title", "summary", "tags", "path", "mime",
+          "size_bytes", "last_modified", "sha256", "views"
+        ]
+      }
+    }
+  },
+  "required": ["entries"]
+}

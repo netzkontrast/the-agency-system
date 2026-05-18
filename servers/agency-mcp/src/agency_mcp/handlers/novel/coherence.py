@@ -6,6 +6,7 @@ from pathlib import Path
 from fastmcp import FastMCP
 from agency_mcp.lib.dramatica import navigator
 from agency_mcp.state.cache import StateCache
+from agency_mcp.handlers.novel import _shared
 
 try:
     from agency_mcp.config import PLUGIN_ROOT
@@ -14,7 +15,7 @@ except ImportError:
 
 
 def _get_cache() -> StateCache:
-    return StateCache()
+    return _shared.get_cache()
 
 
 def _resolve_real_ncp_path(work_id: str) -> Path | None:

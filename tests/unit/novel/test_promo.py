@@ -22,4 +22,23 @@ async def test_get_promo_content():
 
 @pytest.mark.asyncio
 async def test_update_promo_field():
-    pass
+    import shutil
+    import os
+    if os.path.exists("tests/fixtures/novel/temp_promo_work"):
+        shutil.rmtree("tests/fixtures/novel/temp_promo_work")
+    shutil.copytree("tests/fixtures/novel/clean_work", "tests/fixtures/novel/temp_promo_work")
+
+    with open("tests/fixtures/novel/temp_promo_work/README.md", "w") as f:
+        f.write("---\n")
+        f.write("genre: fiction\n")
+        f.write('logline: "A clean work."\n')
+        f.write("---\n")
+
+    res = novel_update_promo_field("temp_promo_work", "blurb", "logline", "Updated logline text.")
+    assert res["ok"] is True
+
+    with open("tests/fixtures/novel/temp_promo_work/README.md", "r") as f:
+        readme_content = f.read()
+    assert "Updated logline text." in readme_content
+
+    shutil.rmtree("tests/fixtures/novel/temp_promo_work")

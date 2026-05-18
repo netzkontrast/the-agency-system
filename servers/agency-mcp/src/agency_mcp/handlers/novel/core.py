@@ -3,6 +3,7 @@ from pathlib import Path
 
 from fastmcp import FastMCP
 from agency_mcp.state.cache import StateCache
+from agency_mcp.handlers.novel import _shared
 
 try:
     from agency_mcp.config import PLUGIN_ROOT
@@ -11,7 +12,7 @@ except ImportError:
 
 # Mock these for tests
 def _get_cache():
-    return StateCache()
+    return _shared.get_cache()
 cache = _get_cache()
 
 def _normalize_slug(name: str) -> str:

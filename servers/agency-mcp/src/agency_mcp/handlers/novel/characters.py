@@ -2,8 +2,8 @@ from fastmcp import FastMCP
 
 def novel_list_players(work_id: str) -> list[dict]: return []
 def novel_get_player(work_id: str, player_id: str) -> dict: return {}
-def novel_update_player_field(work_id: str, player_id: str, field: str, value: str) -> dict: return {}
-def novel_assign_archetype(work_id: str, player_id: str, archetype: str) -> dict: return {}
+def novel_update_player_field(work_id: str, player_id: str, field: str, value: str, dry_run: bool = False) -> dict: return {}
+def novel_assign_archetype(work_id: str, player_id: str, archetype: str, dry_run: bool = False) -> dict: return {}
 def novel_check_relationship_graph(work_id: str) -> dict: return {}
 
 def register(mcp: FastMCP) -> None:

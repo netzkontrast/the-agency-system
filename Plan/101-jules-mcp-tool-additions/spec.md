@@ -1,7 +1,7 @@
 ---
 spec_id: 101
 slug: jules-mcp-tool-additions
-status: ready
+status: done
 owner: jules
 depends_on: [006, 100]
 affects:

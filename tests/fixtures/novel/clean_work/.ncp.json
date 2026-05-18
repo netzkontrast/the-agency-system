@@ -1,24 +1,16 @@
 {
   "schema_version": "1.3.0",
-  "story": {
-    "id": "clean_work",
-    "title": "Clean Work",
-    "logline": "A hero journeys to save the world.",
-    "created_at": "2025-01-01T00:00:00Z",
-    "narratives": []
-  },
-  "players": [
+  "work_id": "good_work",
+  "storybeats": [
     {
-      "id": "player.alice",
-      "name": "Alice",
-      "archetype": "Protagonist",
-      "motivations": [
-        "Save the world"
-      ]
+      "id": "sb.1"
     }
   ],
-  "moments": [],
-  "storybeats": [],
+  "moments": [
+    {
+      "storybeat_ref": "sb.1"
+    }
+  ],
   "storyform": {
     "crucial_element_id": "el.self-interest",
     "throughlines": {
