@@ -1,24 +1,45 @@
+import json
 import subprocess
-import os
-import pytest
 from pathlib import Path
 
-def test_dev_install_plugin_loads():
-    # 022.1 Scenario: Dev-mode boot loads the plugin
-    claude_bin = subprocess.run(["which", "claude"], capture_output=True)
-    if claude_bin.returncode != 0:
+import pytest
+
+
+REPO_ROOT = Path(__file__).parent.parent.parent.resolve()
+
+
+def _claude_on_path() -> bool:
+    return subprocess.run(["which", "claude"], capture_output=True).returncode == 0
+
+
+def test_dev_install_manifest_is_agency_system():
+    # 022.1 Scenario: Dev-mode boot loads the plugin (manifest contract).
+    # The plugin name in .claude-plugin/plugin.json is the value `claude --plugin-dir`
+    # resolves and exposes as the namespace prefix.
+    manifest = json.loads((REPO_ROOT / ".claude-plugin" / "plugin.json").read_text())
+    assert manifest["name"] == "agency-system"
+    assert "version" in manifest
+    assert manifest["version"].startswith("0.")
+
+
+def test_dev_install_plugin_validates():
+    # 022.1 Scenario: Dev-mode boot loads the plugin.
+    # `claude plugin validate <path>` is the non-interactive verification primitive:
+    # it parses the manifest, walks the skill tree, and exits non-zero on schema errors.
+    # `claude --plugin-dir <repo> /help` was the original probe but invokes the chat
+    # surface, which returns model output rather than a deterministic plugin listing.
+    if not _claude_on_path():
         pytest.skip("claude CLI not on PATH")
-        
-    repo_root = Path(__file__).parent.parent.parent.resolve()
-    
-    # Run claude --plugin-dir <repo> /help
-    # We use /help or another basic command to force it to load the plugin and show skills
+
     result = subprocess.run(
-        ["claude", "--plugin-dir", str(repo_root), "/help"], 
-        capture_output=True, 
+        ["claude", "plugin", "validate", str(REPO_ROOT)],
+        capture_output=True,
         text=True,
-        timeout=30
+        timeout=30,
     )
-    
-    assert result.returncode == 0, f"claude exited with {result.returncode}, stderr: {result.stderr}"
-    assert "agency-system" in result.stdout or "agency-system" in result.stderr
+    assert result.returncode == 0, (
+        f"claude plugin validate exited with {result.returncode}\n"
+        f"stdout:\n{result.stdout}\n"
+        f"stderr:\n{result.stderr}"
+    )
+    assert "Validation passed" in result.stdout or "passed" in result.stdout.lower()
