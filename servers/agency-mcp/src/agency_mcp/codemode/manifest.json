@@ -1,0 +1,478 @@
+{
+  "health_check": {
+    "classification": "eager",
+    "domain": "shared"
+  },
+  "music_find_album": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_list_albums": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_track": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_list_tracks": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_session": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_update_session": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_rebuild_state": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_config": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_python_command": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_ideas": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_search_items": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_pending_verifications": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_resolve_path": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_resolve_track_file": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_list_track_files": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_extract_section": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_update_track_field": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_album_progress": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_album_full": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_validate_album_structure": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_create_album_structure": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_run_pre_generation_gates": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_check_streaming_lyrics": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_init": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_list_tweets": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_create_tweet": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_update_tweet": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_delete_tweet": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_search_tweets": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_sync_album": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_db_get_tweet_stats": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_create_idea": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_update_idea": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_promote_idea": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_streaming_urls": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_update_streaming_url": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_verify_streaming_urls": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_load_override": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_reference": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_format_for_clipboard": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_plugin_version": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_check_venv_health": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_health_check": {
+    "classification": "eager",
+    "domain": "music"
+  },
+  "music_diagnose_issue": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_reset_mastering": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_cleanup_legacy_venvs": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_migrate_audio_layout": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_promo_status": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_promo_content": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_extract_distinctive_phrases": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_count_syllables": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_analyze_readability": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_analyze_rhyme_scheme": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_validate_section_structure": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_check_homographs": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_scan_artist_names": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_check_pronunciation_enforcement": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_check_explicit_content": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_extract_links": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_get_lyrics_stats": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_check_cross_track_repetition": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_analyze_audio": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_qc_audio": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_master_audio": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_fix_dynamic_track": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_master_with_reference": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_master_album": {
+    "classification": "deferred",
+    "domain": "music",
+    "status_companion": "music_master_album_status"
+  },
+  "music_render_codec_preview": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_mono_fold_check": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_prune_archival": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_measure_album_signature": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_album_coherence_check": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_album_coherence_correct": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_polish_audio": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_analyze_mix_issues": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_polish_album": {
+    "classification": "deferred",
+    "domain": "music",
+    "status_companion": "music_polish_album_status"
+  },
+  "music_polish_and_master_album": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_transcribe_audio": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_prepare_singles": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_create_songbook": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_publish_sheet_music": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_generate_promo_videos": {
+    "classification": "deferred",
+    "domain": "music",
+    "status_companion": "music_generate_promo_videos_status"
+  },
+  "music_generate_album_sampler": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "jules_resolve_source": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_create": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_list": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_get": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_activities": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_plan": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_approve": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_message": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_stop": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_patch_summary": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_patch_apply": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_patch": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_status_all": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_approve_awaiting": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "jules_quota": {
+    "classification": "eager",
+    "domain": "jules"
+  },
+  "jules_resolve_alias": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "shared_search": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "shared_list_skills": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "shared_get_skill": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "plugin_help": {
+    "classification": "eager",
+    "domain": "shared"
+  },
+  "shared_get_reference": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "shared_load_override": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "shared_get_config": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "shared_get_session": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "shared_update_session": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "shared_get_pending_verifications": {
+    "classification": "deferred",
+    "domain": "shared"
+  },
+  "jules_start_watcher": {
+    "classification": "deferred",
+    "domain": "jules",
+    "status_companion": "jules_watcher_status"
+  },
+  "jules_watcher_status": {
+    "classification": "deferred",
+    "domain": "jules"
+  },
+  "music_master_album_status": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_polish_album_status": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "music_generate_promo_videos_status": {
+    "classification": "deferred",
+    "domain": "music"
+  },
+  "novel_list_works": {
+    "classification": "deferred",
+    "domain": "novel"
+  },
+  "novel_find_work": {
+    "classification": "deferred",
+    "domain": "novel"
+  },
+  "agentic_list_specs": {
+    "classification": "deferred",
+    "domain": "agentic"
+  }
+}

@@ -7,15 +7,19 @@ from pathlib import Path
 
 from fastmcp import FastMCP
 
+import warnings
+
 try:
     from fastmcp.experimental.transforms.code_mode import CodeMode
-    _transforms = [CodeMode()]
-except ImportError:
-    _transforms = []
+    CODE_MODE_AVAILABLE = True
+except ImportError as e:
+    CODE_MODE_AVAILABLE = False
+    warnings.warn(f"CodeMode unavailable: {e}; all tools eager")
 
 from agency_mcp.handlers.shared.health import register_health_tools
 from agency_mcp.handlers.jules import register_jules_handlers
 from agency_mcp.state.cache import StateCache
+from agency_mcp.lib.codemode import apply_codemode_manifest
 
 
 def register_all(mcp: FastMCP) -> None:
@@ -40,11 +44,13 @@ def register_all(mcp: FastMCP) -> None:
     from agency_mcp.handlers.shared import register_shared_handlers
     register_shared_handlers(mcp)
 
+    manifest_path = Path(__file__).parent / "codemode" / "manifest.json"
+    apply_codemode_manifest(mcp, manifest_path, CODE_MODE_AVAILABLE)
+
 
 def create_mcp() -> FastMCP:
     mcp = FastMCP(
         "agency-system",
-        transforms=_transforms,
         dereference_schemas=False,
     )
     register_all(mcp)
