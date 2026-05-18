@@ -196,7 +196,7 @@ For each phase:
   3. Watch: poll jules_status_all every 3 minutes via persistent Monitor
   4. On COMPLETED:
        - Verify branch on remote (mcp__github__list_branches)
-       - If absent → JULES_PROTOCOL §8-Appendix recovery (probe → API extract → mcp__github__push)
+       - If absent → JULES_PROTOCOL §8-Appendix recovery (probe → API extract → mcp__github__create_branch + create_or_update_file per file + create_pull_request)
        - If present → PR is open against Master
   5. Review loop (the back-and-forth requested in this plan's goal):
        a. Dispatch a Jules-driven review session against the open PR:

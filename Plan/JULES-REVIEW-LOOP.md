@@ -104,6 +104,7 @@ def iterate_review_until_clean(pr, max_rounds):
         review_sid_res = jules_create(
             title=f"Review PR #{pr.number} — round {round + 1}",
             prompt=REVIEW_PROMPT_TEMPLATE.format(
+                pr_number=pr.number,                   # template's first-line field
                 pr_url=pr.html_url,
                 phase=pr.phase_id,
                 spec=pr.spec_id,
@@ -115,10 +116,14 @@ def iterate_review_until_clean(pr, max_rounds):
         )
         review_sid = (review_sid_res.get("name") or review_sid_res.get("id") or "").replace("sessions/", "")
         wait_until_completed(review_sid)               # uses §3 watcher
-        comments = mcp_github_pull_request_read(
+        # `get_review_comments` returns threads (per the MCP schema:
+        # "Returns threads with metadata (isResolved, isOutdated, isCollapsed)
+        # and their associated comments"). No separate get_review_threads
+        # method is needed — the thread metadata is on the same response.
+        threads = mcp_github_pull_request_read(
             method="get_review_comments", pull_number=pr.number,
         )
-        substantive = triage(comments, since=round_started_at, pr=pr)  # see §4.2
+        substantive = triage(threads, since=round_started_at)  # see §4.2
 
         if len(substantive) == 0 and review_summary_contains_clean_marker(review_sid, pr):
             return pr                                  # clean; merge
@@ -131,7 +136,7 @@ def iterate_review_until_clean(pr, max_rounds):
             title=f"Fix review feedback for PR #{pr.number} — round {round + 1}",
             prompt=FIX_PROMPT_TEMPLATE.format(
                 pr_url=pr.html_url,
-                substantive_comments=substantive,
+                substantive_comments_rendered_as_numbered_list=render_numbered(substantive),
                 branch=pr.head_branch,
             ),
             source=pr.head_repo,
@@ -177,29 +182,47 @@ YOU MUST:
 - Include a final "no further substantive findings" line ONLY if you have zero [BLOCKING] and zero [SUBSTANTIVE] findings. The orchestrator searches for that line.
 ```
 
-### 4.2 Triage (substantive vs not — round-scoped)
+### 4.2 Triage (substantive vs not — round-scoped, thread-aware)
 
 ```python
-def triage(comments, since: str, pr):
-    """Return ONLY comments produced in the current round AND not yet resolved.
+def triage(threads, since: str):
+    """Return ONLY comments produced in the current round AND on threads
+    that are still unresolved.
 
-    `get_review_comments` returns every historical comment on the PR (including
-    already-addressed ones from prior rounds). A prefix-only filter would
-    re-count those, so the loop would never converge and would always escalate
-    at round 5.
+    `get_review_comments` returns threads — each carries `isResolved`,
+    `isOutdated`, `isCollapsed` metadata alongside its `.comments` list
+    (per the MCP `pull_request_read` schema). Threads marked
+    `isResolved=true` were addressed in a prior round and must NOT
+    re-count; otherwise the loop would never converge and would always
+    escalate at round 5.
 
     Two filters compose:
-    1. Time filter: comment.created_at >= round_started_at (`since`)
-    2. Thread filter: prefer unresolved review threads. GraphQL exposes
-       `isResolved` on the parent thread; the orchestrator queries it via
-       `mcp__github__pull_request_read(method='get_review_threads')` and
-       intersects.
+    1. Thread filter: thread.isResolved == false
+    2. Time filter:   comment.created_at >= round_started_at (`since`)
     """
-    round_comments = [c for c in comments if c.created_at >= since]
-    unresolved = unresolved_thread_comment_ids(pr)     # from get_review_threads
-    return [c for c in round_comments
-            if c.id in unresolved
-            and (c.body.startswith("[BLOCKING]") or c.body.startswith("[SUBSTANTIVE]"))]
+    out = []
+    for thread in threads:
+        if getattr(thread, "isResolved", False):
+            continue
+        for c in thread.comments:
+            if c.created_at < since:
+                continue
+            severity = severity_prefix(c.body)         # see below
+            if severity in ("[BLOCKING]", "[SUBSTANTIVE]"):
+                out.append(c)
+    return out
+
+
+def severity_prefix(body: str) -> str:
+    """Map both Jules-style explicit prefixes and external-bot badges to
+    the same three-level severity. External bots (Codex, Copilot) use
+    `P1`/`P2`/`P3` images; map P1 -> BLOCKING and P2 -> SUBSTANTIVE so
+    bot reviews compose with Jules reviews in the same convergence test."""
+    if body.startswith("[BLOCKING]") or "P1 Badge" in body:
+        return "[BLOCKING]"
+    if body.startswith("[SUBSTANTIVE]") or "P2 Badge" in body:
+        return "[SUBSTANTIVE]"
+    return "[NIT]"
 ```
 
 The orchestrator does NOT triage `[NIT]` comments. They land on the PR for the human author to glance at and resolve later; they do not block merge.
@@ -245,7 +268,23 @@ If 5 rounds elapse without convergence, the orchestrator escalates: posts `@huma
 When `state=COMPLETED` but no branch lands on origin, follow `JULES_PROTOCOL.md` §8-Appendix verbatim. The orchestrator script:
 
 ```python
-def recover_completed_no_branch(sid):
+def recover_completed_no_branch(sid, *, phase_id, spec_id, recover_onto):
+    """Recover a silent-fail session.
+
+    Args:
+        sid: the Jules session id whose patch needs recovering.
+        phase_id, spec_id: identifiers threaded through the recovery
+            PR body and commit messages (caller passes them; NEVER
+            reference an outer-scope name).
+        recover_onto: where the recovered branch should diverge from.
+            - For a freshly-dispatched implementation session, this is
+              "Master".
+            - For a fix-round silent-fail (a session dispatched in
+              §4 with starting_branch=pr.head_branch), this MUST be
+              pr.head_branch so the fix lands ON the PR under review
+              rather than producing a detached PR. The caller passes
+              pr.head_branch in that case.
+    """
     # Step 1 — probe (per appendix)
     jules_message(sid, "your state is COMPLETED but I can't find your branch on origin — please publish and reply with PR URL")
     if wait_for_publish(sid, timeout_minutes=10):
@@ -260,15 +299,20 @@ def recover_completed_no_branch(sid):
     # patch to /tmp/jules-patches/{sid}-out{i}.patch and emits ONLY stats
     # to stdout — it does not return file bodies. The orchestrator parses
     # the on-disk patch itself.
+    #
+    # Script output shape (verbatim from tools/jules-patch-extract.py):
+    #   {"sid": <id>, "patches": [ {path, size, files, first_files[...]}, ... ]}
+    # OR (when there is no output at all on the session):
+    #   {"sid": <id>, "patches": 0, "note": "no outputs/gitPatch on session"}
     stats = json.loads(run_command(
         f"PYTHONPATH=servers/agency-mcp/src python3 tools/jules-patch-extract.py {sid}"
     ))
-    # stats shape: {bytes, files, first_files[], patch_paths[...]}
-    # The patch body stays on disk; we open it to materialise the new content.
+    if not isinstance(stats.get("patches"), list):
+        # 0-file patch → genuine empty session, not a silent-fail
+        log_to_lessons_learned(sid, phase_id, spec_id, "extractor reports no outputs")
+        return
 
-    patch_paths = stats.get("patch_paths") or [
-        f"/tmp/jules-patches/{sid}-out{i}.patch" for i in range(stats.get("outputs", 1))
-    ]
+    patch_paths = [p["path"] for p in stats["patches"]]
 
     # Step 3 — push via GitHub MCP (signed web-flow commits). Parse the
     # unified diff into per-file final-content using a unidiff parser
@@ -276,25 +320,43 @@ def recover_completed_no_branch(sid):
     # `git apply` path is NOT used because the CODESIGN_MCP backend
     # currently rejects locally-signed commits.
     branch = f"jules-recovered/{sid[-8:]}"
-    mcp_github_create_branch(branch, from_branch="Master")
-    for patch_path in patch_paths:
-        for file_change in parse_unified_diff(patch_path):
+    mcp_github_create_branch(branch, from_branch=recover_onto)   # NOT always Master
+    for patch_path in patch_paths:                               # iterate ALL outputs, not just out0
+        for file_change in parse_unified_diff(patch_path, base_branch=recover_onto):
             mcp_github_create_or_update_file(
                 path=file_change.target_path,
                 content=file_change.final_content,
                 branch=branch,
-                message=f"feat: recovered Spec {phase_id} from Jules sid {sid[-8:]} ({file_change.target_path})",
+                message=f"feat: recovered Spec {spec_id} (phase {phase_id}) from Jules sid {sid[-8:]} ({file_change.target_path})",
             )
-    pr = mcp_github_create_pull_request(
-        head=branch,
-        base="Master",
-        title=f"Spec {spec_id} — recovered via API extraction",
-        body=render_recovery_pr_body(sid, stats),
-    )
-    # Continue to §4 review loop with this PR
+
+    if recover_onto == "Master":
+        # Fresh implementation recovery → open a new PR
+        pr = mcp_github_create_pull_request(
+            head=branch,
+            base="Master",
+            title=f"Spec {spec_id} — recovered via API extraction",
+            body=render_recovery_pr_body(sid, stats, phase_id, spec_id),
+        )
+        return pr
+    else:
+        # Fix-round recovery → fast-forward the existing PR's head branch
+        # so the fix lands ON the open PR rather than producing a detached
+        # one. Cherry-pick the recovered commits onto pr.head_branch via
+        # mcp__github__create_or_update_file using `branch=pr.head_branch`
+        # (skip the throwaway `jules-recovered/*` branch and write directly).
+        for patch_path in patch_paths:
+            for file_change in parse_unified_diff(patch_path, base_branch=recover_onto):
+                mcp_github_create_or_update_file(
+                    path=file_change.target_path,
+                    content=file_change.final_content,
+                    branch=recover_onto,                 # the PR's head branch
+                    message=f"fix(review): recovered fix commit from sid {sid[-8:]} ({file_change.target_path})",
+                )
+        return None
 ```
 
-`parse_unified_diff` is a Phase 0 sub-task (~30 LOC in `tools/lib/unidiff_to_files.py`): walks `--- a/<path>` / `+++ b/<path>` headers, applies hunks against the current `Master` blob for that path (fetched via `mcp__github__get_file_contents`), and returns `(target_path, final_content)` tuples. The `tools/jules-patch-extract.py` script's `--apply` mode is NOT used for the orchestrator path because its `git apply` commits cannot be signed by the CODESIGN_MCP backend; `--apply` remains useful for local dev inspection only.
+`parse_unified_diff(path, base_branch)` is a Phase 0 sub-task (~30 LOC in `tools/lib/unidiff_to_files.py`): walks `--- a/<path>` / `+++ b/<path>` headers, fetches each base blob via `mcp__github__get_file_contents(branch=base_branch)`, applies hunks, and yields `(target_path, final_content)` tuples. The `tools/jules-patch-extract.py` script's `--apply` mode is NOT used for the orchestrator path because its `git apply` commits cannot be signed by the CODESIGN_MCP backend; `--apply` remains useful for local dev inspection only.
 
 The recovery path is **NEVER** a re-dispatch of a fresh Jules session for the same work — that wastes a slot of the 60-session quota and risks divergent output. Re-dispatch is reserved for genuine implementation failures.
 
@@ -362,7 +424,7 @@ The orchestrator writes the `claude-review-cycle: round-N` label via `mcp__githu
 | Review session itself fails 3 rounds in a row | Review prompt may be ambiguous against the spec | Stop loop; escalate `@human:` |
 | Fix session widens PR scope (touches files outside spec.affects:) | Scope creep | Reply on PR: "fix session widened scope to {file}. Please revert and try again with tighter prompt." Restart fix session. |
 | Convergence stalls but smoke test passes anyway | Tests may be missing coverage | Add a [SUBSTANTIVE] review comment requesting test addition; continue loop |
-| `jules_status_all` returns `quota_exceeded` | Hit the 60-session ceiling | Pause fanout; wait for completions; resume |
+| `jules_quota()` reports `remaining_today == 0` or `active_today >= 60` | Hit the daily or concurrency ceiling. (`jules_status_all` has no `quota_exceeded` field — it returns `{by_state, sessions, pages_scanned, truncated}` — so quota pressure must be queried via `jules_quota` per §7.) | Pause fanout; wait for completions; resume |
 | `tools/jules-patch-extract.py` returns 0-file patch | Genuine empty session (Jules did nothing) | Mark spec for re-dispatch with revised prompt; log to `_lessons-learned/` |
 
 All escalations are `@human:` PR comments — never DMs, never external channels. The PR thread is the canon.
