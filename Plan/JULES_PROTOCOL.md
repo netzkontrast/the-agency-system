@@ -65,7 +65,8 @@ Before flipping the PR from draft to ready, Jules answers three questions in a `
 
 ## 3. Working in `the-agency-system` repo
 
-- **Branch:** the spec assigns it. Default: `claude/agency-plugin-refactor-PgMQ4`. Never push to `main`, never force-push, never use `--no-verify`.
+- **Branch:** the spec assigns it. **Default for fresh specs:** target `Master` directly via a new `claude/<spec-slug>-<random>` working branch. Never push to `main`, never force-push, never use `--no-verify`.
+  - *Historical note:* spec stickers authored before the Wave-A rollout (PRs #30 and #46 merged) cite `claude/agency-plugin-refactor-PgMQ4` as the working branch. That branch was the staging area for Wave A — it still exists on remote, identical to Master tip, but **new sessions should target Master directly**. When a spec sticker disagrees with this protocol, this protocol wins.
 - **Commits:** present tense, imperative, ≤ 72-char subject. Reference the spec ID in the body: `Spec: Plan/NNN-slug/spec.md`. Prefer many small commits over one large one; do not `--amend` someone else's commit.
 - **Push:** `git push -u origin <branch>`. On network error retry up to 4× with backoff (2s, 4s, 8s, 16s); on non-network failures, stop.
 - **PRs:** open as **ready** (not draft) via `gh pr create --base <base> --head <branch>` where `<base>` is the spec-assigned base (usually `Master` or the active refactor branch). Required PR-body sections: `## Spec`, `## Confidence`, `## Evidence`, `## Self-Review`. Cite the spec path. PRs without all four sections are rejected.
