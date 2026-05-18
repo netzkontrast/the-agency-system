@@ -85,7 +85,7 @@ Cross-refs in frontmatter only; `:embed` suffix = composition vs bare slug = inv
 
 Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 
-## 3. Spec list (46 specs as of 2026-05-18 — 15 done / 31 ready)
+## 3. Spec list (57 specs as of 2026-05-18 — 15 done / 32 ready / 10 draft)
 
 ### Wave A — Scaffold + Music + Jules + Code Mode (DONE)
 
@@ -113,6 +113,7 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 | ID | Slug | Domain | Deps | Status | Sessions |
 |---|---|---|---|---|---|
 | **022** | **dev-mode-install** ⭐ first | cross | 002, 005, 007, 008 | ready | 1 |
+| 023 | harness-in-harness (research epic) | agentic | 008, 022 | ready | 3 |
 
 ### Wave B remaining — novel completion
 
@@ -179,15 +180,34 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 | 120 | smart-compaction-checkpoints | cross | 100 | ready | 2 |
 | 121 | contextignore-hardblock | cross | — | ready | 1 |
 
+### Discipline + lint cluster (drafts — added since 2026-05-18)
+
+Operational specs from the latest research/lessons batch. All draft — needs review + promotion to `ready` before dispatch. Most chain off 099 (`jules-orchestration-improvements`), so 099 lands before this cluster fans out.
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 130 | shared-toolresult-envelope + conformance gate | cross | 008, 009 | draft | 1 |
+| 131 | manifest-coverage-lint (drift detector) | cross | 008 | draft | 1 |
+| 132 | skill-tool-hooks (Pre/PostToolUse on `Skill\|Agent`) | cross | 017 | draft | 1 |
+| 133 | skill-subagent-pressure-tests | cross | 015, 016, 132 | draft | 2 |
+| 134 | plan-adr-convention (MADR records) | process | 099 | draft | 1 |
+| 135 | spec ↔ test anchor traceability lint | process | 099 | draft | 1 |
+| 136 | agents.yaml role manifest + hand-off registry | process | 099 | draft | 1 |
+| 137 | watcher SDK + composable polling | jules | 007, 100 | draft | 2 |
+| 138 | mandatory per-PR frustration-log protocol | process | 099 | draft | 1 |
+| 139 | clean-install evidence-snapshot helper (Gate 3) | process | 099 | draft | 1 |
+
 **Wave A — DONE** (16 specs incl. 006a): unified plugin boots, 113+ tools registered, music side 100% bitwize parity, jules side 100% jules-plugin parity, Code Mode registry in place (boot context 210 tokens), novel foundation + structural layer in. **Bitwize-music plugin can be uninstalled once Spec 020 cuts over.**
 
-**Wave A completion**: Spec 022 dev-mode-install (next-session enabler).
+**Wave A completion** (2 specs): Spec 022 dev-mode-install (next-session enabler) + Spec 023 harness-in-harness research epic (depends on 022 — opens the plugin to bash-only agents).
 
 **Wave B remaining** (4 specs): novel domain shipping. User can run `/agency-system:novel-work-conceptualizer`, write chapters, validate against NCP, pass the 6-gate.
 
 **Wave C** (4 specs): agentic surface live (32 tools per Spec 016), overrides merged, hooks ported, `jules-plugin/` removed, bitwize marked deprecated.
 
-**Cross-cutting backlog** (24 specs): hardening + operational + token-efficiency + Context Mode + token-optimizer. Most depend only on 008 (✅ done) so they ship in parallel waves.
+**Cross-cutting backlog** (24 ready specs): hardening + operational + token-efficiency + Context Mode + token-optimizer. Most depend only on 008 (✅ done) so they ship in parallel waves.
+
+**Discipline + lint drafts** (10 specs, 130-139): operational hardening cluster from the most recent research/lessons sweep. Needs spec-review pass before promotion to `ready`; mostly chains off 099.
 
 **Critical path to v1.0 cutover**: 022 → 014 → 015 → 020 ≈ **5 sessions** (down from original 11 because most of the chain is already on Master). Everything else compresses into parallel fan-out.
 
@@ -243,23 +263,25 @@ hook layer         118 ⏳ · 119 ⏳ · 120 ⏳ · 121 ⏳
 
 **Session 1 (next session):**
 1. Dispatch **022** alone (enabler — gates everything; 1 Jules session)
-2. While waiting, invoke `sc-spec-panel` against the 31 ready specs
-3. Once 022 lands, parallel-dispatch: **011a + 014 + 098 + 103** (4 sessions)
+2. While waiting, invoke `sc-spec-panel` against the 32 ready specs and review the 10 draft specs (130-139) for promotion
+3. Once 022 lands, parallel-dispatch: **011a + 014 + 098 + 103** (4 sessions); **023** can also start (depends on 022 only)
 
 **Session 2 (post-merge of 011a/014/098/103):**
 - Dispatch **015 + 016 + 017 + 018 + 106** (5 sessions parallel)
 - Pick Context Mode path (108 vs 111-chain); dispatch first step
 - Decide on token-optimizer first 1-2 picks (e.g. 117 archive guardrail first)
+- Dispatch **099** to unblock the discipline+lint drafts (130-139)
 
 **Session 3 (cutover):**
 - Dispatch **020 + 021** (final Wave-B + cutover)
 - Continue token-eff backlog
+- Begin promotion of drafts 130-139 to `ready`, dispatch the ones whose deps are merged
 
 After Session 3: v1.0 plugin shipped; remaining specs are continuous-improvement.
 
 ## 5. Workflow trace (end-to-end coherence proof)
 
-See `Plan/000-overview.md` is the place; full traces live in the plan file under `Coherence reflection`. Three workflows are proven coherent:
+Full traces live below under `Coherence reflection`. Three workflows are proven coherent:
 
 - **Music**: `/agency-system:music-lyric-writer` → music tools → hooks/validate_track.py → StateCache refresh.
 - **Novel**: `/agency-system:novel-work-conceptualizer` → novel_create_work → novel_ncp_compile → novel_run_pre_drafting_gates (6 BLOCKING) → `novel-scene-prompt-builder` composes character + world + throughline + bridge prompt-builders → chapter-writer drafts → validate_chapter.py fires.
