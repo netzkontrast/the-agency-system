@@ -1,7 +1,7 @@
 ---
 spec_id: 103
 slug: view-fields-projection
-status: ready
+status: done
 owner: jules
 depends_on: [008]
 affects:
