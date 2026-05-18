@@ -47,11 +47,12 @@ The repository is **further along than v1 of this overview implied**. Sub-agent 
 | 098 | wave-a-hardening | merged via PRs #34/#37/#38/#32 |
 | 101 | jules-mcp-tool-additions | session_summary / pr_url / quota added |
 | 103 | view-fields-projection | wired (PR #100 merged per recent git log) |
+| 022 | dev-mode-install | merged via PR #73 (commit `cd15d09`); `bin/agency-dev-install` present |
+| 112 | context-anchor-triad | merged via PR #104 (commit `85a8e51`); `servers/agency-mcp/src/agency_mcp/lib/codemode/context_anchor_triad.py` present |
 
-### 2.2 In-progress (2)
+### 2.2 In-progress (1)
 
 - **014** novel-gates-and-revision
-- **022** dev-mode-install
 
 ### 2.3 Scaffolded specs without implementation (~40)
 
@@ -128,6 +129,7 @@ All others stay deferred; the bus-factor cost of not having them yet is acceptab
 - `skills/jules/SKILL.md` + 9 references → already mirrored at `skills/jules/` at repo root via Spec 007; the duplicates inside `jules-plugin/` are deleted.
 - `tools/researcher/` → moves to `tools/researcher/` at repo root (it was tangentially placed inside `jules-plugin/` and is plugin-agnostic).
 - All `jules-plugin/tests/` are merged into `tests/jules/`.
+- **`skills/agentic/jules-orchestrator-discipline/SKILL.md:131` references `jules-plugin/skills/jules/references/combined_watcher.py`.** Phase 0 MUST update this reference to point at the new home (`skills/jules/references/combined_watcher.py`, already present from Spec 007), OR remove the reference if the discipline skill no longer needs it. A grep for `jules-plugin/` across `skills/`, `commands/`, `hooks/`, `docs/`, and `CLAUDE.md` is part of the Phase 0 smoke test; any surviving hit fails the build.
 
 ### 3.5 Anchor triad (104) missing despite registry (008) marked done
 
@@ -143,7 +145,7 @@ Eight phases. Each phase is one PR-set (1-N PRs depending on independence). Each
 
 | Phase | Name | Specs (existing sub-spec dirs) | Token-budget win | Blocking deps |
 |---|---|---|---|---|
-| **0** | Foundation cleanup | 020 (extended), 022 finish, 099 stub | none directly; removes confusion | none |
+| **0** | Foundation cleanup | 020 (extended), 099 stub | none directly; removes confusion | none |
 | **1** | Anchor triad + envelope (cold-start) | 104, 107, 130, 131 | tools/list 38k → <4k tokens | Phase 0 |
 | **2** | Hook chain | 121, 115, 114, 116, 117 | 20-30% of session input | Phase 1 (envelope) |
 | **3** | GitHub sink wrapper | 106 | 40-80k → <2.5k per PR/issue read | Phase 1 (envelope), Phase 2 (archive) |
@@ -297,10 +299,11 @@ Phase 0 is the only phase this overview implements directly (the rest are dispat
   - Move `jules-plugin/bin/*` → `bin/`; chmod +x preserved.
   - Move `jules-plugin/tools/researcher/` → `tools/researcher/`.
   - Move `jules-plugin/tests/*` → `tests/jules/` (rename to avoid collision with handler tests).
+  - Update `skills/agentic/jules-orchestrator-discipline/SKILL.md:131` to reference `skills/jules/references/combined_watcher.py` (already present at the new home via Spec 007) instead of the soon-to-be-deleted `jules-plugin/` path.
   - `rm -rf jules-plugin/`.
   - Update `CLAUDE.md` install instructions.
   - Smoke test: `python -c "from agency_mcp.server import create_mcp; print(len(create_mcp().tools))"` returns same count as before deletion (the Jules tools live in `handlers/jules/` already).
-  - `tests/smoke/test_no_jules_plugin.py` asserts `jules-plugin/` is absent.
+  - `tests/smoke/test_no_jules_plugin.py` asserts `jules-plugin/` is absent AND `grep -rln 'jules-plugin/' skills/ commands/ hooks/ docs/ CLAUDE.md` returns no matches.
 - [ ] **Task 0.3** — `Plan/000-overview.md` updates §2.1 to add 020 to Done with PR# evidence.
 - [ ] **Task 0.4** — Run JULES-REVIEW-LOOP §3 against Phase 0 PR — single Jules review session, iterate until clean, merge.
 
@@ -337,10 +340,10 @@ For each phase below: `Specs` lists the sub-spec directories Jules will work fro
 
 ### Phase 4 — Context Mode (Path B)
 
-- **Specs:** 111 (manifest), 112 (anchor-triad), 113 (cache + subscriptions), 108-stub (supersession marker)
-- **Sequential:** 111 → 112 → 113 (each builds on the prior). 108-stub lands in parallel with 111.
+- **Specs:** 111 (manifest), 113 (cache + subscriptions), 108-stub (supersession marker). **Spec 112 (anchor-triad) is already merged** via PR #104 (commit `85a8e51`); only the manifest + cache/subscriptions remain.
+- **Sequential:** 111 → 113 (113 builds on the manifest from 111 and on the already-merged 112 triad). 108-stub lands in parallel with 111.
 - **Token win:** 200 k+ deferred.
-- **PR strategy:** 4 PRs. 111 + 108-stub fanout together; 112 dispatched on 111 merge; 113 on 112 merge.
+- **PR strategy:** 3 PRs. 111 + 108-stub fanout together; 113 dispatched on 111 merge.
 
 ### Phase 5 — Ontology + Graph (Wave D)
 
