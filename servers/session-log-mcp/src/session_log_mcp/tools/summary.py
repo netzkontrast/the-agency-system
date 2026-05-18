@@ -5,7 +5,8 @@ from session_log_mcp.db import get_conn
 
 def summary_events(
     spec_id: Optional[str] = None,
-    session_id: Optional[str] = None
+    session_id: Optional[str] = None,
+    since: Optional[str] = None
 ) -> str:
     """Summarize events from the session log."""
     conditions = []
@@ -17,6 +18,9 @@ def summary_events(
     if session_id is not None:
         conditions.append("session_id = ?")
         params.append(session_id)
+    if since is not None:
+        conditions.append("ts >= ?")
+        params.append(since)
 
     where_clause = " WHERE " + " AND ".join(conditions) if conditions else ""
 
@@ -51,7 +55,8 @@ def register(mcp: FastMCP) -> None:
     @mcp.tool(tags=["domain:agentic"])
     def session_log_summary(
         spec_id: Optional[str] = None,
-        session_id: Optional[str] = None
+        session_id: Optional[str] = None,
+        since: Optional[str] = None
     ) -> str:
         """Summarize events from the session log."""
-        return summary_events(spec_id, session_id)
+        return summary_events(spec_id, session_id, since)

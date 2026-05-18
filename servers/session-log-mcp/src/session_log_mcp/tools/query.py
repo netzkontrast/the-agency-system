@@ -4,12 +4,13 @@ from fastmcp import FastMCP
 from session_log_mcp.db import get_conn
 
 def query_events(
+    kind: Optional[str] = None,
     spec_id: Optional[str] = None,
     session_id: Optional[str] = None,
-    kind: Optional[str] = None,
     since: Optional[str] = None,
     until: Optional[str] = None,
-    limit: int = 100
+    limit: int = 50,
+    cursor: Optional[str] = None
 ) -> str:
     """Query events from the session log."""
     conditions = []
@@ -30,6 +31,9 @@ def query_events(
     if until is not None:
         conditions.append("ts <= ?")
         params.append(until)
+    if cursor is not None:
+        conditions.append("id < ?")
+        params.append(cursor)
 
     where_clause = " AND ".join(conditions) if conditions else "1=1"
     query = f"SELECT * FROM events WHERE {where_clause} ORDER BY ts DESC LIMIT ?"
@@ -49,17 +53,23 @@ def query_events(
                 pass
             results.append(result)
 
-    return json.dumps(results)
+
+    next_cursor = None
+    if results and len(results) == limit:
+        next_cursor = str(results[-1]["id"])
+
+    return json.dumps({"items": results, "next_cursor": next_cursor})
 
 def register(mcp: FastMCP) -> None:
     @mcp.tool(tags=["domain:agentic"])
     def session_log_query(
+        kind: Optional[str] = None,
         spec_id: Optional[str] = None,
         session_id: Optional[str] = None,
-        kind: Optional[str] = None,
         since: Optional[str] = None,
         until: Optional[str] = None,
-        limit: int = 100
+        limit: int = 50,
+        cursor: Optional[str] = None
     ) -> str:
         """Query events from the session log."""
-        return query_events(spec_id, session_id, kind, since, until, limit)
+        return query_events(kind, spec_id, session_id, since, until, limit, cursor)

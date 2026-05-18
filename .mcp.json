@@ -4,6 +4,11 @@
       "type": "stdio",
       "command": "python",
       "args": ["${CLAUDE_PLUGIN_ROOT}/servers/agency-mcp/run.py"]
+    },
+    "session-log": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/session-log-mcp/run.py"]
     }
   }
 }

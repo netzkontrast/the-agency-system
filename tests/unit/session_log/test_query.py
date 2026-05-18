@@ -23,25 +23,25 @@ def test_query_filters(tmp_path):
         record_event(kind="test1", payload="p3", spec_id="101", session_id="s2", ts="2023-01-01T12:00:00Z")
 
         # Query by spec_id
-        res = json.loads(query_events(spec_id="100"))
+        res = json.loads(query_events(spec_id="100"))["items"]
         assert len(res) == 2
 
         # Query by kind
-        res = json.loads(query_events(kind="test1"))
+        res = json.loads(query_events(kind="test1"))["items"]
         assert len(res) == 2
 
         # Query by session_id and kind
-        res = json.loads(query_events(session_id="s1", kind="test1"))
+        res = json.loads(query_events(session_id="s1", kind="test1"))["items"]
         assert len(res) == 1
         assert res[0]["payload"] == "p1"
 
         # Test ordering
-        res = json.loads(query_events())
+        res = json.loads(query_events())["items"]
         assert len(res) == 3
         # Should be descending ts
         assert res[0]["ts"] == "2023-01-01T12:00:00Z"
 
         # Test limit
-        res = json.loads(query_events(limit=1))
+        res = json.loads(query_events(limit=1))["items"]
         assert len(res) == 1
         assert res[0]["ts"] == "2023-01-01T12:00:00Z"
