@@ -23,7 +23,7 @@ wave: C
 
 > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1→4 in order:
 > (1) Confidence ≥ 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered.
-> Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below.
+> Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md §3). Only modify paths under `affects:` below.
 > Source repos under `source-repos:` are clone-and-read-only into `~/work/vendor/`; never commit them.
 > If anything is ambiguous, open a draft PR labelled `[BLOCKED: clarification]` and stop — do not guess.
 

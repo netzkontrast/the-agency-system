@@ -65,10 +65,12 @@ Before flipping the PR from draft to ready, Jules answers three questions in a `
 
 ## 3. Working in `the-agency-system` repo
 
-- **Branch:** the spec assigns it. Default: `claude/agency-plugin-refactor-PgMQ4`. Never push to `main`, never force-push, never use `--no-verify`.
+- **Branch:** the spec assigns it. **Default for fresh specs:** target `Master` directly via a new `claude/<spec-slug>-<random>` working branch. Never push to `main`, never force-push, never use `--no-verify`.
+  - *Historical note:* spec stickers authored before the Wave-A rollout (PRs #30 and #46 merged) cite `claude/agency-plugin-refactor-PgMQ4` as the working branch. That branch was the staging area for Wave A — it still exists on remote, identical to Master tip, but **new sessions should target Master directly**. When a spec sticker disagrees with this protocol, this protocol wins.
 - **Commits:** present tense, imperative, ≤ 72-char subject. Reference the spec ID in the body: `Spec: Plan/NNN-slug/spec.md`. Prefer many small commits over one large one; do not `--amend` someone else's commit.
 - **Push:** `git push -u origin <branch>`. On network error retry up to 4× with backoff (2s, 4s, 8s, 16s); on non-network failures, stop.
-- **PRs:** open via `gh pr create --draft --base main --head <branch>`. Required PR-body sections: `## Spec`, `## Confidence`, `## Evidence`, `## Self-Review`. Cite the spec path. PRs without all four sections are rejected.
+- **PRs:** open as **ready** (not draft) via `gh pr create --base <base> --head <branch>` where `<base>` is the spec-assigned base (usually `Master` or the active refactor branch). Required PR-body sections: `## Spec`, `## Confidence`, `## Evidence`, `## Self-Review`. Cite the spec path. PRs without all four sections are rejected.
+- **Verify publication:** after the auto-PR flow runs, **confirm the branch exists at `github.com/netzkontrast/the-agency-system/branches`** before declaring the session COMPLETED. A `git status` showing a clean sandbox is *not* proof of publication — the sandbox-to-remote push is the failure-prone step (see §8).
 - **Ambiguous spec?** Open a draft PR immediately with label `[BLOCKED: clarification]`, paste the ambiguity verbatim, propose two interpretations, and stop. Do not interpret silently.
 
 ## 4. Source-repo conventions
@@ -88,6 +90,7 @@ Some specs reference external source repos (libraries, reference implementations
 4. Amend or rebase commits authored by another agent or by the human.
 5. Add a runtime or build dependency the spec did not list under `deps:`.
 6. Create, move, or delete files outside the spec's `affects:` allow-list.
+7. Declare the task COMPLETED before verifying the branch is published to `github.com/netzkontrast/the-agency-system`. The Jules auto-PR ("finalize") flow has known silent-fail modes (see §8); local `git status` clean is not enough.
 
 Each of these is a stop-the-line event. If Jules notices it post-hoc, revert the offending commit in a new commit and note it in the friction log.
 
@@ -119,3 +122,20 @@ Key conventions for the unified plugin:
 - Hooks (`hooks/hooks.json`) are synchronous in current Claude Code (the `async` flag is a future feature; do not rely on it).
 - FastMCP pinned to ≥3.1.0 for Code Mode support; `CodeMode` import is wrapped in `try/except ImportError` for graceful fallback.
 - Smoke tests live in `tests/smoke/` and validate: manifest parses, server boots, each slash skill resolves, MCP tool count matches expectation.
+
+## 8. Publishing the work (orchestrator recovery path)
+
+The Jules backend normally publishes a completed session's diff by running an internal "finalize" flow that pushes the sandbox branch and opens a PR on `github.com`. This flow **fails silently** intermittently — the session transitions to `COMPLETED`, `git status` inside the sandbox is clean, but no branch ever appears on the remote.
+
+When the orchestrator (Claude or a human) detects this — i.e., the session is `COMPLETED` but no branch matches the session ID on `git ls-remote origin` — recovery is **deterministic via the Jules API**:
+
+1. `GET https://jules.googleapis.com/v1alpha/sessions/{sid}`
+2. Read `outputs[*].changeSet.gitPatch.unidiffPatch` from the response — that is the canonical work artefact.
+3. Save the patch to disk (never echo its body into the orchestrator's stdout — large patches will pollute the LLM context window). The repo ships a context-safe extractor at `tools/jules-patch-extract.py` (or `/tmp/jules_extract_patch.py` during a session) that writes the patch to `/tmp/jules-patches/{sid}-out{i}.patch` and prints only `{bytes, files, first_files[]}` stats.
+4. Apply locally with `git apply --whitespace=nowarn` from a fresh branch off `Master`. <!-- Default branch verified as `Master` via `git remote show origin` (HEAD branch: Master). The GitHub API endpoint was unreachable from the sandbox (`401 Bad credentials` on `/repos/netzkontrast/the-agency-system`), but the proxied git remote is the authoritative mirror and reports HEAD = `Master`. Codex's flag suggesting this might be `main` is dismissed. -->
+5. Commit (preserve Jules's authorship via `Co-authored-by: google-labs-jules[bot] <…>`) and push.
+6. Open the PR manually with the standard four-section body, noting in `## Spec` that publication was via API extraction rather than the auto-flow.
+
+This path is the ONLY reliable recovery when the auto-flow misfires. Do not re-dispatch a fresh Jules session on the same spec for the same work — the patch already exists on the original session's API record and a fresh session will burn quota for no incremental output. Re-dispatch is reserved for genuine implementation failures (state = `FAILED`, no `outputs[]` populated).
+
+The orchestrator's prompts to Jules should NOT instruct it to "git push" or "verify branch on github" — the agent's sandbox cannot directly push (the auto-flow owns that step), so over-specific push instructions waste context and turns. Phrase the publication requirement openly: *"publish your work via the standard flow; if publication does not occur within one poll cycle, the orchestrator will recover via API extraction."*
