@@ -1,23 +1,32 @@
 ---
-slug: harness-in-harness-test
+slug: harness-in-harness
 status: draft
 owner: claude
 depends_on: [022, 008, 112]
 related: [023, 131, 105, 104]
-phase: 1
+supersedes: [023]  # absorbs Plan/023's MVP scope; Plan/023's research-epic items deferred to a follow-up sub-spec
+phase: [1, 8]
 affects:
   - Plan/harness/design.md
   - Plan/harness/_research/01-fastmcp-in-memory.md
   - Plan/harness/_research/02-claude-bare-plugin-dir.md
   - Plan/harness/_research/03-test-coverage-baseline.md
+  - Plan/harness/_research/04-fastmcp-http-transport.md
   - tests/_harness/__init__.py
   - tests/_harness/mcp.py
   - tests/_harness/skills.py
   - tests/conftest.py
   - tests/smoke/test_dev_install.py
   - tests/smoke/test_nested_claude.py
+  - bin/agency
+  - servers/agency-mcp/src/agency_mcp/lib/devmode/__init__.py
+  - servers/agency-mcp/src/agency_mcp/lib/devmode/server.py
+  - servers/agency-mcp/src/agency_mcp/lib/devmode/discovery.py
+  - servers/agency-mcp/src/agency_mcp/lib/devmode/lifecycle.py
+  - docs/architecture/harness-in-harness.md
+  - tests/integration/test_devmode_server.py
 source-repos: []
-estimated_jules_sessions: 2
+estimated_jules_sessions: 4
 domain: agentic
 wave: B
 spec_kind: design
@@ -28,17 +37,21 @@ spec_kind: design
 > **Reference PR:** [#115](https://github.com/netzkontrast/the-agency-system/pull/115) — coordination point for all parallel sessions working on this.
 > **Cross-link:** [PR #111](https://github.com/netzkontrast/the-agency-system/pull/111) (`Plan/000-overview.md` v2) places this design's deliverables in Phase 1 alongside specs 131, 105, 104, 107, 130.
 
-# Harness in a Harness — Test-fidelity ladder for the agency-system plugin
+# Harness in a Harness — Three-layer access ladder for the agency-system plugin
 
 ## 1. Why
 
-The `agency-system` plugin works inside a fresh Claude Code session via `claude --plugin-dir /home/user/the-agency-system`. But **any agent currently iterating on the plugin** — including the orchestrator sessions writing Phase 1 specs — has no way to dogfood the plugin's MCP tools and skills *from inside their own session*. `--plugin-dir` is a startup-only flag; in-flight sessions cannot hot-reload it. The result is a slow loop: edit handler → exit session → restart Claude Code with `--plugin-dir` → verify → repeat.
+The `agency-system` plugin has one supported access path today: a fresh Claude Code session launched with `claude --plugin-dir /home/user/the-agency-system` (or, post-marketplace, an installed plugin). Three distinct audiences hit that single path as a wall:
 
-This same gap shows up in CI. `tests/smoke/test_dev_install.py` was the first attempt at a smoke test (Spec 022.1 anchor). Its initial `claude --plugin-dir <repo> /help` probe was non-deterministic — `/help` invokes the chat surface, so the returned text depends on whichever plugin responds first in the active session. PR #115's interim fix swapped it for `claude plugin validate`, which is deterministic but only validates the *manifest schema* — it does not exercise the real boot path. The Codex P1 critique on PR #115 names this gap explicitly ([discussion_r3262361939](https://github.com/netzkontrast/the-agency-system/pull/115#discussion_r3262361939)).
+1. **Devs (human or agent) iterating on the plugin** can't dogfood it from inside their own session. `--plugin-dir` is a startup-only flag; in-flight Claude Code sessions cannot hot-reload it. The loop today is: edit handler → exit session → restart Claude Code with `--plugin-dir` → verify → repeat. **L1 closes this.**
+
+2. **CI and the dev-install regression coverage** had a smoke test that *tried* to assert "the plugin loads via `--plugin-dir`" but used `/help` as the probe — `/help` invokes the chat surface, so the returned text depends on whichever plugin responds first. PR #115's interim fix swapped it for `claude plugin validate`, which is deterministic but only validates the *manifest schema* — it does not exercise the real boot path. The Codex P1 critique on PR #115 names this gap explicitly ([discussion_r3262361939](https://github.com/netzkontrast/the-agency-system/pull/115#discussion_r3262361939)). **L2 closes this.**
+
+3. **Any agent without native MCP integration is locked out entirely.** Jules sandboxes, Cursor, Codex CLI, Continue, raw bash-only LLM harnesses — they can all run scripts, but cannot natively load MCP tools or auto-discover skills. Yet they all share one lowest-common-denominator surface: a bash shell. **L3 closes this** — a tiny CLI binary + daemon makes the plugin reachable from any shell-equipped harness, roughly a 5× audience expansion. Plan/023 names this insight; this design absorbs Plan/023's MVP scope into the unified ladder so all three layers ship under one coherent contract.
 
 Plan/000-v2 (PR #111) commissions the next two Phase 1 smoke tests — `tests/smoke/test_boot_budget.py` (Spec 131) and `tests/smoke/test_toon_gate.py` (Spec 105) — but does not name the *shared harness* those tests will boot from. Every test that wants to instantiate `create_mcp()` and probe its 114-tool surface today re-implements the boilerplate; existing examples ([`tests/integration/test_context_anchor_triad.py:1-49`](../../tests/integration/test_context_anchor_triad.py), [`tests/unit/jules/test_handlers_smoke.py:1-26`](../../tests/unit/jules/test_handlers_smoke.py)) show three different invocation patterns for what should be one. No `tests/conftest.py` exists.
 
-This design closes that gap with a single layered abstraction.
+This design closes all three gaps with a single layered abstraction: **one four-verb contract** (*list tools, call tool, list skills, dispatch skill*) exposed via three transports at three fidelity tiers.
 
 ## 2. North star — three layers, one shared mental model
 
@@ -46,9 +59,11 @@ This design closes that gap with a single layered abstraction.
 |---|---|---|---|---|
 | **L1 In-process harness** | Pytest, Phase 1 spec tests, devs (human or agent) iterating in-session | `create_mcp()` Python import + FastMCP in-memory transport ([fastmcp.Client](https://gofastmcp.com/clients/transports#in-memory-transport)) | ms | Tools register, schemas valid, handlers callable, skills parseable, anchor-triad output well-formed |
 | **L2 Subprocess probe** | CI smoke, PR-115 follow-up, real-boot regression coverage | `subprocess.run(["claude", "--bare", "--plugin-dir", repo, "-p", ...])` | seconds + API tokens | The actual `claude` CLI loads the plugin end-to-end via the real `--plugin-dir` path; manifest + MCP wiring + skill auto-discovery all hold together |
-| **L3 Sidecar daemon** ([Plan/023](../023-harness-in-harness/spec.md)) | External agents (Cursor, Codex CLI, Jules sandbox, bash-only LLM harnesses) | `bin/agency server start` → JSON-RPC over Streamable HTTP | seconds, networked | Plugin is reachable from *any* shell-equipped harness, not just Claude Code |
+| **L3 Sidecar daemon + CLI** | External agents (Cursor, Codex CLI, Jules sandbox, bash-only LLM harnesses), in-session bash dogfooding | `bin/agency server start` → JSON-RPC over Streamable HTTP (transport choice locked in [Plan/023](../023-harness-in-harness/spec.md) §Approach pre-research) | ~100 ms p50 (localhost), networked | The running plugin is reachable from *any* shell-equipped harness, including the active Claude Code session via `Bash` |
 
-**The contract all three layers share:** *list tools, call a tool, list skills, dispatch a skill.* That four-verb surface is the test-fidelity ladder's invariant. L1 fakes the transport; L2 fakes nothing but charges per call; L3 makes the running plugin reachable from outside Claude Code entirely. Each layer is independently shippable; this design covers L1 and L2 only. **L3 is unchanged and remains owned by Plan/023.**
+**The contract all three layers share:** *list tools, call a tool, list skills, dispatch a skill.* That four-verb surface is the ladder's invariant. L1 fakes the transport; L2 fakes nothing but pays per call; L3 makes the running plugin reachable from outside Claude Code entirely. Each layer is **independently shippable**. This design covers all three.
+
+**Relationship to Plan/023.** Plan/023 was structured as a *research-epic* — its Done-When item 1 commissions a ≥1500-word epic plan with ≥6 sources before MVP code lands. This design absorbs Plan/023's MVP scope (items 2, 3, 5, 6, 7, 8-basic — daemon lifecycle, single-binary CLI, MCP wire pass-through, bootstrap self-doc, smoke tests, basic docs) into the unified ladder so it can ship in parallel with L1+L2. **The research-epic items (1, 4 — prior-art survey + progressive-disclosure ladder design) are explicitly deferred** to a follow-up sub-spec `Plan/harness/L3-progressive-disclosure.md` that will resume the research subagents A/B/C. Plan/023's transport decision (Streamable HTTP, UDS fallback) is preserved verbatim; this design does not re-research transport.
 
 ## 3. L1 — In-process harness module
 
@@ -307,26 +322,197 @@ The probe spawns a real Claude session and consumes API tokens for the trivial p
 
 In CI with the `claude` CLI installed, the probe adds one nested session per run. The L1 in-process harness is the fast path; L2 is the boot-fidelity backstop.
 
-## 5. Out of scope
+## 5. L3 — Sidecar daemon + CLI
 
-- **L3 sidecar daemon.** Owned by [Plan/023](../023-harness-in-harness/spec.md); no changes to that spec. L1 + L2 are sufficient for the immediate "dev iterates on plugin in-session" use case; L3 unlocks the *external-agent* use case which is Phase 8 work.
-- **Skill execution semantics.** `dispatch_skill` proves routing (name → file → frontmatter + body) but does not interpret skills — skills are LLM instructions, not executable code. A "skill simulator" that runs a skill's process inside the harness is a future extension if anyone needs it.
-- **Hot-reload of `--plugin-dir` into an already-running Claude Code session.** Not possible per the CLI's architecture; L1 is the workaround (use pytest to dogfood without restarting Claude Code).
+### 5.1 Why daemon + CLI (and not just "MCP server in subprocess")
+
+External agents (Jules sandbox, Cursor, Codex CLI, raw bash + LLM) need three things at once:
+
+1. A **long-lived** plugin endpoint — spawning the MCP server per call has cold-boot cost (∼3-5 s for `create_mcp()` to register 114 tools and start the watcher thread, see `_research/01-fastmcp-in-memory.md` §3).
+2. A **shell-friendly** invocation surface — agents talk to bash, not to JSON-RPC libraries. The CLI translates `agency tool execute <name> --param x=y` into the JSON-RPC call.
+3. A **discoverable** entry point — `agency --bootstrap` prints ≤60 lines of self-documenting usage so a first-touch agent can use the plugin without prior knowledge.
+
+The daemon (a FastMCP server in Streamable-HTTP transport mode) and the CLI (a Python `argparse`-based binary) are the answer to all three. They reuse `agency_mcp.server.create_mcp()` — the same factory L1 imports — so the tool surface stays identical across all three layers.
+
+### 5.2 Module layout
+
+```
+bin/
+└── agency                                # single-binary CLI (executable, Python, argparse)
+
+servers/agency-mcp/src/agency_mcp/lib/devmode/
+├── __init__.py                           # re-exports: run_dev_transport, lifecycle helpers
+├── server.py                             # run_dev_transport(transport, host, port) — wraps create_mcp().run()
+├── lifecycle.py                          # PID file + log rotation + graceful shutdown
+└── discovery.py                          # tool search/describe/execute (anchor-surface mirror of Spec 104)
+
+docs/architecture/
+└── harness-in-harness.md                 # ≤300 lines — describes all three layers, security boundary, transport rationale
+
+tests/integration/
+└── test_devmode_server.py                # daemon lifecycle + tool execute round-trip
+```
+
+The daemon lives **inside the existing MCP server package** (`servers/agency-mcp/src/agency_mcp/lib/devmode/`) rather than as a sibling — this preserves the single-source-of-truth invariant (one `create_mcp()` factory, three transports on top of it). The CLI binary at `bin/agency` is the only new top-level entry point.
+
+### 5.3 The four-verb contract over HTTP JSON-RPC
+
+L3 exposes the same four verbs as L1, mapped onto FastMCP's Streamable HTTP transport. The CLI subcommands are thin wrappers over the JSON-RPC calls:
+
+| Verb (L1) | L3 CLI | L3 wire (MCP JSON-RPC) |
+|---|---|---|
+| `list_tools(domain=None)` | `agency tool search [--domain X]` | `tools/list` (filtered server-side by tag) |
+| `call_tool(name, **kwargs)` | `agency tool execute <name> [--param k=v ...]` | `tools/call` |
+| `list_skills(domain=None)` | `agency skill list [--domain X]` | `tools/call agency_skill_list {domain}` (a meta-tool registered in `lib/devmode/discovery.py`) |
+| `dispatch_skill(name)` | `agency skill describe <name>` | `tools/call agency_skill_describe {name}` |
+
+`tools/list` and `tools/call` are the standard MCP JSON-RPC methods — any third-party MCP client (Cursor, Continue, Cline) can connect to the daemon and use the same surface. The CLI is a thin transport-layer convenience, not a custom protocol.
+
+### 5.4 Daemon lifecycle
+
+`bin/agency server` exposes four subcommands:
+
+```bash
+agency server start        # spawns the FastMCP HTTP server in the background.
+                           # writes PID to ~/.agency-system/dev-server.pid
+                           # writes logs to ~/.agency-system/dev-server.log
+                           # binds 127.0.0.1:7777 (configurable via --port)
+                           # idempotent: a second `start` while running prints
+                           #   "already running, PID <int>" and exits 0.
+
+agency server stop         # sends SIGTERM to the PID, waits ≤10s for clean
+                           # shutdown, removes the PID file. Exits 0 on success,
+                           # 1 on PID-not-found or shutdown timeout.
+
+agency server status       # exit 0 + JSON {running, pid, port, uptime_seconds}
+                           # if alive; exit 1 + JSON {running: false} otherwise.
+
+agency server logs [-f]    # tails ~/.agency-system/dev-server.log; -f follows.
+```
+
+The daemon is **localhost-only** (binds 127.0.0.1, not 0.0.0.0) and **single-user** (no auth). The PID file at `~/.agency-system/dev-server.pid` is the lock — `agency server start` refuses to spawn a second daemon if it sees a live PID. Stale PIDs (process gone) are cleaned up and the start proceeds.
+
+### 5.5 Bootstrap self-doc
+
+`agency` (zero args) or `agency --bootstrap` prints ≤60 lines of self-documenting usage. This is **the contract** for any first-touch agent — a Jules session reading the output should be able to use the plugin without prior knowledge:
+
+```
+agency — agency-system plugin CLI
+
+  agency server start | stop | status | logs [-f]
+      Run the agency-system MCP daemon. localhost:7777, single-user.
+
+  agency tool search [--domain music|novel|jules|context|shared]
+      List tools by domain. Output: JSON list of {name, summary, tags}.
+
+  agency tool describe <name>
+      Full schema for one tool. Output: JSON {name, description, inputSchema}.
+
+  agency tool execute <name> [--param key=value ...] [--json '{...}']
+      Invoke a tool. Output: JSON result body.
+
+  agency skill list [--domain music|novel|jules|agentic]
+      List skills (name + summary).
+
+  agency skill describe <name>
+      Full frontmatter + body of a skill (parseable for downstream agents).
+
+Examples:
+  agency server start && agency tool search --domain music
+  agency tool execute health_check
+  agency tool execute music_find_album --param title="Black Mirror"
+  agency skill describe music-lyric-writer
+
+Docs: docs/architecture/harness-in-harness.md
+```
+
+### 5.6 MVP scope (what ships, what defers)
+
+The L3 MVP under this design ships **Plan/023 Done-When items 2, 3, 5, 6, 7, 8-basic**:
+
+| Plan/023 item | L3 status | Notes |
+|---|---|---|
+| 1. Research output (epic plan ≥1500 words) | **Deferred** to `Plan/harness/L3-progressive-disclosure.md` (follow-up sub-spec) | Plan/023's Subagents A (prior art) and B (anchor surface) re-run there. Subagent D (transport) result locked verbatim into §2 above. |
+| 2. MVP daemon (`agency server start/stop/status/logs`) | **Ships** | §5.4 above |
+| 3. Single-binary CLI (`bin/agency`) | **Ships** | §5.2-5.3 above |
+| 4. Progressive disclosure for skills (4-tier ladder) | **Deferred** to `Plan/harness/L3-progressive-disclosure.md` | Initial `agency skill list/describe` provides a 2-tier baseline; 4-tier requires Subagent C output |
+| 5. MCP wire-format pass-through | **Ships** | Built-in via FastMCP HTTP transport — Cursor / Continue / Cline can connect directly |
+| 6. Bootstrap self-doc | **Ships** | §5.5 above |
+| 7. Smoke tests (`tests/integration/test_devmode_server.py`) | **Ships** | Daemon lifecycle + one tool execute round-trip |
+| 8. `docs/architecture/harness-in-harness.md` | **Ships (basic)** | Architectural overview + transport + security boundary. Progressive-disclosure section deferred. |
+
+The deferred items (1, 4) are pure additions — they will not require rework of the MVP. The 2-tier baseline (`list` returns `{name, summary}`; `describe` returns frontmatter + body) is forward-compatible with a 4-tier expansion (`--tier N` flag added later).
+
+### 5.7 Security boundary
+
+| Concern | Decision | Rationale |
+|---|---|---|
+| Network reach | `127.0.0.1` only (loopback) | External-agent use case is local-only; remote access is a follow-up spec |
+| Authentication | None | Single-user. Daemon trusts anything that can connect to 127.0.0.1:7777 |
+| Process lifetime | Tied to parent shell via PID file + atexit hook | A killed parent leaves a stale PID file; `agency server start` cleans it up |
+| Tool-call audit | Logs every invocation to `~/.agency-system/dev-server.log` | Sufficient for dev / dogfooding; production-grade audit is out of scope |
+| Untrusted-input handlers | Same trust boundary as the in-Claude-Code plugin (i.e., trusted) | The plugin handlers were authored against MCP-trusted input; L3 inherits that assumption. Adding untrusted-input gates is a follow-up spec, not this one. |
+
+### 5.8 In-session bash dogfooding (the orchestrator's own use case)
+
+Once L3 is running, the **orchestrator session itself** (this one — a Claude Code session with the `Bash` tool) can invoke the plugin's tools via the CLI:
+
+```bash
+# In any Bash tool call:
+agency server start
+agency tool execute health_check
+agency tool execute music_find_album --param title="X"
+agency skill describe music-lyric-writer
+```
+
+This means the dev / agent iterating on the plugin **doesn't need to restart Claude Code at all** to verify their changes — L3 + a `agency server stop && agency server start` reload-cycle is faster than `--plugin-dir` restart, and works inside the existing session. This is the highest-leverage cross-layer win: **L3 makes L1's "dev-iteration loop" work even for non-pytest verification.**
+
+## 6. Out of scope
+
+- **Skill execution semantics.** `dispatch_skill` (L1) and `agency skill describe` (L3) prove routing (name → file → frontmatter + body) but do not interpret skills — skills are LLM instructions, not executable code. A "skill simulator" that runs a skill's process inside the harness is a future extension.
+- **Hot-reload of `--plugin-dir` into an already-running Claude Code session.** Not possible per the CLI's architecture; L1 + L3 are the workarounds.
 - **Spec 131 (`test_boot_budget.py`)** and **Spec 105 (`test_toon_gate.py`)** *use* this harness but are not authored here — they remain Phase 1 tickets owned by their respective specs.
 - **Whether the L2 probe runs in default CI** — left for the CI config PR. Default expectation: opt-in via `pytest -m smoke_slow`.
+- **L3 progressive-disclosure 4-tier ladder for skills.** Deferred to `Plan/harness/L3-progressive-disclosure.md`. The MVP exposes a 2-tier baseline (`list` + `describe`) that's forward-compatible.
+- **Authentication / multi-tenant access for L3.** Daemon is localhost-only, single-user. Auth is a follow-up spec only if remote access is ever desired.
+- **Windows compatibility for L3.** POSIX-only (Linux + macOS). Windows uses WSL. (Same exclusion Plan/023 took.)
+- **Cross-machine federation of L3 daemons.** Out of scope. The daemon owns one repo's plugin instance only.
 
-## 6. Done When
+## 7. Done When
+
+### L1 — In-process harness
 
 - [ ] `tests/_harness/__init__.py`, `tests/_harness/mcp.py`, `tests/_harness/skills.py` exist with the four-verb API (`list_tools`, `call_tool`, `list_skills`, `dispatch_skill`) plus `harness_mcp()` and `REPO_ROOT`.
 - [ ] `tests/conftest.py` exposes the four verbs as pytest fixtures (`tool`, `tools`, `skill`, `mcp`).
 - [ ] `tests/smoke/test_dev_install.py` is refactored to use `harness_mcp()`; both Codex P2 critiques (r3262361932 + r3262361935) resolved by removing the `0.`-prefix gate and the `"passed"` substring gate; the Codex P1 critique (r3262361939) resolved by asserting `len(tools) >= 113` via the L1 harness.
-- [ ] `tests/smoke/test_nested_claude.py` exists with the `--bare --plugin-dir <repo> --debug plugins -p exit` probe, marked `@pytest.mark.smoke_slow`, gracefully skipping when `claude` is not on PATH.
-- [ ] `pytest tests/smoke/ -v` runs cleanly inside a fresh `bin/agency-dev-install` env, with the L1 tests in the fast group and the L2 test in `smoke_slow`.
-- [ ] `Plan/harness/_research/01-fastmcp-in-memory.md`, `_research/02-claude-bare-plugin-dir.md`, `_research/03-test-coverage-baseline.md` exist as evidence files (≤200 lines each).
-- [ ] Reference PR #115 description is updated to reflect L1 + L2 scope (or this work splits cleanly to a new PR — orchestrator's choice).
-- [ ] Plan/000-overview.md §2.1 lists this design under Phase 1 with PR reference once merged.
+- [ ] `pytest tests/smoke/ -v` runs cleanly inside a fresh `bin/agency-dev-install` env, with the L1 tests in the fast group.
 
-## 7. Acceptance scenarios (Gherkin)
+### L2 — Subprocess probe
+
+- [ ] `tests/smoke/test_nested_claude.py` exists with the `--bare --plugin-dir <repo> --debug plugins -p exit` probe, marked `@pytest.mark.smoke_slow`, gracefully skipping when `claude` is not on PATH.
+
+### L3 — Sidecar daemon + CLI
+
+- [ ] `bin/agency` is an executable Python script (`#!/usr/bin/env python3` + argparse) implementing the subcommands in §5.5: `server start|stop|status|logs`, `tool search|describe|execute`, `skill list|describe`, and zero-arg / `--bootstrap` self-doc.
+- [ ] `servers/agency-mcp/src/agency_mcp/lib/devmode/server.py` exposes `run_dev_transport(transport: str = "http", host: str = "127.0.0.1", port: int = 7777)` that calls `create_mcp().run(transport=..., host=..., port=...)`. Same `create_mcp()` factory L1 uses — no fork.
+- [ ] `servers/agency-mcp/src/agency_mcp/lib/devmode/lifecycle.py` provides PID-file management (`~/.agency-system/dev-server.pid`), log file management (`~/.agency-system/dev-server.log` with size-based rotation at 10 MB), and the `start_idempotent` / `stop_graceful` / `status` helpers `bin/agency server` wraps.
+- [ ] `agency server start` is idempotent: a second start while running prints `already running, PID <int>` and exits 0. Stale PID file (no live process) is cleaned and start proceeds.
+- [ ] `agency server stop` sends SIGTERM, waits ≤10s for clean shutdown, then SIGKILL if needed. Removes PID file on success.
+- [ ] `agency server status` exits 0 + JSON `{running, pid, port, uptime_seconds}` when alive, exits 1 + JSON `{running: false}` otherwise. JSON shape is the contract for downstream agents parsing the output.
+- [ ] `agency tool execute health_check` round-trips via the daemon and returns the same JSON body `harness_mcp().call_tool("health_check")` returns (L1 ↔ L3 equivalence). Tested in `tests/integration/test_devmode_server.py`.
+- [ ] `agency --bootstrap` prints ≤60 lines, names every subcommand, includes one runnable example per subcommand, references `docs/architecture/harness-in-harness.md`.
+- [ ] `tests/integration/test_devmode_server.py` covers: idempotent start, graceful stop, status JSON shape, one tool execute round-trip. Uses `tmp_path` for PID/log paths to avoid stomping on a real dev daemon.
+- [ ] `docs/architecture/harness-in-harness.md` exists (≤300 lines): all three layers, security boundary, transport rationale (linking Plan/023 §Approach pre-research), in-session bash dogfooding cookbook (§5.8 above), example invocations for each subcommand.
+- [ ] **Forward-compatibility evidence:** `agency skill list` returns `[{name, summary}]`; `agency skill describe <name>` returns frontmatter + body. The deferred 4-tier expansion adds `--tier N`; existing call sites without `--tier` get tier-2 (current default). No breaking change.
+
+### Cross-layer
+
+- [ ] `Plan/harness/_research/{01-fastmcp-in-memory, 02-claude-bare-plugin-dir, 03-test-coverage-baseline, 04-fastmcp-http-transport}.md` all exist (≤200 lines each).
+- [ ] PR #115 description reflects all three layers (or work splits cleanly across PRs at the orchestrator's discretion).
+- [ ] Plan/000-overview.md §2.1 lists this design with PR references once merged. The reference points to L1+L2 under Phase 1 and L3 under Phase 8.
+- [ ] Plan/023-harness-in-harness/spec.md is updated with a `superseded_by: Plan/harness/design.md` marker for items 2-3-5-6-7-8 and a `defers_to: Plan/harness/L3-progressive-disclosure.md` marker for items 1-4.
+
+## 8. Acceptance scenarios (Gherkin)
 
 ```gherkin
 # anchor: harness.L1.1
@@ -375,9 +561,55 @@ Scenario: Nested claude probe is skipped when claude is not on PATH
   When the probe runs
   Then pytest records the test as skipped
   And the CI build stays green
+
+# anchor: harness.L3.1
+Scenario: L3 daemon lifecycle is idempotent
+  Given the daemon is not running
+  When the operator runs `agency server start`
+  Then exit 0 and a PID file appears at ~/.agency-system/dev-server.pid
+  And `agency server status` returns exit 0 + JSON {running: true, pid: <int>, port: 7777, uptime_seconds: <int>}
+  When the operator runs `agency server start` again
+  Then exit 0 and stderr contains "already running, PID <int>"
+  And no second process is spawned
+  When the operator runs `agency server stop`
+  Then exit 0 and the PID file is removed
+  And `agency server status` returns exit 1 + JSON {running: false}
+
+# anchor: harness.L3.2
+Scenario: L3 tool execute round-trips against the daemon
+  Given the daemon is running
+  When the operator runs `agency tool execute health_check`
+  Then exit 0 and stdout is the JSON body returned by the health_check handler
+  And the same call via `harness_mcp().call_tool("health_check")` returns the same body (L1 ↔ L3 equivalence)
+
+# anchor: harness.L3.3
+Scenario: L3 is reachable from external MCP clients
+  Given the daemon is running on 127.0.0.1:7777 with Streamable HTTP transport
+  When an external MCP client (e.g. Cursor, Continue, Cline) connects and sends a `tools/list` JSON-RPC request
+  Then the daemon responds with the full registered tool surface
+  And a subsequent `tools/call` for `health_check` returns the same body `agency tool execute health_check` would produce
+
+# anchor: harness.L3.4
+Scenario: L3 bootstrap self-doc is the contract for new agents
+  Given a first-touch agent has shell access and `bin/agency` on PATH but no prior knowledge of agency-system
+  When the agent runs `agency --bootstrap` (or `agency` with no args)
+  Then the output is ≤ 60 lines
+  And the output names every subcommand from §5.5 above
+  And the output includes one runnable example per subcommand
+  And the output references docs/architecture/harness-in-harness.md
+  And the agent can use the plugin's tools/skills using only the output as documentation
+
+# anchor: harness.L3.5
+Scenario: L3 makes in-session dogfooding possible without restarting Claude Code
+  Given a Claude Code session is running with the Bash tool available
+  And the operator has edited a handler under servers/agency-mcp/src/agency_mcp/handlers/
+  When the operator runs `agency server stop && agency server start` in a Bash tool call
+  And then runs `agency tool execute <the-edited-tool> --param ...`
+  Then the response reflects the edited handler's new behaviour
+  And no Claude Code restart was required
 ```
 
-## 8. Evidence (cited)
+## 9. Evidence (cited)
 
 | Claim | Source |
 |---|---|
@@ -391,15 +623,22 @@ Scenario: Nested claude probe is skipped when claude is not on PATH
 | `claude --debug plugins` filters debug output to the plugins category | `claude --help`: `-d, --debug [filter]   Enable debug mode with optional category filtering (e.g., "api,hooks" or "!1p,!file")` |
 | Existing smoke test uses non-deterministic `/help` chat probe | `tests/smoke/test_dev_install.py` pre-PR-115 + PR #115 investigation comment |
 | Plan/000-v2 places this work in Phase 1 | `Plan/000-overview.md` §4 + §9 Phase 1 dispatch matrix |
+| FastMCP supports Streamable HTTP transport with `mcp.run(transport="http", host=..., port=...)` | FastMCP docs (cited in `_research/04-fastmcp-http-transport.md`) + Plan/023 §Approach pre-research |
+| Transport choice locked: Streamable HTTP default, UDS fallback | `Plan/023-harness-in-harness/spec.md` §Approach "Pre-research finding (locked 2026-05-18)" |
+| External MCP clients (Cursor, Continue, Cline) speak MCP JSON-RPC over HTTP | MCP 2025-06-18 spec — cited in Plan/023 |
 
-## 9. Out-of-tree references
+## 10. Out-of-tree references
 
 - [FastMCP Client transports — in-memory](https://gofastmcp.com/clients/transports#in-memory-transport)
+- [FastMCP Server transports](https://gofastmcp.com/servers/transports) — Streamable HTTP for L3
+- [FastMCP deployment](https://gofastmcp.com/deployment/running-server)
+- [MCP 2025-06-18 spec — transports](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports)
 - [Claude Code Plugins Reference](https://code.claude.com/docs/en/plugins-reference) — `--plugin-dir` semantics
 - [Claude Code Plugins docs](https://code.claude.com/docs/en/plugins) — `--bare` and `--debug` flags
 - [`Plan/JULES_PROTOCOL.md`](../JULES_PROTOCOL.md) §3 (branch/PR discipline), §8 (silent-fail recovery)
 - [`Plan/JULES-REVIEW-LOOP.md`](../JULES-REVIEW-LOOP.md) §4.1 — review prompt template used for the first review pass on this design
+- [`Plan/023-harness-in-harness/spec.md`](../023-harness-in-harness/spec.md) — origin of L3 design; this design absorbs items 2-3-5-6-7-8 and defers items 1-4
 
-## 10. First review pass
+## 11. First review pass
 
-The first review pass on this design uses the JULES-REVIEW-LOOP §4.1 template with `phase=1`, `spec=harness-design`, `spec_path=Plan/harness/design.md`. PR #115 is the working branch; the design doc + research files land there; a `@jules` review request posts in the PR thread. See the orchestrator's coordination comment on [PR #111](https://github.com/netzkontrast/the-agency-system/pull/111#issuecomment-4482634644).
+The first review pass on this design uses the JULES-REVIEW-LOOP §4.1 template with `phase=1+8`, `spec=harness-design`, `spec_path=Plan/harness/design.md`. PR #115 is the working branch; the design doc + research files land there; a `@jules` review request posts in the PR thread. See the orchestrator's coordination comment on [PR #111](https://github.com/netzkontrast/the-agency-system/pull/111#issuecomment-4482634644).
