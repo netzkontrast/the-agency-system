@@ -12,9 +12,9 @@ The loop is built from five primitives. Every one of them is already implemented
 
 | Primitive | What it does | Backing tool |
 |---|---|---|
-| **Dispatch** | Create one Jules session per spec, with a focused prompt | `jules_create` (MCP) or `bin/jules-bulk fanout <file.json>` (CLI) |
-| **Watch** | Poll all in-flight sessions for state transitions | `jules_status_all` (MCP) or `bin/watch_jules.py` (CLI) |
-| **Recover** | When `state=COMPLETED` but no branch on origin: probe, then API-extract patch, then push via GitHub MCP | `jules_message` → `tools/jules-patch-extract.py` → `mcp__github__create_branch` + `create_or_update_file` + `create_pull_request` |
+| **Dispatch** | Create one Jules session per spec, with a focused prompt | `jules_create` (MCP) iterated in Python, or `bin/jules-bulk fanout <file.json>` shell helper |
+| **Watch** | Poll all in-flight sessions for state transitions | `jules_status_all` (MCP) — or the Python script in `jules-plugin/lib/watch_jules.py` (re-homed to `bin/watch_jules.py` in Phase 0 cleanup; until that ships, the path is `jules-plugin/lib/watch_jules.py`). The orchestrator's own canonical watcher is a single persistent `Monitor` (see §3). |
+| **Recover** | When `state=COMPLETED` but no branch on origin: probe, then run `tools/jules-patch-extract.py <sid>` (writes the patch to `/tmp/jules-patches/{sid}-out{i}.patch` and emits stats only — does NOT return file bodies), then parse that on-disk patch and push via GitHub MCP | `jules_message` → `tools/jules-patch-extract.py` → parse `.patch` → `mcp__github__create_branch` + `create_or_update_file` (per file) + `create_pull_request` |
 | **Review** | Dispatch a Jules session whose entire job is to review an open PR and post comments | `jules_create` with `REVIEW_PROMPT_TEMPLATE` below |
 | **Merge** | Close the loop when a review session returns < 1 substantive comment | `mcp__github__merge_pull_request` |
 
@@ -29,22 +29,28 @@ INPUT:  phase_id, list[spec_dir]
 OUTPUT: list[merged_pr_url]
 
 # 2.a Dispatch (one fanout per parallel-safe group within the phase)
+#     `jules_bulk_fanout` is NOT a single helper — it's either a Python loop
+#     over `jules_create` OR a shell call to `bin/jules-bulk fanout <file>`.
+#     Both produce the same outcome; we model the Python form here for clarity.
+all_sids = []                                       # accumulate across groups
 for group in groups_of(spec_dirs):                  # see §2.5 grouping rule
-    fanout_payload = [
-        {
-            "title":  f"Spec {spec.id} — {spec.slug}",
-            "prompt": render_prompt("templates/spec-impl.md.j2", spec=spec, phase=phase_id),
-            "source": "netzkontrast/the-agency-system",
-            "branch_hint": f"jules/agency-{spec.id}-<short-sid>",
-        }
-        for spec in group
-    ]
-    sids = jules_bulk_fanout(fanout_payload)        # returns session ids
-    register_sessions(sids, phase_id, spec_ids)     # writes ~/.agency-system/sessions.json
+    for spec in group:
+        res = jules_create(
+            prompt=render_prompt("templates/spec-impl.md.j2", spec=spec, phase=phase_id),
+            source="netzkontrast/the-agency-system",
+            starting_branch="Master",               # the supported kwarg
+            title=f"Spec {spec.id} — {spec.slug}",
+            require_plan_approval=True,
+        )
+        sid = (res.get("name") or res.get("id") or "").replace("sessions/", "")
+        register_session(sid, phase_id, spec.id)    # writes ~/.agency-system/sessions.json
+        all_sids.append(sid)
 
-# 2.b Watch (one Monitor; runs until all this-phase sessions hit a terminal state)
+# 2.b Watch (one persistent Monitor; runs until every this-phase session hits
+#     a terminal state). `all_sids` carries every group's session, so an early
+#     group's completion is not missed.
 monitor_watch_jules_sessions(
-    sids,
+    all_sids,
     interval_seconds=180,                           # 3-minute poll cadence
     on_event=handle_event,                          # see §3
 )
@@ -78,7 +84,7 @@ The watcher emits one JSON line per state transition. Routing:
 
 | Event | Action |
 |---|---|
-| `state=IN_PROGRESS → AWAITING_PLAN_APPROVAL` | Check the plan body. If confidence ≥ 0.90 (gate 1 from `JULES_PROTOCOL`), call `jules_approve`. Else escalate via `@human:` comment on the draft PR. |
+| `state=IN_PROGRESS → AWAITING_PLAN_APPROVAL` | Check the plan body via `jules_plan(sid)`. If confidence ≥ 0.90 (gate 1 from `JULES_PROTOCOL`), call `jules_approve`. **Escalation channel:** at this state no PR exists yet, so the `@human:` PR-comment path is wrong. Escalate via `jules_message(sid, "@human: plan requires clarification — <text>")` (lands in the session timeline), AND write the same text to `~/.agency-system/cache/orchestrator-escalations/{phase}-{sid}.md` so it survives a session-end. Once the human responds or unblocks the session externally, the orchestrator resumes normally. |
 | `state=* → COMPLETED` | Wait 60 s (Jules's auto-publication flow may still be in-flight), then check `mcp__github__list_branches`. If branch present → §4. If absent → §5 recovery. |
 | `state=* → FAILED` | Read last activity via `jules_activities` (summary_only=true). If retryable (transient API error), restart the same session via `jules_message` with the same prompt. If genuine failure (e.g. spec ambiguity), append to `Plan/_lessons-learned/` and stop. |
 | `inactivity for > 2 h while IN_PROGRESS` | Probe with `jules_message`: "status?". One probe only. If no response in 30 min → treat as silent-fail; escalate. |
@@ -94,7 +100,8 @@ This is what the user's goal calls "use Jules to write a review and go back and 
 ```
 def iterate_review_until_clean(pr, max_rounds):
     for round in range(max_rounds):
-        sid = jules_create(
+        round_started_at = utcnow_iso()                # used to filter §4.2
+        review_sid_res = jules_create(
             title=f"Review PR #{pr.number} — round {round + 1}",
             prompt=REVIEW_PROMPT_TEMPLATE.format(
                 pr_url=pr.html_url,
@@ -103,19 +110,24 @@ def iterate_review_until_clean(pr, max_rounds):
                 round=round + 1,
             ),
             source=pr.head_repo,
+            starting_branch=pr.head_branch,            # the branch under review
+            require_plan_approval=False,               # review-only sessions can't widen scope
         )
-        wait_until_completed(sid)                      # uses §3 watcher
+        review_sid = (review_sid_res.get("name") or review_sid_res.get("id") or "").replace("sessions/", "")
+        wait_until_completed(review_sid)               # uses §3 watcher
         comments = mcp_github_pull_request_read(
             method="get_review_comments", pull_number=pr.number,
         )
-        substantive = triage(comments)                 # see §4.2
+        substantive = triage(comments, since=round_started_at, pr=pr)  # see §4.2
 
-        if len(substantive) == 0:
+        if len(substantive) == 0 and review_summary_contains_clean_marker(review_sid, pr):
             return pr                                  # clean; merge
 
         # Spawn a follow-up Jules session pointing at the same branch
-        # with the substantive comments as the fix brief.
-        fix_sid = jules_create(
+        # with the substantive comments as the fix brief. `jules_create`'s
+        # `starting_branch` is the supported kwarg (NOT `existing_branch`);
+        # Jules's session will branch from there and push back to it.
+        fix_sid_res = jules_create(
             title=f"Fix review feedback for PR #{pr.number} — round {round + 1}",
             prompt=FIX_PROMPT_TEMPLATE.format(
                 pr_url=pr.html_url,
@@ -123,8 +135,10 @@ def iterate_review_until_clean(pr, max_rounds):
                 branch=pr.head_branch,
             ),
             source=pr.head_repo,
-            existing_branch=pr.head_branch,            # IMPORTANT: stay on branch
+            starting_branch=pr.head_branch,            # IMPORTANT: stay on the PR branch
+            require_plan_approval=True,
         )
+        fix_sid = (fix_sid_res.get("name") or fix_sid_res.get("id") or "").replace("sessions/", "")
         wait_until_completed(fix_sid)
         # Loop continues: next round runs a fresh review against the new commits.
 
@@ -163,15 +177,34 @@ YOU MUST:
 - Include a final "no further substantive findings" line ONLY if you have zero [BLOCKING] and zero [SUBSTANTIVE] findings. The orchestrator searches for that line.
 ```
 
-### 4.2 Triage (substantive vs not)
+### 4.2 Triage (substantive vs not — round-scoped)
 
 ```python
-def triage(comments):
-    return [c for c in comments
-            if c.body.startswith("[BLOCKING]") or c.body.startswith("[SUBSTANTIVE]")]
+def triage(comments, since: str, pr):
+    """Return ONLY comments produced in the current round AND not yet resolved.
+
+    `get_review_comments` returns every historical comment on the PR (including
+    already-addressed ones from prior rounds). A prefix-only filter would
+    re-count those, so the loop would never converge and would always escalate
+    at round 5.
+
+    Two filters compose:
+    1. Time filter: comment.created_at >= round_started_at (`since`)
+    2. Thread filter: prefer unresolved review threads. GraphQL exposes
+       `isResolved` on the parent thread; the orchestrator queries it via
+       `mcp__github__pull_request_read(method='get_review_threads')` and
+       intersects.
+    """
+    round_comments = [c for c in comments if c.created_at >= since]
+    unresolved = unresolved_thread_comment_ids(pr)     # from get_review_threads
+    return [c for c in round_comments
+            if c.id in unresolved
+            and (c.body.startswith("[BLOCKING]") or c.body.startswith("[SUBSTANTIVE]"))]
 ```
 
 The orchestrator does NOT triage `[NIT]` comments. They land on the PR for the human author to glance at and resolve later; they do not block merge.
+
+External-bot comments (e.g. Codex, copilot) use their own severity badges (`P1`/`P2`/`P3`). The orchestrator maps `P1 → [BLOCKING]` and `P2 → [SUBSTANTIVE]` at triage time so bot reviews compose with Jules reviews in the same convergence test.
 
 ### 4.3 The fix prompt template (verbatim — paste into Jules)
 
@@ -223,31 +256,45 @@ def recover_completed_no_branch(sid):
     if wait_for_publish(sid, timeout_minutes=10):
         return
 
-    # Step 2 — API extraction (deterministic)
-    patch_info = run_command(
+    # Step 2 — API extraction (deterministic). The script writes the raw
+    # patch to /tmp/jules-patches/{sid}-out{i}.patch and emits ONLY stats
+    # to stdout — it does not return file bodies. The orchestrator parses
+    # the on-disk patch itself.
+    stats = json.loads(run_command(
         f"PYTHONPATH=servers/agency-mcp/src python3 tools/jules-patch-extract.py {sid}"
-    )
-    # Note: patch is written to /tmp/jules-patches/{sid}-out0.patch
-    # stdout shows only stats — never echo patch body
+    ))
+    # stats shape: {bytes, files, first_files[], patch_paths[...]}
+    # The patch body stays on disk; we open it to materialise the new content.
 
-    # Step 3 — push via GitHub MCP (signed web-flow commits)
+    patch_paths = stats.get("patch_paths") or [
+        f"/tmp/jules-patches/{sid}-out{i}.patch" for i in range(stats.get("outputs", 1))
+    ]
+
+    # Step 3 — push via GitHub MCP (signed web-flow commits). Parse the
+    # unified diff into per-file final-content using a unidiff parser
+    # (e.g. `unidiff` lib, or a 30-line stdlib parser). The local
+    # `git apply` path is NOT used because the CODESIGN_MCP backend
+    # currently rejects locally-signed commits.
     branch = f"jules-recovered/{sid[-8:]}"
     mcp_github_create_branch(branch, from_branch="Master")
-    for file in patch_info["files"]:
-        mcp_github_create_or_update_file(
-            path=file["path"],
-            content=file["new_content"],
-            branch=branch,
-            message=f"feat: recovered Spec {phase_id} from Jules sid {sid[-8:]}",
-        )
+    for patch_path in patch_paths:
+        for file_change in parse_unified_diff(patch_path):
+            mcp_github_create_or_update_file(
+                path=file_change.target_path,
+                content=file_change.final_content,
+                branch=branch,
+                message=f"feat: recovered Spec {phase_id} from Jules sid {sid[-8:]} ({file_change.target_path})",
+            )
     pr = mcp_github_create_pull_request(
         head=branch,
         base="Master",
         title=f"Spec {spec_id} — recovered via API extraction",
-        body=render_recovery_pr_body(sid, patch_info),
+        body=render_recovery_pr_body(sid, stats),
     )
     # Continue to §4 review loop with this PR
 ```
+
+`parse_unified_diff` is a Phase 0 sub-task (~30 LOC in `tools/lib/unidiff_to_files.py`): walks `--- a/<path>` / `+++ b/<path>` headers, applies hunks against the current `Master` blob for that path (fetched via `mcp__github__get_file_contents`), and returns `(target_path, final_content)` tuples. The `tools/jules-patch-extract.py` script's `--apply` mode is NOT used for the orchestrator path because its `git apply` commits cannot be signed by the CODESIGN_MCP backend; `--apply` remains useful for local dev inspection only.
 
 The recovery path is **NEVER** a re-dispatch of a fresh Jules session for the same work — that wastes a slot of the 60-session quota and risks divergent output. Re-dispatch is reserved for genuine implementation failures.
 
@@ -267,23 +314,29 @@ Merge method: `squash` for spec PRs, `merge` for phase-cleanup PRs that include 
 
 ## 7. Quota management
 
-Jules quota = 60 concurrent sessions. The orchestrator tracks in-flight count via `jules_quota` (MCP). Dispatch gating:
+Jules enforces a **daily** quota (default 100 sessions/day). The orchestrator caps **concurrent** in-flight at 60. Both are tracked via `jules_quota` (MCP), whose return shape is `{daily_limit, used_today, remaining_today, active_today, by_state_today, today_utc, newest_today_id, pages_scanned, truncated}`. **Note: there is no `in_flight_count` field — use `active_today` (non-terminal sessions) for the concurrency cap.**
 
 ```python
-def gated_fanout(payload):
-    quota = jules_quota()
-    in_flight = quota["in_flight_count"]
-    budget = 60 - in_flight
+def gated_dispatch(payload):
+    q = jules_quota(daily_limit=100)
+    in_flight = q["active_today"]                      # the real concurrent count
+    daily_remaining = q["remaining_today"]
+    if q.get("truncated"):
+        # Pagination cap was hit; be conservative — re-query with max_pages=20
+        q = jules_quota(daily_limit=100, max_pages=20)
+        in_flight = q["active_today"]
+        daily_remaining = q["remaining_today"]
+    concurrent_budget = max(0, 60 - in_flight)
+    budget = min(concurrent_budget, daily_remaining)
     if len(payload) <= budget:
-        return jules_bulk_fanout(payload)
-    # Split: fanout the first `budget` entries; queue the remainder
-    return (
-        jules_bulk_fanout(payload[:budget])
-        + queued_fanout(payload[budget:])               # waits for slot in §2.b watcher
-    )
+        return dispatch_each(payload)                  # Python loop over jules_create
+    # Split: dispatch the first `budget` entries; queue the remainder
+    head = dispatch_each(payload[:budget])
+    tail = queued_dispatch(payload[budget:])           # waits for slot in §2.b watcher
+    return head + tail
 ```
 
-The 60-session ceiling is rarely binding; the typical phase opens 4-10 sessions. Phase 8 is the only phase that could realistically fill the quota (≤ 10 specs). Watch for the binding-quota signal in lesson-15.
+The 60-session concurrency ceiling is rarely binding; the typical phase opens 4-10 sessions. Phase 8 is the only phase that could realistically approach it (≤ 10 specs). The **daily** cap is the more likely binding constraint across an active week. Watch for the binding-quota signal in lesson-15.
 
 ---
 
