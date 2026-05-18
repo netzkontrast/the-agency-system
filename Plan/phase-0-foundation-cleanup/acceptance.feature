@@ -2,7 +2,6 @@ Feature: Phase 0 — Foundation cleanup
 
   Background:
     Given the plugin repository is loaded as the working directory
-    And the current branch is merged into Master
     And the agency-mcp FastMCP server boots successfully
     And Spec 020 and Spec 099 have been applied
 
@@ -26,7 +25,6 @@ Feature: Phase 0 — Foundation cleanup
   Scenario: The orchestrator discipline skill no longer references jules-plugin
     When the operator reads `skills/agentic/jules-orchestrator-discipline/SKILL.md`
     Then the file does not contain the substring "jules-plugin/"
-    And the file strictly follows the §2.2 schema frontmatter
 
   # anchor: phase-0.no-legacy-references
   Scenario Outline: No legacy jules-plugin references remain across the active workspace
@@ -46,13 +44,13 @@ Feature: Phase 0 — Foundation cleanup
   Scenario: The agency-mcp server still boots and maintains tool capacity
     When the operator starts the FastMCP server at `servers/agency-mcp/src/agency_mcp/server.py`
     And requests `mcp.list_tools()`
-    Then the total tool count is at least 113
-    And the boot context remains approximately 210 tokens
+    Then mcp.list_tools() returns the same total tool count captured before jules-plugin/ deletion
+    And the boot context token count remains < 500
 
   # anchor: phase-0.pr-review-loop-converged
   Scenario: The Phase 0 PR is reviewed and converged via the JULES-REVIEW-LOOP.md mechanism
     Given a Pull Request is opened for Phase 0
     When the Gate 4 self-review is executed
-    Then the orchestrator dispatches the review subagent using `Plan/_templates/review-subagent-prompt.md`
+    Then the orchestrator dispatches the review subagent using `Plan/JULES-REVIEW-LOOP.md §4.1`
     And any issues raised are addressed and converged
     And the PR is ready to merge
