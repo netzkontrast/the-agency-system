@@ -6,7 +6,10 @@
       "type": "object",
       "properties": {
         "_generated": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         }
       }
@@ -15,8 +18,88 @@
       "type": "object",
       "properties": {
         "_generated": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
+        },
+        "authors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "works": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "dramatica_locked": {
+                      "type": "boolean"
+                    },
+                    "force_overrides": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "at": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "caller": {
+                            "type": "string"
+                          },
+                          "blocking": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "at",
+                          "caller",
+                          "blocking"
+                        ]
+                      }
+                    },
+                    "revisions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "pass_kind": {
+                            "type": "string",
+                            "enum": [
+                              "structural",
+                              "line",
+                              "copy",
+                              "proof"
+                            ]
+                          },
+                          "marked_at": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "chapter_ids": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "pass_kind",
+                          "marked_at",
+                          "chapter_ids"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -24,7 +107,10 @@
       "type": "object",
       "properties": {
         "_generated": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         }
       }
@@ -33,7 +119,10 @@
       "type": "object",
       "properties": {
         "_generated": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         }
       }
@@ -43,6 +132,12 @@
       "const": "1.0.0"
     }
   },
-  "required": ["music", "novel", "jules", "agentic", "_version"],
+  "required": [
+    "music",
+    "novel",
+    "jules",
+    "agentic",
+    "_version"
+  ],
   "additionalProperties": false
 }
