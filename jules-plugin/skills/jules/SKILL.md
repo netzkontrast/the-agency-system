@@ -52,9 +52,13 @@ its tool list natively.
 
 ## Critical Gotchas
 
-1. **Approve quickly.** The Jules backend discards sessions left in `AWAITING_PLAN_APPROVAL` too long. If a session is `COMPLETED` but has no patch artifacts, it timed out. Fetch the plan and approve it fast.
-2. **Stop is not supported.** The Jules API does not expose a stop/cancel method.
-3. **Harvest via patches.** The `auto_create_pr=True` flag is currently unreliable. The preferred harvest path is `jules_patch_apply(session_id)`. Alternatively, prompt the agent to push to `jules/<alias>` branches.
+1. **`COMPLETED` ≠ terminal.** It means "session is idle, waiting for input" — NOT "done, success". A `COMPLETED` session can be resumed by sending `jules_message(sid, ...)`; it transitions back to `IN_PROGRESS` and continues working. Two distinct sub-cases:
+   - `COMPLETED` with patch artifacts AND branch on remote AND PR open → real terminal success.
+   - `COMPLETED` with missing branch/PR (silent-fail per JULES_PROTOCOL §8) → recovery is a continuation `jules_message`, not a fresh dispatch. Probe with one focused message ("your state is COMPLETED but no branch on origin — please push and reply with PR URL") and give ~5 minutes. After 2-3 probes still no branch, switch to local subagent + extracted patch — never re-dispatch a fresh session on the same spec.
+2. **Approve quickly when truly awaiting.** If a session is in `AWAITING_PLAN_APPROVAL` for an extended time the Jules backend may discard it. Fetch the plan and approve fast. (This is distinct from the `COMPLETED` case above — only `AWAITING_PLAN_APPROVAL` has the timeout risk; `COMPLETED` sessions persist indefinitely.)
+3. **Stop is not supported.** The Jules API does not expose a stop/cancel method.
+4. **Harvest via patches.** The `auto_create_pr=True` flag is currently unreliable. The preferred harvest path is `jules_patch_apply(session_id)` or `tools/jules-patch-extract.py <sid>`. Alternatively, prompt the agent to push to `jules/<alias>` branches.
+5. **Always verify branch on remote before trusting `COMPLETED`.** Use `mcp__github__list_branches` to confirm the work was published. State alone is not evidence of delivery.
 
 ## References
 
