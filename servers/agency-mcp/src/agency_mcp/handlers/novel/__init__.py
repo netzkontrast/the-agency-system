@@ -5,6 +5,12 @@ from . import content
 from . import core
 from . import ideas
 from . import status
+from . import coherence
+from . import structure
+from . import characters
+from . import world
+from . import prose_analysis
+
 
 def register_novel_core_handlers(mcp: FastMCP) -> None:
     """Register all novel core handlers to the provided MCP server."""
@@ -13,3 +19,9 @@ def register_novel_core_handlers(mcp: FastMCP) -> None:
     core.register(mcp)
     ideas.register(mcp)
     status.register(mcp)
+    # Spec 013 — structural / coherence / prose handlers.
+    coherence.register(mcp)
+    structure.register(mcp)
+    characters.register(mcp)
+    world.register(mcp)
+    prose_analysis.register(mcp)
