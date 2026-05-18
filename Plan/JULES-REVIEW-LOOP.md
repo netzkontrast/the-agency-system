@@ -202,12 +202,14 @@ def triage(threads, since: str):
     """
     out = []
     for thread in threads:
-        if getattr(thread, "isResolved", False):
+        # MCP responses are JSON dicts, not objects with attributes.
+        # Use .get() consistently. Camel-case keys match the schema.
+        if thread.get("isResolved", False):
             continue
-        for c in thread.comments:
-            if c.created_at < since:
+        for c in thread.get("comments", []):
+            if c.get("createdAt", "") < since:
                 continue
-            severity = severity_prefix(c.body)         # see below
+            severity = severity_prefix(c.get("body", ""))   # see below
             if severity in ("[BLOCKING]", "[SUBSTANTIVE]"):
                 out.append(c)
     return out
@@ -231,6 +233,8 @@ External-bot comments (e.g. Codex, copilot) use their own severity badges (`P1`/
 
 ### 4.3 The fix prompt template (verbatim — paste into Jules)
 
+Python `.format()` interpolates `{name}` placeholders, so any literal `{` and `}` in the template body must be doubled to `{{` and `}}` to survive untouched. The render is `FIX_PROMPT_TEMPLATE.format(pr_url=..., branch=..., substantive_comments_rendered_as_numbered_list=...)` — only those three fields are interpolated; the `{{comment_id}}` and `{{short_summary}}` braces below are intentional instructions to Jules and arrive in its prompt as `{comment_id}` / `{short_summary}`.
+
 ```markdown
 You are fixing review feedback on an open PR.
 
@@ -244,7 +248,7 @@ YOUR JOB:
 1. Read each feedback item.
 2. For each one, write a failing test that captures the regression (or a missing-evidence test if the feedback is about Gate 3).
 3. Apply the fix. Re-run the test until green.
-4. Commit with subject: "fix(review): address #{comment_id} — {short_summary}"
+4. Commit with subject: "fix(review): address #{{comment_id}} — {{short_summary}}"
 5. Push to {branch}. Publish via the standard flow (your runtime's submit/auto-PR tool — the PR already exists, your commit will land on it).
 6. Reply to each addressed comment with a one-line note + the commit SHA.
 
@@ -320,39 +324,61 @@ def recover_completed_no_branch(sid, *, phase_id, spec_id, recover_onto):
     # `git apply` path is NOT used because the CODESIGN_MCP backend
     # currently rejects locally-signed commits.
     branch = f"jules-recovered/{sid[-8:]}"
-    mcp_github_create_branch(branch, from_branch=recover_onto)   # NOT always Master
-    for patch_path in patch_paths:                               # iterate ALL outputs, not just out0
-        for file_change in parse_unified_diff(patch_path, base_branch=recover_onto):
+    target_branch = branch if recover_onto == "Master" else recover_onto
+    if recover_onto == "Master":
+        mcp_github_create_branch(branch, from_branch="Master")
+
+    def apply_change(file_change, msg_prefix):
+        """Route to the right GitHub MCP tool. `parse_unified_diff` yields
+        file_change.op in {"add", "modify", "delete", "rename"}; delete
+        and rename's source-side need delete_file because
+        create_or_update_file cannot remove files."""
+        if file_change.op == "delete":
+            mcp_github_delete_file(
+                path=file_change.source_path,
+                branch=target_branch,
+                message=f"{msg_prefix} delete {file_change.source_path}",
+            )
+        elif file_change.op == "rename":
+            # GitHub has no atomic rename; emulate as delete-old + add-new.
+            mcp_github_delete_file(
+                path=file_change.source_path,
+                branch=target_branch,
+                message=f"{msg_prefix} rename: delete {file_change.source_path}",
+            )
             mcp_github_create_or_update_file(
                 path=file_change.target_path,
                 content=file_change.final_content,
-                branch=branch,
-                message=f"feat: recovered Spec {spec_id} (phase {phase_id}) from Jules sid {sid[-8:]} ({file_change.target_path})",
+                branch=target_branch,
+                message=f"{msg_prefix} rename: add {file_change.target_path}",
             )
+        else:  # "add" or "modify"
+            mcp_github_create_or_update_file(
+                path=file_change.target_path,
+                content=file_change.final_content,
+                branch=target_branch,
+                message=f"{msg_prefix} {file_change.target_path}",
+            )
+
+    msg_prefix = (
+        f"feat: recovered Spec {spec_id} (phase {phase_id}) from Jules sid {sid[-8:]}"
+        if recover_onto == "Master"
+        else f"fix(review): recovered fix commit from sid {sid[-8:]} —"
+    )
+    for patch_path in patch_paths:                               # iterate ALL outputs, not just out0
+        for file_change in parse_unified_diff(patch_path, base_branch=recover_onto):
+            apply_change(file_change, msg_prefix)
 
     if recover_onto == "Master":
         # Fresh implementation recovery → open a new PR
-        pr = mcp_github_create_pull_request(
+        return mcp_github_create_pull_request(
             head=branch,
             base="Master",
             title=f"Spec {spec_id} — recovered via API extraction",
             body=render_recovery_pr_body(sid, stats, phase_id, spec_id),
         )
-        return pr
     else:
-        # Fix-round recovery → fast-forward the existing PR's head branch
-        # so the fix lands ON the open PR rather than producing a detached
-        # one. Cherry-pick the recovered commits onto pr.head_branch via
-        # mcp__github__create_or_update_file using `branch=pr.head_branch`
-        # (skip the throwaway `jules-recovered/*` branch and write directly).
-        for patch_path in patch_paths:
-            for file_change in parse_unified_diff(patch_path, base_branch=recover_onto):
-                mcp_github_create_or_update_file(
-                    path=file_change.target_path,
-                    content=file_change.final_content,
-                    branch=recover_onto,                 # the PR's head branch
-                    message=f"fix(review): recovered fix commit from sid {sid[-8:]} ({file_change.target_path})",
-                )
+        # Fix-round recovery wrote directly onto the open PR's head branch.
         return None
 ```
 
@@ -409,11 +435,12 @@ The orchestrator can crash and resume mid-phase. Resume guarantees:
 | State on disk | After crash, orchestrator does |
 |---|---|
 | `~/.agency-system/sessions.json` | Re-loads in-flight session list; resumes §2.b watcher |
-| Open PRs without `claude-review-cycle` label | Treats as awaiting review; restarts §4 loop at round 1 |
-| Open PRs with `claude-review-cycle: round-N` label | Resumes §4 loop at round N+1 |
+| Open PRs without `claude-review-cycle:*` label | Treats as awaiting review; starts §4 loop at round 1 |
+| Open PRs with `claude-review-cycle: round-N-started` label, no `…round-N-done` label | Resumes §4 loop at round **N** (the in-flight round whose work hadn't finished) |
+| Open PRs with `claude-review-cycle: round-N-done` label | Resumes §4 loop at round **N+1** |
 | Closed PRs with `claude-merged` label | Skip; included in §2.f overview update |
 
-The orchestrator writes the `claude-review-cycle: round-N` label via `mcp__github__issue_write` (issue API works on PRs) at the start of each round, and a `claude-merged` label after §6 succeeds.
+The orchestrator writes the `claude-review-cycle: round-N-started` label via `mcp__github__issue_write` (issue API works on PRs) at the **start** of each round, and the `claude-review-cycle: round-N-done` label at the **end** of the round (whether convergent or proceeding to round N+1). The two-label scheme prevents skipping unfinished work after a mid-round crash. A `claude-merged` label is set after §6 succeeds.
 
 ---
 
@@ -427,7 +454,7 @@ The orchestrator writes the `claude-review-cycle: round-N` label via `mcp__githu
 | `jules_quota()` reports `remaining_today == 0` or `active_today >= 60` | Hit the daily or concurrency ceiling. (`jules_status_all` has no `quota_exceeded` field — it returns `{by_state, sessions, pages_scanned, truncated}` — so quota pressure must be queried via `jules_quota` per §7.) | Pause fanout; wait for completions; resume |
 | `tools/jules-patch-extract.py` returns 0-file patch | Genuine empty session (Jules did nothing) | Mark spec for re-dispatch with revised prompt; log to `_lessons-learned/` |
 
-All escalations are `@human:` PR comments — never DMs, never external channels. The PR thread is the canon.
+**Escalation channel depends on session state — see §3 for the contract.** Post-COMPLETED escalations (PR-stage problems) go to `@human:` PR comments; pre-PR escalations (sessions still in `AWAITING_PLAN_APPROVAL` where no PR has been opened yet) go through `jules_message(sid, "@human: …")` plus the durable file at `~/.agency-system/cache/orchestrator-escalations/{phase}-{sid}.md`. Either way the PR thread is the canon once a PR exists; never DMs, never external channels.
 
 ---
 

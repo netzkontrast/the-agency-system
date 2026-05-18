@@ -149,7 +149,7 @@ Eight phases. Each phase is one PR-set (1-N PRs depending on independence). Each
 | **1** | Anchor triad + envelope (cold-start) | 104, 107, 130, 131 | tools/list 38k → <4k tokens | Phase 0 |
 | **2** | Hook chain | 121, 115, 114, 116, 117 | 20-30% of session input | Phase 1 (envelope) |
 | **3** | GitHub sink wrapper | 106 | 40-80k → <2.5k per PR/issue read | Phase 1 (envelope), Phase 2 (archive) |
-| **4** | Context Mode (Path B) | 111, 112, 113 + 108-stub | defers ≥200k of inline docs | Phase 1 (anchors), Phase 2 (cache+watcher idioms) |
+| **4** | Context Mode (Path B) | 111, 113 + 108-stub (Spec 112 already merged — PR #104) | defers ≥200k of inline docs | Phase 1 (anchors), Phase 2 (cache+watcher idioms) |
 | **5** | Ontology + Graph (Wave D) | 122, 123, 124, 135 | cross-domain queryability | Phase 4 (manifest schema sharing) |
 | **6** | Quality / loop / compaction | 118, 119, 120, 100 | self-healing context, ~47k saved per loop | Phase 2 (session-log canon) |
 | **7** | Domain handler completion | 014, 015, 016, 018, 021 | feature completeness | Phase 1 (envelope), Phase 5 (ontology) |
