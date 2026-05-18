@@ -1,4 +1,6 @@
 from typing import Any
+from agency_mcp.lib.codemode.projection import apply_view
+from agency_mcp.lib.codemode.views import View
 import importlib.util
 import os
 import sys
@@ -208,6 +210,7 @@ def _activity_kind(a: dict) -> str:
             return k
     return "unknown"
 
+@apply_view
 
 def jules_activities(session_id: str, page_size: int = 10, only_kinds: str = "", page_token: str = "", summary_only: bool = True) -> dict:
     """List activities for a session. Aggressively filtered.
@@ -379,6 +382,7 @@ def _count_patch_lines(activities: list[dict]) -> int:
             removed += 1
     return added + removed
 
+@apply_view
 
 def jules_session_summary(session_id: str) -> dict:
     """One-call supervisory summary of a Jules session — Spec 101.

@@ -85,7 +85,13 @@ Cross-refs in frontmatter only; `:embed` suffix = composition vs bare slug = inv
 
 Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 
-## 3. Spec list (46 specs as of 2026-05-18 — 15 done / 31 ready)
+## 3. Spec list (57 specs as of 2026-05-18 — 20 done / 1 partial / 29 ready / 7 draft)
+
+> **Audit note (2026-05-18 evening):** Five Explore-subagent audits against actual disk state corrected the table below. Two specs the prior version marked `ready` are in fact **done** (098, 101 — Codex P1 cleanup + Jules-MCP additions, both merged via PRs #85 and #89-91). Four specs are **partial** with significant scaffolding landed but Done-When items still open (011a, 014, 022, 103). All other "ready" specs verified to have zero on-disk implementation.
+>
+> **Wave D promotion (this PR, 2026-05-18):** Specs 122 / 123 / 124 flipped from `draft` to `ready` (three rows in the Wave D section below). Counts shifted accordingly: draft 10 → 7, ready 26 → 29. Total 57 unchanged.
+>
+> **Wave A/B post-merge update (2026-05-18 evening):** Specs **011a, 017, 103** flipped from `partial`/`ready` to `done` after PRs **#98, #97, #100** merged on Master. Counts: done 17 → 20, partial 4 → 1 (only 022 + 014 remain partial — 014 still in flight). Critical-path 011a + 103 (Wave-A hardening surface) and 017 (hooks foundation for chapter validation) all landed. **014 still in flight** on the dispatched Jules session.
 
 ### Wave A — Scaffold + Music + Jules + Code Mode (DONE)
 
@@ -107,19 +113,24 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 | 012 | dramatica-and-ncp-libs | novel | 010 | ✅ done | 2 |
 | 013 | novel-handlers-structural | novel | 011, 012 | ✅ done | 2 |
 | 019 | state-migration-from-bitwize | migration | 003 | ✅ done | 1 |
+| 098 | wave-a-hardening (Codex P1 cleanup) | cross | 002, 003, 004a, 019 | ✅ done | 1 |
+| 101 | jules-mcp-tool-additions (session_summary, pr_url, quota re-export) | jules | 006 | ✅ done | 1 |
+| **011a** | **novel-handlers-core hardening** (dry_run uniform + atomic indexer + singleton) | novel | 011 | ✅ done — PR #98 | 1 |
+| **017** | **hooks-port-and-extend** (validate_track/chapter + version-sync) | cross | 004, 012, 013 | ✅ done — PR #97 | 1 |
+| **103** | **view-fields-projection** (View enum + projection + handler decorators) | cross | 008 | ✅ done — PR #100 | 2 |
 
 ### Wave A completion — enabler
 
 | ID | Slug | Domain | Deps | Status | Sessions |
 |---|---|---|---|---|---|
-| **022** | **dev-mode-install** ⭐ first | cross | 002, 005, 007, 008 | ready | 1 |
+| **022** | **dev-mode-install** ⭐ first | cross | 002, 005, 007, 008 | 🟡 partial — run.py + bootstrap shipped; docs + smoke test missing | 1 |
+| 023 | harness-in-harness (research epic) | agentic | 008, 022 | ready | 3 |
 
 ### Wave B remaining — novel completion
 
 | ID | Slug | Domain | Deps | Status | Sessions |
 |---|---|---|---|---|---|
-| 011a | novel-handlers-core hardening | novel | 011 | ready | 1 |
-| 014 | novel-gates-and-revision | novel | 011, 012, 013 | ready | 1 |
+| 014 | novel-gates-and-revision | novel | 011, 012, 013 | 🟡 partial — gates.py + revision.py + promo.py landed (PR #88); test coverage skeleton-only; Jules session in flight | 1 |
 | 015 | novel-skills-catalogue | novel | 005, 011, 014 | ready | 2 |
 | 021 | novel-prompt-builder-family | novel | 011, 012, 013, 015 | ready | 2 |
 
@@ -128,15 +139,8 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 | ID | Slug | Domain | Deps | Status | Sessions |
 |---|---|---|---|---|---|
 | 016 | agentic-handlers-and-skills | agentic | 002, 003, 008, 009 | ready | 2 |
-| 017 | hooks-port-and-extend | cross | 004, 012, 013 | ready | 1 |
 | 018 | overrides-and-config-migration | migration | 009, 015 | ready | 1 |
-| 020 | bitwize-deprecation-and-docs | cross | 005, 007, 015, 016, 017, 018, 019 | ready | 1 |
-
-### Wave A hardening
-
-| ID | Slug | Domain | Deps | Status | Sessions |
-|---|---|---|---|---|---|
-| 098 | wave-a-hardening (Codex P1 cleanup) | cross | 002, 003, 004a, 019 | ready | 1 |
+| 020 | bitwize-deprecation-and-docs | cross | 005, 007, 015, 016, 018, 019 | ready | 1 |
 
 ### Operational specs (from lessons + research)
 
@@ -144,14 +148,12 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 |---|---|---|---|---|---|
 | 099 | jules-orchestration-improvements (meta) | agentic | — | ready | 1 |
 | 100 | session-log-mcp (sidequest) | agentic | — | ready | 2 |
-| 101 | jules-mcp-tool-additions | agentic | 006 | ready | 1 |
 | 102 | pr-rebase-policy | cross | — | ready | 1 |
 
 ### Token-efficiency
 
 | ID | Slug | Domain | Deps | Status | Sessions |
 |---|---|---|---|---|---|
-| 103 | view-fields-projection | cross | 008 | ready | 2 |
 | 104 | tool-search-anchor-triad | cross | 008 | ready | 2 |
 | 105 | toon-serializer | cross | 008 | ready | 1 |
 | 106 | github-mcp-summary-wrappers | cross | 008 | ready | 2 |
@@ -166,6 +168,16 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 | 112 | context-anchor-triad (build alt) | cross | 008, 104, 111 | ready | 2 |
 | 113 | context-cache-and-subscriptions (build alt) | cross | 008, 104, 111, 112 | ready | 2 |
 
+### Wave D — Path B content layer (extends 111-113)
+
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 122 | centralized-ontology | cross | 111, 112, 113 | ready | 1 |
+| 123 | agency-tooling-codemode | cross | 008, 111, 122 | ready | 2 |
+| 124 | graphqlite-codemode | cross | 008, 100, 111, 112, 113, 122 | ready | 3 |
+
+See `Plan/_research/_synthesis-122-123-124.md` for the interlocking design (data shape → machinery → graph layer). Three Jules research outputs landed on Master via PRs #82 / #84 / #86 with full findings docs under `Plan/_research/<slug>/`.
+
 ### Token-optimizer hook layer (orthogonal)
 
 | ID | Slug | Domain | Deps | Status | Sessions |
@@ -179,28 +191,47 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
 | 120 | smart-compaction-checkpoints | cross | 100 | ready | 2 |
 | 121 | contextignore-hardblock | cross | — | ready | 1 |
 
-**Wave A — DONE** (16 specs incl. 006a): unified plugin boots, 113+ tools registered, music side 100% bitwize parity, jules side 100% jules-plugin parity, Code Mode registry in place (boot context 210 tokens), novel foundation + structural layer in. **Bitwize-music plugin can be uninstalled once Spec 020 cuts over.**
+### Discipline + lint cluster (drafts — added since 2026-05-18)
 
-**Wave A completion**: Spec 022 dev-mode-install (next-session enabler).
+Operational specs from the latest research/lessons batch. All draft — needs review + promotion to `ready` before dispatch. Most chain off 099 (`jules-orchestration-improvements`), so 099 lands before this cluster fans out.
 
-**Wave B remaining** (4 specs): novel domain shipping. User can run `/agency-system:novel-work-conceptualizer`, write chapters, validate against NCP, pass the 6-gate.
+| ID | Slug | Domain | Deps | Status | Sessions |
+|---|---|---|---|---|---|
+| 130 | shared-toolresult-envelope + conformance gate | cross | 008, 009 | draft | 1 |
+| 131 | manifest-coverage-lint (drift detector) | cross | 008 | draft | 1 |
+| 132 | skill-tool-hooks (Pre/PostToolUse on `Skill\|Agent`) | cross | 017 | draft | 1 |
+| 133 | skill-subagent-pressure-tests | cross | 015, 016, 132 | draft | 2 |
+| 134 | plan-adr-convention (MADR records) | process | 099 | draft | 1 |
+| 135 | spec ↔ test anchor traceability lint | process | 099 | draft | 1 |
+| 136 | agents.yaml role manifest + hand-off registry | process | 099 | draft | 1 |
+| 137 | watcher SDK + composable polling | jules | 007, 100 | draft | 2 |
+| 138 | mandatory per-PR frustration-log protocol | process | 099 | draft | 1 |
+| 139 | clean-install evidence-snapshot helper (Gate 3) | process | 099 | draft | 1 |
 
-**Wave C** (4 specs): agentic surface live (32 tools per Spec 016), overrides merged, hooks ported, `jules-plugin/` removed, bitwize marked deprecated.
+**Wave A — DONE** (21 specs incl. 006a + 098 + 101 + 011a + 017 + 103): unified plugin boots, 113+ tools registered, music side 100% bitwize parity, jules side 100% jules-plugin parity (incl. session_summary / pr_url / quota re-export from 101), Code Mode registry in place (boot context 210 tokens), novel foundation + structural + hardening layer in (011a), hooks foundation in (017), View projection wired across handlers (103), Codex P1 hardening sweep complete (098). **Bitwize-music plugin can be uninstalled once Spec 020 cuts over.**
 
-**Cross-cutting backlog** (24 specs): hardening + operational + token-efficiency + Context Mode + token-optimizer. Most depend only on 008 (✅ done) so they ship in parallel waves.
+**Wave A completion** (2 specs): Spec 022 dev-mode-install (🟡 partial — bootstrap + run.py shipped, docs/smoke-test open) + Spec 023 harness-in-harness research epic (depends on 022 — opens the plugin to bash-only agents).
 
-**Critical path to v1.0 cutover**: 022 → 014 → 015 → 020 ≈ **5 sessions** (down from original 11 because most of the chain is already on Master). Everything else compresses into parallel fan-out.
+**Wave B remaining** (3 specs): novel domain shipping. 014 (🟡) has gates/revision/promo scaffolding; 015 + 021 unstarted. End-state: user can run `/agency-system:novel-work-conceptualizer`, write chapters, validate against NCP, pass the 6-gate.
+
+**Wave C** (3 specs): agentic surface live (32 tools per Spec 016), overrides merged, `jules-plugin/` removed, bitwize marked deprecated. 016, 018, 020 verified NOT_STARTED. (Spec 017 hooks landed early via PR #97.)
+
+**Cross-cutting backlog** (22 ready specs): operational + token-efficiency + Context Mode + token-optimizer. All verified NOT_STARTED. Most depend only on 008 (✅ done) so they ship in parallel waves.
+
+**Discipline + lint drafts** (10 specs, 130-139): operational hardening cluster from the most recent research/lessons sweep. Needs spec-review pass before promotion to `ready`; mostly chains off 099.
+
+**Critical path to v1.0 cutover**: 022 → 014 → 015 → 020 ≈ **4 sessions** (down from 5 with 011a + 017 + 103 now landed). Everything else compresses into parallel fan-out.
 
 ## 4. Dependency DAG (updated 2026-05-18)
 
 ✅ = merged on Master · ⭐ = next-session priority · ⏳ = ready, awaiting dispatch
 
-### Critical path to v1.0 cutover (5 sessions)
+### Critical path to v1.0 cutover (4 sessions)
 
 ```
         ┌── 022 ⭐ (enabler)
         │
-✅ Wave A
+✅ Wave A (incl. 011a, 017, 103)
         │
         ├── 014 ⏳ ── 015 ⏳ ── 020 ⏳ (v1.0)
         │              │
@@ -208,26 +239,23 @@ Read `Plan/JULES_PROTOCOL.md` §7 for the full plugin convention block.
         │
         ├── 016 ⏳ ──────────────┘
         │
-        ├── 017 ⏳ ──────────────┘
-        │
-        ├── 018 ⏳ ──────────────┘
-        │
-        └── 011a ⏳ (parallel hardening, no downstream blocker)
+        └── 018 ⏳ ──────────────┘
 ```
 
 ### Cross-cutting (parallelizable from session start)
 
 ```
-Wave A hardening   098 ⏳ (Codex P1 cleanup — orthogonal)
+Wave A hardening   098 ✅ (Codex P1 cleanup — merged f4519a1)
 
-Token-efficiency   103 ⏳ ─┐
-                   104 ⏳ ─┤
+Token-efficiency   103 ✅ (merged via PR #100)
+                   104 ⏳ ─┐
                    105 ⏳ ─┤  all depend only on 008 ✅
                    106 ⏳ ─┤
                    107 ⏳ ─┘
 
 Operational        099 ⏳ (meta) · 100 ⏳ (session-log-mcp) ·
-                   101 ⏳ (jules-mcp additions) · 102 ⏳ (rebase policy)
+                   101 ✅ (jules-mcp additions — merged PRs #89-91) ·
+                   102 ⏳ (rebase policy)
 
 Context Mode       108 ⏳ (adopt mksglu plugin)        ← PICK
                           OR                             ONE
@@ -241,25 +269,32 @@ hook layer         118 ⏳ · 119 ⏳ · 120 ⏳ · 121 ⏳
 
 ### Recommended dispatch order
 
-**Session 1 (next session):**
-1. Dispatch **022** alone (enabler — gates everything; 1 Jules session)
-2. While waiting, invoke `sc-spec-panel` against the 31 ready specs
-3. Once 022 lands, parallel-dispatch: **011a + 014 + 098 + 103** (4 sessions)
+**Session 1 (in flight — 6 Jules sessions dispatched 2026-05-18):**
+- **011a** (🟡 PARTIAL — finish indexer atomicity + full dry_run)
+- **014** (🟡 PARTIAL — fill gate test coverage)
+- **017** (NOT_STARTED — new hooks port)
+- **022** (🟡 PARTIAL — add docs + smoke test)
+- **100** (NOT_STARTED — new session-log-mcp server)
+- **103** (🟡 PARTIAL — wire projection into remaining handlers + token-budget test)
 
-**Session 2 (post-merge of 011a/014/098/103):**
-- Dispatch **015 + 016 + 017 + 018 + 106** (5 sessions parallel)
+Two of these (011a, 103) need a clarifying `jules_message` at plan-approval time — both have substantial scaffolding that prior PRs (#83, #87, #88) already landed, and Jules should *extend* rather than recreate.
+
+**Session 2 (post-merge of Session 1):**
+- Parallel-dispatch: **015 + 016 + 018 + 023 + 106** (5 sessions)
 - Pick Context Mode path (108 vs 111-chain); dispatch first step
 - Decide on token-optimizer first 1-2 picks (e.g. 117 archive guardrail first)
+- Dispatch **099** to unblock the discipline+lint drafts (130-139)
 
 **Session 3 (cutover):**
 - Dispatch **020 + 021** (final Wave-B + cutover)
-- Continue token-eff backlog
+- Continue token-eff backlog (104, 105, 107)
+- Begin promotion of drafts 130-139 to `ready`, dispatch the ones whose deps are merged
 
 After Session 3: v1.0 plugin shipped; remaining specs are continuous-improvement.
 
 ## 5. Workflow trace (end-to-end coherence proof)
 
-See `Plan/000-overview.md` is the place; full traces live in the plan file under `Coherence reflection`. Three workflows are proven coherent:
+Full traces live below under `Coherence reflection`. Three workflows are proven coherent:
 
 - **Music**: `/agency-system:music-lyric-writer` → music tools → hooks/validate_track.py → StateCache refresh.
 - **Novel**: `/agency-system:novel-work-conceptualizer` → novel_create_work → novel_ncp_compile → novel_run_pre_drafting_gates (6 BLOCKING) → `novel-scene-prompt-builder` composes character + world + throughline + bridge prompt-builders → chapter-writer drafts → validate_chapter.py fires.
