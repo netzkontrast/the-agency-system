@@ -11,24 +11,25 @@ Feature: Phase 8 — Operational hardening
   # anchor: phase-8.pr-rebase-policy
   Scenario: PR-rebase policy is enforced via a CI gate
     Given a PR branch "feature/test-branch" is created
-    And the base commit of "feature/test-branch" is 15 days older than the "Master" branch HEAD
+    And the CI gate reads N days from ".github/workflows/rebase-policy.yml"
+    And the base commit of "feature/test-branch" is older than N days compared to the "Master" branch HEAD
     When the CI pipeline executes the PR validation checks
-    Then the CI pipeline fails with a message indicating the base commit is more than 14 days stale
+    Then the CI pipeline fails with a message indicating the base commit is more than N days stale
     And the pipeline prompts the author to rebase against "Master"
 
   # anchor: phase-8.pressure-tests
   Scenario Outline: Skill-subagent pressure tests pass for all skills
     Given the agency toolkit has ~140 registered skills
-    When the pressure test suite runs against the "<skill_kind>" skill cluster
+    When the pressure test suite runs against the "<skill_kind>" skill cluster using fixture "<fixture_path>"
     Then the test suite executes without unhandled exceptions
     And all skills in the cluster gracefully recover from invalid inputs
 
     Examples:
-      | skill_kind     |
-      | discipline     |
-      | orchestrator   |
-      | domain         |
-      | workflow       |
+      | skill_kind     | fixture_path                                 |
+      | discipline     | tests/fixtures/pressure_discipline.json      |
+      | orchestrator   | tests/fixtures/pressure_orchestrator.json    |
+      | domain         | tests/fixtures/pressure_domain.json          |
+      | workflow       | tests/fixtures/pressure_workflow.json        |
 
   # anchor: phase-8.agents-manifest
   Scenario: agents.yaml at repo root manifests every role with handoff registry
@@ -37,7 +38,7 @@ Feature: Phase 8 — Operational hardening
     Then every active role is manifested in the handoff registry
     And the "lint_agents_schema.py" script passes without errors
     And the "lint_agents_orphans.py" script passes without errors
-    And the 3 discovery MCP tools return the exact agent graph specified in the manifest
+    And the tools "agents_list", "agents_describe", and "agents_handoff_graph" return the exact agent graph specified in the manifest
 
   # anchor: phase-8.frustration-log-protocol
   Scenario: Frustration-log protocol mandates entries per PR
@@ -50,22 +51,31 @@ Feature: Phase 8 — Operational hardening
   Scenario: Evidence-snapshot helper auto-captures artefacts into Gate 3 blocks
     Given a clean install environment test run has completed
     When the "evidence-snapshot" helper is invoked
-    Then it captures pytest execution output into a structured text file
-    And it captures linting artefact paths
+    Then it captures the pytest JUnit XML report
+    And it captures the ruff/pyflakes log
+    And it captures the clean-install transcript
     And it formats the combined artefacts into a valid Markdown Gate 3 Evidence block suitable for the PR body
 
   # anchor: phase-8.harness-research-doc
   Scenario: Harness-in-harness research epic produces the compatibility enumeration doc
     Given the harness-in-harness research epic script is executed
     When the findings are aggregated
-    Then a document is produced at "Plan/_session-state/YYYY-MM-DD-jules-research-N-harness.md"
+    Then the document path matches "Plan/_session-state/\d{4}-\d{2}-\d{2}-jules-research-\d+-harness\.md"
     And the document enumerates which plugin surfaces function correctly in bash-only and non-MCP harnesses
     And the document enumerates any MCP-exclusive surfaces
 
-  # anchor: phase-8.watcher-composability
-  Scenario: Watcher SDK composability multiplexes Jules and GitHub PR sources
+  # anchor: phase-8.watcher-composability-webhook
+  Scenario: Watcher SDK composability multiplexes Jules and GitHub PR sources via webhooks
     Given the "CompositeWatcher" driver is initialized
     When it polls for events
     Then it successfully receives events from the Jules REST API
-    And it successfully receives events from GitHub PR webhooks or polling endpoints
+    And it successfully receives events from GitHub PR webhooks
+    And it normalizes all received events behind a single "Protocol" interface
+
+  # anchor: phase-8.watcher-composability-polling
+  Scenario: Watcher SDK composability multiplexes Jules and GitHub PR sources via polling
+    Given the "CompositeWatcher" driver is initialized
+    When it polls for events
+    Then it successfully receives events from the Jules REST API
+    And it successfully receives events from GitHub PR polling endpoints
     And it normalizes all received events behind a single "Protocol" interface
