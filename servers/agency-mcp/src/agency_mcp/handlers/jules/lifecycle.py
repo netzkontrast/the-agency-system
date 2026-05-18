@@ -407,15 +407,34 @@ def jules_session_summary(session_id: str) -> dict:
     title = raw_session.get("title", "")
     pr_url = _extract_pr_url(raw_session)
 
-    # Fetch summary-trimmed activities (page_size=5 — we only keep five).
-    q = urllib.parse.urlencode({"pageSize": 5})
-    raw_acts = _request("GET", f"/v1alpha/sessions/{sid}/activities?{q}")
-    raw_activity_list = raw_acts.get("activities", []) or []
+    # The activities endpoint does not document a sort order (see
+    # jules_plan above for the same caveat). Walk a bounded window and
+    # sort by createTime DESC so newest events surface even when the
+    # backend returns them late in the page. pageSize=50 × max_pages=2
+    # = 100-activity ceiling, which covers observed sessions while
+    # keeping the supervisory poll cheap. Inlined (not _paginate) so the
+    # local _request reference is the one tests patch.
+    activities: list[dict] = []
+    page_token = ""
+    for _ in range(2):
+        q: dict[str, Any] = {"pageSize": 50}
+        if page_token:
+            q["pageToken"] = page_token
+        raw_acts = _request(
+            "GET",
+            f"/v1alpha/sessions/{sid}/activities?{urllib.parse.urlencode(q)}",
+        )
+        activities.extend(raw_acts.get("activities", []) or [])
+        page_token = raw_acts.get("nextPageToken", "")
+        if not page_token:
+            break
+    activities.sort(key=lambda a: a.get("createTime", ""), reverse=True)
+
     trimmed: list[dict] = []
-    for a in raw_activity_list[:5]:
+    for a in activities[:5]:
         trimmed.append(apply_summary(a))
 
-    patch_size_lines = _count_patch_lines(raw_activity_list)
+    patch_size_lines = _count_patch_lines(activities)
 
     return {
         "state": state,

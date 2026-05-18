@@ -58,8 +58,10 @@ def test_session_summary_slices_last_5_activities():
         "title": "Spec 101",
         "outputs": [],
     }
-    # Six activities — slice should yield the most recent five (the API
-    # returns newest-first per Jules v1alpha convention).
+    # Six activities — slice should yield five. Activities order is NOT
+    # documented (jules_plan caveat) so the implementation sorts by
+    # createTime DESC; ties (no createTime field) preserve input order
+    # under Python's stable sort.
     fake_activities = {
         "activities": [_fake_activity("agentMessaged", f"msg{i}") for i in range(6)],
         "nextPageToken": "",
@@ -155,6 +157,73 @@ def test_session_summary_patch_size_lines_zero_when_no_patch():
         result = lifecycle.jules_session_summary("sid-abc")
 
     assert result["patch_size_lines"] == 0
+
+
+def test_session_summary_sorts_activities_by_createtime_desc():
+    """Activities endpoint sort order is undocumented (see jules_plan).
+    last_5_activities must hold the five newest by createTime even when
+    the backend returns them in non-decreasing or shuffled order."""
+    fake_session = {
+        "id": "sid-abc",
+        "state": "IN_PROGRESS",
+        "title": "ordering check",
+        "outputs": [],
+    }
+    # Seven activities in oldest-first order so [:5] without sorting
+    # would return the five OLDEST instead of the five newest.
+    fake_activities = {
+        "activities": [
+            {"id": f"act-{i}", "originator": "agent",
+             "createTime": f"2026-05-18T0{i}:00:00Z",
+             "agentMessaged": {"summary": f"msg{i}"}}
+            for i in range(7)
+        ],
+        "nextPageToken": "",
+    }
+    with patch.object(lifecycle, "_request") as mock_request:
+        mock_request.side_effect = [fake_session, fake_activities]
+        result = lifecycle.jules_session_summary("sid-abc")
+
+    returned_ids = [a.get("id") for a in result["last_5_activities"]]
+    assert returned_ids == ["act-6", "act-5", "act-4", "act-3", "act-2"], (
+        f"expected newest-five DESC, got {returned_ids}"
+    )
+
+
+def test_session_summary_picks_newest_patch_across_pages():
+    """_count_patch_lines picks the artifact with the largest createTime.
+    Regression for the order-dependence bug: a newer patch must not be
+    masked by an older one returned earlier in the response."""
+    fake_session = {
+        "id": "sid-abc",
+        "state": "COMPLETED",
+        "title": "patch ordering",
+        "outputs": [],
+    }
+    old_patch = "diff --git a/old.py b/old.py\n--- a/old.py\n+++ b/old.py\n@@\n+a\n"
+    new_patch = (
+        "diff --git a/new.py b/new.py\n--- a/new.py\n+++ b/new.py\n@@\n"
+        "+a\n+b\n+c\n-x\n"
+    )
+    fake_activities = {
+        "activities": [
+            {"id": "act-old", "createTime": "2026-05-18T01:00:00Z",
+             "artifacts": [{"changeSet": {"gitPatch": {"unidiffPatch": old_patch}}}],
+             "agentMessaged": {}},
+            {"id": "act-new", "createTime": "2026-05-18T05:00:00Z",
+             "artifacts": [{"changeSet": {"gitPatch": {"unidiffPatch": new_patch}}}],
+             "agentMessaged": {}},
+        ],
+        "nextPageToken": "",
+    }
+    with patch.object(lifecycle, "_request") as mock_request:
+        mock_request.side_effect = [fake_session, fake_activities]
+        result = lifecycle.jules_session_summary("sid-abc")
+
+    # new_patch has 3 added + 1 removed = 4 lines; old_patch has 1 added = 1
+    assert result["patch_size_lines"] == 4, (
+        f"expected newest patch (4), got {result['patch_size_lines']}"
+    )
 
 
 def test_session_summary_patch_size_lines_counts_added_and_removed():
