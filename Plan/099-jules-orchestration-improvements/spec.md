@@ -14,9 +14,17 @@ affects:
   - Plan/_templates/spec-template.md
   - Plan/_templates/skill-template.md
   - skills/agentic/orchestrator-discipline/SKILL.md
-  # plus: migration sweep across every existing SKILL.md under
-  # skills/** and jules-plugin/skills/** (see Approach §13 + Done-When
-  # item "§2.2 skill-frontmatter migration").
+  - skills/jules/SKILL.md
+  - jules-plugin/skills/jules/SKILL.md
+# Skill-frontmatter migration sweep (Approach §13 + Done-When item
+# "§2.2 skill-frontmatter migration") covers every SKILL.md discovered
+# under skill_migration_roots at session start. The currently-known
+# files are listed above in `affects:`; any additional SKILL.md found
+# at session start under skill_migration_roots is added to `affects:`
+# by the executing session as its first edit.
+skill_migration_roots:
+  - skills/
+  - jules-plugin/skills/
 source-repos: []
 estimated_jules_sessions: 2
 domain: cross
@@ -56,8 +64,8 @@ A late addition (2026-05-18): the 32-spec hygiene pass and the first batch of `s
 - [ ] `skills/agentic/orchestrator-discipline/SKILL.md` exists and captures the L14 token-discipline rules (summary_only flags, no full activity dumps in the loop).
 - [ ] `python Plan/_lint/check_affects.py Plan/099-jules-orchestration-improvements/spec.md` exits 0 for this spec.
 - [ ] `Plan/_templates/skill-template.md` exists and is the canonical empty-skill scaffold matching `Plan/000-overview.md` §2.2 — L1 `type/status/slug/summary/created/updated`, L2 `skill_kind/skill_target_agents/skill_references_skills/skill_references_research/skill_references_prompts/skill_bootstrap_required`, and the five mandatory body sections (`## What`, `## When to use`, `## How to use`, `## References`, `## Compatibility`).
-- [ ] `Plan/_lint/check_skill_frontmatter.py` exists and exits non-zero on any `SKILL.md` under `skills/**` or `jules-plugin/skills/**` whose frontmatter or body sections do not conform to §2.2.
-- [ ] §2.2 skill-frontmatter migration: every existing `SKILL.md` under `skills/**` and `jules-plugin/skills/**` (as of merge time) is rewritten to the §2.2 schema — L1 keys complete, L2 `skill_*` namespace complete, the five mandatory body sections present and ordered. Content semantics are preserved; only frontmatter shape and body-section headings move. `python Plan/_lint/check_skill_frontmatter.py` exits 0 on Master after the migration.
+- [ ] `Plan/_lint/check_skill_frontmatter.py` exists and exits non-zero on any SKILL.md found under any path listed in `skill_migration_roots:` whose frontmatter or body sections do not conform to §2.2.
+- [ ] §2.2 skill-frontmatter migration: every existing SKILL.md discovered under `skill_migration_roots:` (as of merge time) is rewritten to the §2.2 schema — L1 keys complete (per §2.2 the L1 `type:` value for a skill file is `spec`, matching the canonical L1 schema), L2 `skill_*` namespace complete, the five mandatory body sections present and ordered. Content semantics are preserved; only frontmatter shape and body-section headings move. `python Plan/_lint/check_skill_frontmatter.py` exits 0 on Master after the migration. Before the sweep begins, the executing session expands `affects:` to enumerate every SKILL.md it will rewrite (one path per line) so `check_affects.py` continues to pass.
 
 ## Source clones (run first)
 
@@ -68,7 +76,7 @@ None — this spec is meta-work on `the-agency-system` itself. `source-repos:` i
 - **Create**:
   - `Plan/_lint/check_affects.py` — walks each spec, parses `affects:`, grep-checks the Approach section for filenames not listed.
   - `Plan/_lint/check_install_consistency.py` — diff plugin-name strings between `README.md` and `.claude-plugin/marketplace.json`.
-  - `Plan/_lint/check_skill_frontmatter.py` — walks every `SKILL.md` under `skills/**` and `jules-plugin/skills/**`, parses frontmatter, asserts L1 + L2 `skill_*` keys present, asserts the five §2.2 body sections present and ordered. Exits 1 on any defect with a per-file report.
+  - `Plan/_lint/check_skill_frontmatter.py` — walks every SKILL.md found beneath any root listed in this spec's `skill_migration_roots:` frontmatter key, parses frontmatter, asserts L1 + L2 `skill_*` keys present, asserts the five §2.2 body sections present and ordered. Exits 1 on any defect with a per-file report.
   - `Plan/_templates/review-subagent-prompt.md` — canonical Gate-4 review subagent prompt (no template-string leaks per L05).
   - `Plan/_templates/spec-template.md` — empty-spec scaffold with all required sections + L04/L06/L07 stickers.
   - `Plan/_templates/skill-template.md` — empty-skill scaffold matching §2.2: L1 + L2 frontmatter, the five mandatory body sections, and a short authoring checklist embedded as HTML comments.
@@ -76,7 +84,7 @@ None — this spec is meta-work on `the-agency-system` itself. `source-repos:` i
 - **Modify**:
   - `Plan/JULES_PROTOCOL.md` — §3 scratch-file expansion, §3 rebase policy, §5 watcher anti-pattern, §6 escalation, Gate 3 clean-install, Gate 4 review-subagent sub-step, §8 automated review backstop, Appendix tool-gaps.
   - `Plan/000-overview.md` — harden the dispatch-prompt template inline.
-  - Every existing `SKILL.md` under `skills/**` and `jules-plugin/skills/**` — frontmatter + body-section migration to §2.2. Content prose is preserved; only frontmatter shape and `##` headings move. Enumerated by `find skills jules-plugin/skills -name SKILL.md` at the start of the session.
+  - Every SKILL.md discovered beneath any root listed in `skill_migration_roots:` (frontmatter key above) — frontmatter + body-section migration to §2.2. Content prose is preserved; only frontmatter shape and section headings move. Enumeration step at the start of the migration sweep (Approach §13) discovers the current set via `find` and appends each discovered path to `affects:` in a preparatory commit before any SKILL rewrite lands.
 - **Move / Delete**: none.
 
 ## Approach
@@ -93,7 +101,7 @@ None — this spec is meta-work on `the-agency-system` itself. `source-repos:` i
 10. **Gate 2 — TDD.** RED: write a tiny pytest that runs `check_affects.py` against this spec and a hand-crafted broken fixture; assert the broken fixture exits 1 and this spec exits 0. GREEN: implement the script. REFACTOR: pull common YAML-frontmatter parsing into a small helper if both lint scripts share it. **Extended:** a second TDD pair covers `check_skill_frontmatter.py` against a broken-skill fixture and a §2.2-conformant fixture.
 11. **Gate 3 — Evidence.** Paste outputs of `python Plan/_lint/check_affects.py Plan/099-jules-orchestration-improvements/spec.md`, `python Plan/_lint/check_install_consistency.py`, `python Plan/_lint/check_skill_frontmatter.py`, `rg '^## ' Plan/JULES_PROTOCOL.md`, and `ls Plan/_templates/ Plan/_lint/ skills/agentic/orchestrator-discipline/` into the PR `## Evidence` block.
 12. **Gate 4 — Self-Review + review-subagent dispatch.** Answer the three Self-Review questions. Dispatch the review subagent using the newly-authored prompt template; paste its findings under `## Review`.
-13. **Skill-frontmatter migration (the §2.2 sweep).** After steps 2–4 ship the linter + template, run `find skills jules-plugin/skills -name SKILL.md` to enumerate every existing skill. For each file: read the existing frontmatter, lift the trigger-phrase content into the §2.2 `description:` field, populate L1 (`type: skill`, `status: active`, `slug: <dirname>`, `summary: ≤120 chars`, `created: <git log first commit date>`, `updated: 2026-05-18`), populate L2 (`skill_kind:` selected from the 9-value enum per the skill's content, `skill_target_agents:`, `skill_references_skills:` and the other four `skill_references_*`/`skill_bootstrap_required:` keys with sensible defaults — empty arrays / `false` are valid). Rewrite the body to use the five §2.2 section headings (`## What`, `## When to use`, `## How to use`, `## References`, `## Compatibility`), preserving existing prose under the new headings. Do NOT rewrite content, only structure. Commit one skill per commit so the diff is auditable. Run `python Plan/_lint/check_skill_frontmatter.py` after each commit to confirm green-on-green progress. Stop and ask via the draft PR if any skill's content cannot be mapped cleanly to the five sections.
+13. **Skill-frontmatter migration (the §2.2 sweep).** After steps 2–4 ship the linter + template, enumerate every existing skill file by running `find` against each path listed in this spec's `skill_migration_roots:` frontmatter key (concretely: skills directory and jules-plugin skills directory). The session's first commit in the sweep is a frontmatter-only edit to this spec that appends each discovered SKILL.md path to the `affects:` list (so `check_affects.py` continues to pass before any SKILL is rewritten). Then, for each enumerated file: read the existing frontmatter, lift the trigger-phrase content into the §2.2 `description:` field, populate L1 (`type: spec` per the §2.2 canonical schema, `status: active`, `slug:` set to the containing directory name, `summary:` ≤120 chars, `created:` set to the first-commit date from git log, `updated: 2026-05-18`), populate L2 (`skill_kind:` selected from the 9-value enum per the skill's content, `skill_target_agents:`, `skill_references_skills:` and the other four `skill_references_*`/`skill_bootstrap_required:` keys with sensible defaults — empty arrays / `false` are valid). Rewrite the body to use the five §2.2 section headings (`## What`, `## When to use`, `## How to use`, `## References`, `## Compatibility`), preserving existing prose under the new headings. Do NOT rewrite content, only structure. Commit one skill per commit so the diff is auditable. Run `python Plan/_lint/check_skill_frontmatter.py` after each commit to confirm green-on-green progress. Stop and ask via the draft PR if any skill's content cannot be mapped cleanly to the five sections.
 
 ## Acceptance (Gherkin)
 
@@ -136,7 +144,7 @@ Scenario: Orchestrator-discipline skill exists and declares token-discipline tri
 # anchor: 099.6
 Scenario: Every SKILL.md on Master conforms to the §2.2 schema after migration
   Given the spec template and skill template and check_skill_frontmatter.py linter have shipped
-  And the migration sweep across skills/** and jules-plugin/skills/** has landed
+  And the migration sweep across every root listed in skill_migration_roots has landed
   When the operator runs "python Plan/_lint/check_skill_frontmatter.py"
   Then the process exits with status 0
   And the stdout reports the count of skills checked
@@ -170,5 +178,5 @@ Scenario: Every SKILL.md on Master conforms to the §2.2 schema after migration
 - `Plan/_lessons-learned/14-token-consumption-postmortem.md`
 - Spec dependency: `Plan/020-bitwize-deprecation-and-docs/spec.md`
 - Spec downstream: `Plan/100-session-log-mcp/spec.md`, `Plan/101-jules-mcp-tool-additions/spec.md`, `Plan/102-pr-rebase-policy/spec.md`
-- Spec triggering the §2.2 migration scope addition: `Plan/_session-state/2026-05-18-spec-022-dispatch.md` (signing/setup gap)
+- Session state recording the §2.2 migration scope decision: `Plan/_session-state/2026-05-18-orchestration-handoff.md`
 - Skill PR that motivated the migration: `https://github.com/netzkontrast/the-agency-system/pull/64` (three `skills/agentic/*` SKILL.md files authored against the legacy `name + description` format, not §2.2)
