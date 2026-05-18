@@ -40,8 +40,8 @@ The plugin's unified ontology (Spec 122) structures the relationships across mus
 - `graphqlite` is pinned in `servers/agency-mcp/pyproject.toml` (recommend `graphqlite>=0.4.4,<0.5` while upstream is pre-1.0).
 - A dedicated SQLite graph database is initialised at `~/.agency-system/cache/graph.sqlite` on MCP server boot, in WAL mode.
 - Three eager anchor tools (`graph_cypher`, `graph_describe_node`, `graph_run_algorithm`) are registered and classified in `servers/agency-mcp/src/agency_mcp/codemode/manifest.json`.
-- `graph_cypher` supports `dry_run=True`, which MUST NOT mutate the database; mutating queries return `{would_apply, explain_sql, warnings}`.
-- `hooks/graph_ingest.py` is created and wired as `PostToolUse` on Markdown writes; integrates with Spec 113's watcher events.
+- `graph_cypher` supports `dry_run=True`, which MUST NOT mutate the database; mutating queries return the shared `{would_apply, diff, warnings}` envelope (overview §2.1 rule 7) — `diff` is the EXPLAIN-SQL text plus a Cypher-level description of what would change.
+- `hooks/graph_ingest.py` is created and wired as `PostToolUse` on Markdown writes as the **fast path** for keeping the graph fresh. Because overview §2.1 rule 11 requires correctness-critical state invalidation to be synchronous inside the tool, every graph **read** tool (`graph_cypher`, `graph_describe_node`, `graph_run_algorithm`) MUST also run a lightweight staleness check on entry: if `state/cache/graph_pending_writes.json` is non-empty (populated by the Write/Edit hook layer), the read tool runs an inline `graph_ingest_frontmatter` for each pending path before serving the query. The PostToolUse hook is the happy path; the inline staleness check is the correctness backstop and integrates with Spec 113's watcher events.
 - `graph_describe_node(id, expand=1)` retrieves a node and its immediate inbound/outbound neighbours.
 - `pytest` integration tests verify Cypher read/write operations and graph algorithm accuracy (PageRank sums to ≈1.0, etc.).
 - Boot token budget impact of the graph anchors MUST keep `tools/list` within 1.10× of the pre-graph baseline.
