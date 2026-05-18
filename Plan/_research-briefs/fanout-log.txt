@@ -14,3 +14,16 @@
 {"alias": "research-123-tooling", "session_id": "18243598847213256634", "state": "?", "url": "https://jules.google.com/session/18243598847213256634", "title": "Research: Agency Tooling + MCP Code Mode Integration (Brief 2)"}
 
 Results saved to Plan/_research-briefs/fanout-results.json
+
+=== Dispatching: research-124-graphqlite ===
+    prompt_len=16986 chars  branch=Master (rebase via follow-up message)
+    OK: session_id=10708258290716043154  state=?  url=https://jules.google.com/session/10708258290716043154
+
+=== Messaging rebase to 10708258290716043154 ===
+Traceback (most recent call last):
+  File "<stdin>", line 35, in <module>
+  File "/home/user/the-agency-system/jules-plugin/mcp-server/src/jules_mcp/tools/lifecycle.py", line 303, in jules_message
+    _request("POST", f"/v1alpha/sessions/{sid}:sendMessage", body={"prompt": prompt})
+  File "/home/user/the-agency-system/jules-plugin/mcp-server/src/jules_mcp/api.py", line 53, in _request
+    raise JulesAPIError(e.code, msg, err_body) from None
+jules_mcp.api.JulesAPIError: 404 Not Found — resource does not exist.
