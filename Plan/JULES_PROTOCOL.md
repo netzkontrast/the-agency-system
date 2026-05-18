@@ -65,21 +65,26 @@ Before flipping the PR from draft to ready, Jules answers three questions in a `
 
 ## 3. Working in `the-agency-system` repo
 
-- **Branch:** the spec assigns it. **Default for fresh specs:** target `Master` directly. Your runtime picks the working branch name; never push to `main`, never force-push, never use `--no-verify`.
-  - *Historical note:* spec stickers authored before the Wave-A rollout (PRs #30 and #46 merged) cite `claude/agency-plugin-refactor-PgMQ4` as the working branch. That branch was the staging area for Wave A — it still exists on remote, identical to Master tip, but **new sessions should target Master directly**. When a spec sticker disagrees with this protocol, this protocol wins.
+- **Branch:** the spec assigns it. **Default for fresh specs:** target `Master` directly. Never push to `main`, never force-push, never use `--no-verify`.
+- **Spatial awareness first.** Before any change, call `list_files(<dir>)` and `read_file(<target>)` on every file you intend to touch. Editing a file you have not read is a Gate-1 violation; the model hallucinates surrounding context when it has not seen the current bytes.
+- **Edits:** prefer `replace_with_git_merge_diff` over `write_file` for partial changes — it scopes the diff to the affected lines and avoids whole-file rewrites that bloat the patch and risk silent omissions. Use `write_file` only for new files or genuine full-file rewrites.
+- **Shell work:** `run_in_bash_session` shares a single persistent bash state across calls — exported env vars, activated venvs, and CWD all carry over. Use it for `pytest`, `ruff`, `mypy`, `pip install`, `git status`, and any tooling not exposed as a standard tool. Append `&` and redirect logs (`cmd > log.txt 2>&1 &`) for long-running servers; surface their output with `read_file log.txt`.
+- **`AGENTS.md` is binding.** This protocol lives at `Plan/JULES_PROTOCOL.md`, but any `AGENTS.md` you find while exploring the directory tree of your target paths is a localised system-prompt overlay (nested files override parents). Read and obey them before finalising your plan.
 - **Commits:** present tense, imperative, ≤ 72-char subject. Reference the spec ID in the body: `Spec: Plan/NNN-slug/spec.md`. Prefer many small commits over one large one; do not `--amend` someone else's commit.
-- **Publish:** when the spec's `Done When:` items are all evidence-backed and gates 1–4 are green, invoke your runtime's standard publication flow (the `submit` / auto-PR tool exposed to you). PRs open as **ready** (not draft), targeting the spec-assigned base (usually `Master`). Required PR-body sections: `## Spec`, `## Confidence`, `## Evidence`, `## Self-Review`. Cite the spec path. PRs without all four sections are rejected. Do not shell out to `git push` or `gh pr create` directly — the publication flow owns remote writes, and over-specifying the mechanism wastes turns and frustrates the runtime's invariants.
-- **After publish:** invoking the publication flow is the terminal step. The orchestrator verifies the branch on remote — you do not need to query `github.com` yourself.
-- **Ambiguous spec?** Surface the ambiguity through your runtime's standard "blocked / awaiting clarification" mechanism (typically a draft PR or a message), paste the ambiguity verbatim, propose two interpretations, and stop. Do not interpret silently.
+- **Pre-submit check:** call `pre_commit_instructions()` before `submit()`. It returns the dynamic linting / testing checklist the sandbox expects; satisfy each item in `run_in_bash_session` before submitting.
+- **Critic pass:** after Gate 2 is green, call `request_code_review()` to invoke the Jules Critic. Its findings are a free Gate-4 dry-run — address them before flipping the PR to ready.
+- **UI changes:** call `frontend_verification_instructions()` to get the Playwright boilerplate, run the script in `run_in_bash_session`, then call `frontend_verification_complete(screenshot_path=...)` so the screenshot is attached to the session for human review.
+- **Publish:** invoke `submit(branch_name, commit_message, title, description)` when all gates are green and `pre_commit_instructions()` is satisfied. PRs open as **ready** (not draft), targeting the spec-assigned base (usually `Master`). Required PR-body sections: `## Spec`, `## Confidence`, `## Evidence`, `## Self-Review`. Cite the spec path. Do **not** use `run_in_bash_session` to run `git push` or `gh pr create` — `submit()` owns remote writes; improvised pushes break the session.
+- **After publish:** `submit()` is the terminal call. Stop. Do not poll, do not re-query, do not message the user. The orchestrator owns post-publish verification.
+- **Ambiguous spec?** Call `request_user_input(message)` once with the ambiguity verbatim and two proposed interpretations, then stop. Do not interpret silently.
 
 ## 4. Source-repo conventions
 
 Some specs reference external source repos (libraries, reference implementations) that Jules must read but not modify. See `Plan/SOURCES.md` for the canonical URL + branch table.
 
-- Clone to the sandbox: `~/work/vendor/<repo>/`. Never inside `the-agency-system/`.
-- Clone **read-only**: `git clone --depth=1 --branch=<tag> <url> ~/work/vendor/<repo>` and do not configure a push remote.
+- Clone via `run_in_bash_session`: `git clone --depth=1 --branch=<tag> <url> ~/work/vendor/<repo>`. Never inside `the-agency-system/`. Do not configure a push remote.
 - Do **not** copy vendor source files into `the-agency-system` to "make them easier to find". Cite by URL + commit SHA in the spec or PR instead.
-- Vendor sources are not part of the PR diff. If `git status` ever shows files under `vendor/`, you have made a mistake — back out before committing.
+- Vendor sources are not part of the PR diff. If `git status` shows files under `vendor/`, you have made a mistake — back out before submitting.
 
 ## 5. Anti-patterns (Jules MUST NOT)
 
@@ -89,13 +94,19 @@ Some specs reference external source repos (libraries, reference implementations
 4. Amend or rebase commits authored by another agent or by the human.
 5. Add a runtime or build dependency the spec did not list under `deps:`.
 6. Create, move, or delete files outside the spec's `affects:` allow-list.
-7. Decline to invoke the publication flow because of perceived sandbox limits. Your runtime's `submit` / auto-PR tool IS the publication flow; calling it is your final required action. The orchestrator handles verification on remote — your job ends at the submit call.
+7. Decline to call `submit()` because of perceived sandbox limits. `submit(branch_name, commit_message, title, description)` IS the publication primitive; calling it is your final required action. The orchestrator handles verification on remote — your job ends at the submit call.
+8. Treat `state=COMPLETED` (your own session state, visible to the orchestrator) as a deliverable. It means "idle, awaiting input" — not "done". The deliverable is the `submit()` call plus the PR it produces.
 
 Each of these is a stop-the-line event. If Jules notices it post-hoc, revert the offending commit in a new commit and note it in the friction log.
 
 ## 6. Escalation
 
-Jules has no synchronous user. The escalation primitive is a **comment on the open draft PR**, prefixed `@human:` and labelled `[BLOCKED: <reason>]`. Stop work and wait when any of these occur:
+Jules has no synchronous user. Two escalation primitives, used for different cases:
+
+- **Blocking, pre-PR:** `request_user_input(message)` — pauses the session until the human answers. Use for ambiguity that prevents progress before any PR exists.
+- **Non-blocking / post-PR:** `message_user(message, continue_working=False)` or a comment on the open PR prefixed `@human:` and labelled `[BLOCKED: <reason>]`. Use to surface status the human should see at next check-in.
+
+Stop work and escalate when any of these occur:
 
 - Confidence score below 0.70 after a genuine attempt at Gate 1.
 - The spec's `affects:` list cannot be satisfied without touching paths outside it.
@@ -124,9 +135,15 @@ Key conventions for the unified plugin:
 
 ## 8. Publishing the work
 
-**Jules: this is your terminal step.** When gates 1–4 are green and all `Done When` items are evidence-backed, invoke your runtime's publication flow (the `submit` / auto-PR tool). That call opens the PR. After it returns, you are done — stop. Do not re-verify, do not query GitHub, do not poll. The orchestrator owns verification.
+**Jules: this is your terminal step.** When gates 1–4 are green and all `Done When` items are evidence-backed:
 
-If the publication call returns an error, surface it through the standard "blocked / awaiting clarification" channel and stop. Do not retry with shell-level `git push` or `gh pr create` — the runtime owns that surface and improvised pushes can corrupt the session.
+1. Call `pre_commit_instructions()`. Run every checklist item it returns in `run_in_bash_session` and capture the output for `## Evidence`.
+2. (Optional but recommended) call `request_code_review()` and address Critic findings.
+3. Call `submit(branch_name, commit_message, title, description)`. That call opens the PR.
+
+After `submit()` returns, you are done. Stop. Do not re-verify, do not query GitHub, do not poll.
+
+If `submit()` returns an error, call `request_user_input` with the error verbatim and stop. Do not retry via `run_in_bash_session` `git push` or `gh pr create` — `submit()` owns remote writes and improvised pushes corrupt the session.
 
 ---
 
