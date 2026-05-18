@@ -65,13 +65,12 @@ Before flipping the PR from draft to ready, Jules answers three questions in a `
 
 ## 3. Working in `the-agency-system` repo
 
-- **Branch:** the spec assigns it. **Default for fresh specs:** target `Master` directly via a new `claude/<spec-slug>-<random>` working branch. Never push to `main`, never force-push, never use `--no-verify`.
+- **Branch:** the spec assigns it. **Default for fresh specs:** target `Master` directly. Your runtime picks the working branch name; never push to `main`, never force-push, never use `--no-verify`.
   - *Historical note:* spec stickers authored before the Wave-A rollout (PRs #30 and #46 merged) cite `claude/agency-plugin-refactor-PgMQ4` as the working branch. That branch was the staging area for Wave A — it still exists on remote, identical to Master tip, but **new sessions should target Master directly**. When a spec sticker disagrees with this protocol, this protocol wins.
 - **Commits:** present tense, imperative, ≤ 72-char subject. Reference the spec ID in the body: `Spec: Plan/NNN-slug/spec.md`. Prefer many small commits over one large one; do not `--amend` someone else's commit.
-- **Push:** `git push -u origin <branch>`. On network error retry up to 4× with backoff (2s, 4s, 8s, 16s); on non-network failures, stop.
-- **PRs:** open as **ready** (not draft) via `gh pr create --base <base> --head <branch>` where `<base>` is the spec-assigned base (usually `Master` or the active refactor branch). Required PR-body sections: `## Spec`, `## Confidence`, `## Evidence`, `## Self-Review`. Cite the spec path. PRs without all four sections are rejected.
-- **Verify publication:** after the auto-PR flow runs, **confirm the branch exists at `github.com/netzkontrast/the-agency-system/branches`** before declaring the session COMPLETED. A `git status` showing a clean sandbox is *not* proof of publication — the sandbox-to-remote push is the failure-prone step (see §8).
-- **Ambiguous spec?** Open a draft PR immediately with label `[BLOCKED: clarification]`, paste the ambiguity verbatim, propose two interpretations, and stop. Do not interpret silently.
+- **Publish:** when the spec's `Done When:` items are all evidence-backed and gates 1–4 are green, invoke your runtime's standard publication flow (the `submit` / auto-PR tool exposed to you). PRs open as **ready** (not draft), targeting the spec-assigned base (usually `Master`). Required PR-body sections: `## Spec`, `## Confidence`, `## Evidence`, `## Self-Review`. Cite the spec path. PRs without all four sections are rejected. Do not shell out to `git push` or `gh pr create` directly — the publication flow owns remote writes, and over-specifying the mechanism wastes turns and frustrates the runtime's invariants.
+- **After publish:** invoking the publication flow is the terminal step. The orchestrator verifies the branch on remote — you do not need to query `github.com` yourself.
+- **Ambiguous spec?** Surface the ambiguity through your runtime's standard "blocked / awaiting clarification" mechanism (typically a draft PR or a message), paste the ambiguity verbatim, propose two interpretations, and stop. Do not interpret silently.
 
 ## 4. Source-repo conventions
 
@@ -84,13 +83,13 @@ Some specs reference external source repos (libraries, reference implementations
 
 ## 5. Anti-patterns (Jules MUST NOT)
 
-1. Push directly to `main` or force-push any branch.
+1. Target `main` as the PR base or force-push any branch.
 2. Skip the TDD gate because "the change is small". Smallness is exactly when bugs hide.
 3. Claim `Done When` complete without pasting an artefact under `## Evidence`.
 4. Amend or rebase commits authored by another agent or by the human.
 5. Add a runtime or build dependency the spec did not list under `deps:`.
 6. Create, move, or delete files outside the spec's `affects:` allow-list.
-7. Declare the task COMPLETED before verifying the branch is published to `github.com/netzkontrast/the-agency-system`. The Jules auto-PR ("finalize") flow has known silent-fail modes (see §8); local `git status` clean is not enough.
+7. Decline to invoke the publication flow because of perceived sandbox limits. Your runtime's `submit` / auto-PR tool IS the publication flow; calling it is your final required action. The orchestrator handles verification on remote — your job ends at the submit call.
 
 Each of these is a stop-the-line event. If Jules notices it post-hoc, revert the offending commit in a new commit and note it in the friction log.
 
@@ -123,19 +122,29 @@ Key conventions for the unified plugin:
 - FastMCP pinned to ≥3.1.0 for Code Mode support; `CodeMode` import is wrapped in `try/except ImportError` for graceful fallback.
 - Smoke tests live in `tests/smoke/` and validate: manifest parses, server boots, each slash skill resolves, MCP tool count matches expectation.
 
-## 8. Publishing the work (orchestrator recovery path)
+## 8. Publishing the work
 
-The Jules backend normally publishes a completed session's diff by running an internal "finalize" flow that pushes the sandbox branch and opens a PR on `github.com`. This flow **fails silently** intermittently — the session transitions to `COMPLETED`, `git status` inside the sandbox is clean, but no branch ever appears on the remote.
+**Jules: this is your terminal step.** When gates 1–4 are green and all `Done When` items are evidence-backed, invoke your runtime's publication flow (the `submit` / auto-PR tool). That call opens the PR. After it returns, you are done — stop. Do not re-verify, do not query GitHub, do not poll. The orchestrator owns verification.
 
-When the orchestrator (Claude or a human) detects this — i.e., the session is `COMPLETED` but no branch matches the session ID on `git ls-remote origin` — recovery is **deterministic via the Jules API**:
+If the publication call returns an error, surface it through the standard "blocked / awaiting clarification" channel and stop. Do not retry with shell-level `git push` or `gh pr create` — the runtime owns that surface and improvised pushes can corrupt the session.
 
-1. `GET https://jules.googleapis.com/v1alpha/sessions/{sid}`
-2. Read `outputs[*].changeSet.gitPatch.unidiffPatch` from the response — that is the canonical work artefact.
-3. Save the patch to disk (never echo its body into the orchestrator's stdout — large patches will pollute the LLM context window). The repo ships a context-safe extractor at `tools/jules-patch-extract.py` (or `/tmp/jules_extract_patch.py` during a session) that writes the patch to `/tmp/jules-patches/{sid}-out{i}.patch` and prints only `{bytes, files, first_files[]}` stats.
-4. Apply locally with `git apply --whitespace=nowarn` from a fresh branch off `Master`. <!-- Default branch verified as `Master` via `git remote show origin` (HEAD branch: Master). The GitHub API endpoint was unreachable from the sandbox (`401 Bad credentials` on `/repos/netzkontrast/the-agency-system`), but the proxied git remote is the authoritative mirror and reports HEAD = `Master`. Codex's flag suggesting this might be `main` is dismissed. -->
-5. Commit (preserve Jules's authorship via `Co-authored-by: google-labs-jules[bot] <…>`) and push.
-6. Open the PR manually with the standard four-section body, noting in `## Spec` that publication was via API extraction rather than the auto-flow.
+---
 
-This path is the ONLY reliable recovery when the auto-flow misfires. Do not re-dispatch a fresh Jules session on the same spec for the same work — the patch already exists on the original session's API record and a fresh session will burn quota for no incremental output. Re-dispatch is reserved for genuine implementation failures (state = `FAILED`, no `outputs[]` populated).
+> **§8-Appendix is for the orchestrator (Claude or a human), not for Jules.**
+> Jules: stop reading here — you have no actions to take in the appendix.
 
-The orchestrator's prompts to Jules should NOT instruct it to "git push" or "verify branch on github" — the agent's sandbox cannot directly push (the auto-flow owns that step), so over-specific push instructions waste context and turns. Phrase the publication requirement openly: *"publish your work via the standard flow; if publication does not occur within one poll cycle, the orchestrator will recover via API extraction."*
+### §8-Appendix — Orchestrator-side silent-fail recovery
+
+The Jules backend normally publishes a completed session's diff by running an internal "finalize" flow that pushes the sandbox branch and opens a PR on `github.com`. This flow has intermittent silent-fail modes — the session transitions to `COMPLETED` but no branch lands on the remote. `state=COMPLETED` is *not* terminal; it means "session is idle, awaiting input". A focused `jules_message` ("your state is COMPLETED but I can't find your branch on origin — please publish and reply with the PR URL") frequently nudges the session through; give ~5 minutes per probe.
+
+After 2–3 probes still produce no branch, the orchestrator falls back to API extraction (deterministic, single-author):
+
+1. `GET https://jules.googleapis.com/v1alpha/sessions/{sid}`.
+2. Read `outputs[*].changeSet.gitPatch.unidiffPatch` from the response — the canonical work artefact.
+3. Save the patch to disk; never echo its body into the orchestrator's stdout — large patches pollute the LLM context window. The repo ships a context-safe extractor at `tools/jules-patch-extract.py` that writes to `/tmp/jules-patches/{sid}-out{i}.patch` and prints only `{bytes, files, first_files[]}` stats.
+4. Apply via the GitHub MCP push path (`mcp__github__create_branch` + `mcp__github__create_or_update_file` for each file in the patch + `mcp__github__create_pull_request`). The MCP path produces `web-flow`-signed commits, which the local CODESIGN_MCP backend currently cannot.
+5. Preserve Jules's authorship in the recovery PR body via `Co-authored-by: google-labs-jules[bot] <…>` and note in `## Spec` that publication was via API extraction rather than the auto-flow.
+
+Do not re-dispatch a fresh Jules session on the same spec for the same work — the patch already exists on the original session's API record and a fresh session will burn quota for no incremental output. Re-dispatch is reserved for genuine implementation failures (state = `FAILED` with empty `outputs[]`, or `COMPLETED` with a 0-file patch).
+
+When briefing Jules, phrase the publication requirement openly: *"publish your work via the standard flow."* Do not enumerate `git push`, `gh pr create`, or recovery mechanics in the Jules prompt — Jules treats those as constraints on its own behaviour and may refuse to submit at all. The appendix above is for the orchestrator only and must not leak into Jules-facing prompts.
