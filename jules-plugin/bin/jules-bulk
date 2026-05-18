@@ -6,18 +6,27 @@ if [ -z "$JULES_API_KEY" ]; then
     exit 1
 fi
 
-# Preflight: jules-bulk loads jules_mcp.server which depends on
-# fastmcp[code-mode]. When this script is invoked outside a Claude Code
-# session that has already installed the plugin, the import can fail
-# cryptically with "No module named 'fastmcp'". Detect and direct the
-# user to bin/jules-dev-install before we hit the import boundary.
+# Preflight: jules-bulk loads jules_mcp.server which requires fastmcp.
+# When this script is invoked outside a Claude Code session that has
+# already installed the plugin, the import can fail cryptically with
+# "No module named 'fastmcp'". Detect that and point at jules-dev-install.
+#
+# CodeMode is treated as OPTIONAL here, matching jules_mcp/server.py
+# which falls back to `_transforms = []` if CodeMode is unavailable. Hard-
+# requiring CodeMode would regress previously-working fastmcp-only envs.
 _JULES_BULK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 if ! PYTHONPATH="${_JULES_BULK_DIR}/../mcp-server/src" python3 -c \
-        'import fastmcp; from fastmcp.experimental.transforms.code_mode import CodeMode' \
-        >/dev/null 2>&1; then
-    echo "ERROR: jules-mcp Python deps missing (fastmcp[code-mode])." >&2
+        'import fastmcp' >/dev/null 2>&1; then
+    echo "ERROR: jules-mcp Python deps missing (fastmcp not importable)." >&2
     echo "  Run: ${_JULES_BULK_DIR}/jules-dev-install" >&2
     exit 1
+fi
+# Soft check: warn (don't fail) if Code Mode transform is absent.
+if ! PYTHONPATH="${_JULES_BULK_DIR}/../mcp-server/src" python3 -c \
+        'from fastmcp.experimental.transforms.code_mode import CodeMode' \
+        >/dev/null 2>&1; then
+    echo "WARN: fastmcp Code Mode transform not available; server will run without it." >&2
+    echo "      Install the extra to enable it: pip install 'fastmcp[code-mode]>=3.1.0'" >&2
 fi
 
 JULES_API_BASE_URL="${JULES_API_BASE_URL:-https://jules.googleapis.com}"

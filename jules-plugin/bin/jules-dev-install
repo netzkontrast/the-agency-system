@@ -25,13 +25,16 @@ python3 -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' \
     || die "Python ≥ 3.10 required (mcp-server/pyproject.toml). Got: $(python3 --version)"
 note "Python $(python3 --version | cut -d' ' -f2) OK"
 
-# 2. Pick an installer. Prefer uv (fast, deterministic) and fall back to pip.
+# 2. Pick an installer. Bind to the *exact* python3 used for the smoke
+#    test below — otherwise uv may install into a different interpreter
+#    than the one verifying the imports.
+PY_BIN="$(command -v python3)"
 if command -v uv >/dev/null 2>&1; then
-    INSTALL=(uv pip install --system)
-    note "Using uv pip install"
+    INSTALL=(uv pip install --python "$PY_BIN" --system)
+    note "Using uv pip install (target: $PY_BIN)"
 else
-    INSTALL=(python3 -m pip install)
-    note "Using python3 -m pip install (uv not on PATH)"
+    INSTALL=("$PY_BIN" -m pip install)
+    note "Using $PY_BIN -m pip install (uv not on PATH)"
 fi
 
 # 3. Install fastmcp[code-mode] — required for the Code Mode transform
