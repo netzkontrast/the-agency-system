@@ -61,7 +61,7 @@ The repository is **further along than v1 of this overview implied**. Sub-agent 
 Phases 1-8 below assign each of these to a phase or mark them superseded:
 
 - **Token efficiency**: 104, 105, 106, 107, 114, 115, 116, 117, 121
-- **Context layer (Path B)**: 111, 112, 113 — competing with 108 (see drift §3.1)
+- **Context layer (Path B)**: 111 only (112 and 113 already done — see §2.1) — competing with 108 (see drift §3.1)
 - **Token-optimiser hook layer**: 114-121 (composes with Path B)
 - **Quality / loop / compaction**: 118, 119, 120
 - **Ontology + graph (Wave D)**: 122, 123, 124
@@ -80,9 +80,9 @@ Five concrete drifts, each with a resolution:
 
 ### 3.1 Two-path indecision on Context Mode
 
-**Drift:** Spec 108 (adopt third-party `mksglu/context-mode` plugin) and Specs 111/112/113 (build the manifest, anchor-triad, cache+watcher ourselves) are mutually-exclusive — the v1 overview said "PICK ONE PATH" but never picked one. Both currently sit `ready`.
+**Drift:** Spec 108 (adopt third-party `mksglu/context-mode` plugin) and the Path B trio — Specs 111 (manifest), 112 (anchor-triad), 113 (cache + subscriptions) — were mutually-exclusive in v1 ("PICK ONE PATH" but never picked one). Specs 112 and 113 have since landed under Path B's design (PRs #104, #113), confirming the direction empirically; only 111 (manifest) plus the 108 supersession marker remain.
 
-**Resolution — D1: ADOPT PATH B (111 + 112 + 113). SUPERSEDE 108.**
+**Resolution — D1: ADOPT PATH B (111 + 112 + 113). SUPERSEDE 108.** (112 and 113 already merged; 111 + 108-stub still to land — see Phase 4.)
 
 Reasons:
 1. Path B's manifest schema is the same shape Wave D's graph ingests — sharing `{id, sha256, tags, views}` means one watcher serves both, one cache invalidates both, one `graph_id` field on every manifest entry is enough to bridge.
@@ -381,7 +381,7 @@ This master plan is **complete** when:
 1. All eight phases have at least one merged PR each, and each phase's smoke test row (§5) passes in CI.
 2. `tools/list` payload measured at < 4 KB on a fresh boot — captured in CI gate.
 3. `jules-plugin/` does not exist; `Plan/_lessons-learned/` has at least one new lesson per phase (the reflexion contract).
-4. The unified plugin loads via `/plugin install agency-system@netzkontrast` (marketplace path verified by Spec 022 finish).
+4. The unified plugin loads via `/plugin install agency-system@netzkontrast` (marketplace path verified by Spec 022, already merged via PR #73).
 5. `Plan/000-overview.md` §2.1 lists every spec from §2.2 and §2.3 as Done with a merged PR number, OR explicitly marked superseded with a pointer.
 
 ---
