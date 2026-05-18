@@ -1,4 +1,4 @@
-Feature: Phase 7 — Domain handler completion (music + novel + agentic)
+Feature: Phase 7 — Domain handler completion
 
   Background:
     Given the agency-mcp server has successfully booted
@@ -11,7 +11,7 @@ Feature: Phase 7 — Domain handler completion (music + novel + agentic)
   Scenario: Novel skills catalogue contains 28 spirit-isomorphic skills
     Given the novel domain directory skills/novel/ exists
     When I count the number of skills defined in the novel domain
-    Then exactly 28 skill files named SKILL.md exist under skills/novel/ excluding prompt builders
+    Then exactly 28 SKILL.md files exist under skills/novel/ that are NOT under skills/novel/prompts/
     And the skill novel-work-conceptualizer exists
     And the skill novel-chapter-writer exists
 
@@ -20,14 +20,14 @@ Feature: Phase 7 — Domain handler completion (music + novel + agentic)
     Given the agentic handlers are defined under servers/agency-mcp/src/agency_mcp/handlers/agentic/
     When I inspect the FastMCP registered tools tagged with domain:agentic
     Then exactly 32 tools are registered in the agentic domain
-    And tools for specs, plans, workflows, research, ralph, and confidence are present
+    And the prefixes agentic_spec_*, agentic_plan_*, agentic_workflow_*, agentic_research_*, agentic_ralph_*, and agentic_confidence_* are non-empty
     And the tools/list payload is under 4 KB
 
   # anchor: phase-7.overrides-migration
   Scenario: Overrides migration separates global preferences from project data
     Given the overrides/ directory exists at the repository root
     When I list the contents of the overrides/ directory
-    Then it contains cross-project preference files including prose-style-guide.md and narrative-preferences.md
+    Then it contains cross-project preference files including prose-style-guide.md, narrative-preferences.md, dramatica-defaults.md, and ncp-defaults.md
     But no album-specific content or project-specific content exists in the overrides/ directory
 
   # anchor: phase-7.novel-prompt-builders
@@ -61,6 +61,5 @@ Feature: Phase 7 — Domain handler completion (music + novel + agentic)
   # anchor: phase-7.no-orphaned-handlers
   Scenario: No orphaned handlers exist across any domain
     Given all tools are registered in the agency-mcp server
-    When I cross-reference every domain handler against the skill, command, and hook callers
-    Then every domain handler has at least one corresponding caller
-    And no orphaned handler functions exist without a consumer
+    When I parse the agency-mcp tool registry and grep skills/, commands/, hooks/ for each tool name
+    Then every registered handler appears as a caller in at least one of those three trees
