@@ -5,8 +5,7 @@ from datetime import datetime, timezone
 
 from fastmcp import FastMCP
 from .gates import _chapter_create_guard
-
-from agency_mcp.state.cache import StateCache
+from agency_mcp.handlers.novel import _shared
 
 try:
     from agency_mcp.config import PLUGIN_ROOT
@@ -14,9 +13,6 @@ except ImportError:
     PLUGIN_ROOT = Path(".").resolve()
 
 # Mock these for tests
-def _get_cache():
-    return StateCache()
-cache = _get_cache()
 
 def _normalize_slug(name: str) -> str:
     """Normalize input to slug format."""
@@ -35,7 +31,7 @@ def _get_empty_state() -> dict:
     return {"authors": {}}
 
 async def _get_work_details(author: str, work_slug: str) -> dict:
-    state = await cache.snapshot()
+    state = await _shared.get_cache().snapshot()
     novel_state = state.get("novel", _get_empty_state())
     author_data = novel_state.get("authors", {}).get(author, {})
     return author_data.get("works", {}).get(work_slug)
@@ -122,14 +118,27 @@ async def novel_get_chapter(author: str, work_slug: str, chapter_slug: str) -> d
         return {"ok": False, "warnings": ["Chapter not found"]}
     return {"ok": True, "data": {"content": chap_file.read_text(encoding="utf-8")}, "warnings": []}
 
-async def novel_list_chapters(author: str, work_slug: str) -> dict:
+async def novel_list_chapters(author: str, work_slug: str, limit: int = None, cursor: str = None) -> dict:
+    from agency_mcp.handlers.novel._shared import decode_cursor, encode_cursor
+
     work_data = await _get_work_details(author, work_slug)
     if not work_data:
         return {"ok": False, "warnings": [f"Work not found: {author}/{work_slug}"]}
     genre = work_data.get("genre")
     chap_dir = PLUGIN_ROOT / "novels" / author / "works" / genre / work_slug / "chapters"
-    chapters = [f.stem for f in chap_dir.glob("*.md")] if chap_dir.exists() else []
-    return {"ok": True, "data": {"chapters": sorted(chapters)[:20]}, "warnings": []}
+    all_chapters = sorted([f.stem for f in chap_dir.glob("*.md")]) if chap_dir.exists() else []
+
+    c_data = decode_cursor(cursor, default_limit=20)
+    offset = c_data["offset"]
+    effective_limit = limit if limit is not None else c_data["limit"]
+
+    paginated = all_chapters[offset : offset + effective_limit]
+
+    next_cursor = None
+    if offset + effective_limit < len(all_chapters):
+        next_cursor = encode_cursor(offset + effective_limit, effective_limit)
+
+    return {"ok": True, "data": {"items": paginated, "next_cursor": next_cursor}, "warnings": []}
 
 async def novel_get_scene(author: str, work_slug: str, scene_slug: str) -> dict:
     work_data = await _get_work_details(author, work_slug)
@@ -141,14 +150,27 @@ async def novel_get_scene(author: str, work_slug: str, scene_slug: str) -> dict:
         return {"ok": False, "warnings": ["Scene not found"]}
     return {"ok": True, "data": {"content": scene_file.read_text(encoding="utf-8")}, "warnings": []}
 
-async def novel_list_scenes(author: str, work_slug: str) -> dict:
+async def novel_list_scenes(author: str, work_slug: str, limit: int = None, cursor: str = None) -> dict:
+    from agency_mcp.handlers.novel._shared import decode_cursor, encode_cursor
+
     work_data = await _get_work_details(author, work_slug)
     if not work_data:
         return {"ok": False, "warnings": [f"Work not found: {author}/{work_slug}"]}
     genre = work_data.get("genre")
     scene_dir = PLUGIN_ROOT / "novels" / author / "works" / genre / work_slug / "scenes"
-    scenes = [f.stem for f in scene_dir.glob("*.md")] if scene_dir.exists() else []
-    return {"ok": True, "data": {"scenes": sorted(scenes)[:20]}, "warnings": []}
+    all_scenes = sorted([f.stem for f in scene_dir.glob("*.md")]) if scene_dir.exists() else []
+
+    c_data = decode_cursor(cursor, default_limit=20)
+    offset = c_data["offset"]
+    effective_limit = limit if limit is not None else c_data["limit"]
+
+    paginated = all_scenes[offset : offset + effective_limit]
+
+    next_cursor = None
+    if offset + effective_limit < len(all_scenes):
+        next_cursor = encode_cursor(offset + effective_limit, effective_limit)
+
+    return {"ok": True, "data": {"items": paginated, "next_cursor": next_cursor}, "warnings": []}
 
 async def novel_rename_chapter(author: str, work_slug: str, old_slug: str, new_slug: str, dry_run: bool = False) -> dict:
     work_data = await _get_work_details(author, work_slug)

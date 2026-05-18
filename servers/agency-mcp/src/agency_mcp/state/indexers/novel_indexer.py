@@ -25,67 +25,72 @@ class NovelIndexer:
 
     async def rebuild(self) -> None:
         """Walk novels/*/works/*/*/work.md and populate state.json."""
-        authors_state = {}
+        async with self.cache._lock:
+            authors_state = {}
 
-        # Look for novels directory
-        if not self.root_dir.exists() or not self.root_dir.is_dir():
-            return
+            # Look for novels directory
+            if not self.root_dir.exists() or not self.root_dir.is_dir():
+                return
 
-        for author_dir in self.root_dir.iterdir():
-            if not author_dir.is_dir():
-                continue
-
-            author_slug = author_dir.name
-            works_dir = author_dir / "works"
-            if not works_dir.exists() or not works_dir.is_dir():
-                continue
-
-            author_data = {"works": {}}
-            authors_state[author_slug] = author_data
-
-            for genre_dir in works_dir.iterdir():
-                if not genre_dir.is_dir():
+            for author_dir in self.root_dir.iterdir():
+                if not author_dir.is_dir():
                     continue
 
-                for work_dir in genre_dir.iterdir():
-                    if not work_dir.is_dir():
+                author_slug = author_dir.name
+                works_dir = author_dir / "works"
+                if not works_dir.exists() or not works_dir.is_dir():
+                    continue
+
+                author_data = {"works": {}}
+                authors_state[author_slug] = author_data
+
+                for genre_dir in works_dir.iterdir():
+                    if not genre_dir.is_dir():
                         continue
 
-                    work_slug = work_dir.name
-                    work_file = work_dir / "work.md"
+                    for work_dir in genre_dir.iterdir():
+                        if not work_dir.is_dir():
+                            continue
 
-                    if not work_file.exists():
-                        continue
+                        work_slug = work_dir.name
+                        work_file = work_dir / "work.md"
 
-                    frontmatter = self._parse_frontmatter(work_file)
+                        if not work_file.exists():
+                            continue
 
-                    # Count chapters
-                    chapter_count = 0
-                    chapters_dir = work_dir / "chapters"
-                    if chapters_dir.exists() and chapters_dir.is_dir():
-                        chapter_count = sum(1 for _ in chapters_dir.glob("*.md"))
+                        frontmatter = self._parse_frontmatter(work_file)
 
-                    # Count scenes
-                    scene_count = 0
-                    scenes_dir = work_dir / "scenes"
-                    if scenes_dir.exists() and scenes_dir.is_dir():
-                        scene_count = sum(1 for _ in scenes_dir.glob("*.md"))
+                        # Count chapters
+                        chapter_count = 0
+                        chapters_dir = work_dir / "chapters"
+                        if chapters_dir.exists() and chapters_dir.is_dir():
+                            chapter_count = sum(1 for _ in chapters_dir.glob("*.md"))
 
-                    # Populate state with work info
-                    author_data["works"][work_slug] = {
-                        "genre": frontmatter.get("genre_slug", genre_dir.name),
-                        "created": frontmatter.get("created", ""),
-                        "status": frontmatter.get("status", "draft"),
-                        "chapter_count": chapter_count,
-                        "scene_count": scene_count
-                    }
+                        # Count scenes
+                        scene_count = 0
+                        scenes_dir = work_dir / "scenes"
+                        if scenes_dir.exists() and scenes_dir.is_dir():
+                            scene_count = sum(1 for _ in scenes_dir.glob("*.md"))
 
-                    if "work_title" in frontmatter:
-                        author_data["works"][work_slug]["work_title"] = frontmatter["work_title"]
+                        # Populate state with work info
+                        author_data["works"][work_slug] = {
+                            "genre": frontmatter.get("genre_slug", genre_dir.name),
+                            "created": frontmatter.get("created", ""),
+                            "status": frontmatter.get("status", "draft"),
+                            "chapter_count": chapter_count,
+                            "scene_count": scene_count
+                        }
 
-        # Use cache.write for namespace isolation to only update novel domain
-        state = await self.cache.snapshot()
-        novel_state = state.get("novel", {})
-        novel_state["authors"] = authors_state
-        novel_state["_indexed_at"] = datetime.now(timezone.utc).isoformat()
-        await self.cache.write("novel", novel_state)
+                        if "work_title" in frontmatter:
+                            author_data["works"][work_slug]["work_title"] = frontmatter["work_title"]
+
+            if self.cache._is_stale() or self.cache._state is None:
+                self.cache._load_from_disk()
+            if self.cache._state is None:
+                self.cache._state = {"music": {}, "novel": {}, "jules": {}, "agentic": {}, "_version": "1.0.0"}
+
+            novel_state = self.cache._state.get("novel", {})
+            novel_state["authors"] = authors_state
+            novel_state["_indexed_at"] = datetime.now(timezone.utc).isoformat()
+            self.cache._state["novel"].update(novel_state)
+            self.cache._write_to_disk()

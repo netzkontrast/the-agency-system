@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import json
 
 from fastmcp import FastMCP
-from agency_mcp.state.cache import StateCache
+from agency_mcp.handlers.novel import _shared
 
 try:
     from agency_mcp.config import PLUGIN_ROOT
@@ -13,9 +13,6 @@ except ImportError:
     PLUGIN_ROOT = Path(".").resolve()
 
 # Mock these for tests
-def _get_cache():
-    return StateCache()
-cache = _get_cache()
 
 def _normalize_slug(name: str) -> str:
     """Normalize input to slug format, enforcing max 64 chars."""
@@ -111,14 +108,14 @@ async def novel_create_work(
 
     # Trigger indexer refresh
     from agency_mcp.state.indexers.novel_indexer import NovelIndexer
-    indexer = NovelIndexer(cache, root_dir)
+    indexer = NovelIndexer(_shared.get_cache(), root_dir)
     await indexer.rebuild()
 
     return {"ok": True, "data": {"created": True}, "warnings": []}
 
 async def novel_find_novel(query: str) -> dict:
     """Find works matching a query across state."""
-    state = await cache.snapshot()
+    state = await _shared.get_cache().snapshot()
     novel_state = state.get("novel", _get_empty_state())
 
     results = []
@@ -139,32 +136,48 @@ async def novel_find_novel(query: str) -> dict:
 
     return {"ok": True, "data": {"results": results, "count": len(results)}, "warnings": []}
 
-async def novel_list_novels(author: str = None) -> dict:
-    """List all novels, optionally filtered by author."""
-    state = await cache.snapshot()
+async def novel_list_novels(author: str = None, limit: int = None, cursor: str = None) -> dict:
+    """List all novels, optionally filtered by author, with pagination."""
+    from agency_mcp.handlers.novel._shared import decode_cursor, encode_cursor
+
+    state = await _shared.get_cache().snapshot()
     novel_state = state.get("novel", _get_empty_state())
 
-    results = []
+    all_results = []
     authors = [author] if author else list(novel_state.get("authors", {}).keys())
 
     for author_slug in authors:
         author_data = novel_state.get("authors", {}).get(author_slug, {})
         for work_slug, work_data in author_data.get("works", {}).items():
-            results.append({
+            all_results.append({
                 "id": f"{author_slug}/{work_data.get('genre', 'unknown')}/{work_slug}",
                 "name": work_data.get("work_title", work_slug),
                 "summary": f"By {author_slug}. Status: {work_data.get('status')}"
             })
-            if len(results) >= 20:
-                break
-        if len(results) >= 20:
-            break
 
-    return {"ok": True, "data": {"results": results, "count": len(results)}, "warnings": []}
+    c_data = decode_cursor(cursor, default_limit=20)
+    offset = c_data["offset"]
+    effective_limit = limit if limit is not None else c_data["limit"]
+
+    paginated = all_results[offset : offset + effective_limit]
+
+    next_cursor = None
+    if offset + effective_limit < len(all_results):
+        next_cursor = encode_cursor(offset + effective_limit, effective_limit)
+
+    return {
+        "ok": True,
+        "data": {
+            "items": paginated,
+            "count": len(paginated),
+            "next_cursor": next_cursor
+        },
+        "warnings": []
+    }
 
 async def novel_get_work_full(author: str, slug: str, full: bool = False) -> dict:
     """Get full descriptor and counts for a work."""
-    state = await cache.snapshot()
+    state = await _shared.get_cache().snapshot()
     novel_state = state.get("novel", _get_empty_state())
 
     author_data = novel_state.get("authors", {}).get(author, {})
@@ -190,7 +203,7 @@ async def novel_get_work_full(author: str, slug: str, full: bool = False) -> dic
 
 async def novel_rename_work(author: str, old_slug: str, new_slug: str, dry_run: bool = False) -> dict:
     """Rename a work and update state."""
-    state = await cache.snapshot()
+    state = await _shared.get_cache().snapshot()
     novel_state = state.get("novel", _get_empty_state())
 
     author_data = novel_state.get("authors", {}).get(author, {})
@@ -217,15 +230,21 @@ async def novel_rename_work(author: str, old_slug: str, new_slug: str, dry_run: 
 
     # Trigger indexer refresh
     from agency_mcp.state.indexers.novel_indexer import NovelIndexer
-    indexer = NovelIndexer(cache, PLUGIN_ROOT / "novels")
+    indexer = NovelIndexer(_shared.get_cache(), PLUGIN_ROOT / "novels")
     await indexer.rebuild()
 
     return {"ok": True, "data": {"renamed": True}, "warnings": []}
 
-async def novel_rebuild_state() -> dict:
+async def novel_rebuild_state(dry_run: bool = False) -> dict:
     """Rebuild the novel index manually."""
+    if dry_run:
+        return {
+            "ok": True,
+            "data": {"would_apply": True, "diff": ["Rebuild state.json from novel markdown files"]},
+            "warnings": []
+        }
     from agency_mcp.state.indexers.novel_indexer import NovelIndexer
-    indexer = NovelIndexer(cache, PLUGIN_ROOT / "novels")
+    indexer = NovelIndexer(_shared.get_cache(), PLUGIN_ROOT / "novels")
     await indexer.rebuild()
     return {"ok": True, "data": {"rebuilt": True}, "warnings": []}
 

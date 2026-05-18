@@ -5,6 +5,7 @@ import sys
 import urllib.parse
 from pathlib import Path
 from fastmcp import FastMCP
+from agency_mcp.lib.codemode.projection import apply_view
 from ._shared import _request, _paginate, _short_id
 from .source import _coerce_source, _resolve_github_source
 from .trim import apply_fields, apply_summary, apply_list_trim
@@ -129,7 +130,8 @@ def jules_create(
     return resp
 
 
-def jules_list(page_size: int = 20, page_token: str = "", fields: str = "id,state,title") -> dict:
+@apply_view
+def jules_list(page_size: int = 20, page_token: str = "") -> dict:
     """List Jules sessions on the account.
 
     Args:
@@ -152,10 +154,11 @@ def jules_list(page_size: int = 20, page_token: str = "", fields: str = "id,stat
             "title": s.get("title", ""),
             "url": s.get("url", ""),
         })
-    return {"sessions": apply_list_trim(sessions, fields), "nextPageToken": raw.get("nextPageToken", "")}
+    return {"sessions": sessions, "nextPageToken": raw.get("nextPageToken", "")}
 
 
-def jules_get(session_id: str, fields: str = "id,state,title") -> dict:
+@apply_view
+def jules_get(session_id: str) -> dict:
     """Fetch a single Jules session's current state and metadata.
 
     Args:
@@ -175,7 +178,7 @@ def jules_get(session_id: str, fields: str = "id,state,title") -> dict:
         "has_outputs": bool(s.get("outputs")),
         "require_plan_approval": s.get("requirePlanApproval"),
     }
-    return apply_fields(raw_dict, fields)
+    return raw_dict
 
 
 # Keys on an Activity that are NOT the polymorphic event-type field. Any of

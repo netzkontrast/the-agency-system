@@ -97,17 +97,40 @@ def test_atomic_rename_no_torn_file(tmp_path: Path, monkeypatch: pytest.MonkeyPa
     original_bytes = dest_state.read_bytes()
 
     import sys
-    sys.path.insert(0, str(MIGRATOR_SCRIPT.parent.parent.parent))
-    from state.migrators.bitwize_v091_to_agency import main
+    # Provide an isolated environment for the test using subprocess instead of loading the module and monkeypatching os.replace directly
+    # Wait, the test uses monkeypatch to mock `os.replace`. To do that we have to load it.
+    import subprocess
+    import importlib.util
 
-    def mock_replace(src, dst):
-        raise OSError("Simulated crash during replace")
+    # Since state.migrators is not a package (no __init__.py), let's ensure its parent is in sys.path
+    _repo_root = str(MIGRATOR_SCRIPT.parent.parent.parent)
+    if _repo_root not in sys.path:
+        sys.path.insert(0, _repo_root)
 
-    monkeypatch.setattr(os, "replace", mock_replace)
-
+    # Let's write a small script and run it to avoid import issues
+    # First, modify the source so it thinks it needs to run
     (source_dir / "cache" / "state.json").write_text('{"albums": {"New": {}}}')
-    ret = main(["--source-dir", str(source_dir), "--dest-dir", str(dest_dir), "--no-backup"])
-    assert ret == 2
+
+    test_script_content = f"""
+import sys
+import os
+from pathlib import Path
+sys.path.insert(0, '{_repo_root}')
+
+import state.migrators.bitwize_v091_to_agency as migrator
+
+def mock_replace(src, dst):
+    raise OSError("Simulated crash during replace")
+
+os.replace = mock_replace
+
+sys.exit(migrator.main(["--source-dir", "{source_dir}", "--dest-dir", "{dest_dir}", "--no-backup"]))
+"""
+    test_script_path = dest_dir / "crash_script.py"
+    test_script_path.write_text(test_script_content)
+
+    ret = subprocess.run([sys.executable, str(test_script_path)], capture_output=True)
+    assert ret.returncode == 2
 
     assert dest_state.read_bytes() == original_bytes
     assert len(list((dest_dir / "cache").glob("*.tmp"))) == 0
