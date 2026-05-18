@@ -1,0 +1,4599 @@
+{
+  "entries": [
+    {
+      "id": "docs:dev-setup",
+      "last_modified": "2026-05-18T16:55:33.303010Z",
+      "mime": "text/markdown",
+      "path": "docs/dev-setup.md",
+      "sha256": "f90a937fb0c816f4d513e86daa4cc8832a4f1a33a9fdc48d1f5309914cf44f62",
+      "size_bytes": 2065,
+      "summary": "Development Setup - This document describes the workflow for installing and testing the `agency-system` plugin locally directly from the source tree. This is useful for plugin developers working on Wave B / Wave C specifications.",
+      "tags": [],
+      "title": "Development Setup",
+      "views": {
+        "full": {
+          "byte_length": 2065,
+          "byte_offset": 0,
+          "token_estimate": 494
+        },
+        "preview": {
+          "byte_length": 2065,
+          "byte_offset": 0,
+          "token_estimate": 494
+        },
+        "summary": {
+          "byte_length": 229,
+          "byte_offset": 0,
+          "token_estimate": 40
+        }
+      }
+    },
+    {
+      "id": "docs:superpowers:specs:2026-05-16-jules-suite-refactor-design",
+      "last_modified": "2026-05-18T16:55:33.303010Z",
+      "mime": "text/markdown",
+      "path": "docs/superpowers/specs/2026-05-16-jules-suite-refactor-design.md",
+      "sha256": "9b5fa5bc155ff2035a6e4db4307e80021e43d2345c500e83377897f7c09967df",
+      "size_bytes": 14326,
+      "summary": "Jules Suite Refactor \u2014 Design + Implementation Plan - **Status:** Approved (user direction in the goal hook). **Branch:** `claude/create-jules-skill-x8QHA` (PR #27). **Date:** 2026-05-16.",
+      "tags": [],
+      "title": "Jules Suite Refactor \u2014 Design + Implementation Plan",
+      "views": {
+        "full": {
+          "byte_length": 14326,
+          "byte_offset": 0,
+          "token_estimate": 3659
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 848
+        },
+        "summary": {
+          "byte_length": 189,
+          "byte_offset": 0,
+          "token_estimate": 55
+        }
+      }
+    },
+    {
+      "id": "genres:atmospheric-dark-folk:readme",
+      "last_modified": "2026-05-18T16:55:33.307010Z",
+      "mime": "text/markdown",
+      "path": "genres/atmospheric-dark-folk/README.md",
+      "sha256": "b97b67538298fcf368cf732d9b0e965b9fcaaac5c3a682fc31dc061a4f50a214",
+      "size_bytes": 15450,
+      "summary": "Atmospheric Dark Folk - Atmospheric dark folk \u2014 also called neofolk in its earlier, post-industrial form \u2014 emerged from the British underground in the early 1980s as artists abandoned the abrasive electronics of post-punk and industrial music in favour of stark acoustic guitars, chamber strings, and literary darkness. Douglas Pearce founded Death in June in 1981 from the ashes of the leftist punk\u2026",
+      "tags": [],
+      "title": "Atmospheric Dark Folk",
+      "views": {
+        "full": {
+          "byte_length": 15450,
+          "byte_offset": 0,
+          "token_estimate": 3677
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 740
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 80
+        }
+      }
+    },
+    {
+      "id": "overrides:lyric-writing-guide",
+      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "mime": "text/markdown",
+      "path": "overrides/lyric-writing-guide.md",
+      "sha256": "939c3f99b800a4a41fd980863388dff2f98b43a0479b72bf2f06ed832bdcfec0",
+      "size_bytes": 6325,
+      "summary": "Lyric Writing Guide - Cross-project lyric craft preferences for the-agency-system. Album-specific voice DNA (alter fingerprints, character registers) lives in each album's own folder; this file holds preferences that recur across projects.",
+      "tags": [
+        "kind:override"
+      ],
+      "title": "Lyric Writing Guide",
+      "views": {
+        "full": {
+          "byte_length": 6325,
+          "byte_offset": 0,
+          "token_estimate": 1492
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 717
+        },
+        "summary": {
+          "byte_length": 239,
+          "byte_offset": 0,
+          "token_estimate": 44
+        }
+      }
+    },
+    {
+      "id": "overrides:mastering-presets",
+      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "mime": "text/yaml",
+      "path": "overrides/mastering-presets.yaml",
+      "sha256": "c62ed8055ff303946c3fe79a74e2af4edbdee44351736b045ac9a2212928f712",
+      "size_bytes": 6988,
+      "summary": "mastering-presets.yaml - # Custom Mastering Presets \u2014 the-agency-system\n#\n# Cross-project mastering targets for the genres this artist works in.\n# Merges on top of built-in presets; only fields specified here override.\n# Buil",
+      "tags": [
+        "kind:override"
+      ],
+      "title": "mastering-presets.yaml",
+      "views": {
+        "full": {
+          "byte_length": 6988,
+          "byte_offset": 0,
+          "token_estimate": 2052
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 876
+        },
+        "summary": {
+          "byte_length": 227,
+          "byte_offset": 0,
+          "token_estimate": 52
+        }
+      }
+    },
+    {
+      "id": "overrides:promotion-preferences",
+      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "mime": "text/markdown",
+      "path": "overrides/promotion-preferences.md",
+      "sha256": "8d8744c22953be95b89bd28f6f94ade9eb55257bb118bbad545d5930d7ce273f",
+      "size_bytes": 4699,
+      "summary": "Promotion Preferences - Cross-project social media preferences for the-agency-system. Customizes how `/bitwize-music:promo-writer` and `/bitwize-music:promo-director` generate copy across platforms.",
+      "tags": [
+        "kind:override"
+      ],
+      "title": "Promotion Preferences",
+      "views": {
+        "full": {
+          "byte_length": 4699,
+          "byte_offset": 0,
+          "token_estimate": 1130
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 763
+        },
+        "summary": {
+          "byte_length": 198,
+          "byte_offset": 0,
+          "token_estimate": 46
+        }
+      }
+    },
+    {
+      "id": "overrides:pronunciation-guide",
+      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "mime": "text/markdown",
+      "path": "overrides/pronunciation-guide.md",
+      "sha256": "03ee018071e05041f88d3a56459f0d25ff711332012f4458526cc2bc19284f9c",
+      "size_bytes": 8195,
+      "summary": "Pronunciation Guide (Override) - Cross-project pronunciation entries for the-agency-system. Merges on top of the base guide at `/reference/suno/pronunciation-guide.md` \u2014 base entries remain in effect unless overridden here.",
+      "tags": [
+        "kind:override"
+      ],
+      "title": "Pronunciation Guide (Override)",
+      "views": {
+        "full": {
+          "byte_length": 8195,
+          "byte_offset": 0,
+          "token_estimate": 2357
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 893
+        },
+        "summary": {
+          "byte_length": 225,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "overrides:research-preferences",
+      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "mime": "text/markdown",
+      "path": "overrides/research-preferences.md",
+      "sha256": "d705260aa3537a311fd19769fd1f060ec928b8696b54383d52ea7d211323c979",
+      "size_bytes": 6717,
+      "summary": "Research Preferences - Cross-project research standards for the-agency-system. Album-specific research products (`RESEARCH.md`, `SOURCES.md`) live in each album folder; this file holds the source-priority and verification standards that apply across all documentary-edge or research-driven projects.",
+      "tags": [
+        "kind:override"
+      ],
+      "title": "Research Preferences",
+      "views": {
+        "full": {
+          "byte_length": 6717,
+          "byte_offset": 0,
+          "token_estimate": 1490
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 680
+        },
+        "summary": {
+          "byte_length": 299,
+          "byte_offset": 0,
+          "token_estimate": 54
+        }
+      }
+    },
+    {
+      "id": "overrides:suno-preferences",
+      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "mime": "text/markdown",
+      "path": "overrides/suno-preferences.md",
+      "sha256": "1b5aeae0be7fc2660a6669cad99a5575f3049f3c8ff67e7042049997f5252368",
+      "size_bytes": 7182,
+      "summary": "Suno Preferences - Cross-project Suno V5 / V5.5 prompt preferences for the-agency-system. Per-track style prompts are constructed by `/bitwize-music:suno-engineer`; this file holds the genre mappings, vocal defaults, and avoidances that apply across projects.",
+      "tags": [
+        "kind:override"
+      ],
+      "title": "Suno Preferences",
+      "views": {
+        "full": {
+          "byte_length": 7182,
+          "byte_offset": 0,
+          "token_estimate": 1714
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 749
+        },
+        "summary": {
+          "byte_length": 259,
+          "byte_offset": 0,
+          "token_estimate": 59
+        }
+      }
+    },
+    {
+      "id": "overrides:voice-craft-principles",
+      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "mime": "text/markdown",
+      "path": "overrides/voice-craft-principles.md",
+      "sha256": "516d53444750887ff9deae186663064a4a5236a1a3cebed974c4f6209f1504b8",
+      "size_bytes": 3835,
+      "summary": "Voice Craft Principles - **Purpose.** Principles for any multi-voice work where distinct voices, parts, or perspectives must be heard inside one piece without losing their separateness. Cross-project craft reference applied across the-agency-system's catalog.",
+      "tags": [
+        "kind:override"
+      ],
+      "title": "Voice Craft Principles",
+      "views": {
+        "full": {
+          "byte_length": 3835,
+          "byte_offset": 0,
+          "token_estimate": 828
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 688
+        },
+        "summary": {
+          "byte_length": 259,
+          "byte_offset": 0,
+          "token_estimate": 49
+        }
+      }
+    },
+    {
+      "id": "plan:000-overview",
+      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "mime": "text/markdown",
+      "path": "Plan/000-overview.md",
+      "sha256": "cbbe363e3ec013848ee61d4bed773d088c6947286234bb45b477bdc281755043",
+      "size_bytes": 16612,
+      "summary": "Plan 000 \u2014 Agency System Plugin Refactor (Master Overview) - > **Status:** approved 2026-05-17  \u00b7  **Owner:** human + Jules (fan-out) > **Branch:** `claude/agency-plugin-refactor-PgMQ4` > **Goal:** collapse `jules-plugin`, `bitwize-music`, and the agency-repo skill corpus into one token-efficient Claude Code plugin where `the-agency-system` repo *is* the plugin. Music absorbs bitwize; novel side\u2026",
+      "tags": [],
+      "title": "Plan 000 \u2014 Agency System Plugin Refactor (Master Overview)",
+      "views": {
+        "full": {
+          "byte_length": 16612,
+          "byte_offset": 0,
+          "token_estimate": 4704
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 744
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 110
+        }
+      }
+    },
+    {
+      "id": "plan:001-scaffold-plugin-skeleton:spec",
+      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "mime": "text/markdown",
+      "path": "Plan/001-scaffold-plugin-skeleton/spec.md",
+      "sha256": "9a0b11c2aca47da295584d428efda2acb83972bf9e3cc96616989b1cad6c0e65",
+      "size_bytes": 6687,
+      "summary": "Spec 001 \u2014 Scaffold Plugin Skeleton - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:001",
+        "slug:scaffold-plugin-skeleton",
+        "domain:scaffold",
+        "kind:spec"
+      ],
+      "title": "Spec 001 \u2014 Scaffold Plugin Skeleton",
+      "views": {
+        "full": {
+          "byte_length": 6687,
+          "byte_offset": 0,
+          "token_estimate": 1904
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 940
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:002-manifest-and-marketplace:spec",
+      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "mime": "text/markdown",
+      "path": "Plan/002-manifest-and-marketplace/spec.md",
+      "sha256": "367b132253bde806c0867f316bf19eccca5ba4095806d666a3a40b15f6bee0c8",
+      "size_bytes": 6978,
+      "summary": "Spec 002 \u2014 Manifest and Marketplace - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:002",
+        "slug:manifest-and-marketplace",
+        "domain:scaffold",
+        "kind:spec"
+      ],
+      "title": "Spec 002 \u2014 Manifest and Marketplace",
+      "views": {
+        "full": {
+          "byte_length": 6978,
+          "byte_offset": 0,
+          "token_estimate": 1771
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 808
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:003-unified-statecache-port:spec",
+      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "mime": "text/markdown",
+      "path": "Plan/003-unified-statecache-port/spec.md",
+      "sha256": "653c148f2fd01c951e44ea3a4df686e5dd630206a79ad96f7a1a65b92d105946",
+      "size_bytes": 8940,
+      "summary": "Spec 003 \u2014 Unified StateCache Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:003",
+        "slug:unified-statecache-port",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 003 \u2014 Unified StateCache Port",
+      "views": {
+        "full": {
+          "byte_length": 8940,
+          "byte_offset": 0,
+          "token_estimate": 2405
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 873
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:004-music-handlers-port:spec",
+      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "mime": "text/markdown",
+      "path": "Plan/004-music-handlers-port/spec.md",
+      "sha256": "b42dd1a67eb067de543d138168e9f2831c667cc394e489f55db4c0cdf0c506c7",
+      "size_bytes": 11275,
+      "summary": "Spec 004 \u2014 Music Handlers Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:004",
+        "slug:music-handlers-port",
+        "domain:music",
+        "kind:spec"
+      ],
+      "title": "Spec 004 \u2014 Music Handlers Port",
+      "views": {
+        "full": {
+          "byte_length": 11275,
+          "byte_offset": 0,
+          "token_estimate": 3126
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 932
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:004a-music-lib-port:references:sheet-music-rename",
+      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "mime": "text/markdown",
+      "path": "Plan/004a-music-lib-port/references/sheet-music-rename.md",
+      "sha256": "26d37bf4ba591f35bedbf6874d673228d6656ea21b62d0017e40dfba99e5f4ee",
+      "size_bytes": 432,
+      "summary": "Sheet Music Rename Reference - The bitwize source directory `tools/sheet-music/` has been renamed to `tools/sheet_music/` during the porting process. This is because Python module names cannot contain hyphens.",
+      "tags": [],
+      "title": "Sheet Music Rename Reference",
+      "views": {
+        "full": {
+          "byte_length": 432,
+          "byte_offset": 0,
+          "token_estimate": 98
+        },
+        "preview": {
+          "byte_length": 432,
+          "byte_offset": 0,
+          "token_estimate": 98
+        },
+        "summary": {
+          "byte_length": 209,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "plan:004a-music-lib-port:spec",
+      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "mime": "text/markdown",
+      "path": "Plan/004a-music-lib-port/spec.md",
+      "sha256": "40c4ea992d0023ee4f3e58cc988ccb5f96e4aa0f92625e36eee486ec3a0be4b9",
+      "size_bytes": 12820,
+      "summary": "Spec 004a \u2014 Music Lib Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Spec 004a \u2014 Music Lib Port",
+      "views": {
+        "full": {
+          "byte_length": 12820,
+          "byte_offset": 0,
+          "token_estimate": 3457
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 892
+        },
+        "summary": {
+          "byte_length": 398,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:005-music-skills-port:references:skill-mapping",
+      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "mime": "text/markdown",
+      "path": "Plan/005-music-skills-port/references/skill-mapping.md",
+      "sha256": "a12f03c12cdc727355f2d85e90433c5bcae15c2976576b7c8213f55a20e404a7",
+      "size_bytes": 10203,
+      "summary": "Spec 005 \u2014 Music Skills Port: Old \u2192 New Slug Mapping - This table documents the 54 music skills ported verbatim from `bitwize-music @ v0.91.0` into `skills/music/` for the unified `agency-system` plugin.",
+      "tags": [],
+      "title": "Spec 005 \u2014 Music Skills Port: Old \u2192 New Slug Mapping",
+      "views": {
+        "full": {
+          "byte_length": 10203,
+          "byte_offset": 0,
+          "token_estimate": 2386
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 787
+        },
+        "summary": {
+          "byte_length": 207,
+          "byte_offset": 0,
+          "token_estimate": 56
+        }
+      }
+    },
+    {
+      "id": "plan:005-music-skills-port:spec",
+      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "mime": "text/markdown",
+      "path": "Plan/005-music-skills-port/spec.md",
+      "sha256": "712c0db84a19672b513dfc7ee4b8d9905b525ba16620e540f39360edf09f5bc2",
+      "size_bytes": 8551,
+      "summary": "Spec 005 \u2014 Music Skills Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:005",
+        "slug:music-skills-port",
+        "domain:music",
+        "kind:spec"
+      ],
+      "title": "Spec 005 \u2014 Music Skills Port",
+      "views": {
+        "full": {
+          "byte_length": 8551,
+          "byte_offset": 0,
+          "token_estimate": 2362
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 898
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:006-jules-handlers-port:spec",
+      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "mime": "text/markdown",
+      "path": "Plan/006-jules-handlers-port/spec.md",
+      "sha256": "1ca55b7eabbe4b4abf709c4db07fea9fc62ccc5c8ab15496316b575bb6b81f86",
+      "size_bytes": 11331,
+      "summary": "Spec 006 \u2014 Jules Handlers Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:006",
+        "slug:jules-handlers-port",
+        "domain:jules",
+        "kind:spec"
+      ],
+      "title": "Spec 006 \u2014 Jules Handlers Port",
+      "views": {
+        "full": {
+          "byte_length": 11331,
+          "byte_offset": 0,
+          "token_estimate": 3100
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 895
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:007-jules-skills-and-commands-port:spec",
+      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "mime": "text/markdown",
+      "path": "Plan/007-jules-skills-and-commands-port/spec.md",
+      "sha256": "d971893ab2fb29f2901361fac1a1ccb3b65d40842c1b7bf64bb294a8bfc2c7ee",
+      "size_bytes": 9331,
+      "summary": "Spec 007 \u2014 Jules Skills and Commands Port - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only\u2026",
+      "tags": [
+        "spec:007",
+        "slug:jules-skills-and-commands-port",
+        "domain:jules",
+        "kind:spec"
+      ],
+      "title": "Spec 007 \u2014 Jules Skills and Commands Port",
+      "views": {
+        "full": {
+          "byte_length": 9331,
+          "byte_offset": 0,
+          "token_estimate": 2591
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 876
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:008-codemode-registry:spec",
+      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "mime": "text/markdown",
+      "path": "Plan/008-codemode-registry/spec.md",
+      "sha256": "90aa44918dafa66f2af3e0754338a5c3778891e39a7bce89bb2f5b9fffcf56aa",
+      "size_bytes": 12519,
+      "summary": "Spec 008 \u2014 Code Mode Registry - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Spec 008 \u2014 Code Mode Registry",
+      "views": {
+        "full": {
+          "byte_length": 12519,
+          "byte_offset": 0,
+          "token_estimate": 3273
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 841
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:009-shared-handlers:spec",
+      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "mime": "text/markdown",
+      "path": "Plan/009-shared-handlers/spec.md",
+      "sha256": "469784b7f2998e3ffe4e4d2aefd99d2b6cf712aa31db7f1a5628367883d21287",
+      "size_bytes": 11178,
+      "summary": "Spec 009 \u2014 Shared Handlers - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Spec 009 \u2014 Shared Handlers",
+      "views": {
+        "full": {
+          "byte_length": 11178,
+          "byte_offset": 0,
+          "token_estimate": 2934
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 866
+        },
+        "summary": {
+          "byte_length": 398,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:010-novel-on-disk-layout:references:layout-spec",
+      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "mime": "text/markdown",
+      "path": "Plan/010-novel-on-disk-layout/references/layout-spec.md",
+      "sha256": "003de1f137c4542fa8dce4e775bb7f4f5d0ce1434cf0632ed30551715ca06c71",
+      "size_bytes": 2616,
+      "summary": "Canonical Novel On-Disk Layout - This specification dictates the directory structure and naming conventions for all novel projects managed by the Agency System. This structure mirrors the `artists/` structure used for music.",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Canonical Novel On-Disk Layout",
+      "views": {
+        "full": {
+          "byte_length": 2616,
+          "byte_offset": 0,
+          "token_estimate": 655
+        },
+        "preview": {
+          "byte_length": 2616,
+          "byte_offset": 0,
+          "token_estimate": 655
+        },
+        "summary": {
+          "byte_length": 224,
+          "byte_offset": 0,
+          "token_estimate": 39
+        }
+      }
+    },
+    {
+      "id": "plan:010-novel-on-disk-layout:spec",
+      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "mime": "text/markdown",
+      "path": "Plan/010-novel-on-disk-layout/spec.md",
+      "sha256": "37e2831be6d8b137da5f86075a75ad8457c6b6c2c71d24ca6123ade8d8038c7c",
+      "size_bytes": 9710,
+      "summary": "Spec 010 \u2014 Novel On-Disk Layout - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:008",
+        "slug:novel-on-disk-layout",
+        "domain:novel",
+        "kind:spec"
+      ],
+      "title": "Spec 010 \u2014 Novel On-Disk Layout",
+      "views": {
+        "full": {
+          "byte_length": 9710,
+          "byte_offset": 0,
+          "token_estimate": 2575
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 882
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:011-novel-handlers-core:spec",
+      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "mime": "text/markdown",
+      "path": "Plan/011-novel-handlers-core/spec.md",
+      "sha256": "ac6d9a0c01f6adee2e43b0f02d96e371bc9d1d21b03704e7995f5caa04b8e558",
+      "size_bytes": 14789,
+      "summary": "Spec 011 \u2014 Novel Handlers Core - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:009",
+        "slug:novel-handlers-core",
+        "domain:novel",
+        "kind:spec"
+      ],
+      "title": "Spec 011 \u2014 Novel Handlers Core",
+      "views": {
+        "full": {
+          "byte_length": 14789,
+          "byte_offset": 0,
+          "token_estimate": 4140
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 919
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:011a-novel-handlers-core-hardening:spec",
+      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "mime": "text/markdown",
+      "path": "Plan/011a-novel-handlers-core-hardening/spec.md",
+      "sha256": "7398a86f7d3098bca6409ff877dfee21756abdaa124068e45eae45c0f13c70c1",
+      "size_bytes": 10367,
+      "summary": "Spec 011a \u2014 Novel Handlers Core Hardening - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Spec 011a \u2014 Novel Handlers Core Hardening",
+      "views": {
+        "full": {
+          "byte_length": 10367,
+          "byte_offset": 0,
+          "token_estimate": 2732
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 868
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:012-dramatica-and-ncp-libs:spec",
+      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "mime": "text/markdown",
+      "path": "Plan/012-dramatica-and-ncp-libs/spec.md",
+      "sha256": "2dcacf4e1aaa8f647c014948a9bd45966b02b7407780c32ec628dcf1c3c09c0f",
+      "size_bytes": 14734,
+      "summary": "Spec 012 \u2014 Dramatica + NCP Libraries - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into\u2026",
+      "tags": [
+        "spec:010",
+        "slug:dramatica-and-ncp-libs",
+        "domain:novel",
+        "kind:spec"
+      ],
+      "title": "Spec 012 \u2014 Dramatica + NCP Libraries",
+      "views": {
+        "full": {
+          "byte_length": 14734,
+          "byte_offset": 0,
+          "token_estimate": 4000
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 880
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:013-novel-handlers-structural:references:dramatica-decidability",
+      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "mime": "text/markdown",
+      "path": "Plan/013-novel-handlers-structural/references/dramatica-decidability.md",
+      "sha256": "a91d9cf1dacf898c80b182f7e95bd078797c35b2a32640cd081409996db97476",
+      "size_bytes": 7974,
+      "summary": "Dramatica Decidability Matrix (embedded brief) - > **Source**: research agent `a78bd055cd15ef572` (\"Dramatica Decidability Matrix for Novel-Writing MCP\"). This file embeds the **matrix + recommendations**; the full plan-dump is not reproduced. Cite this file from Spec 013's Approach and from `lib/dramatica/navigator.py` docstrings.",
+      "tags": [],
+      "title": "Dramatica Decidability Matrix (embedded brief)",
+      "views": {
+        "full": {
+          "byte_length": 7974,
+          "byte_offset": 0,
+          "token_estimate": 2056
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 863
+        },
+        "summary": {
+          "byte_length": 333,
+          "byte_offset": 0,
+          "token_estimate": 86
+        }
+      }
+    },
+    {
+      "id": "plan:013-novel-handlers-structural:spec",
+      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "mime": "text/markdown",
+      "path": "Plan/013-novel-handlers-structural/spec.md",
+      "sha256": "7d3393c811f9f79edb2d8a1b704ff8797c0a15601e0b0c6c0d18eade67480037",
+      "size_bytes": 16950,
+      "summary": "Spec 013 \u2014 Novel Handlers (Structural) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:011",
+        "slug:novel-handlers-structural",
+        "domain:novel",
+        "kind:spec"
+      ],
+      "title": "Spec 013 \u2014 Novel Handlers (Structural)",
+      "views": {
+        "full": {
+          "byte_length": 16950,
+          "byte_offset": 0,
+          "token_estimate": 4503
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 871
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:014-novel-gates-and-revision:spec",
+      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "mime": "text/markdown",
+      "path": "Plan/014-novel-gates-and-revision/spec.md",
+      "sha256": "b219b601a08f43ade35de2c4f4ec2ede12a1b01753f3c9b76c86330328d45c7e",
+      "size_bytes": 16062,
+      "summary": "Spec 014 \u2014 Novel Gates and Revision - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:012",
+        "slug:novel-gates-and-revision",
+        "domain:novel",
+        "kind:spec"
+      ],
+      "title": "Spec 014 \u2014 Novel Gates and Revision",
+      "views": {
+        "full": {
+          "byte_length": 16062,
+          "byte_offset": 0,
+          "token_estimate": 4408
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 877
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:015-novel-skills-catalogue:references:parity-table",
+      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "mime": "text/markdown",
+      "path": "Plan/015-novel-skills-catalogue/references/parity-table.md",
+      "sha256": "d14f8e87e74e1f84ee614f81b55eb7381ce730d2911db887e7a18446a6c93c43",
+      "size_bytes": 11717,
+      "summary": "Novel-Craft Parity Table (embedded brief) - > **Source**: research agent `a0c570a83e53508f8` (\"Parity Table: bitwize-music \u2192 novel-writing MCP plugin roles\"). This file embeds the **30-row music\u2194novel role mapping + 6 novel-specific additions + collapse/drop decisions + sources**. Cite this file from Spec 015's Approach and from every novel SKILL.md authored.",
+      "tags": [],
+      "title": "Novel-Craft Parity Table (embedded brief)",
+      "views": {
+        "full": {
+          "byte_length": 11717,
+          "byte_offset": 0,
+          "token_estimate": 3021
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 819
+        },
+        "summary": {
+          "byte_length": 365,
+          "byte_offset": 0,
+          "token_estimate": 97
+        }
+      }
+    },
+    {
+      "id": "plan:015-novel-skills-catalogue:spec",
+      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "mime": "text/markdown",
+      "path": "Plan/015-novel-skills-catalogue/spec.md",
+      "sha256": "6edc52165182a52934f6f669737f86c4e720b9eaee8fbb34a525456cd8dd48ef",
+      "size_bytes": 16219,
+      "summary": "Spec 015 \u2014 Novel Skills Catalogue - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:013",
+        "slug:novel-skills-catalogue",
+        "domain:novel",
+        "kind:spec"
+      ],
+      "title": "Spec 015 \u2014 Novel Skills Catalogue",
+      "views": {
+        "full": {
+          "byte_length": 16219,
+          "byte_offset": 0,
+          "token_estimate": 4407
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 889
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:016-agentic-handlers-and-skills:references:agentic-tool-catalog",
+      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "mime": "text/markdown",
+      "path": "Plan/016-agentic-handlers-and-skills/references/agentic-tool-catalog.md",
+      "sha256": "e3f8ec8fc4c4024beb9edd6baf45596f882b11a1518b8763e76376afd1416584",
+      "size_bytes": 9262,
+      "summary": "Agentic Orchestration Tool Catalog \u2014 embedded brief - > Embedded into `Plan/016-agentic-handlers-and-skills/` from upstream research note > `look-at-the-code-inherited-toast-agent-acee154f8dd7033bf.md` (agentic-orchestration brief). > Authoritative for Spec 016. Do not edit in place \u2014 bump the upstream and re-embed.",
+      "tags": [],
+      "title": "Agentic Orchestration Tool Catalog \u2014 embedded brief",
+      "views": {
+        "full": {
+          "byte_length": 9262,
+          "byte_offset": 0,
+          "token_estimate": 2472
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 865
+        },
+        "summary": {
+          "byte_length": 321,
+          "byte_offset": 0,
+          "token_estimate": 84
+        }
+      }
+    },
+    {
+      "id": "plan:016-agentic-handlers-and-skills:spec",
+      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "mime": "text/markdown",
+      "path": "Plan/016-agentic-handlers-and-skills/spec.md",
+      "sha256": "4e501201d10253a4b79f442554811a7b0aed3d2b3f29b82cb5d7f9dfa7b903f3",
+      "size_bytes": 15779,
+      "summary": "Spec 016 \u2014 Agentic Handlers and Skills - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:014",
+        "slug:agentic-handlers-and-skills",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Spec 016 \u2014 Agentic Handlers and Skills",
+      "views": {
+        "full": {
+          "byte_length": 15779,
+          "byte_offset": 0,
+          "token_estimate": 4298
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 892
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:017-hooks-port-and-extend:spec",
+      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "mime": "text/markdown",
+      "path": "Plan/017-hooks-port-and-extend/spec.md",
+      "sha256": "651d17e284bdd4fd20fa5d14ddc6b6a5639fd2273353d912e7990b228dd92adb",
+      "size_bytes": 13385,
+      "summary": "Spec 017 \u2014 Hooks Port and Extend - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:015",
+        "slug:hooks-port-and-extend",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 017 \u2014 Hooks Port and Extend",
+      "views": {
+        "full": {
+          "byte_length": 13385,
+          "byte_offset": 0,
+          "token_estimate": 3494
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 821
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:018-overrides-and-config-migration:references:config-diff",
+      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "mime": "text/markdown",
+      "path": "Plan/018-overrides-and-config-migration/references/config-diff.md",
+      "sha256": "076375c4c4fe7d6e5344fc56051a6cd6617a8c106de86e952871905238913109",
+      "size_bytes": 4826,
+      "summary": "Config diff \u2014 bitwize-music.config.template.yaml \u2192 agency-system.config.template.yaml - > Embedded into `Plan/018-overrides-and-config-migration/`. Authored by spec > 018 itself; this file is the auditable record of *what changed* when bitwize's > template was unified into the agency-system template. Future config bumps > must extend this diff (append, not overwrite).",
+      "tags": [],
+      "title": "Config diff \u2014 bitwize-music.config.template.yaml \u2192 agency-system.config.template.yaml",
+      "views": {
+        "full": {
+          "byte_length": 4826,
+          "byte_offset": 0,
+          "token_estimate": 1300
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 860
+        },
+        "summary": {
+          "byte_length": 374,
+          "byte_offset": 0,
+          "token_estimate": 83
+        }
+      }
+    },
+    {
+      "id": "plan:018-overrides-and-config-migration:spec",
+      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "mime": "text/markdown",
+      "path": "Plan/018-overrides-and-config-migration/spec.md",
+      "sha256": "f9680368eef6008cae8b662201273f478b709fda2f6c307424bba1c508433fc7",
+      "size_bytes": 12303,
+      "summary": "Spec 018 \u2014 Overrides and Config Migration - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Spec 018 \u2014 Overrides and Config Migration",
+      "views": {
+        "full": {
+          "byte_length": 12303,
+          "byte_offset": 0,
+          "token_estimate": 3100
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 817
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 117
+        }
+      }
+    },
+    {
+      "id": "plan:019-state-migration-from-bitwize:spec",
+      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "mime": "text/markdown",
+      "path": "Plan/019-state-migration-from-bitwize/spec.md",
+      "sha256": "cf03271c785c6a4d875a0c053edcdcf950f385bbba60d4be9c1aa28bda6f6a56",
+      "size_bytes": 15073,
+      "summary": "Spec 019 \u2014 State Migration From bitwize-music - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/agency-plugin-refactor-PgMQ4`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Spec 019 \u2014 State Migration From bitwize-music",
+      "views": {
+        "full": {
+          "byte_length": 15073,
+          "byte_offset": 0,
+          "token_estimate": 4002
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 866
+        },
+        "summary": {
+          "byte_length": 392,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:020-bitwize-deprecation-and-docs:spec",
+      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "mime": "text/markdown",
+      "path": "Plan/020-bitwize-deprecation-and-docs/spec.md",
+      "sha256": "c146556b428a42bdaeee40935d6b363d236a67082a87382f74492f3c2fd41c99",
+      "size_bytes": 15864,
+      "summary": "Spec 020 \u2014 bitwize Deprecation and Docs - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:016",
+        "slug:bitwize-deprecation-and-docs",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 020 \u2014 bitwize Deprecation and Docs",
+      "views": {
+        "full": {
+          "byte_length": 15864,
+          "byte_offset": 0,
+          "token_estimate": 4348
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 866
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 122
+        }
+      }
+    },
+    {
+      "id": "plan:021-novel-prompt-builder-family:references:prompt-builder-methods",
+      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "mime": "text/markdown",
+      "path": "Plan/021-novel-prompt-builder-family/references/prompt-builder-methods.md",
+      "sha256": "119321ba3351b4234ca1d52002b899fb83da07e4089cbbfc673f1e78838e2f5d",
+      "size_bytes": 7858,
+      "summary": "Novel Prompt-Builder Methods (embedded brief) - > **Source provenance**: research agent `aa330f5c5a8989618` was scheduled by the toast plan (\"Novel prompt-builder family + method survey\") but its full plan-dump was not on disk at the time of Spec 021 authoring. This file embeds the **method survey, builder table, and reflection** synthesised from the toast plan's 8-source enumeration (toast.md\u2026",
+      "tags": [],
+      "title": "Novel Prompt-Builder Methods (embedded brief)",
+      "views": {
+        "full": {
+          "byte_length": 7858,
+          "byte_offset": 0,
+          "token_estimate": 2021
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 767
+        },
+        "summary": {
+          "byte_length": 399,
+          "byte_offset": 0,
+          "token_estimate": 97
+        }
+      }
+    },
+    {
+      "id": "plan:021-novel-prompt-builder-family:spec",
+      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "mime": "text/markdown",
+      "path": "Plan/021-novel-prompt-builder-family/spec.md",
+      "sha256": "15f9b6720fca06cbda21c509a074133505f0fe602130a43d2b12c0dace7f962d",
+      "size_bytes": 19251,
+      "summary": "Spec 021 \u2014 Novel Prompt-Builder Family - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:017",
+        "slug:novel-prompt-builder-family",
+        "domain:novel",
+        "kind:spec"
+      ],
+      "title": "Spec 021 \u2014 Novel Prompt-Builder Family",
+      "views": {
+        "full": {
+          "byte_length": 19251,
+          "byte_offset": 0,
+          "token_estimate": 5081
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 851
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:022-dev-mode-install:spec",
+      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "mime": "text/markdown",
+      "path": "Plan/022-dev-mode-install/spec.md",
+      "sha256": "a5b61bcb5eff7ba29667c104195ebb22b5d52b535e9e4185423c639f39b1ced0",
+      "size_bytes": 11458,
+      "summary": "Spec 022 \u2014 Dev-mode Plugin Install - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:018",
+        "slug:dev-mode-install",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 022 \u2014 Dev-mode Plugin Install",
+      "views": {
+        "full": {
+          "byte_length": 11458,
+          "byte_offset": 0,
+          "token_estimate": 2983
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 831
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:023-harness-in-harness:spec",
+      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "mime": "text/markdown",
+      "path": "Plan/023-harness-in-harness/spec.md",
+      "sha256": "66ae4b1d6f632d5a1c3de570c8a6510160577cf32b561a179935538827bef6f5",
+      "size_bytes": 19378,
+      "summary": "Spec 023 \u2014 Harness in a Harness (research epic) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are clone-and-read-only into `~/work/vendor/`;\u2026",
+      "tags": [
+        "spec:019",
+        "slug:harness-in-harness",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Spec 023 \u2014 Harness in a Harness (research epic)",
+      "views": {
+        "full": {
+          "byte_length": 19378,
+          "byte_offset": 0,
+          "token_estimate": 4752
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 791
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:098-wave-a-hardening:spec",
+      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "mime": "text/markdown",
+      "path": "Plan/098-wave-a-hardening/spec.md",
+      "sha256": "25172adcf7785fa1617f14a512ac18b78f9ed6135c03ab2e01fe3c1567a3f1dd",
+      "size_bytes": 12745,
+      "summary": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > If\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup)",
+      "views": {
+        "full": {
+          "byte_length": 12745,
+          "byte_offset": 0,
+          "token_estimate": 3474
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 900
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 124
+        }
+      }
+    },
+    {
+      "id": "plan:099-jules-orchestration-improvements:spec",
+      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "mime": "text/markdown",
+      "path": "Plan/099-jules-orchestration-improvements/spec.md",
+      "sha256": "0e4348173c2342f22e861311aa4ee7f18cea1e01fcc1c3d712c16fbf6085214c",
+      "size_bytes": 18726,
+      "summary": "Spec 099 \u2014 Jules Orchestration Improvements - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos\u2026",
+      "tags": [
+        "kind:spec"
+      ],
+      "title": "Skill-frontmatter migration sweep (Approach \u00a713 + Done-When item",
+      "views": {
+        "full": {
+          "byte_length": 18726,
+          "byte_offset": 0,
+          "token_estimate": 4753
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 827
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:100-session-log-mcp:spec",
+      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "mime": "text/markdown",
+      "path": "Plan/100-session-log-mcp/spec.md",
+      "sha256": "6cf4b9adc12fc04ebb8e15f304482c772fbe8494a3077bcba9bae8b05f6307d9",
+      "size_bytes": 11526,
+      "summary": "Spec 100 \u2014 Session-Log MCP Server - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:100",
+        "slug:session-log-mcp",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Spec 100 \u2014 Session-Log MCP Server",
+      "views": {
+        "full": {
+          "byte_length": 11526,
+          "byte_offset": 0,
+          "token_estimate": 2995
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 840
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:101-jules-mcp-tool-additions:spec",
+      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "mime": "text/markdown",
+      "path": "Plan/101-jules-mcp-tool-additions/spec.md",
+      "sha256": "7b958099e146043e8378dd215ed0d3b5c87264b9f8585bae80e202991c209ed8",
+      "size_bytes": 9245,
+      "summary": "Spec 101 \u2014 Jules MCP Tool Additions - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:101",
+        "slug:jules-mcp-tool-additions",
+        "domain:jules",
+        "kind:spec"
+      ],
+      "title": "Spec 101 \u2014 Jules MCP Tool Additions",
+      "views": {
+        "full": {
+          "byte_length": 9245,
+          "byte_offset": 0,
+          "token_estimate": 2412
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 861
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:102-pr-rebase-policy:spec",
+      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "mime": "text/markdown",
+      "path": "Plan/102-pr-rebase-policy/spec.md",
+      "sha256": "8bc137360208a7b7d63ea96a77409ac1d64bdc30f968fe65ebfe0815f1d8c52c",
+      "size_bytes": 8297,
+      "summary": "Spec 102 \u2014 PR Rebase Policy - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:102",
+        "slug:pr-rebase-policy",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 102 \u2014 PR Rebase Policy",
+      "views": {
+        "full": {
+          "byte_length": 8297,
+          "byte_offset": 0,
+          "token_estimate": 2170
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 835
+        },
+        "summary": {
+          "byte_length": 395,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:103-view-fields-projection:spec",
+      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "mime": "text/markdown",
+      "path": "Plan/103-view-fields-projection/spec.md",
+      "sha256": "ea29347ae4fcbd22a96c946573e02ce9dc0c235213a4abf7b1b79c538b4c7ddf",
+      "size_bytes": 9104,
+      "summary": "Spec 103 \u2014 View Tiers & Fields Projection on Read Tools - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:103",
+        "slug:view-fields-projection",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 103 \u2014 View Tiers & Fields Projection on Read Tools",
+      "views": {
+        "full": {
+          "byte_length": 9104,
+          "byte_offset": 0,
+          "token_estimate": 2420
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 892
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:104-tool-search-anchor-triad:spec",
+      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "mime": "text/markdown",
+      "path": "Plan/104-tool-search-anchor-triad/spec.md",
+      "sha256": "d7e97ce43ba8657798825504a3242685ce024820ade703ccaeea6ea850468dd6",
+      "size_bytes": 9344,
+      "summary": "Spec 104 \u2014 Anchor-Triad Tool Discovery (Atlassian mcp-compressor pattern) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under\u2026",
+      "tags": [
+        "spec:104",
+        "slug:tool-search-anchor-triad",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 104 \u2014 Anchor-Triad Tool Discovery (Atlassian mcp-compressor pattern)",
+      "views": {
+        "full": {
+          "byte_length": 9344,
+          "byte_offset": 0,
+          "token_estimate": 2384
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 847
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:105-toon-serializer:spec",
+      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "mime": "text/markdown",
+      "path": "Plan/105-toon-serializer/spec.md",
+      "sha256": "72b4f4e4742fc4198b156436cc087ede7cb540ec6041fdc28474ef164ee459fe",
+      "size_bytes": 8401,
+      "summary": "Spec 105 \u2014 TOON Serializer Middleware for Uniform Array Returns - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:`\u2026",
+      "tags": [
+        "spec:105",
+        "slug:toon-serializer",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 105 \u2014 TOON Serializer Middleware for Uniform Array Returns",
+      "views": {
+        "full": {
+          "byte_length": 8401,
+          "byte_offset": 0,
+          "token_estimate": 2228
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 876
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 116
+        }
+      }
+    },
+    {
+      "id": "plan:106-github-mcp-summary-wrappers:spec",
+      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "mime": "text/markdown",
+      "path": "Plan/106-github-mcp-summary-wrappers/spec.md",
+      "sha256": "d3788315027ac516ba8c882a3dbac74eee4d519ddfe2a9ac1f76e02047d441e0",
+      "size_bytes": 9772,
+      "summary": "Spec 106 \u2014 GitHub MCP Summary Wrappers (Subagent-Dispatched) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:106",
+        "slug:github-mcp-summary-wrappers",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Spec 106 \u2014 GitHub MCP Summary Wrappers (Subagent-Dispatched)",
+      "views": {
+        "full": {
+          "byte_length": 9772,
+          "byte_offset": 0,
+          "token_estimate": 2522
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 852
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 121
+        }
+      }
+    },
+    {
+      "id": "plan:107-cache-breakpoint-ordering:spec",
+      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "mime": "text/markdown",
+      "path": "Plan/107-cache-breakpoint-ordering/spec.md",
+      "sha256": "336ae87528042b4fb739f33a42a7f56b2ba54b916bea6b73905c96644ad0e175",
+      "size_bytes": 9153,
+      "summary": "Spec 107 \u2014 Cache Breakpoint Ordering & TTL Pinning - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source\u2026",
+      "tags": [
+        "spec:107",
+        "slug:cache-breakpoint-ordering",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 107 \u2014 Cache Breakpoint Ordering & TTL Pinning",
+      "views": {
+        "full": {
+          "byte_length": 9153,
+          "byte_offset": 0,
+          "token_estimate": 2324
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 837
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:108-context-mode-integration:spec",
+      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "mime": "text/markdown",
+      "path": "Plan/108-context-mode-integration/spec.md",
+      "sha256": "0143cb22270a679fa0334390168e598d712934e401f22dc72d261cb3b02f7d89",
+      "size_bytes": 12648,
+      "summary": "Spec 108 \u2014 Context Mode Integration - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:108",
+        "slug:context-mode-integration",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 108 \u2014 Context Mode Integration",
+      "views": {
+        "full": {
+          "byte_length": 12648,
+          "byte_offset": 0,
+          "token_estimate": 3164
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 830
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 117
+        }
+      }
+    },
+    {
+      "id": "plan:111-context-mode-manifest:spec",
+      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "mime": "text/markdown",
+      "path": "Plan/111-context-mode-manifest/spec.md",
+      "sha256": "d55bd5789828e3558d9c0d9af647f5e1119adf11ef13fcf6c56d14f3bbdc559e",
+      "size_bytes": 17868,
+      "summary": "Spec 111 \u2014 Context Mode Manifest - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:111",
+        "slug:context-mode-manifest",
+        "domain:cross",
+        "topic:dramatica",
+        "topic:ncp",
+        "kind:spec"
+      ],
+      "title": "Spec 111 \u2014 Context Mode Manifest",
+      "views": {
+        "full": {
+          "byte_length": 17868,
+          "byte_offset": 0,
+          "token_estimate": 4529
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 876
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 118
+        }
+      }
+    },
+    {
+      "id": "plan:112-context-anchor-triad:spec",
+      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "mime": "text/markdown",
+      "path": "Plan/112-context-anchor-triad/spec.md",
+      "sha256": "7dfbda4b0f761f955f70906c848b6a6aaae9181820211fd22ac9f3ef4215aebf",
+      "size_bytes": 18497,
+      "summary": "Spec 112 \u2014 Context Anchor-Triad (`context_search` / `context_describe` / `context_read`) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "tags": [
+        "spec:112",
+        "slug:context-anchor-triad",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 112 \u2014 Context Anchor-Triad (`context_search` / `context_describe` / `context_read`)",
+      "views": {
+        "full": {
+          "byte_length": 18497,
+          "byte_offset": 0,
+          "token_estimate": 4594
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 841
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 122
+        }
+      }
+    },
+    {
+      "id": "plan:113-context-cache-and-subscriptions:spec",
+      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "mime": "text/markdown",
+      "path": "Plan/113-context-cache-and-subscriptions/spec.md",
+      "sha256": "2cdf619eedbd51585747b5f676b0c363960d78618d7737811c0eb4ee6caf689e",
+      "size_bytes": 19259,
+      "summary": "Spec 113 \u2014 Context Cache & Subscriptions - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos under\u2026",
+      "tags": [
+        "spec:113",
+        "slug:context-cache-and-subscriptions",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 113 \u2014 Context Cache & Subscriptions",
+      "views": {
+        "full": {
+          "byte_length": 19259,
+          "byte_offset": 0,
+          "token_estimate": 4757
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 836
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:114-read-cache-delta-mode:spec",
+      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "mime": "text/markdown",
+      "path": "Plan/114-read-cache-delta-mode/spec.md",
+      "sha256": "a2f4b41b8e8293cc87b26dca52a7b3bc5835a6bee7db104b34dd7aa6c91c3269",
+      "size_bytes": 10951,
+      "summary": "Spec 114 \u2014 Read-Cache Delta Mode (re-read returns diff only) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:114",
+        "slug:read-cache-delta-mode",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 114 \u2014 Read-Cache Delta Mode (re-read returns diff only)",
+      "views": {
+        "full": {
+          "byte_length": 10951,
+          "byte_offset": 0,
+          "token_estimate": 2885
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 854
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 121
+        }
+      }
+    },
+    {
+      "id": "plan:115-structure-map-ast:spec",
+      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "mime": "text/markdown",
+      "path": "Plan/115-structure-map-ast/spec.md",
+      "sha256": "b685f3331c7e34b1ec8cd321d94a2d3fd182a82167dc5dec04661b6cbaa115c3",
+      "size_bytes": 11146,
+      "summary": "Spec 115 \u2014 Structure Map (AST skeleton for large code files) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:115",
+        "slug:structure-map-ast",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 115 \u2014 Structure Map (AST skeleton for large code files)",
+      "views": {
+        "full": {
+          "byte_length": 11146,
+          "byte_offset": 0,
+          "token_estimate": 2874
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 821
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:116-bash-output-compression:spec",
+      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "mime": "text/markdown",
+      "path": "Plan/116-bash-output-compression/spec.md",
+      "sha256": "456e71f8b4f2c740b1d8a1a783e3e31fbc4fe5e4d175c4c6ae9e3e8bd3971f8d",
+      "size_bytes": 12086,
+      "summary": "Spec 116 \u2014 Bash Output Compression (PostToolUse rewrite) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:116",
+        "slug:bash-output-compression",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 116 \u2014 Bash Output Compression (PostToolUse rewrite)",
+      "views": {
+        "full": {
+          "byte_length": 12086,
+          "byte_offset": 0,
+          "token_estimate": 3120
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 879
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:117-tool-result-archive:spec",
+      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "mime": "text/markdown",
+      "path": "Plan/117-tool-result-archive/spec.md",
+      "sha256": "16c3fc9988a91b41a0abbc62c080fc8fad6192b182b4951cebf3dcc6595b0f20",
+      "size_bytes": 11456,
+      "summary": "Spec 117 \u2014 Tool Result Archive (>4 KB outputs \u2192 disk + inline hint + `expand` retrieval) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "tags": [
+        "spec:117",
+        "slug:tool-result-archive",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 117 \u2014 Tool Result Archive (>4 KB outputs \u2192 disk + inline hint + `expand` retrieval)",
+      "views": {
+        "full": {
+          "byte_length": 11456,
+          "byte_offset": 0,
+          "token_estimate": 2879
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 827
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:118-quality-score-telemetry:spec",
+      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "mime": "text/markdown",
+      "path": "Plan/118-quality-score-telemetry/spec.md",
+      "sha256": "e16dcdb67890cd50c4997d958e6e4a31c49f9200a743f34ea8f300d98b026a04",
+      "size_bytes": 12587,
+      "summary": "Spec 118 \u2014 Quality Score Telemetry (7-signal weighted + nudges + session-log integration) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "tags": [
+        "spec:118",
+        "slug:quality-score-telemetry",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 118 \u2014 Quality Score Telemetry (7-signal weighted + nudges + session-log integration)",
+      "views": {
+        "full": {
+          "byte_length": 12587,
+          "byte_offset": 0,
+          "token_estimate": 3236
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 872
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:119-loop-detection:spec",
+      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "mime": "text/markdown",
+      "path": "Plan/119-loop-detection/spec.md",
+      "sha256": "5d3def61e31b767ae87a02ca47fa22b172f49d35b250272f0037753538101215",
+      "size_bytes": 9349,
+      "summary": "Spec 119 \u2014 Loop Detection (similarity scoring on last 4 user msgs + last 5 tool results) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "tags": [
+        "spec:119",
+        "slug:loop-detection",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 119 \u2014 Loop Detection (similarity scoring on last 4 user msgs + last 5 tool results)",
+      "views": {
+        "full": {
+          "byte_length": 9349,
+          "byte_offset": 0,
+          "token_estimate": 2461
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 832
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 122
+        }
+      }
+    },
+    {
+      "id": "plan:120-smart-compaction-checkpoints:spec",
+      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "mime": "text/markdown",
+      "path": "Plan/120-smart-compaction-checkpoints/spec.md",
+      "sha256": "2941e8500072b0f3fd6967ad0d018b949653a6ec61123846cc837100a84c90df",
+      "size_bytes": 13215,
+      "summary": "Spec 120 \u2014 Smart Compaction Checkpoints (PreCompact snapshots + decision digest restore) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify\u2026",
+      "tags": [
+        "spec:120",
+        "slug:smart-compaction-checkpoints",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 120 \u2014 Smart Compaction Checkpoints (PreCompact snapshots + decision digest restore)",
+      "views": {
+        "full": {
+          "byte_length": 13215,
+          "byte_offset": 0,
+          "token_estimate": 3315
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 843
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 117
+        }
+      }
+    },
+    {
+      "id": "plan:121-contextignore-hardblock:spec",
+      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "mime": "text/markdown",
+      "path": "Plan/121-contextignore-hardblock/spec.md",
+      "sha256": "005ec27297401198c0ee4f9de3ca294f99b1af62b335f0e152264888e7375f89",
+      "size_bytes": 10482,
+      "summary": "Spec 121 \u2014 `.contextignore` Hard Block (gitignore-style file blocklist) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under\u2026",
+      "tags": [
+        "spec:121",
+        "slug:contextignore-hardblock",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 121 \u2014 `.contextignore` Hard Block (gitignore-style file blocklist)",
+      "views": {
+        "full": {
+          "byte_length": 10482,
+          "byte_offset": 0,
+          "token_estimate": 2688
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 844
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:130-shared-toolresult-envelope:spec",
+      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "mime": "text/markdown",
+      "path": "Plan/130-shared-toolresult-envelope/spec.md",
+      "sha256": "548c5f190f93682b39800b9b6704606309e3d20455895b41a4ebee5e667cf53b",
+      "size_bytes": 15257,
+      "summary": "Spec 130 \u2014 Shared `ToolResult` Envelope + Conformance Gate - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:130",
+        "slug:shared-toolresult-envelope",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 130 \u2014 Shared `ToolResult` Envelope + Conformance Gate",
+      "views": {
+        "full": {
+          "byte_length": 15257,
+          "byte_offset": 0,
+          "token_estimate": 3948
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 846
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 121
+        }
+      }
+    },
+    {
+      "id": "plan:131-manifest-coverage-lint:spec",
+      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "mime": "text/markdown",
+      "path": "Plan/131-manifest-coverage-lint/spec.md",
+      "sha256": "22fe12f21b08d826e788fb3852d9327ffb8687897fd76b05b7b1faab557bee24",
+      "size_bytes": 13881,
+      "summary": "Spec 131 \u2014 Code Mode Manifest Coverage Lint (drift detector) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:131",
+        "slug:manifest-coverage-lint",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 131 \u2014 Code Mode Manifest Coverage Lint (drift detector)",
+      "views": {
+        "full": {
+          "byte_length": 13881,
+          "byte_offset": 0,
+          "token_estimate": 3472
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 834
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:132-skill-tool-hooks:spec",
+      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "mime": "text/markdown",
+      "path": "Plan/132-skill-tool-hooks/spec.md",
+      "sha256": "38b123b7d1a807d0c0b9bd42ce186c6a7f1181cfb09dc01509bb8963370a4aef",
+      "size_bytes": 20335,
+      "summary": "Spec 132 \u2014 Skill-Tool Hooks (PreToolUse + PostToolUse on `Skill|Agent` matcher) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under\u2026",
+      "tags": [
+        "spec:132",
+        "slug:skill-tool-hooks",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 132 \u2014 Skill-Tool Hooks (PreToolUse + PostToolUse on `Skill|Agent` matcher)",
+      "views": {
+        "full": {
+          "byte_length": 20335,
+          "byte_offset": 0,
+          "token_estimate": 5098
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 817
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 124
+        }
+      }
+    },
+    {
+      "id": "plan:133-skill-subagent-pressure-tests:spec",
+      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "mime": "text/markdown",
+      "path": "Plan/133-skill-subagent-pressure-tests/spec.md",
+      "sha256": "af6830a8ad5936672b719c52c621eb7da948ae680a1a705e1d8203472e28d03e",
+      "size_bytes": 23682,
+      "summary": "Spec 133 \u2014 Skill Subagent-Pressure Test Framework - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source\u2026",
+      "tags": [
+        "spec:133",
+        "slug:skill-subagent-pressure-tests",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Spec 133 \u2014 Skill Subagent-Pressure Test Framework",
+      "views": {
+        "full": {
+          "byte_length": 23682,
+          "byte_offset": 0,
+          "token_estimate": 5920
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 812
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:134-plan-adr-convention:spec",
+      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "mime": "text/markdown",
+      "path": "Plan/134-plan-adr-convention/spec.md",
+      "sha256": "c95a0fc72b83521e44edebc41901caede63fd6d99e75adafacd6c38d77f58d04",
+      "size_bytes": 12914,
+      "summary": "Spec 134 \u2014 Plan-level ADR Convention (MADR-shaped Decision Records) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:`\u2026",
+      "tags": [
+        "spec:134",
+        "slug:plan-adr-convention",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 134 \u2014 Plan-level ADR Convention (MADR-shaped Decision Records)",
+      "views": {
+        "full": {
+          "byte_length": 12914,
+          "byte_offset": 0,
+          "token_estimate": 3480
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 861
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 119
+        }
+      }
+    },
+    {
+      "id": "plan:135-spec-test-anchor-traceability:spec",
+      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "mime": "text/markdown",
+      "path": "Plan/135-spec-test-anchor-traceability/spec.md",
+      "sha256": "1b9f94ea5fe65bd6cf448277cff5f981f47565cad79b2280ec05fe4bcee7ad79",
+      "size_bytes": 12895,
+      "summary": "Spec 135 \u2014 Spec \u2194 Test Anchor Traceability Lint - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos\u2026",
+      "tags": [
+        "spec:135",
+        "slug:spec-test-anchor-traceability",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 135 \u2014 Spec \u2194 Test Anchor Traceability Lint",
+      "views": {
+        "full": {
+          "byte_length": 12895,
+          "byte_offset": 0,
+          "token_estimate": 3360
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 830
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:136-agents-yaml-role-manifest:spec",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/136-agents-yaml-role-manifest/spec.md",
+      "sha256": "45051cefeaba423b49b85cb85dc9d801cdc15098e85e6785cd12dadda82b287e",
+      "size_bytes": 16888,
+      "summary": "Spec 136 \u2014 `agents.yaml` Role Manifest + Hand-off Registry - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:136",
+        "slug:agents-yaml-role-manifest",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Spec 136 \u2014 `agents.yaml` Role Manifest + Hand-off Registry",
+      "views": {
+        "full": {
+          "byte_length": 16888,
+          "byte_offset": 0,
+          "token_estimate": 4291
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 822
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:137-watcher-sdk-composability:spec",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/137-watcher-sdk-composability/spec.md",
+      "sha256": "7731fedbfd8c305f8f70ad5ce7f32ea4d07ab0e804351a83b2c54f09d2fe20d9",
+      "size_bytes": 18084,
+      "summary": "Spec 137 \u2014 Watcher SDK + Composable Polling - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. > Source repos\u2026",
+      "tags": [
+        "spec:137",
+        "slug:watcher-sdk-composability",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Spec 137 \u2014 Watcher SDK + Composable Polling",
+      "views": {
+        "full": {
+          "byte_length": 18084,
+          "byte_offset": 0,
+          "token_estimate": 4633
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 822
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 121
+        }
+      }
+    },
+    {
+      "id": "plan:138-frustration-log-protocol:spec",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/138-frustration-log-protocol/spec.md",
+      "sha256": "f9c692dcc6914642d78ed2c9889f393a73d45165d54ec6aa03a382c1ac88fb37",
+      "size_bytes": 12989,
+      "summary": "Spec 138 \u2014 Mandatory Per-PR Frustration-Log Protocol (FL0\u2013FL3) - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below.\u2026",
+      "tags": [
+        "spec:138",
+        "slug:frustration-log-protocol",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 138 \u2014 Mandatory Per-PR Frustration-Log Protocol (FL0\u2013FL3)",
+      "views": {
+        "full": {
+          "byte_length": 12989,
+          "byte_offset": 0,
+          "token_estimate": 3350
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 787
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 125
+        }
+      }
+    },
+    {
+      "id": "plan:139-evidence-snapshot-helper:spec",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/139-evidence-snapshot-helper/spec.md",
+      "sha256": "ff873412eaa908d58ca3fb337d79a05b280931e18ccb8c6f84a59220db3cdf12",
+      "size_bytes": 14718,
+      "summary": "Spec 139 \u2014 Clean-Install Evidence-Snapshot Helper for Gate 3 - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `Master` (default base for fresh specs post-Wave-A; see JULES_PROTOCOL.md \u00a73). Only modify paths under `affects:` below. >\u2026",
+      "tags": [
+        "spec:139",
+        "slug:evidence-snapshot-helper",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 139 \u2014 Clean-Install Evidence-Snapshot Helper for Gate 3",
+      "views": {
+        "full": {
+          "byte_length": 14718,
+          "byte_offset": 0,
+          "token_estimate": 3720
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 822
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:01-scratch-files-on-pr-body-composition",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/01-scratch-files-on-pr-body-composition.md",
+      "sha256": "3b4b85ec50a5db9681dbeaf5d4303d4a5dbf8dd7ddcca9ad6a4647724d0a23e7",
+      "size_bytes": 1869,
+      "summary": "Scratch files on PR-body composition - - **Spec 002**: Jules committed `pr_description.md` (cleaned up after first review). - **Spec 004 first attempt**: Jules committed `dummy_tools.py`, `fix_test.py`, `fix_tools_inline.py` \u2014 one contained the literal comment `\"Wait, he said DO NOT GUESS\"`. - **Spec 004a retry**: Jules committed `pr_body.md` (the duplicate of the PR body that already lives on\u2026",
+      "tags": [
+        "slug:scratch-files-on-pr-body-composition",
+        "lesson_id:1",
+        "kind:lesson"
+      ],
+      "title": "Scratch files on PR-body composition",
+      "views": {
+        "full": {
+          "byte_length": 1869,
+          "byte_offset": 0,
+          "token_estimate": 468
+        },
+        "preview": {
+          "byte_length": 1869,
+          "byte_offset": 0,
+          "token_estimate": 468
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 102
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:02-agent-messaged-and-wait-kills-sessions",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/02-agent-messaged-and-wait-kills-sessions.md",
+      "sha256": "ba8b898aaff0faa88cbfe14511fac2f7b76f918278d87b1ad0a7a1143f650ecf",
+      "size_bytes": 2535,
+      "summary": "agentMessaged-and-wait kills sessions - Spec 004a first attempt (`sessions/3738904739183261333`) hit a real ambiguity (tools/mixing wasn't in `affects:`). Jules sent the question via `agentMessaged` and\u2026 waited. The session went to **FAILED** state. The Jules platform appears to timeout sessions that block on `agentMessaged` for too long.",
+      "tags": [
+        "slug:agent-messaged-and-wait-kills-sessions",
+        "lesson_id:2",
+        "kind:lesson"
+      ],
+      "title": "agentMessaged-and-wait kills sessions",
+      "views": {
+        "full": {
+          "byte_length": 2535,
+          "byte_offset": 0,
+          "token_estimate": 607
+        },
+        "preview": {
+          "byte_length": 2535,
+          "byte_offset": 0,
+          "token_estimate": 607
+        },
+        "summary": {
+          "byte_length": 342,
+          "byte_offset": 0,
+          "token_estimate": 87
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:03-evidence-with-polluted-pythonpath",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/03-evidence-with-polluted-pythonpath.md",
+      "sha256": "50f693eeb9322da469b608b1d2e9471d8b2c68547070eec48e27486d95072ae0",
+      "size_bytes": 2493,
+      "summary": "Evidence captured under polluted PYTHONPATH masks broken imports - Spec 004 first attempt (PR #36) shipped a 15k-line PR where the production code physically did not import. `core.py` had `from tools.state.indexer import write_state`; `tools/` didn't exist on the branch. Jules' Evidence block showed:",
+      "tags": [
+        "slug:evidence-with-polluted-pythonpath-masks-broken-imports",
+        "lesson_id:3",
+        "kind:lesson"
+      ],
+      "title": "Evidence captured under polluted PYTHONPATH masks broken imports",
+      "views": {
+        "full": {
+          "byte_length": 2493,
+          "byte_offset": 0,
+          "token_estimate": 613
+        },
+        "preview": {
+          "byte_length": 2493,
+          "byte_offset": 0,
+          "token_estimate": 613
+        },
+        "summary": {
+          "byte_length": 301,
+          "byte_offset": 0,
+          "token_estimate": 69
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:04-affects-list-incompleteness",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/04-affects-list-incompleteness.md",
+      "sha256": "26fe83ac3c39c526beb5d91d027429bbb3b27f049c58e872b45962a1ba778844",
+      "size_bytes": 2646,
+      "summary": "Spec `affects:` lists keep being incomplete - - **Spec 002**: `Files: Create:` listed `tests/smoke/test_manifest.py`, but the YAML `affects:` did not. Jules created the file as instructed, technically violating anti-pattern #6 (file outside `affects:`). - **Spec 004 first attempt**: `affects:` listed 16 handler files but the implementation legitimately needed `_atomic.py`, `_shared.py`,\u2026",
+      "tags": [
+        "slug:affects-list-incompleteness",
+        "lesson_id:4",
+        "kind:lesson"
+      ],
+      "title": "Spec `affects:` lists keep being incomplete",
+      "views": {
+        "full": {
+          "byte_length": 2646,
+          "byte_offset": 0,
+          "token_estimate": 660
+        },
+        "preview": {
+          "byte_length": 2646,
+          "byte_offset": 0,
+          "token_estimate": 660
+        },
+        "summary": {
+          "byte_length": 392,
+          "byte_offset": 0,
+          "token_estimate": 93
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:05-independent-review-subagent-is-load-bearing",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/05-independent-review-subagent-is-load-bearing.md",
+      "sha256": "b6e32a0e9b4b1a7d07cb3c65f007bb8fc30e2e0c222c50c3d9fcc3206642ff5f",
+      "size_bytes": 2729,
+      "summary": "Independent code-review subagent is load-bearing \u2014 keep it - Every PR in this wave got an independent code-review subagent pass before merge. Verdicts:",
+      "tags": [
+        "slug:independent-review-subagent-is-load-bearing",
+        "lesson_id:5",
+        "kind:lesson"
+      ],
+      "title": "Independent code-review subagent is load-bearing \u2014 keep it",
+      "views": {
+        "full": {
+          "byte_length": 2729,
+          "byte_offset": 0,
+          "token_estimate": 699
+        },
+        "preview": {
+          "byte_length": 2729,
+          "byte_offset": 0,
+          "token_estimate": 699
+        },
+        "summary": {
+          "byte_length": 153,
+          "byte_offset": 0,
+          "token_estimate": 32
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:06-spec-vs-schema-drift",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/06-spec-vs-schema-drift.md",
+      "sha256": "98562c9c0b2a9542025828c1207be6a0b10bc5918c34224b8b64f4618d24bffb",
+      "size_bytes": 2401,
+      "summary": "Spec text drifts from upstream schemas - Spec 012 (Dramatica + NCP libs) Gherkin 012.5/012.6 said:",
+      "tags": [
+        "slug:spec-vs-schema-drift",
+        "lesson_id:6",
+        "kind:lesson"
+      ],
+      "title": "Spec text drifts from upstream schemas",
+      "views": {
+        "full": {
+          "byte_length": 2401,
+          "byte_offset": 0,
+          "token_estimate": 593
+        },
+        "preview": {
+          "byte_length": 2401,
+          "byte_offset": 0,
+          "token_estimate": 593
+        },
+        "summary": {
+          "byte_length": 98,
+          "byte_offset": 0,
+          "token_estimate": 33
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:07-server-py-merge-conflicts-trivial",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/07-server-py-merge-conflicts-trivial.md",
+      "sha256": "165b9b2217223cd6ddc08ead75d950466dbfcc56ed6e018d36a2e10fe43991c6",
+      "size_bytes": 1893,
+      "summary": "server.py merge conflicts are trivial \u2014 don't serialize specs over them - I held back specs 006 and 009 for a while because all three (004, 006, 009) modify `servers/agency-mcp/src/agency_mcp/server.py` \u2014 each spec adds one `register_<domain>_handlers(mcp)` line inside `register_all(mcp)`. I worried about merge conflicts.",
+      "tags": [
+        "slug:server-py-merge-conflicts-trivial",
+        "lesson_id:7",
+        "kind:lesson"
+      ],
+      "title": "server.py merge conflicts are trivial \u2014 don't serialize specs over them",
+      "views": {
+        "full": {
+          "byte_length": 1893,
+          "byte_offset": 0,
+          "token_estimate": 434
+        },
+        "preview": {
+          "byte_length": 1893,
+          "byte_offset": 0,
+          "token_estimate": 434
+        },
+        "summary": {
+          "byte_length": 327,
+          "byte_offset": 0,
+          "token_estimate": 82
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:08-jules-mcp-tool-gaps",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/08-jules-mcp-tool-gaps.md",
+      "sha256": "41680f8a3f279ba8aa35c89e49cb43f8d12dd477cf2126f5b7d772aae91082fc",
+      "size_bytes": 3004,
+      "summary": "Gaps in the Jules MCP tool surface - The Jules v1alpha API has no cancel mechanism. When I wanted to stop a redundant session (e.g. spec-004 dormant), `jules_stop` returned `{\"error\": \"unsupported\"}`. The workaround was `jules_message` with a \"STAND DOWN\" instruction. Sometimes Jules respected it; sometimes it kept iterating.",
+      "tags": [
+        "slug:jules-mcp-tool-gaps",
+        "lesson_id:08",
+        "kind:lesson"
+      ],
+      "title": "Gaps in the Jules MCP tool surface",
+      "views": {
+        "full": {
+          "byte_length": 3004,
+          "byte_offset": 0,
+          "token_estimate": 769
+        },
+        "preview": {
+          "byte_length": 3004,
+          "byte_offset": 0,
+          "token_estimate": 769
+        },
+        "summary": {
+          "byte_length": 327,
+          "byte_offset": 0,
+          "token_estimate": 82
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:09-watcher-pattern-idiom",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/09-watcher-pattern-idiom.md",
+      "sha256": "8c7ef2d956374b324b7a41dc60f638d6423420dd4c3db2303879021763a52f22",
+      "size_bytes": 2099,
+      "summary": "The combined-poller watcher pattern works - I built `/tmp/jules_combined_watcher.py` early in the session and reused it across the whole wave. It:",
+      "tags": [
+        "slug:watcher-pattern-idiom",
+        "lesson_id:09",
+        "kind:lesson"
+      ],
+      "title": "The combined-poller watcher pattern works",
+      "views": {
+        "full": {
+          "byte_length": 2099,
+          "byte_offset": 0,
+          "token_estimate": 515
+        },
+        "preview": {
+          "byte_length": 2099,
+          "byte_offset": 0,
+          "token_estimate": 515
+        },
+        "summary": {
+          "byte_length": 146,
+          "byte_offset": 0,
+          "token_estimate": 33
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:10-jules-message-can-revive-but-unreliable",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/10-jules-message-can-revive-but-unreliable.md",
+      "sha256": "3f2239b61e2320150278c62e29bb27092ad5ba767ec187e3a8c73131618349be",
+      "size_bytes": 2219,
+      "summary": "`jules_message` to a FAILED/COMPLETED session: revive-or-not is racy - - Spec 004a first attempt **FAILED**. I sent `jules_message` hoping to revive. The state briefly showed `IN_PROGRESS` again \u2014 but the user (correctly) believed the session was truly dead. Jules did no real follow-up work. My retry-dispatch was the right call. - Spec 004 (dormant): after PR #36 marked DRAFT BLOCKED, I sent a\u2026",
+      "tags": [
+        "slug:jules-message-can-revive-but-unreliable",
+        "lesson_id:10",
+        "kind:lesson"
+      ],
+      "title": "`jules_message` to a FAILED/COMPLETED session: revive-or-not is racy",
+      "views": {
+        "full": {
+          "byte_length": 2219,
+          "byte_offset": 0,
+          "token_estimate": 537
+        },
+        "preview": {
+          "byte_length": 2219,
+          "byte_offset": 0,
+          "token_estimate": 537
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 106
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:11-side-quest-session-log-mcp",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/11-side-quest-session-log-mcp.md",
+      "sha256": "622e5eaf6642b87561648e567c783740687c4015a5942d2f933c638a5d65e656",
+      "size_bytes": 3425,
+      "summary": "Side-quest \u2014 session-log MCP for post-mortem analysis - Throughout this wave I've been hand-grepping Jules activity streams to answer questions like:",
+      "tags": [
+        "slug:side-quest-session-log-mcp",
+        "lesson_id:11",
+        "kind:lesson"
+      ],
+      "title": "Side-quest \u2014 session-log MCP for post-mortem analysis",
+      "views": {
+        "full": {
+          "byte_length": 3425,
+          "byte_offset": 0,
+          "token_estimate": 852
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 151,
+          "byte_offset": 0,
+          "token_estimate": 32
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:12-completed-without-pr-or-state-mismatch",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/12-completed-without-pr-or-state-mismatch.md",
+      "sha256": "3e4f8775b43fb335683b0bb98d3f79822325c5cfae9a660314ac6fd9e724b6d2",
+      "size_bytes": 2696,
+      "summary": "Session COMPLETED \u2260 PR opened - Spec 012 (Dramatica + NCP libs) session `sessions/8219552128114767877` transitioned to `COMPLETED` per `jules_get`, and the `jules_patch_summary` returns a real diff \u2014 but the branch is missing on GitHub:",
+      "tags": [
+        "slug:completed-without-pr-or-state-mismatch",
+        "lesson_id:12",
+        "kind:lesson"
+      ],
+      "title": "Session COMPLETED \u2260 PR opened",
+      "views": {
+        "full": {
+          "byte_length": 2696,
+          "byte_offset": 0,
+          "token_estimate": 687
+        },
+        "preview": {
+          "byte_length": 2696,
+          "byte_offset": 0,
+          "token_estimate": 687
+        },
+        "summary": {
+          "byte_length": 240,
+          "byte_offset": 0,
+          "token_estimate": 65
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:13-codex-bot-pr-reviews-are-gold",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/13-codex-bot-pr-reviews-are-gold.md",
+      "sha256": "1bc5fd94391d02bc15ecf886740a758a8f13d620128cca5fd99e9bafb3ba51f4",
+      "size_bytes": 3904,
+      "summary": "The Codex bot review on PR #30 caught what I missed - PR #30 (the Plan PR against `Master`) accumulated **40 review comments** from `chatgpt-codex-connector[bot]` across 7 commits \u2014 automated, free, and shockingly high signal. A categorical breakdown of what it caught:",
+      "tags": [
+        "slug:codex-bot-pr-reviews-are-gold",
+        "lesson_id:13",
+        "kind:lesson"
+      ],
+      "title": "The Codex bot review on PR #30 caught what I missed",
+      "views": {
+        "full": {
+          "byte_length": 3904,
+          "byte_offset": 0,
+          "token_estimate": 976
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 809
+        },
+        "summary": {
+          "byte_length": 271,
+          "byte_offset": 0,
+          "token_estimate": 68
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:14-token-consumption-postmortem",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/14-token-consumption-postmortem.md",
+      "sha256": "8099423d5ca391d9a0ca1bb1bc3a808e89c61372c14cdc1a461a7d6180392e46",
+      "size_bytes": 5716,
+      "summary": "What consumed the most tokens in this orchestration session - By the time the user asked \"purge unneeded messages\", the context was at **692k / 1M (69%)** with **666k in Messages** \u2014 96% of token spend was conversation history. The session was still functional but headroom for further work was thin.",
+      "tags": [
+        "slug:token-consumption-postmortem",
+        "lesson_id:14",
+        "kind:lesson"
+      ],
+      "title": "What consumed the most tokens in this orchestration session",
+      "views": {
+        "full": {
+          "byte_length": 5716,
+          "byte_offset": 0,
+          "token_estimate": 1455
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 849
+        },
+        "summary": {
+          "byte_length": 302,
+          "byte_offset": 0,
+          "token_estimate": 71
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:15-manual-ops-the-mcp-should-automate",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/15-manual-ops-the-mcp-should-automate.md",
+      "sha256": "4243e92d79c1a1a220457b7d4ac3a8a14e177cb1fdc8b64b7e7aa9910e4e5db0",
+      "size_bytes": 8458,
+      "summary": "Manual orchestration ops the MCP server should automate - Catalogue of operations the orchestrator (me, this session) performed by hand that the agency-mcp / jules-mcp servers could absorb as first-class tools. Each is a recurring multi-step ritual; together they consumed a material slice of session attention.",
+      "tags": [
+        "slug:manual-ops-the-mcp-should-automate",
+        "lesson_id:15",
+        "kind:lesson"
+      ],
+      "title": "Manual orchestration ops the MCP server should automate",
+      "views": {
+        "full": {
+          "byte_length": 8458,
+          "byte_offset": 0,
+          "token_estimate": 2211
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 839
+        },
+        "summary": {
+          "byte_length": 311,
+          "byte_offset": 0,
+          "token_estimate": 62
+        }
+      }
+    },
+    {
+      "id": "plan:_lessons-learned:readme",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_lessons-learned/README.md",
+      "sha256": "4a83185ed56725c4b5a46ced78774bc5355d1cd2dae8342c0c9251ab8de052ff",
+      "size_bytes": 2458,
+      "summary": "Lessons Learned \u2014 Jules orchestration wave (2026-05-17) - Real-time observations captured during the multi-session Jules fanout for `the-agency-system` plugin refactor. Each lesson is one markdown file with a YAML frontmatter (severity, what it touches) and a tight body (~150\u2013400 words).",
+      "tags": [
+        "kind:lesson"
+      ],
+      "title": "Lessons Learned \u2014 Jules orchestration wave (2026-05-17)",
+      "views": {
+        "full": {
+          "byte_length": 2458,
+          "byte_offset": 0,
+          "token_estimate": 582
+        },
+        "preview": {
+          "byte_length": 2458,
+          "byte_offset": 0,
+          "token_estimate": 582
+        },
+        "summary": {
+          "byte_length": 292,
+          "byte_offset": 0,
+          "token_estimate": 68
+        }
+      }
+    },
+    {
+      "id": "plan:_research-briefs:01-centralized-ontology",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research-briefs/01-centralized-ontology.md",
+      "sha256": "69ad41e34dd6efe6526cbbec35eab32a34dff80932a3ea7e8dc2318bc1ebea2f",
+      "size_bytes": 11989,
+      "summary": "Research Brief \u2014 Centralized Ontology for Plugin Domains - This is the prompt body dispatched to Jules via `jules-bulk fanout`. It is committed here for audit, traceability, and re-dispatch if the first run yields unsatisfactory output. Edit only via supersession (new brief that references this one).",
+      "tags": [
+        "slug:centralized-ontology",
+        "topic:research-discipline"
+      ],
+      "title": "Research Brief \u2014 Centralized Ontology for Plugin Domains",
+      "views": {
+        "full": {
+          "byte_length": 11989,
+          "byte_offset": 0,
+          "token_estimate": 3175
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 812
+        },
+        "summary": {
+          "byte_length": 303,
+          "byte_offset": 0,
+          "token_estimate": 67
+        }
+      }
+    },
+    {
+      "id": "plan:_research-briefs:02-agency-tooling-codemode",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research-briefs/02-agency-tooling-codemode.md",
+      "sha256": "d01fb41316c8d64d1b5ba8bd397963bad0406ad31b942294ba143c3fbb7a3676",
+      "size_bytes": 12491,
+      "summary": "Research Brief \u2014 Agency Tooling Extraction + MCP Code Mode Integration - This is the prompt body dispatched to Jules via `jules-bulk fanout`. Sibling brief: `01-centralized-ontology.md` (this brief assumes its data-shape outputs as inputs but does not block on them).",
+      "tags": [
+        "slug:agency-tooling-codemode"
+      ],
+      "title": "Research Brief \u2014 Agency Tooling Extraction + MCP Code Mode Integration",
+      "views": {
+        "full": {
+          "byte_length": 12491,
+          "byte_offset": 0,
+          "token_estimate": 3302
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 818
+        },
+        "summary": {
+          "byte_length": 269,
+          "byte_offset": 0,
+          "token_estimate": 61
+        }
+      }
+    },
+    {
+      "id": "plan:_research-briefs:fanout",
+      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "mime": "application/json",
+      "path": "Plan/_research-briefs/fanout.json",
+      "sha256": "e47113a16a4e5688d677f6594105464d8c2e2cd707c070d9da9d7007773f40b9",
+      "size_bytes": 25128,
+      "summary": "fanout.json - [\n  {\n    \"alias\": \"research-122-ontology\",\n    \"title\": \"Research: Centralized Ontology for Plugin Domains (Brief 1)\",\n    \"branch\": \"Master\",\n    \"prompt\": \"---\\ntype: research-brief\\nstatus: dispat",
+      "tags": [
+        "topic:research-discipline"
+      ],
+      "title": "fanout.json",
+      "views": {
+        "full": {
+          "byte_length": 25128,
+          "byte_offset": 0,
+          "token_estimate": 6854
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 833
+        },
+        "summary": {
+          "byte_length": 214,
+          "byte_offset": 0,
+          "token_estimate": 62
+        }
+      }
+    },
+    {
+      "id": "plan:_research-briefs:fanout-results",
+      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "mime": "application/json",
+      "path": "Plan/_research-briefs/fanout-results.json",
+      "sha256": "98e6c736b82dc294d908659567aabe17924dcbc0fd4192e85af962f6b54cbb2e",
+      "size_bytes": 504,
+      "summary": "fanout-results.json - [\n  {\n    \"alias\": \"research-122-ontology\",\n    \"session_id\": \"13927980186995922904\",\n    \"state\": \"?\",\n    \"url\": \"https://jules.google.com/session/13927980186995922904\",\n    \"title\": \"Research: Cent",
+      "tags": [],
+      "title": "fanout-results.json",
+      "views": {
+        "full": {
+          "byte_length": 504,
+          "byte_offset": 0,
+          "token_estimate": 154
+        },
+        "preview": {
+          "byte_length": 504,
+          "byte_offset": 0,
+          "token_estimate": 154
+        },
+        "summary": {
+          "byte_length": 222,
+          "byte_offset": 0,
+          "token_estimate": 68
+        }
+      }
+    },
+    {
+      "id": "plan:_research-briefs:readme",
+      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research-briefs/readme.md",
+      "sha256": "3c5a3316d9fcc89863a10efe631efd7d175580896b32efa61fbd297e2641e946",
+      "size_bytes": 3065,
+      "summary": "Research Briefs (Jules dispatch artefacts) - Each `NN-<slug>.md` in this folder is the verbatim prompt body of a Jules research session that was dispatched via `jules-plugin/bin/jules-bulk fanout`. The brief lives in the repo so the dispatch is auditable, reproducible, and supersession-safe (edit only by adding a new brief that references the prior one).",
+      "tags": [],
+      "title": "Research Briefs (Jules dispatch artefacts)",
+      "views": {
+        "full": {
+          "byte_length": 3065,
+          "byte_offset": 0,
+          "token_estimate": 830
+        },
+        "preview": {
+          "byte_length": 3065,
+          "byte_offset": 0,
+          "token_estimate": 830
+        },
+        "summary": {
+          "byte_length": 356,
+          "byte_offset": 0,
+          "token_estimate": 85
+        }
+      }
+    },
+    {
+      "id": "plan:_research:agency-tooling-codemode:draft-spec",
+      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/agency-tooling-codemode/draft-spec.md",
+      "sha256": "5fbf33afd81a3e5f82d51cb10d6cd71e20fd8eb601e2b0585dc42f193d403153",
+      "size_bytes": 6364,
+      "summary": "Spec 123: Agency Tooling Extraction + MCP Code Mode Integration - Brief 1 (Spec 122) established a centralized ontology data shape (types, schemas, edges, modes). However, a data shape is inert without machinery to enforce it. The `netzkontrast/agency` repository contains a mature suite of Python validation, linting, rendering, and auditing tools (`tools/fm/`, `check-*.py`).",
+      "tags": [
+        "spec:123",
+        "slug:agency-tooling-codemode",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 123: Agency Tooling Extraction + MCP Code Mode Integration",
+      "views": {
+        "full": {
+          "byte_length": 6364,
+          "byte_offset": 0,
+          "token_estimate": 1558
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 840
+        },
+        "summary": {
+          "byte_length": 377,
+          "byte_offset": 0,
+          "token_estimate": 89
+        }
+      }
+    },
+    {
+      "id": "plan:_research:agency-tooling-codemode:findings",
+      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/agency-tooling-codemode/findings.md",
+      "sha256": "1a08b65ff6ceb28dc45db407a5b0abc4a1ae042de405d5524a788d7c2ed09030",
+      "size_bytes": 41449,
+      "summary": "Agency Tooling Extraction + MCP Code Mode Integration - This research report catalogues the validation, linting, rendering, and auditing tooling in the `netzkontrast/agency` repository. The analysis covered 46 files under `tools/` and `tools/fm/`, alongside schemas in `maintenance/schemas/`.",
+      "tags": [],
+      "title": "Agency Tooling Extraction + MCP Code Mode Integration",
+      "views": {
+        "full": {
+          "byte_length": 41449,
+          "byte_offset": 0,
+          "token_estimate": 9727
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 789
+        },
+        "summary": {
+          "byte_length": 292,
+          "byte_offset": 0,
+          "token_estimate": 67
+        }
+      }
+    },
+    {
+      "id": "plan:_research:centralized-ontology:draft-spec",
+      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/centralized-ontology/draft-spec.md",
+      "sha256": "62494e70886263ea001f62e856a734e4a3392b2a6d9f399ae2ab1737b0b5bcd7",
+      "size_bytes": 4873,
+      "summary": "Spec 122: Centralized Ontology for Plugin Domains - The `the-agency-system` plugin currently suffers from ad-hoc, localized conventions across its domains (music, novel, jules, agentic). This fragmentation prevents cross-domain querying, complicates validation, and limits the richness of the Context Mode Path B architecture. By adopting a centralized ontology\u2014inspired by `netzkontrast/agency` PR\u2026",
+      "tags": [
+        "spec:122",
+        "slug:centralized-ontology",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 122: Centralized Ontology for Plugin Domains",
+      "views": {
+        "full": {
+          "byte_length": 4873,
+          "byte_offset": 0,
+          "token_estimate": 1186
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 777
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 86
+        }
+      }
+    },
+    {
+      "id": "plan:_research:centralized-ontology:findings",
+      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/centralized-ontology/findings.md",
+      "sha256": "395a5d744cfd5c475f0d2bd57ca78021bb8223693c863efcc4bda809bc86ebee",
+      "size_bytes": 67542,
+      "summary": "Centralized Ontology for Plugin Domains: Findings Report - This research report explores the feasibility and design of a centralized ontology that unifies all domains within `the-agency-system` Claude Code plugin: music, novel, jules, agentic, shared, and scaffold. Currently, each domain operates on ad-hoc, localized conventions. This fragmentation complicates cross-domain operations, limits the\u2026",
+      "tags": [],
+      "title": "Centralized Ontology for Plugin Domains: Findings Report",
+      "views": {
+        "full": {
+          "byte_length": 67542,
+          "byte_offset": 0,
+          "token_estimate": 14788
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 771
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 79
+        }
+      }
+    },
+    {
+      "id": "plan:_research:graphqlite-codemode:draft-spec",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/graphqlite-codemode/draft-spec.md",
+      "sha256": "84f257392d38e6f49cc92e18401f5c87633e588fc8fafa4e478eea72af19e152",
+      "size_bytes": 9433,
+      "summary": "Spec 124 \u2014 GraphQLite Code Mode Integration - > **Jules: read `Plan/JULES_PROTOCOL.md` before starting.** Run gates 1\u21924 in order: > (1) Confidence \u2265 0.90, (2) TDD Red-Green-Refactor, (3) Evidence pasted under `## Evidence`, (4) Self-Review answered. > Branch: `claude/document-context-mode-specs-qX8h7`. Only modify paths under `affects:` below. > Source repos under `source-repos:` are\u2026",
+      "tags": [
+        "spec:124",
+        "slug:graphqlite-codemode",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 124 \u2014 GraphQLite Code Mode Integration",
+      "views": {
+        "full": {
+          "byte_length": 9433,
+          "byte_offset": 0,
+          "token_estimate": 2424
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 838
+        },
+        "summary": {
+          "byte_length": 395,
+          "byte_offset": 0,
+          "token_estimate": 117
+        }
+      }
+    },
+    {
+      "id": "plan:_research:graphqlite-codemode:findings",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/graphqlite-codemode/findings.md",
+      "sha256": "4f1838f491908dd6bcc5b3336604d92ced94a85020f40dd8fa720e26cb723062",
+      "size_bytes": 69018,
+      "summary": "Research Findings: GraphQLite as the Plugin's Graph Query Layer - Adopting `colliery-io/graphqlite` as the single cross-domain graph query layer for `the-agency-system` is highly recommended, albeit with a structured partial-adoption strategy (wrapping the engine behind domain-agnostic `graph_*` tools).",
+      "tags": [],
+      "title": "Research Findings: GraphQLite as the Plugin's Graph Query Layer",
+      "views": {
+        "full": {
+          "byte_length": 69018,
+          "byte_offset": 0,
+          "token_estimate": 16911
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 727
+        },
+        "summary": {
+          "byte_length": 304,
+          "byte_offset": 0,
+          "token_estimate": 66
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-jules-research-1-context-engineering",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-jules-research-1-context-engineering.md",
+      "sha256": "3aa1563a5c791c02b9c7cbf7aa7621c9ced794ff3726ceacc7d2c97733d0f2d5",
+      "size_bytes": 5639,
+      "summary": "2026-05-18-jules-research-1-context-engineering.md - The highest-leverage pattern discovered is the **PM Agent Confidence Check** from the SuperClaude Framework, which yields a 25-250x token ROI by enforcing a pre-execution requirement check. While hybrid search and subagent workflows offer value, shifting confidence validation to the start of the orchestration pipeline prevents compounding\u2026",
+      "tags": [],
+      "title": "2026-05-18-jules-research-1-context-engineering.md",
+      "views": {
+        "full": {
+          "byte_length": 5639,
+          "byte_offset": 0,
+          "token_estimate": 1319
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 787
+        },
+        "summary": {
+          "byte_length": 396,
+          "byte_offset": 0,
+          "token_estimate": 82
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-jules-research-2-token-efficiency",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-jules-research-2-token-efficiency.md",
+      "sha256": "174a59122c622339fe89c26e9ca92ebbc91932338d8bb6f0095841d7e3b7b43e",
+      "size_bytes": 7159,
+      "summary": "Research Findings: Token-Efficiency Patterns - The highest-leverage token-efficiency pattern the plugin should adopt next is **Subagent-Driven Execution with Boot Context Isolation**. While the existing spec cluster does an excellent job compressing the `tools/list` payload and read caching file payloads, it does not solve the fundamental issue that the main orchestrator session retains all\u2026",
+      "tags": [],
+      "title": "Research Findings: Token-Efficiency Patterns",
+      "views": {
+        "full": {
+          "byte_length": 7159,
+          "byte_offset": 0,
+          "token_estimate": 1606
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 732
+        },
+        "summary": {
+          "byte_length": 396,
+          "byte_offset": 0,
+          "token_estimate": 76
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-jules-research-3-spec-driven-dev",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-jules-research-3-spec-driven-dev.md",
+      "sha256": "3776a977623c10e1fed5a34827511dcf3ce4bdf2ad6e5b3deb0e8a10a8017055",
+      "size_bytes": 6302,
+      "summary": "2026-05-18-jules-research-3-spec-driven-dev.md - The highest-leverage spec-driven-development gap for the Jules plugin is the lack of a structured, multi-phase planning ladder that precedes code execution, and an explicit mechanism to update tasks as code naturally drifts. While `JULES_PROTOCOL.md` and Spec 099 enforce pre-commit checks and token discipline, they omit the rigorous pre-code\u2026",
+      "tags": [],
+      "title": "2026-05-18-jules-research-3-spec-driven-dev.md",
+      "views": {
+        "full": {
+          "byte_length": 6302,
+          "byte_offset": 0,
+          "token_estimate": 1466
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 753
+        },
+        "summary": {
+          "byte_length": 395,
+          "byte_offset": 0,
+          "token_estimate": 87
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-jules-research-4-large-context-ingestion",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-jules-research-4-large-context-ingestion.md",
+      "sha256": "23142233cfb3cb25e255bf1193b36ca346617d3b5cb7b0de71074feb61a3e4a2",
+      "size_bytes": 6430,
+      "summary": "2026-05-18-jules-research-4-large-context-ingestion.md - The highest-leverage pattern for handling large contexts in the agency-system is **Ephemeral Subagent Distillation** (as seen in Spec 106 and superpowers). Instead of streaming massive payloads (e.g., 50KB GitHub PRs or deep codebase reads) into the orchestrator\u2019s main context window, a subagent is dispatched into an isolated environment\u2026",
+      "tags": [],
+      "title": "2026-05-18-jules-research-4-large-context-ingestion.md",
+      "views": {
+        "full": {
+          "byte_length": 6430,
+          "byte_offset": 0,
+          "token_estimate": 1597
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 844
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 91
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-jules-research-5-pipeline-and-plugin",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-jules-research-5-pipeline-and-plugin.md",
+      "sha256": "c33bc24b5075196a5329c38ee8f74621ccdddf22da0d4173d705bcb8362be635",
+      "size_bytes": 5762,
+      "summary": "2026-05-18-jules-research-5-pipeline-and-plugin.md - The next major architectural wave for the agency-system plugin must unify context discovery, token conservation, and agent orchestration under a single \"progressive disclosure\" paradigm. Currently, token sinks (like massive GitHub PR reads or eager file loads) and context blindness (lacking a global manifest) force the LLM to choose between\u2026",
+      "tags": [],
+      "title": "2026-05-18-jules-research-5-pipeline-and-plugin.md",
+      "views": {
+        "full": {
+          "byte_length": 5762,
+          "byte_offset": 0,
+          "token_estimate": 1332
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 758
+        },
+        "summary": {
+          "byte_length": 398,
+          "byte_offset": 0,
+          "token_estimate": 83
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-next-session-goal",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-next-session-goal.md",
+      "sha256": "de105f21dacfffde027ed26a631b477de733c60568d4da3e1e33e4f7e0001dde",
+      "size_bytes": 6600,
+      "summary": "/goal \u2014 next orchestration session - Continue the the-agency-system unified-plugin refactor. Master is at the session-handoff commit (15 specs done / 30 ready in Plan/). Start by reading `Plan/_session-state/2026-05-18-orchestration-handoff.md` \u2014 it has the dependency graph, the 5-command startup script, and the 6 hardest lessons from the previous session.",
+      "tags": [],
+      "title": "/goal \u2014 next orchestration session",
+      "views": {
+        "full": {
+          "byte_length": 6600,
+          "byte_offset": 0,
+          "token_estimate": 1732
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 840
+        },
+        "summary": {
+          "byte_length": 362,
+          "byte_offset": 0,
+          "token_estimate": 86
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-orchestration-handoff",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-orchestration-handoff.md",
+      "sha256": "ba87214ea434efe900765e87f3a61fe1ee460abda3a1217339239ca0f42e3181",
+      "size_bytes": 7983,
+      "summary": "Orchestration handoff \u2014 2026-05-17 \u2192 2026-05-18 - **Wave A \u2014 complete:** specs 001, 002, 003, 004, 004a, 005, 006, 006a, 007, 008, 009, 010, 012, 019.",
+      "tags": [],
+      "title": "Orchestration handoff \u2014 2026-05-17 \u2192 2026-05-18",
+      "views": {
+        "full": {
+          "byte_length": 7983,
+          "byte_offset": 0,
+          "token_estimate": 2201
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 909
+        },
+        "summary": {
+          "byte_length": 156,
+          "byte_offset": 0,
+          "token_estimate": 73
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-research-1-mcp-findings",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-research-1-mcp-findings.md",
+      "sha256": "db7e2473957246c966cfdc7ae6ecefb7b0a8dbbefaabf02af7606d0d043b5b9d",
+      "size_bytes": 7381,
+      "summary": "Research Agent 1 \u2014 MCP + Code Mode + tool-handler integration audit (2026-05-18) - - `Plan/000-overview.md` \u00a72.1 (Code Mode + MCP conventions, all 11 sub-bullets). - Existing token-efficiency + Code Mode specs: 008 (registry), 022 (dev install), 103 (view/fields), 104 (anchor triad), 105 (TOON), 106 (gh summary wrappers), 107 (cache breakpoint), 108 (context-mode plugin adopt), 111 / 112 / 113\u2026",
+      "tags": [
+        "slug:2026-05-18-research-1-mcp-findings"
+      ],
+      "title": "Research Agent 1 \u2014 MCP + Code Mode + tool-handler integration audit (2026-05-18)",
+      "views": {
+        "full": {
+          "byte_length": 7381,
+          "byte_offset": 0,
+          "token_estimate": 1932
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 888
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-research-2-skills-findings",
+      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-research-2-skills-findings.md",
+      "sha256": "e39b4127fb8d258003c9c854f86b1b1157f6df4b5d3dd27be42e4b1a81891f4b",
+      "size_bytes": 8182,
+      "summary": "Research Agent 2 \u2014 Skills + Skill-Creator + Skill-Discovery Findings - > **Date:** 2026-05-18 > **Branch:** `claude/research-integration-2-skills-CtdIJ` > **Slot range:** 132-133 > **Reviewer:** parallel research sweep \u2014 agent 2 of 5",
+      "tags": [],
+      "title": "Research Agent 2 \u2014 Skills + Skill-Creator + Skill-Discovery Findings",
+      "views": {
+        "full": {
+          "byte_length": 8182,
+          "byte_offset": 0,
+          "token_estimate": 2167
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 948
+        },
+        "summary": {
+          "byte_length": 237,
+          "byte_offset": 0,
+          "token_estimate": 70
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-research-3-spec-findings",
+      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-research-3-spec-findings.md",
+      "sha256": "46842fe6440dc204b08ecd59c2c057ca233b0d0999fa689f7600a503d8be3f60",
+      "size_bytes": 7532,
+      "summary": "Research Findings \u2014 Spec-driven development + spec governance (2026-05-18) - Compare `netzkontrast/agency`'s task/decision/template surface (TASK.md 516 lines, 95 tasks under `/tasks/`, 12 ADRs under `/decisions/`, validated by `tools/adr/cli.py`) and the Superpowers writing-plans / executing-plans discipline against the-agency-system's current Plan/ model (47 specs, `Plan/JULES_PROTOCOL.md` as\u2026",
+      "tags": [],
+      "title": "Research Findings \u2014 Spec-driven development + spec governance (2026-05-18)",
+      "views": {
+        "full": {
+          "byte_length": 7532,
+          "byte_offset": 0,
+          "token_estimate": 1979
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 908
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 106
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-research-4-multi-findings",
+      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-research-4-multi-findings.md",
+      "sha256": "2ea90f169c8d2facf955187ef5a632f28c54ace0bcf3cd59b1156b5a93a65a7a",
+      "size_bytes": 10634,
+      "summary": "Research findings \u2014 Multi-agent orchestration + cross-agent hand-off - - `/home/user/agency/AGENTS.md` (668 lines) \u2014 the master agent contract; ratifies four agent platforms (Claude Code, Jules, Gemini, Codex) with platform-implementation notes per \u00a7\"Closing Run Procedure\". Key insight: AGENTS.md **codifies platform routing prose-side** but does NOT ship an executable manifest the toolchain can\u2026",
+      "tags": [],
+      "title": "Research findings \u2014 Multi-agent orchestration + cross-agent hand-off",
+      "views": {
+        "full": {
+          "byte_length": 10634,
+          "byte_offset": 0,
+          "token_estimate": 2685
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 89
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-research-5-process-findings",
+      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-research-5-process-findings.md",
+      "sha256": "8b2edae21aa39838599a1889333517e0645bac4e03f9eb2e15dc8e434ac98103",
+      "size_bytes": 6841,
+      "summary": "Research Agent 5 of 5 \u2014 Process & Quality-Gate Findings (2026-05-18) - Survey `netzkontrast/agency` (`PRE_COMMIT.md`, `MAINTENANCE.md`, `FRUSTRATED.md`, `.githooks/`) and the relevant Superpowers discipline skills (`verification-before-completion`, `receiving-code-review`, `requesting-code-review`, `finishing-a-development-branch`) for process disciplines that `the-agency-system` does not yet\u2026",
+      "tags": [],
+      "title": "Research Agent 5 of 5 \u2014 Process & Quality-Gate Findings (2026-05-18)",
+      "views": {
+        "full": {
+          "byte_length": 6841,
+          "byte_offset": 0,
+          "token_estimate": 1779
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 840
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 106
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-research-correction-delta",
+      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-research-correction-delta.md",
+      "sha256": "4320bcb42ca5bd463e4dc7a215eaa96e4e928e1954d3da2bf30ede541ddc8dd5",
+      "size_bytes": 30013,
+      "summary": "Research correction sweep \u2014 2026-05-18 - The original 5-agent fan-out (slots 130-139) was briefed with the wrong superpowers source. They were pointed at `/root/.claude/plugins/cache/superpowers-marketplace/superpowers/` \u2014 the locally-cached marketplace artefact \u2014 not the upstream repo. After dispatch, the user corrected the targets to three concrete forks:",
+      "tags": [],
+      "title": "Research correction sweep \u2014 2026-05-18",
+      "views": {
+        "full": {
+          "byte_length": 30013,
+          "byte_offset": 0,
+          "token_estimate": 7830
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 896
+        },
+        "summary": {
+          "byte_length": 365,
+          "byte_offset": 0,
+          "token_estimate": 83
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-spec-022-dispatch",
+      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-spec-022-dispatch.md",
+      "sha256": "f5e7c436c517b0152bdc652b1e52856888793906ec4ed59e6c08a9d6e5ce27b1",
+      "size_bytes": 3419,
+      "summary": "Spec 022 dispatch \u2014 2026-05-18 - Move 1 of the 2026-05-18 next-session goal: dispatch Spec 022 (dev-mode-install) to Jules as the single Wave-A enabler that unblocks the downstream batches.",
+      "tags": [],
+      "title": "Spec 022 dispatch \u2014 2026-05-18",
+      "views": {
+        "full": {
+          "byte_length": 3419,
+          "byte_offset": 0,
+          "token_estimate": 969
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 903
+        },
+        "summary": {
+          "byte_length": 191,
+          "byte_offset": 0,
+          "token_estimate": 55
+        }
+      }
+    },
+    {
+      "id": "plan:_session-state:2026-05-18-spec-hygiene-audit",
+      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "mime": "text/markdown",
+      "path": "Plan/_session-state/2026-05-18-spec-hygiene-audit.md",
+      "sha256": "084d114af37dee1e94fbd39f47f0461fa698c32b696f762f4ae09bc9d098ea9f",
+      "size_bytes": 13342,
+      "summary": "Spec hygiene audit \u2014 2026-05-18 - A one-shot pass over the 32 `status: ready` specs in `Plan/` (after Wave-A landed via PRs #30 and #46), looking for three categories of defect:",
+      "tags": [],
+      "title": "Spec hygiene audit \u2014 2026-05-18",
+      "views": {
+        "full": {
+          "byte_length": 13342,
+          "byte_offset": 0,
+          "token_estimate": 3677
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 898
+        },
+        "summary": {
+          "byte_length": 179,
+          "byte_offset": 0,
+          "token_estimate": 52
+        }
+      }
+    },
+    {
+      "id": "plan:jules_protocol",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/JULES_PROTOCOL.md",
+      "sha256": "a0baa5fbac4ce34d91b29042439dde4f3c618345f547625f536a5af26f0f72e9",
+      "size_bytes": 14140,
+      "summary": "JULES_PROTOCOL.md - > **Audience:** Jules (Google's asynchronous cloud coding agent) working on `the-agency-system`. This document is the contract. Every spec in `Plan/` defers to it.",
+      "tags": [],
+      "title": "JULES_PROTOCOL.md",
+      "views": {
+        "full": {
+          "byte_length": 14140,
+          "byte_offset": 0,
+          "token_estimate": 3418
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 819
+        },
+        "summary": {
+          "byte_length": 183,
+          "byte_offset": 0,
+          "token_estimate": 47
+        }
+      }
+    },
+    {
+      "id": "plan:sources",
+      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "mime": "text/markdown",
+      "path": "Plan/SOURCES.md",
+      "sha256": "243f0f417b31c15853bbdf66b4a914ef5ad7faea756731f05515403673484154",
+      "size_bytes": 2919,
+      "summary": "SOURCES.md \u2014 Canonical Source Repositories - All Plan/ specs that read from external sources cite this table. Jules clones into `~/work/vendor/<name>/` (read-only) and never commits vendor files into `the-agency-system`.",
+      "tags": [],
+      "title": "SOURCES.md \u2014 Canonical Source Repositories",
+      "views": {
+        "full": {
+          "byte_length": 2919,
+          "byte_offset": 0,
+          "token_estimate": 904
+        },
+        "preview": {
+          "byte_length": 2919,
+          "byte_offset": 0,
+          "token_estimate": 904
+        },
+        "summary": {
+          "byte_length": 222,
+          "byte_offset": 0,
+          "token_estimate": 50
+        }
+      }
+    },
+    {
+      "id": "reference:jules-architecture",
+      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "mime": "text/markdown",
+      "path": "reference/jules-architecture.md",
+      "sha256": "b2dd8f754bc14a28b7d4d6633bb555eb82a11e6d8a63fd1a6279a5a3bffe79b0",
+      "size_bytes": 37447,
+      "summary": "Architectural and Operational Analysis of Google Jules: Execution Environments, Tool Schemas, and Autonomous Agentic Capabilities - The evolution of generative artificial intelligence in software engineering has transitioned definitively from passive, synchronous code-completion utilities \u2014 often categorized as \"copilots\" \u2014 to active, asynchronous, and fully autonomous coding agents. Google Jules\u2026",
+      "tags": [
+        "slug:jules-architecture-and-tools"
+      ],
+      "title": "Architectural and Operational Analysis of Google Jules: Execution Environments, Tool Schemas, and Autonomous Agentic Cap",
+      "views": {
+        "full": {
+          "byte_length": 37447,
+          "byte_offset": 0,
+          "token_estimate": 7236
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 576
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 72
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:ontology",
+      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "mime": "application/json",
+      "path": "reference/novel/dramatica/ontology.json",
+      "sha256": "456904954935d65b1537a14c3ba0d24d66a6045fd5af57081f4e716afbe50b6e",
+      "size_bytes": 141466,
+      "summary": "ontology.json - {\n  \"schema_version\": \"1.0\",\n  \"ontology_version\": \"0.1\",\n  \"created\": \"2026-05-04\",\n  \"entries\": [\n    {\n      \"id\": \"arc.antagonist\",\n      \"kind\": \"archetype\",\n      \"canonical_label\": \"Antagonist\"",
+      "tags": [],
+      "title": "ontology.json",
+      "views": {
+        "full": {
+          "byte_length": 141466,
+          "byte_offset": 0,
+          "token_estimate": 37921
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 865
+        },
+        "summary": {
+          "byte_length": 216,
+          "byte_offset": 0,
+          "token_estimate": 71
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:ontology.schema",
+      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "mime": "application/json",
+      "path": "reference/novel/dramatica/ontology.schema.json",
+      "sha256": "2607ac7fad84a4c4e81c53db42f014abe5cb1a3562bf9ea035b5f343069d9c8e",
+      "size_bytes": 6793,
+      "summary": "Narrative Ontology \u2014 Entry - One canonical record of a Dramatica concept (Class, Type, Variation, Element, Archetype, Character/Plot Dynamic, Storypoint, Quad, Dynamic-Pair, Signpost-slot, or meta Concept). Maps optionally to one NCP enum string. The single source of truth for narrative IDs across the four narrative skills.",
+      "tags": [],
+      "title": "Narrative Ontology \u2014 Entry",
+      "views": {
+        "full": {
+          "byte_length": 6793,
+          "byte_offset": 0,
+          "token_estimate": 1898
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 844
+        },
+        "summary": {
+          "byte_length": 327,
+          "byte_offset": 0,
+          "token_estimate": 72
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:scenarios",
+      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "mime": "application/json",
+      "path": "reference/novel/dramatica/scenarios.json",
+      "sha256": "6466756bb9aab4a6f3ebc060d5b4c6045ae01cbc000dd3b35ba5078fdc63d3b8",
+      "size_bytes": 2836,
+      "summary": "scenarios.json - {\n  \"schema_version\": \"1.0\",\n  \"ontology_version\": \"0.1\",\n  \"created\": \"2026-05-04\",\n  \"scenarios\": [\n    {\n      \"id\": \"novel.storyform-slot-fill\",\n      \"persona\": \"novel\",\n      \"summary\": \"Identif",
+      "tags": [],
+      "title": "scenarios.json",
+      "views": {
+        "full": {
+          "byte_length": 2836,
+          "byte_offset": 0,
+          "token_estimate": 743
+        },
+        "preview": {
+          "byte_length": 2836,
+          "byte_offset": 0,
+          "token_estimate": 743
+        },
+        "summary": {
+          "byte_length": 217,
+          "byte_offset": 0,
+          "token_estimate": 72
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:scenarios.schema",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "application/json",
+      "path": "reference/novel/dramatica/scenarios.schema.json",
+      "sha256": "47debea766091af2481f6faedd0f47dee06dd89bbf054dbdc94f4468ecbf524e",
+      "size_bytes": 2249,
+      "summary": "Narrative Ontology \u2014 Scenario Definition - One persona-scenario record. Eleven scenarios ship in v0.1 (six 'novel.*' for the Novel Author Anna; five 'lyric.*' for the Organist / Lyric Architect Otto). New scenarios go through the proposal procedure declared in tasks/015-integrate-dramatica-ncp-skills/task.md \u00a7 Scenario Taxonomy Rules.",
+      "tags": [],
+      "title": "Narrative Ontology \u2014 Scenario Definition",
+      "views": {
+        "full": {
+          "byte_length": 2249,
+          "byte_offset": 0,
+          "token_estimate": 614
+        },
+        "preview": {
+          "byte_length": 2249,
+          "byte_offset": 0,
+          "token_estimate": 614
+        },
+        "summary": {
+          "byte_length": 339,
+          "byte_offset": 0,
+          "token_estimate": 81
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:term-frontmatter.schema",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "application/json",
+      "path": "reference/novel/dramatica/term-frontmatter.schema.json",
+      "sha256": "0dd2f3639532d7a9f17c8793e688705ceb8290b143ae832c5df5b4bfb0c578d8",
+      "size_bytes": 3595,
+      "summary": "Narrative Ontology \u2014 Per-Term YAML Frontmatter - Validates the YAML frontmatter block inserted at every '## <Term>' anchor in skills/dramatica-vocabulary/references/*.md. Mirrors ontology.schema.json minus fields that live only in the canonical table (term_file). Inserted by tools/dramatica-nav/ontology-build.py --bootstrap. The ontology table and these per-term blocks MUST agree; drift is a CI\u2026",
+      "tags": [],
+      "title": "Narrative Ontology \u2014 Per-Term YAML Frontmatter",
+      "views": {
+        "full": {
+          "byte_length": 3595,
+          "byte_offset": 0,
+          "token_estimate": 1125
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 1011
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 87
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:archetypes",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/archetypes.md",
+      "sha256": "fe312f36b42cfb1b7e7df270ffc44f865646060d843139e124429f30fb40995e",
+      "size_bytes": 13293,
+      "summary": "Archetype (8) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/archetypes.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Archetype (8)",
+      "views": {
+        "full": {
+          "byte_length": 13293,
+          "byte_offset": 0,
+          "token_estimate": 3214
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 845
+        },
+        "summary": {
+          "byte_length": 147,
+          "byte_offset": 0,
+          "token_estimate": 46
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:character-appreciations",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/character-appreciations.md",
+      "sha256": "5570ff78c057262c70b225e09a5140878f5068d7ef68d20739f5b5d64d02817c",
+      "size_bytes": 2006,
+      "summary": "Character Appreciation (2) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/character-appreciations.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Character Appreciation (2)",
+      "views": {
+        "full": {
+          "byte_length": 2006,
+          "byte_offset": 0,
+          "token_estimate": 439
+        },
+        "preview": {
+          "byte_length": 2006,
+          "byte_offset": 0,
+          "token_estimate": 439
+        },
+        "summary": {
+          "byte_length": 173,
+          "byte_offset": 0,
+          "token_estimate": 50
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:character-dynamics",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/character-dynamics.md",
+      "sha256": "7b8eafa351407869e0d64fc1f9bf416f8b3419c6fa4563efcfb14dd68d9e698e",
+      "size_bytes": 17144,
+      "summary": "Character Dynamic (11) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/character-dynamics.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Character Dynamic (11)",
+      "views": {
+        "full": {
+          "byte_length": 17144,
+          "byte_offset": 0,
+          "token_estimate": 3828
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 766
+        },
+        "summary": {
+          "byte_length": 164,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:classes",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/classes.md",
+      "sha256": "91270096cf3431a8152e547aa3b32f72ffe9eb4e14b4dff95f15737d8c47a24d",
+      "size_bytes": 2350,
+      "summary": "Class (3) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/classes.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Class (3)",
+      "views": {
+        "full": {
+          "byte_length": 2350,
+          "byte_offset": 0,
+          "token_estimate": 574
+        },
+        "preview": {
+          "byte_length": 2350,
+          "byte_offset": 0,
+          "token_estimate": 574
+        },
+        "summary": {
+          "byte_length": 140,
+          "byte_offset": 0,
+          "token_estimate": 44
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:domains",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/domains.md",
+      "sha256": "0f3261cb5ebd59a800ab235e4fcf18f09af84078230cf3cfbeaec3a1cb15e992",
+      "size_bytes": 6480,
+      "summary": "Domain (2) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/domains.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Domain (2)",
+      "views": {
+        "full": {
+          "byte_length": 6480,
+          "byte_offset": 0,
+          "token_estimate": 1421
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 663
+        },
+        "summary": {
+          "byte_length": 141,
+          "byte_offset": 0,
+          "token_estimate": 45
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:dramatica-definitions",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/dramatica-definitions.md",
+      "sha256": "e8ee08884c5724a1b08fa7b3fbb7a2bd12be3fd16457432cdb67ff53cd954d53",
+      "size_bytes": 2010,
+      "summary": "Dramatica Definition (3) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dramatica-definitions.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Dramatica Definition (3)",
+      "views": {
+        "full": {
+          "byte_length": 2010,
+          "byte_offset": 0,
+          "token_estimate": 452
+        },
+        "preview": {
+          "byte_length": 2010,
+          "byte_offset": 0,
+          "token_estimate": 452
+        },
+        "summary": {
+          "byte_length": 169,
+          "byte_offset": 0,
+          "token_estimate": 51
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:dramatica-fundamentals",
+      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/dramatica-fundamentals.md",
+      "sha256": "197ffdbd4013220b88b418be21e48b9592cc315df3715dd112bf311f5f2991a1",
+      "size_bytes": 10648,
+      "summary": "Dramatica Fundamentals \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dramatica-fundamentals.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Dramatica Fundamentals \u2014 Extended Content",
+      "views": {
+        "full": {
+          "byte_length": 10648,
+          "byte_offset": 0,
+          "token_estimate": 2361
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 739
+        },
+        "summary": {
+          "byte_length": 189,
+          "byte_offset": 0,
+          "token_estimate": 53
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:dramatica-terms",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/dramatica-terms.md",
+      "sha256": "f68f83ce970a60dbb7e969e906fab9cd7b576f46eff167923556421ef28cdada",
+      "size_bytes": 8625,
+      "summary": "Dramatica Term (5) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dramatica-terms.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Dramatica Term (5)",
+      "views": {
+        "full": {
+          "byte_length": 8625,
+          "byte_offset": 0,
+          "token_estimate": 1932
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 731
+        },
+        "summary": {
+          "byte_length": 157,
+          "byte_offset": 0,
+          "token_estimate": 51
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:dynamic-pairs-index",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/dynamic-pairs-index.md",
+      "sha256": "9d3e863dde607e76ac491929e5c53b17eb325c8e9c598c235b8605e4554e67bb",
+      "size_bytes": 2874,
+      "summary": "Index by Dynamic Pair - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dynamic-pairs-index.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Index by Dynamic Pair",
+      "views": {
+        "full": {
+          "byte_length": 2874,
+          "byte_offset": 0,
+          "token_estimate": 827
+        },
+        "preview": {
+          "byte_length": 2874,
+          "byte_offset": 0,
+          "token_estimate": 827
+        },
+        "summary": {
+          "byte_length": 164,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:dynamic-terms",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/dynamic-terms.md",
+      "sha256": "9aa8d8e5dc184ebc8348fc5c0ebad95df817af7581166216959a56237f2ada79",
+      "size_bytes": 2412,
+      "summary": "Dynamic Term (6) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/dynamic-terms.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Dynamic Term (6)",
+      "views": {
+        "full": {
+          "byte_length": 2412,
+          "byte_offset": 0,
+          "token_estimate": 574
+        },
+        "preview": {
+          "byte_length": 2412,
+          "byte_offset": 0,
+          "token_estimate": 574
+        },
+        "summary": {
+          "byte_length": 153,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:element-quads",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/element-quads.md",
+      "sha256": "a74824616dcb7df9b896807cf7b7925bac019026347afb94701aa00645f36c6e",
+      "size_bytes": 9102,
+      "summary": "Element Quads \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/element-quads.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Element Quads \u2014 Extended Content",
+      "views": {
+        "full": {
+          "byte_length": 9102,
+          "byte_offset": 0,
+          "token_estimate": 2392
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 770
+        },
+        "summary": {
+          "byte_length": 171,
+          "byte_offset": 0,
+          "token_estimate": 49
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:elements",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/elements.md",
+      "sha256": "715545b3560e997ad8552a6d55980a8edf96989598c4ba5a1eca725cd2433cbf",
+      "size_bytes": 94865,
+      "summary": "Element (70) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/elements.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Element (70)",
+      "views": {
+        "full": {
+          "byte_length": 94865,
+          "byte_offset": 0,
+          "token_estimate": 22756
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 899
+        },
+        "summary": {
+          "byte_length": 144,
+          "byte_offset": 0,
+          "token_estimate": 45
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:encoding-patterns",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/encoding-patterns.md",
+      "sha256": "ffd173b8f0ea7f325edb0284d537caecb89796cca5fe0aa5ec880bcd66378527",
+      "size_bytes": 10958,
+      "summary": "Encoding Patterns \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/encoding-patterns.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Encoding Patterns \u2014 Extended Content",
+      "views": {
+        "full": {
+          "byte_length": 10958,
+          "byte_offset": 0,
+          "token_estimate": 2500
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 721
+        },
+        "summary": {
+          "byte_length": 179,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:essential-questions",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/essential-questions.md",
+      "sha256": "cbc8bf55f82ab12d29feb601e45d6603a9c592dce1a37c723b7bf9db2d69eb28",
+      "size_bytes": 9294,
+      "summary": "Essential Questions \u2014 Storyform Workflow - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/essential-questions.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Essential Questions \u2014 Storyform Workflow",
+      "views": {
+        "full": {
+          "byte_length": 9294,
+          "byte_offset": 0,
+          "token_estimate": 2183
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 751
+        },
+        "summary": {
+          "byte_length": 185,
+          "byte_offset": 0,
+          "token_estimate": 50
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:main-vs-impact-character",
+      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/main-vs-impact-character.md",
+      "sha256": "b46149e5357e2b4e3301fddf2c7e5fcb3ec5769856af79c17a653825e7f6d985",
+      "size_bytes": 2307,
+      "summary": "Main vs. Impact Throughline Character (1) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/main-vs-impact-character.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Main vs. Impact Throughline Character (1)",
+      "views": {
+        "full": {
+          "byte_length": 2307,
+          "byte_offset": 0,
+          "token_estimate": 533
+        },
+        "preview": {
+          "byte_length": 2307,
+          "byte_offset": 0,
+          "token_estimate": 533
+        },
+        "summary": {
+          "byte_length": 189,
+          "byte_offset": 0,
+          "token_estimate": 54
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:overview-appreciations",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/overview-appreciations.md",
+      "sha256": "7f83f0c8a5c52629e2a567b86edd7b980e8e332f3febaee4593ae2e35b45e19c",
+      "size_bytes": 20381,
+      "summary": "Overview Appreciation (17) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/overview-appreciations.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Overview Appreciation (17)",
+      "views": {
+        "full": {
+          "byte_length": 20381,
+          "byte_offset": 0,
+          "token_estimate": 4593
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 794
+        },
+        "summary": {
+          "byte_length": 172,
+          "byte_offset": 0,
+          "token_estimate": 50
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:plot-dynamics",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/plot-dynamics.md",
+      "sha256": "4bb4b12979f899e372c72007c992545d2b20cadd3f6a234c31a56e5bad58feb6",
+      "size_bytes": 18835,
+      "summary": "Plot Dynamic (12) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/plot-dynamics.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Plot Dynamic (12)",
+      "views": {
+        "full": {
+          "byte_length": 18835,
+          "byte_offset": 0,
+          "token_estimate": 4302
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 780
+        },
+        "summary": {
+          "byte_length": 154,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:plot-structures",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/plot-structures.md",
+      "sha256": "4c2e9299f33ce51cc8fc86b601520cd9425c48ffb859b3dcd5a5ee99fb8c5348",
+      "size_bytes": 1179,
+      "summary": "Plot Structure (2) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/plot-structures.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Plot Structure (2)",
+      "views": {
+        "full": {
+          "byte_length": 1179,
+          "byte_offset": 0,
+          "token_estimate": 281
+        },
+        "preview": {
+          "byte_length": 1179,
+          "byte_offset": 0,
+          "token_estimate": 281
+        },
+        "summary": {
+          "byte_length": 157,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:storyform-mechanics",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/storyform-mechanics.md",
+      "sha256": "d5974e9656021dbf111ba80696bd69ae73aefeead359f5f3bdf5c7b58bf3f9ba",
+      "size_bytes": 9287,
+      "summary": "Storyform Mechanics \u2014 Extended Content - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/storyform-mechanics.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Storyform Mechanics \u2014 Extended Content",
+      "views": {
+        "full": {
+          "byte_length": 9287,
+          "byte_offset": 0,
+          "token_estimate": 2009
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 700
+        },
+        "summary": {
+          "byte_length": 183,
+          "byte_offset": 0,
+          "token_estimate": 51
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:storytelling",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/storytelling.md",
+      "sha256": "6990a215028daf7f78d988dfbfca8438f1da6ce8c31b2e0e82accc46920c499d",
+      "size_bytes": 8261,
+      "summary": "Storytelling (5) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/storytelling.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Storytelling (5)",
+      "views": {
+        "full": {
+          "byte_length": 8261,
+          "byte_offset": 0,
+          "token_estimate": 1804
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 725
+        },
+        "summary": {
+          "byte_length": 152,
+          "byte_offset": 0,
+          "token_estimate": 48
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:structural-terms",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/structural-terms.md",
+      "sha256": "dfc27ebdcb08b5cfebde1a5b815cd5d7a36130a57451f7d39b8ea0758828afb3",
+      "size_bytes": 14972,
+      "summary": "Structural Term (15) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/structural-terms.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Structural Term (15)",
+      "views": {
+        "full": {
+          "byte_length": 14972,
+          "byte_offset": 0,
+          "token_estimate": 3487
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 807
+        },
+        "summary": {
+          "byte_length": 160,
+          "byte_offset": 0,
+          "token_estimate": 49
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:types",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/types.md",
+      "sha256": "4ea48363436ea0bd3d533a64e0c80fa83fe87ddf4251f7b55209609ac588a363",
+      "size_bytes": 38674,
+      "summary": "Type (40) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/types.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Type (40)",
+      "views": {
+        "full": {
+          "byte_length": 38674,
+          "byte_offset": 0,
+          "token_estimate": 9089
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 810
+        },
+        "summary": {
+          "byte_length": 138,
+          "byte_offset": 0,
+          "token_estimate": 44
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:terms:variations",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/dramatica/terms/variations.md",
+      "sha256": "0b5e7a2500cfa3fa2c0050b327776d7d17981905215a9997bc351d76218bfb2f",
+      "size_bytes": 86696,
+      "summary": "Variation (63) - <!-- Vendored from agency repo: skills/dramatica-vocabulary/references/variations.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "Variation (63)",
+      "views": {
+        "full": {
+          "byte_length": 86696,
+          "byte_offset": 0,
+          "token_estimate": 20626
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 926
+        },
+        "summary": {
+          "byte_length": 148,
+          "byte_offset": 0,
+          "token_estimate": 46
+        }
+      }
+    },
+    {
+      "id": "reference:novel:dramatica:theory-chunk.schema",
+      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "mime": "application/json",
+      "path": "reference/novel/dramatica/theory-chunk.schema.json",
+      "sha256": "bc0e3a742261ce941090cfb715e904def6ece1b27ecbe495223849dca10f06fb",
+      "size_bytes": 2595,
+      "summary": "Narrative Ontology \u2014 Theory-Chunk YAML Frontmatter - Validates the chapter-level frontmatter inserted at the head of skills/dramatica-theory/references/*.md (15 chapters). Each block declares which ontology IDs the chapter covers and which scenarios it serves, so nav.py and extract.py can route prose-loading queries to the cheapest chunk.",
+      "tags": [],
+      "title": "Narrative Ontology \u2014 Theory-Chunk YAML Frontmatter",
+      "views": {
+        "full": {
+          "byte_length": 2595,
+          "byte_offset": 0,
+          "token_estimate": 717
+        },
+        "preview": {
+          "byte_length": 2595,
+          "byte_offset": 0,
+          "token_estimate": 717
+        },
+        "summary": {
+          "byte_length": 342,
+          "byte_offset": 0,
+          "token_estimate": 68
+        }
+      }
+    },
+    {
+      "id": "reference:novel:ncp:ncp-spec-v1.3.0",
+      "last_modified": "2026-05-18T16:55:33.367010Z",
+      "mime": "text/markdown",
+      "path": "reference/novel/ncp/ncp-spec-v1.3.0.md",
+      "sha256": "42d7ef3e04f565ea530bcea33b04a521fcd4abadfdc56166efd05a937e68a3fc",
+      "size_bytes": 30099,
+      "summary": "SPECIFICATION - <!-- Vendored from agency repo: skills/ncp-author/upstream/SPECIFICATION.md @ 867453e49065e16b9298b960a22fd34746985572 -->",
+      "tags": [],
+      "title": "SPECIFICATION",
+      "views": {
+        "full": {
+          "byte_length": 30099,
+          "byte_offset": 0,
+          "token_estimate": 6118
+        },
+        "preview": {
+          "byte_length": 3200,
+          "byte_offset": 0,
+          "token_estimate": 747
+        },
+        "summary": {
+          "byte_length": 138,
+          "byte_offset": 0,
+          "token_estimate": 43
+        }
+      }
+    }
+  ]
+}
