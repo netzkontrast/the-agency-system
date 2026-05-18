@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from . import _shared
+from agency_mcp.lib.codemode.projection import apply_view
 from ._shared import (
     _CODE_BLOCK_SECTIONS,
     _GENRE_ALIASES,
@@ -32,6 +33,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 
+@apply_view
 async def music_get_album_full(
     album_slug: str,
     include_sections: str = "",

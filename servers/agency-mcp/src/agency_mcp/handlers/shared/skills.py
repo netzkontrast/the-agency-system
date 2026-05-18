@@ -2,7 +2,10 @@ from pathlib import Path
 from typing import Any
 import yaml
 
+from agency_mcp.lib.codemode.projection import apply_view
 
+
+@apply_view
 def shared_list_skills(domain: str | None = None) -> dict[str, Any]:
     skills_dir = Path("skills")
     target_domains = (
@@ -51,6 +54,7 @@ def shared_list_skills(domain: str | None = None) -> dict[str, Any]:
     }
 
 
+@apply_view
 def shared_get_skill(name: str) -> dict[str, Any]:
     skills_dir = Path("skills")
     if skills_dir.exists():
