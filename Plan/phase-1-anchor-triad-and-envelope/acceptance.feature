@@ -1,9 +1,9 @@
-Feature: Phase 1 — Anchor triad + envelope
+Feature: Phase 1 — Anchor triad + envelope (cold-start)
 
   Background:
     Given the agency-mcp server is successfully booted
     And the plugin repository is loaded at the correct working directory
-    And the codemode/manifest.json is accessible
+    And the servers/agency-mcp/src/agency_mcp/codemode/manifest.json is accessible
 
   # anchor: phase-1.tools-list-payload
   Scenario: tools/list payload cold boot measurement
@@ -35,8 +35,8 @@ Feature: Phase 1 — Anchor triad + envelope
 
   # anchor: phase-1.shared-envelope-enforcement
   Scenario: The @wrap_envelope decorator on shared tools
-    When I inspect the registration for any tool tagged with domain:shared
-    Then it must be decorated with @wrap_envelope
+    When I iterate the registration of every tool tagged with domain:shared
+    Then each MUST be decorated with @wrap_envelope
     And the execution output must return a shared ToolResult envelope structure
 
   # anchor: phase-1.manifest-coverage-lint
@@ -47,5 +47,10 @@ Feature: Phase 1 — Anchor triad + envelope
 
   # anchor: phase-1.cache-breakpoint-ordering
   Scenario: Prompt-cache breakpoint optimal positioning
-    When I analyze the prompt structure generation
-    Then the prompt-cache breakpoint must sit exactly between the anchor triad and the deferred bulk tools
+    When I read codemode/manifest.json
+    Then the entry with kind="cache_breakpoint" sits at an index strictly greater than the last triad tool and strictly less than the first deferred bulk tool
+
+  # anchor: phase-1.toon-gate
+  Scenario: TOON serializer size reduction gate
+    When I invoke tests/smoke/test_toon_gate.py with a homogeneous list of dicts of length >= 3
+    Then the serialized payload size must demonstrate a 40-60% reduction over raw JSON
