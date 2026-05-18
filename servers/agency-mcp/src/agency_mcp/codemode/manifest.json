@@ -7,7 +7,8 @@
     "health_check",
     "jules_quota",
     "music_health_check",
-    "plugin_help"
+    "plugin_help",
+    "context_changes"
   ],
   "tools": {
     "health_check": {
@@ -366,9 +367,21 @@
       "classification": "deferred",
       "domain": "jules"
     },
-    "context_search": { "classification": "eager", "domain": "cross", "anchor_kind": "context" },
-    "context_describe": { "classification": "eager", "domain": "cross", "anchor_kind": "context" },
-    "context_read": { "classification": "eager", "domain": "cross", "anchor_kind": "context" },
+    "context_search": {
+      "classification": "eager",
+      "domain": "cross",
+      "anchor_kind": "context"
+    },
+    "context_describe": {
+      "classification": "eager",
+      "domain": "cross",
+      "anchor_kind": "context"
+    },
+    "context_read": {
+      "classification": "eager",
+      "domain": "cross",
+      "anchor_kind": "context"
+    },
     "jules_activities": {
       "classification": "deferred",
       "domain": "jules"
@@ -456,6 +469,11 @@
     "shared_get_pending_verifications": {
       "classification": "deferred",
       "domain": "shared"
+    },
+    "context_changes": {
+      "classification": "eager",
+      "domain": "cross",
+      "anchor_kind": "context"
     }
   }
 }
