@@ -1,0 +1,15 @@
+# Agentic cell manifest for the `jules` row.
+#
+# Conforms to context/_shared/schemas/agentic-cell.schema.json (spec 01).
+# Exports the `research` skill and the `query` tool. The harness derives
+# the row prefix, so exports remain bare (no `jules-` / `jules_` prefix).
+
+[cell]
+row = "jules"
+column = "agentic"
+
+[skills]
+exports = ["research"]
+
+[tools]
+exports = ["query"]
