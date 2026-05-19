@@ -217,7 +217,12 @@ def resume(
     phase_id: str,
     user_response: Any,
 ) -> PhaseStateEnvelope:
-    """Hydrate a Continuation, merge ``user_response``, re-walk the phase."""
+    """Hydrate a Continuation, merge ``user_response``, re-walk the phase.
+
+    Spec 07-v1 §FR4: shallow-merge ``user_response`` into ``opaque_state``,
+    re-walk the phase via :func:`_walk_phase`, and on terminal status
+    (``completed`` / ``failed``) delete the Continuation node.
+    """
     env = hydrate(session_id, phase_id)
     if not env:
         return {
@@ -241,16 +246,41 @@ def resume(
         env["tool_result"]["data"] = {"error": {"code": "RESUME_TERMINAL"}}
         return env
 
-    # Shallow merge of user_response into opaque_state.
+    # Shallow merge of user_response into opaque_state (spec 07-v1 §FR4:
+    # top-level keys in user_response overwrite top-level keys in
+    # opaque_state; nested merging is out of scope).
     if isinstance(user_response, dict):
         env["opaque_state"].update(user_response)
-    env["status"] = "running"
 
-    # Terminal status clears the Continuation node.
-    if env["status"] in ("completed", "failed"):
+    row = env["row"]
+
+    # Re-walk the phase. The phase node must still exist in the graph —
+    # if it doesn't, the row was scaffolded away under us and we surface
+    # that as a failure rather than silently dropping the resume.
+    g = get_store()
+    phase_node = _phase_node(g, row, phase_id)
+    if phase_node is None:
+        envelope_delete(session_id, phase_id)
+        return _failed_envelope(
+            session_id,
+            row,
+            phase_id,
+            f"row {row} phase {phase_id} not in graph on resume",
+            code="RESUME_PHASE_GONE",
+        )
+
+    new_env = _walk_phase(session_id, row, phase_id, phase_node, env["opaque_state"])
+    # Preserve the original session_id across the re-walk (`_walk_phase`
+    # doesn't mint a new one, but be explicit).
+    new_env["session_id"] = session_id
+
+    # Terminal status clears the Continuation node. A `blocked_on_user`
+    # outcome means `_walk_phase` already re-persisted the envelope, so
+    # leave it in place.
+    if new_env["status"] in ("completed", "failed"):
         envelope_delete(session_id, phase_id)
 
-    return env
+    return new_env
 
 
 # ---------------------------------------------------------------------------
@@ -288,14 +318,13 @@ def _parse_frontmatter(body: str) -> Dict[str, Any]:
         return {}
 
 
-def _collect_blocking_gates(g, row: str, phase_id: str) -> List[Path]:
+def _collect_blocking_gates(row: str, phase_id: str) -> List[Path]:
     """Find all gate YAML files that BLOCK this phase.
 
-    First tries the graph (``(p:Phase)<-[:BLOCKS]-(g:Gate)``); falls
-    back to disk-scan of ``workflow/<row>/gates/*.yaml`` filtered by
-    ``blocks_phase``. The disk fallback exists because v0.1 gate
-    pre-linking is still file-driven; spec 07-v1 §FR3 lets the runner
-    discover gates either way.
+    v0.1 is disk-only: scans ``workflow/<row>/gates/*.yaml`` filtered by
+    ``blocks_phase``. Graph-edge gate discovery
+    (``(p:Phase)<-[:BLOCKS]-(g:Gate)``) is post-v0.1, deferred until the
+    gate evaluator seeds ``BLOCKS`` edges into the ontology.
     """
     gates_dir = Path(f"workflow/{row}/gates")
     if not gates_dir.exists():
@@ -353,7 +382,7 @@ def _walk_phase(
     warnings: List[str] = []
     import yaml as _yaml
 
-    for gate_path in _collect_blocking_gates(None, row, phase_id):
+    for gate_path in _collect_blocking_gates(row, phase_id):
         try:
             gate_def = _yaml.safe_load(gate_path.read_text(encoding="utf-8")) or {}
         except Exception:
