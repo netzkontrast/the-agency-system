@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:agentic-cell",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cell",
+    "skills",
+    "tools"
+  ],
+  "properties": {
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "row",
+        "column"
+      ],
+      "properties": {
+        "row": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,30}$"
+        },
+        "column": {
+          "const": "agentic"
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exports"
+      ],
+      "properties": {
+        "exports": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,30}$"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "tools": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exports"
+      ],
+      "properties": {
+        "exports": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,30}$"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "codemode": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prefers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:shared/tool_result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ok",
+    "data",
+    "warnings",
+    "next_suggested_tools"
+  ],
+  "properties": {
+    "ok": {
+      "type": "boolean",
+      "description": "True iff the tool completed without error. False indicates a recoverable failure surfaced in `data.error`."
+    },
+    "data": {
+      "type": "object",
+      "description": "Tool-specific payload. Column extensions (audit_trail, provenance, gate_state) live as keys inside this object. Per-tool JSON Schemas MAY further constrain this via $ref."
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Human-readable warnings that did NOT block the operation. Used by context hooks to surface non-fatal issues."
+    },
+    "next_suggested_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tool names (MCP form: `mcp__<row>_<verb>`) the caller might invoke next. Used by the routing skill for what-next queries."
+    }
+  }
+}
