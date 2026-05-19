@@ -4,6 +4,7 @@ version = "0.0.1"
 description = "Unified FastMCP server for the Agency System plugin (music + novel + jules + agentic)."
 requires-python = ">=3.11"
 dependencies = [
+    "graphqlite",
     "fastmcp[code-mode]>=3.1.0",
     "jsonschema>=4.21.0",
     "PyYAML>=6.0",

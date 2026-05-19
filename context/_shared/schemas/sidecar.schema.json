@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:shared/sidecar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "content_type",
+    "sha256",
+    "size_bytes",
+    "created_at",
+    "produced_by",
+    "derived_from"
+  ],
+  "properties": {
+    "artefact_path": {
+      "type": "string",
+      "description": "Path to the artifact, relative to the repository root. Example: `result/music/whispers.mp3`."
+    },
+    "content_type": {
+      "type": "string",
+      "description": "MIME type of the artifact. Examples: `audio/mpeg`, `audio/wav`, `application/pdf`, `image/png`.",
+      "pattern": "^[a-z]+/[a-z0-9.+-]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "description": "Hex digest (lowercase) of the artifact bytes.",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "size_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 UTC timestamp when the artifact was written."
+    },
+    "produced_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill", "phase", "session_id"],
+      "properties": {
+        "skill":      {"type": "string", "description": "Slash-command form, e.g. `music-producer`."},
+        "phase":      {"type": "string", "description": "Workflow phase id, e.g. `04-master`."},
+        "session_id": {"type": "string", "description": "Opaque session id from the workflow runner."}
+      }
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Graph node IDs the artifact derives from. Each becomes a DERIVED_FROM edge in the SQLite graph."
+    },
+    "satisfies_phase": {
+      "type": "string",
+      "description": "OPTIONAL. Workflow phase id this artifact completes. Emits a SATISFIES_PHASE edge when set."
+    }
+  }
+}
