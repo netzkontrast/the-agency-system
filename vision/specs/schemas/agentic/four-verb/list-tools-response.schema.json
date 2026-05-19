@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/four-verb/list-tools-response.schema.json",
+  "title": "List Tools Response Schema",
+  "description": "Response schema for listing available tools. Often constrained by token budget.",
+  "type": "object",
+  "properties": {
+    "tools": {
+      "type": "array",
+      "items": {
+        "$ref": "../tool-manifest.schema.json"
+      }
+    }
+  },
+  "required": ["tools"],
+  "additionalProperties": false
+}
