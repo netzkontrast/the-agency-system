@@ -1,0 +1,134 @@
+- alias: vision-agentic
+  title: "vision(agentic): design the agentic column of the 3×N matrix"
+  branch: Master
+  prompt: |
+    You own the **agentic** column of the agency-system's 3×N matrix.
+    Your goal: specify the canonical cell-shape of `agentic/<row>` such
+    that every row's agentic cell is structurally identical and any
+    agent can guess how one works from any other.
+
+    ## Read first
+
+    1. `vision/00-charter.md` — the matrix law, three rules, meta-row,
+       18 Gherkin scenarios, source repos, discipline. The floor.
+    2. `vision/agentic/BRIEF.md` — your detailed instructions: what
+       agentic owns, what it does NOT own, what 4 files to write
+       (COLUMN.md, ROW-EXAMPLES.md, INTERFACES.md, GHERKIN-OWNED.md),
+       which Gherkin scenarios you own, which source-repo files matter.
+
+    ## Quarantine
+
+    DO NOT read these files (PR #133's prior design — your value is
+    independence):
+    - `docs/superpowers/specs/2026-05-19-agency-base-design.md`
+    - `Plan/decisions/0001-…0008-*.md`
+    - `docs/superpowers/specs/_drafts/agency-*-prototype.md`
+    - `Plan/_reviews/`
+    - `Plan/_jules-briefs/dispatch.yaml` (prior dispatch)
+
+    ## Output
+
+    Write 4 files under `vision/agentic/` (only). Affects allow-list =
+    `vision/agentic/*`. Sizes per BRIEF.md.
+
+    ## Discipline (`Plan/JULES_PROTOCOL.md` applies)
+
+    Gate-1 confidence ≥ 0.90; cite source-repo file:line or VOCABULARY §.
+    `## Evidence` + `## Self-Review` in your PR body.
+
+    Publish your work via the standard flow.
+
+- alias: vision-workflow
+  title: "vision(workflow): design the workflow column + meta-row of the 3×N matrix"
+  branch: Master
+  prompt: |
+    You own the **workflow** column of the agency-system's 3×N matrix.
+    Your goal: specify the canonical cell-shape of `workflow/<row>` AND
+    design the meta-row `workflow/workflow` — the
+    workflow-of-creating-a-workflow that scaffolds new rows.
+
+    ## Read first
+
+    1. `vision/00-charter.md` — the matrix law, three rules, meta-row,
+       18 Gherkin scenarios, source repos, discipline. The floor.
+    2. `vision/workflow/BRIEF.md` — your detailed instructions: what
+       workflow owns (pipelines, phases, gates, handoffs, the
+       meta-row), what it does NOT own, what 5 files to write
+       (COLUMN.md, META-WORKFLOW.md, ROW-EXAMPLES.md, INTERFACES.md,
+       GHERKIN-OWNED.md), which scenarios you own, which source-repo
+       files matter.
+
+    ## Quarantine
+
+    DO NOT read these files (PR #133's prior design — your value is
+    independence):
+    - `docs/superpowers/specs/2026-05-19-agency-base-design.md`
+    - `Plan/decisions/0001-…0008-*.md`
+    - `docs/superpowers/specs/_drafts/agency-*-prototype.md`
+    - `Plan/_reviews/`
+    - `Plan/_jules-briefs/dispatch.yaml` (prior dispatch)
+
+    ## Output
+
+    Write 5 files under `vision/workflow/` (only). Affects allow-list =
+    `vision/workflow/*`. Sizes per BRIEF.md.
+
+    The META-WORKFLOW.md spec is the heart of your brief — it's the
+    self-extending mechanism of the matrix. Worked example:
+    scaffolding `podcast` from scratch.
+
+    ## Discipline (`Plan/JULES_PROTOCOL.md` applies)
+
+    Gate-1 confidence ≥ 0.90; cite source-repo file:line or VOCABULARY §.
+    `## Evidence` + `## Self-Review` in your PR body.
+
+    Publish your work via the standard flow.
+
+- alias: vision-context
+  title: "vision(context): design the context column (graph + schemas + templates) of the 3×N matrix"
+  branch: Master
+  prompt: |
+    You own the **context** column of the agency-system's 3×N matrix.
+    Your goal: specify the canonical cell-shape of `context/<row>` AND
+    define the substrate (ontology, graph, schemas, templates, search,
+    pandoc) that makes the three matrix rules actually work.
+
+    ## Read first
+
+    1. `vision/00-charter.md` — the matrix law, three rules, meta-row,
+       18 Gherkin scenarios, source repos, discipline. The floor.
+    2. `vision/context/BRIEF.md` — your detailed instructions: what
+       context owns (graph, ontology, frontmatter, schemas, templates,
+       search, pandoc), what it does NOT own, what 5 files to write
+       (COLUMN.md, ONTOLOGY.md, ROW-EXAMPLES.md, INTERFACES.md,
+       GHERKIN-OWNED.md), which scenarios you own, which source-repo
+       files matter.
+
+    ## Quarantine
+
+    DO NOT read these files (PR #133's prior design — your value is
+    independence):
+    - `docs/superpowers/specs/2026-05-19-agency-base-design.md`
+    - `Plan/decisions/0001-…0008-*.md`
+    - `docs/superpowers/specs/_drafts/agency-*-prototype.md`
+    - `Plan/_reviews/`
+    - `Plan/_jules-briefs/dispatch.yaml` (prior dispatch)
+
+    ## Output
+
+    Write 5 files under `vision/context/` (only). Affects allow-list =
+    `vision/context/*`. Sizes per BRIEF.md.
+
+    Your column is the one that ACTUALLY MAKES the three matrix rules
+    work — schemas enforce column iso, templates enforce row iso,
+    ontology+graph enforce name-driven discovery. If your design ducks
+    any of these three, the matrix collapses. Be concrete on the
+    backing store choice (Cypher? SQLite? in-memory?) with a defended
+    tradeoff.
+
+    ## Discipline (`Plan/JULES_PROTOCOL.md` applies)
+
+    Gate-1 confidence ≥ 0.90; cite source-repo file:line or VOCABULARY §.
+    `## Evidence` + `## Self-Review` in your PR body.
+
+    Publish your work via the standard flow.
