@@ -5,9 +5,6 @@ from context._hooks import pre_tool_use, post_tool_use
 from context._store.sqlite import Store
 
 def test_pre_tool_use_rejects_invalid_agentic_manifest():
-    # Scenario: PreToolUse rejects an invalid agentic manifest
-    # Given a write call targeting `agentic/test/manifest.toml`
-    # And the TOML body omits the required `[skills]` table
     toml_content = """
     [cell]
     row = "test"
@@ -15,30 +12,24 @@ def test_pre_tool_use_rejects_invalid_agentic_manifest():
     """
 
     args = {"path": "agentic/test/manifest.toml", "content": toml_content}
-
-    # When `pre_tool_use.validate` runs
     res = pre_tool_use.validate("mcp__test_write_manifest", args)
 
-    # Then it returns `{ok: False, errors: [...]}`
     assert not res["ok"]
     assert "errors" in res
-
-    # And at least one error mentions the missing required key
     assert any("missing required key [skills]" in e for e in res["errors"])
 
 def test_post_tool_use_logs_every_envelope(monkeypatch, tmp_path):
     db_path = str(tmp_path / "ontology.db")
     monkeypatch.setattr("context._hooks.post_tool_use.Store", lambda: Store(db_path=db_path))
 
-    # Scenario: PostToolUse logs every envelope
     envelope = {"ok": True, "data": {}, "warnings": [], "next_suggested_tools": []}
 
-    # When `post_tool_use.ingest(tool_name, envelope)` runs
     post_tool_use.ingest("some_tool", envelope)
 
-    # Then a row in `tools_call_log` records `(tool, envelope, called_at)`
     store = Store(db_path=db_path)
-    conn = store._get_conn()
+    import sqlite3
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     cursor = conn.execute("SELECT tool, envelope FROM tools_call_log")
     rows = cursor.fetchall()
     assert len(rows) == 1
@@ -46,12 +37,11 @@ def test_post_tool_use_logs_every_envelope(monkeypatch, tmp_path):
     assert json.loads(rows[0]["envelope"]) == envelope
 
 
-def test_post_tool_use_sidecar_reference(monkeypatch, tmp_path):
+def test_post_tool_use_artefact_metadata(monkeypatch, tmp_path):
     db_path = str(tmp_path / "ontology.db")
     monkeypatch.setattr("context._hooks.post_tool_use.Store", lambda: Store(db_path=db_path))
 
-    sidecar_path = str(tmp_path / "master.mp3.meta.json")
-    sidecar_data = {
+    artefact_metadata = {
       "artefact_path": "result/music/whispers/master.mp3",
       "content_type":  "audio/mpeg",
       "sha256":        "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
@@ -69,10 +59,7 @@ def test_post_tool_use_sidecar_reference(monkeypatch, tmp_path):
       "satisfies_phase": "04-master"
     }
 
-    with open(sidecar_path, 'w') as f:
-        json.dump(sidecar_data, f)
-
-    envelope = {"ok": True, "data": {"artefact_ref": sidecar_path}, "warnings": [], "next_suggested_tools": []}
+    envelope = {"ok": True, "data": {"artefact_metadata": artefact_metadata}, "warnings": [], "next_suggested_tools": []}
 
     post_tool_use.ingest("some_tool", envelope)
 
@@ -80,10 +67,15 @@ def test_post_tool_use_sidecar_reference(monkeypatch, tmp_path):
     res = store.query("MATCH (n:Artefact) RETURN n")
     assert len(res) == 1
 
-    conn = store._get_conn()
+    # Check edges
+    edges = store.query("MATCH (a:Artefact)-[:DERIVED_FROM]->(b) RETURN a, b")
+    # For basic mock test, just verify the edges exist via simple SQL
+    import sqlite3
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     cursor = conn.execute("SELECT * FROM edges WHERE type = 'DERIVED_FROM'")
-    edges = cursor.fetchall()
-    assert len(edges) == 2
+    edges_sql = cursor.fetchall()
+    assert len(edges_sql) == 2
 
 def test_satisfies_phase_edge_from_gate_emission(monkeypatch, tmp_path):
     db_path = str(tmp_path / "ontology.db")
@@ -93,7 +85,9 @@ def test_satisfies_phase_edge_from_gate_emission(monkeypatch, tmp_path):
     post_tool_use.ingest("some_tool", envelope)
 
     store = Store(db_path=db_path)
-    conn = store._get_conn()
+    import sqlite3
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     cursor = conn.execute("SELECT type, from_node, to_node FROM edges WHERE type = 'SATISFIES_PHASE'")
     rows = cursor.fetchall()
     assert len(rows) == 1

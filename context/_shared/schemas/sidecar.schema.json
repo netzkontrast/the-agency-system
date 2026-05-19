@@ -4,7 +4,6 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "artefact_path",
     "content_type",
     "sha256",
     "size_bytes",
@@ -39,31 +38,16 @@
     "produced_by": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "skill",
-        "phase",
-        "session_id"
-      ],
+      "required": ["skill", "phase", "session_id"],
       "properties": {
-        "skill": {
-          "type": "string",
-          "description": "Slash-command form, e.g. `music-producer`."
-        },
-        "phase": {
-          "type": "string",
-          "description": "Workflow phase id, e.g. `04-master`."
-        },
-        "session_id": {
-          "type": "string",
-          "description": "Opaque session id from the workflow runner."
-        }
+        "skill":      {"type": "string", "description": "Slash-command form, e.g. `music-producer`."},
+        "phase":      {"type": "string", "description": "Workflow phase id, e.g. `04-master`."},
+        "session_id": {"type": "string", "description": "Opaque session id from the workflow runner."}
       }
     },
     "derived_from": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
+      "items": {"type": "string"},
       "description": "Graph node IDs the artifact derives from. Each becomes a DERIVED_FROM edge in the SQLite graph."
     },
     "satisfies_phase": {
