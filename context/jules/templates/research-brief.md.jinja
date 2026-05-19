@@ -1,0 +1,24 @@
+# Topic
+
+{{ topic.topic }}
+
+{% if topic.description -%}
+{{ topic.description }}
+{%- endif %}
+
+Status: {{ topic.status | default("unknown") }}
+Started: {{ topic.created_at }}
+
+## Findings
+
+{% for finding in findings %}
+* {{ finding.claim }} (Confidence: {{ "%.2f"|format(finding.confidence) }})
+{%- endfor %}
+
+## Sources
+
+{% for finding in findings -%}
+{% for url in finding.source_urls %}
+* {{ url }}
+{%- endfor -%}
+{%- endfor %}
