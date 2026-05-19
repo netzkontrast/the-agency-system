@@ -33,13 +33,14 @@ The repository needs to normalise the interface across domains (domain isomorphi
 
 ## Decision Outcome
 
-Chosen option: **Harness Path A**. We implement the lightweight Path A normalisation levers immediately. Path B is formally recorded as a "vision" state, gating Phase 7+, and will not be scheduled until the concurrent Jules dispatch surge slows down.
+Chosen option: **Harness Path A**. We commit to the Harness Path A trajectory: the three low-cost levers (L-α unified `register(mcp)`, L-β `@domain_tool` decorator, L-γ manifest auto-sync) are designed and approved in `Plan/harness/design.md` §11.2 and §11.6.1 but ship in a follow-up implementation PR alongside the harness design's first tag. Today's code base still uses the per-module registration pattern (`register_<domain>_<module>_handlers`). Path B (`Plan/harness/restructure/spec.md`) is on record as vision.
 
 ## Consequences (Positive / Negative / Neutral)
 
 - **Positive:** Unblocks immediate harness development without causing repository-wide merge conflicts.
 - **Negative:** Leaves technical debt (the underlying structure is still not perfectly isomorphic, requiring wrapper functions).
 - **Neutral:** Path B remains fully designed and ready for execution when timing permits.
+- **Neutral:** Until the implementation PR lands, future authors should not assume `domain_tool` exists; check imports before using.
 
 ## Falsifier triggers
 

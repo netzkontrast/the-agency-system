@@ -27,13 +27,13 @@ To maintain the strict < 500 token boot budget for the MCP server, we cannot eag
 
 ## Considered Options
 
-1. **Anchor Triad + Deferred Bulk** — Register ~4 "anchor" tools per domain eagerly (e.g., `search`, `describe`, `invoke`); defer the rest using `defer_schema=True`.
+1. **Anchor Triad + Deferred Bulk** — Register ~4 "anchor" tools per domain eagerly (e.g., `search`, `describe`, `invoke`); defer the rest by classifying them as deferred via `lib/codemode/deferred_loader.register_tool()`.
 2. **All Eager** — Register all tools normally. Rejected because it blows past the 34k token boot context, breaking the core directive of the refactor.
 3. **All Deferred** — Defer everything, relying solely on `search_tools`. Rejected because Claude struggles to discover capabilities if the initial `tools/list` is completely empty.
 
 ## Decision Outcome
 
-Chosen option: **Anchor Triad + Deferred Bulk**. We use an eager anchor triad (typically `search`, `describe`, `invoke`/`read`) for each domain. These anchors are registered normally. All other tools are registered with `defer_schema=True` and `hidden=True`, meaning they are only exposed when the model uses an anchor tool to find them.
+Chosen option: **Anchor Triad + Deferred Bulk**. We use an eager anchor triad (typically `search`, `describe`, `invoke`/`read`) for each domain. These anchors are registered normally. All other tools are registered and stamped with a classification (`eager`, `deferred`, `background`) via `lib/codemode/deferred_loader.register_tool()`. The CodeMode transform (configured in `server.py`) is what hides deferred tools from `tools/list` at listing time. The manifest classification is the audit invariant; the transform is the runtime mechanism (cf. `deferred_loader.py:1-45` and `Plan/008-codemode-registry/spec.md`).
 
 ## Consequences (Positive / Negative / Neutral)
 

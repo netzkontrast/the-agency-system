@@ -34,7 +34,7 @@ Sub-specifications within the `Plan/` directory need a consistent naming and num
 
 ## Decision Outcome
 
-Chosen option: **`NNN-<slug>` (Zero-padded 3 digits)**. All sub-spec directories must be named with exactly three digits, zero-padded, followed by a hyphen and a descriptive kebab-case slug. The canonical document resides at `Plan/NNN-<slug>/spec.md`.
+Chosen option: **`NNN-<slug>` (Zero-padded 3 digits)**. Sub-spec directories use `NNN-<slug>` for original specs and `NNNa-<slug>` / `NNNb-<slug>` etc. for lettered follow-ups that extend the same scope (cf. `Plan/004a-music-lib-port/` extending Spec 004, and `Plan/011a-novel-handlers-core-hardening/` extending Spec 011). The canonical document resides at `<directory>/spec.md`.
 
 ## Consequences (Positive / Negative / Neutral)
 
@@ -42,6 +42,7 @@ Chosen option: **`NNN-<slug>` (Zero-padded 3 digits)**. All sub-spec directories
 - **Positive:** References like "Spec 042" map unambiguously to `042-*` directories.
 - **Negative:** Hard limit at 999 specs.
 - **Neutral:** Requires authors to manually find the next available number.
+- **Neutral:** Lettered suffix is the canonical extension pattern when a spec spawns hardening / lib-port follow-ups too small for a fresh number.
 
 ## Falsifier triggers
 
