@@ -1,7 +1,11 @@
-Feature: Phase 4 — Context Mode (Path B)
+Feature: Phase 4 — Context Mode Path B
   As an AI agent operating the agency-system
-  I want a deferred-loading context manifest
+  I want a deferred-loading context manifest (Context Mode Path B)
   So that the boot token budget stays under 500 tokens while allowing structured search over >= 200 KB of documents
+
+  # Naming note: "Context Mode Path B" (this phase) is distinct from
+  # "Harness Path B" (the structural-restructure trajectory in
+  # Plan/harness/design.md §11). See Plan/harness/VOCABULARY.md §6.
 
   Background:
     Given the agency-system repository is checked out and clean
@@ -22,6 +26,7 @@ Feature: Phase 4 — Context Mode (Path B)
     Given the generated "servers/agency-mcp/src/agency_mcp/codemode/context_manifest.json"
     When I inspect the entry for <file_type>
     Then it has the fields "id", "title", "summary", "sha256", "tags", "mime", "path", "views", and "graph_id"
+    # Note: "graph_id" is the bridge field shared with Phase 5 (Wave D ontology graph).
     And the "views" object contains "summary", "preview", and "full"
     And all tags begin with one of the allowed prefixes: "domain:", "kind:", "topic:", "spec:", "slug:"
 
@@ -46,7 +51,7 @@ Feature: Phase 4 — Context Mode (Path B)
     Then the server emits a "notifications/resources/updated" notification to the client
 
   # anchor: phase-4.108-supersession
-  Scenario: Spec 108-stub points to Path B
+  Scenario: Spec 108-stub points to Context Mode Path B
     Given the file "Plan/108-context-mode-integration/spec.md" exists
     When I read its contents
     Then it contains a one-line supersession note pointing to specs 111, 112, and 113

@@ -7,6 +7,10 @@ Feature: Phase 8 — Operational hardening
     Given the "agency-system" repository is loaded as a FastMCP plugin
     And the plugin boot context is under 500 tokens
     And the current branch is "Master"
+    # Canonical naming for the layers and verbs referenced below lives in
+    # Plan/harness/VOCABULARY.md; the L3 daemon implementation under this
+    # phase is specified in Plan/harness/design.md §5 (its acceptance
+    # scenarios live in Plan/harness/design.md §8 as harness.L3.1..L3.5).
 
   # anchor: phase-8.pr-rebase-policy
   Scenario: PR-rebase policy is enforced via a CI gate
@@ -57,6 +61,11 @@ Feature: Phase 8 — Operational hardening
     And it formats the combined artefacts into a valid Markdown Gate 3 Evidence block suitable for the PR body
 
   # anchor: phase-8.harness-research-doc
+  # Note: this scenario covers the Spec 023 *research-remainder* only
+  # (items 1 = prior-art survey + 4 = progressive-disclosure ladder).
+  # The L3 daemon implementation that absorbed Spec 023 items
+  # 2-3-5-6-7-8-basic has its own acceptance scenarios in
+  # Plan/harness/design.md §8 (harness.L3.1 through harness.L3.5).
   Scenario: Harness-in-harness research epic produces the compatibility enumeration doc
     Given the harness-in-harness research epic script is executed
     When the findings are aggregated

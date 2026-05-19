@@ -4,15 +4,16 @@ Feature: Phase 1 — Anchor triad + envelope (cold-start)
     Given the agency-mcp server is successfully booted
     And the plugin repository is loaded at the correct working directory
     And the servers/agency-mcp/src/agency_mcp/codemode/manifest.json is accessible
+    And the L1 in-process harness from PR #127 is present at tests/_harness/
 
   # anchor: phase-1.tools-list-payload
   Scenario: tools/list payload cold boot measurement
-    When I request the list of registered tools from the MCP server
+    When I run tests/smoke/test_boot_budget.py via the L1 harness's harness_mcp() factory and request the list of registered tools from the MCP server
     Then the tools/list payload size must be < 4 KB
 
   # anchor: phase-1.boot-context-budget
   Scenario: Cold boot context token measurement
-    When I measure the boot context token count via tests/smoke/test_boot_budget.py
+    When I measure the boot context token count via tests/smoke/test_boot_budget.py invoked through the L1 harness's harness_mcp() factory
     Then the total boot context token count must be < 500 tokens
 
   # anchor: phase-1.eager-anchor-registration
@@ -52,5 +53,5 @@ Feature: Phase 1 — Anchor triad + envelope (cold-start)
 
   # anchor: phase-1.toon-gate
   Scenario: TOON serializer size reduction gate
-    When I invoke tests/smoke/test_toon_gate.py with a homogeneous list of dicts of length >= 3
+    When I run tests/smoke/test_toon_gate.py via the L1 harness's harness_mcp() factory with a homogeneous list of dicts of length >= 3
     Then the serialized payload size must demonstrate a 40-60% reduction over raw JSON

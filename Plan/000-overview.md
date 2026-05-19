@@ -17,8 +17,8 @@ The architecture has not changed. Three collapses, one budget:
 2. **One MCP, Code Mode native** — `servers/agency-mcp/` with `FastMCP("agency-system", dereference_schemas=False)` wrapping an `AnchorAwareCodeMode` transform. Per domain: ~4 eager anchor tools (`*_search`, `*_describe`, `*_invoke` / `*_query`); all bulk tools registered `hidden=True, defer_schema=True`. Boot tool surface target: `tools/list` < 4 KB, total boot context < 500 tokens (was ~34 k).
 
 3. **Graph-based context** — two complementary layers sharing one manifest schema:
-   - **Path B (documents)**: `context_manifest.json` catalogues every spec/lesson/override/reference with `{id, title, summary, sha256, tags, views:{summary|preview|full}}`. Exposed via `context_search` / `context_describe` / `context_read` + a polling watcher emitting `notifications/resources/updated`. Defers ≥ 200 k tokens of preemptively-inlined docs.
-   - **Wave D (ontology graph)**: an 18-type frontmatter ontology + GraphQLite Cypher extension over `~/.agency-system/cache/graph.sqlite`. Exposes `graph_cypher` / `graph_describe_node` / `graph_run_algorithm`. The same manifest entries from Path B carry a `graph_id`, so document discovery and structural queries reinforce each other.
+   - **Context Mode Path B (documents)**: `context_manifest.json` catalogues every spec/lesson/override/reference with `{id, title, summary, sha256, tags, views:{summary|preview|full}}`. Exposed via `context_search` / `context_describe` / `context_read` + a polling watcher emitting `notifications/resources/updated`. Defers ≥ 200 k tokens of preemptively-inlined docs. ("Path B" within Phase 4 is always the *Context Mode* trajectory — see `Plan/harness/VOCABULARY.md` §6 for the disambiguation rule that keeps it separate from the *Harness* Path A/B in `Plan/harness/design.md` §11.)
+   - **Wave D (ontology graph)**: an 18-type frontmatter ontology + GraphQLite Cypher extension over `~/.agency-system/cache/graph.sqlite`. Exposes `graph_cypher` / `graph_describe_node` / `graph_run_algorithm`. The same manifest entries from Context Mode Path B carry a `graph_id`, so document discovery and structural queries reinforce each other.
 
 The unifying constraint everywhere is **token efficiency**. Every spec sized by what it saves; every hook ordered to maximise prefix-cache hits.
 
@@ -155,7 +155,7 @@ Eight phases. Each phase is one PR-set (1-N PRs depending on independence). Each
 | **5** | Ontology + Graph (Wave D) | 122, 123, 124, 135 | cross-domain queryability | Phase 4 (manifest schema sharing) |
 | **6** | Quality / loop / compaction | 118, 119, 120, 100 | self-healing context, ~47k saved per loop | Phase 2 (session-log canon) |
 | **7** | Domain handler completion | 014, 015, 016, 018, 021 | feature completeness | Phase 1 (envelope), Phase 5 (ontology) |
-| **8** | Operational hardening | 102, 132, 133, 134, 136, 137, 138, 139, 023, 099-full | polish + bus-factor | optional / continuous |
+| **8** | Operational hardening + L3 daemon | 102, 132, 133, 134, 136, 137, 138, 139, **L3 daemon (`Plan/harness/design.md` §5; absorbs 023 items 2-3-5-6-7-8-basic)**, 023-remainder (items 1 + 4), 099-full | polish + bus-factor + cross-harness portability via L3 | optional / continuous |
 
 ### 4.1 Highest-leverage order (the "ship-first 6", per token-efficiency audit)
 
@@ -326,11 +326,10 @@ For each phase below: `Specs` lists the sub-spec directories Jules will work fro
 - **Token win:** boot context 34k → <500 + 40-60% on list-shape returns via TOON middleware (gates on homogeneous list[dict] with len≥3).
 - **PR strategy:** 5 PRs, dispatched as one fanout. 130 + 131 + 105 open first; 104 opens after either of 130/131 merges; 107 opens last.
 - **Smoke test:** `tests/smoke/test_boot_budget.py` (Spec 131 ships it; runs in CI); `tests/smoke/test_toon_gate.py` (Spec 105).
-- **Cross-PR coordination (added 2026-05-18 mid-loop):** the smoke tests above need an in-process harness that boots `create_mcp()` via FastMCP's in-memory transport — separate from any single Spec 131/105 PR. **PR #115** (branch `claude/fix-pr-merge-issues-sn1CS`) is the working reference point for that harness. Two layers are scoped IN Phase 1 alongside it:
-  - **L1 — In-process harness module**: `tests/_harness/` + `conftest.py` exposing `mcp_instance`, `call_tool(name, **kwargs)`, `load_skill(path)`, `dispatch_skill(name)` fixtures. Substrate for Spec 131 and Spec 105 smoke tests.
-  - **L2 — Subprocess probe**: `tests/smoke/test_nested_claude.py` spawning `claude --bare --plugin-dir <repo> -p ...` to assert end-to-end boot. Replaces the manifest-only `claude plugin validate` check (per the Codex P1 critique on PR #115).
-  - **L3 — Sidecar daemon for non-Claude-Code harnesses** = Spec 023 stays in Phase 8; unchanged.
-  - Coordination protocol: Jules/Codex/Claude sessions touching Phase 1 smoke tests in the next 24h MUST rebase onto PR #115's branch rather than authoring a parallel harness; the in-flight design doc is at `docs/superpowers/specs/2026-05-18-harness-in-harness-design.md`.
+- **Cross-PR coordination (updated 2026-05-18 after PR #127 merged):** the smoke tests above boot `create_mcp()` via FastMCP's in-memory transport through a shared harness — the substrate is the three-layer ladder in `Plan/harness/design.md` (canonical naming reference: `Plan/harness/VOCABULARY.md`). Two of the three layers are scoped IN Phase 1 and have **shipped via PR #127**:
+  - **L1 — In-process harness module (shipped, PR #127)**: `tests/_harness/{__init__,mcp,skills}.py` + `tests/conftest.py` exposing the `mcp_instance` session fixture and the `call_tool`, `tools`, `load_skill`, `dispatch_skill` verbs of the four-verb contract (`Plan/harness/design.md` §3, `Plan/harness/VOCABULARY.md` §3). Substrate for Spec 131 (`test_boot_budget.py`) and Spec 105 (`test_toon_gate.py`).
+  - **L2 — Subprocess probe (shipped, PR #127)**: `tests/smoke/test_nested_claude.py` runs `claude --bare --plugin-dir <repo> --debug plugins -p exit` (per `Plan/harness/design.md` §4.1). Closes the Codex P1 critique on the prior `claude plugin validate` stdout-grep.
+  - **L3 — Sidecar daemon + CLI (deferred to Phase 8)**: `bin/agency` + `servers/agency-mcp/src/agency_mcp/lib/devmode/` (per `Plan/harness/design.md` §5). Absorbs Spec 023 items 2-3-5-6-7-8-basic; only Spec 023 items 1 + 4 (research + 4-tier progressive disclosure) remain as a follow-up sub-spec `Plan/harness/L3-progressive-disclosure.md`.
 
 ### Phase 2 — Hook chain
 
@@ -376,7 +375,7 @@ For each phase below: `Specs` lists the sub-spec directories Jules will work fro
 
 ### Phase 8 — Operational hardening
 
-- **Specs:** 102 (pr-rebase-policy), 132 (skill-tool-hooks), 133 (skill-subagent-pressure-tests), 134 (plan-adr-convention), 136 (agents-yaml-role-manifest), 137 (watcher-sdk-composability), 138 (frustration-log-protocol), 139 (evidence-snapshot-helper), 023 (harness-in-harness), 099-full (jules-orchestration-improvements remainder)
+- **Specs:** 102 (pr-rebase-policy), 132 (skill-tool-hooks), 133 (skill-subagent-pressure-tests), 134 (plan-adr-convention), 136 (agents-yaml-role-manifest — discoverability layer for the L3 daemon's agent/role surface), 137 (watcher-sdk-composability), 138 (frustration-log-protocol), 139 (evidence-snapshot-helper), **L3 sidecar daemon + CLI** (per `Plan/harness/design.md` §5; absorbs Spec 023 items 2-3-5-6-7-8-basic — `bin/agency` + `servers/agency-mcp/src/agency_mcp/lib/devmode/` + `tests/integration/test_devmode_server.py` + `docs/architecture/harness-in-harness.md`), 023-remainder (items 1 + 4 → `Plan/harness/L3-progressive-disclosure.md`), 099-full (jules-orchestration-improvements remainder)
 - **Parallel-safe:** all (orthogonal subsystems).
 - **PR strategy:** up to 10 PRs as one fanout — this phase is where the 60-session quota is most relevant.
 
