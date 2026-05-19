@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/hooks/posttooluse.schema.json",
+  "title": "PostToolUse Hook Payload",
+  "description": "Payload sent to the PostToolUse hook for graph ingestion after a state change.",
+  "type": "object",
+  "properties": {
+    "tool_name": {
+      "type": "string",
+      "description": "The name of the tool that was invoked."
+    },
+    "envelope": {
+      "type": "object",
+      "description": "The standard ToolResult envelope returned by the tool.",
+      "properties": {
+        "ok": { "type": "boolean" },
+        "data": { "type": "object" },
+        "warnings": { "type": "array", "items": { "type": "string" } },
+        "artefacts_written": { "type": "array", "items": { "type": "string" } },
+        "next_suggested_tools": { "type": "array", "items": { "type": "string" } },
+        "error": { "type": "string" }
+      },
+      "required": ["ok", "data"]
+    }
+  },
+  "required": ["tool_name", "envelope"]
+}

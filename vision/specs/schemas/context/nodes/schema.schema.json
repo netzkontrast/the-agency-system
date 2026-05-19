@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/schema.schema.json",
+  "title": "Schema Node",
+  "description": "Graph node describing a schema registered in the context graph.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Schema" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "path": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["path"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}

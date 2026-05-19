@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/artifact-driver/get-bytes-response.schema.json",
+  "title": "Get Bytes Response",
+  "description": "Response from an artifact driver containing the requested bytes.",
+  "type": "object",
+  "properties": {
+    "ok": { "type": "boolean" },
+    "bytes": {
+      "type": "string",
+      "contentEncoding": "base64",
+      "description": "The raw bytes of the artefact, base64 encoded."
+    },
+    "error": { "type": "string" }
+  },
+  "required": ["ok"]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/template.schema.json",
+  "title": "Template Node",
+  "description": "Graph node representing a scaffolding template.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Template" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "row": { "type": "string" },
+        "path": { "type": "string" },
+        "required_vars": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["path"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}
