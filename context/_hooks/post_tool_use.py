@@ -19,7 +19,7 @@ def ingest(tool_name: str, envelope: Dict[str, Any]) -> None:
     artefact_metadata = data.get("artefact_metadata") # Artefact metadata inline
 
     if artefact_metadata and isinstance(artefact_metadata, dict):
-        schema_path = os.path.join(os.path.dirname(__file__), '..', '_shared', 'schemas', 'sidecar.schema.json')
+        schema_path = os.path.join(os.path.dirname(__file__), '..', '_shared', 'schemas', 'artefact-node.schema.json')
         is_valid = False
         if os.path.exists(schema_path):
             with open(schema_path, 'r') as f:
