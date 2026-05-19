@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/interface-to-agentic.schema.json",
+  "title": "Context Interface to Agentic",
+  "description": "How context sees its interface to agentic: defining query responses and node/edge upsert structures.",
+  "type": "object",
+  "properties": {
+    "query_response": {
+      "type": "array",
+      "items": { "type": "object" },
+      "description": "List of dictionary results from a graph query (e.g. Cypher execution)."
+    },
+    "upsert_node_request": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "payload": { "type": "object" }
+      },
+      "required": ["id", "label", "payload"]
+    },
+    "upsert_edge_request": {
+      "type": "object",
+      "properties": {
+        "src": { "type": "string" },
+        "dst": { "type": "string" },
+        "rel_type": { "type": "string" },
+        "payload": { "type": "object" }
+      },
+      "required": ["src", "dst", "rel_type"]
+    }
+  }
+}

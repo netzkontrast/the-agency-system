@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/session.schema.json",
+  "title": "Session Node",
+  "description": "Graph node representing an active or historical agentic session.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Session" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string" },
+        "started_at": { "type": "string", "format": "date-time" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "required": ["id", "label", "payload"]
+}

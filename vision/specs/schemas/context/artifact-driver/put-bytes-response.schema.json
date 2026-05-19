@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/artifact-driver/put-bytes-response.schema.json",
+  "title": "Put Bytes Response",
+  "description": "Response from an artifact driver after storing bytes.",
+  "type": "object",
+  "properties": {
+    "ok": { "type": "boolean" },
+    "metadata_updates": {
+      "type": "object",
+      "description": "Updated metadata (like new sha256 or size) that the context should write back to the node.",
+      "properties": {
+        "sha256": { "type": "string" },
+        "size": { "type": "integer" }
+      }
+    },
+    "error": { "type": "string" }
+  },
+  "required": ["ok"]
+}

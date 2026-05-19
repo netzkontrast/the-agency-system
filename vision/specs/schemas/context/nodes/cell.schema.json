@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/cell.schema.json",
+  "title": "Cell Node",
+  "description": "Graph node representing a specific cell intersection in the agency matrix.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Cell" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "row": { "type": "string" },
+        "column": { "type": "string", "enum": ["agentic", "workflow", "context"] },
+        "path": { "type": "string" }
+      },
+      "required": ["row", "column"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}

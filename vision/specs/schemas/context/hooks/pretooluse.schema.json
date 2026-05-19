@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/hooks/pretooluse.schema.json",
+  "title": "PreToolUse Hook Payload",
+  "description": "Payload sent to the PreToolUse hook for validation before a state change.",
+  "type": "object",
+  "properties": {
+    "tool_name": {
+      "type": "string",
+      "description": "The name of the tool being invoked."
+    },
+    "args": {
+      "type": "object",
+      "description": "The arguments passed to the tool.",
+      "properties": {
+        "path": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    }
+  },
+  "required": ["tool_name", "args"]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/tool.schema.json",
+  "title": "Tool Node",
+  "description": "Graph node representing an MCP tool exposed by a skill/handler.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Tool" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "defer_schema": { "type": "boolean" }
+      },
+      "required": ["name"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}
