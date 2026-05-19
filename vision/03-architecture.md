@@ -25,7 +25,7 @@ The four Phase-3 cross-column "ownership" tensions (gate-edge execution, mid-pha
 
 ## 1. The model in five sentences
 
-There is ONE engine — **FastMCP** — that walks ONE substrate — the **context graph** (stored as SQLite at `context/_store/ontology.db`; system-internal). Workflows are not pre-defined pipelines; they are *paths* through the graph, lazily linked when the requested path does not yet exist. **Pluggable artifact drivers** (fs / repo / s3 / http / drive) map `Artefact` nodes to external user-owned storage — the bytes the user keeps; system metadata never leaks into user storage. **Skills + MCP** are the universal interface — no domain has its own runtime, no domain owns its own infrastructure, no domain writes outside the graph. The MCP server handles the workflow of every operation, including ingest and output, because every operation IS a workflow.
+There is ONE engine — **FastMCP** — that walks ONE substrate — the **context graph**, stored as a SQLite file via the **[GraphQLite](https://github.com/colliery-io/graphqlite)** extension (SQLite + Cypher; system-internal at `context/_store/ontology.db`). Workflows are not pre-defined pipelines; they are *Cypher paths* through the graph, lazily linked when the requested traversal does not yet exist. **Pluggable artifact drivers** (fs / repo / s3 / http / drive) map `Artefact` nodes to external user-owned storage — the bytes the user keeps; system metadata never leaks into user storage. **Skills + MCP** are the universal interface — no domain has its own runtime, no domain owns its own infrastructure, no domain writes outside the graph. The MCP server handles the workflow of every operation, including ingest and output, because every operation IS a workflow.
 
 ## 2. Three columns + drivers — the architecture/user-facing split
 
@@ -79,11 +79,45 @@ This dissolves spec 04's `PhaseStateEnvelope` file-on-disk model. The envelope s
 
 A **driver** is a backend that maps graph nodes to external substrates. Drivers split cleanly into two roles, and that split matches the system/user-storage boundary:
 
-### 5.1 The graph driver (system-internal)
+### 5.1 The graph driver (system-internal) — GraphQLite
 
-Graph metadata — every node, every edge, every provenance trail, every `Continuation`, every audit trace — lives in ONE place: the **graph SQLite database** at `context/_store/ontology.db`. This is the system's internal store. It is not configurable per-row — every install has exactly one graph SQLite, and it is the source of truth for everything the system knows.
+Graph metadata — every node, every edge, every provenance trail, every `Continuation`, every audit trace — lives in ONE place: a single SQLite file at `context/_store/ontology.db`, accessed through the **[GraphQLite](https://github.com/colliery-io/graphqlite)** SQLite extension (MIT, C core + Python binding, ~340★, active). This is the system's internal store. It is not configurable per-row — every install has exactly one graph database, and it is the source of truth for everything the system knows.
 
-The "graph driver" is not really pluggable in v1. SQLite is the chosen substrate for the system's metadata, and that's the architecture. Future may add Postgres as a graph driver alternative, but that's a deployment concern, not a per-row decision.
+GraphQLite gives us, on top of plain SQLite:
+
+- **Native node/edge primitives** — `upsert_node(id, props, label=...)`, `upsert_edge(src, dst, props, rel_type=...)` — instead of hand-rolled adjacency tables.
+- **Cypher query language** — `MATCH (a:Phase)-[:PRECEDES]->(b:Phase) RETURN ...` — instead of recursive CTEs over our own schema.
+- **Built-in graph algorithms** — `pagerank()`, `louvain()`, `dijkstra()` — used for routing decisions (shortest workflow path between two states, importance ranking when picking which artefact to surface, community detection when grouping related rows).
+- **Embedded, no server** — fits the "one SQLite file" requirement; works in the FastMCP process directly.
+
+The graph driver is therefore **not pluggable in v1**. GraphQLite + SQLite is the chosen substrate, and that choice is part of the architecture, not a per-row decision. (Future may add Postgres or another Cypher store as an alternative driver if a deployment outgrows embedded SQLite — that is a deployment concern, not a row-config concern.)
+
+#### Sketch of the in-process API
+
+```python
+# context/_store/graph.py — system-internal, single instance per FastMCP process
+from graphqlite import Graph
+
+g = Graph("context/_store/ontology.db")  # opens or creates
+
+# A phase node + its precedence edge
+g.upsert_node("music:tinytrash:phase:02",
+              {"row": "music", "cell": "tinytrash", "phase_id": "02",
+               "status": "blocked", "blocked_on_gate": "lyrics_reviewed"},
+              label="Phase")
+g.upsert_edge("music:tinytrash:phase:01", "music:tinytrash:phase:02",
+              {"reason": "lyrics_reviewed=true"},
+              rel_type="PRECEDES")
+
+# Cypher traversal — find every blocked phase whose gate has been satisfied
+g.query("""
+    MATCH (p:Phase {status: 'blocked'})-[:BLOCKED_ON]->(g:Gate)
+    WHERE g.satisfied = true
+    RETURN p
+""")
+```
+
+The Python binding is what the FastMCP server wraps. Every column's MCP tools that read or write context state go through this one `Graph` instance — there is no second writer.
 
 ### 5.2 Artifact drivers (user-storage)
 
@@ -154,10 +188,10 @@ These specs need a v1 rewrite under this architecture:
   - The meta-row stays — it's the workflow that scaffolds new row cells from templates. But it scaffolds INTO the graph (creating nodes) as well as INTO the filesystem (via the fs driver).
 
 - **`specs/08-context-base.md`** → `specs/08-context-base-v1.md` (rewrite):
-  - SQLite is one driver, not THE store. The store is a driver-registry-backed graph.
-  - Specify the Driver Protocol (concrete Python signature).
-  - Specify the driver registry: how drivers register themselves, how a node's `origin_driver` is resolved.
-  - SQLite remains the default driver. Implementing fs, repo, s3, http, drive are follow-up tasks.
+  - Replace the hand-rolled SQLite schema with **GraphQLite** (SQLite extension + Cypher). One `Graph` instance, one `ontology.db` file, in-process inside the FastMCP server.
+  - Define the canonical node-type taxonomy (`Skill`, `Tool`, `Phase`, `Gate`, `Artefact`, `Row`, `Cell`, `Session`, `Continuation`, `Template`, `Schema`, …) and edge-type catalog (`PRECEDES`, `BLOCKS`, `BLOCKED_ON`, `PRODUCES`, `CONSUMES`, `DERIVED_FROM`, `SATISFIES_PHASE`, `DISPATCHED_TO`, `INVOKED_TOOL`, …) as Cypher constraints.
+  - Specify the **artifact-driver protocol** (concrete Python signature) and the registry: how `fs`, `repo`, `s3`, `http`, `drive` register themselves; how an `Artefact` node's `artifact_driver` field resolves to a driver instance at read/write time.
+  - GraphQLite is the only graph driver in v1. `fs` is the only mandatory artifact driver in v1 (so a user can write to their vault); `repo` / `s3` / `http` / `drive` are follow-up tasks.
 
 Spec 04 (`PhaseStateEnvelope`) becomes mostly informational:
 
