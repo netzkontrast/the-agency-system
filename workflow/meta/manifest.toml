@@ -1,0 +1,14 @@
+[cell]
+row = "meta"
+column = "workflow"
+
+[workflow]
+entry_verbs = ["scaffold"]
+
+[[phases]]
+id = "01"
+path = "phases/01-bootstrap.md"
+
+[[phases]]
+id = "02"
+path = "phases/02-scaffold.md"
