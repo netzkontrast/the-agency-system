@@ -3,7 +3,7 @@
     "agency-system": {
       "type": "stdio",
       "command": "python",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/agency-mcp/run.py"]
+      "args": ["${CLAUDE_PROJECT_DIR:-.}/servers/agency-mcp/run.py"]
     }
   }
 }

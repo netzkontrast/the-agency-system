@@ -45,7 +45,7 @@ set -euo pipefail
 #   post_install    Optional bash function name called after dep install.
 PLUGINS=(
     "bitwize-music-studio/claude-ai-music-skills | bitwize-music | bitwize-music | inline | venv:bitwize-music | requirements.txt | write_bitwize_config"
-    "netzkontrast/the-agency-system | agency-marketplace | agency-system | inline | system | servers/agency-mcp/pyproject.toml | "
+    "netzkontrast/the-agency-system | agency-marketplace | agency-system | inline | pyvenv:agency-system | servers/agency-mcp/pyproject.toml | "
     "SuperClaude-Org/SuperClaude_Plugin | superclaude | sc | inline | none | | "
     "obra/superpowers-marketplace | superpowers-marketplace | superpowers | https://github.com/obra/superpowers.git | none | | "
     "obra/superpowers-marketplace | superpowers-marketplace | episodic-memory | https://github.com/obra/episodic-memory.git | npm | | "
@@ -70,15 +70,20 @@ warn() { printf '[setup] WARN: %s\n' "$*" >&2; }
 die()  { printf '[setup] ERROR: %s\n' "$*" >&2; exit 1; }
 
 # Atomic JSON merge: jq filter over existing file (or {}) → temp file → mv.
-# Args: path filter [jq-args...]
+# Signature: json_merge <path> [--arg KEY VAL]... <filter>
+# The LAST positional argument is the jq filter; everything between path
+# and filter is passed verbatim to jq (--arg / --argjson pairs).
 json_merge() {
     local path="$1"; shift
-    local filter="$1"; shift
+    local n=$#
+    [ "${n}" -ge 1 ] || die "json_merge: filter required"
+    local args=( "${@:1:n-1}" )
+    local filter="${@:n:1}"
     mkdir -p "$(dirname "${path}")"
     local input='{}'
     [ -f "${path}" ] && input="$(cat "${path}")"
     local tmp; tmp="$(mktemp "${path}.XXXXXX")"
-    if printf '%s' "${input}" | jq "$@" "${filter}" > "${tmp}"; then
+    if printf '%s' "${input}" | jq "${args[@]}" "${filter}" > "${tmp}"; then
         mv -f "${tmp}" "${path}"
     else
         rm -f "${tmp}"
@@ -435,6 +440,59 @@ provision_system() {
     fi
 }
 
+provision_pyvenv() {
+    # Args: state-dir-name, plugin-dir, dep-source (pyproject.toml path)
+    # Creates a dedicated venv, installs the pyproject AND every sibling
+    # under <plugin>/servers/*/pyproject.toml editably, then symlinks
+    # ~/.local/bin/python → the venv's python3 so plugins whose .mcp.json
+    # uses bare `python` (like agency-system) find the right packages.
+    # Avoids the Debian PyJWT-RECORD-not-found wall that breaks
+    # --break-system-packages installs.
+    local state_name="$1" pdir="$2" depsrc="$3"
+    local state_dir="${HOME}/.${state_name}"
+    local venv="${state_dir}/venv"
+    mkdir -p "${state_dir}"
+    [ -x "${venv}/bin/python3" ] || { log "  creating venv ${venv}"; python3 -m venv "${venv}"; }
+    "${venv}/bin/pip" install --quiet --upgrade pip wheel setuptools
+
+    # Editable install of the primary package.
+    if [ -n "${depsrc}" ] && [ -f "${pdir}/${depsrc}" ]; then
+        local depdir; depdir="$(dirname "${pdir}/${depsrc}")"
+        log "  pip install -e ${depdir} (venv)"
+        "${venv}/bin/pip" install --quiet -e "${depdir}" \
+            || warn "    editable install failed"
+    fi
+    # Walk sibling server packages.
+    if [ -d "${pdir}/servers" ]; then
+        local s
+        for s in "${pdir}/servers"/*/; do
+            [ -f "${s}pyproject.toml" ] || continue
+            [ -n "${depsrc}" ] && [ "${pdir}/${depsrc}" = "${s}pyproject.toml" ] && continue
+            log "  pip install -e ${s} (venv sibling)"
+            "${venv}/bin/pip" install --quiet -e "${s}" \
+                || warn "    editable install failed for ${s}"
+        done
+    fi
+
+    # Make bare `python` resolve to this venv's python. A symlink doesn't
+    # work — Python's venv-detection walks the dir of argv[0] looking for
+    # pyvenv.cfg, and the link path (e.g. ~/.local/bin/) has none.
+    # A small exec-wrapper preserves the venv interpreter's argv[0], which
+    # is what venv detection needs.
+    #
+    # rm first: a previous run may have left a SYMLINK at this path; a
+    # `cat > symlink` writes through and corrupts the link target (the
+    # venv python binary).
+    mkdir -p "${HOME}/.local/bin"
+    rm -f "${HOME}/.local/bin/python"
+    cat > "${HOME}/.local/bin/python" <<EOF
+#!/usr/bin/env bash
+exec "${venv}/bin/python3" "\$@"
+EOF
+    chmod +x "${HOME}/.local/bin/python"
+    log "  wrote python wrapper ${HOME}/.local/bin/python → ${venv}/bin/python3"
+}
+
 provision_npm() {
     local pdir="$1"
     if [ ! -f "${pdir}/package.json" ]; then
@@ -474,11 +532,12 @@ for entry in "${INSTALLED_REFS[@]}"; do
     IFS='|' read -r REF PDIR DEPMODE DEPSRC POST _ _ <<<"${entry}"
     log "${REF} → mode=${DEPMODE}"
     case "${DEPMODE}" in
-        venv:*)  provision_venv "${DEPMODE#venv:}" "${PDIR}" "${DEPSRC}" ;;
-        system)  provision_system "${PDIR}" "${DEPSRC}" ;;
-        npm)     provision_npm "${PDIR}" ;;
+        venv:*)   provision_venv "${DEPMODE#venv:}" "${PDIR}" "${DEPSRC}" ;;
+        pyvenv:*) provision_pyvenv "${DEPMODE#pyvenv:}" "${PDIR}" "${DEPSRC}" ;;
+        system)   provision_system "${PDIR}" "${DEPSRC}" ;;
+        npm)      provision_npm "${PDIR}" ;;
         uvx|none) log "  (no eager install)" ;;
-        *)       warn "  unknown dep_mode '${DEPMODE}'" ;;
+        *)        warn "  unknown dep_mode '${DEPMODE}'" ;;
     esac
     if [ -n "${POST}" ] && declare -F "${POST}" >/dev/null 2>&1; then
         "${POST}"
@@ -530,6 +589,14 @@ for entry in "${INSTALLED_REFS[@]}"; do
         venv:*)
             VPY="${HOME}/.${DEPMODE#venv:}/venv/bin/python3"
             [ -x "${VPY}" ] || fail "venv python missing: ${VPY}"
+            ;;
+        pyvenv:*)
+            VPY="${HOME}/.${DEPMODE#pyvenv:}/venv/bin/python3"
+            [ -x "${VPY}" ] || fail "venv python missing: ${VPY}"
+            # The venv should be importable; ALSO bare `python` must
+            # resolve to it via the ~/.local/bin/python symlink.
+            python -c "import agency_mcp" >/dev/null 2>&1 \
+                || fail "import agency_mcp failed via bare 'python' (PATH=${PATH})"
             ;;
         system)
             if [ "${REF}" = "agency-system@agency-marketplace" ]; then
