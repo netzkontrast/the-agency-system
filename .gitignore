@@ -17,3 +17,4 @@ jules-plugin/tools/researcher/cache/*
 .claude/skills/jules/research/
 .venv
 *.egg-info/
+.mcp.json.bak

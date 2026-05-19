@@ -5,10 +5,33 @@
         "source": "github",
         "repo": "bitwize-music-studio/claude-ai-music-skills"
       }
+    },
+    "agency-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "netzkontrast/the-agency-system"
+      }
+    },
+    "superclaude": {
+      "source": {
+        "source": "github",
+        "repo": "SuperClaude-Org/SuperClaude_Plugin"
+      }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
     }
   },
   "enabledPlugins": {
-    "bitwize-music@bitwize-music": true
+    "bitwize-music@bitwize-music": true,
+    "agency-system@agency-marketplace": true,
+    "sc@superclaude": true,
+    "superpowers@superpowers-marketplace": true,
+    "episodic-memory@superpowers-marketplace": true,
+    "superpowers-developing-for-claude-code@superpowers-marketplace": true
   },
   "enabledMcpjsonServers": [],
   "permissions": {
