@@ -102,8 +102,8 @@ Male vocals German, dynamic register split: snarling baritone in verses (jaw-cle
 no autotune, no maximalist production, no sidechain pump
 ```
 
-### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
+### Lyrics Box — Version A (Observational, post-punk register)
+*Copy this into Suno's "Lyrics" field for Version A:*
 
 <!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
      Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
@@ -188,6 +188,88 @@ lass mich. Lass mich.
 [breath] Meine Luft.
 [breath] Sie gehört mir.
 [breath] Ich atme.
+
+[End]
+```
+
+### Lyrics Box — Version B (Verb-Sharpened / Swans-Hammer)
+*Alternative Lyrics-Variante. Style Box und Exclude Styles bleiben identisch. Beim Suno-Generieren genau EINE Version in das Lyrics-Feld pasten.*
+
+```
+[Verse 1]
+[snarling baritone, jaw-clenched, growl-edged, throat audible, breathless worn-down rage, dry close-mic, no vibrato]
+
+Etwas presst von allen Seiten
+gelb und stumm — kein Rand
+heiß wie kein Trost — zu nah
+und älter als jeder Reflex
+
+[Pre-Chorus]
+[snarling baritone fragmenting, jaw-clenched panic, hypnagogic, hammered repetition, breath shallow]
+
+Ich fall. [breath] Ich fall. [breath] Ich fall.
+Wie beim Einschlafen — nur bleibt es. Bleibt.
+Es hört nicht auf. Hört nicht auf.
+
+[Chorus]
+[ugly belt erupts from snarling baritone, throat-shredding, voice cracking, lung-empty scream-edge, not pretty, pulverizing repetition no climax]
+
+(Lass mich) lass mich atmen
+(geh runter) geh weg, geh aus
+keine Frage. Kein Bitte. Kein Atem.
+Ich will den nächsten Zug. Den nächsten.
+
+[Verse 2]
+[return to snarling baritone, more frayed than V1, jaw tighter, breath shorter, dry close-mic]
+
+Im Hals würgt was Altes
+das Kissen brennt heiß
+kein Wort, kein Bild, nur Faust
+und über mir steht das Gelb
+
+[Pre-Chorus]
+[fall sensation returning, snarling baritone dissociating, jaw still clenched, hammered repetition]
+
+Ich fall. [breath] Ich fall. [breath] Ich fall.
+Wie beim Einschlafen — nur bleibt es. Bleibt.
+Ich bin hier. Bin hier. Irgendwo.
+
+[Chorus]
+[ugly belt again, same hammer intensity, no escalation, pulverizing repetition, no climax]
+
+(Lass mich) lass mich atmen
+(geh runter) geh weg, geh aus
+keine Frage. Kein Bitte. Kein Atem.
+Ich will den nächsten Zug. Den nächsten.
+
+[Bridge]
+[instrumental break: drums drop out, sub-bass holds, filtered breath-sample loop underneath, hydraulic machine-pulse builds across the section, cyberpunk synth grit thickens]
+[vocal: raw ugly belt unaccompanied for first lines, throat tearing, breathless, voice cracking by line 5]
+
+Ich will Nächte ohne dich
+egal ob du Stimme bist
+egal ob du Traum bist
+egal ob du Knochen bist
+egal ob du in mir wohnst —
+[breath]
+raus. Raus. Raus aus mir.
+
+[Chorus]
+[everything returns at hammer weight, ugly belt cracking, voice tearing, lungs empty, final pulverization]
+
+(Lass mich) lass mich atmen
+(geh runter) geh weg, geh aus
+keine Frage. Kein Bitte. Kein Atem.
+Ich will den nächsten Zug —
+[breath]
+lass. Mich. Atmen.
+
+[Outro]
+[pressed whispered, throat constricted, exhausted, voice collapsed, dry close-mic, music drops to silence with cyberpunk synth residue]
+
+[breath] Meine Luft.
+[breath] Sie gehört mir.
+[breath] Ich atme. Ich atme.
 
 [End]
 ```
