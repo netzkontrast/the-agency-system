@@ -145,13 +145,29 @@ log "HOME=${HOME}  REPO_PATH=${REPO_PATH}  ARTIST=${ARTIST_NAME}"
 log "Phase 1: installing system packages"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
+
+# Core packages — must succeed. apt-get install aborts the whole batch on
+# the first missing package, so anything that might be renamed across
+# distros goes into the best-effort batch below.
 apt-get install -y -qq \
     git git-lfs python3 python3-venv python3-pip python3-dev \
     ffmpeg libsndfile1 libpq-dev libsqlite3-dev build-essential pkg-config \
     ca-certificates curl jq nodejs npm \
+    || die "core apt-get install failed — see output above"
+
+# Playwright Chromium runtime libs — best-effort. Distro-renamed packages
+# (libasound2 → libasound2t64 on Debian 13 / Ubuntu 24.04+) are tried as
+# alternates. None of these are fatal — only document-hunter needs them.
+apt-get install -y -qq --no-install-recommends \
     libnss3 libatk1.0-0 libatk-bridge2.0-0 libxkbcommon0 libgbm1 \
-    libasound2 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
-    2>&1 | tail -2 || warn "apt-get reported issues — continuing"
+    libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
+    2>&1 | tail -2 || warn "some Chromium runtime libs missing (non-fatal)"
+
+# libasound has two upstream names depending on Debian/Ubuntu version.
+apt-get install -y -qq libasound2t64 2>/dev/null \
+    || apt-get install -y -qq libasound2 2>/dev/null \
+    || warn "libasound not installed — Playwright audio may not work"
+
 git lfs install --skip-repo
 
 # Detect PEP 668 once; reused by dep_mode=system installs.
