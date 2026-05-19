@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+#
+# agency-venv-setup — create a development venv for the agency v0.1
+# base layer and install everything listed in requirements-dev.txt.
+#
+# Idempotent: rerun any time. The script:
+#   1. Resolves the repo root via git, falling back to PWD.
+#   2. Creates a .venv/ at the repo root if it does not exist
+#      (uv if available, stdlib `python -m venv` otherwise).
+#   3. Installs requirements-dev.txt into the venv.
+#   4. Runs `pytest -q tests/agentic tests/workflow tests/context`
+#      as a smoke check, unless --no-test is passed.
+#   5. Prints the activation command for the user's shell.
+#
+# Flags:
+#   --no-test   skip the smoke test after install
+#   --recreate  delete the existing .venv/ and rebuild from scratch
+#   --help      print this help
+#
+# Exit codes:
+#   0 — venv created + requirements installed (smoke test is advisory only,
+#       its failures do NOT change the exit code; rerun pytest yourself
+#       to investigate). This script's job is setup, not codebase QA.
+#   1 — venv creation or requirements install failed.
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+VENV_DIR="$REPO_ROOT/.venv"
+REQUIREMENTS="$REPO_ROOT/requirements-dev.txt"
+RUN_TESTS=1
+RECREATE=0
+
+for arg in "$@"; do
+    case "$arg" in
+        --no-test)  RUN_TESTS=0 ;;
+        --recreate) RECREATE=1 ;;
+        --help|-h)
+            sed -n '2,/^$/p' "$0" | sed 's/^# \{0,1\}//'
+            exit 0
+            ;;
+        *)
+            echo "ERROR: unknown flag: $arg" >&2
+            echo "Run '$0 --help' for usage." >&2
+            exit 1
+            ;;
+    esac
+done
+
+echo "==> agency-venv-setup"
+echo "    repo root: $REPO_ROOT"
+echo "    venv dir:  $VENV_DIR"
+
+if [[ ! -f "$REQUIREMENTS" ]]; then
+    echo "ERROR: $REQUIREMENTS not found." >&2
+    exit 1
+fi
+
+if [[ "$RECREATE" -eq 1 && -d "$VENV_DIR" ]]; then
+    echo "==> --recreate: removing existing $VENV_DIR"
+    rm -rf "$VENV_DIR"
+fi
+
+# 1. Create the venv if missing. uv is preferred (faster, single
+# binary); fall back to `python -m venv` if uv is absent.
+if [[ ! -d "$VENV_DIR" ]]; then
+    if command -v uv >/dev/null 2>&1; then
+        echo "==> creating venv via uv"
+        uv venv "$VENV_DIR" >/dev/null
+    else
+        echo "==> creating venv via python -m venv"
+        python3 -m venv "$VENV_DIR"
+    fi
+else
+    echo "==> reusing existing venv at $VENV_DIR"
+fi
+
+VENV_PY="$VENV_DIR/bin/python"
+if [[ ! -x "$VENV_PY" ]]; then
+    echo "ERROR: $VENV_PY missing after venv creation." >&2
+    exit 1
+fi
+
+# 2. Install requirements. uv pip if available (much faster
+# resolution + cached wheels), plain pip otherwise.
+echo "==> installing requirements-dev.txt"
+if command -v uv >/dev/null 2>&1; then
+    VIRTUAL_ENV="$VENV_DIR" uv pip install -r "$REQUIREMENTS" --quiet
+else
+    "$VENV_PY" -m pip install --quiet --upgrade pip
+    "$VENV_PY" -m pip install --quiet -r "$REQUIREMENTS"
+fi
+
+# 3. Smoke test. The agency v0.1 base layer's test suite lives under
+# tests/agentic, tests/workflow, tests/context. We run those three
+# only — the broader tests/ tree includes music/jules suites with
+# heavier deps.
+if [[ "$RUN_TESTS" -eq 1 ]]; then
+    echo "==> running smoke test (pytest -q tests/agentic tests/workflow tests/context)"
+    if ! (cd "$REPO_ROOT" && "$VENV_PY" -m pytest -q tests/agentic tests/workflow tests/context); then
+        echo "" >&2
+        echo "ADVISORY: smoke test reported failures (venv install itself succeeded)." >&2
+        echo "Two failures in tests/context/test_hooks.py are pre-existing and slated" >&2
+        echo "for N3 — they query raw-SQLite columns the GraphQLite schema doesn't expose." >&2
+        echo "Anything beyond those two is a regression worth investigating." >&2
+    fi
+fi
+
+echo ""
+echo "==> done."
+echo ""
+echo "Activate the venv with:"
+echo "    source $VENV_DIR/bin/activate"
+echo ""
+echo "Or run pytest directly without activating:"
+echo "    $VENV_PY -m pytest tests/agentic tests/workflow tests/context"
