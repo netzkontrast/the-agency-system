@@ -29,6 +29,8 @@ implements_for_jules:
 
 # Spec 06 — Agentic Base Layer
 
+> **STATUS — 2026-05-19**: ✅ **Implemented and merged** in PR #148. All `implements_for_jules:` files live at the repo root under `agentic/`. Cold-boot payload tested under 500 tokens. The four-verb contract is registered. **Open follow-up (C5)**: the context hooks (`context/_hooks/{pre,post}_tool_use.py`) need to be wired into `agentic/_bootloader.py::boot()` so they fire on every tool call — see `vision/04-nextsteps.md`.
+
 ## Purpose
 
 The **agentic column base layer** is the row-agnostic FastMCP harness

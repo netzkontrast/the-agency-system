@@ -37,6 +37,8 @@ implements_for_jules:
 
 # Spec 08 — Context Base Layer
 
+> **STATUS — 2026-05-19**: ✅ **Implemented and merged** in PR #149. The substrate is **GraphQLite** (https://github.com/colliery-io/graphqlite) via `from graphqlite import Graph` in `context/_store/sqlite.py`, with a raw-SQLite fallback when the extension isn't installed. Six runtime JSON Schemas live at `context/_shared/schemas/`. Artifact-driver Protocol (`_drivers/protocol.py`) + `fs` driver (`_drivers/fs.py`) are in place. PostToolUse hook upserts `Artefact` nodes; **no `.meta.json` sidecar files are written to user storage** (deprecation of spec 03 file-on-disk pattern per `vision/03-architecture.md` §8). **Open follow-up (C5)**: the Pre/PostToolUse hooks need to be **registered** with the FastMCP server in `agentic/_bootloader.py::boot()` so they fire on every tool call — see `vision/04-nextsteps.md`. The v1 rewrite anchored by `vision/03-architecture.md` also locks: driver registry pattern (`context/_drivers/__init__.py` exposing a `REGISTRY: dict`), Artefact node JSON Schema (rename `sidecar.schema.json` → `artefact-node.schema.json`), graph bootstrap behaviour, drop the raw-SQLite fallback.
+
 ## Purpose
 
 Implementation contract for the **context column base layer** at

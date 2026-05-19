@@ -16,6 +16,7 @@ depends_on:
   - vision/specs/08-context-base.md
 referenced_by: []
 implements_for_jules:
+  # STATUS 2026-05-19: ✅ shipped (PR #150). W5 follow-up gap noted below.
   - workflow/__init__.py
   - workflow/_runner/__init__.py
   - workflow/_runner/pipeline.py
@@ -39,6 +40,8 @@ implements_for_jules:
 ---
 
 # Spec 07 — Workflow Base Layer
+
+> **STATUS — 2026-05-19**: ✅ **Implemented and merged** in PR #150. Pipeline runner, gate evaluator, envelope persistence into the graph (Continuation as graph node — `workflow/_state/` JSON files are GONE), `lazy_link` flag, and the meta-row scaffolder templates all live under `workflow/`. **Open follow-up (W5)**: `_run_meta_scaffold` writes filesystem cells but does NOT yet emit `Cell`/`Phase`/`Row` graph nodes via `context.upsert_node()` — see `vision/04-nextsteps.md`. The v1 rewrite anchored by `vision/03-architecture.md` also locks: phases-as-graph-nodes (drop hard-coded `phases/NN-*.md` paths), lazy-link opt-in via `[workflow.lazy_link]` manifest field, real `context.Store` wiring (drop the `_MockContext` seam in `envelope.py`).
 
 ## Purpose
 
