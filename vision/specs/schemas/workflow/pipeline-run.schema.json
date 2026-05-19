@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/pipeline-run.schema.json",
+  "title": "Pipeline Run",
+  "description": "Audit record of a workflow execution path",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["session_id", "started_at", "nodes_visited", "edges_emitted"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Unique identifier for the execution session"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the pipeline run started"
+    },
+    "nodes_visited": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Node ID that was visited during the run"
+      },
+      "description": "List of graph node IDs visited in order"
+    },
+    "edges_emitted": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target", "type"],
+        "properties": {
+          "source": { "type": "string" },
+          "target": { "type": "string" },
+          "type": { "type": "string" }
+        }
+      },
+      "description": "List of edges emitted during the pipeline run"
+    }
+  }
+}

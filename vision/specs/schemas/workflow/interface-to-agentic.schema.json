@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/interface-to-agentic.schema.json",
+  "title": "Interface to Agentic",
+  "description": "Next-step instruction shape workflow returns to agentic",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["variant"],
+  "properties": {
+    "variant": {
+      "type": "string",
+      "enum": ["resume_with", "dispatch_skill", "gate_block", "complete", "ask_user"],
+      "description": "The type of instruction being returned to the agentic column"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Variant-specific payload",
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "variant": { "const": "resume_with" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["session_id", "phase_id", "state"],
+            "properties": {
+              "session_id": { "type": "string" },
+              "phase_id": { "type": "string" },
+              "state": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "variant": { "const": "dispatch_skill" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["skill_id", "args"],
+            "properties": {
+              "skill_id": { "type": "string" },
+              "args": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "variant": { "const": "gate_block" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["gate_id", "reason"],
+            "properties": {
+              "gate_id": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "variant": { "const": "ask_user" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["prompt", "expected_schema"],
+            "properties": {
+              "prompt": { "type": "string" },
+              "expected_schema": { "type": "object" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/interface-to-context.schema.json",
+  "title": "Interface to Context",
+  "description": "Graph operations workflow sends to context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operation"],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": ["upsert_node", "upsert_edge", "query", "lazy_create_path"],
+      "description": "The graph operation to perform"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Operation-specific payload",
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "operation": { "const": "upsert_node" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["node_id", "labels", "properties"],
+            "properties": {
+              "node_id": { "type": "string" },
+              "labels": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "properties": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operation": { "const": "upsert_edge" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["source_id", "target_id", "type"],
+            "properties": {
+              "source_id": { "type": "string" },
+              "target_id": { "type": "string" },
+              "type": { "type": "string" },
+              "properties": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operation": { "const": "query" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["statement"],
+            "properties": {
+              "statement": { "type": "string", "description": "Cypher query statement" },
+              "parameters": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operation": { "const": "lazy_create_path" } } },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": ["path_spec"],
+            "properties": {
+              "path_spec": {
+                "type": "array",
+                "items": { "type": "object" },
+                "description": "Specification of the path to lazily create"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

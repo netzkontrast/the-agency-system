@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/continuation-node.schema.json",
+  "title": "Continuation Node",
+  "description": "Graph node holding blocked-phase state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["session_id", "phase_id", "opaque_state"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "The session ID this continuation belongs to"
+    },
+    "phase_id": {
+      "type": "string",
+      "description": "The phase ID this continuation is for"
+    },
+    "opaque_state": {
+      "type": "object",
+      "description": "Workflow's internal state for resuming",
+      "additionalProperties": true
+    },
+    "expected_input_schema": {
+      "type": "object",
+      "description": "JSON schema of the expected input to resume this phase",
+      "additionalProperties": true
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this continuation expires"
+    }
+  }
+}

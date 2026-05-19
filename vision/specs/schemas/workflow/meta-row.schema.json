@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/meta-row.schema.json",
+  "title": "Meta Row Config",
+  "description": "Configuration for the meta-row scaffolder",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["row_name", "intent"],
+  "properties": {
+    "row_name": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Name of the new row to scaffold"
+    },
+    "intent": {
+      "type": "string",
+      "description": "The primary domain/purpose of the new row"
+    },
+    "templates": {
+      "type": "object",
+      "properties": {
+        "agentic": {
+          "type": "string",
+          "default": "agentic-cell.template.md",
+          "description": "Template to use for the agentic cell"
+        },
+        "workflow": {
+          "type": "string",
+          "default": "workflow-cell-manifest.template.toml",
+          "description": "Template to use for the workflow cell manifest"
+        },
+        "context": {
+          "type": "string",
+          "default": "context-schema.template.yaml",
+          "description": "Template to use for the context cell schema"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Overrides for canonical templates"
+    }
+  }
+}

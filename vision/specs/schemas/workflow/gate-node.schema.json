@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/gate-node.schema.json",
+  "title": "Gate Node",
+  "description": "Graph node representing a workflow gate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "evaluator_ref", "satisfied"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the gate node"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["hard-blocking", "advisory"],
+      "description": "The type of the gate"
+    },
+    "evaluator_ref": {
+      "type": "string",
+      "description": "Reference to the gate evaluator configuration or definition"
+    },
+    "satisfied": {
+      "type": "boolean",
+      "description": "Whether the gate has been satisfied"
+    },
+    "blocked_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the gate became blocked"
+    },
+    "blocked_reason": {
+      "type": "string",
+      "description": "Human-readable reason for why the gate is blocked"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Additional data or payload associated with the gate evaluation",
+      "additionalProperties": true
+    }
+  }
+}

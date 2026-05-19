@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/gate-yaml.schema.json",
+  "title": "Gate YAML",
+  "description": "Schema for the YAML gate-config files (based on spec 05)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "evaluator"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,60}$",
+      "description": "Unique identifier for the gate"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["hard-blocking", "advisory"],
+      "description": "Gate enforcement type"
+    },
+    "evaluator": {
+      "type": "object",
+      "required": ["strategy"],
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": ["callable", "schema", "sql", "manual"],
+          "description": "The evaluation strategy to use"
+        },
+        "ref": {
+          "type": "string",
+          "description": "Reference to the strategy implementation (e.g., Python path or schema URI)"
+        },
+        "query": {
+          "type": "string",
+          "description": "SQL/Cypher query for sql strategy"
+        }
+      },
+      "additionalProperties": true,
+      "description": "Configuration for evaluating the gate"
+    },
+    "on_success": {
+      "type": "object",
+      "properties": {
+        "emit_edge": {
+          "type": "object",
+          "required": ["type", "target"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "The type of edge to emit (e.g., SATISFIES_PHASE)"
+            },
+            "target": {
+              "type": "string",
+              "description": "The target node ID or reference"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true,
+      "description": "Actions to perform when the gate is successfully evaluated"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/phase-state-envelope.schema.json",
+  "title": "Phase State Envelope",
+  "description": "Wire format workflow returns from MCP tools (sync with spec 04 TypedDict)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "phase_id", "row", "session_id", "opaque_state", "tool_result"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["running", "blocked_on_gate", "blocked_on_user", "completed", "failed"],
+      "description": "The current status of the phase execution"
+    },
+    "phase_id": {
+      "type": "string",
+      "description": "The identifier of the phase"
+    },
+    "row": {
+      "type": "string",
+      "description": "The row this envelope belongs to"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Opaque session UUID for resume keying"
+    },
+    "opaque_state": {
+      "type": "object",
+      "description": "Workflow's internal state - agentic MUST NOT mutate",
+      "additionalProperties": true
+    },
+    "tool_result": {
+      "type": "object",
+      "description": "Canonical tool_result (validates against tool_result.schema.json)",
+      "additionalProperties": true
+    },
+    "blocked_reason": {
+      "type": ["string", "null"],
+      "description": "Human-readable reason for block; required when status is blocked_*"
+    },
+    "resume_token": {
+      "type": ["string", "null"],
+      "description": "Token to resume the phase; required when status is blocked_*"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "enum": ["blocked_on_gate", "blocked_on_user"] } }
+      },
+      "then": {
+        "required": ["blocked_reason", "resume_token"]
+      }
+    }
+  ]
+}
