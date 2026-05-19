@@ -4,6 +4,16 @@
       "type": "stdio",
       "command": "python",
       "args": ["${CLAUDE_PROJECT_DIR:-.}/servers/agency-mcp/run.py"]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     }
   }
 }

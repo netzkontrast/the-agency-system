@@ -33,11 +33,38 @@
     "episodic-memory@superpowers-marketplace": true,
     "superpowers-developing-for-claude-code@superpowers-marketplace": true
   },
-  "enabledMcpjsonServers": [],
+  "enabledMcpjsonServers": [
+    "agency-system",
+    "context7",
+    "sequential-thinking"
+  ],
   "permissions": {
     "defaultMode": "bypassPermissions",
     "allow": [
-      "mcp__plugin_bitwize-music_bitwize-music-mcp"
+      "Bash",
+      "Read",
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "NotebookEdit",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch",
+      "TodoWrite",
+      "BashOutput",
+      "KillBash",
+      "Skill",
+      "Tmux",
+      "Monitor",
+      "SendUserFile",
+      "REPL",
+      "ToolSearch",
+      "Task",
+      "Agent",
+      "ExitPlanMode",
+      "AskUserQuestion",
+      "mcp__*"
     ]
   },
   "hooks": {
