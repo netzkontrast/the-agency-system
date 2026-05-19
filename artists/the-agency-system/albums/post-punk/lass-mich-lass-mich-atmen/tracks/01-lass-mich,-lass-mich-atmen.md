@@ -69,8 +69,9 @@ Verarbeitet biografisches Material. Konkrete Hintergrundinhalte sind nicht dokum
 - **Tempo**: 100–110 BPM — schwer, doomy. Jeder Atemzug hängt länger in der Luft.
 - **Feel**: Cyclisch — jeder Refrain ist gleich hart, kein graduelles Anschwellen. Permanente Atemknappheit ab V1. Bridge ist der einzige Bruch im Kreislauf.
 - **Instrumentation**: Tiefer dub-Bass à la Jah Wobble (PiL) als Hauptträger, drohendes Gewicht im unteren Spektrum. Sparse post-punk drum kit, tribal/hypnotisch (Martin Hannett-Schule cavernous). Vereinzelte angular Guitar-Stabs mit flange/delay. Im Bridge: Beat-Drop, Sub-Bass hält, gefilterter Atem-Sample als Loop, dann hydraulische Industrial-Pulse-Eskalation bis zum Final-Chorus.
-- **Vocal**: Male baritone tief, gravelly, kehlig. Animalisch-rau, Hals hörbar. Permanent knapper Atem. Inline-Doubling im Refrain: erstes „Lass mich" geflüstert/eingedrückt (Damals-Stimme), zweites „lass mich atmen" gebrüllt (Heute-Stimme).
-- **Outro**: Gesprochen, exhausted, dry close-mic, [breath]-Marker vor jedem Satz. Musik fast komplett weg — nur Sub-Drone oder Stille.
+- **Vocal**: **Dynamischer Register-Split.** Verses: deep baritone speak-sing, gravelly, kehlig, throat audible, breathless. Refrain: bricht in belted tenor — raw scream, throat constricted, breath thin, gravelly upper register, voice cracking im Final-Chorus. Permanent knapper Atem über den ganzen Song. Doubling im Refrain: erstes „(Lass mich)" parenthesized (Damals-Stimme, von V5 als backing/ad-lib layer gerendert), zweites „lass mich atmen" als volle Heute-Stimme.
+- **Outro**: [pressed whispered], throat constricted, exhausted, dry close-mic. [breath]-Marker vor jedem der drei Sätze. Musik fast komplett weg — Stille oder minimaler Sub-Drone.
+- **[breath]-Marker im Track**: außerdem an den Bruchstellen — zwischen der doppelten „Ich fall" im Pre-Chorus (für den hypnagogen Schreck), vor „raus aus mir" im Bridge (Wind-up), vor „lass mich. Lass mich." im Final-Chorus (der letzte Atemzug bricht in die Demand).
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -79,7 +80,7 @@ Verarbeitet biografisches Material. Konkrete Hintergrundinhalte sind nicht dokum
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Male baritone deep gravelly kehlig, throat audible, animalistic raw, breathless intensity from line one, German vocals, voice forward, dry close-mic. Post-punk, gothic rock. 105 BPM, doomy, cavernous. Melodic dub-influenced deep bass leading harmony, threatening weight in low register. Sparse tribal post-punk drum kit, hypnotic pulse. Occasional angular guitar stabs with flange and delay. Bridge layer with filtered breath-sample loop and machine-pulse hydraulic build. Late-70s cavernous reverb-rich production with dub-style spaciousness. Dynamic range, restrained, contemporary.
+Male vocals German, dynamic register split: deep baritone speak-sing in verses (gravelly, kehlig, throat audible, breathless intensity, dry close-mic, no vibrato), ripping into belted tenor in choruses (raw scream, throat constricted, breath thin, gravelly upper register, voice cracking by final chorus). Voice forward throughout. Post-punk, gothic rock. 105 BPM, doomy, cavernous. Melodic dub-influenced deep bass leading harmony, threatening weight in low register. Sparse tribal post-punk drum kit, hypnotic pulse. Occasional angular guitar stabs with flange and delay. Bridge: drums drop, sub-bass holds, filtered breath-sample loop, machine-pulse hydraulic build. Outro pressed-whispered with audible breaths. Late-70s cavernous reverb-rich production with dub-style spaciousness. Dynamic range, restrained, contemporary.
 ```
 
 **Suno V5 Settings:**
@@ -113,7 +114,7 @@ no autotune, no maximalist production, no sidechain pump
 
 ```
 [Verse 1]
-[male baritone deep, gravelly, kehlig, throat audible, breathless from line one, dry close-mic]
+[deep baritone speak-sing, gravelly, kehlig, throat audible, breathless from line one, dry close-mic, no vibrato]
 
 Etwas drückt von allen Seiten
 gelb und flach — kein Rand
@@ -121,22 +122,22 @@ warm wie kein Trost — zu nah
 näher als ein Gesicht je dürfte
 
 [Pre-Chorus]
-[same voice, fragmenting, hypnagogic panic, accelerating]
+[baritone fragmenting, hypnagogic panic, accelerating, breath shallow, sharp inhale before second fall]
 
-Ich fall. Ich fall.
+Ich fall. [breath] Ich fall.
 Wie beim Einschlafen — nur dass es bleibt.
 Es hört nicht auf.
 
 [Chorus]
-[full chest, animalistic raw scream, throat audible, breath thin]
+[belted tenor erupts from baritone, raw scream, throat constricted, full chest, breath thin, gravelly upper register]
 
-[Whispered] Lass mich [Belted] lass mich atmen
+(Lass mich) lass mich atmen
 geh runter, geh weg, geh aus
 keine Frage. Kein Bitte.
 Ich will den nächsten Zug Luft.
 
 [Verse 2]
-[same dark baritone, kehlig, breathless, slightly more frayed than V1]
+[return to deep baritone, more frayed than V1, breath shorter, dry close-mic]
 
 Im Hals ein altes Geräusch
 das Kissen wird zu warm
@@ -144,41 +145,44 @@ keine Worte, kein Bild, nur Druck
 und über mir wieder das Gelb
 
 [Pre-Chorus]
-[fall sensation returning, dissociating into the room]
+[fall sensation returning, baritone dissociating, whisper-edge, sharp inhale before second fall]
 
-Ich fall. Ich fall.
+Ich fall. [breath] Ich fall.
 Wie beim Einschlafen — nur dass es bleibt.
 Ich bin hier — irgendwo.
 
 [Chorus]
-[same intensity as first chorus, no escalation, cyclic hardness]
+[belted tenor again, same intensity as first chorus, no escalation, cyclic hardness]
 
-[Whispered] Lass mich [Belted] lass mich atmen
+(Lass mich) lass mich atmen
 geh runter, geh weg, geh aus
 keine Frage. Kein Bitte.
 Ich will den nächsten Zug Luft.
 
 [Bridge]
-[beat drops, drums out, sub-bass holds, filtered breath sample loops underneath, voice raw and unaccompanied, hydraulic industrial pulse builds across the section]
+[instrumental break: drums drop out, sub-bass holds, filtered breath-sample loop underneath, hydraulic machine-pulse builds across the section]
+[vocal: raw belted tenor unaccompanied for first lines, throat tearing, breathless, voice cracking by line 5]
 
 Ich will Nächte ohne dich
 egal ob du Stimme bist
 egal ob du Traum bist
 egal ob du Erinnerung bist
 egal ob du in meiner Brust hängst
+[breath]
 raus aus mir. Raus.
 
 [Chorus]
-[everything returns with doubled weight, voice cracking, lungs nearly empty]
+[everything returns at doubled weight, belted tenor cracking, voice tearing, lungs nearly empty]
 
-[Whispered] Lass mich [Belted] lass mich atmen
+(Lass mich) lass mich atmen
 geh runter, geh weg, geh aus
 keine Frage. Kein Bitte.
 Ich will den nächsten Zug Luft —
+[breath]
 lass mich. Lass mich.
 
 [Outro]
-[Spoken, exhausted, dry close-mic, near-whisper, music drops to minimal sub-drone or silence]
+[pressed whispered, throat constricted, exhausted, dry close-mic, music drops to silence or minimal sub-drone underneath]
 
 [breath] Meine Luft.
 [breath] Sie gehört mir.
