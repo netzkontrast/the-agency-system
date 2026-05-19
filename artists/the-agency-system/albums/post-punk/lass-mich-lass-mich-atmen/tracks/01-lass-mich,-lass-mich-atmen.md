@@ -66,11 +66,12 @@ Verarbeitet biografisches Material. Konkrete Hintergrundinhalte sind nicht dokum
 
 ## Musical Direction
 
+- **Genre**: **Industrial Metal × Gothic Batcave × Cyberpunk** — dystopian future-metal Hybrid. Swans/Killing-Joke-Modus: pulverisierende Repetition, Wut als Hammer, kein Climax.
 - **Tempo**: 100–110 BPM — schwer, doomy. Jeder Atemzug hängt länger in der Luft.
-- **Feel**: Cyclisch — jeder Refrain ist gleich hart, kein graduelles Anschwellen. Permanente Atemknappheit ab V1. Bridge ist der einzige Bruch im Kreislauf.
-- **Instrumentation**: Tiefer dub-Bass à la Jah Wobble (PiL) als Hauptträger, drohendes Gewicht im unteren Spektrum. Sparse post-punk drum kit, tribal/hypnotisch (Martin Hannett-Schule cavernous). Vereinzelte angular Guitar-Stabs mit flange/delay. Im Bridge: Beat-Drop, Sub-Bass hält, gefilterter Atem-Sample als Loop, dann hydraulische Industrial-Pulse-Eskalation bis zum Final-Chorus.
-- **Vocal**: **Dynamischer Register-Split.** Verses: deep baritone speak-sing, gravelly, kehlig, throat audible, breathless. Refrain: bricht in belted tenor — raw scream, throat constricted, breath thin, gravelly upper register, voice cracking im Final-Chorus. Permanent knapper Atem über den ganzen Song. Doubling im Refrain: erstes „(Lass mich)" parenthesized (Damals-Stimme, von V5 als backing/ad-lib layer gerendert), zweites „lass mich atmen" als volle Heute-Stimme.
-- **Outro**: [pressed whispered], throat constricted, exhausted, dry close-mic. [breath]-Marker vor jedem der drei Sätze. Musik fast komplett weg — Stille oder minimaler Sub-Drone.
+- **Feel**: Cyclisch und pulverisierend — jeder Refrain ist gleich hart, kein graduelles Anschwellen, keine Eskalation. Permanente Atemknappheit ab V1. Bridge ist der einzige Bruch im Kreislauf.
+- **Instrumentation**: Downtuned distorted Bass als Hauptträger, low-register industrial-metal bite. Concrete-Room Drum Kit — tight, dry, klaustrophobisch, heavy metal weight, kein Reverb-Käfig. Detuned Metal-Guitar-Feedback-Stabs — atonal, dissonant statt flanged/melodisch. Cyberpunk-Synth-Pads — dystopisch, broken, glitch-textured — laufen durchgängig im Hintergrund. Industrial-Metal-Schichten (Metallklang, Hydraulik, Maschinen-Rhythmus, Sci-Fi-Grit) — nicht nur im Bridge. Im Bridge: Beat-Drop, Sub-Bass hält, gefilterter Atem-Sample als Loop, hydraulische Pulse-Eskalation, Cyberpunk-Synth verdichtet sich.
+- **Vocal**: **Dynamischer Register-Split mit erschöpfter Wut.** Verses: snarling Baritone — jaw-clenched, growl-edged, throat audible from line one, breathless worn-down rage. Refrain: bricht in **ugly belted Tenor** — throat-shredding, voice cracking, lung-empty scream-edge, not pretty. Stimme bricht statt durchzuhalten. Doubling im Refrain: erstes „(Lass mich)" parenthesized (Damals-Stimme, von V5 als backing/ad-lib layer gerendert), zweites „lass mich atmen" als volle Heute-Stimme. Final Chorus: ugly belt cracking, voice tearing, lungs empty.
+- **Outro**: [pressed whispered], throat constricted, exhausted, voice collapsed, dry close-mic. [breath]-Marker vor jedem der drei Sätze. Musik fast komplett weg — Stille oder minimaler Sub-Drone mit Cyberpunk-Synth-Residuum.
 - **[breath]-Marker im Track**: außerdem an den Bruchstellen — zwischen der doppelten „Ich fall" im Pre-Chorus (für den hypnagogen Schreck), vor „raus aus mir" im Bridge (Wind-up), vor „lass mich. Lass mich." im Final-Chorus (der letzte Atemzug bricht in die Demand).
 
 <!-- SERVICE: suno -->
@@ -80,7 +81,7 @@ Verarbeitet biografisches Material. Konkrete Hintergrundinhalte sind nicht dokum
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Male vocals German, dynamic register split: deep baritone speak-sing in verses (gravelly, kehlig, throat audible, breathless intensity, dry close-mic, no vibrato), ripping into belted tenor in choruses (raw scream, throat constricted, breath thin, gravelly upper register, voice cracking by final chorus). Voice forward throughout. Post-punk, gothic rock. 105 BPM, doomy, cavernous. Melodic dub-influenced deep bass leading harmony, threatening weight in low register. Sparse tribal post-punk drum kit, hypnotic pulse. Occasional angular guitar stabs with flange and delay. Bridge: drums drop, sub-bass holds, filtered breath-sample loop, machine-pulse hydraulic build. Outro pressed-whispered with audible breaths. Late-70s cavernous reverb-rich production with dub-style spaciousness. Dynamic range, restrained, contemporary.
+Male vocals German, dynamic register split: snarling baritone in verses (jaw-clenched, growl-edged, throat audible, breathless worn-down rage, dry close-mic, no vibrato), ripping into ugly belted tenor in choruses (throat-shredding, voice cracking, lung-empty scream-edge, not pretty). Voice forward, exhausted-furious. Industrial metal, gothic batcave — dystopian future-metal cyberpunk hybrid. 105 BPM, doomy, pulverizing repetition — choruses hammer at identical intensity, no climax, exhaustion through repetition. Downtuned distorted bass leading harmony, low-register industrial-metal bite. Concrete-room drum kit, tight, dry, claustrophobic, heavy metal weight, no reverb cage on drums. Detuned metal guitar feedback stabs, atonal, dissonant. Cyberpunk synth pads — dystopian, broken, glitch-textured — bleeding throughout. Industrial-metal layers — metal-clang, hydraulic pulse, machine-rhythm, sci-fi grit. Bridge: drums drop, sub-bass holds, filtered breath-sample loop, hydraulic build. Outro pressed-whispered with audible breaths, voice collapsed. Fury carried too long, jaw-clenched, anger worn to bone.
 ```
 
 **Suno V5 Settings:**
@@ -114,7 +115,7 @@ no autotune, no maximalist production, no sidechain pump
 
 ```
 [Verse 1]
-[deep baritone speak-sing, gravelly, kehlig, throat audible, breathless from line one, dry close-mic, no vibrato]
+[snarling baritone, jaw-clenched, growl-edged, throat audible, breathless worn-down rage, dry close-mic, no vibrato]
 
 Etwas drückt von allen Seiten
 gelb und flach — kein Rand
@@ -122,14 +123,14 @@ warm wie kein Trost — zu nah
 näher als ein Gesicht je dürfte
 
 [Pre-Chorus]
-[baritone fragmenting, hypnagogic panic, accelerating, breath shallow, sharp inhale before second fall]
+[snarling baritone fragmenting, jaw-clenched panic, hypnagogic, accelerating, breath shallow, sharp inhale before second fall]
 
 Ich fall. [breath] Ich fall.
 Wie beim Einschlafen — nur dass es bleibt.
 Es hört nicht auf.
 
 [Chorus]
-[belted tenor erupts from baritone, raw scream, throat constricted, full chest, breath thin, gravelly upper register]
+[ugly belt erupts from snarling baritone, throat-shredding, voice cracking, lung-empty scream-edge, not pretty, raw upper register]
 
 (Lass mich) lass mich atmen
 geh runter, geh weg, geh aus
@@ -137,7 +138,7 @@ keine Frage. Kein Bitte.
 Ich will den nächsten Zug Luft.
 
 [Verse 2]
-[return to deep baritone, more frayed than V1, breath shorter, dry close-mic]
+[return to snarling baritone, more frayed than V1, jaw tighter, breath shorter, dry close-mic]
 
 Im Hals ein altes Geräusch
 das Kissen wird zu warm
@@ -145,14 +146,14 @@ keine Worte, kein Bild, nur Druck
 und über mir wieder das Gelb
 
 [Pre-Chorus]
-[fall sensation returning, baritone dissociating, whisper-edge, sharp inhale before second fall]
+[fall sensation returning, snarling baritone dissociating, jaw still clenched, whisper-edge, sharp inhale before second fall]
 
 Ich fall. [breath] Ich fall.
 Wie beim Einschlafen — nur dass es bleibt.
 Ich bin hier — irgendwo.
 
 [Chorus]
-[belted tenor again, same intensity as first chorus, no escalation, cyclic hardness]
+[ugly belt again, same hammer intensity as first chorus, no escalation, pulverizing repetition, no climax]
 
 (Lass mich) lass mich atmen
 geh runter, geh weg, geh aus
@@ -160,8 +161,8 @@ keine Frage. Kein Bitte.
 Ich will den nächsten Zug Luft.
 
 [Bridge]
-[instrumental break: drums drop out, sub-bass holds, filtered breath-sample loop underneath, hydraulic machine-pulse builds across the section]
-[vocal: raw belted tenor unaccompanied for first lines, throat tearing, breathless, voice cracking by line 5]
+[instrumental break: drums drop out, sub-bass holds, filtered breath-sample loop underneath, hydraulic machine-pulse builds across the section, cyberpunk synth grit thickens]
+[vocal: raw ugly belt unaccompanied for first lines, throat tearing, breathless, voice cracking by line 5]
 
 Ich will Nächte ohne dich
 egal ob du Stimme bist
@@ -172,7 +173,7 @@ egal ob du in meiner Brust hängst
 raus aus mir. Raus.
 
 [Chorus]
-[everything returns at doubled weight, belted tenor cracking, voice tearing, lungs nearly empty]
+[everything returns at hammer weight, ugly belt cracking, voice tearing, lungs empty, pulverizing final repetition]
 
 (Lass mich) lass mich atmen
 geh runter, geh weg, geh aus
@@ -182,7 +183,7 @@ Ich will den nächsten Zug Luft —
 lass mich. Lass mich.
 
 [Outro]
-[pressed whispered, throat constricted, exhausted, dry close-mic, music drops to silence or minimal sub-drone underneath]
+[pressed whispered, throat constricted, exhausted, voice collapsed, dry close-mic, music drops to silence or minimal sub-drone with cyberpunk synth residue underneath]
 
 [breath] Meine Luft.
 [breath] Sie gehört mir.
