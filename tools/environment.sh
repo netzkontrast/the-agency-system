@@ -57,12 +57,45 @@ PLUGINS=(
     # MCP server uses bare `python` → deps must be on system Python.
     "netzkontrast/the-agency-system | agency-marketplace | agency-system | system | servers/agency-mcp/pyproject.toml | "
 
-    # SuperClaude — /sc:* slash commands. Bundles airis-mcp-gateway via uvx.
+    # SuperClaude — /sc:* slash commands. Its bundled airis-mcp-gateway MCP
+    # entry (uvx --from git+...) is broken (the airis repo has no root
+    # pyproject.toml). Useful MCPs are registered separately in Phase 4b.
     "SuperClaude-Org/SuperClaude_Plugin | superclaude | sc | uvx | | "
 
     # superpowers — pure skills + bash hooks, no MCP, no deps.
     "obra/superpowers-marketplace | superpowers-marketplace | superpowers | none | | "
+
+    # episodic-memory — semantic search over past Claude Code sessions.
+    # Node-based MCP server, needs `npm install` for native deps
+    # (better-sqlite3, sqlite-vec, @huggingface/transformers).
+    "obra/superpowers-marketplace | superpowers-marketplace | episodic-memory | npm:. | | "
+
+    # superpowers-developing-for-claude-code — 42-file Claude Code docs
+    # corpus + plugin-dev skills. No MCP, no runtime deps.
+    "obra/superpowers-marketplace | superpowers-marketplace | superpowers-developing-for-claude-code | none | | "
 )
+
+# Standalone MCP servers registered via `claude mcp add` user-scope (not
+# bundled inside any plugin). Pipe-delimited rows:
+#   <name> | <transport> | <command-or-url> | <args>
+# transport: stdio | http
+# For stdio: command + space-separated args
+# For http: url (args ignored)
+STANDALONE_MCPS=(
+    # SuperClaude's commands frequently reference Context7 ("library docs")
+    # and Sequential-Thinking ("structured reasoning"). Register them as
+    # lightweight npx-based MCPs so /sc:* commands have something to call
+    # without standing up the AIRIS Docker stack.
+    "context7 | stdio | npx | -y @upstash/context7-mcp@latest"
+    "sequential-thinking | stdio | npx | -y @modelcontextprotocol/server-sequential-thinking"
+)
+
+# Optional: run the full AIRIS MCP Gateway Docker stack (25+ proxied MCPs:
+# Serena, Tavily, Magic, Morphllm, mindbase, chrome-devtools, etc.).
+# Adds ~5-10 min to setup, occupies port 9400, requires docker compose v2.
+# Some upstream MCPs need API keys (TAVILY_API_KEY, TWENTYFIRST_API_KEY).
+# Enable by exporting AIRIS_GATEWAY=1 before running this script.
+AIRIS_GATEWAY="${AIRIS_GATEWAY:-0}"
 
 # Bitwize-music writes album content under <REPO>/artists/... — the artist
 # name is a logical label inside its config.yaml.
@@ -114,8 +147,8 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
 apt-get install -y -qq \
     git git-lfs python3 python3-venv python3-pip python3-dev \
-    ffmpeg libsndfile1 libpq-dev build-essential pkg-config \
-    ca-certificates curl jq \
+    ffmpeg libsndfile1 libpq-dev libsqlite3-dev build-essential pkg-config \
+    ca-certificates curl jq nodejs npm \
     libnss3 libatk1.0-0 libatk-bridge2.0-0 libxkbcommon0 libgbm1 \
     libasound2 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
     2>&1 | tail -2 || warn "apt-get reported issues — continuing"
@@ -297,6 +330,86 @@ Likely cause: trust prompt blocked, or marketplace_name/plugin_name mismatch."
 done
 
 # =============================================================================
+# Phase 4b — Standalone MCP server registration (user-scope).
+#
+# These are MCPs that aren't bundled in any plugin we install. Idempotent:
+# checks ~/.claude.json for existing user-scope mcpServers entries.
+# =============================================================================
+log "Phase 4b: registering standalone MCP servers (user-scope)"
+
+user_mcp_registered() {
+    local name="$1"
+    local cfg="${HOME}/.claude.json"
+    [ -f "${cfg}" ] || return 1
+    python3 -c "
+import json, sys
+try:
+    data = json.load(open('${cfg}'))
+except Exception:
+    sys.exit(1)
+sys.exit(0 if '${name}' in data.get('mcpServers', {}) else 1)
+"
+}
+
+for row in "${STANDALONE_MCPS[@]}"; do
+    IFS='|' read -r M_NAME M_TRANSPORT M_CMD M_ARGS <<<"${row}"
+    M_NAME="$(printf '%s' "${M_NAME}" | xargs)"
+    M_TRANSPORT="$(printf '%s' "${M_TRANSPORT}" | xargs)"
+    M_CMD="$(printf '%s' "${M_CMD}" | xargs)"
+    M_ARGS="$(printf '%s' "${M_ARGS}" | xargs)"
+    if user_mcp_registered "${M_NAME}"; then
+        log "  ${M_NAME} already registered"
+        continue
+    fi
+    log "  registering ${M_NAME} (${M_TRANSPORT})"
+    if [ "${M_TRANSPORT}" = "http" ]; then
+        claude_q mcp add --scope user --transport http "${M_NAME}" "${M_CMD}" \
+            2>&1 | sed 's/^/[setup]     /' || warn "    mcp add failed for ${M_NAME}"
+    else
+        # stdio: claude mcp add <name> <command> [args...]
+        # shellcheck disable=SC2086
+        claude_q mcp add --scope user "${M_NAME}" "${M_CMD}" ${M_ARGS} \
+            2>&1 | sed 's/^/[setup]     /' || warn "    mcp add failed for ${M_NAME}"
+    fi
+done
+
+# =============================================================================
+# Phase 4c — Optional AIRIS MCP Gateway Docker stack.
+#
+# Heavy: 25+ proxied MCP servers, port 9400, docker compose. Some upstream
+# servers require API keys. Gated by AIRIS_GATEWAY=1.
+# =============================================================================
+if [ "${AIRIS_GATEWAY}" = "1" ]; then
+    log "Phase 4c: AIRIS MCP Gateway (AIRIS_GATEWAY=1)"
+    if ! command -v docker >/dev/null 2>&1 || ! docker info >/dev/null 2>&1; then
+        warn "  docker not available/running — skipping AIRIS stack"
+    elif ! docker compose version >/dev/null 2>&1; then
+        warn "  docker compose v2 not available — skipping AIRIS stack"
+    else
+        AIRIS_DIR="${HOME}/.local/share/airis-mcp-gateway"
+        if [ ! -x "${HOME}/.local/bin/airis-gateway" ]; then
+            log "  running AIRIS install.sh"
+            curl -fsSL https://raw.githubusercontent.com/agiletec-inc/airis-mcp-gateway/main/install.sh \
+                | bash < /dev/null 2>&1 | tail -5 || warn "    AIRIS install.sh failed"
+        else
+            log "  AIRIS already installed at ${AIRIS_DIR}"
+        fi
+        if [ -x "${HOME}/.local/bin/airis-gateway" ]; then
+            "${HOME}/.local/bin/airis-gateway" up < /dev/null 2>&1 | tail -3 \
+                || warn "    airis-gateway up failed"
+            # Register the HTTP MCP endpoint (idempotent).
+            if ! user_mcp_registered "airis-mcp-gateway"; then
+                claude_q mcp add --scope user --transport http airis-mcp-gateway \
+                    "http://localhost:9400/mcp/" 2>&1 | sed 's/^/[setup]     /' \
+                    || warn "    mcp add airis-mcp-gateway failed"
+            fi
+        fi
+    fi
+else
+    log "Phase 4c: AIRIS Docker stack skipped (set AIRIS_GATEWAY=1 to enable)"
+fi
+
+# =============================================================================
 # Phase 5 — Per-plugin Python dep provisioning.
 # =============================================================================
 log "Phase 5: provisioning per-plugin dependencies"
@@ -394,6 +507,19 @@ provision_uvx() {
     log "  uvx mode — skipping eager install (uvx fetches lazily)"
 }
 
+provision_npm() {
+    # Args: plugin-dir, subdir (relative to plugin-dir; default ".")
+    local pdir="$1" subdir="${2:-.}"
+    local target="${pdir}/${subdir}"
+    if [ ! -f "${target}/package.json" ]; then
+        warn "  ${target}/package.json missing — skipping npm install"
+        return
+    fi
+    log "  npm install in ${target}"
+    ( cd "${target}" && npm install --no-audit --no-fund --loglevel=error 2>&1 | tail -3 ) \
+        || warn "    npm install reported issues for ${target}"
+}
+
 # Plugin-specific post-install hook(s).
 # Called by name from the PLUGINS table's last column.
 write_bitwize_config() {
@@ -442,6 +568,10 @@ for i in "${!PLUGINS[@]}"; do
             ;;
         uvx)
             provision_uvx
+            ;;
+        npm|npm:*)
+            subdir="${R_DEPMODE#npm}"; subdir="${subdir#:}"
+            provision_npm "${pdir}" "${subdir:-.}"
             ;;
         none)
             log "  no deps to install"
@@ -505,8 +635,32 @@ for i in "${!PLUGINS[@]}"; do
             command -v uvx >/dev/null 2>&1 && log "  ✓ uvx on PATH" \
                 || fail "uvx missing — sc plugin's airis-mcp-gateway needs it"
             ;;
+        npm|npm:*)
+            command -v node >/dev/null 2>&1 && log "  ✓ node on PATH" \
+                || fail "node missing — episodic-memory needs it"
+            ;;
     esac
 done
+
+# Standalone MCPs (Phase 4b) — check user-scope registration.
+for row in "${STANDALONE_MCPS[@]}"; do
+    IFS='|' read -r M_NAME _ _ _ <<<"${row}"
+    M_NAME="$(printf '%s' "${M_NAME}" | xargs)"
+    if user_mcp_registered "${M_NAME}"; then
+        log "  ✓ standalone MCP registered: ${M_NAME}"
+    else
+        fail "standalone MCP not registered in ~/.claude.json: ${M_NAME}"
+    fi
+done
+
+# AIRIS gateway (if enabled).
+if [ "${AIRIS_GATEWAY}" = "1" ]; then
+    if user_mcp_registered "airis-mcp-gateway"; then
+        log "  ✓ airis-mcp-gateway registered"
+    else
+        fail "airis-mcp-gateway not registered (AIRIS_GATEWAY=1 but setup failed)"
+    fi
+fi
 
 if [ "${FAIL}" -gt 0 ]; then
     die "${FAIL} verification check(s) failed — see [setup] WARN lines above"
@@ -522,4 +676,10 @@ for i in "${!PLUGINS[@]}"; do
     parse_row "$i"
     log "    - ${R_PLUGIN}@${R_MP}  (deps: ${R_DEPMODE})"
 done
+log "  Standalone MCPs registered:"
+for row in "${STANDALONE_MCPS[@]}"; do
+    IFS='|' read -r M_NAME M_TRANSPORT _ _ <<<"${row}"
+    log "    - $(printf '%s' "${M_NAME}" | xargs)  (${M_TRANSPORT})"
+done
+[ "${AIRIS_GATEWAY}" = "1" ] && log "    - airis-mcp-gateway (http)"
 log "Verify in a new session: claude plugin list  &&  claude mcp list"
