@@ -160,8 +160,14 @@ graph walker:
 ```python
 def start(row: str, phase_id: str, inputs: dict, lazy_link: bool = False) -> PhaseStateEnvelope:
     session_id = str(uuid.uuid4())
-    g = Store()
-    g.boot()
+    g = get_store()                       # process-singleton; see spec 08-v1 §FR1
+
+    # Honor the row's opt-out even if the caller asks for lazy-link.
+    if lazy_link and not manifest.get_lazy_link(row):
+        return _failed_envelope(
+            session_id, row, phase_id,
+            f"row {row} has [workflow.lazy_link] enabled = false; caller's lazy_link=True ignored",
+        )
 
     phase_node = g.query(
         "MATCH (p:Phase {row: $row, phase_id: $pid}) RETURN p",
@@ -172,7 +178,6 @@ def start(row: str, phase_id: str, inputs: dict, lazy_link: bool = False) -> Pha
         if not lazy_link:
             return _failed_envelope(session_id, row, phase_id,
                                     f"row {row} phase {phase_id} not in graph")
-        # lazy-link branch
         phase_node = _lazy_create_phase(g, row, phase_id, session_id)
 
     if row == "meta":
@@ -181,50 +186,122 @@ def start(row: str, phase_id: str, inputs: dict, lazy_link: bool = False) -> Pha
     return _walk_phase(session_id, phase_node, inputs)
 ```
 
-`_walk_phase` reads the `body_ref`, dispatches to the row's handler
-(located via the row's `agentic/<row>/` manifest), evaluates any gates
-linked to the Phase node via `BLOCKS` edges, and returns a
-`PhaseStateEnvelope`. `_lazy_create_phase` upserts a Phase node with
-`lazy_created=true, scaffolded_by=session_id` and returns it. This
-generalizes — across non-meta rows — what `_run_meta_scaffold` already
-does for the bootstrap/scaffold pair (W5 in PR #155).
-
-The `lazy_link` keyword argument's value is also checked against the
-caller's `manifest.lazy_link.enabled`. A caller cannot pass
-`lazy_link=True` for a row that opted out. Concretely: if
-`workflow/<row>/manifest.toml` has `[workflow.lazy_link] enabled = false`,
-the runner ignores `lazy_link=True` and returns a failed envelope
-explaining the conflict, so a row's opt-out is honoured even by an
-explicit override at the callsite.
-
-### FR4 — Continuation via real `context.Store`
-
-`workflow/_runner/envelope.py` drops the `_MockContext` class entirely.
-`persist` becomes:
+#### `_walk_phase` contract
 
 ```python
+def _walk_phase(session_id: str, phase_node: dict, inputs: dict) -> PhaseStateEnvelope:
+    """Execute a single Phase node.
+
+    1. Resolve the row's MCP tool entry-point for this phase. The runner
+       imports `agentic._harness.cell_loader.discover()` (cached at boot)
+       and looks up `mcp__<row>_<verb>` where `<verb>` is the phase's
+       `entry_verb` (defaults to `"start"`).
+    2. If no handler exists for that name, return a `status="failed"`
+       envelope with `tool_result.data.error.code = "HANDLER_NOT_FOUND"`.
+    3. Collect every Gate node connected via `(p:Phase)-[:BLOCKS]->(g:Gate)`.
+       Evaluate each in declaration order via `gate.evaluate(...)`.
+       The first hard-blocking failure short-circuits and returns the
+       blocked envelope (status=`blocked_on_gate`, blocked_reason set
+       to the gate's message). Advisory failures collect into
+       `tool_result.warnings` and execution continues.
+    4. Read the prose body from `workflow/<row>/<phase_node['body_ref']>`.
+       If the file is missing, return `status="failed"` with
+       `error.code = "PHASE_BODY_MISSING"` and the resolved path in
+       `error.message`.
+    5. Invoke the handler with `inputs` merged into the prose body's
+       declared params.
+    6. Wrap the handler's `tool_result` as a `PhaseStateEnvelope`.
+       If the handler yielded `blocked_on_user`, call
+       `envelope.persist(env)` before returning.
+    """
+```
+
+The walker is the same shape for every non-meta row. Row-specific
+behaviour lives in the handler (an MCP tool registered by the row's
+`agentic/<row>/` cell), not in the runner.
+
+#### Lazy-link opt-out enforcement (manifest reader)
+
+`workflow._runner.manifest.get_lazy_link(row) -> bool` is a process-
+cached reader:
+
+```python
+_LAZY_LINK_CACHE: dict[str, bool] = {}
+
+def get_lazy_link(row: str) -> bool:
+    """Returns the row's `[workflow.lazy_link] enabled` boolean,
+    defaulting to False. Cached for the lifetime of the process —
+    cold-restart to refresh after a manifest edit."""
+    if row not in _LAZY_LINK_CACHE:
+        path = Path(f"workflow/{row}/manifest.toml")
+        if not path.exists():
+            _LAZY_LINK_CACHE[row] = False
+        else:
+            data = tomllib.loads(path.read_text())
+            _LAZY_LINK_CACHE[row] = bool(
+                data.get("workflow", {}).get("lazy_link", {}).get("enabled", False)
+            )
+    return _LAZY_LINK_CACHE[row]
+```
+
+Cache invalidation is **cold-restart only** — manifest edits during a
+session do not retroactively flip behaviour. Tests reset the cache
+between cases.
+
+### FR4 — Continuation via real `context.Store` (singleton)
+
+`workflow/_runner/envelope.py` drops the `_MockContext` class entirely.
+All four callables use `context.get_store()` — the process-singleton
+accessor from spec 08-v1 §FR1 — so the runner never constructs a fresh
+`Store()` per call (GraphQLite lock-contention avoidance):
+
+```python
+from context import get_store
+
 def persist(envelope: PhaseStateEnvelope) -> str:
-    store = Store()
-    store.boot()
+    store = get_store()
     node_id = f"continuation:{envelope['session_id']}:{envelope['phase_id']}"
     store.upsert_node(
         node_id,
         {
-            "session_id": envelope["session_id"],
-            "phase_id":   envelope["phase_id"],
+            "session_id":   envelope["session_id"],
+            "phase_id":     envelope["phase_id"],
             "opaque_state": envelope["opaque_state"],
-            "envelope":   envelope,
+            "envelope":     envelope,
+            "created_at_epoch": int(time.time()),   # see FR7 — integer for unambiguous comparison
         },
         label="Continuation",
     )
     return node_id
+
+def hydrate(session_id: str, phase_id: str) -> PhaseStateEnvelope | None:
+    """Reads the Continuation node. Returns None if absent (e.g. expired)."""
+    store = get_store()
+    rows = store.query(
+        "MATCH (c:Continuation {id: $id}) RETURN c",
+        params={"id": f"continuation:{session_id}:{phase_id}"},
+    )
+    return rows[0]["c"]["properties"]["envelope"] if rows else None
+
+def delete(session_id: str, phase_id: str) -> None:
+    """Removes the Continuation node after a terminal status."""
+    store = get_store()
+    store.query(
+        "MATCH (c:Continuation {id: $id}) DELETE c",
+        params={"id": f"continuation:{session_id}:{phase_id}"},
+    )
+
+def sweep_ttl() -> None:
+    """Deletes Continuation nodes older than 30 days. See FR7."""
+    ...   # implementation in FR7
 ```
 
-`hydrate` reads the same node by `MATCH (c:Continuation {id: $id})`;
-`delete` removes it. `sweep_ttl` performs a Cypher query for
-`Continuation` nodes whose `created_at` is older than 30 days and
-deletes them — the cleanup that used to walk `workflow/_state/` now
-walks the graph.
+`resume(session_id, phase_id, user_response)` calls `hydrate`, merges
+`user_response` into `opaque_state`, re-walks the phase via
+`_walk_phase`, and on terminal status (`completed` or `failed`) calls
+`delete(session_id, phase_id)`. The merge is shallow: top-level keys
+in `user_response` overwrite top-level keys in `opaque_state`. Nested
+merging is out of scope.
 
 ### FR5 — Meta-row scaffolder retains its v0 contract
 
@@ -243,19 +320,59 @@ emitted by the meta-scaffolder — the row's own seed routine (agentic
 column, on first boot) is responsible. The meta scaffolder ships the
 graph stubs the row's seed picks up.
 
-### FR6 — Entry verbs unchanged
+### FR6 — Entry verbs (signatures pinned)
 
 `workflow/<row>/manifest.toml [workflow] entry_verbs` keeps the v0
 shape. The legal vocabulary is `["scaffold", "start", "resume"]`. The
 runner exports callables; agentic (spec 06) decides MCP wiring.
 
-### FR7 — TTL sweep targets graph nodes
+Three exported callables, one per verb:
 
-`pipeline.boot()` runs a Cypher query against the graph for
-`Continuation` nodes whose `created_at` is older than 30 days and
-deletes them, logging each session id and phase id. The 30-day
-threshold from v0 is preserved. The sweep is best-effort; a delete
-failure logs a warning but does NOT abort boot.
+```python
+def scaffold(row: str, inputs: dict) -> PhaseStateEnvelope:
+    """Sugar for the meta-row scaffolder. Equivalent to
+    start(row="meta", phase_id="01", inputs={"new_row": row, **inputs}).
+    Exists so agentic can register `mcp__meta_scaffold(new_row=...)`
+    without callers needing to know the meta row's phase numbering."""
+
+def start(row: str, phase_id: str, inputs: dict, lazy_link: bool = False) -> PhaseStateEnvelope:
+    """See FR3."""
+
+def resume(session_id: str, phase_id: str, user_response: dict) -> PhaseStateEnvelope:
+    """Hydrate the Continuation, merge user_response into opaque_state
+    (shallow merge — see FR4), re-walk the phase, delete the
+    Continuation on terminal status."""
+```
+
+### FR7 — TTL sweep targets graph nodes (integer epoch comparison)
+
+`pipeline.boot()` deletes `Continuation` nodes older than 30 days.
+Continuation payloads carry an integer `created_at_epoch` (FR4) so the
+sweep avoids date-string comparisons that GraphQLite's Cypher subset
+does not reliably support.
+
+```python
+import time
+THIRTY_DAYS_S = 30 * 24 * 3600
+
+def sweep_ttl() -> None:
+    cutoff = int(time.time()) - THIRTY_DAYS_S
+    store = get_store()
+    expired = store.query(
+        "MATCH (c:Continuation) WHERE c.created_at_epoch < $cutoff RETURN c",
+        params={"cutoff": cutoff},
+    )
+    for row in expired:
+        cid = row["c"]["properties"]["id"]
+        try:
+            store.query("MATCH (c:Continuation {id: $id}) DELETE c", params={"id": cid})
+            logger.info("ttl_sweep deleted continuation=%s", cid)
+        except Exception as e:
+            logger.warning("ttl_sweep delete failed for %s: %s", cid, e)
+```
+
+The sweep is best-effort; a delete failure logs a warning but does
+NOT abort boot. The 30-day threshold from v0 is preserved.
 
 ## Worked example — non-meta row (jules)
 
@@ -307,11 +424,51 @@ Scenario: Continuation lands as a graph node, not a file
   And no file appears under workflow/_state/
 
 Scenario: TTL sweep deletes expired Continuation nodes
-  Given a Continuation node with created_at 31 days old
+  Given a Continuation node with created_at_epoch 31 days in the past
   When pipeline.boot runs
   Then the Continuation node is deleted from the graph
   And a log line records the session id and phase id
+
+Scenario: _walk_phase fails clearly when no handler exists
+  Given a Phase node phase/sandbox/01 with body_ref="phases/01-foo.md"
+  And no MCP tool mcp__sandbox_start is registered in the cell registry
+  When pipeline.start(row="sandbox", phase_id="01", inputs={}) runs
+  Then the envelope's status is "failed"
+  And tool_result.data.error.code == "HANDLER_NOT_FOUND"
+
+Scenario: _walk_phase fails clearly when prose body file is missing
+  Given a Phase node phase/jules/01 with body_ref="phases/01-research.md"
+  And the file workflow/jules/phases/01-research.md does NOT exist
+  When pipeline.start(row="jules", phase_id="01", inputs={}) runs
+  Then the envelope's status is "failed"
+  And tool_result.data.error.code == "PHASE_BODY_MISSING"
+  And tool_result.data.error.message includes the resolved path
+
+Scenario: _walk_phase short-circuits on first hard-blocking gate failure
+  Given a Phase node phase/jules/02 with two BLOCKS edges to Gate nodes G1 and G2
+  And G1 evaluates to a hard-blocking failure with message "sources unverified"
+  When pipeline.start(row="jules", phase_id="02", inputs={}) runs
+  Then the envelope's status is "blocked_on_gate"
+  And blocked_reason == "sources unverified"
+  And G2 is NOT evaluated
+
+Scenario: get_lazy_link returns False for a row whose manifest has no lazy_link block
+  Given workflow/jules/manifest.toml exists with [workflow] but no [workflow.lazy_link]
+  When manifest.get_lazy_link("jules") is called
+  Then it returns False
+  And subsequent calls return False without re-reading the file (cache hit)
+
+Scenario: resume merges user_response into opaque_state and clears terminal Continuation
+  Given a Continuation exists at continuation:<sid>:01 with opaque_state={"a": 1}
+  When pipeline.resume(<sid>, "01", user_response={"b": 2}) runs
+  And the handler returns status="completed"
+  Then the resumed envelope's opaque_state contains both "a": 1 and "b": 2
+  And the Continuation node has been deleted from the graph
 ```
+
+Existing test coverage on PR #155 to reference: `tests/workflow/test_meta_scaffold.py::test_emits_cell_nodes`
+(the W5 graph-emission proof) and `tests/agentic/test_hooks_registered.py`
+(the C5 hook-firing proof). Jules MUST NOT rebuild these fixtures.
 
 ## `affects:` allow-list
 

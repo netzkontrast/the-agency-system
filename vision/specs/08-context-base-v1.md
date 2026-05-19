@@ -108,16 +108,24 @@ the table layout; Cypher goes straight through `Graph.query`.
 
 ## Functional requirements
 
-### FR1 — GraphQLite is the only graph substrate
+### FR1 — GraphQLite is the only graph substrate (process-singleton Store)
 
 `context/_store/sqlite.py::Store`:
 
 ```python
+class StoreUnavailable(RuntimeError):
+    """Raised when the GraphQLite native extension cannot load.
+
+    The FastMCP bootloader catches this and surfaces a fix-hint
+    ("Install graphqlite: pip install graphqlite") rather than panicking.
+    """
+
 class Store:
     def __init__(self, db_path: str | None = None) -> None: ...
     def boot(self) -> None:
         """Open or create ontology.db. Raises StoreUnavailable
-        if the GraphQLite extension cannot load."""
+        if the GraphQLite extension cannot load. Idempotent — the
+        second call reuses the open Graph instance."""
     def upsert_node(self, node_id: str, payload: dict, *, label: str) -> None: ...
     def upsert_edge(self, from_node: str, to_node: str, payload: dict | None = None, *, rel_type: str) -> None: ...
     def log_tool_call(self, tool: str, envelope: dict) -> None: ...
@@ -125,25 +133,46 @@ class Store:
     def close(self) -> None: ...
 ```
 
-- `Store.boot()` is **idempotent** — calling it twice is harmless;
-  the second call reuses the open `Graph` instance.
-- `boot()` calls `Graph(self.db_path)` exactly once. If the extension
-  fails to load (`RuntimeError` mentioning "SQLite extension loading
-  not available" or any other initialization failure), the method
-  raises a `StoreUnavailable` exception with the original cause
-  chained. The fallback in `_get_graph()` that returned `None` and
-  switched to raw SQLite is **deleted**, including every `if g:` /
-  `else:` branch in `upsert_node`, `upsert_edge`, and `query`.
-- Class invariant: outside of test monkeypatching, a single `Store`
-  instance per FastMCP process is the norm. Multiple instances are
-  legal (each holds its own `Graph` handle) but discouraged.
-- The `db_path` default resolves to `context/_store/ontology.db`
-  (relative to the repo root, not the module path) so the runtime
-  doesn't fight the cwd switching tests do.
+Singleton accessor (module-level, in `context/__init__.py`):
 
-`StoreUnavailable` lives at the top of `sqlite.py` as a module-level
-exception. The FastMCP bootloader catches it and surfaces a fix-hint
-("Install graphqlite: pip install graphqlite") rather than panicking.
+```python
+_STORE: Store | None = None
+
+def get_store() -> Store:
+    """Return the process-wide Store singleton.
+
+    All runtime callers (hooks, pipeline, gate evaluator) reach the
+    graph through this accessor. Constructing `Store()` directly is
+    permitted only in tests (which monkeypatch the singleton via
+    `monkeypatch.setattr("context._STORE", Store(db_path=tmp))`).
+    """
+    global _STORE
+    if _STORE is None:
+        _STORE = Store()
+        _STORE.boot()
+    return _STORE
+```
+
+Rationale: GraphQLite holds an open SQLite connection per `Graph`
+instance. Re-constructing `Store()` on every hook fire opens a new
+connection each time — under any concurrency, that contends for the
+same WAL file. The singleton accessor pins one connection per process.
+
+- `Store.boot()` is **idempotent**. Calling it twice is harmless; the
+  second call observes the already-opened `Graph` and returns. The
+  singleton accessor calls `boot()` exactly once on first access.
+- `boot()` calls `Graph(self.db_path)` exactly once per `Store`. If
+  GraphQLite fails to load (`RuntimeError` mentioning "SQLite extension
+  loading not available" or any other initialisation failure),
+  `boot()` raises `StoreUnavailable` with the original cause chained
+  via `raise StoreUnavailable(...) from e`. The fallback in
+  `_get_graph()` that returned `None` and switched to raw SQLite is
+  **deleted**, including every `if g:` / `else:` branch in
+  `upsert_node`, `upsert_edge`, and `query`.
+- The `db_path` default resolves to `context/_store/ontology.db`
+  resolved relative to the repo root via `Path(__file__).resolve().parents[2]`,
+  not the module path or the cwd, so the runtime doesn't fight the
+  cwd-switching tests do.
 
 ### FR2 — Graph bootstrap is "open or create, seed nothing"
 
@@ -171,18 +200,42 @@ the system `tools_call_log` table empty until the first hook ingest.
 `context/_drivers/__init__.py` exposes a public registry:
 
 ```python
+import os
 from typing import Protocol
 from .protocol import ArtefactDriver
 from .fs import FSArtefactDriver
 
 REGISTRY: dict[str, ArtefactDriver] = {}
 
+_TRUTHY = {"1", "true", "yes", "on"}
+
+def _override_enabled() -> bool:
+    """AGENCY_DRIVER_OVERRIDE truthiness — explicit allow-list, not
+    bool(string). Acceptable values: '1', 'true', 'yes', 'on' (case-
+    insensitive). Empty / unset / any other value is False."""
+    return os.environ.get("AGENCY_DRIVER_OVERRIDE", "").lower() in _TRUTHY
+
 def register(key: str, driver: ArtefactDriver) -> None:
-    """Self-registration hook. Raises KeyError on duplicate key
-    unless `os.environ.get('AGENCY_DRIVER_OVERRIDE')` is set."""
-    if key in REGISTRY and not os.environ.get("AGENCY_DRIVER_OVERRIDE"):
+    """Self-registration hook. Raises KeyError on duplicate key unless
+    AGENCY_DRIVER_OVERRIDE is set to a truthy value (see _override_enabled).
+    The override is read on every call — set it before importing the
+    duplicate driver, unset it afterwards."""
+    if key in REGISTRY and not _override_enabled():
         raise KeyError(f"driver {key!r} already registered")
     REGISTRY[key] = driver
+
+def resolve(key: str) -> ArtefactDriver:
+    """Lookup helper that surfaces a useful error message.
+
+    Raises KeyError listing the available keys when `key` is unknown.
+    Callers SHOULD use this rather than `REGISTRY[key]` directly so
+    every miss produces a consistent fix-hint."""
+    if key not in REGISTRY:
+        raise KeyError(
+            f"driver {key!r} not registered. Available drivers: "
+            f"{sorted(REGISTRY.keys())}"
+        )
+    return REGISTRY[key]
 
 # `fs` is the one mandatory v1 driver — register on import.
 register("fs", FSArtefactDriver())
@@ -195,47 +248,47 @@ extension surface only.
 
 `Artefact.artifact_driver` (a payload field on the node, see FR5)
 selects which driver resolves bytes. PostToolUse and any future
-`get_bytes` / `put_bytes` callsite looks up via:
+`get_bytes` / `put_bytes` callsite looks up via `resolve(key)`, never
+`REGISTRY[key]` directly. Drivers are never instantiated by callers;
+the registry holds singletons.
 
-```python
-from context._drivers import REGISTRY
-driver = REGISTRY[artefact_node["artifact_driver"]]
-```
-
-Unknown driver keys raise `KeyError` with the available keys listed in
-the message. Drivers are never instantiated by callers; the registry
-holds singletons.
-
-### FR4 — PostToolUse resolves drivers via REGISTRY
+### FR4 — PostToolUse resolves drivers via REGISTRY (validation-first)
 
 `context/_hooks/post_tool_use.ingest` becomes:
 
 ```python
+from context import get_store
+from context._drivers import resolve as resolve_driver
+
 def ingest(tool_name: str, envelope: dict) -> None:
-    store = Store()
-    store.boot()
+    store = get_store()                           # singleton — see FR1
     store.log_tool_call(tool_name, envelope)
     if not envelope.get("ok"):
         return
 
     metadata = envelope.get("data", {}).get("artefact_metadata")
     if not metadata or not isinstance(metadata, dict):
-        # No artefact emitted; just provenance.
         _ingest_emitted_edges(envelope.get("data", {}).get("emitted_edges"))
         return
 
-    # Validate against the canonical Artefact-node schema.
+    # 1. Schema validation (single source of truth).
     jsonschema.validate(instance=metadata, schema=_artefact_schema())
 
+    # 2. Driver-key validation BEFORE node upsert. A bad driver_key
+    #    must not produce a dangling Artefact node with no resolver.
+    driver = None
+    driver_key = metadata.get("artifact_driver")
+    if driver_key:
+        driver = resolve_driver(driver_key)        # KeyError if unknown
+
+    # 3. Node upsert.
     node_id = _derive_artefact_id(metadata)
     store.upsert_node(node_id, metadata, label="Artefact")
 
-    # Resolve the driver and (if raw bytes are inlined) persist.
-    driver_key = metadata.get("artifact_driver")
-    if driver_key and "raw_bytes" in metadata:
-        driver = REGISTRY[driver_key]   # KeyError surfaces a fix-hint
+    # 4. Bytes persistence (only if raw_bytes inlined AND driver resolved).
+    if driver is not None and "raw_bytes" in metadata:
         driver.put_bytes(metadata, metadata["raw_bytes"])
-        del metadata["raw_bytes"]
+        del metadata["raw_bytes"]                  # never persist raw bytes in the graph
 
     for entry in metadata.get("derived_from", []):
         store.upsert_edge(node_id, entry, rel_type="DERIVED_FROM")
@@ -248,13 +301,45 @@ def ingest(tool_name: str, envelope: dict) -> None:
     _ingest_emitted_edges(envelope.get("data", {}).get("emitted_edges"))
 ```
 
-The "if path + raw_bytes are both present, ask the driver to write"
-heuristic from v0 is replaced by **the driver_key gate**. Without
-`artifact_driver` the bytes path is skipped — the node still lands.
+**Validation timing — pinned**: `artifact_driver` is resolved against
+`REGISTRY` immediately after schema validation and BEFORE the node
+upsert. Unknown driver keys raise `KeyError` and the node never lands
+(failing loud beats a dangling pointer). The `raw_bytes` decision is
+independent and downstream.
 
 `_artefact_schema()` reads
 `context/_shared/schemas/artefact-node.schema.json` (the N2 rename).
-`_derive_artefact_id` and `_derive_row` are unchanged from v0.
+
+#### `_derive_artefact_id` and `_derive_row` — locked
+
+```python
+def _derive_artefact_id(metadata: dict) -> str:
+    """Artefact node id = "{row}/Artefact/{sha256}".
+
+    Row resolution order:
+      1. Explicit metadata["row"] field (preferred — set by producers).
+      2. metadata["produced_by"]["skill"].split("-", 1)[0] (legacy).
+      3. "unknown" — logged as a warning.
+    """
+    row = _derive_row(metadata)
+    sha = metadata["sha256"]
+    return f"{row}/Artefact/{sha}"
+
+def _derive_row(metadata: dict) -> str:
+    if "row" in metadata:
+        return metadata["row"]
+    skill = metadata.get("produced_by", {}).get("skill", "")
+    if "-" in skill:
+        return skill.split("-", 1)[0]
+    logger.warning("artefact metadata missing row and unresolvable skill; tagging 'unknown'")
+    return "unknown"
+```
+
+The v0 heuristic of parsing `result/<row>/...` from `artefact_path` is
+**dropped** — it never worked for non-`fs` drivers (an `s3` key like
+`my-bucket/foo/bar.mp3` is not a row hint). Producers SHOULD set
+`metadata["row"]` explicitly. The schema in FR5 adds this field as
+optional in v1; v2 will make it required.
 
 ### FR5 — Artefact node schema is canonical
 
@@ -270,12 +355,21 @@ Optional fields canonical in v1:
   some artefacts (e.g., pure provenance nodes that derive from other
   artefacts but don't have their own bytes) never need driver
   resolution. When present, it MUST match a registered driver at
-  PostToolUse time.
-- `driver_pointer` — driver-specific bytes pointer; the `fs` driver
-  uses it as a path string, `s3` would use it as a key, and so on.
+  PostToolUse time — the resolver fails loud (KeyError) before the
+  node is upserted (see FR4).
+- `driver_pointer` — driver-specific bytes pointer. Format per
+  driver:
+  - `fs` — repo-root-relative path string, e.g. `result/jules/research.md`.
+  - `s3` (future) — `<bucket>/<key>` form, e.g. `my-bucket/jules/research.md`.
+  - `http` (future) — full URL with optional `#etag=...` fragment.
+  - `drive` (future) — Google Drive file id.
 - `artefact_path` — LEGACY compatibility field, retained for the `fs`
   driver's transitional reads of old nodes. New writes set
   `driver_pointer` instead.
+- `row` — row name for ontology key derivation (see FR4
+  `_derive_row`). Optional in v1; v2 makes it required. Producers
+  SHOULD set this; the legacy fallback parses
+  `produced_by.skill.split("-", 1)[0]`.
 - `satisfies_phase` — emits a `SATISFIES_PHASE` edge when present
   (unchanged).
 
@@ -393,7 +487,67 @@ Scenario: Graph bootstrap seeds nothing
   When Store().boot() runs
   Then the graph contains zero nodes
   And the graph contains zero edges
+
+Scenario: get_store returns the same instance across calls
+  Given the context._STORE module-global is None
+  When get_store() is called twice from different modules
+  Then both calls return the same Store instance
+  And Graph(<db_path>) was constructed exactly once
+
+Scenario: Unknown driver_key fails BEFORE the node is upserted
+  Given an envelope with artefact_metadata setting artifact_driver="s3"
+  And no driver is registered under key "s3"
+  When post_tool_use.ingest runs
+  Then resolve_driver raises KeyError
+  And the message lists the registered driver keys (e.g. ["fs"])
+  And no Artefact node lands in the graph
+
+Scenario: Missing artifact_driver leaves a metadata-only node
+  Given an envelope with artefact_metadata that omits artifact_driver
+  When post_tool_use.ingest runs
+  Then an Artefact node lands with the validated metadata
+  And no driver is invoked
+  And raw_bytes (if present) is NOT persisted via any driver
+
+Scenario: AGENCY_DRIVER_OVERRIDE truthy allows duplicate registration
+  Given REGISTRY already contains key "fs"
+  And the environment variable AGENCY_DRIVER_OVERRIDE="1"
+  When register("fs", FSArtefactDriver()) is called again
+  Then no KeyError is raised
+  And REGISTRY["fs"] now points at the new driver instance
+
+Scenario: AGENCY_DRIVER_OVERRIDE non-truthy keeps the duplicate guard
+  Given REGISTRY already contains key "fs"
+  And AGENCY_DRIVER_OVERRIDE="" (empty or unset)
+  When register("fs", FSArtefactDriver()) is called again
+  Then KeyError is raised
+
+Scenario: _derive_row prefers the explicit row field
+  Given metadata = {"row": "music", "produced_by": {"skill": "novel-writer", ...}, ...}
+  When _derive_row(metadata) runs
+  Then it returns "music" (NOT "novel" from the skill prefix)
+
+Scenario: _derive_row falls back to the skill prefix when row is absent
+  Given metadata = {"produced_by": {"skill": "music-master", ...}, ...} with no `row` field
+  When _derive_row(metadata) runs
+  Then it returns "music"
+
+Scenario: StoreUnavailable wraps the GraphQLite ImportError
+  Given the graphqlite extension cannot load (RuntimeError on construction)
+  When Store().boot() runs
+  Then StoreUnavailable is raised
+  And the chained `__cause__` is the original RuntimeError
+  And the message includes "graphqlite"
 ```
+
+Existing test coverage on PR #155 to reference:
+- `tests/agentic/test_hooks_registered.py::test_post_hook_ingests_artefact_node`
+  (PostToolUse wiring + Artefact node landing).
+- `tests/context/test_schemas_canonical.py` (round-trip for every
+  schema in `context/_shared/schemas/`, plus the
+  `test_no_lingering_sidecar_filename` regression guard).
+
+Jules MUST NOT rebuild these fixtures.
 
 ## `affects:` allow-list
 
