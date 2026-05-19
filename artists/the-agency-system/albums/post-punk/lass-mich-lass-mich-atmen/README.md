@@ -1,8 +1,8 @@
 ---
 title: "Lass mich, lass mich atmen"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: ["post-punk"]
-tags: ["standalone-single", "german", "trauma-processing"]
+genres: ["industrial-metal", "gothic-batcave", "cyberpunk-metal"]
+tags: ["suite", "german", "trauma-processing", "dystopian-future-metal"]
 explicit: false  # to be confirmed in lyric pass
 streaming:
   soundcloud: ""
@@ -23,12 +23,12 @@ sheet_music:
 | Attribute | Detail |
 |-----------|--------|
 | **Artist** | [the-agency-system](../../../README.md) |
-| **Album** | Lass mich, lass mich atmen (Standalone-Single) |
-| **Genre** | [post-punk](/genres/post-punk/README.md) — Tendenz zu Industrial / heavier Alt-Rock, final beim Suno-Engineering |
-| **Tracks** | 1 |
-| **Status** | Phase 7 confirmed — lyrics pending |
-| **Explicit** | TBD (im Lyric-Pass entschieden) |
-| **Concept** | Wütende Forderung gegen eine erstickende Präsenz, die nicht eindeutig adressiert wird. |
+| **Album** | Lass mich, lass mich atmen (Suite, in Konzeption) |
+| **Genre** | **Dystopian Batcave × Future Metal × Cyber Punk** — Industrial-Metal Hybrid mit Gothic-Batcave Atmosphäre und Cyberpunk-Synth-Schichten. Swans/Killing-Joke-Modus: pulverisierende Repetition, kein Climax, erschöpfte Wut. |
+| **Tracks** | 1 (Title) — Suite in Phase 4 Strukturplanung; weitere Companions folgen |
+| **Status** | In Concept (Phase 1–3 abgeschlossen, Phase 4 läuft) |
+| **Explicit** | No (confirmed im Lyric-Review) |
+| **Concept** | Suite um „Lass mich, lass mich atmen" — Titel-Anker plus Varianten und Companions, die vier thematische Territorien erkunden: Besucher-Figur, Somatik & Körper, das System drinnen, Wieder-Atmen & Agency. |
 
 ## Concept
 
@@ -73,10 +73,14 @@ Der Song folgt einer klaren temporalen Architektur, in der Verses und Refrain un
 
 ## Sonic Palette
 
-- **Beats**: Live-feel Post-Punk-Drumkit, sparse aber treibend; Bridge mit industriellem Layer (Pulse, gefilterter Atem-Sample). Tempo: ca. 130–145 BPM, im Suno-Pass zu fixieren.
-- **Samples**: Atem-/Hauch-Texturen subtil verwoben (nicht als Effekt, sondern als bett); kein Field-Recording von Krankenhaus o.ä. (zu klischeehaft).
-- **Vocals**: Deutsch. Mid-baritone, dry close-mic. Verses gedämpft, fast monoton (Dissoziations-Modus). Refrain near-shout, aber kontrolliert — keine Rage-Cliché-Verzerrung. Outro gesprochen/geflüstert ohne Gesang.
-- **Mood**: Enge Verses → reißender Refrain → schwarz-stille Bridge → gegrounded am Ende.
+- **Beats**: Concrete-Room Drum Kit — tight, dry, klaustrophobisch, heavy metal weight, kein Reverb-Käfig. Bridge mit Industrial-Schichten (Metallklang, Hydraulik, Maschinen-Rhythmus). Tempo: 100–110 BPM (Titel), Companions variieren je nach Funktion (slowcore-doom langsamer, ritual-tracks ohne festes Tempo).
+- **Bass**: Downtuned distorted Bass, low-register industrial-metal bite. Hauptträger des Sound-Gefüges.
+- **Synths/Pads**: **Cyberpunk-Synth-Pads als Album-Leitmotiv** — dystopisch, broken, glitch-textured, laufen durch ALLE Tracks als Erkennungssignatur. Manchmal vorne, manchmal kaum hörbar, immer da.
+- **Guitars**: Detuned Metal-Guitar-Feedback-Stabs, atonal, dissonant. Keine flanged/melodischen Stabs.
+- **Vocals**: Deutsch. Hauptregister: snarling Baritone (Verses, jaw-clenched, growl-edged) → ugly belted Tenor (Choruses, throat-shredding, voice cracking, not pretty). Erschöpfte Wut durchgängig. Eine female/androgyne Stimme (akustische Variante), spoken word (Closer), und wortlose Vocals (Hals-Geräusch-Companion) als Kontrastregister in einzelnen Suite-Tracks.
+- **Atem-Sample**: **[breath]-Marker als Album-Leitmotiv** — hörbarer Atem in jedem Track an Bruchstellen, manchmal als Beat-Element, manchmal als Pause-Signal.
+- **Production**: Contemporary abrasive Industrial-Metal-Production — keine Late-70s-Cavernous-Reverb, kein Dub-Spaciousness. Klaustrophobisch, eng, hart.
+- **Mood**: Swans/Killing-Joke-Modus — pulverisierende Repetition, Wut als Hammer, kein Climax. Closer bricht die Härte für die einzige Auflösung.
 
 ## Tracklist
 
@@ -92,11 +96,16 @@ Der Song folgt einer klaren temporalen Architektur, in der Verses und Refrain un
 - Vocal consistency: durchgehend dieselbe Stimme — die Schichtung ist *im* Vortrag (Damals vs. Heute), nicht über zwei Sänger.
 - Produktions-Kontinuität: Verses und Refrain in derselben Raum-Charakteristik; nur Outro deutlich trockener / nahmikrofoniert.
 
-**Style Prompt Base** (Entwurf — final via `/bitwize-music:suno-engineer`):
+**Style Prompt Base** (Industrial-Metal × Gothic-Batcave × Cyberpunk Hybrid — final via `/bitwize-music:suno-engineer` per Track):
 ```
-[post-punk, german vocals, mid-baritone weary-to-angry, dry close-mic verses,
-near-shout chorus controlled not distorted, sparse driving drums, industrial
-bridge layer, spoken outro, 130-145 bpm]
+[industrial metal, gothic batcave, dystopian future-metal cyberpunk hybrid,
+german vocals, snarling baritone → ugly belted tenor, jaw-clenched
+worn-down rage, downtuned distorted bass, concrete-room drums tight dry
+no reverb, detuned metal guitar feedback stabs atonal dissonant,
+cyberpunk synth pads dystopian broken glitch-textured throughout,
+industrial layers metal-clang hydraulic pulse machine-rhythm sci-fi grit,
+[breath]-marker leitmotif at structural breaks, pulverizing repetition
+no climax, 100-110 bpm title doomy, contemporary abrasive production]
 ```
 <!-- /SERVICE: suno -->
 
@@ -129,21 +138,21 @@ Format: PNG preferred. Resolution: at least 3000x3000 for distribution.
 
 ### Genre
 ```
-Post-Punk
+Industrial Metal
 ```
 
 ### Tags
 ```
-[post-punk, german, alternative, industrial, standalone-single]
+[industrial-metal, gothic-batcave, cyberpunk-metal, future-metal, german, dystopian, dark-industrial]
 ```
 
 ## Distributor Genres
 
 | Attribute | Selection |
 |-----------|-----------|
-| **Primary Genre** | Alternative |
-| **Secondary Genre** | Rock |
-| **Electronic Subgenre** | — |
+| **Primary Genre** | Metal |
+| **Secondary Genre** | Industrial |
+| **Electronic Subgenre** | Cyberpunk |
 
 ---
 
