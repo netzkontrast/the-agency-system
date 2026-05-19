@@ -1,104 +1,65 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Universal Claude Code Web environment installer (v2).
+# Universal Claude Code Web environment installer (v4 — hand-install).
 #
-# Paste into Claude Code Web's "Environment setup" bash field on a fresh
-# cloud container. Brings the container to a state where every plugin in
-# the PLUGINS table below is installed user-scope, every MCP server it
-# bundles is reachable, and every runtime dep (Python venvs, system pip,
-# uvx) is provisioned.
+# `claude plugin install` proved unreliable in the cloud container (silent
+# half-installs, plugins absent from `enabledPlugins` after `install`
+# returned 0). This script bypasses the CLI entirely and replicates what
+# a successful install puts on disk:
 #
-# Designed to be edited: the PLUGINS array near the top is the single
-# source of truth. Add a row to install another plugin.
+#   1.  git-clone each marketplace source to ~/.claude/plugins/marketplaces/<mp>/
+#   2.  For each plugin whose `source` is a URL, git-clone it to
+#       ~/.claude/plugins/cache/<mp>/<plugin>/<version>/  (Claude's own
+#       layout). For `source: "./"` plugins, the marketplace dir IS the
+#       plugin dir.
+#   3.  Merge entries into:
+#         ~/.claude/plugins/known_marketplaces.json
+#         ~/.claude/plugins/installed_plugins.json
+#         <project>/.claude/settings.json   (enabledPlugins + extraKnownMarketplaces)
+#         ~/.claude.json                    (top-level mcpServers for standalone)
+#   4.  Provision per-plugin deps (Python venv | system | uvx | npm | none).
+#   5.  Optional AIRIS Docker stack (gated by AIRIS_GATEWAY=1).
+#   6.  Verify every claim, exit ≠0 on any failure.
 #
-# Phases:
-#   0. Detect repo path, sanity checks
-#   1. System packages (apt)
-#   2. uv bootstrap (needed for SuperClaude's airis-mcp-gateway)
-#   3. Marketplace registration with on-disk post-condition probe
-#   4. Plugin install with on-disk post-condition probe
-#   5. Per-plugin Python dep provisioning (venv | system | uvx | none)
-#   6. Plugin-specific config files (e.g. bitwize-music config.yaml)
-#   7. Verification — assert every plugin and MCP command is reachable
+# Idempotent. Safe to re-run. All JSON writes go through jq with atomic
+# temp-file rename so a crash mid-write never leaves a half-merged file.
 # =============================================================================
 set -euo pipefail
 
 # =============================================================================
-# CONFIGURATION — single source of truth.
-#
-# Each row is a pipe-delimited tuple:
-#   <source> | <marketplace_name> | <plugin_name> | <dep_mode> | <dep_source> | <post_install>
-#
-# Fields:
-#   source           Marketplace add target. Accepts:
-#                      - GitHub shorthand:  "owner/repo"
-#                      - Git URL:           "https://host/path.git"
-#                      - Local directory:   absolute path or path relative
-#                                           to the cloned repo root
-#   marketplace_name The `name` field from the marketplace's marketplace.json.
-#                    Must match exactly — `claude plugin install` uses it as
-#                    the @-suffix.
-#   plugin_name      The plugin inside that marketplace to install.
-#   dep_mode         How to provision Python deps for this plugin:
-#                      venv:<state-dir>  per-plugin venv at ${HOME}/.<state-dir>/venv
-#                      system            system Python (PEP-668 aware)
-#                      uvx               none; uvx fetches lazily at run time
-#                      none              no dependencies
-#   dep_source       Path inside the installed plugin dir to requirements.txt
-#                    or pyproject.toml. Ignored for dep_mode=uvx|none.
-#   post_install     Optional bash function name to invoke after install.
+# CONFIGURATION
 # =============================================================================
+# Each row: <mp_source> | <mp_name> | <plugin_name> | <plugin_clone> | <dep_mode> | <dep_source> | <post_install>
+#
+#   mp_source       Source URL/repo of the marketplace. Used to populate the
+#                   marketplace dir at ~/.claude/plugins/marketplaces/<mp_name>/.
+#                   Format: GitHub shorthand "owner/repo" OR full URL.
+#   mp_name         The `name` field inside the marketplace's marketplace.json.
+#                   Must match — Claude uses it as the @-suffix.
+#   plugin_name     Plugin name inside marketplace.json.
+#   plugin_clone    "inline" if plugin.source is "./" (use marketplace dir);
+#                   otherwise the URL to clone the plugin from.
+#   dep_mode        venv:<state-dir> | system | uvx | npm | none
+#   dep_source      Path inside the plugin dir to requirements.txt or
+#                   pyproject.toml (ignored for npm/none/uvx).
+#   post_install    Optional bash function name called after dep install.
 PLUGINS=(
-    # bitwize-music — Suno music workflow, audio mastering, art direction.
-    # MCP server uses absolute venv path: ${HOME}/.bitwize-music/venv/bin/python3
-    "bitwize-music-studio/claude-ai-music-skills | bitwize-music | bitwize-music | venv:bitwize-music | requirements.txt | write_bitwize_config"
-
-    # agency-system — orchestrator + unified MCP for music/novel/jules/agentic.
-    # MCP server uses bare `python` → deps must be on system Python.
-    "netzkontrast/the-agency-system | agency-marketplace | agency-system | system | servers/agency-mcp/pyproject.toml | "
-
-    # SuperClaude — /sc:* slash commands. Its bundled airis-mcp-gateway MCP
-    # entry (uvx --from git+...) is broken (the airis repo has no root
-    # pyproject.toml). Useful MCPs are registered separately in Phase 4b.
-    "SuperClaude-Org/SuperClaude_Plugin | superclaude | sc | uvx | | "
-
-    # superpowers — pure skills + bash hooks, no MCP, no deps.
-    "obra/superpowers-marketplace | superpowers-marketplace | superpowers | none | | "
-
-    # episodic-memory — semantic search over past Claude Code sessions.
-    # Node-based MCP server, needs `npm install` for native deps
-    # (better-sqlite3, sqlite-vec, @huggingface/transformers).
-    "obra/superpowers-marketplace | superpowers-marketplace | episodic-memory | npm:. | | "
-
-    # superpowers-developing-for-claude-code — 42-file Claude Code docs
-    # corpus + plugin-dev skills. No MCP, no runtime deps.
-    "obra/superpowers-marketplace | superpowers-marketplace | superpowers-developing-for-claude-code | none | | "
+    "bitwize-music-studio/claude-ai-music-skills | bitwize-music | bitwize-music | inline | venv:bitwize-music | requirements.txt | write_bitwize_config"
+    "netzkontrast/the-agency-system | agency-marketplace | agency-system | inline | system | servers/agency-mcp/pyproject.toml | "
+    "SuperClaude-Org/SuperClaude_Plugin | superclaude | sc | inline | none | | "
+    "obra/superpowers-marketplace | superpowers-marketplace | superpowers | https://github.com/obra/superpowers.git | none | | "
+    "obra/superpowers-marketplace | superpowers-marketplace | episodic-memory | https://github.com/obra/episodic-memory.git | npm | | "
+    "obra/superpowers-marketplace | superpowers-marketplace | superpowers-developing-for-claude-code | https://github.com/obra/superpowers-developing-for-claude-code.git | none | | "
 )
 
-# Standalone MCP servers registered via `claude mcp add` user-scope (not
-# bundled inside any plugin). Pipe-delimited rows:
-#   <name> | <transport> | <command-or-url> | <args>
-# transport: stdio | http
-# For stdio: command + space-separated args
-# For http: url (args ignored)
+# Standalone MCPs (user-scope, registered into ~/.claude.json top-level mcpServers).
+# Format: <name> | <transport> | <command-or-url> | <space-separated-args>
 STANDALONE_MCPS=(
-    # SuperClaude's commands frequently reference Context7 ("library docs")
-    # and Sequential-Thinking ("structured reasoning"). Register them as
-    # lightweight npx-based MCPs so /sc:* commands have something to call
-    # without standing up the AIRIS Docker stack.
     "context7 | stdio | npx | -y @upstash/context7-mcp@latest"
     "sequential-thinking | stdio | npx | -y @modelcontextprotocol/server-sequential-thinking"
 )
 
-# Optional: run the full AIRIS MCP Gateway Docker stack (25+ proxied MCPs:
-# Serena, Tavily, Magic, Morphllm, mindbase, chrome-devtools, etc.).
-# Adds ~5-10 min to setup, occupies port 9400, requires docker compose v2.
-# Some upstream MCPs need API keys (TAVILY_API_KEY, TWENTYFIRST_API_KEY).
-# Enable by exporting AIRIS_GATEWAY=1 before running this script.
 AIRIS_GATEWAY="${AIRIS_GATEWAY:-0}"
-
-# Bitwize-music writes album content under <REPO>/artists/... — the artist
-# name is a logical label inside its config.yaml.
 ARTIST_NAME="${ARTIST_NAME:-the-agency-system}"
 
 # =============================================================================
@@ -108,16 +69,25 @@ log()  { printf '[setup] %s\n' "$*" >&2; }
 warn() { printf '[setup] WARN: %s\n' "$*" >&2; }
 die()  { printf '[setup] ERROR: %s\n' "$*" >&2; exit 1; }
 
-# Run `claude` with stdin closed so any unexpected prompt fails fast
-# instead of blocking the script forever.
-claude_q() { claude "$@" < /dev/null; }
+# Atomic JSON merge: jq filter over existing file (or {}) → temp file → mv.
+# Args: path filter [jq-args...]
+json_merge() {
+    local path="$1"; shift
+    local filter="$1"; shift
+    mkdir -p "$(dirname "${path}")"
+    local input='{}'
+    [ -f "${path}" ] && input="$(cat "${path}")"
+    local tmp; tmp="$(mktemp "${path}.XXXXXX")"
+    if printf '%s' "${input}" | jq "$@" "${filter}" > "${tmp}"; then
+        mv -f "${tmp}" "${path}"
+    else
+        rm -f "${tmp}"
+        die "jq merge failed for ${path}"
+    fi
+}
 
 # =============================================================================
-# Phase 0 — Detect cloned repo path.
-#
-# Setup runs from $HOME on cloud containers, not inside the clone, and
-# CLAUDE_PROJECT_DIR isn't injected during environment-setup. Fall through
-# four detection strategies.
+# Phase 0 — repo detection
 # =============================================================================
 detect_repo_path() {
     if [ -n "${CLAUDE_PROJECT_DIR:-}" ] && [ -d "${CLAUDE_PROJECT_DIR}/.git" ]; then
@@ -136,411 +106,347 @@ detect_repo_path() {
 }
 
 REPO_PATH="$(detect_repo_path)"
-[ -d "${REPO_PATH}/.git" ] || die "REPO_PATH=${REPO_PATH} is not a git repo. Check the clone path."
-log "HOME=${HOME}  REPO_PATH=${REPO_PATH}  ARTIST=${ARTIST_NAME}"
+[ -d "${REPO_PATH}/.git" ] || die "REPO_PATH=${REPO_PATH} is not a git repo"
+log "HOME=${HOME}  REPO_PATH=${REPO_PATH}"
+
+# Claude config paths.
+CLAUDE_PLUGINS_DIR="${HOME}/.claude/plugins"
+KNOWN_MP="${CLAUDE_PLUGINS_DIR}/known_marketplaces.json"
+INSTALLED_PLUGINS="${CLAUDE_PLUGINS_DIR}/installed_plugins.json"
+USER_CLAUDE_JSON="${HOME}/.claude.json"
+PROJECT_SETTINGS="${REPO_PATH}/.claude/settings.json"
+
+mkdir -p "${CLAUDE_PLUGINS_DIR}/marketplaces" "${CLAUDE_PLUGINS_DIR}/cache"
 
 # =============================================================================
-# Phase 1 — System packages.
+# Phase 1 — system packages
 # =============================================================================
-log "Phase 1: installing system packages"
+log "Phase 1: system packages"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
-
-# Core packages — must succeed. apt-get install aborts the whole batch on
-# the first missing package, so anything that might be renamed across
-# distros goes into the best-effort batch below.
 apt-get install -y -qq \
     git git-lfs python3 python3-venv python3-pip python3-dev \
     ffmpeg libsndfile1 libpq-dev libsqlite3-dev build-essential pkg-config \
     ca-certificates curl jq nodejs npm \
-    || die "core apt-get install failed — see output above"
+    || die "core apt-get install failed"
 
-# Playwright Chromium runtime libs — best-effort. Distro-renamed packages
-# (libasound2 → libasound2t64 on Debian 13 / Ubuntu 24.04+) are tried as
-# alternates. None of these are fatal — only document-hunter needs them.
 apt-get install -y -qq --no-install-recommends \
     libnss3 libatk1.0-0 libatk-bridge2.0-0 libxkbcommon0 libgbm1 \
-    libxcomposite1 libxdamage1 libxfixes3 libxrandr2 \
-    2>&1 | tail -2 || warn "some Chromium runtime libs missing (non-fatal)"
-
-# libasound has two upstream names depending on Debian/Ubuntu version.
+    libxcomposite1 libxdamage1 libxfixes3 libxrandr2 2>&1 | tail -1 \
+    || warn "some Chromium runtime libs missing (non-fatal)"
 apt-get install -y -qq libasound2t64 2>/dev/null \
     || apt-get install -y -qq libasound2 2>/dev/null \
-    || warn "libasound not installed — Playwright audio may not work"
-
+    || warn "libasound not installed (non-fatal)"
 git lfs install --skip-repo
 
-# Detect PEP 668 once; reused by dep_mode=system installs.
+# Detect PEP 668.
 PIP_BREAK_FLAG=""
-if [ -e "/usr/lib/python3"*"/EXTERNALLY-MANAGED" ] 2>/dev/null \
-   || ls /usr/lib/python3*/EXTERNALLY-MANAGED >/dev/null 2>&1; then
-    PIP_BREAK_FLAG="--break-system-packages"
-    log "  PEP 668 detected → pip will use ${PIP_BREAK_FLAG}"
-fi
+ls /usr/lib/python3*/EXTERNALLY-MANAGED >/dev/null 2>&1 \
+    && PIP_BREAK_FLAG="--break-system-packages" \
+    && log "  PEP 668 active → pip uses ${PIP_BREAK_FLAG}"
 
 # =============================================================================
-# Phase 2 — uv bootstrap.
-#
-# SuperClaude's `sc` plugin ships an MCP server whose command is `uvx`.
-# Ensure uv is on PATH. Standard install location is ~/.local/bin/.
+# Phase 2 — uv bootstrap + python symlink
 # =============================================================================
-log "Phase 2: ensuring uv/uvx on PATH"
+log "Phase 2: uv + python symlink"
 if ! command -v uvx >/dev/null 2>&1; then
-    log "  installing uv via astral.sh installer"
-    curl -LsSf https://astral.sh/uv/install.sh | sh < /dev/null 2>&1 | tail -3
+    curl -LsSf https://astral.sh/uv/install.sh | sh < /dev/null 2>&1 | tail -2
     export PATH="${HOME}/.local/bin:${PATH}"
-    # Persist for future shells / Claude MCP spawns that inherit env.
     if [ -f "${HOME}/.bashrc" ] && ! grep -q '.local/bin' "${HOME}/.bashrc"; then
         printf 'export PATH="%s/.local/bin:$PATH"\n' "${HOME}" >> "${HOME}/.bashrc"
     fi
 fi
-command -v uvx >/dev/null 2>&1 || die "uv install failed — uvx not on PATH"
-log "  uv: $(uv --version 2>/dev/null || echo 'unknown')"
+command -v uvx >/dev/null || die "uv install failed"
 
-# Ensure bare `python` resolves. agency-system's .mcp.json invokes `python`
-# directly; many container images only ship `python3`. Symlink into
-# ~/.local/bin/ so it lands ahead of system paths once that dir is in PATH.
+# Ensure bare `python` resolves (agency-system MCP calls it directly).
 if ! command -v python >/dev/null 2>&1; then
-    if command -v python3 >/dev/null 2>&1; then
-        mkdir -p "${HOME}/.local/bin"
-        ln -sf "$(command -v python3)" "${HOME}/.local/bin/python"
-        log "  symlinked python → python3"
-    else
-        die "neither python nor python3 found on PATH"
-    fi
+    mkdir -p "${HOME}/.local/bin"
+    ln -sf "$(command -v python3)" "${HOME}/.local/bin/python"
+    log "  symlinked python → python3"
 fi
 
 # =============================================================================
-# Tuple parsing.
-#
-# bash 3 lacks associative arrays in some envs; we keep the row as a string
-# and split on `|` only when iterating.
+# Phase 3 — hand-install plugins
 # =============================================================================
-parse_row() {
-    # Args: row index. Sets globals R_SOURCE, R_MP, R_PLUGIN, R_DEPMODE,
-    # R_DEPSRC, R_POSTINSTALL.
-    local row="${PLUGINS[$1]}"
-    IFS='|' read -r R_SOURCE R_MP R_PLUGIN R_DEPMODE R_DEPSRC R_POSTINSTALL <<<"${row}"
-    # trim each
-    R_SOURCE="${R_SOURCE#"${R_SOURCE%%[![:space:]]*}"}"; R_SOURCE="${R_SOURCE%"${R_SOURCE##*[![:space:]]}"}"
-    R_MP="${R_MP#"${R_MP%%[![:space:]]*}"}"; R_MP="${R_MP%"${R_MP##*[![:space:]]}"}"
-    R_PLUGIN="${R_PLUGIN#"${R_PLUGIN%%[![:space:]]*}"}"; R_PLUGIN="${R_PLUGIN%"${R_PLUGIN##*[![:space:]]}"}"
-    R_DEPMODE="${R_DEPMODE#"${R_DEPMODE%%[![:space:]]*}"}"; R_DEPMODE="${R_DEPMODE%"${R_DEPMODE##*[![:space:]]}"}"
-    R_DEPSRC="${R_DEPSRC#"${R_DEPSRC%%[![:space:]]*}"}"; R_DEPSRC="${R_DEPSRC%"${R_DEPSRC##*[![:space:]]}"}"
-    R_POSTINSTALL="${R_POSTINSTALL#"${R_POSTINSTALL%%[![:space:]]*}"}"; R_POSTINSTALL="${R_POSTINSTALL%"${R_POSTINSTALL##*[![:space:]]}"}"
+log "Phase 3: hand-installing plugins"
+
+# Convert a source ("owner/repo" or full URL) into a clone URL.
+clone_url() {
+    local s="$1"
+    case "${s}" in
+        https://*|http://*|git@*) printf '%s\n' "${s}" ;;
+        *) printf 'https://github.com/%s.git\n' "${s}" ;;
+    esac
 }
 
-# Resolve a source string for marketplace add. Local paths become absolute
-# relative to REPO_PATH. GitHub shorthand and URLs pass through.
-resolve_source() {
-    local src="$1"
-    if [[ "${src}" == /* ]] || [[ "${src}" == "." ]] || [[ "${src}" == ./* ]]; then
-        (cd "${REPO_PATH}" && cd "${src}" && pwd -P)
+# Git-clone (or fast-pull) into a target dir. Idempotent.
+clone_or_update() {
+    local url="$1" target="$2"
+    if [ -d "${target}/.git" ]; then
+        log "  ↻ updating ${target}"
+        ( cd "${target}" && git fetch --quiet --depth=1 origin HEAD 2>&1 \
+            && git reset --quiet --hard FETCH_HEAD ) 2>&1 | tail -1 \
+            || warn "    update failed (keeping existing)"
     else
-        printf '%s\n' "${src}"
+        log "  ⇣ cloning ${url} → ${target}"
+        mkdir -p "$(dirname "${target}")"
+        rm -rf "${target}"
+        git clone --quiet --depth=1 "${url}" "${target}" 2>&1 | tail -2 \
+            || die "clone failed: ${url}"
     fi
 }
 
-# Path to known_marketplaces.json (Claude tries HOME first; fall back for
-# environments where claude wrote to /root or /home/user explicitly).
-known_marketplaces_path() {
-    local p
-    for p in \
-        "${HOME}/.claude/plugins/known_marketplaces.json" \
-        "/root/.claude/plugins/known_marketplaces.json" \
-        "/home/user/.claude/plugins/known_marketplaces.json"; do
-        [ -f "${p}" ] && { printf '%s\n' "${p}"; return; }
+parse_row() {
+    local row="${PLUGINS[$1]}"
+    IFS='|' read -r R_SRC R_MP R_PLUGIN R_CLONE R_DEPMODE R_DEPSRC R_POST <<<"${row}"
+    for v in R_SRC R_MP R_PLUGIN R_CLONE R_DEPMODE R_DEPSRC R_POST; do
+        eval "${v}=\$(printf '%s' \"\${${v}}\" | xargs)"
     done
-    return 1
 }
 
-installed_plugins_path() {
-    local p
-    for p in \
-        "${HOME}/.claude/plugins/installed_plugins.json" \
-        "/root/.claude/plugins/installed_plugins.json" \
-        "/home/user/.claude/plugins/installed_plugins.json"; do
-        [ -f "${p}" ] && { printf '%s\n' "${p}"; return; }
-    done
-    return 1
+# Resolve plugin install dir + read its version from plugin.json.
+plugin_install_dir() {
+    local mp_name="$1" plugin_name="$2" clone="$3" version="$4"
+    if [ "${clone}" = "inline" ]; then
+        printf '%s\n' "${CLAUDE_PLUGINS_DIR}/marketplaces/${mp_name}"
+    else
+        printf '%s\n' "${CLAUDE_PLUGINS_DIR}/cache/${mp_name}/${plugin_name}/${version}"
+    fi
 }
 
-marketplace_installed() {
-    local name="$1"
-    local km
-    km="$(known_marketplaces_path)" || return 1
-    python3 -c "
-import json, sys
-try:
-    data = json.load(open('${km}'))
-except Exception:
-    sys.exit(1)
-sys.exit(0 if '${name}' in data else 1)
-"
+read_plugin_version() {
+    local dir="$1"
+    local pj="${dir}/.claude-plugin/plugin.json"
+    [ -f "${pj}" ] || { printf '0.0.0\n'; return; }
+    jq -r '.version // "0.0.0"' "${pj}"
 }
 
-plugin_installed() {
-    local plugin_ref="$1"   # name@marketplace
-    local ip
-    ip="$(installed_plugins_path)" || return 1
-    python3 -c "
-import json, sys
-try:
-    data = json.load(open('${ip}'))
-except Exception:
-    sys.exit(1)
-plugins = data.get('plugins', {})
-sys.exit(0 if '${plugin_ref}' in plugins else 1)
-"
-}
-
-marketplace_install_location() {
-    local name="$1"
-    local km
-    km="$(known_marketplaces_path)" || return 1
-    python3 -c "
-import json
-data = json.load(open('${km}'))
-entry = data.get('${name}', {})
-print(entry.get('installLocation', ''))
-"
-}
-
-# =============================================================================
-# Phase 3 — Marketplace registration.
-# =============================================================================
-log "Phase 3: registering marketplaces"
+# Process each plugin row.
+declare -a INSTALLED_REFS=()
 for i in "${!PLUGINS[@]}"; do
     parse_row "$i"
-    if marketplace_installed "${R_MP}"; then
-        log "  ${R_MP} already registered"
-        continue
+    REF="${R_PLUGIN}@${R_MP}"
+    log "${REF}"
+
+    # 3a. Clone marketplace source if not already present.
+    MP_DIR="${CLAUDE_PLUGINS_DIR}/marketplaces/${R_MP}"
+    MP_URL="$(clone_url "${R_SRC}")"
+    clone_or_update "${MP_URL}" "${MP_DIR}"
+
+    # 3b. Resolve plugin dir: inline (= marketplace dir) or remote clone into cache/.
+    if [ "${R_CLONE}" = "inline" ]; then
+        PLUGIN_DIR="${MP_DIR}"
+    else
+        # Read plugin version from a tentative clone target so version is stable.
+        # We clone first, then learn the version from plugin.json.
+        TMP_TARGET="${CLAUDE_PLUGINS_DIR}/cache/${R_MP}/${R_PLUGIN}/__staging"
+        clone_or_update "${R_CLONE}" "${TMP_TARGET}"
+        VER="$(read_plugin_version "${TMP_TARGET}")"
+        FINAL_TARGET="${CLAUDE_PLUGINS_DIR}/cache/${R_MP}/${R_PLUGIN}/${VER}"
+        if [ "${TMP_TARGET}" != "${FINAL_TARGET}" ]; then
+            mkdir -p "$(dirname "${FINAL_TARGET}")"
+            rm -rf "${FINAL_TARGET}"
+            mv "${TMP_TARGET}" "${FINAL_TARGET}"
+        fi
+        PLUGIN_DIR="${FINAL_TARGET}"
     fi
-    resolved="$(resolve_source "${R_SOURCE}")"
-    log "  registering ${R_MP} from ${resolved}"
-    claude_q plugin marketplace add "${resolved}" 2>&1 | sed 's/^/[setup]     /' || true
-    if ! marketplace_installed "${R_MP}"; then
-        die "marketplace ${R_MP} not present in known_marketplaces.json after add. \
-Source=${resolved}. Likely cause: marketplace name in marketplace.json does \
-not match the declared name, or the CLI prompted for trust on closed stdin."
-    fi
+    log "  plugin_dir=${PLUGIN_DIR}"
+
+    # 3c. Update known_marketplaces.json.
+    # Schema: {"<mp_name>": {"source": {"source":"github","repo":"owner/repo"} | {"source":"url","url":"..."}, "installLocation": "..."}}
+    case "${R_SRC}" in
+        https://*|http://*|git@*)
+            json_merge "${KNOWN_MP}" \
+                --arg name "${R_MP}" --arg url "${R_SRC}" --arg loc "${MP_DIR}" \
+                '. + {($name): {"source": {"source": "url", "url": $url}, "installLocation": $loc, "lastUpdated": now | strftime("%Y-%m-%dT%H:%M:%SZ")}}'
+            ;;
+        *)
+            json_merge "${KNOWN_MP}" \
+                --arg name "${R_MP}" --arg repo "${R_SRC}" --arg loc "${MP_DIR}" \
+                '. + {($name): {"source": {"source": "github", "repo": $repo}, "installLocation": $loc, "lastUpdated": now | strftime("%Y-%m-%dT%H:%M:%SZ")}}'
+            ;;
+    esac
+
+    # 3d. Update installed_plugins.json.
+    # Schema: {"version": 2, "plugins": {"<plugin>@<mp>": [{"scope":"user", "installPath":"...", "version":"...", ...}]}}
+    PVER="$(read_plugin_version "${PLUGIN_DIR}")"
+    GITSHA="$(git -C "${PLUGIN_DIR}" rev-parse HEAD 2>/dev/null || printf 'unknown')"
+    json_merge "${INSTALLED_PLUGINS}" \
+        --arg ref "${REF}" --arg path "${PLUGIN_DIR}" --arg ver "${PVER}" \
+        --arg sha "${GITSHA}" --arg proj "${REPO_PATH}" \
+        '
+        .version = 2
+        | .plugins //= {}
+        | .plugins[$ref] = [
+            {
+              "scope": "user",
+              "installPath": $path,
+              "version": $ver,
+              "installedAt": (now | strftime("%Y-%m-%dT%H:%M:%SZ")),
+              "lastUpdated": (now | strftime("%Y-%m-%dT%H:%M:%SZ")),
+              "gitCommitSha": $sha,
+              "projectPath": $proj
+            }
+          ]
+        '
+
+    INSTALLED_REFS+=("${REF}|${PLUGIN_DIR}|${R_DEPMODE}|${R_DEPSRC}|${R_POST}|${R_MP}|${R_SRC}")
 done
 
 # =============================================================================
-# Phase 4 — Plugin install.
-# =============================================================================
-log "Phase 4: installing plugins"
-for i in "${!PLUGINS[@]}"; do
-    parse_row "$i"
-    local_ref="${R_PLUGIN}@${R_MP}"
-    if plugin_installed "${local_ref}"; then
-        log "  ${local_ref} already installed"
-        continue
-    fi
-    log "  installing ${local_ref}"
-    claude_q plugin install "${local_ref}" -s user 2>&1 | sed 's/^/[setup]     /' || true
-    if ! plugin_installed "${local_ref}"; then
-        die "plugin ${local_ref} not present in installed_plugins.json after install. \
-Likely cause: trust prompt blocked, or marketplace_name/plugin_name mismatch."
-    fi
-done
-
-# =============================================================================
-# Phase 4b — Standalone MCP server registration (user-scope).
+# Phase 3.5 — fix the project's own .mcp.json.
 #
-# These are MCPs that aren't bundled in any plugin we install. Idempotent:
-# checks ~/.claude.json for existing user-scope mcpServers entries.
+# Claude scope-precedence rule (per code.claude.com docs): project >
+# plugin. The repo ships a project-root .mcp.json that uses
+# ${CLAUDE_PLUGIN_ROOT} (a plugin-scope-only variable). In project
+# scope that variable doesn't expand → MCP path is broken → project
+# entry shadows the now-installed plugin entry → agency-system fails
+# to connect even though the plugin is correctly installed.
+#
+# Rewrite ${CLAUDE_PLUGIN_ROOT} → ${CLAUDE_PROJECT_DIR:-.} so the
+# project-scope registration ALSO works (which is the right reference
+# for a project-root .mcp.json anyway).
 # =============================================================================
-log "Phase 4b: registering standalone MCP servers (user-scope)"
+PROJECT_MCP="${REPO_PATH}/.mcp.json"
+if [ -f "${PROJECT_MCP}" ] && grep -q '\${CLAUDE_PLUGIN_ROOT}' "${PROJECT_MCP}"; then
+    log "Phase 3.5: fixing ${PROJECT_MCP} (CLAUDE_PLUGIN_ROOT → CLAUDE_PROJECT_DIR:-.)"
+    cp "${PROJECT_MCP}" "${PROJECT_MCP}.bak"
+    sed -i 's|\${CLAUDE_PLUGIN_ROOT}|\${CLAUDE_PROJECT_DIR:-.}|g' "${PROJECT_MCP}"
+    log "  backup at ${PROJECT_MCP}.bak"
+fi
 
-user_mcp_registered() {
-    local name="$1"
-    local cfg="${HOME}/.claude.json"
-    [ -f "${cfg}" ] || return 1
-    python3 -c "
-import json, sys
-try:
-    data = json.load(open('${cfg}'))
-except Exception:
-    sys.exit(1)
-sys.exit(0 if '${name}' in data.get('mcpServers', {}) else 1)
-"
-}
+# =============================================================================
+# Phase 4 — write project .claude/settings.json (merge enabledPlugins +
+#           extraKnownMarketplaces; preserve existing hooks/permissions).
+# =============================================================================
+log "Phase 4: project settings.json (enabledPlugins + extraKnownMarketplaces)"
+mkdir -p "$(dirname "${PROJECT_SETTINGS}")"
 
+# Build the patch in two passes: enabledPlugins additions, then marketplaces.
+for entry in "${INSTALLED_REFS[@]}"; do
+    IFS='|' read -r REF _ _ _ _ R_MP R_SRC <<<"${entry}"
+    # enabledPlugins
+    json_merge "${PROJECT_SETTINGS}" --arg ref "${REF}" \
+        '
+        .enabledPlugins //= {}
+        | .enabledPlugins[$ref] = true
+        '
+    # extraKnownMarketplaces — github vs url source
+    case "${R_SRC}" in
+        https://*|http://*|git@*)
+            json_merge "${PROJECT_SETTINGS}" --arg name "${R_MP}" --arg url "${R_SRC}" \
+                '
+                .extraKnownMarketplaces //= {}
+                | .extraKnownMarketplaces[$name] //= {"source": {"source": "url", "url": $url}}
+                '
+            ;;
+        *)
+            json_merge "${PROJECT_SETTINGS}" --arg name "${R_MP}" --arg repo "${R_SRC}" \
+                '
+                .extraKnownMarketplaces //= {}
+                | .extraKnownMarketplaces[$name] //= {"source": {"source": "github", "repo": $repo}}
+                '
+            ;;
+    esac
+done
+
+# =============================================================================
+# Phase 4b — standalone MCPs (user-scope in ~/.claude.json)
+# =============================================================================
+log "Phase 4b: standalone MCP servers (user-scope ~/.claude.json)"
 for row in "${STANDALONE_MCPS[@]}"; do
     IFS='|' read -r M_NAME M_TRANSPORT M_CMD M_ARGS <<<"${row}"
     M_NAME="$(printf '%s' "${M_NAME}" | xargs)"
     M_TRANSPORT="$(printf '%s' "${M_TRANSPORT}" | xargs)"
     M_CMD="$(printf '%s' "${M_CMD}" | xargs)"
     M_ARGS="$(printf '%s' "${M_ARGS}" | xargs)"
-    if user_mcp_registered "${M_NAME}"; then
-        log "  ${M_NAME} already registered"
-        continue
-    fi
-    log "  registering ${M_NAME} (${M_TRANSPORT})"
+    log "  ${M_NAME} (${M_TRANSPORT})"
+    # Per docs: user-scope MCPs go in ~/.claude.json top-level mcpServers.
     if [ "${M_TRANSPORT}" = "http" ]; then
-        claude_q mcp add --scope user --transport http "${M_NAME}" "${M_CMD}" \
-            2>&1 | sed 's/^/[setup]     /' || warn "    mcp add failed for ${M_NAME}"
+        json_merge "${USER_CLAUDE_JSON}" --arg name "${M_NAME}" --arg url "${M_CMD}" \
+            '
+            .mcpServers //= {}
+            | .mcpServers[$name] = {"type": "http", "url": $url}
+            '
     else
-        # stdio: claude mcp add <name> <command> [args...]
-        # shellcheck disable=SC2086
-        claude_q mcp add --scope user "${M_NAME}" "${M_CMD}" ${M_ARGS} \
-            2>&1 | sed 's/^/[setup]     /' || warn "    mcp add failed for ${M_NAME}"
+        # stdio: build args array from space-separated string.
+        # shellcheck disable=SC2206
+        ARGS_ARR=( ${M_ARGS} )
+        ARGS_JSON="$(printf '%s\n' "${ARGS_ARR[@]}" | jq -R . | jq -s .)"
+        json_merge "${USER_CLAUDE_JSON}" --arg name "${M_NAME}" --arg cmd "${M_CMD}" --argjson args "${ARGS_JSON}" \
+            '
+            .mcpServers //= {}
+            | .mcpServers[$name] = {"type": "stdio", "command": $cmd, "args": $args}
+            '
     fi
 done
 
 # =============================================================================
-# Phase 4c — Optional AIRIS MCP Gateway Docker stack.
-#
-# Heavy: 25+ proxied MCP servers, port 9400, docker compose. Some upstream
-# servers require API keys. Gated by AIRIS_GATEWAY=1.
+# Phase 5 — per-plugin dep provisioning
 # =============================================================================
-if [ "${AIRIS_GATEWAY}" = "1" ]; then
-    log "Phase 4c: AIRIS MCP Gateway (AIRIS_GATEWAY=1)"
-    if ! command -v docker >/dev/null 2>&1 || ! docker info >/dev/null 2>&1; then
-        warn "  docker not available/running — skipping AIRIS stack"
-    elif ! docker compose version >/dev/null 2>&1; then
-        warn "  docker compose v2 not available — skipping AIRIS stack"
-    else
-        AIRIS_DIR="${HOME}/.local/share/airis-mcp-gateway"
-        if [ ! -x "${HOME}/.local/bin/airis-gateway" ]; then
-            log "  running AIRIS install.sh"
-            curl -fsSL https://raw.githubusercontent.com/agiletec-inc/airis-mcp-gateway/main/install.sh \
-                | bash < /dev/null 2>&1 | tail -5 || warn "    AIRIS install.sh failed"
-        else
-            log "  AIRIS already installed at ${AIRIS_DIR}"
-        fi
-        if [ -x "${HOME}/.local/bin/airis-gateway" ]; then
-            "${HOME}/.local/bin/airis-gateway" up < /dev/null 2>&1 | tail -3 \
-                || warn "    airis-gateway up failed"
-            # Register the HTTP MCP endpoint (idempotent).
-            if ! user_mcp_registered "airis-mcp-gateway"; then
-                claude_q mcp add --scope user --transport http airis-mcp-gateway \
-                    "http://localhost:9400/mcp/" 2>&1 | sed 's/^/[setup]     /' \
-                    || warn "    mcp add airis-mcp-gateway failed"
-            fi
-        fi
-    fi
-else
-    log "Phase 4c: AIRIS Docker stack skipped (set AIRIS_GATEWAY=1 to enable)"
-fi
-
-# =============================================================================
-# Phase 5 — Per-plugin Python dep provisioning.
-# =============================================================================
-log "Phase 5: provisioning per-plugin dependencies"
-
-# Resolve a plugin's on-disk directory by walking installed_plugins.json.
-plugin_dir() {
-    local plugin_ref="$1"   # name@marketplace
-    local ip
-    ip="$(installed_plugins_path)" || return 1
-    python3 -c "
-import json
-data = json.load(open('${ip}'))
-entries = data.get('plugins', {}).get('${plugin_ref}', [])
-for e in entries:
-    p = e.get('installPath') or e.get('install_path')
-    if p:
-        print(p); break
-"
-}
+log "Phase 5: per-plugin dep provisioning"
 
 provision_venv() {
-    # Args: state-dir-name, plugin-dir, dep-source (requirements.txt or pyproject.toml)
     local state_name="$1" pdir="$2" depsrc="$3"
     local state_dir="${HOME}/.${state_name}"
     local venv="${state_dir}/venv"
     local depfile="${pdir}/${depsrc}"
-    [ -f "${depfile}" ] || { warn "  ${depfile} missing — skipping venv provisioning"; return; }
-
+    [ -f "${depfile}" ] || { warn "  ${depfile} missing"; return; }
     mkdir -p "${state_dir}"
-    if [ ! -x "${venv}/bin/python3" ]; then
-        log "  creating venv ${venv}"
-        python3 -m venv "${venv}"
-    fi
-    log "  installing ${state_name} deps into ${venv}"
+    [ -x "${venv}/bin/python3" ] || { log "  creating venv ${venv}"; python3 -m venv "${venv}"; }
     "${venv}/bin/pip" install --quiet --upgrade pip wheel setuptools
-    if [[ "${depsrc}" == *.txt ]]; then
-        "${venv}/bin/pip" install --quiet -r "${depfile}" \
-            || warn "    pip install failed for ${state_name}"
-    else
-        "${venv}/bin/pip" install --quiet "${pdir}/$(dirname "${depsrc}")" \
-            || warn "    pip install failed for ${state_name}"
-    fi
-    # Bitwize-music convention: playwright chromium for document-hunter.
-    if [ -x "${venv}/bin/playwright" ]; then
+    log "  pip install -r ${depfile}"
+    "${venv}/bin/pip" install --quiet -r "${depfile}" || warn "    pip install failed"
+    [ -x "${venv}/bin/playwright" ] && {
         "${venv}/bin/playwright" install chromium >/dev/null 2>&1 \
             || warn "    playwright chromium install failed (non-fatal)"
-    fi
-    # Sentinel for SessionStart fast-paths in plugins that check it.
-    python3 -c "
-import hashlib
-print(hashlib.sha256(open('${depfile}','rb').read()).hexdigest())
-" > "${state_dir}/.setup-complete"
+    }
+    python3 -c "import hashlib; print(hashlib.sha256(open('${depfile}','rb').read()).hexdigest())" \
+        > "${state_dir}/.setup-complete"
 }
 
 provision_system() {
-    # Args: plugin-dir, dep-source. Installs into system python so bare
-    # `python`/`python3` resolves the package.
     local pdir="$1" depsrc="$2"
-    local depfile="${pdir}/${depsrc}"
-
-    if [ -n "${depsrc}" ] && [ -f "${depfile}" ]; then
-        if [[ "${depsrc}" == *.txt ]]; then
-            log "  pip install -r ${depfile} (system)"
-            python3 -m pip install --quiet ${PIP_BREAK_FLAG} -r "${depfile}" \
-                || warn "    pip install failed"
-        else
-            local depdir; depdir="$(dirname "${depfile}")"
-            log "  pip install -e ${depdir} (system, editable)"
-            python3 -m pip install --quiet ${PIP_BREAK_FLAG} -e "${depdir}" \
-                || warn "    editable install failed for ${depdir}"
+    if [ -n "${depsrc}" ]; then
+        local depfile="${pdir}/${depsrc}"
+        if [ -f "${depfile}" ]; then
+            if [[ "${depsrc}" == *.txt ]]; then
+                log "  pip install -r ${depfile} (system)"
+                python3 -m pip install --quiet ${PIP_BREAK_FLAG} -r "${depfile}" \
+                    || warn "    pip install failed"
+            else
+                local depdir; depdir="$(dirname "${depfile}")"
+                log "  pip install -e ${depdir} (system, editable)"
+                python3 -m pip install --quiet ${PIP_BREAK_FLAG} -e "${depdir}" \
+                    || warn "    editable install failed"
+            fi
         fi
     fi
-
-    # Also walk servers/*/pyproject.toml so multi-server plugins
-    # (agency-system has agency-mcp + session-log-mcp) get every package.
+    # Walk siblings under servers/* (e.g. agency-system has multiple MCP packages).
     if [ -d "${pdir}/servers" ]; then
         local s
         for s in "${pdir}/servers"/*/; do
             [ -f "${s}pyproject.toml" ] || continue
-            # Skip the one already installed above to avoid double work.
-            if [ -n "${depsrc}" ] && [ "${pdir}/${depsrc}" = "${s}pyproject.toml" ]; then
-                continue
-            fi
-            log "  pip install -e ${s} (system, editable, sibling MCP)"
+            [ -n "${depsrc}" ] && [ "${pdir}/${depsrc}" = "${s}pyproject.toml" ] && continue
+            log "  pip install -e ${s} (sibling MCP)"
             python3 -m pip install --quiet ${PIP_BREAK_FLAG} -e "${s}" \
-                || warn "    editable install failed for ${s}"
+                || warn "    editable install failed"
         done
     fi
 }
 
-provision_uvx() {
-    # No-op. uvx will fetch lazily on first MCP spawn.
-    # Optional best-effort warm-up: pre-fetch airis-mcp-gateway so the
-    # first /sc: command isn't gated on a 30-second git clone.
-    log "  uvx mode — skipping eager install (uvx fetches lazily)"
-}
-
 provision_npm() {
-    # Args: plugin-dir, subdir (relative to plugin-dir; default ".")
-    local pdir="$1" subdir="${2:-.}"
-    local target="${pdir}/${subdir}"
-    if [ ! -f "${target}/package.json" ]; then
-        warn "  ${target}/package.json missing — skipping npm install"
+    local pdir="$1"
+    if [ ! -f "${pdir}/package.json" ]; then
+        warn "  ${pdir}/package.json missing"
         return
     fi
-    log "  npm install in ${target}"
-    ( cd "${target}" && npm install --no-audit --no-fund --loglevel=error 2>&1 | tail -3 ) \
-        || warn "    npm install reported issues for ${target}"
+    log "  npm install in ${pdir}"
+    ( cd "${pdir}" && npm install --no-audit --no-fund --loglevel=error 2>&1 | tail -2 ) \
+        || warn "    npm install reported issues"
 }
 
-# Plugin-specific post-install hook(s).
-# Called by name from the PLUGINS table's last column.
 write_bitwize_config() {
-    # Bitwize-music expects ${HOME}/.bitwize-music/config.yaml.
-    # Regenerated each run so paths track REPO_PATH (not /home/user/...).
     local cfg="${HOME}/.bitwize-music/config.yaml"
     mkdir -p "${HOME}/.bitwize-music"
     log "  writing ${cfg}"
@@ -564,138 +470,97 @@ YAML
     mv -f "${tmp}" "${cfg}"
 }
 
-# Dispatch per-plugin provisioning.
-for i in "${!PLUGINS[@]}"; do
-    parse_row "$i"
-    local_ref="${R_PLUGIN}@${R_MP}"
-    pdir="$(plugin_dir "${local_ref}")"
-    if [ -z "${pdir}" ] || [ ! -d "${pdir}" ]; then
-        warn "  could not resolve install dir for ${local_ref} — skipping deps"
-        continue
-    fi
-    log "${local_ref} → mode=${R_DEPMODE}  dir=${pdir}"
-    case "${R_DEPMODE}" in
-        venv:*)
-            state_name="${R_DEPMODE#venv:}"
-            provision_venv "${state_name}" "${pdir}" "${R_DEPSRC}"
-            ;;
-        system)
-            provision_system "${pdir}" "${R_DEPSRC}"
-            ;;
-        uvx)
-            provision_uvx
-            ;;
-        npm|npm:*)
-            subdir="${R_DEPMODE#npm}"; subdir="${subdir#:}"
-            provision_npm "${pdir}" "${subdir:-.}"
-            ;;
-        none)
-            log "  no deps to install"
-            ;;
-        *)
-            warn "  unknown dep_mode '${R_DEPMODE}' — skipping"
-            ;;
+for entry in "${INSTALLED_REFS[@]}"; do
+    IFS='|' read -r REF PDIR DEPMODE DEPSRC POST _ _ <<<"${entry}"
+    log "${REF} → mode=${DEPMODE}"
+    case "${DEPMODE}" in
+        venv:*)  provision_venv "${DEPMODE#venv:}" "${PDIR}" "${DEPSRC}" ;;
+        system)  provision_system "${PDIR}" "${DEPSRC}" ;;
+        npm)     provision_npm "${PDIR}" ;;
+        uvx|none) log "  (no eager install)" ;;
+        *)       warn "  unknown dep_mode '${DEPMODE}'" ;;
     esac
-done
-
-# =============================================================================
-# Phase 6 — Plugin-specific config files.
-# =============================================================================
-log "Phase 6: plugin-specific config files"
-for i in "${!PLUGINS[@]}"; do
-    parse_row "$i"
-    if [ -n "${R_POSTINSTALL}" ] && declare -F "${R_POSTINSTALL}" >/dev/null 2>&1; then
-        log "${R_PLUGIN}@${R_MP} → ${R_POSTINSTALL}"
-        "${R_POSTINSTALL}"
+    if [ -n "${POST}" ] && declare -F "${POST}" >/dev/null 2>&1; then
+        "${POST}"
     fi
 done
 
 # =============================================================================
-# Phase 7 — Verification.
-#
-# Every claim the script needs to be true must be probed here. Any failure
-# = non-zero exit with an actionable error message. This is the single
-# chokepoint that prevents silent partial-success states.
+# Phase 6 — optional AIRIS Docker stack
 # =============================================================================
-log "Phase 7: verifying installation"
+if [ "${AIRIS_GATEWAY}" = "1" ]; then
+    log "Phase 6: AIRIS Docker stack (AIRIS_GATEWAY=1)"
+    if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1 \
+       && docker compose version >/dev/null 2>&1; then
+        if [ ! -x "${HOME}/.local/bin/airis-gateway" ]; then
+            curl -fsSL https://raw.githubusercontent.com/agiletec-inc/airis-mcp-gateway/main/install.sh \
+                | bash < /dev/null 2>&1 | tail -3 || warn "  AIRIS install.sh failed"
+        fi
+        if [ -x "${HOME}/.local/bin/airis-gateway" ]; then
+            "${HOME}/.local/bin/airis-gateway" up < /dev/null 2>&1 | tail -2 || true
+            json_merge "${USER_CLAUDE_JSON}" \
+                '
+                .mcpServers //= {}
+                | .mcpServers["airis-mcp-gateway"] = {"type": "http", "url": "http://localhost:9400/mcp/"}
+                '
+        fi
+    else
+        warn "  docker/compose unavailable — skipping"
+    fi
+else
+    log "Phase 6: AIRIS Docker stack skipped (set AIRIS_GATEWAY=1)"
+fi
+
+# =============================================================================
+# Phase 7 — verification
+# =============================================================================
+log "Phase 7: verification"
 FAIL=0
 fail() { warn "VERIFY: $*"; FAIL=$((FAIL + 1)); }
 
-for i in "${!PLUGINS[@]}"; do
-    parse_row "$i"
-    ref="${R_PLUGIN}@${R_MP}"
-    if plugin_installed "${ref}"; then
-        log "  ✓ plugin installed: ${ref}"
-    else
-        fail "plugin missing from installed_plugins.json: ${ref}"
-        continue
-    fi
-    # dep-mode-specific reachability probes
-    case "${R_DEPMODE}" in
+for entry in "${INSTALLED_REFS[@]}"; do
+    IFS='|' read -r REF PDIR DEPMODE _ _ _ _ <<<"${entry}"
+    [ -d "${PDIR}" ] || fail "plugin dir missing: ${REF} (${PDIR})"
+    [ -f "${PDIR}/.claude-plugin/plugin.json" ] || fail "plugin.json missing: ${REF}"
+    jq -e ".enabledPlugins[\"${REF}\"]" "${PROJECT_SETTINGS}" >/dev/null 2>&1 \
+        || fail "${REF} not in project enabledPlugins"
+    jq -e ".plugins[\"${REF}\"]" "${INSTALLED_PLUGINS}" >/dev/null 2>&1 \
+        || fail "${REF} not in installed_plugins.json"
+    case "${DEPMODE}" in
         venv:*)
-            state_name="${R_DEPMODE#venv:}"
-            vpy="${HOME}/.${state_name}/venv/bin/python3"
-            [ -x "${vpy}" ] && log "  ✓ venv python: ${vpy}" \
-                || fail "venv python missing: ${vpy}"
+            VPY="${HOME}/.${DEPMODE#venv:}/venv/bin/python3"
+            [ -x "${VPY}" ] || fail "venv python missing: ${VPY}"
             ;;
         system)
-            command -v python >/dev/null 2>&1 && log "  ✓ system python on PATH" \
-                || fail "bare 'python' not on PATH (agency-system MCP needs it)"
-            if [ "${R_PLUGIN}" = "agency-system" ]; then
+            if [ "${REF}" = "agency-system@agency-marketplace" ]; then
                 python3 -c "import agency_mcp" >/dev/null 2>&1 \
-                    && log "  ✓ import agency_mcp" \
-                    || fail "import agency_mcp failed — agency-system MCP will not start"
+                    || fail "import agency_mcp failed (system Python)"
             fi
             ;;
-        uvx)
-            command -v uvx >/dev/null 2>&1 && log "  ✓ uvx on PATH" \
-                || fail "uvx missing — sc plugin's airis-mcp-gateway needs it"
-            ;;
-        npm|npm:*)
-            command -v node >/dev/null 2>&1 && log "  ✓ node on PATH" \
-                || fail "node missing — episodic-memory needs it"
+        npm)
+            [ -d "${PDIR}/node_modules" ] || fail "npm deps not installed: ${REF}"
             ;;
     esac
 done
 
-# Standalone MCPs (Phase 4b) — check user-scope registration.
 for row in "${STANDALONE_MCPS[@]}"; do
     IFS='|' read -r M_NAME _ _ _ <<<"${row}"
     M_NAME="$(printf '%s' "${M_NAME}" | xargs)"
-    if user_mcp_registered "${M_NAME}"; then
-        log "  ✓ standalone MCP registered: ${M_NAME}"
-    else
-        fail "standalone MCP not registered in ~/.claude.json: ${M_NAME}"
-    fi
+    jq -e ".mcpServers[\"${M_NAME}\"]" "${USER_CLAUDE_JSON}" >/dev/null 2>&1 \
+        || fail "standalone MCP ${M_NAME} not in ~/.claude.json"
 done
 
-# AIRIS gateway (if enabled).
-if [ "${AIRIS_GATEWAY}" = "1" ]; then
-    if user_mcp_registered "airis-mcp-gateway"; then
-        log "  ✓ airis-mcp-gateway registered"
-    else
-        fail "airis-mcp-gateway not registered (AIRIS_GATEWAY=1 but setup failed)"
-    fi
-fi
+[ "${FAIL}" -gt 0 ] && die "${FAIL} verification check(s) failed"
 
-if [ "${FAIL}" -gt 0 ]; then
-    die "${FAIL} verification check(s) failed — see [setup] WARN lines above"
-fi
-
-# =============================================================================
-# Done.
-# =============================================================================
-log "DONE — all checks passed."
-log "  REPO_PATH=${REPO_PATH}"
-log "  Installed plugins:"
-for i in "${!PLUGINS[@]}"; do
-    parse_row "$i"
-    log "    - ${R_PLUGIN}@${R_MP}  (deps: ${R_DEPMODE})"
+log "DONE — restart your Claude Code session to load the new plugins."
+log "  Installed:"
+for entry in "${INSTALLED_REFS[@]}"; do
+    IFS='|' read -r REF _ _ _ _ _ _ <<<"${entry}"
+    log "    - ${REF}"
 done
-log "  Standalone MCPs registered:"
+log "  Standalone MCPs:"
 for row in "${STANDALONE_MCPS[@]}"; do
     IFS='|' read -r M_NAME M_TRANSPORT _ _ <<<"${row}"
-    log "    - $(printf '%s' "${M_NAME}" | xargs)  (${M_TRANSPORT})"
+    log "    - $(printf '%s' "${M_NAME}" | xargs) (${M_TRANSPORT})"
 done
-[ "${AIRIS_GATEWAY}" = "1" ] && log "    - airis-mcp-gateway (http)"
-log "Verify in a new session: claude plugin list  &&  claude mcp list"
+[ "${AIRIS_GATEWAY}" = "1" ] && log "    - airis-mcp-gateway (http :9400)"
