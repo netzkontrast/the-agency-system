@@ -38,12 +38,18 @@ class Store:
                 pass
         return self.graph
 
-    def upsert_node(self, node_id: str, node_type: str, payload: Dict[str, Any]) -> None:
+    def upsert_node(self, node_id: str, payload: Dict[str, Any], *, label: str) -> None:
+        """Upsert a node into the ontology graph.
+
+        Signature matches GraphQLite's native ``Graph.upsert_node(id, payload, label=...)``
+        so calls flow through without re-ordering. The raw-SQLite branch is
+        a v0 stub kept only for environments where the GraphQLite native
+        extension fails to load; v1 will drop it (see ``vision/specs/08-context-base-v1.md``).
+        """
         g = self._get_graph()
         if g:
-            g.upsert_node(node_id, payload, label=node_type)
+            g.upsert_node(node_id, payload, label=label)
         else:
-            # Fallback for systems where graphqlite can't load extensions (like the test runner)
             conn = sqlite3.connect(self.db_path)
             with conn:
                 conn.execute('''
@@ -57,14 +63,18 @@ class Store:
                     INSERT INTO nodes (id, type, payload)
                     VALUES (?, ?, ?)
                     ON CONFLICT(id) DO UPDATE SET payload = excluded.payload
-                ''', (node_id, node_type, json.dumps(payload)))
+                ''', (node_id, label, json.dumps(payload)))
 
-    def upsert_edge(self, edge_type: str, from_node: str, to_node: str, payload: Optional[Dict[str, Any]] = None) -> None:
+    def upsert_edge(self, from_node: str, to_node: str, payload: Optional[Dict[str, Any]] = None, *, rel_type: str) -> None:
+        """Upsert an edge into the ontology graph.
+
+        Signature matches GraphQLite's ``Graph.upsert_edge(from_node, to_node, payload, rel_type=...)``.
+        """
         g = self._get_graph()
         if payload is None:
             payload = {}
         if g:
-            g.upsert_edge(from_node, to_node, payload, rel_type=edge_type)
+            g.upsert_edge(from_node, to_node, payload, rel_type=rel_type)
         else:
             conn = sqlite3.connect(self.db_path)
             with conn:
@@ -82,7 +92,7 @@ class Store:
                     INSERT INTO edges (type, from_node, to_node, payload)
                     VALUES (?, ?, ?, ?)
                     ON CONFLICT(type, from_node, to_node) DO UPDATE SET payload = excluded.payload
-                ''', (edge_type, from_node, to_node, json.dumps(payload)))
+                ''', (rel_type, from_node, to_node, json.dumps(payload)))
 
     def log_tool_call(self, tool: str, envelope: Dict[str, Any]) -> None:
         conn = sqlite3.connect(self.db_path)

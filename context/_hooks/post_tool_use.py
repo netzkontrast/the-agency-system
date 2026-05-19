@@ -48,7 +48,7 @@ def ingest(tool_name: str, envelope: Dict[str, Any]) -> None:
             sha256 = artefact_metadata.get("sha256", "")
             node_id = f"{row}/Artefact/{sha256}"
 
-            store.upsert_node(node_id, "Artefact", artefact_metadata)
+            store.upsert_node(node_id, artefact_metadata, label="Artefact")
 
             # Wire up FSArtefactDriver
             # The driver checks if bytes are there if needed
@@ -58,11 +58,11 @@ def ingest(tool_name: str, envelope: Dict[str, Any]) -> None:
                  del artefact_metadata["raw_bytes"] # Remove from metadata payload
 
             for entry in artefact_metadata.get("derived_from", []):
-                store.upsert_edge("DERIVED_FROM", node_id, entry)
+                store.upsert_edge(node_id, entry, rel_type="DERIVED_FROM")
 
             satisfies_phase = artefact_metadata.get("satisfies_phase")
             if satisfies_phase:
-                store.upsert_edge("SATISFIES_PHASE", node_id, f"phase:{row}/{satisfies_phase}")
+                store.upsert_edge(node_id, f"phase:{row}/{satisfies_phase}", rel_type="SATISFIES_PHASE")
 
     emitted_edges = data.get("emitted_edges")
     if emitted_edges and isinstance(emitted_edges, list):
@@ -72,4 +72,4 @@ def ingest(tool_name: str, envelope: Dict[str, Any]) -> None:
                  from_node = edge.get("from")
                  to_node = edge.get("to")
                  if type_ and from_node and to_node:
-                     store.upsert_edge(type_, from_node, to_node)
+                     store.upsert_edge(from_node, to_node, rel_type=type_)
