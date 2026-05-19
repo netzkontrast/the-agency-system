@@ -41,6 +41,14 @@ implements_for_jules:
 
 # Spec 07 — Workflow Base Layer
 
+> **DEPRECATED — 2026-05-19**: superseded by
+> [`vision/specs/07-workflow-base-v1.md`](07-workflow-base-v1.md). The
+> v1 spec locks the open architectural decisions (lazy-link opt-in,
+> phases-as-graph-nodes, generic non-meta-row walker, real
+> `context.Store` for Continuation) and is the single source of truth
+> for the workflow base layer from this point on. This v0 document is
+> retained for archeology only — do not implement against it.
+
 > **STATUS — 2026-05-19**: ✅ **Implemented and merged** in PR #150. Pipeline runner, gate evaluator, envelope persistence into the graph (Continuation as graph node — `workflow/_state/` JSON files are GONE), `lazy_link` flag, and the meta-row scaffolder templates all live under `workflow/`. **Open follow-up (W5)**: `_run_meta_scaffold` writes filesystem cells but does NOT yet emit `Cell`/`Phase`/`Row` graph nodes via `context.upsert_node()` — see `vision/04-nextsteps.md`. The v1 rewrite anchored by `vision/03-architecture.md` also locks: phases-as-graph-nodes (drop hard-coded `phases/NN-*.md` paths), lazy-link opt-in via `[workflow.lazy_link]` manifest field, real `context.Store` wiring (drop the `_MockContext` seam in `envelope.py`).
 
 ## Purpose
