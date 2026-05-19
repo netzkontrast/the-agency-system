@@ -14,27 +14,15 @@ def test_pipeline_start_and_yields_running_envelope():
     assert env["phase_id"] == "01"
     assert env["row"] == "meta"
 
-def test_expired_envelope_auto_deletes_on_boot(tmp_path, monkeypatch):
-    import workflow._runner.envelope as env_mod
+def test_pipeline_lazy_create_path():
+    # Calling an unknown row without lazy_link fails
+    env = pipeline.start(row="unknown", phase_id="01", inputs={})
+    assert env["status"] == "failed"
+    assert "not found in graph" in env["tool_result"]["data"]["error"]["message"]
 
-    # We patch Path("workflow") / "_state" to point to our tmp_path
-    monkeypatch.setattr(env_mod, "Path", lambda *args: tmp_path if args and args[0] == "workflow" else Path(*args))
-
-    state_dir = tmp_path / "_state" / "test-ttl"
-    state_dir.mkdir(parents=True)
-
-    env_file = state_dir / "01.json"
-    env_file.write_text("{}")
-
-    # Modify mtime to be 31 days old
-    import time
-    import os
-    old_time = time.time() - (31 * 24 * 60 * 60)
-    os.utime(env_file, (old_time, old_time))
-
-    # We mock pipeline to use the patched env_mod
-    monkeypatch.setattr(pipeline, "sweep_ttl", env_mod.sweep_ttl)
-
-    pipeline.boot()
-
-    assert not env_file.exists()
+    # Calling with lazy_link creates a placeholder and continues (mock logic returns the failure mock for non-meta for now,
+    # but lazy_create flag is parsed correctly, we just check if it fails differently or continues to the non-meta mock block)
+    env2 = pipeline.start(row="unknown", phase_id="01", inputs={}, lazy_link=True)
+    # The current pipeline logic falls through to the bottom mock for non-meta rows
+    assert env2["status"] == "failed"
+    assert "not supported in base pipeline" in env2["tool_result"]["data"]["error"]["message"]

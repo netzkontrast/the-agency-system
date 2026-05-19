@@ -7,9 +7,41 @@ from workflow._runner.envelope import PhaseStateEnvelope, persist, hydrate, dele
 def boot() -> None:
     sweep_ttl()
 
-def start(row: str, phase_id: str, inputs: Dict[str, Any]) -> PhaseStateEnvelope:
+def start(row: str, phase_id: str, inputs: Dict[str, Any], lazy_link: bool = False) -> PhaseStateEnvelope:
     """Entry point for mcp__<row>_start / scaffold"""
     session_id = str(uuid.uuid4())
+
+
+    # Mock Phase node retrieval via context.query
+    # In v1, the pipeline runner READS a Phase node from the graph.
+    # We mock it here for the base layer.
+    def _mock_query_phase(row_val, phase_val):
+        if row_val == "meta":
+            return {"body_ref": f"phases/{phase_val}.md"}
+        return None
+
+    phase_node = _mock_query_phase(row, phase_id)
+    if not phase_node:
+        if lazy_link:
+            # Add a lazy_create_path operation (mock)
+            # Create the missing phase as a placeholder node and continue
+            phase_node = {"body_ref": f"phases/{phase_id}.md", "_lazy_created": True}
+        else:
+            return {
+                "status": "failed",
+                "phase_id": phase_id,
+                "row": row,
+                "session_id": session_id,
+                "opaque_state": {},
+                "tool_result": {
+                    "ok": False,
+                    "data": {"error": {"message": f"row {row} phase {phase_id} not found in graph. Use lazy_link=True to create."}},
+                    "warnings": [],
+                    "next_suggested_tools": []
+                },
+                "blocked_reason": None,
+                "resume_token": None
+            }
 
     if row == "meta":
         return _run_meta_scaffold(session_id, inputs)

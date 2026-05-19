@@ -1,91 +1,62 @@
 import json
-import os
-import shutil
-import time
-from pathlib import Path
 from typing import TypedDict, Literal, Any, Dict, Optional
 
 class PhaseStateEnvelope(TypedDict):
     status: Literal["running", "blocked_on_gate", "blocked_on_user", "completed", "failed"]
-    phase_id: str                # e.g. "02"
-    row: str                     # the row this envelope belongs to (kebab-case, matches spec 01)
-    session_id: str              # opaque session UUID for resume keying
-    opaque_state: dict[str, Any] # workflow's internal state — agentic MUST NOT mutate
-    tool_result: dict            # validates against tool_result.schema.json (spec 02)
-    blocked_reason: Optional[str]   # human-readable; required when status is "blocked_*"
-    resume_token: Optional[str]     # required when status is "blocked_*"; agentic passes this back on resume
+    phase_id: str
+    row: str
+    session_id: str
+    opaque_state: dict[str, Any]
+    tool_result: dict
+    blocked_reason: Optional[str]
+    resume_token: Optional[str]
 
-def get_state_dir(session_id: str) -> Path:
-    return Path("workflow") / "_state" / session_id
+# Mock context store for v1 architecture
+class _MockContext:
+    def __init__(self):
+        self.nodes = {}
 
-def persist(envelope: PhaseStateEnvelope) -> Path:
-    """Writes the envelope as JSON to workflow/_state/<session_id>/<phase_id>.json atomically."""
-    session_id = envelope["session_id"]
-    phase_id = envelope["phase_id"]
+    def upsert_node(self, node_id: str, data: dict, label: str):
+        self.nodes[node_id] = {"data": data, "label": label}
 
-    state_dir = get_state_dir(session_id)
-    state_dir.mkdir(parents=True, exist_ok=True)
+    def get_node(self, node_id: str):
+        return self.nodes.get(node_id)
 
-    file_path = state_dir / f"{phase_id}.json"
-    tmp_path = file_path.with_suffix(".json.tmp")
+    def delete_node(self, node_id: str):
+        if node_id in self.nodes:
+            del self.nodes[node_id]
 
-    with tmp_path.open("w", encoding="utf-8") as f:
-        json.dump(envelope, f, indent=2)
-        f.write("\n")
+context = _MockContext()
 
-    with tmp_path.open("a") as f: os.fsync(f.fileno())
-    os.replace(tmp_path, file_path)
-
-    return file_path
+def persist(envelope: PhaseStateEnvelope) -> str:
+    """Emits a Continuation node to the context graph."""
+    node_id = f"continuation:{envelope['session_id']}:{envelope['phase_id']}"
+    # In v1 architecture, continuation is a graph node
+    context.upsert_node(
+        node_id,
+        {
+            "session_id": envelope["session_id"],
+            "phase_id": envelope["phase_id"],
+            "opaque_state": envelope["opaque_state"],
+            "envelope": envelope  # storing full envelope for hydrate
+        },
+        label="Continuation"
+    )
+    return node_id
 
 def hydrate(session_id: str, phase_id: str) -> Optional[PhaseStateEnvelope]:
-    """Reads JSON, validates against the spec-04 schema, returns the TypedDict.
-       Returns None if expired or missing.
-    """
-    file_path = get_state_dir(session_id) / f"{phase_id}.json"
-    if not file_path.exists():
+    """Reads the Continuation node from the graph."""
+    node_id = f"continuation:{session_id}:{phase_id}"
+    node = context.get_node(node_id)
+    if not node:
         return None
-
-    with file_path.open("r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    # TODO: json schema validation per spec 04
-
-    return PhaseStateEnvelope(**data)
+    return node["data"]["envelope"]
 
 def delete(session_id: str, phase_id: str) -> None:
-    """Deletes the envelope file."""
-    file_path = get_state_dir(session_id) / f"{phase_id}.json"
-    try:
-        file_path.unlink()
-    except FileNotFoundError:
-        pass
-
-    state_dir = get_state_dir(session_id)
-    if state_dir.exists() and not any(state_dir.iterdir()):
-        try:
-            state_dir.rmdir()
-        except OSError:
-            pass
+    """Deletes the Continuation node."""
+    node_id = f"continuation:{session_id}:{phase_id}"
+    context.delete_node(node_id)
 
 def sweep_ttl() -> None:
-    """Deletes envelope files older than 30 days. Prunes empty directories."""
-    state_base = Path("workflow") / "_state"
-    if not state_base.exists():
-        return
-
-    now = time.time()
-    ttl_seconds = 30 * 24 * 60 * 60
-
-    for session_dir in state_base.iterdir():
-        if session_dir.is_dir() and session_dir.name != "README.md":
-            for env_file in session_dir.glob("*.json"):
-                if now - env_file.stat().st_mtime > ttl_seconds:
-                    env_file.unlink()
-                    print(f"TTL sweep: deleted {session_dir.name}/{env_file.stem}")
-
-            if not any(session_dir.iterdir()):
-                try:
-                    session_dir.rmdir()
-                except OSError:
-                    pass
+    """No-op in v1. TTL is handled by graph driver or periodic job."""
+    pass
