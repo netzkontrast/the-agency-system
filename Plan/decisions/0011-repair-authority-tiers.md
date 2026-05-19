@@ -44,5 +44,5 @@ Chosen option: **Four-Tier System (T1-T4)**. Every change is classified: T1 (typ
 ## Falsifier triggers
 
 This ADR must be reconsidered and superseded if:
-1. The harness tool `call_tool` is modified to remove the `tier:` parameter validation.
+1. The planned tier-validation mechanism (a `tier:` parameter on a future MCP mutation tool per VOCABULARY §6C, or an equivalent enforcement surface) is shipped and subsequently removed or weakened — supersede this ADR with one that names the new enforcement gap. Until that mechanism ships, the current enforcement is human discipline + commit-message classification, and this ADR documents the discipline rather than a code-level invariant.
 2. A new tier is required to handle a category of changes not covered by T1-T4.

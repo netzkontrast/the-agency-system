@@ -110,6 +110,21 @@ def main():
             summary = extract_summary(str(path), body_str)
             tags = infer_tags(str(path), body_str)
 
+            # --- Thread 6: merge adr_tags ---
+            import yaml
+            if body_str.startswith("---"):
+                try:
+                    parts = body_str.split("---", 2)
+                    if len(parts) >= 3:
+                        fm = yaml.safe_load(parts[1])
+                        if isinstance(fm, dict) and "adr_tags" in fm:
+                            for t in fm["adr_tags"]:
+                                if t not in tags:
+                                    tags.append(t)
+                except Exception:
+                    pass
+            # --------------------------------
+
             # Simple title extraction
             title = os.path.basename(path)
             if path.suffix == '.md':

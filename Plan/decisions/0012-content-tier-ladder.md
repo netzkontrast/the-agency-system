@@ -33,7 +33,7 @@ To support the L3 daemon's progressive disclosure goals and prevent large docume
 ## Decision Outcome
 
 Chosen option: **Three-Tier Ladder**. Every artefact must support progressive loading:
-- **T1 Trigger:** ≤ 200 chars, loaded always (via manifest).
+- **T1 Trigger:** ≤ 200 chars target (currently the extractor emits up to ~400 chars synthesised from title + first body paragraph; tightening to use the frontmatter `summary:` field verbatim is tracked as a follow-up to Spec 111 / the build-context-manifest script).
 - **T2 Body:** ≤ 5 KB, loaded on explicit dispatch.
 - **T3 References:** Unlimited size, lives in a `references/` subdirectory, loaded only on specific demand.
 
@@ -41,6 +41,7 @@ Chosen option: **Three-Tier Ladder**. Every artefact must support progressive lo
 
 - **Positive:** Drastically reduces token usage during the discovery phase.
 - **Negative:** Requires authors to strictly partition their documentation.
+- **Neutral:** Until the manifest extractor is tightened to honour the cap (or to use the frontmatter `summary:` verbatim per VOCABULARY §6A), agents validating against this ADR will measure non-compliance on every artefact. The aspirational cap is preserved; the closure of the gap is follow-up work on `build_context_manifest.py`.
 
 ## Falsifier triggers
 

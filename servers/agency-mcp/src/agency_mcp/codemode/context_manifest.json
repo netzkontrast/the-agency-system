@@ -3802,7 +3802,8 @@
       "summary": "ADR-0001 \u2014 Master is the default branch, not main - The repository's default branch for all PRs and fresh specs needs to be consistent to avoid merge conflicts and lost work. Historically, the repository has used `Master` (capitalised) as the default branch, as documented in a comment within `Plan/JULES_PROTOCOL.md:68`. We need a formal decision to solidify this convention across all operations.",
       "tags": [
         "slug:master-default-branch",
-        "topic:git"
+        "topic:git",
+        "domain:cross"
       ],
       "title": "ADR-0001 \u2014 Master is the default branch, not main",
       "views": {
@@ -3833,7 +3834,8 @@
       "summary": "ADR-0002 \u2014 Plan/ uses zero-padded NNN-<slug>/spec.md for sub-specs - Sub-specifications within the `Plan/` directory need a consistent naming and numbering scheme to ensure they are listed chronologically and are easy to reference. Currently, the tree implicitly uses a three-digit zero-padded prefix (e.g., `000-overview.md`, `008-codemode-registry/spec.md`) as seen throughout the repository\u2026",
       "tags": [
         "slug:sub-spec-zero-padding",
-        "topic:structure"
+        "topic:structure",
+        "domain:cross"
       ],
       "title": "ADR-0002 \u2014 Plan/ uses zero-padded NNN-<slug>/spec.md for sub-specs",
       "views": {
@@ -3864,7 +3866,8 @@
       "summary": "ADR-0003 \u2014 One MCP server (agency-system); session-log-mcp is a sibling event store - The system architecture needs a clear boundary for what is exposed to the language model. According to `Plan/000-overview.md:16` (North Star), the repository uses \"One MCP, Code Mode native\". However, Phase 6 introduces `servers/session-log-mcp/` (`Plan/phase-6-quality-loop-compaction/README.md:9`). We need to\u2026",
       "tags": [
         "slug:single-mcp-server",
-        "topic:architecture"
+        "topic:architecture",
+        "domain:cross"
       ],
       "title": "ADR-0003 \u2014 One MCP server (agency-system); session-log-mcp is a sibling event store",
       "views": {
@@ -3895,7 +3898,8 @@
       "summary": "ADR-0004 \u2014 Five handler-bearing domains + agentic skill-only - The system's capabilities are divided into specific namespace domains, but the exact set and nature of these domains are only implicitly defined across various documents (e.g., `Plan/harness/VOCABULARY.md:94`, `Plan/harness/design.md:280`). We must formalise the exact list of domains and distinguish between those that contain\u2026",
       "tags": [
         "slug:five-handler-domains",
-        "topic:architecture"
+        "topic:architecture",
+        "domain:cross"
       ],
       "title": "ADR-0004 \u2014 Five handler-bearing domains + agentic skill-only",
       "views": {
@@ -3926,7 +3930,8 @@
       "summary": "ADR-0005 \u2014 Four-verb harness contract - The interaction between the different layers of the system (L1 in-process, L2 hook chain, L3 HTTP daemon) requires a unified interface. Currently, this interface is described implicitly or as a \"design\" in `Plan/harness/design.md:24` and `Plan/harness/VOCABULARY.md:24`. We need to formally decide that these four specific verbs are the only required\u2026",
       "tags": [
         "slug:four-verb-contract",
-        "topic:architecture"
+        "topic:architecture",
+        "domain:cross"
       ],
       "title": "ADR-0005 \u2014 Four-verb harness contract",
       "views": {
@@ -3957,7 +3962,8 @@
       "summary": "ADR-0006 \u2014 Code Mode anchor triad is eager; bulk tools are deferred - To maintain the strict < 500 token boot budget for the MCP server, we cannot eagerly load schemas for all 100+ tools. The repository relies on FastMCP's Code Mode (`Plan/008-codemode-registry/spec.md:53`, `Plan/000-overview.md:16`), but the exact split between what is eager and what is deferred is an implicit convention.",
       "tags": [
         "slug:code-mode-anchor-triad",
-        "topic:performance"
+        "topic:performance",
+        "domain:cross"
       ],
       "title": "ADR-0006 \u2014 Code Mode anchor triad is eager; bulk tools are deferred",
       "views": {
@@ -3988,7 +3994,8 @@
       "summary": "ADR-0007 \u2014 Context Mode Path B (native manifest) chosen over Path A - To prevent token window bloat, the system defers loading full documentation until requested. There were two proposed paths to achieve this: Path A (using the `mksglu` adapter) and Path B (a native JSON manifest). The decision to use Path B is documented across Phase 4 docs (`Plan/phase-4-context-mode-path-b/README.md:1-20`) and\u2026",
       "tags": [
         "slug:context-mode-path-b",
-        "topic:architecture"
+        "topic:architecture",
+        "domain:context"
       ],
       "title": "ADR-0007 \u2014 Context Mode Path B (native manifest) chosen over Path A",
       "views": {
@@ -4019,7 +4026,8 @@
       "summary": "ADR-0008 \u2014 Harness Path A levers ship now; Path B is vision - The repository needs to normalise the interface across domains (domain isomorphism). `Plan/harness/design.md:280` identified two paths. Path A uses light wrappers (levers L-\u03b1, L-\u03b2, L-\u03b3) to adapt the existing code. Path B is a full restructuring into `domains/<name>/` behind a `Domain` base class (`Plan/harness/restructure/spec.md`).",
       "tags": [
         "slug:harness-path-a",
-        "topic:architecture"
+        "topic:architecture",
+        "domain:cross"
       ],
       "title": "ADR-0008 \u2014 Harness Path A levers ship now; Path B is vision",
       "views": {
@@ -4050,7 +4058,8 @@
       "summary": "ADR-0009 \u2014 Token budget invariants are gating - The entire premise of the plugin refactor is token efficiency (`Plan/000-overview.md:16`). We must formalise the specific numerical limits as hard gating invariants for all changes.",
       "tags": [
         "slug:token-budget-invariants",
-        "topic:performance"
+        "topic:performance",
+        "domain:cross"
       ],
       "title": "ADR-0009 \u2014 Token budget invariants are gating",
       "views": {
@@ -4081,7 +4090,8 @@
       "summary": "ADR-0010 \u2014 Single delegate pre-commit hook (bin/agency-lint) - The repository needs automated governance checks (manifest coverage, frontmatter validation, etc.). Previous implementations (as researched in `Plan/_research/agency-repo-analysis/findings.md` \u00a72.1 and \u00a78.1-8.2 (e.g., `Plan/_research/agency-repo-analysis/findings.md:10-50`)) suffered from script sprawl, where dozens of separate bash\u2026",
       "tags": [
         "slug:single-delegate-pre-commit",
-        "topic:tooling"
+        "topic:tooling",
+        "domain:cross"
       ],
       "title": "ADR-0010 \u2014 Single delegate pre-commit hook (bin/agency-lint)",
       "views": {
@@ -4104,27 +4114,28 @@
     },
     {
       "id": "plan:decisions:0011-repair-authority-tiers",
-      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "last_modified": "2026-05-19T07:34:41.208422Z",
       "mime": "text/markdown",
       "path": "Plan/decisions/0011-repair-authority-tiers.md",
-      "sha256": "19ccd7e4584f76b3d26a008dfb9a2b0099e364ab467f8a8f1990d1ebe838fea5",
-      "size_bytes": 2168,
+      "sha256": "485ef16f4824ded76f3896b33b1f31de9bd0c329fa7bb6752bf7b32adc6f6b89",
+      "size_bytes": 2526,
       "summary": "ADR-0011 \u2014 Repair-authority tiers (T1/T2/T3/T4) on every change - To prevent agents or humans from quietly making structural changes via inline edits, the system needs a strict classification of changes. `Plan/harness/VOCABULARY.md:12` (via \u00a76C) documents four tiers: T1 Mechanical, T2 Additive, T3 Structural, and T4 Immutable. This implicitly governs all mutations but needs formal architectural\u2026",
       "tags": [
         "slug:repair-authority-tiers",
-        "topic:governance"
+        "topic:governance",
+        "domain:cross"
       ],
       "title": "ADR-0011 \u2014 Repair-authority tiers (T1/T2/T3/T4) on every change",
       "views": {
         "full": {
-          "byte_length": 2168,
+          "byte_length": 2526,
           "byte_offset": 0,
-          "token_estimate": 537
+          "token_estimate": 603
         },
         "preview": {
-          "byte_length": 2168,
+          "byte_length": 2526,
           "byte_offset": 0,
-          "token_estimate": 537
+          "token_estimate": 603
         },
         "summary": {
           "byte_length": 403,
@@ -4135,27 +4146,28 @@
     },
     {
       "id": "plan:decisions:0012-content-tier-ladder",
-      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "last_modified": "2026-05-19T07:34:41.212422Z",
       "mime": "text/markdown",
       "path": "Plan/decisions/0012-content-tier-ladder.md",
-      "sha256": "fed956ee3534d16efe82ac0f07fb9e6979da651280620f7302660298a7a17193",
-      "size_bytes": 2012,
+      "sha256": "5cc1593d4e2592b6f11441ca62ccac9e4a34604c757b5b7fec90ae8484cf96c5",
+      "size_bytes": 2553,
       "summary": "ADR-0012 \u2014 Three-tier content ladder - To support the L3 daemon's progressive disclosure goals and prevent large documents from overwhelming the context window upon initial discovery, artefacts must be structurally divided. `Plan/harness/VOCABULARY.md:12` (\u00a76D) specifies a T1/T2/T3 content tier model, which is distinct from the repair-authority tiers.",
       "tags": [
         "slug:content-tier-ladder",
-        "topic:architecture"
+        "topic:architecture",
+        "domain:cross"
       ],
       "title": "ADR-0012 \u2014 Three-tier content ladder",
       "views": {
         "full": {
-          "byte_length": 2012,
+          "byte_length": 2553,
           "byte_offset": 0,
-          "token_estimate": 468
+          "token_estimate": 585
         },
         "preview": {
-          "byte_length": 2012,
+          "byte_length": 2553,
           "byte_offset": 0,
-          "token_estimate": 468
+          "token_estimate": 585
         },
         "summary": {
           "byte_length": 356,
