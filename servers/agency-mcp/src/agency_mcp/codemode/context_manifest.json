@@ -2,7 +2,7 @@
   "entries": [
     {
       "id": "docs:dev-setup",
-      "last_modified": "2026-05-18T16:55:33.303010Z",
+      "last_modified": "2026-05-19T06:29:54.566617Z",
       "mime": "text/markdown",
       "path": "docs/dev-setup.md",
       "sha256": "f90a937fb0c816f4d513e86daa4cc8832a4f1a33a9fdc48d1f5309914cf44f62",
@@ -30,7 +30,7 @@
     },
     {
       "id": "docs:superpowers:specs:2026-05-16-jules-suite-refactor-design",
-      "last_modified": "2026-05-18T16:55:33.303010Z",
+      "last_modified": "2026-05-19T06:29:54.566617Z",
       "mime": "text/markdown",
       "path": "docs/superpowers/specs/2026-05-16-jules-suite-refactor-design.md",
       "sha256": "9b5fa5bc155ff2035a6e4db4307e80021e43d2345c500e83377897f7c09967df",
@@ -58,7 +58,7 @@
     },
     {
       "id": "genres:atmospheric-dark-folk:readme",
-      "last_modified": "2026-05-18T16:55:33.307010Z",
+      "last_modified": "2026-05-19T06:29:54.566617Z",
       "mime": "text/markdown",
       "path": "genres/atmospheric-dark-folk/README.md",
       "sha256": "b97b67538298fcf368cf732d9b0e965b9fcaaac5c3a682fc31dc061a4f50a214",
@@ -86,7 +86,7 @@
     },
     {
       "id": "overrides:lyric-writing-guide",
-      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "last_modified": "2026-05-19T06:29:54.602617Z",
       "mime": "text/markdown",
       "path": "overrides/lyric-writing-guide.md",
       "sha256": "939c3f99b800a4a41fd980863388dff2f98b43a0479b72bf2f06ed832bdcfec0",
@@ -116,7 +116,7 @@
     },
     {
       "id": "overrides:mastering-presets",
-      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "last_modified": "2026-05-19T06:29:54.602617Z",
       "mime": "text/yaml",
       "path": "overrides/mastering-presets.yaml",
       "sha256": "c62ed8055ff303946c3fe79a74e2af4edbdee44351736b045ac9a2212928f712",
@@ -146,7 +146,7 @@
     },
     {
       "id": "overrides:promotion-preferences",
-      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "last_modified": "2026-05-19T06:29:54.602617Z",
       "mime": "text/markdown",
       "path": "overrides/promotion-preferences.md",
       "sha256": "8d8744c22953be95b89bd28f6f94ade9eb55257bb118bbad545d5930d7ce273f",
@@ -176,7 +176,7 @@
     },
     {
       "id": "overrides:pronunciation-guide",
-      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "text/markdown",
       "path": "overrides/pronunciation-guide.md",
       "sha256": "03ee018071e05041f88d3a56459f0d25ff711332012f4458526cc2bc19284f9c",
@@ -206,7 +206,7 @@
     },
     {
       "id": "overrides:research-preferences",
-      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "text/markdown",
       "path": "overrides/research-preferences.md",
       "sha256": "d705260aa3537a311fd19769fd1f060ec928b8696b54383d52ea7d211323c979",
@@ -236,7 +236,7 @@
     },
     {
       "id": "overrides:suno-preferences",
-      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "text/markdown",
       "path": "overrides/suno-preferences.md",
       "sha256": "1b5aeae0be7fc2660a6669cad99a5575f3049f3c8ff67e7042049997f5252368",
@@ -266,7 +266,7 @@
     },
     {
       "id": "overrides:voice-craft-principles",
-      "last_modified": "2026-05-18T16:55:33.347010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "text/markdown",
       "path": "overrides/voice-craft-principles.md",
       "sha256": "516d53444750887ff9deae186663064a4a5236a1a3cebed974c4f6209f1504b8",
@@ -296,35 +296,35 @@
     },
     {
       "id": "plan:000-overview",
-      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "last_modified": "2026-05-19T06:29:54.434617Z",
       "mime": "text/markdown",
       "path": "Plan/000-overview.md",
-      "sha256": "cbbe363e3ec013848ee61d4bed773d088c6947286234bb45b477bdc281755043",
-      "size_bytes": 16612,
-      "summary": "Plan 000 \u2014 Agency System Plugin Refactor (Master Overview) - > **Status:** approved 2026-05-17  \u00b7  **Owner:** human + Jules (fan-out) > **Branch:** `claude/agency-plugin-refactor-PgMQ4` > **Goal:** collapse `jules-plugin`, `bitwize-music`, and the agency-repo skill corpus into one token-efficient Claude Code plugin where `the-agency-system` repo *is* the plugin. Music absorbs bitwize; novel side\u2026",
+      "sha256": "c3ce3b19a6841c836ae09cbd0414f384c92b95392c08711b8a6083e79e1678e9",
+      "size_bytes": 33462,
+      "summary": "Plan 000 \u2014 Agency-System Unified Plugin (Master Overview, v2) - > **Status:** drafted 2026-05-18 by orchestrator audit \u00b7 supersedes v1 of 2026-05-17 > **Branch:** `claude/check-installed-plugins-1rf3k` (this PR), thereafter target `Master` > **Goal:** Drive the-agency-system to a single token-efficient Claude Code plugin built around **one MCP (Code Mode anchor triads), graph-based context\u2026",
       "tags": [],
-      "title": "Plan 000 \u2014 Agency System Plugin Refactor (Master Overview)",
+      "title": "Plan 000 \u2014 Agency-System Unified Plugin (Master Overview, v2)",
       "views": {
         "full": {
-          "byte_length": 16612,
+          "byte_length": 33462,
           "byte_offset": 0,
-          "token_estimate": 4704
+          "token_estimate": 8973
         },
         "preview": {
-          "byte_length": 3483,
+          "byte_length": 3203,
           "byte_offset": 0,
           "token_estimate": 800
         },
         "summary": {
-          "byte_length": 404,
+          "byte_length": 398,
           "byte_offset": 0,
-          "token_estimate": 111
+          "token_estimate": 106
         }
       }
     },
     {
       "id": "plan:001-scaffold-plugin-skeleton:spec",
-      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "last_modified": "2026-05-19T06:29:54.434617Z",
       "mime": "text/markdown",
       "path": "Plan/001-scaffold-plugin-skeleton/spec.md",
       "sha256": "9a0b11c2aca47da295584d428efda2acb83972bf9e3cc96616989b1cad6c0e65",
@@ -357,7 +357,7 @@
     },
     {
       "id": "plan:002-manifest-and-marketplace:spec",
-      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "last_modified": "2026-05-19T06:29:54.438617Z",
       "mime": "text/markdown",
       "path": "Plan/002-manifest-and-marketplace/spec.md",
       "sha256": "367b132253bde806c0867f316bf19eccca5ba4095806d666a3a40b15f6bee0c8",
@@ -390,11 +390,11 @@
     },
     {
       "id": "plan:003-unified-statecache-port:spec",
-      "last_modified": "2026-05-18T16:55:33.199010Z",
+      "last_modified": "2026-05-19T06:29:54.438617Z",
       "mime": "text/markdown",
       "path": "Plan/003-unified-statecache-port/spec.md",
-      "sha256": "653c148f2fd01c951e44ea3a4df686e5dd630206a79ad96f7a1a65b92d105946",
-      "size_bytes": 8940,
+      "sha256": "4ad8f19877fe2f198cc0ec1a7ce5ed98d3ab8c4a93238f99a73d91ef9086fc1a",
+      "size_bytes": 9190,
       "summary": "Spec 003 \u2014 Unified StateCache Port - bitwize's thread-safe `StateCache` is the lynchpin that lets handlers share a single in-memory state without re-parsing markdown on every tool call. Porting it with namespaced top-level keys (`music`, `novel`, `jules`, `agentic`) gives all four domains one cache, one `asyncio.Lock`, and one mtime-staleness check against `~/.agency-system/cache/state.json`.\u2026",
       "tags": [
         "spec:003",
@@ -405,12 +405,12 @@
       "title": "Spec 003 \u2014 Unified StateCache Port",
       "views": {
         "full": {
-          "byte_length": 8940,
+          "byte_length": 9190,
           "byte_offset": 0,
-          "token_estimate": 2405
+          "token_estimate": 2473
         },
         "preview": {
-          "byte_length": 2961,
+          "byte_length": 2917,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -423,7 +423,7 @@
     },
     {
       "id": "plan:004-music-handlers-port:spec",
-      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "last_modified": "2026-05-19T06:29:54.438617Z",
       "mime": "text/markdown",
       "path": "Plan/004-music-handlers-port/spec.md",
       "sha256": "b42dd1a67eb067de543d138168e9f2831c667cc394e489f55db4c0cdf0c506c7",
@@ -456,7 +456,7 @@
     },
     {
       "id": "plan:004a-music-lib-port:references:sheet-music-rename",
-      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "last_modified": "2026-05-19T06:29:54.438617Z",
       "mime": "text/markdown",
       "path": "Plan/004a-music-lib-port/references/sheet-music-rename.md",
       "sha256": "26d37bf4ba591f35bedbf6874d673228d6656ea21b62d0017e40dfba99e5f4ee",
@@ -484,7 +484,7 @@
     },
     {
       "id": "plan:004a-music-lib-port:spec",
-      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "last_modified": "2026-05-19T06:29:54.438617Z",
       "mime": "text/markdown",
       "path": "Plan/004a-music-lib-port/spec.md",
       "sha256": "40c4ea992d0023ee4f3e58cc988ccb5f96e4aa0f92625e36eee486ec3a0be4b9",
@@ -517,7 +517,7 @@
     },
     {
       "id": "plan:005-music-skills-port:references:skill-mapping",
-      "last_modified": "2026-05-18T16:55:33.203010Z",
+      "last_modified": "2026-05-19T06:29:54.442617Z",
       "mime": "text/markdown",
       "path": "Plan/005-music-skills-port/references/skill-mapping.md",
       "sha256": "a12f03c12cdc727355f2d85e90433c5bcae15c2976576b7c8213f55a20e404a7",
@@ -545,7 +545,7 @@
     },
     {
       "id": "plan:005-music-skills-port:spec",
-      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "last_modified": "2026-05-19T06:29:54.442617Z",
       "mime": "text/markdown",
       "path": "Plan/005-music-skills-port/spec.md",
       "sha256": "712c0db84a19672b513dfc7ee4b8d9905b525ba16620e540f39360edf09f5bc2",
@@ -578,7 +578,7 @@
     },
     {
       "id": "plan:006-jules-handlers-port:spec",
-      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "last_modified": "2026-05-19T06:29:54.442617Z",
       "mime": "text/markdown",
       "path": "Plan/006-jules-handlers-port/spec.md",
       "sha256": "1ca55b7eabbe4b4abf709c4db07fea9fc62ccc5c8ab15496316b575bb6b81f86",
@@ -611,7 +611,7 @@
     },
     {
       "id": "plan:007-jules-skills-and-commands-port:spec",
-      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "last_modified": "2026-05-19T06:29:54.442617Z",
       "mime": "text/markdown",
       "path": "Plan/007-jules-skills-and-commands-port/spec.md",
       "sha256": "d971893ab2fb29f2901361fac1a1ccb3b65d40842c1b7bf64bb294a8bfc2c7ee",
@@ -644,12 +644,12 @@
     },
     {
       "id": "plan:008-codemode-registry:spec",
-      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "last_modified": "2026-05-19T06:29:54.442617Z",
       "mime": "text/markdown",
       "path": "Plan/008-codemode-registry/spec.md",
-      "sha256": "90aa44918dafa66f2af3e0754338a5c3778891e39a7bce89bb2f5b9fffcf56aa",
-      "size_bytes": 12519,
-      "summary": "Spec 008 \u2014 Code Mode Registry - Once all four domains are registered, the unified plugin will expose ~180 tools (~67 music + ~73 novel + ~12 jules + ~32 agentic). Without intervention, every `tools/list` MCP call dumps every tool schema into the model's context \u2014 measured at ~34k tokens in the bitwize baseline. Code Mode + `defer_schema=True` is the FastMCP feature that solves this: ~4 anchor\u2026",
+      "sha256": "8abfb50125d7c3b3748b0d76c2c178d44ef948ffb1bbeb26a0e0ccfd08b12ffd",
+      "size_bytes": 12940,
+      "summary": "Spec 008 \u2014 Code Mode Registry - Once all four domains are registered, the unified plugin will expose ~180 tools (~67 music + ~73 novel + ~12 jules + ~32 agentic). (Note: \"four domains\" here refers to the four domains with anchor-triad eager registrations at the time this spec was authored \u2014 `music`, `novel`, `jules`, `agentic`. Per `Plan/harness/VOCABULARY.md` \u00a74.1, the canonical handler-bearing\u2026",
       "tags": [
         "spec:008",
         "slug:codemode-registry",
@@ -659,25 +659,25 @@
       "title": "Spec 008 \u2014 Code Mode Registry",
       "views": {
         "full": {
-          "byte_length": 12519,
+          "byte_length": 12940,
           "byte_offset": 0,
-          "token_estimate": 3273
+          "token_estimate": 3385
         },
         "preview": {
-          "byte_length": 3033,
+          "byte_length": 3016,
           "byte_offset": 0,
           "token_estimate": 800
         },
         "summary": {
-          "byte_length": 402,
+          "byte_length": 406,
           "byte_offset": 0,
-          "token_estimate": 96
+          "token_estimate": 105
         }
       }
     },
     {
       "id": "plan:009-shared-handlers:spec",
-      "last_modified": "2026-05-18T16:55:33.207011Z",
+      "last_modified": "2026-05-19T06:29:54.442617Z",
       "mime": "text/markdown",
       "path": "Plan/009-shared-handlers/spec.md",
       "sha256": "469784b7f2998e3ffe4e4d2aefd99d2b6cf712aa31db7f1a5628367883d21287",
@@ -710,7 +710,7 @@
     },
     {
       "id": "plan:010-novel-on-disk-layout:references:layout-spec",
-      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "last_modified": "2026-05-19T06:29:54.446617Z",
       "mime": "text/markdown",
       "path": "Plan/010-novel-on-disk-layout/references/layout-spec.md",
       "sha256": "003de1f137c4542fa8dce4e775bb7f4f5d0ce1434cf0632ed30551715ca06c71",
@@ -740,7 +740,7 @@
     },
     {
       "id": "plan:010-novel-on-disk-layout:spec",
-      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "last_modified": "2026-05-19T06:29:54.446617Z",
       "mime": "text/markdown",
       "path": "Plan/010-novel-on-disk-layout/spec.md",
       "sha256": "37e2831be6d8b137da5f86075a75ad8457c6b6c2c71d24ca6123ade8d8038c7c",
@@ -773,7 +773,7 @@
     },
     {
       "id": "plan:011-novel-handlers-core:spec",
-      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "last_modified": "2026-05-19T06:29:54.446617Z",
       "mime": "text/markdown",
       "path": "Plan/011-novel-handlers-core/spec.md",
       "sha256": "ac6d9a0c01f6adee2e43b0f02d96e371bc9d1d21b03704e7995f5caa04b8e558",
@@ -806,11 +806,11 @@
     },
     {
       "id": "plan:011a-novel-handlers-core-hardening:spec",
-      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "last_modified": "2026-05-19T06:29:54.446617Z",
       "mime": "text/markdown",
       "path": "Plan/011a-novel-handlers-core-hardening/spec.md",
-      "sha256": "7398a86f7d3098bca6409ff877dfee21756abdaa124068e45eae45c0f13c70c1",
-      "size_bytes": 10367,
+      "sha256": "d7ba3a972dd306edb451fc04cfc690be54dc2156ee3a28b2cb4562b4e480c4e2",
+      "size_bytes": 10366,
       "summary": "Spec 011a \u2014 Novel Handlers Core Hardening - PR #44 (Spec 011 novel-handlers-core) merged on Master via PR #45 but the independent review surfaced one Done-When violation (P1) and five \u00a72.1 contract drifts (P2). They are individually small but compound badly the moment a second domain writes concurrently with novel. This spec is a single-session correctness pass that lands the missing `dry_run`\u2026",
       "tags": [
         "spec:011a",
@@ -821,12 +821,12 @@
       "title": "Spec 011a \u2014 Novel Handlers Core Hardening",
       "views": {
         "full": {
-          "byte_length": 10367,
+          "byte_length": 10366,
           "byte_offset": 0,
           "token_estimate": 2732
         },
         "preview": {
-          "byte_length": 2957,
+          "byte_length": 2956,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -839,7 +839,7 @@
     },
     {
       "id": "plan:012-dramatica-and-ncp-libs:spec",
-      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "last_modified": "2026-05-19T06:29:54.446617Z",
       "mime": "text/markdown",
       "path": "Plan/012-dramatica-and-ncp-libs/spec.md",
       "sha256": "2dcacf4e1aaa8f647c014948a9bd45966b02b7407780c32ec628dcf1c3c09c0f",
@@ -872,7 +872,7 @@
     },
     {
       "id": "plan:013-novel-handlers-structural:references:dramatica-decidability",
-      "last_modified": "2026-05-18T16:55:33.211010Z",
+      "last_modified": "2026-05-19T06:29:54.450617Z",
       "mime": "text/markdown",
       "path": "Plan/013-novel-handlers-structural/references/dramatica-decidability.md",
       "sha256": "a91d9cf1dacf898c80b182f7e95bd078797c35b2a32640cd081409996db97476",
@@ -900,7 +900,7 @@
     },
     {
       "id": "plan:013-novel-handlers-structural:spec",
-      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "last_modified": "2026-05-19T06:29:54.450617Z",
       "mime": "text/markdown",
       "path": "Plan/013-novel-handlers-structural/spec.md",
       "sha256": "7d3393c811f9f79edb2d8a1b704ff8797c0a15601e0b0c6c0d18eade67480037",
@@ -933,7 +933,7 @@
     },
     {
       "id": "plan:014-novel-gates-and-revision:spec",
-      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "last_modified": "2026-05-19T06:29:54.450617Z",
       "mime": "text/markdown",
       "path": "Plan/014-novel-gates-and-revision/spec.md",
       "sha256": "b219b601a08f43ade35de2c4f4ec2ede12a1b01753f3c9b76c86330328d45c7e",
@@ -966,7 +966,7 @@
     },
     {
       "id": "plan:015-novel-skills-catalogue:references:parity-table",
-      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "last_modified": "2026-05-19T06:29:54.450617Z",
       "mime": "text/markdown",
       "path": "Plan/015-novel-skills-catalogue/references/parity-table.md",
       "sha256": "d14f8e87e74e1f84ee614f81b55eb7381ce730d2911db887e7a18446a6c93c43",
@@ -994,7 +994,7 @@
     },
     {
       "id": "plan:015-novel-skills-catalogue:spec",
-      "last_modified": "2026-05-18T16:55:33.215010Z",
+      "last_modified": "2026-05-19T06:29:54.450617Z",
       "mime": "text/markdown",
       "path": "Plan/015-novel-skills-catalogue/spec.md",
       "sha256": "6edc52165182a52934f6f669737f86c4e720b9eaee8fbb34a525456cd8dd48ef",
@@ -1027,7 +1027,7 @@
     },
     {
       "id": "plan:016-agentic-handlers-and-skills:references:agentic-tool-catalog",
-      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "last_modified": "2026-05-19T06:29:54.450617Z",
       "mime": "text/markdown",
       "path": "Plan/016-agentic-handlers-and-skills/references/agentic-tool-catalog.md",
       "sha256": "e3f8ec8fc4c4024beb9edd6baf45596f882b11a1518b8763e76376afd1416584",
@@ -1055,7 +1055,7 @@
     },
     {
       "id": "plan:016-agentic-handlers-and-skills:spec",
-      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "last_modified": "2026-05-19T06:29:54.450617Z",
       "mime": "text/markdown",
       "path": "Plan/016-agentic-handlers-and-skills/spec.md",
       "sha256": "4e501201d10253a4b79f442554811a7b0aed3d2b3f29b82cb5d7f9dfa7b903f3",
@@ -1088,11 +1088,11 @@
     },
     {
       "id": "plan:017-hooks-port-and-extend:spec",
-      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "last_modified": "2026-05-19T06:29:54.454617Z",
       "mime": "text/markdown",
       "path": "Plan/017-hooks-port-and-extend/spec.md",
-      "sha256": "651d17e284bdd4fd20fa5d14ddc6b6a5639fd2273353d912e7990b228dd92adb",
-      "size_bytes": 13385,
+      "sha256": "f802f18d6ef37296a45a8f77f1f1ef6a45e2c7d40bded3becc5f2aae74b7a7e3",
+      "size_bytes": 13384,
       "summary": "Spec 017 \u2014 Hooks Port and Extend - bitwize-music ships PostToolUse hooks that fire on `Write`/`Edit` of track files: `validate_track.py` enforces frontmatter shape (status, explicit, key metadata fields), and `check_version_sync.py` warns when the on-disk `state.json:_version` drifts from the installed plugin version. The unified plugin must keep both behaviours for the music side or every track\u2026",
       "tags": [
         "spec:015",
@@ -1103,12 +1103,12 @@
       "title": "Spec 017 \u2014 Hooks Port and Extend",
       "views": {
         "full": {
-          "byte_length": 13385,
+          "byte_length": 13384,
           "byte_offset": 0,
           "token_estimate": 3494
         },
         "preview": {
-          "byte_length": 3111,
+          "byte_length": 3110,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -1121,7 +1121,7 @@
     },
     {
       "id": "plan:018-overrides-and-config-migration:references:config-diff",
-      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "last_modified": "2026-05-19T06:29:54.454617Z",
       "mime": "text/markdown",
       "path": "Plan/018-overrides-and-config-migration/references/config-diff.md",
       "sha256": "076375c4c4fe7d6e5344fc56051a6cd6617a8c106de86e952871905238913109",
@@ -1149,7 +1149,7 @@
     },
     {
       "id": "plan:018-overrides-and-config-migration:spec",
-      "last_modified": "2026-05-18T16:55:33.219010Z",
+      "last_modified": "2026-05-19T06:29:54.454617Z",
       "mime": "text/markdown",
       "path": "Plan/018-overrides-and-config-migration/spec.md",
       "sha256": "f9680368eef6008cae8b662201273f478b709fda2f6c307424bba1c508433fc7",
@@ -1182,7 +1182,7 @@
     },
     {
       "id": "plan:019-state-migration-from-bitwize:spec",
-      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "last_modified": "2026-05-19T06:29:54.458617Z",
       "mime": "text/markdown",
       "path": "Plan/019-state-migration-from-bitwize/spec.md",
       "sha256": "cf03271c785c6a4d875a0c053edcdcf950f385bbba60d4be9c1aa28bda6f6a56",
@@ -1215,11 +1215,11 @@
     },
     {
       "id": "plan:020-bitwize-deprecation-and-docs:spec",
-      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "last_modified": "2026-05-19T06:29:54.458617Z",
       "mime": "text/markdown",
       "path": "Plan/020-bitwize-deprecation-and-docs/spec.md",
-      "sha256": "c146556b428a42bdaeee40935d6b363d236a67082a87382f74492f3c2fd41c99",
-      "size_bytes": 15864,
+      "sha256": "e82f4be68621577541d1b3aec6e929d7acd54a20dc434295cb885cf4828e5cc3",
+      "size_bytes": 16271,
       "summary": "Spec 020 \u2014 bitwize Deprecation and Docs - This is the final cutover. After spec 020 lands, the unified plugin is the only thing the user needs to install \u2014 `jules-plugin/` is gone from the repo, `bitwize-music` is marked deprecated upstream, and the doctrine / domain documentation reflects the unified architecture rather than the three legacy plugins. Without this spec, users see three install\u2026",
       "tags": [
         "spec:016",
@@ -1230,12 +1230,12 @@
       "title": "Spec 020 \u2014 bitwize Deprecation and Docs",
       "views": {
         "full": {
-          "byte_length": 15864,
+          "byte_length": 16271,
           "byte_offset": 0,
-          "token_estimate": 4348
+          "token_estimate": 4457
         },
         "preview": {
-          "byte_length": 2952,
+          "byte_length": 2894,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -1248,7 +1248,7 @@
     },
     {
       "id": "plan:021-novel-prompt-builder-family:references:prompt-builder-methods",
-      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "last_modified": "2026-05-19T06:29:54.458617Z",
       "mime": "text/markdown",
       "path": "Plan/021-novel-prompt-builder-family/references/prompt-builder-methods.md",
       "sha256": "119321ba3351b4234ca1d52002b899fb83da07e4089cbbfc673f1e78838e2f5d",
@@ -1276,7 +1276,7 @@
     },
     {
       "id": "plan:021-novel-prompt-builder-family:spec",
-      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "last_modified": "2026-05-19T06:29:54.458617Z",
       "mime": "text/markdown",
       "path": "Plan/021-novel-prompt-builder-family/spec.md",
       "sha256": "15f9b6720fca06cbda21c509a074133505f0fe602130a43d2b12c0dace7f962d",
@@ -1309,7 +1309,7 @@
     },
     {
       "id": "plan:022-dev-mode-install:spec",
-      "last_modified": "2026-05-18T16:55:33.223011Z",
+      "last_modified": "2026-05-19T06:29:54.462617Z",
       "mime": "text/markdown",
       "path": "Plan/022-dev-mode-install/spec.md",
       "sha256": "a5b61bcb5eff7ba29667c104195ebb22b5d52b535e9e4185423c639f39b1ced0",
@@ -1342,7 +1342,7 @@
     },
     {
       "id": "plan:023-harness-in-harness:spec",
-      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "last_modified": "2026-05-19T06:29:54.462617Z",
       "mime": "text/markdown",
       "path": "Plan/023-harness-in-harness/spec.md",
       "sha256": "66ae4b1d6f632d5a1c3de570c8a6510160577cf32b561a179935538827bef6f5",
@@ -1375,11 +1375,11 @@
     },
     {
       "id": "plan:098-wave-a-hardening:spec",
-      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "last_modified": "2026-05-19T06:29:54.462617Z",
       "mime": "text/markdown",
       "path": "Plan/098-wave-a-hardening/spec.md",
-      "sha256": "25172adcf7785fa1617f14a512ac18b78f9ed6135c03ab2e01fe3c1567a3f1dd",
-      "size_bytes": 12745,
+      "sha256": "c82803b323eec3c8faafdae5bc124b7158a4013d872fc70046c7b4cd44bdf310",
+      "size_bytes": 12744,
       "summary": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup) - The Codex bot reviewed PRs #34 (Spec 003 StateCache), #37 (Spec 019 migration), #38 (Spec 004a tools port), and #32 (Spec 002 manifest) and flagged **~17 P1 findings** that landed unfixed because the PRs merged before the comments arrived (Codex review is async). These are the kind of correctness bugs that downstream specs (011, 013, 014, ...)\u2026",
       "tags": [
         "spec:098",
@@ -1390,12 +1390,12 @@
       "title": "Spec 098 \u2014 Wave A Hardening (Codex Bot P1 Cleanup)",
       "views": {
         "full": {
-          "byte_length": 12745,
+          "byte_length": 12744,
           "byte_offset": 0,
           "token_estimate": 3474
         },
         "preview": {
-          "byte_length": 2888,
+          "byte_length": 2884,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -1408,7 +1408,7 @@
     },
     {
       "id": "plan:099-jules-orchestration-improvements:spec",
-      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "last_modified": "2026-05-19T06:29:54.462617Z",
       "mime": "text/markdown",
       "path": "Plan/099-jules-orchestration-improvements/spec.md",
       "sha256": "0e4348173c2342f22e861311aa4ee7f18cea1e01fcc1c3d712c16fbf6085214c",
@@ -1441,7 +1441,7 @@
     },
     {
       "id": "plan:100-session-log-mcp:spec",
-      "last_modified": "2026-05-18T16:55:33.227010Z",
+      "last_modified": "2026-05-19T06:29:54.462617Z",
       "mime": "text/markdown",
       "path": "Plan/100-session-log-mcp/spec.md",
       "sha256": "6cf4b9adc12fc04ebb8e15f304482c772fbe8494a3077bcba9bae8b05f6307d9",
@@ -1474,11 +1474,11 @@
     },
     {
       "id": "plan:101-jules-mcp-tool-additions:spec",
-      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "last_modified": "2026-05-19T06:29:54.462617Z",
       "mime": "text/markdown",
       "path": "Plan/101-jules-mcp-tool-additions/spec.md",
-      "sha256": "7b958099e146043e8378dd215ed0d3b5c87264b9f8585bae80e202991c209ed8",
-      "size_bytes": 9245,
+      "sha256": "ab1f9f8428710943e4dfd0b82cceed64dab6517d791f9c0721940687fd2cb16f",
+      "size_bytes": 9244,
       "summary": "Spec 101 \u2014 Jules MCP Tool Additions - L14's token postmortem proved that the orchestrator's most expensive primitive is `jules_activities` \u2014 every call returns the full activity stream and the loop pastes it back into context. The actual signal the orchestrator needs at every poll is a five-line summary: state, title, last five activities, PR URL, patch size. Today that requires four MCP calls\u2026",
       "tags": [
         "spec:101",
@@ -1489,12 +1489,12 @@
       "title": "Spec 101 \u2014 Jules MCP Tool Additions",
       "views": {
         "full": {
-          "byte_length": 9245,
+          "byte_length": 9244,
           "byte_offset": 0,
           "token_estimate": 2412
         },
         "preview": {
-          "byte_length": 2980,
+          "byte_length": 2979,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -1507,7 +1507,7 @@
     },
     {
       "id": "plan:102-pr-rebase-policy:spec",
-      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "last_modified": "2026-05-19T06:29:54.466617Z",
       "mime": "text/markdown",
       "path": "Plan/102-pr-rebase-policy/spec.md",
       "sha256": "8bc137360208a7b7d63ea96a77409ac1d64bdc30f968fe65ebfe0815f1d8c52c",
@@ -1540,11 +1540,11 @@
     },
     {
       "id": "plan:103-view-fields-projection:spec",
-      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "last_modified": "2026-05-19T06:29:54.466617Z",
       "mime": "text/markdown",
       "path": "Plan/103-view-fields-projection/spec.md",
-      "sha256": "ea29347ae4fcbd22a96c946573e02ce9dc0c235213a4abf7b1b79c538b4c7ddf",
-      "size_bytes": 9104,
+      "sha256": "d40581189a3d0e9b99a225ace64ecb43454b53fd0ba059e7dc377a1fe7812190",
+      "size_bytes": 9103,
       "summary": "Spec 103 \u2014 View Tiers & Fields Projection on Read Tools - Per the `Plan/_lessons-learned/14-token-consumption-postmortem.md` analysis, every `*_get` / `*_read` / `*_list` MCP tool currently returns the full Pydantic object \u2014 even when the caller only needs the `id`. A single `music_album_get` round-trip can burn 3-5k tokens when the caller is just resolving a foreign key. Adopting Pydantic's\u2026",
       "tags": [
         "spec:103",
@@ -1555,12 +1555,12 @@
       "title": "Spec 103 \u2014 View Tiers & Fields Projection on Read Tools",
       "views": {
         "full": {
-          "byte_length": 9104,
+          "byte_length": 9103,
           "byte_offset": 0,
           "token_estimate": 2420
         },
         "preview": {
-          "byte_length": 2831,
+          "byte_length": 2830,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -1573,7 +1573,7 @@
     },
     {
       "id": "plan:104-tool-search-anchor-triad:spec",
-      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "last_modified": "2026-05-19T06:29:54.466617Z",
       "mime": "text/markdown",
       "path": "Plan/104-tool-search-anchor-triad/spec.md",
       "sha256": "d7e97ce43ba8657798825504a3242685ce024820ade703ccaeea6ea850468dd6",
@@ -1606,7 +1606,7 @@
     },
     {
       "id": "plan:105-toon-serializer:spec",
-      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "last_modified": "2026-05-19T06:29:54.466617Z",
       "mime": "text/markdown",
       "path": "Plan/105-toon-serializer/spec.md",
       "sha256": "72b4f4e4742fc4198b156436cc087ede7cb540ec6041fdc28474ef164ee459fe",
@@ -1639,7 +1639,7 @@
     },
     {
       "id": "plan:106-github-mcp-summary-wrappers:spec",
-      "last_modified": "2026-05-18T16:55:33.231010Z",
+      "last_modified": "2026-05-19T06:29:54.470617Z",
       "mime": "text/markdown",
       "path": "Plan/106-github-mcp-summary-wrappers/spec.md",
       "sha256": "d3788315027ac516ba8c882a3dbac74eee4d519ddfe2a9ac1f76e02047d441e0",
@@ -1672,7 +1672,7 @@
     },
     {
       "id": "plan:107-cache-breakpoint-ordering:spec",
-      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "last_modified": "2026-05-19T06:29:54.470617Z",
       "mime": "text/markdown",
       "path": "Plan/107-cache-breakpoint-ordering/spec.md",
       "sha256": "336ae87528042b4fb739f33a42a7f56b2ba54b916bea6b73905c96644ad0e175",
@@ -1705,7 +1705,7 @@
     },
     {
       "id": "plan:108-context-mode-integration:spec",
-      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "last_modified": "2026-05-19T06:29:54.470617Z",
       "mime": "text/markdown",
       "path": "Plan/108-context-mode-integration/spec.md",
       "sha256": "0143cb22270a679fa0334390168e598d712934e401f22dc72d261cb3b02f7d89",
@@ -1738,7 +1738,7 @@
     },
     {
       "id": "plan:111-context-mode-manifest:spec",
-      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "last_modified": "2026-05-19T06:29:54.470617Z",
       "mime": "text/markdown",
       "path": "Plan/111-context-mode-manifest/spec.md",
       "sha256": "d55bd5789828e3558d9c0d9af647f5e1119adf11ef13fcf6c56d14f3bbdc559e",
@@ -1773,7 +1773,7 @@
     },
     {
       "id": "plan:112-context-anchor-triad:spec",
-      "last_modified": "2026-05-18T16:55:33.235010Z",
+      "last_modified": "2026-05-19T06:29:54.470617Z",
       "mime": "text/markdown",
       "path": "Plan/112-context-anchor-triad/spec.md",
       "sha256": "7dfbda4b0f761f955f70906c848b6a6aaae9181820211fd22ac9f3ef4215aebf",
@@ -1806,7 +1806,7 @@
     },
     {
       "id": "plan:113-context-cache-and-subscriptions:spec",
-      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "last_modified": "2026-05-19T06:29:54.470617Z",
       "mime": "text/markdown",
       "path": "Plan/113-context-cache-and-subscriptions/spec.md",
       "sha256": "2cdf619eedbd51585747b5f676b0c363960d78618d7737811c0eb4ee6caf689e",
@@ -1839,7 +1839,7 @@
     },
     {
       "id": "plan:114-read-cache-delta-mode:spec",
-      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "last_modified": "2026-05-19T06:29:54.474617Z",
       "mime": "text/markdown",
       "path": "Plan/114-read-cache-delta-mode/spec.md",
       "sha256": "a2f4b41b8e8293cc87b26dca52a7b3bc5835a6bee7db104b34dd7aa6c91c3269",
@@ -1872,7 +1872,7 @@
     },
     {
       "id": "plan:115-structure-map-ast:spec",
-      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "last_modified": "2026-05-19T06:29:54.474617Z",
       "mime": "text/markdown",
       "path": "Plan/115-structure-map-ast/spec.md",
       "sha256": "b685f3331c7e34b1ec8cd321d94a2d3fd182a82167dc5dec04661b6cbaa115c3",
@@ -1905,7 +1905,7 @@
     },
     {
       "id": "plan:116-bash-output-compression:spec",
-      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "last_modified": "2026-05-19T06:29:54.474617Z",
       "mime": "text/markdown",
       "path": "Plan/116-bash-output-compression/spec.md",
       "sha256": "456e71f8b4f2c740b1d8a1a783e3e31fbc4fe5e4d175c4c6ae9e3e8bd3971f8d",
@@ -1938,7 +1938,7 @@
     },
     {
       "id": "plan:117-tool-result-archive:spec",
-      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "last_modified": "2026-05-19T06:29:54.474617Z",
       "mime": "text/markdown",
       "path": "Plan/117-tool-result-archive/spec.md",
       "sha256": "16c3fc9988a91b41a0abbc62c080fc8fad6192b182b4951cebf3dcc6595b0f20",
@@ -1971,7 +1971,7 @@
     },
     {
       "id": "plan:118-quality-score-telemetry:spec",
-      "last_modified": "2026-05-18T16:55:33.239010Z",
+      "last_modified": "2026-05-19T06:29:54.474617Z",
       "mime": "text/markdown",
       "path": "Plan/118-quality-score-telemetry/spec.md",
       "sha256": "e16dcdb67890cd50c4997d958e6e4a31c49f9200a743f34ea8f300d98b026a04",
@@ -2004,7 +2004,7 @@
     },
     {
       "id": "plan:119-loop-detection:spec",
-      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "last_modified": "2026-05-19T06:29:54.474617Z",
       "mime": "text/markdown",
       "path": "Plan/119-loop-detection/spec.md",
       "sha256": "5d3def61e31b767ae87a02ca47fa22b172f49d35b250272f0037753538101215",
@@ -2037,7 +2037,7 @@
     },
     {
       "id": "plan:120-smart-compaction-checkpoints:spec",
-      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "last_modified": "2026-05-19T06:29:54.474617Z",
       "mime": "text/markdown",
       "path": "Plan/120-smart-compaction-checkpoints/spec.md",
       "sha256": "2941e8500072b0f3fd6967ad0d018b949653a6ec61123846cc837100a84c90df",
@@ -2070,7 +2070,7 @@
     },
     {
       "id": "plan:121-contextignore-hardblock:spec",
-      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "last_modified": "2026-05-19T06:29:54.478617Z",
       "mime": "text/markdown",
       "path": "Plan/121-contextignore-hardblock/spec.md",
       "sha256": "005ec27297401198c0ee4f9de3ca294f99b1af62b335f0e152264888e7375f89",
@@ -2102,8 +2102,107 @@
       }
     },
     {
+      "id": "plan:122-centralized-ontology:spec",
+      "last_modified": "2026-05-19T06:29:54.478617Z",
+      "mime": "text/markdown",
+      "path": "Plan/122-centralized-ontology/spec.md",
+      "sha256": "2c74ba0568bacdb64cd5d0bf27768b99e0745bfe70158dc46198916f8a1b3537",
+      "size_bytes": 9433,
+      "summary": "Spec 122: Centralized Ontology for Plugin Domains - The `the-agency-system` plugin currently suffers from ad-hoc, localized conventions across its domains (music, novel, jules, agentic). This fragmentation prevents cross-domain querying, complicates validation, and limits the richness of the Context Mode Path B architecture. By adopting a centralized ontology \u2014 inspired by `netzkontrast/agency`\u2026",
+      "tags": [
+        "spec:122",
+        "slug:centralized-ontology",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 122: Centralized Ontology for Plugin Domains",
+      "views": {
+        "full": {
+          "byte_length": 9433,
+          "byte_offset": 0,
+          "token_estimate": 2401
+        },
+        "preview": {
+          "byte_length": 3229,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 402,
+          "byte_offset": 0,
+          "token_estimate": 85
+        }
+      }
+    },
+    {
+      "id": "plan:123-agency-tooling-codemode:spec",
+      "last_modified": "2026-05-19T06:29:54.478617Z",
+      "mime": "text/markdown",
+      "path": "Plan/123-agency-tooling-codemode/spec.md",
+      "sha256": "22c19da8fc68f2775b91c6787add2170c49a792dff6becd5ecc5cb739cedb504",
+      "size_bytes": 13233,
+      "summary": "Spec 123: Agency Tooling Extraction + MCP Code Mode Integration - Spec 122 establishes a centralized ontology data shape (types, schemas, edges, modes). However, a data shape is inert without machinery to enforce it. The `netzkontrast/agency` repository contains a mature suite of Python validation, linting, rendering, and auditing tools (`tools/fm/`, `check-*.py`).",
+      "tags": [
+        "spec:123",
+        "slug:agency-tooling-codemode",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 123: Agency Tooling Extraction + MCP Code Mode Integration",
+      "views": {
+        "full": {
+          "byte_length": 13233,
+          "byte_offset": 0,
+          "token_estimate": 3380
+        },
+        "preview": {
+          "byte_length": 3098,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 367,
+          "byte_offset": 0,
+          "token_estimate": 84
+        }
+      }
+    },
+    {
+      "id": "plan:124-graphqlite-codemode:spec",
+      "last_modified": "2026-05-19T06:29:54.478617Z",
+      "mime": "text/markdown",
+      "path": "Plan/124-graphqlite-codemode/spec.md",
+      "sha256": "72311d956b283b22fdf5b91cc993ea638817b56356f09ac221eacba98a327037",
+      "size_bytes": 18044,
+      "summary": "Spec 124: GraphQLite Code Mode Integration - The plugin's unified ontology (Spec 122) structures the relationships across music, novel, jules, and agentic domains. However, Context Mode Path B (Specs 111-113) only provides a flat, BM25-searchable text manifest. To unlock the value of the ontology graph, we need a query mechanism. By integrating `colliery-io/graphqlite` as an SQLite loadable\u2026",
+      "tags": [
+        "spec:124",
+        "slug:graphqlite-codemode",
+        "domain:cross",
+        "kind:spec"
+      ],
+      "title": "Spec 124: GraphQLite Code Mode Integration",
+      "views": {
+        "full": {
+          "byte_length": 18044,
+          "byte_offset": 0,
+          "token_estimate": 4691
+        },
+        "preview": {
+          "byte_length": 3110,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 396,
+          "byte_offset": 0,
+          "token_estimate": 93
+        }
+      }
+    },
+    {
       "id": "plan:130-shared-toolresult-envelope:spec",
-      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "last_modified": "2026-05-19T06:29:54.482617Z",
       "mime": "text/markdown",
       "path": "Plan/130-shared-toolresult-envelope/spec.md",
       "sha256": "548c5f190f93682b39800b9b6704606309e3d20455895b41a4ebee5e667cf53b",
@@ -2136,7 +2235,7 @@
     },
     {
       "id": "plan:131-manifest-coverage-lint:spec",
-      "last_modified": "2026-05-18T16:55:33.243011Z",
+      "last_modified": "2026-05-19T06:29:54.482617Z",
       "mime": "text/markdown",
       "path": "Plan/131-manifest-coverage-lint/spec.md",
       "sha256": "22fe12f21b08d826e788fb3852d9327ffb8687897fd76b05b7b1faab557bee24",
@@ -2169,7 +2268,7 @@
     },
     {
       "id": "plan:132-skill-tool-hooks:spec",
-      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "last_modified": "2026-05-19T06:29:54.482617Z",
       "mime": "text/markdown",
       "path": "Plan/132-skill-tool-hooks/spec.md",
       "sha256": "38b123b7d1a807d0c0b9bd42ce186c6a7f1181cfb09dc01509bb8963370a4aef",
@@ -2202,7 +2301,7 @@
     },
     {
       "id": "plan:133-skill-subagent-pressure-tests:spec",
-      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "last_modified": "2026-05-19T06:29:54.482617Z",
       "mime": "text/markdown",
       "path": "Plan/133-skill-subagent-pressure-tests/spec.md",
       "sha256": "af6830a8ad5936672b719c52c621eb7da948ae680a1a705e1d8203472e28d03e",
@@ -2235,11 +2334,11 @@
     },
     {
       "id": "plan:134-plan-adr-convention:spec",
-      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "last_modified": "2026-05-19T06:29:54.482617Z",
       "mime": "text/markdown",
       "path": "Plan/134-plan-adr-convention/spec.md",
-      "sha256": "c95a0fc72b83521e44edebc41901caede63fd6d99e75adafacd6c38d77f58d04",
-      "size_bytes": 12914,
+      "sha256": "a4016968dd4fff4928893675392a9c166b39d51c5bd04087e4ded0616e3423d0",
+      "size_bytes": 12898,
       "summary": "Spec 134 \u2014 Plan-level ADR Convention (MADR-shaped Decision Records) - Three repo-wide decisions made during Wave A live nowhere binding: (a) \"default base branch is `Master`, not `main`\" (cited only as a `<!-- comment -->` in JULES_PROTOCOL.md \u00a78 step 4), (b) \"Plan/ uses zero-padded `NNN-slug/` folders, not flat files\" (only implicit in the existing tree), (c) \"lessons-learned files are advisory,\u2026",
       "tags": [
         "spec:134",
@@ -2250,12 +2349,12 @@
       "title": "Spec 134 \u2014 Plan-level ADR Convention (MADR-shaped Decision Records)",
       "views": {
         "full": {
-          "byte_length": 12914,
+          "byte_length": 12898,
           "byte_offset": 0,
           "token_estimate": 3480
         },
         "preview": {
-          "byte_length": 2998,
+          "byte_length": 2992,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -2268,7 +2367,7 @@
     },
     {
       "id": "plan:135-spec-test-anchor-traceability:spec",
-      "last_modified": "2026-05-18T16:55:33.247010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/135-spec-test-anchor-traceability/spec.md",
       "sha256": "1b9f94ea5fe65bd6cf448277cff5f981f47565cad79b2280ec05fe4bcee7ad79",
@@ -2301,7 +2400,7 @@
     },
     {
       "id": "plan:136-agents-yaml-role-manifest:spec",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/136-agents-yaml-role-manifest/spec.md",
       "sha256": "45051cefeaba423b49b85cb85dc9d801cdc15098e85e6785cd12dadda82b287e",
@@ -2334,7 +2433,7 @@
     },
     {
       "id": "plan:137-watcher-sdk-composability:spec",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/137-watcher-sdk-composability/spec.md",
       "sha256": "7731fedbfd8c305f8f70ad5ce7f32ea4d07ab0e804351a83b2c54f09d2fe20d9",
@@ -2367,11 +2466,11 @@
     },
     {
       "id": "plan:138-frustration-log-protocol:spec",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/138-frustration-log-protocol/spec.md",
-      "sha256": "f9c692dcc6914642d78ed2c9889f393a73d45165d54ec6aa03a382c1ac88fb37",
-      "size_bytes": 12989,
+      "sha256": "abb850aa5f70b4723cfec5ec0e5a4c5ddc0209597a157780e0571481efc934c7",
+      "size_bytes": 14362,
       "summary": "Spec 138 \u2014 Mandatory Per-PR Frustration-Log Protocol (FL0\u2013FL3) - `netzkontrast/agency` enforces a discipline that `the-agency-system` does not: **every session, including the ones that went perfectly, ends with a structured Frustration-Level declaration (`FL0` \u2013 `FL3`)**. The Agency spec lives in [`FRUSTRATED.md`](../../../home/user/agency/FRUSTRATED.md) (~8 KB) and is mechanically validated by\u2026",
       "tags": [
         "spec:138",
@@ -2382,9 +2481,9 @@
       "title": "Spec 138 \u2014 Mandatory Per-PR Frustration-Log Protocol (FL0\u2013FL3)",
       "views": {
         "full": {
-          "byte_length": 12989,
+          "byte_length": 14362,
           "byte_offset": 0,
-          "token_estimate": 3350
+          "token_estimate": 3692
         },
         "preview": {
           "byte_length": 3256,
@@ -2400,7 +2499,7 @@
     },
     {
       "id": "plan:139-evidence-snapshot-helper:spec",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/139-evidence-snapshot-helper/spec.md",
       "sha256": "ff873412eaa908d58ca3fb337d79a05b280931e18ccb8c6f84a59220db3cdf12",
@@ -2433,7 +2532,7 @@
     },
     {
       "id": "plan:_lessons-learned:01-scratch-files-on-pr-body-composition",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/01-scratch-files-on-pr-body-composition.md",
       "sha256": "3b4b85ec50a5db9681dbeaf5d4303d4a5dbf8dd7ddcca9ad6a4647724d0a23e7",
@@ -2465,7 +2564,7 @@
     },
     {
       "id": "plan:_lessons-learned:02-agent-messaged-and-wait-kills-sessions",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/02-agent-messaged-and-wait-kills-sessions.md",
       "sha256": "ba8b898aaff0faa88cbfe14511fac2f7b76f918278d87b1ad0a7a1143f650ecf",
@@ -2497,7 +2596,7 @@
     },
     {
       "id": "plan:_lessons-learned:03-evidence-with-polluted-pythonpath",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/03-evidence-with-polluted-pythonpath.md",
       "sha256": "50f693eeb9322da469b608b1d2e9471d8b2c68547070eec48e27486d95072ae0",
@@ -2529,7 +2628,7 @@
     },
     {
       "id": "plan:_lessons-learned:04-affects-list-incompleteness",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/04-affects-list-incompleteness.md",
       "sha256": "26fe83ac3c39c526beb5d91d027429bbb3b27f049c58e872b45962a1ba778844",
@@ -2561,7 +2660,7 @@
     },
     {
       "id": "plan:_lessons-learned:05-independent-review-subagent-is-load-bearing",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/05-independent-review-subagent-is-load-bearing.md",
       "sha256": "b6e32a0e9b4b1a7d07cb3c65f007bb8fc30e2e0c222c50c3d9fcc3206642ff5f",
@@ -2593,7 +2692,7 @@
     },
     {
       "id": "plan:_lessons-learned:06-spec-vs-schema-drift",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/06-spec-vs-schema-drift.md",
       "sha256": "98562c9c0b2a9542025828c1207be6a0b10bc5918c34224b8b64f4618d24bffb",
@@ -2625,7 +2724,7 @@
     },
     {
       "id": "plan:_lessons-learned:07-server-py-merge-conflicts-trivial",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/07-server-py-merge-conflicts-trivial.md",
       "sha256": "165b9b2217223cd6ddc08ead75d950466dbfcc56ed6e018d36a2e10fe43991c6",
@@ -2657,7 +2756,7 @@
     },
     {
       "id": "plan:_lessons-learned:08-jules-mcp-tool-gaps",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/08-jules-mcp-tool-gaps.md",
       "sha256": "41680f8a3f279ba8aa35c89e49cb43f8d12dd477cf2126f5b7d772aae91082fc",
@@ -2689,7 +2788,7 @@
     },
     {
       "id": "plan:_lessons-learned:09-watcher-pattern-idiom",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/09-watcher-pattern-idiom.md",
       "sha256": "8c7ef2d956374b324b7a41dc60f638d6423420dd4c3db2303879021763a52f22",
@@ -2721,7 +2820,7 @@
     },
     {
       "id": "plan:_lessons-learned:10-jules-message-can-revive-but-unreliable",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/10-jules-message-can-revive-but-unreliable.md",
       "sha256": "3f2239b61e2320150278c62e29bb27092ad5ba767ec187e3a8c73131618349be",
@@ -2753,7 +2852,7 @@
     },
     {
       "id": "plan:_lessons-learned:11-side-quest-session-log-mcp",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/11-side-quest-session-log-mcp.md",
       "sha256": "622e5eaf6642b87561648e567c783740687c4015a5942d2f933c638a5d65e656",
@@ -2785,7 +2884,7 @@
     },
     {
       "id": "plan:_lessons-learned:12-completed-without-pr-or-state-mismatch",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/12-completed-without-pr-or-state-mismatch.md",
       "sha256": "3e4f8775b43fb335683b0bb98d3f79822325c5cfae9a660314ac6fd9e724b6d2",
@@ -2817,7 +2916,7 @@
     },
     {
       "id": "plan:_lessons-learned:13-codex-bot-pr-reviews-are-gold",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/13-codex-bot-pr-reviews-are-gold.md",
       "sha256": "1bc5fd94391d02bc15ecf886740a758a8f13d620128cca5fd99e9bafb3ba51f4",
@@ -2849,7 +2948,7 @@
     },
     {
       "id": "plan:_lessons-learned:14-token-consumption-postmortem",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/14-token-consumption-postmortem.md",
       "sha256": "8099423d5ca391d9a0ca1bb1bc3a808e89c61372c14cdc1a461a7d6180392e46",
@@ -2881,7 +2980,7 @@
     },
     {
       "id": "plan:_lessons-learned:15-manual-ops-the-mcp-should-automate",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/15-manual-ops-the-mcp-should-automate.md",
       "sha256": "4243e92d79c1a1a220457b7d4ac3a8a14e177cb1fdc8b64b7e7aa9910e4e5db0",
@@ -2913,7 +3012,7 @@
     },
     {
       "id": "plan:_lessons-learned:readme",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_lessons-learned/README.md",
       "sha256": "4a83185ed56725c4b5a46ced78774bc5355d1cd2dae8342c0c9251ab8de052ff",
@@ -2943,7 +3042,7 @@
     },
     {
       "id": "plan:_research-briefs:01-centralized-ontology",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_research-briefs/01-centralized-ontology.md",
       "sha256": "69ad41e34dd6efe6526cbbec35eab32a34dff80932a3ea7e8dc2318bc1ebea2f",
@@ -2974,7 +3073,7 @@
     },
     {
       "id": "plan:_research-briefs:02-agency-tooling-codemode",
-      "last_modified": "2026-05-18T16:55:33.255010Z",
+      "last_modified": "2026-05-19T06:29:54.494617Z",
       "mime": "text/markdown",
       "path": "Plan/_research-briefs/02-agency-tooling-codemode.md",
       "sha256": "d01fb41316c8d64d1b5ba8bd397963bad0406ad31b942294ba143c3fbb7a3676",
@@ -3004,7 +3103,7 @@
     },
     {
       "id": "plan:_research-briefs:readme",
-      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "last_modified": "2026-05-19T06:29:54.498617Z",
       "mime": "text/markdown",
       "path": "Plan/_research-briefs/readme.md",
       "sha256": "3c5a3316d9fcc89863a10efe631efd7d175580896b32efa61fbd297e2641e946",
@@ -3031,8 +3130,66 @@
       }
     },
     {
+      "id": "plan:_research:_synthesis-122-123-124",
+      "last_modified": "2026-05-19T06:29:54.498617Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/_synthesis-122-123-124.md",
+      "sha256": "a018d3c26762c68edfd7cb4a3be955d9252521f8dc77c4802e317f0fb921fac9",
+      "size_bytes": 11652,
+      "summary": "Synthesis: Specs 122 / 123 / 124 \u2014 Wave D (Path B extension) - This document interlocks the three Jules research outputs that landed on Master via PRs #82, #84, #86 (sessions `13927980186995922904`, `18243598847213256634`, `10708258290716043154`). The drafts live at `Plan/_research/<slug>/draft-spec.md`; the promoted specs live at `Plan/122-*/`, `Plan/123-*/`, `Plan/124-*/`. This file is the\u2026",
+      "tags": [],
+      "title": "Synthesis: Specs 122 / 123 / 124 \u2014 Wave D (Path B extension)",
+      "views": {
+        "full": {
+          "byte_length": 11652,
+          "byte_offset": 0,
+          "token_estimate": 2750
+        },
+        "preview": {
+          "byte_length": 4323,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 398,
+          "byte_offset": 0,
+          "token_estimate": 120
+        }
+      }
+    },
+    {
+      "id": "plan:_research:agency-repo-analysis:findings",
+      "last_modified": "2026-05-19T06:29:54.498617Z",
+      "mime": "text/markdown",
+      "path": "Plan/_research/agency-repo-analysis/findings.md",
+      "sha256": "39da3107dac1eeb05d7f59b4945211a2ab5b249154803c785f7902beac1369a0",
+      "size_bytes": 35979,
+      "summary": "Agency-repo analysis \u2014 patterns to port (and to avoid) - **Source:** `netzkontrast/agency` @ `da09988` (cloned via `git clone --depth=20`). **Method:** four parallel research agents, one per facet (vision/layout, skills, tasks/research/ADRs, anti-patterns/discipline). Each agent was read-only, instructed to cite file + line for every finding, and capped at ~800-1000 words.",
+      "tags": [
+        "slug:agency-repo-analysis"
+      ],
+      "title": "Agency-repo analysis \u2014 patterns to port (and to avoid)",
+      "views": {
+        "full": {
+          "byte_length": 35979,
+          "byte_offset": 0,
+          "token_estimate": 9738
+        },
+        "preview": {
+          "byte_length": 3079,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 377,
+          "byte_offset": 0,
+          "token_estimate": 100
+        }
+      }
+    },
+    {
       "id": "plan:_research:agency-tooling-codemode:draft-spec",
-      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "last_modified": "2026-05-19T06:29:54.498617Z",
       "mime": "text/markdown",
       "path": "Plan/_research/agency-tooling-codemode/draft-spec.md",
       "sha256": "5fbf33afd81a3e5f82d51cb10d6cd71e20fd8eb601e2b0585dc42f193d403153",
@@ -3065,7 +3222,7 @@
     },
     {
       "id": "plan:_research:agency-tooling-codemode:findings",
-      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "last_modified": "2026-05-19T06:29:54.498617Z",
       "mime": "text/markdown",
       "path": "Plan/_research/agency-tooling-codemode/findings.md",
       "sha256": "1a08b65ff6ceb28dc45db407a5b0abc4a1ae042de405d5524a788d7c2ed09030",
@@ -3093,7 +3250,7 @@
     },
     {
       "id": "plan:_research:centralized-ontology:draft-spec",
-      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "last_modified": "2026-05-19T06:29:54.498617Z",
       "mime": "text/markdown",
       "path": "Plan/_research/centralized-ontology/draft-spec.md",
       "sha256": "62494e70886263ea001f62e856a734e4a3392b2a6d9f399ae2ab1737b0b5bcd7",
@@ -3126,7 +3283,7 @@
     },
     {
       "id": "plan:_research:centralized-ontology:findings",
-      "last_modified": "2026-05-18T16:55:33.259010Z",
+      "last_modified": "2026-05-19T06:29:54.502617Z",
       "mime": "text/markdown",
       "path": "Plan/_research/centralized-ontology/findings.md",
       "sha256": "395a5d744cfd5c475f0d2bd57ca78021bb8223693c863efcc4bda809bc86ebee",
@@ -3154,7 +3311,7 @@
     },
     {
       "id": "plan:_research:graphqlite-codemode:draft-spec",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.502617Z",
       "mime": "text/markdown",
       "path": "Plan/_research/graphqlite-codemode/draft-spec.md",
       "sha256": "84f257392d38e6f49cc92e18401f5c87633e588fc8fafa4e478eea72af19e152",
@@ -3187,7 +3344,7 @@
     },
     {
       "id": "plan:_research:graphqlite-codemode:findings",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.502617Z",
       "mime": "text/markdown",
       "path": "Plan/_research/graphqlite-codemode/findings.md",
       "sha256": "4f1838f491908dd6bcc5b3336604d92ced94a85020f40dd8fa720e26cb723062",
@@ -3215,7 +3372,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-jules-research-1-context-engineering",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.502617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-jules-research-1-context-engineering.md",
       "sha256": "3aa1563a5c791c02b9c7cbf7aa7621c9ced794ff3726ceacc7d2c97733d0f2d5",
@@ -3243,7 +3400,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-jules-research-2-token-efficiency",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-jules-research-2-token-efficiency.md",
       "sha256": "174a59122c622339fe89c26e9ca92ebbc91932338d8bb6f0095841d7e3b7b43e",
@@ -3271,7 +3428,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-jules-research-3-spec-driven-dev",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-jules-research-3-spec-driven-dev.md",
       "sha256": "3776a977623c10e1fed5a34827511dcf3ce4bdf2ad6e5b3deb0e8a10a8017055",
@@ -3299,7 +3456,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-jules-research-4-large-context-ingestion",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-jules-research-4-large-context-ingestion.md",
       "sha256": "23142233cfb3cb25e255bf1193b36ca346617d3b5cb7b0de71074feb61a3e4a2",
@@ -3327,7 +3484,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-jules-research-5-pipeline-and-plugin",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-jules-research-5-pipeline-and-plugin.md",
       "sha256": "c33bc24b5075196a5329c38ee8f74621ccdddf22da0d4173d705bcb8362be635",
@@ -3355,7 +3512,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-next-session-goal",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-next-session-goal.md",
       "sha256": "de105f21dacfffde027ed26a631b477de733c60568d4da3e1e33e4f7e0001dde",
@@ -3383,7 +3540,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-orchestration-handoff",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-orchestration-handoff.md",
       "sha256": "ba87214ea434efe900765e87f3a61fe1ee460abda3a1217339239ca0f42e3181",
@@ -3411,7 +3568,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-research-1-mcp-findings",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-research-1-mcp-findings.md",
       "sha256": "db7e2473957246c966cfdc7ae6ecefb7b0a8dbbefaabf02af7606d0d043b5b9d",
@@ -3441,7 +3598,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-research-2-skills-findings",
-      "last_modified": "2026-05-18T16:55:33.263011Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-research-2-skills-findings.md",
       "sha256": "e39b4127fb8d258003c9c854f86b1b1157f6df4b5d3dd27be42e4b1a81891f4b",
@@ -3469,7 +3626,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-research-3-spec-findings",
-      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-research-3-spec-findings.md",
       "sha256": "46842fe6440dc204b08ecd59c2c057ca233b0d0999fa689f7600a503d8be3f60",
@@ -3497,7 +3654,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-research-4-multi-findings",
-      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-research-4-multi-findings.md",
       "sha256": "2ea90f169c8d2facf955187ef5a632f28c54ace0bcf3cd59b1156b5a93a65a7a",
@@ -3525,7 +3682,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-research-5-process-findings",
-      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-research-5-process-findings.md",
       "sha256": "8b2edae21aa39838599a1889333517e0645bac4e03f9eb2e15dc8e434ac98103",
@@ -3553,7 +3710,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-research-correction-delta",
-      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "last_modified": "2026-05-19T06:29:54.506617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-research-correction-delta.md",
       "sha256": "4320bcb42ca5bd463e4dc7a215eaa96e4e928e1954d3da2bf30ede541ddc8dd5",
@@ -3581,7 +3738,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-spec-022-dispatch",
-      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-spec-022-dispatch.md",
       "sha256": "f5e7c436c517b0152bdc652b1e52856888793906ec4ed59e6c08a9d6e5ce27b1",
@@ -3609,7 +3766,7 @@
     },
     {
       "id": "plan:_session-state:2026-05-18-spec-hygiene-audit",
-      "last_modified": "2026-05-18T16:55:33.267010Z",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
       "mime": "text/markdown",
       "path": "Plan/_session-state/2026-05-18-spec-hygiene-audit.md",
       "sha256": "084d114af37dee1e94fbd39f47f0461fa698c32b696f762f4ae09bc9d098ea9f",
@@ -3636,23 +3793,699 @@
       }
     },
     {
+      "id": "plan:decisions:0001-master-default-branch",
+      "last_modified": "2026-05-19T08:38:12.801032Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0001-master-default-branch.md",
+      "sha256": "fa432c99b7dfe86824616294dd4efa74fa229c0d5f59e57937f79911d8ee93ff",
+      "size_bytes": 2363,
+      "summary": "ADR-0001 \u2014 Master is the default branch, not main - The repository's default branch for all PRs and fresh specs needs to be consistent to avoid merge conflicts and lost work. Historically, the repository has used `Master` (capitalised) as the default branch, as documented in a comment within `Plan/JULES_PROTOCOL.md:68`. We need a formal decision to solidify this convention across all operations.",
+      "tags": [
+        "slug:master-default-branch",
+        "topic:git",
+        "domain:cross"
+      ],
+      "title": "ADR-0001 \u2014 Master is the default branch, not main",
+      "views": {
+        "full": {
+          "byte_length": 2363,
+          "byte_offset": 0,
+          "token_estimate": 524
+        },
+        "preview": {
+          "byte_length": 2363,
+          "byte_offset": 0,
+          "token_estimate": 524
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 87
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0002-sub-spec-zero-padding",
+      "last_modified": "2026-05-19T07:20:04.272263Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0002-sub-spec-zero-padding.md",
+      "sha256": "00ea4fc460b6f36ebbcdb5df4adefbe837535b90607577788257e6fd5cad9340",
+      "size_bytes": 2718,
+      "summary": "ADR-0002 \u2014 Plan/ uses zero-padded NNN-<slug>/spec.md for sub-specs - Sub-specifications within the `Plan/` directory need a consistent naming and numbering scheme to ensure they are listed chronologically and are easy to reference. Currently, the tree implicitly uses a three-digit zero-padded prefix (e.g., `000-overview.md`, `008-codemode-registry/spec.md`) as seen throughout the repository\u2026",
+      "tags": [
+        "slug:sub-spec-zero-padding",
+        "topic:structure",
+        "domain:cross"
+      ],
+      "title": "ADR-0002 \u2014 Plan/ uses zero-padded NNN-<slug>/spec.md for sub-specs",
+      "views": {
+        "full": {
+          "byte_length": 2718,
+          "byte_offset": 0,
+          "token_estimate": 693
+        },
+        "preview": {
+          "byte_length": 2718,
+          "byte_offset": 0,
+          "token_estimate": 693
+        },
+        "summary": {
+          "byte_length": 398,
+          "byte_offset": 0,
+          "token_estimate": 93
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0003-single-mcp-server",
+      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0003-single-mcp-server.md",
+      "sha256": "08935b8b65c50f113714274031ec9025d0d7af1bf216b24cd5e9dd0fb76c801a",
+      "size_bytes": 2739,
+      "summary": "ADR-0003 \u2014 One MCP server (agency-system); session-log-mcp is a sibling event store - The system architecture needs a clear boundary for what is exposed to the language model. According to `Plan/000-overview.md:16` (North Star), the repository uses \"One MCP, Code Mode native\". However, Phase 6 introduces `servers/session-log-mcp/` (`Plan/phase-6-quality-loop-compaction/README.md:9`). We need to\u2026",
+      "tags": [
+        "slug:single-mcp-server",
+        "topic:architecture",
+        "domain:cross"
+      ],
+      "title": "ADR-0003 \u2014 One MCP server (agency-system); session-log-mcp is a sibling event store",
+      "views": {
+        "full": {
+          "byte_length": 2739,
+          "byte_offset": 0,
+          "token_estimate": 622
+        },
+        "preview": {
+          "byte_length": 2739,
+          "byte_offset": 0,
+          "token_estimate": 622
+        },
+        "summary": {
+          "byte_length": 402,
+          "byte_offset": 0,
+          "token_estimate": 99
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0004-five-handler-domains",
+      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0004-five-handler-domains.md",
+      "sha256": "04854bfcb1572db287732d95b0186471ebfb2d28f8d2a33bdd25ee25b04c2a65",
+      "size_bytes": 2559,
+      "summary": "ADR-0004 \u2014 Five handler-bearing domains + agentic skill-only - The system's capabilities are divided into specific namespace domains, but the exact set and nature of these domains are only implicitly defined across various documents (e.g., `Plan/harness/VOCABULARY.md:94`, `Plan/harness/design.md:280`). We must formalise the exact list of domains and distinguish between those that contain\u2026",
+      "tags": [
+        "slug:five-handler-domains",
+        "topic:architecture",
+        "domain:cross"
+      ],
+      "title": "ADR-0004 \u2014 Five handler-bearing domains + agentic skill-only",
+      "views": {
+        "full": {
+          "byte_length": 2559,
+          "byte_offset": 0,
+          "token_estimate": 596
+        },
+        "preview": {
+          "byte_length": 2559,
+          "byte_offset": 0,
+          "token_estimate": 596
+        },
+        "summary": {
+          "byte_length": 395,
+          "byte_offset": 0,
+          "token_estimate": 84
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0005-four-verb-contract",
+      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0005-four-verb-contract.md",
+      "sha256": "3b8961c1d33b61f696b5e7f207c18bf5a4735b5a561ca80324f6e279875bde34",
+      "size_bytes": 2517,
+      "summary": "ADR-0005 \u2014 Four-verb harness contract - The interaction between the different layers of the system (L1 in-process, L2 hook chain, L3 HTTP daemon) requires a unified interface. Currently, this interface is described implicitly or as a \"design\" in `Plan/harness/design.md:24` and `Plan/harness/VOCABULARY.md:24`. We need to formally decide that these four specific verbs are the only required\u2026",
+      "tags": [
+        "slug:four-verb-contract",
+        "topic:architecture",
+        "domain:cross"
+      ],
+      "title": "ADR-0005 \u2014 Four-verb harness contract",
+      "views": {
+        "full": {
+          "byte_length": 2517,
+          "byte_offset": 0,
+          "token_estimate": 584
+        },
+        "preview": {
+          "byte_length": 2517,
+          "byte_offset": 0,
+          "token_estimate": 584
+        },
+        "summary": {
+          "byte_length": 395,
+          "byte_offset": 0,
+          "token_estimate": 93
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0006-code-mode-anchor-triad",
+      "last_modified": "2026-05-19T07:20:04.272263Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0006-code-mode-anchor-triad.md",
+      "sha256": "45d70e1f887b9f23ae017c78e3d15c38f250219f8048d304b38c919a84b68eae",
+      "size_bytes": 2785,
+      "summary": "ADR-0006 \u2014 Code Mode anchor triad is eager; bulk tools are deferred - To maintain the strict < 500 token boot budget for the MCP server, we cannot eagerly load schemas for all 100+ tools. The repository relies on FastMCP's Code Mode (`Plan/008-codemode-registry/spec.md:53`, `Plan/000-overview.md:16`), but the exact split between what is eager and what is deferred is an implicit convention.",
+      "tags": [
+        "slug:code-mode-anchor-triad",
+        "topic:performance",
+        "domain:cross"
+      ],
+      "title": "ADR-0006 \u2014 Code Mode anchor triad is eager; bulk tools are deferred",
+      "views": {
+        "full": {
+          "byte_length": 2785,
+          "byte_offset": 0,
+          "token_estimate": 658
+        },
+        "preview": {
+          "byte_length": 2785,
+          "byte_offset": 0,
+          "token_estimate": 658
+        },
+        "summary": {
+          "byte_length": 394,
+          "byte_offset": 0,
+          "token_estimate": 97
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0007-context-mode-path-b",
+      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0007-context-mode-path-b.md",
+      "sha256": "a0b7db106c01f9919f4da5feabffc955a8d3d7504d6cab63b3b17832c89f45fd",
+      "size_bytes": 2210,
+      "summary": "ADR-0007 \u2014 Context Mode Path B (native manifest) chosen over Path A - To prevent token window bloat, the system defers loading full documentation until requested. There were two proposed paths to achieve this: Path A (using the `mksglu` adapter) and Path B (a native JSON manifest). The decision to use Path B is documented across Phase 4 docs (`Plan/phase-4-context-mode-path-b/README.md:1-20`) and\u2026",
+      "tags": [
+        "slug:context-mode-path-b",
+        "topic:architecture",
+        "domain:context"
+      ],
+      "title": "ADR-0007 \u2014 Context Mode Path B (native manifest) chosen over Path A",
+      "views": {
+        "full": {
+          "byte_length": 2210,
+          "byte_offset": 0,
+          "token_estimate": 518
+        },
+        "preview": {
+          "byte_length": 2210,
+          "byte_offset": 0,
+          "token_estimate": 518
+        },
+        "summary": {
+          "byte_length": 404,
+          "byte_offset": 0,
+          "token_estimate": 98
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0008-harness-path-a",
+      "last_modified": "2026-05-19T07:20:04.276263Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0008-harness-path-a.md",
+      "sha256": "baed5057fb49f86c3fa5917c9e1d9bcdc5631caa0d23df63ee961d5df2913dba",
+      "size_bytes": 2670,
+      "summary": "ADR-0008 \u2014 Harness Path A levers ship now; Path B is vision - The repository needs to normalise the interface across domains (domain isomorphism). `Plan/harness/design.md:280` identified two paths. Path A uses light wrappers (levers L-\u03b1, L-\u03b2, L-\u03b3) to adapt the existing code. Path B is a full restructuring into `domains/<name>/` behind a `Domain` base class (`Plan/harness/restructure/spec.md`).",
+      "tags": [
+        "slug:harness-path-a",
+        "topic:architecture",
+        "domain:cross"
+      ],
+      "title": "ADR-0008 \u2014 Harness Path A levers ship now; Path B is vision",
+      "views": {
+        "full": {
+          "byte_length": 2670,
+          "byte_offset": 0,
+          "token_estimate": 636
+        },
+        "preview": {
+          "byte_length": 2670,
+          "byte_offset": 0,
+          "token_estimate": 636
+        },
+        "summary": {
+          "byte_length": 401,
+          "byte_offset": 0,
+          "token_estimate": 102
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0009-token-budget-invariants",
+      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0009-token-budget-invariants.md",
+      "sha256": "fc7c090403f277557e4f8fb5b9ed8197f29daac1edd3ddf4ef5499369a132f3a",
+      "size_bytes": 1934,
+      "summary": "ADR-0009 \u2014 Token budget invariants are gating - The entire premise of the plugin refactor is token efficiency (`Plan/000-overview.md:16`). We must formalise the specific numerical limits as hard gating invariants for all changes.",
+      "tags": [
+        "slug:token-budget-invariants",
+        "topic:performance",
+        "domain:cross"
+      ],
+      "title": "ADR-0009 \u2014 Token budget invariants are gating",
+      "views": {
+        "full": {
+          "byte_length": 1934,
+          "byte_offset": 0,
+          "token_estimate": 447
+        },
+        "preview": {
+          "byte_length": 1934,
+          "byte_offset": 0,
+          "token_estimate": 447
+        },
+        "summary": {
+          "byte_length": 231,
+          "byte_offset": 0,
+          "token_estimate": 49
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0010-single-delegate-pre-commit",
+      "last_modified": "2026-05-19T07:00:12.182596Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0010-single-delegate-pre-commit.md",
+      "sha256": "b6a43cee533ededca16547dd862a99c095176d29ae39401a59c6b19abaa46ea5",
+      "size_bytes": 2429,
+      "summary": "ADR-0010 \u2014 Single delegate pre-commit hook (bin/agency-lint) - The repository needs automated governance checks (manifest coverage, frontmatter validation, etc.). Previous implementations (as researched in `Plan/_research/agency-repo-analysis/findings.md` \u00a72.1 and \u00a78.1-8.2 (e.g., `Plan/_research/agency-repo-analysis/findings.md:10-50`)) suffered from script sprawl, where dozens of separate bash\u2026",
+      "tags": [
+        "slug:single-delegate-pre-commit",
+        "topic:tooling",
+        "domain:cross"
+      ],
+      "title": "ADR-0010 \u2014 Single delegate pre-commit hook (bin/agency-lint)",
+      "views": {
+        "full": {
+          "byte_length": 2429,
+          "byte_offset": 0,
+          "token_estimate": 575
+        },
+        "preview": {
+          "byte_length": 2429,
+          "byte_offset": 0,
+          "token_estimate": 575
+        },
+        "summary": {
+          "byte_length": 404,
+          "byte_offset": 0,
+          "token_estimate": 100
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0011-repair-authority-tiers",
+      "last_modified": "2026-05-19T07:34:41.208422Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0011-repair-authority-tiers.md",
+      "sha256": "485ef16f4824ded76f3896b33b1f31de9bd0c329fa7bb6752bf7b32adc6f6b89",
+      "size_bytes": 2526,
+      "summary": "ADR-0011 \u2014 Repair-authority tiers (T1/T2/T3/T4) on every change - To prevent agents or humans from quietly making structural changes via inline edits, the system needs a strict classification of changes. `Plan/harness/VOCABULARY.md:12` (via \u00a76C) documents four tiers: T1 Mechanical, T2 Additive, T3 Structural, and T4 Immutable. This implicitly governs all mutations but needs formal architectural\u2026",
+      "tags": [
+        "slug:repair-authority-tiers",
+        "topic:governance",
+        "domain:cross"
+      ],
+      "title": "ADR-0011 \u2014 Repair-authority tiers (T1/T2/T3/T4) on every change",
+      "views": {
+        "full": {
+          "byte_length": 2526,
+          "byte_offset": 0,
+          "token_estimate": 603
+        },
+        "preview": {
+          "byte_length": 2526,
+          "byte_offset": 0,
+          "token_estimate": 603
+        },
+        "summary": {
+          "byte_length": 403,
+          "byte_offset": 0,
+          "token_estimate": 98
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:0012-content-tier-ladder",
+      "last_modified": "2026-05-19T07:34:41.212422Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/0012-content-tier-ladder.md",
+      "sha256": "5cc1593d4e2592b6f11441ca62ccac9e4a34604c757b5b7fec90ae8484cf96c5",
+      "size_bytes": 2553,
+      "summary": "ADR-0012 \u2014 Three-tier content ladder - To support the L3 daemon's progressive disclosure goals and prevent large documents from overwhelming the context window upon initial discovery, artefacts must be structurally divided. `Plan/harness/VOCABULARY.md:12` (\u00a76D) specifies a T1/T2/T3 content tier model, which is distinct from the repair-authority tiers.",
+      "tags": [
+        "slug:content-tier-ladder",
+        "topic:architecture",
+        "domain:cross"
+      ],
+      "title": "ADR-0012 \u2014 Three-tier content ladder",
+      "views": {
+        "full": {
+          "byte_length": 2553,
+          "byte_offset": 0,
+          "token_estimate": 585
+        },
+        "preview": {
+          "byte_length": 2553,
+          "byte_offset": 0,
+          "token_estimate": 585
+        },
+        "summary": {
+          "byte_length": 356,
+          "byte_offset": 0,
+          "token_estimate": 81
+        }
+      }
+    },
+    {
+      "id": "plan:decisions:readme",
+      "last_modified": "2026-05-19T06:40:19.342610Z",
+      "mime": "text/markdown",
+      "path": "Plan/decisions/readme.md",
+      "sha256": "96919e4ca6bb42cee3832164fd97487d6eb91f9455e72c51323b418f861572c4",
+      "size_bytes": 3831,
+      "summary": "`Plan/decisions/` \u2014 ADR ledger - Architecture Decision Records following **MADR 4.0.0** conventions, imported from `netzkontrast/agency`'s `/decisions/` (`/tmp/agency-research/decisions/readme.md:17-46`).",
+      "tags": [
+        "slug:plan-decisions-readme"
+      ],
+      "title": "`Plan/decisions/` \u2014 ADR ledger",
+      "views": {
+        "full": {
+          "byte_length": 3831,
+          "byte_offset": 0,
+          "token_estimate": 1101
+        },
+        "preview": {
+          "byte_length": 2722,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 206,
+          "byte_offset": 0,
+          "token_estimate": 64
+        }
+      }
+    },
+    {
+      "id": "plan:harness:_research:01-fastmcp-in-memory",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/_research/01-fastmcp-in-memory.md",
+      "sha256": "fae444c0a87fa8e0684cef55262cebe617453b277c7693df43f22dff63b95269",
+      "size_bytes": 5378,
+      "summary": "Research 01 \u2014 FastMCP in-memory transport - > **Question.** Can the L1 harness invoke `agency-mcp`'s 114 tools without spinning up an stdio subprocess? > **Answer.** Yes \u2014 `mcp.call_tool(name, params)` on the FastMCP instance IS the in-memory transport. The pattern is already used in the repo at `tests/integration/test_context_anchor_triad.py`.",
+      "tags": [],
+      "title": "Research 01 \u2014 FastMCP in-memory transport",
+      "views": {
+        "full": {
+          "byte_length": 5378,
+          "byte_offset": 0,
+          "token_estimate": 1383
+        },
+        "preview": {
+          "byte_length": 3076,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 350,
+          "byte_offset": 0,
+          "token_estimate": 88
+        }
+      }
+    },
+    {
+      "id": "plan:harness:_research:02-claude-bare-plugin-dir",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/_research/02-claude-bare-plugin-dir.md",
+      "sha256": "dcb47e687155a958cedd934173db12b413cd97ed317755c147641705eb066ecb",
+      "size_bytes": 6029,
+      "summary": "Research 02 \u2014 `claude --bare --plugin-dir <path>` boot path - > **Question.** Is there a deterministic way for `tests/smoke/test_nested_claude.py` to assert \"the agency-system plugin loaded\" without depending on chat / model output? > **Answer.** Yes \u2014 combine `--bare` (skip default plugin sync) with `--debug plugins` (deterministic plugin-load events on stderr) and a trivial `-p exit` prompt.",
+      "tags": [],
+      "title": "Research 02 \u2014 `claude --bare --plugin-dir <path>` boot path",
+      "views": {
+        "full": {
+          "byte_length": 6029,
+          "byte_offset": 0,
+          "token_estimate": 1479
+        },
+        "preview": {
+          "byte_length": 3337,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 400,
+          "byte_offset": 0,
+          "token_estimate": 100
+        }
+      }
+    },
+    {
+      "id": "plan:harness:_research:03-test-coverage-baseline",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/_research/03-test-coverage-baseline.md",
+      "sha256": "e74003966ba2cfe2396d3a30401081f3c3aac2bd1a22349fe1789a13a751b5a1",
+      "size_bytes": 7858,
+      "summary": "Research 03 \u2014 Test-coverage baseline (2026-05-18) - > **Question.** Where are the holes in today's test coverage that L1 + L2 should close, and what stays out of scope? > **Answer.** Six coverage gaps named below; L1 closes 1-4; L2 closes 5; gap 6 stays Plan/023's job.",
+      "tags": [],
+      "title": "Research 03 \u2014 Test-coverage baseline (2026-05-18)",
+      "views": {
+        "full": {
+          "byte_length": 7858,
+          "byte_offset": 0,
+          "token_estimate": 2048
+        },
+        "preview": {
+          "byte_length": 2943,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 271,
+          "byte_offset": 0,
+          "token_estimate": 82
+        }
+      }
+    },
+    {
+      "id": "plan:harness:_research:05-domain-isomorphism",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/_research/05-domain-isomorphism.md",
+      "sha256": "efa920595a408c92d324a54545c1ed31557d95529b533e69bfe769aef803d4c5",
+      "size_bytes": 9222,
+      "summary": "Research 05 \u2014 Per-domain isomorphism audit (2026-05-18) - > **Question.** Can a single four-verb contract (*list_tools, call_tool, list_skills, dispatch_skill*) be made isomorphic across the five domains music, novel, jules, context, shared \u2014 or does the handler diversity force per-domain divergence? > **Answer.** Isomorphism survives at the *API surface* but five concrete strains require the\u2026",
+      "tags": [],
+      "title": "Research 05 \u2014 Per-domain isomorphism audit (2026-05-18)",
+      "views": {
+        "full": {
+          "byte_length": 9222,
+          "byte_offset": 0,
+          "token_estimate": 2372
+        },
+        "preview": {
+          "byte_length": 2923,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 402,
+          "byte_offset": 0,
+          "token_estimate": 95
+        }
+      }
+    },
+    {
+      "id": "plan:harness:_research:06-phase-2-through-8-forward-compat",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/_research/06-phase-2-through-8-forward-compat.md",
+      "sha256": "e88bc4b57788419c937fd42021f4aa74da6c07f7d21b4492de22a5148c411d6e",
+      "size_bytes": 9408,
+      "summary": "Research 06 \u2014 Phase 2-8 forward-compat audit (2026-05-18) - > **Question.** Does the harness design paint Phases 2-8 of Plan/000-v2 into a corner? Should L2's implementation be dropped, deferred, or kept in the first ship? > **Answer.** Design is forward-compatible. L2's **implementation** can be deferred to Phase 2 (post-design-tag); L2's **design** stays in the doc because Spec 022's real-boot\u2026",
+      "tags": [],
+      "title": "Research 06 \u2014 Phase 2-8 forward-compat audit (2026-05-18)",
+      "views": {
+        "full": {
+          "byte_length": 9408,
+          "byte_offset": 0,
+          "token_estimate": 2562
+        },
+        "preview": {
+          "byte_length": 2862,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 403,
+          "byte_offset": 0,
+          "token_estimate": 111
+        }
+      }
+    },
+    {
+      "id": "plan:harness:design",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/design.md",
+      "sha256": "05aa55a0b6993b5bfe9e80730a47bd1c67dfe823bbc5bb4328c8068b80ba3852",
+      "size_bytes": 67780,
+      "summary": "Harness in a Harness \u2014 Three-layer access ladder for the agency-system plugin - The `agency-system` plugin has one supported access path today: a fresh Claude Code session launched with `claude --plugin-dir /home/user/the-agency-system` (or, post-marketplace, an installed plugin). Three distinct audiences hit that single path as a wall:",
+      "tags": [
+        "slug:harness-in-harness",
+        "domain:agentic"
+      ],
+      "title": "Harness in a Harness \u2014 Three-layer access ladder for the agency-system plugin",
+      "views": {
+        "full": {
+          "byte_length": 67780,
+          "byte_offset": 0,
+          "token_estimate": 17415
+        },
+        "preview": {
+          "byte_length": 2644,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 340,
+          "byte_offset": 0,
+          "token_estimate": 71
+        }
+      }
+    },
+    {
+      "id": "plan:harness:restructure:spec",
+      "last_modified": "2026-05-19T06:29:54.518617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/restructure/spec.md",
+      "sha256": "420c1ff3674d4b6985c507d528cee069f961aaec8a82b7ab8972b200c76a402f",
+      "size_bytes": 22283,
+      "summary": "Restructure for native isomorphism \u2014 `domains/<name>/` tree with `Domain` base class - `Plan/harness/design.md` \u00a711.4 names Path B \u2014 the structural restructure that lifts uniformity from 6/10 (today) to 10/10 (native) by making **every domain conform to the same five-file, single-base-class interface**. The current codebase has three registration patterns, two tag conventions, manifest gaps on\u2026",
+      "tags": [
+        "slug:harness-restructure-domains",
+        "domain:agentic",
+        "kind:spec"
+      ],
+      "title": "Restructure for native isomorphism \u2014 `domains/<name>/` tree with `Domain` base class",
+      "views": {
+        "full": {
+          "byte_length": 22283,
+          "byte_offset": 0,
+          "token_estimate": 5528
+        },
+        "preview": {
+          "byte_length": 2880,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 404,
+          "byte_offset": 0,
+          "token_estimate": 97
+        }
+      }
+    },
+    {
+      "id": "plan:harness:vocabulary",
+      "last_modified": "2026-05-19T06:29:54.514617Z",
+      "mime": "text/markdown",
+      "path": "Plan/harness/VOCABULARY.md",
+      "sha256": "bb8e76045eb3d9dd88d58ea56b9cae843359dc6f5a23bcb22825a9bf3004e604",
+      "size_bytes": 22829,
+      "summary": "Harness Vocabulary \u2014 canonical naming & cross-reference index - This is the single-source-of-truth lexicon for the unified `agency-system` plugin. The harness design (`Plan/harness/design.md`) introduces the three architectural pillars (three layers, four-verb contract, five domains plus the agentic skill-only domain); this file extracts the terminology so every downstream document can reference\u2026",
+      "tags": [
+        "slug:harness-vocabulary",
+        "domain:agentic"
+      ],
+      "title": "Harness Vocabulary \u2014 canonical naming & cross-reference index",
+      "views": {
+        "full": {
+          "byte_length": 22829,
+          "byte_offset": 0,
+          "token_estimate": 6351
+        },
+        "preview": {
+          "byte_length": 2992,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 403,
+          "byte_offset": 0,
+          "token_estimate": 75
+        }
+      }
+    },
+    {
+      "id": "plan:jules-review-loop",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
+      "mime": "text/markdown",
+      "path": "Plan/JULES-REVIEW-LOOP.md",
+      "sha256": "9cd14ecfc6be98f4193c8500dfeae2a0fed244d0fd006c45e15f7a8d143b09e8",
+      "size_bytes": 35986,
+      "summary": "JULES-REVIEW-LOOP.md - > **Audience:** The orchestrator (a Claude Code session, human, or a wrapping script). NOT for Jules to consume directly. Jules's contract is `JULES_PROTOCOL.md`; this file describes how Jules is *invoked, watched, and reviewed* by something else.",
+      "tags": [],
+      "title": "JULES-REVIEW-LOOP.md",
+      "views": {
+        "full": {
+          "byte_length": 35986,
+          "byte_offset": 0,
+          "token_estimate": 8508
+        },
+        "preview": {
+          "byte_length": 3148,
+          "byte_offset": 0,
+          "token_estimate": 800
+        },
+        "summary": {
+          "byte_length": 270,
+          "byte_offset": 0,
+          "token_estimate": 71
+        }
+      }
+    },
+    {
       "id": "plan:jules_protocol",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/JULES_PROTOCOL.md",
-      "sha256": "a0baa5fbac4ce34d91b29042439dde4f3c618345f547625f536a5af26f0f72e9",
-      "size_bytes": 14140,
+      "sha256": "b81c4d9b3fbdf32fe0855bdcadc59264754f0136cf07f2d543f5530c036b805a",
+      "size_bytes": 16457,
       "summary": "JULES_PROTOCOL.md - > **Audience:** Jules (Google's asynchronous cloud coding agent) working on `the-agency-system`. This document is the contract. Every spec in `Plan/` defers to it.",
       "tags": [],
       "title": "JULES_PROTOCOL.md",
       "views": {
         "full": {
-          "byte_length": 14140,
+          "byte_length": 16457,
           "byte_offset": 0,
-          "token_estimate": 3418
+          "token_estimate": 3967
         },
         "preview": {
-          "byte_length": 3105,
+          "byte_length": 3103,
           "byte_offset": 0,
           "token_estimate": 800
         },
@@ -3664,8 +4497,260 @@
       }
     },
     {
+      "id": "plan:phase-0-foundation-cleanup:readme",
+      "last_modified": "2026-05-19T06:29:54.518617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-0-foundation-cleanup/README.md",
+      "sha256": "b366b3b6f9fcaeb757e4b5c807974aa2f5c5f0c77969d5b2d0ae33fc0f3ce396",
+      "size_bytes": 1986,
+      "summary": "Phase 0: Foundation cleanup - This phase focuses on clearing legacy artefacts and standardising the orchestrator foundations, unblocking Phase 1 of the agency system refactor. It composes two core specifications:",
+      "tags": [],
+      "title": "Phase 0: Foundation cleanup",
+      "views": {
+        "full": {
+          "byte_length": 1986,
+          "byte_offset": 0,
+          "token_estimate": 503
+        },
+        "preview": {
+          "byte_length": 1986,
+          "byte_offset": 0,
+          "token_estimate": 503
+        },
+        "summary": {
+          "byte_length": 212,
+          "byte_offset": 0,
+          "token_estimate": 41
+        }
+      }
+    },
+    {
+      "id": "plan:phase-1-anchor-triad-and-envelope:readme",
+      "last_modified": "2026-05-19T06:29:54.518617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-1-anchor-triad-and-envelope/README.md",
+      "sha256": "65ec80f22cde102312d51fe4454a1fc301c9648912c6553134e8dc7d300bdcc5",
+      "size_bytes": 1939,
+      "summary": "Phase 1: Anchor triad + envelope (cold-start) - This phase executes the critical path for token-efficiency in the agency system by migrating the plugin to a deferred-schema architecture. The scope encapsulates interdependent specs plus the harness substrate that supports them:",
+      "tags": [],
+      "title": "Phase 1: Anchor triad + envelope (cold-start)",
+      "views": {
+        "full": {
+          "byte_length": 1939,
+          "byte_offset": 0,
+          "token_estimate": 467
+        },
+        "preview": {
+          "byte_length": 1939,
+          "byte_offset": 0,
+          "token_estimate": 467
+        },
+        "summary": {
+          "byte_length": 277,
+          "byte_offset": 0,
+          "token_estimate": 53
+        }
+      }
+    },
+    {
+      "id": "plan:phase-2-hook-chain:readme",
+      "last_modified": "2026-05-19T06:29:54.518617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-2-hook-chain/README.md",
+      "sha256": "db45db9b0e09bdfdd10e07fe02362d046e8405ca30590c30f5dfd37efb6995dc",
+      "size_bytes": 2157,
+      "summary": "Phase 2 \u2014 Hook chain (PreToolUse + PostToolUse + UserPromptSubmit) - This phase implements a robust token-optimizer middleware layer using Claude Code's PreToolUse and PostToolUse hooks. The scope composes five discrete specifications that together ensure agent sessions remain within strict token budgets by aggressively compressing file reads, shell command outputs, and large tool results.",
+      "tags": [],
+      "title": "Phase 2 \u2014 Hook chain (PreToolUse + PostToolUse + UserPromptSubmit)",
+      "views": {
+        "full": {
+          "byte_length": 2157,
+          "byte_offset": 0,
+          "token_estimate": 537
+        },
+        "preview": {
+          "byte_length": 2157,
+          "byte_offset": 0,
+          "token_estimate": 537
+        },
+        "summary": {
+          "byte_length": 394,
+          "byte_offset": 0,
+          "token_estimate": 76
+        }
+      }
+    },
+    {
+      "id": "plan:phase-3-github-sink-wrapper:readme",
+      "last_modified": "2026-05-19T06:29:54.518617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-3-github-sink-wrapper/README.md",
+      "sha256": "60bdfc524264f2a45479087937b361310bb1fc5dbdd0281bd6177b9576d38709",
+      "size_bytes": 1718,
+      "summary": "Phase 3 \u2014 GitHub MCP summary wrappers - This phase encompasses Spec **106 (github-mcp-summary-wrappers)**, aimed at addressing the #1 token sink in the agency system: the `mcp__github__pull_request_read` tool (40-80k tokens per call).",
+      "tags": [],
+      "title": "Phase 3 \u2014 GitHub MCP summary wrappers",
+      "views": {
+        "full": {
+          "byte_length": 1718,
+          "byte_offset": 0,
+          "token_estimate": 412
+        },
+        "preview": {
+          "byte_length": 1718,
+          "byte_offset": 0,
+          "token_estimate": 412
+        },
+        "summary": {
+          "byte_length": 236,
+          "byte_offset": 0,
+          "token_estimate": 59
+        }
+      }
+    },
+    {
+      "id": "plan:phase-4-context-mode-path-b:readme",
+      "last_modified": "2026-05-19T06:29:54.522617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-4-context-mode-path-b/README.md",
+      "sha256": "3489bd64e058e28d03950dc7d5136ade32765ba234761bad28a0e454f57aaefe",
+      "size_bytes": 1793,
+      "summary": "Phase 4: Context Mode Path B \u2014 document manifest - This phase implements **Context Mode Path B** as defined in [Plan 000 \u2014 Master Overview](../000-overview.md) \u00a74. It solves the token-budget problem of reading large specifications, vendor documents, and lessons learned by moving them from eager inclusion to a deferred, searchable manifest pattern (mirroring the FastMCP CodeMode design). The\u2026",
+      "tags": [],
+      "title": "Phase 4: Context Mode Path B \u2014 document manifest",
+      "views": {
+        "full": {
+          "byte_length": 1793,
+          "byte_offset": 0,
+          "token_estimate": 429
+        },
+        "preview": {
+          "byte_length": 1793,
+          "byte_offset": 0,
+          "token_estimate": 429
+        },
+        "summary": {
+          "byte_length": 401,
+          "byte_offset": 0,
+          "token_estimate": 84
+        }
+      }
+    },
+    {
+      "id": "plan:phase-5-ontology-and-graph-wave-d:readme",
+      "last_modified": "2026-05-19T06:29:54.522617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-5-ontology-and-graph-wave-d/README.md",
+      "sha256": "6a567629f0d42bbce95e4416d145d4157f046fd8a8ca41ed9c52da7de15ba70d",
+      "size_bytes": 2031,
+      "summary": "Phase 5: Ontology + Graph (Wave D) - This phase implements **Context Mode Path B (content layer; see [Plan/harness/VOCABULARY.md](../harness/VOCABULARY.md) \u00a76.1)** from the agency-system architecture, introducing a unified, cross-domain semantic graph. It composes four critical specifications:",
+      "tags": [],
+      "title": "Phase 5: Ontology + Graph (Wave D)",
+      "views": {
+        "full": {
+          "byte_length": 2031,
+          "byte_offset": 0,
+          "token_estimate": 473
+        },
+        "preview": {
+          "byte_length": 2031,
+          "byte_offset": 0,
+          "token_estimate": 473
+        },
+        "summary": {
+          "byte_length": 295,
+          "byte_offset": 0,
+          "token_estimate": 74
+        }
+      }
+    },
+    {
+      "id": "plan:phase-6-quality-loop-compaction:readme",
+      "last_modified": "2026-05-19T06:29:54.522617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-6-quality-loop-compaction/README.md",
+      "sha256": "82ffcca0daefb380ecbe4ca55c48a0a22f6d694bb9c26e6a625e6b53bde16bb2",
+      "size_bytes": 1942,
+      "summary": "Phase 6: Quality / loop / compaction - This phase implements a self-healing context and quality-telemetry layer, composing **Specs 100, 118, 119, and 120**. It establishes a durable `session-log-mcp` server to track events across the orchestrator, and introduces fast-twitch (loop detection) and slow-twitch (aggregate quality score) signals to advise the model on its state.",
+      "tags": [],
+      "title": "Phase 6: Quality / loop / compaction",
+      "views": {
+        "full": {
+          "byte_length": 1942,
+          "byte_offset": 0,
+          "token_estimate": 453
+        },
+        "preview": {
+          "byte_length": 1942,
+          "byte_offset": 0,
+          "token_estimate": 453
+        },
+        "summary": {
+          "byte_length": 375,
+          "byte_offset": 0,
+          "token_estimate": 89
+        }
+      }
+    },
+    {
+      "id": "plan:phase-7-domain-handler-completion:readme",
+      "last_modified": "2026-05-19T06:29:54.526617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-7-domain-handler-completion/README.md",
+      "sha256": "82008cff42ea7a743c6be63a62f517400e3908c13a268c741afdf60d7d4741fc",
+      "size_bytes": 2105,
+      "summary": "Phase 7: Domain handler completion (music + novel + agentic) - This phase completes the feature surface across the five handler-bearing domains (`music`, `novel`, `jules`, `context`, `shared`) plus the `agentic` skill-only domain, per [Plan/harness/VOCABULARY.md](../harness/VOCABULARY.md) \u00a74 and the vision in [Plan/000-overview.md](../000-overview.md) \u00a74. Phase 7's *new work* lands in `novel` +\u2026",
+      "tags": [],
+      "title": "Phase 7: Domain handler completion (music + novel + agentic)",
+      "views": {
+        "full": {
+          "byte_length": 2105,
+          "byte_offset": 0,
+          "token_estimate": 503
+        },
+        "preview": {
+          "byte_length": 2105,
+          "byte_offset": 0,
+          "token_estimate": 503
+        },
+        "summary": {
+          "byte_length": 402,
+          "byte_offset": 0,
+          "token_estimate": 116
+        }
+      }
+    },
+    {
+      "id": "plan:phase-8-operational-hardening:readme",
+      "last_modified": "2026-05-19T06:29:54.526617Z",
+      "mime": "text/markdown",
+      "path": "Plan/phase-8-operational-hardening/README.md",
+      "sha256": "e41ce19dbff49fd60cac4eeac371778a87a0353e4b20bb5491e3962d3fd8ae8d",
+      "size_bytes": 1999,
+      "summary": "Phase 8 \u2014 Operational hardening - Phase 8 encompasses the operational hardening and cross-harness portability layer of the Agency-System unified plugin. This phase implements robust quality gates, architectural disciplines, and integration tests to ensure that the unified plugin is stable, easily extensible by non-authors, and portable to alternative agent harnesses.",
+      "tags": [],
+      "title": "Phase 8 \u2014 Operational hardening",
+      "views": {
+        "full": {
+          "byte_length": 1999,
+          "byte_offset": 0,
+          "token_estimate": 536
+        },
+        "preview": {
+          "byte_length": 1999,
+          "byte_offset": 0,
+          "token_estimate": 536
+        },
+        "summary": {
+          "byte_length": 371,
+          "byte_offset": 0,
+          "token_estimate": 69
+        }
+      }
+    },
+    {
       "id": "plan:sources",
-      "last_modified": "2026-05-18T16:55:33.251010Z",
+      "last_modified": "2026-05-19T06:29:54.490617Z",
       "mime": "text/markdown",
       "path": "Plan/SOURCES.md",
       "sha256": "243f0f417b31c15853bbdf66b4a914ef5ad7faea756731f05515403673484154",
@@ -3693,7 +4778,7 @@
     },
     {
       "id": "reference:jules-architecture",
-      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "text/markdown",
       "path": "reference/jules-architecture.md",
       "sha256": "b2dd8f754bc14a28b7d4d6633bb555eb82a11e6d8a63fd1a6279a5a3bffe79b0",
@@ -3723,7 +4808,7 @@
     },
     {
       "id": "reference:novel:dramatica:ontology",
-      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/ontology.json",
       "sha256": "456904954935d65b1537a14c3ba0d24d66a6045fd5af57081f4e716afbe50b6e",
@@ -3751,7 +4836,7 @@
     },
     {
       "id": "reference:novel:dramatica:ontology-schema",
-      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/ontology.schema.json",
       "sha256": "2607ac7fad84a4c4e81c53db42f014abe5cb1a3562bf9ea035b5f343069d9c8e",
@@ -3779,7 +4864,7 @@
     },
     {
       "id": "reference:novel:dramatica:scenarios",
-      "last_modified": "2026-05-18T16:55:33.351010Z",
+      "last_modified": "2026-05-19T06:29:54.606617Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/scenarios.json",
       "sha256": "6466756bb9aab4a6f3ebc060d5b4c6045ae01cbc000dd3b35ba5078fdc63d3b8",
@@ -3807,7 +4892,7 @@
     },
     {
       "id": "reference:novel:dramatica:scenarios-schema",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/scenarios.schema.json",
       "sha256": "47debea766091af2481f6faedd0f47dee06dd89bbf054dbdc94f4468ecbf524e",
@@ -3835,7 +4920,7 @@
     },
     {
       "id": "reference:novel:dramatica:term-frontmatter-schema",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/term-frontmatter.schema.json",
       "sha256": "0dd2f3639532d7a9f17c8793e688705ceb8290b143ae832c5df5b4bfb0c578d8",
@@ -3863,7 +4948,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:archetypes",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/archetypes.md",
       "sha256": "fe312f36b42cfb1b7e7df270ffc44f865646060d843139e124429f30fb40995e",
@@ -3891,7 +4976,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:character-appreciations",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/character-appreciations.md",
       "sha256": "5570ff78c057262c70b225e09a5140878f5068d7ef68d20739f5b5d64d02817c",
@@ -3919,7 +5004,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:character-dynamics",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/character-dynamics.md",
       "sha256": "7b8eafa351407869e0d64fc1f9bf416f8b3419c6fa4563efcfb14dd68d9e698e",
@@ -3947,7 +5032,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:classes",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/classes.md",
       "sha256": "91270096cf3431a8152e547aa3b32f72ffe9eb4e14b4dff95f15737d8c47a24d",
@@ -3975,7 +5060,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:domains",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/domains.md",
       "sha256": "0f3261cb5ebd59a800ab235e4fcf18f09af84078230cf3cfbeaec3a1cb15e992",
@@ -4003,7 +5088,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:dramatica-definitions",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/dramatica-definitions.md",
       "sha256": "e8ee08884c5724a1b08fa7b3fbb7a2bd12be3fd16457432cdb67ff53cd954d53",
@@ -4031,7 +5116,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:dramatica-fundamentals",
-      "last_modified": "2026-05-18T16:55:33.355011Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/dramatica-fundamentals.md",
       "sha256": "197ffdbd4013220b88b418be21e48b9592cc315df3715dd112bf311f5f2991a1",
@@ -4059,7 +5144,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:dramatica-terms",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/dramatica-terms.md",
       "sha256": "f68f83ce970a60dbb7e969e906fab9cd7b576f46eff167923556421ef28cdada",
@@ -4087,7 +5172,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:dynamic-pairs-index",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/dynamic-pairs-index.md",
       "sha256": "9d3e863dde607e76ac491929e5c53b17eb325c8e9c598c235b8605e4554e67bb",
@@ -4115,7 +5200,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:dynamic-terms",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/dynamic-terms.md",
       "sha256": "9aa8d8e5dc184ebc8348fc5c0ebad95df817af7581166216959a56237f2ada79",
@@ -4143,7 +5228,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:element-quads",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/element-quads.md",
       "sha256": "a74824616dcb7df9b896807cf7b7925bac019026347afb94701aa00645f36c6e",
@@ -4171,7 +5256,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:elements",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/elements.md",
       "sha256": "715545b3560e997ad8552a6d55980a8edf96989598c4ba5a1eca725cd2433cbf",
@@ -4199,7 +5284,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:encoding-patterns",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/encoding-patterns.md",
       "sha256": "ffd173b8f0ea7f325edb0284d537caecb89796cca5fe0aa5ec880bcd66378527",
@@ -4227,7 +5312,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:essential-questions",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.614617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/essential-questions.md",
       "sha256": "cbc8bf55f82ab12d29feb601e45d6603a9c592dce1a37c723b7bf9db2d69eb28",
@@ -4255,7 +5340,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:main-vs-impact-character",
-      "last_modified": "2026-05-18T16:55:33.359010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/main-vs-impact-character.md",
       "sha256": "b46149e5357e2b4e3301fddf2c7e5fcb3ec5769856af79c17a653825e7f6d985",
@@ -4283,7 +5368,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:overview-appreciations",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/overview-appreciations.md",
       "sha256": "7f83f0c8a5c52629e2a567b86edd7b980e8e332f3febaee4593ae2e35b45e19c",
@@ -4311,7 +5396,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:plot-dynamics",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/plot-dynamics.md",
       "sha256": "4bb4b12979f899e372c72007c992545d2b20cadd3f6a234c31a56e5bad58feb6",
@@ -4339,7 +5424,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:plot-structures",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/plot-structures.md",
       "sha256": "4c2e9299f33ce51cc8fc86b601520cd9425c48ffb859b3dcd5a5ee99fb8c5348",
@@ -4367,7 +5452,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:storyform-mechanics",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/storyform-mechanics.md",
       "sha256": "d5974e9656021dbf111ba80696bd69ae73aefeead359f5f3bdf5c7b58bf3f9ba",
@@ -4395,7 +5480,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:storytelling",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/storytelling.md",
       "sha256": "6990a215028daf7f78d988dfbfca8438f1da6ce8c31b2e0e82accc46920c499d",
@@ -4423,7 +5508,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:structural-terms",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/structural-terms.md",
       "sha256": "dfc27ebdcb08b5cfebde1a5b815cd5d7a36130a57451f7d39b8ea0758828afb3",
@@ -4451,7 +5536,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:types",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/types.md",
       "sha256": "4ea48363436ea0bd3d533a64e0c80fa83fe87ddf4251f7b55209609ac588a363",
@@ -4479,7 +5564,7 @@
     },
     {
       "id": "reference:novel:dramatica:terms:variations",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/dramatica/terms/variations.md",
       "sha256": "0b5e7a2500cfa3fa2c0050b327776d7d17981905215a9997bc351d76218bfb2f",
@@ -4507,7 +5592,7 @@
     },
     {
       "id": "reference:novel:dramatica:theory-chunk-schema",
-      "last_modified": "2026-05-18T16:55:33.363010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "application/json",
       "path": "reference/novel/dramatica/theory-chunk.schema.json",
       "sha256": "bc0e3a742261ce941090cfb715e904def6ece1b27ecbe495223849dca10f06fb",
@@ -4535,7 +5620,7 @@
     },
     {
       "id": "reference:novel:ncp:ncp-spec-v1-3-0",
-      "last_modified": "2026-05-18T16:55:33.367010Z",
+      "last_modified": "2026-05-19T06:29:54.622617Z",
       "mime": "text/markdown",
       "path": "reference/novel/ncp/ncp-spec-v1.3.0.md",
       "sha256": "42d7ef3e04f565ea530bcea33b04a521fcd4abadfdc56166efd05a937e68a3fc",
