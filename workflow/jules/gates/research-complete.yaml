@@ -1,0 +1,16 @@
+id: research-complete
+type: hard-blocking
+blocks_phase: "02"
+description: "Block synthesize phase until at least one Finding exists for the topic."
+evaluator:
+  kind: callable
+  module: workflow.jules.gates.research_complete
+  callable: evaluate
+on_success:
+  emit_edge:
+    type: SATISFIES_PHASE
+    from: "${session_id}"
+    to: "phase:jules/01"
+on_failure:
+  message: "No Finding nodes recorded for this topic yet — run research first."
+  fix_hint_tools: ["mcp__jules_query"]
