@@ -3,6 +3,8 @@ from pathlib import Path
 from fastmcp import FastMCP
 from agentic._harness.cell_loader import discover
 from agentic._harness.fastmcp_boot import register_four_verb_contract
+from context._hooks.pre_tool_use import validate_envelope_in
+from context._hooks.post_tool_use import ingest as ingest_envelope
 import sys
 import json
 
@@ -28,17 +30,22 @@ def boot() -> FastMCP:
     registry = discover()
     register_four_verb_contract(mcp, registry)
 
-    # Register all dynamically discovered tools with defer_schema=True
+    # Register all dynamically discovered tools with defer_schema=True.
+    # Bind t_name/t_func via default args to avoid late-binding closure capture.
     for t_name, t_func in registry.tools.items():
-        # FastMCP uses the function signature to build schemas or map args.
-        # By providing **kwargs and dynamically loading, we defer to the wrapper.
-        # We need to construct a wrapper that fastmcp accepts.
-        # But we also don't want strict validation on args in the boot loader since the schema is deferred
-
-        # To make FastMCP accept arbitrary args without validation failing at the edge,
-        # we accept **kwargs. FastMCP handles **kwargs by mapping JSON parameters to it.
-        def _wrapper(**kwargs) -> dict:
-            return t_func(**kwargs)
+        def _wrapper(*, _t_name=t_name, _t_func=t_func, **kwargs) -> dict:
+            pre = validate_envelope_in(_t_name, kwargs)
+            if not pre.get("ok", True):
+                envelope = {
+                    "ok": False,
+                    "data": {"error": {"code": "PRE_TOOL_USE_INVALID", "errors": pre.get("errors", [])}},
+                    "warnings": [],
+                    "next_suggested_tools": [],
+                }
+            else:
+                envelope = _t_func(**kwargs)
+            ingest_envelope(_t_name, envelope)
+            return envelope
 
         _wrapper.__name__ = t_name
         _wrapper.__doc__ = f"Deferred tool {t_name}"

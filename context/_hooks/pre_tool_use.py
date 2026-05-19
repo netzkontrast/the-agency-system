@@ -75,3 +75,7 @@ def validate(tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
          return _validate_manifest(path, content)
 
     return {"ok": True, "errors": []}
+
+
+# Spec 08 §3 alias used by the bootloader hook-wrapping pipeline.
+validate_envelope_in = validate

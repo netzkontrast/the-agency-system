@@ -3,6 +3,7 @@ from typing import Dict, Any, List
 import jinja2
 from pathlib import Path
 from workflow._runner.envelope import PhaseStateEnvelope, persist, hydrate, delete, sweep_ttl
+from context import Store
 
 def boot() -> None:
     sweep_ttl()
@@ -140,6 +141,9 @@ def _run_meta_scaffold(session_id: str, inputs: Dict[str, Any]) -> PhaseStateEnv
     template_dir = Path("workflow/meta/templates")
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=False)
 
+    g = Store()
+    g.boot()
+
     for col in ["agentic", "workflow", "context"]:
         out_dir = Path(f"{col}/{new_row}")
         out_dir.mkdir(parents=True, exist_ok=False)
@@ -150,6 +154,12 @@ def _run_meta_scaffold(session_id: str, inputs: Dict[str, Any]) -> PhaseStateEnv
         manifest_path = out_dir / "manifest.toml"
         manifest_path.write_text(rendered)
         created_cells.append(str(manifest_path))
+
+        g.upsert_node(
+            f"cell/{col}/{new_row}",
+            "Cell",
+            {"row": new_row, "column": col, "manifest_path": str(manifest_path)},
+        )
 
         if col == "agentic":
             (out_dir / "skills").mkdir()
@@ -166,6 +176,18 @@ def _run_meta_scaffold(session_id: str, inputs: Dict[str, Any]) -> PhaseStateEnv
             (out_dir / "schemas" / ".gitkeep").touch()
             (out_dir / "templates").mkdir()
             (out_dir / "templates" / ".gitkeep").touch()
+
+    g.upsert_node(
+        f"row/{new_row}",
+        "Row",
+        {"row": new_row, "scaffolded_by": session_id},
+    )
+    g.upsert_node(
+        f"phase/meta/02:{new_row}",
+        "Phase",
+        {"row": "meta", "phase_id": "02", "target_row": new_row},
+    )
+    g.upsert_edge("PRECEDES", "phase/meta/01", f"phase/meta/02:{new_row}", {})
 
     return {
         "status": "completed",
