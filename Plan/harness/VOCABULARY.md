@@ -104,13 +104,16 @@ under Harness Path B these would live under `domains/<name>/`):
 | `jules` | Jules async-coding orchestration | 6 | 1 + references in `skills/jules/` | low skill surface by design |
 | `context` | Context Mode Path B manifest & anchor triad | 2 | 0 (tool-only domain) | manifest schema in Phase 4 |
 | `shared` | cross-domain primitives (search, reference, config, session, skills, health) | 6 | 0 (tool-only domain) | also hosts the eager `agency_*` anchor triad |
-| `agentic` | meta-domain: skill-only, no handlers | 0 | ~30 skills in `skills/agentic/` | spec/plan/workflow/research/ralph/confidence skills + jules-orchestrator-discipline |
+| `agentic` | meta-domain: ships skills today; 32 handlers planned per Spec 016 (`Plan/016-agentic-handlers-and-skills/spec.md`, `status: ready`). When Spec 016 lands, `handlers/agentic/` joins the other five handler trees. | 0 today / 32 planned | ~30 skills in `skills/agentic/` | spec/plan/workflow/research/ralph/confidence skills + jules-orchestrator-discipline. See `Plan/decisions/0004-five-handler-domains.md` for the trajectory ADR. |
 
-**The "five domains" count refers to handler-bearing domains only.** The
-`agentic` domain is the **skill-only sixth domain**. Documents that talk
-about "all domains" should explicitly say either "five handler-bearing
-domains" or "five handler-bearing domains plus the agentic skill-only
-domain", depending on scope.
+**The "five domains" count refers to handler-bearing domains *on disk today*.** The
+`agentic` domain is the **sixth domain**: skill-shipping today, planned
+to gain 32 native handlers when Spec 016 (`Plan/016-agentic-handlers-and-skills/`,
+`status: ready`) lands. Documents that talk about "all domains" should
+explicitly say either "five handler-bearing domains" (current state) or
+"all six domains, with agentic gaining handlers per Spec 016" (planned
+state), depending on whether the claim is about now or post-Spec-016.
+The trajectory ADR is `Plan/decisions/0004-five-handler-domains.md`.
 
 ### 4.1 Three different "four / five" enumerations — disambiguate
 

@@ -112,15 +112,23 @@ def main():
 
             # --- Thread 6: merge adr_tags ---
             import yaml
+            fm_type = None
             if body_str.startswith("---"):
                 try:
                     parts = body_str.split("---", 2)
                     if len(parts) >= 3:
                         fm = yaml.safe_load(parts[1])
-                        if isinstance(fm, dict) and "adr_tags" in fm:
-                            for t in fm["adr_tags"]:
-                                if t not in tags:
-                                    tags.append(t)
+                        if isinstance(fm, dict):
+                            if "adr_tags" in fm:
+                                for t in fm["adr_tags"]:
+                                    if t not in tags:
+                                        tags.append(t)
+                            # --- Thread 11: emit kind:<type> from frontmatter type field ---
+                            fm_type = fm.get("type")
+                            if fm_type and isinstance(fm_type, str):
+                                kind_tag = f"kind:{fm_type}"
+                                if kind_tag not in tags:
+                                    tags.append(kind_tag)
                 except Exception:
                     pass
             # --------------------------------
