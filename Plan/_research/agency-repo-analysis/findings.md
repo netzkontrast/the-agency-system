@@ -457,7 +457,7 @@ Drafted as separate small PRs so each can be reviewed independently:
    - Adopt MADR 4.0.0 frontmatter + body shape verbatim from `/tmp/agency-research/decisions/0005-*.md`.
    - Add falsifier-trigger audit cadence.
    - Add T4-immutability + successor-amendment rule.
-   - Land `Plan/decisions/0001-deprecate-phase-specs-mirror.md` as the first ADR (records the §6.5 decision).
+   - The mirror-deprecation decision was applied directly (mirror tree removed) in lieu of seeding an ADR — Jules' implicit-ADR sweep covers the formalisation.
 
 3. **PR C — Spec 138 (frustration-log) update** (~30 min):
    - Add §1 8-category root-cause taxonomy.
