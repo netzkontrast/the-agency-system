@@ -1,0 +1,313 @@
+- alias: review-A-critical
+  title: "review(A): critical review of PR #133 (agency-base design + 8 ADRs)"
+  branch: claude/agency-system-refactor-wSuD3
+  prompt: |
+    You are an independent reviewer for PR #133 on netzkontrast/the-agency-system.
+    The PR adds a design spec + 8 seed ADRs that compress a large planning artifact.
+    Your job: produce a deeply evidence-rooted critical review.
+
+    ## Files to review (READ ONLY — do not modify)
+    - docs/superpowers/specs/2026-05-19-agency-base-design.md
+    - Plan/decisions/0001-…0008-*.md (8 ADR files)
+    - docs/superpowers/specs/_drafts/agency-skill-prototype.md
+    - docs/superpowers/specs/_drafts/agency-routing-prototype.md
+    - docs/superpowers/specs/_drafts/2026-05-19-agency-base-canvas.md
+    - Plan/harness/VOCABULARY.md  (canon — used to test claim of isomorphism)
+    - CLAUDE.md  (project rules)
+
+    ## What the PR proposes (briefly)
+    A "5+1" domain model: shared / agentic / music / novel / jules / context, with
+    one central /agency routing skill, one codemode MCP, ToolResult envelope,
+    manifest-as-SoT, Wave D ontology graph, meta-loop (lessons + ADRs + briefs +
+    sessions + friction-log).
+
+    ## New framing from the human (post-PR — your review MUST address this)
+    The human now proposes collapsing 5+1 to THREE domains:
+      - `agentic`   = agent infrastructure (Jules + MCP + skills + harness-in-harness)
+      - `workflows` = creative pipelines (music, novel, future verticals)
+      - `context`   = knowledge substrate (graph + frontmatter + search + pandoc + templates + schemas)
+    Question your review must answer with evidence: does the PR's 5+1 survive
+    this triad, or is the triad strictly more isomorphic? Apply pressure to
+    both sides — steelman 5+1 before concluding triad wins (or vice versa).
+
+    ## Claims to verify (evidence-rooted)
+    For EACH of these, find supporting evidence or refute. Cite file:line, URL,
+    or pasted command output.
+
+    1. ADR-0007 "150K → 2K tokens (~98%) via Code Mode" — find the FastMCP
+       benchmark or source for this number. Clone fastmcp (below) and grep.
+       Source: https://gofastmcp.com/servers/transforms/code-mode
+
+    2. ADR-0001 "≤6000 token cold-load floor" — count actual tokens in
+       _drafts/agency-skill-prototype.md + the 5 references it lists. Use
+       `python3 -c "import tiktoken; ..."` or wc-based heuristic. Report real.
+
+    3. ADR-0008 "GraphQLite Cypher" — verify the library exists, supports
+       MATCH/RETURN over a SQLite file, and has the PostToolUse-ingest pattern
+       working anywhere public. Cite a repo or fail the claim.
+
+    4. ADR-0004 "6 eager tools fit ≤2KB cold tools/list" — compute. The 6
+       eager tool definitions are in the spec; estimate JSON serialization size.
+
+    5. ADR-0006 frontmatter canon (14 L1 fields) — sample 5 existing Plan/
+       frontmatter blocks and check coverage. Any field unused? Missing?
+
+    6. The 5+1 domain count — `ls` the actual handler trees in jules-plugin/
+       and the bitwize-music plugin. Prior audit noted: novel has 56 handlers
+       and ZERO manifest entries ("phantom domain") — verify.
+
+    7. The Atlassian "mcp-compressor" anchor-triad pattern cited in spec §4 +
+       ADR-0004 — find the upstream blog/repo. The pattern is 3 eager tools;
+       PR ships 6. Is the doubling justified?
+
+    8. Cross-ADR conflicts the PR flags in §16 (prefers_codemode placement;
+       envelope archive inside Code Mode sandbox; 6-eager-tools vs <500-token
+       boot budget) — verify they are real and severe, or refute.
+
+    ## Source repos to clone (read-only, ~/work/vendor/)
+    git clone --depth=1 --branch=claude/agency-plugin-refactor-PgMQ4 \
+      https://github.com/netzkontrast/agency.git ~/work/vendor/agency
+    git clone --depth=1 https://github.com/jlowin/fastmcp.git ~/work/vendor/fastmcp
+    git clone --depth=1 --branch=v0.91.0 \
+      https://github.com/bitwize-music-studio/claude-ai-music-skills.git \
+      ~/work/vendor/bitwize-music
+
+    ## Output (write these ONLY — affects allow-list)
+
+    `Plan/_reviews/session-A-critical/REVIEW.md`:
+      - frontmatter (slug, type: review, status: ready, owner: jules, created, summary)
+      - ## Verdict — top-line P0/P1/P2 ranked headlines
+      - ## Findings — one section per numbered claim above:
+          claim → evidence (paste blocks ok) → verdict (CONFIRMED/REFUTED/PARTIAL) → impact
+      - ## Cross-cutting concerns — issues spanning multiple ADRs
+      - ## On the triad — explicit verdict: triad vs 5+1, with strongest argument both ways
+      - ## Hard-reject recommendations — ≤3, each with proposed alternative
+
+    `Plan/_reviews/session-A-critical/EVIDENCE.md` (optional, for long paste-blocks).
+
+    ## Discipline (Plan/JULES_PROTOCOL.md applies)
+    - Gate-1 confidence ≥0.90; cite rg/grep commands.
+    - ## Evidence section in PR body with command output.
+    - ## Self-Review at end (drift / residual risk / pattern-next-time).
+    - `affects:` allow-list = `Plan/_reviews/session-A-critical/*` only.
+    - Spec: this brief (Plan/_jules-briefs/dispatch.yaml entry A).
+
+    Publish your work via the standard flow.
+
+- alias: review-B-improvements
+  title: "review(B): improvement ideas — leaner & more isomorphic core"
+  branch: claude/agency-system-refactor-wSuD3
+  prompt: |
+    You are an independent improvement-proposer for PR #133 on
+    netzkontrast/the-agency-system. The PR adds a design spec + 8 seed ADRs.
+    Your job: generate NEW IDEAS that make the core leaner and more isomorphic.
+
+    ## Files to read (READ ONLY — do not modify)
+    - docs/superpowers/specs/2026-05-19-agency-base-design.md
+    - Plan/decisions/0001-…0008-*.md (8 ADRs)
+    - docs/superpowers/specs/_drafts/agency-*-prototype.md
+    - Plan/harness/VOCABULARY.md (canon — improvements must heal asymmetries)
+    - CLAUDE.md
+    - The two existing plugins (bitwize-music, jules-plugin) for ground truth on
+      domain shape and skill body size.
+
+    ## Human-stated triad (your starting point)
+    The human proposes collapsing the PR's 5+1 to THREE domains:
+      - `agentic`   = agent infrastructure (Jules + MCP + skills + harness-in-harness)
+      - `workflows` = creative pipelines (music, novel)
+      - `context`   = knowledge substrate (graph + frontmatter + search + pandoc + templates + schemas)
+    This triad is the FLOOR of how seriously you should reduce. You may
+    propose further collapse, refinement, or alternates — but argue against
+    the triad explicitly if you do.
+
+    ## Investigative lines (open-ended; pursue what's promising)
+    1. Could 6 eager tools collapse to 3 (one per triad domain)?
+    2. Could the 8 ADRs collapse to ≤4? Which carry their weight, which don't?
+    3. Could the meta-loop (lessons + ADRs + briefs + sessions + friction-log)
+       collapse to one or two artefact types with a `kind:` discriminator?
+    4. Could the graph and the manifest be the same artefact (manifest IS a
+       projected graph view)?
+    5. Could codemode opt-in become opt-out, with a sandbox-internal
+       envelope-archive interceptor?
+    6. Could `prefers_codemode` flag disappear (inferred from skill body size
+       + tool count)?
+    7. Could the central /agency SKILL.md BE the agentic-domain MCP server
+       entry-point (not a separate file)?
+    8. What does `netzkontrast/agency` (inspiration repo) do that the PR doesn't,
+       and that we should adopt? What's overkill and should be rejected?
+
+    ## Source repos to clone (read-only)
+    git clone --depth=1 --branch=claude/agency-plugin-refactor-PgMQ4 \
+      https://github.com/netzkontrast/agency.git ~/work/vendor/agency
+    git clone --depth=1 https://github.com/jlowin/fastmcp.git ~/work/vendor/fastmcp
+    git clone --depth=1 https://github.com/obra/superpowers-marketplace.git \
+      ~/work/vendor/superpowers
+
+    ## Output (write this ONLY — affects allow-list)
+
+    `Plan/_reviews/session-B-improvements/IDEAS.md`:
+      - frontmatter (slug, type: improvements, status: ready, owner: jules,
+        created, summary)
+      - ## Triad analysis — argue for (agentic / workflows / context) vs the
+        PR's 5+1. Steelman the loser before concluding.
+      - ## Top 5 ideas (ranked by impact/cost ratio):
+          each has PITCH (one paragraph), IMPACT (lines/tokens saved + isomorphism
+          gain), RISK, COST.
+      - ## Long tail — 10–20 more ideas, one-liners.
+      - ## Should-kill — parts of the PR's design to remove entirely.
+      - ## Inspiration mining — what to steal from netzkontrast/agency, what to
+        explicitly REJECT.
+
+    ## Discipline (Plan/JULES_PROTOCOL.md applies)
+    - Gate-1 confidence ≥0.90; cite rg/grep/URL.
+    - ## Evidence + ## Self-Review in PR body.
+    - `affects:` allow-list = `Plan/_reviews/session-B-improvements/*` only.
+
+    Publish your work via the standard flow.
+
+- alias: review-C-from-scratch
+  title: "review(C): from-scratch core conception (triad + Gherkin)"
+  branch: claude/agency-system-refactor-wSuD3
+  prompt: |
+    You are an independent designer. Your job: develop a NEW conception of the
+    agency-system Core, INDEPENDENT of the existing PR #133. Use the human's
+    triad as your floor, and 12 Gherkin scenarios as your acceptance contract.
+
+    ## QUARANTINE — DO NOT READ THESE FILES (your value to the human is independence)
+    - docs/superpowers/specs/2026-05-19-agency-base-design.md  (PR's design)
+    - Plan/decisions/0001-…0008-*.md                            (PR's ADRs)
+    - docs/superpowers/specs/_drafts/agency-*-prototype.md     (PR's prototypes)
+    - docs/superpowers/specs/_drafts/2026-05-19-agency-base-canvas.md (PR's canvas)
+    If you accidentally open these, close them immediately.
+
+    ## DO read these (canon + inputs)
+    - Plan/harness/VOCABULARY.md  — canonical glossary; reuse terms or justify
+      deviation in DIVERGENCE.md.
+    - CLAUDE.md  — project rules.
+    - Plan/JULES_PROTOCOL.md  — your discipline contract.
+    - jules-plugin/skills/jules/SKILL.md  — the only existing skill; shape reference.
+    - The bitwize-music plugin source (cloned per below) — for domain shape only.
+
+    ## Human-stated triad (FLOOR — your design MUST be built on this)
+    Three domains:
+      - `agentic`   = agent infrastructure (Jules + MCP + skills + harness-in-harness)
+      - `workflows` = creative pipelines (music, novel, future verticals)
+      - `context`   = knowledge substrate (graph + frontmatter + search + pandoc + templates + schemas)
+    You MAY sub-divide a domain (e.g. workflows/music, workflows/novel) but
+    you MUST NOT add a fourth top-level domain without an explicit argument
+    documented in DIVERGENCE.md.
+
+    ## Acceptance contract — 12 Gherkin scenarios your design MUST pass
+    Feature: Core agency-system base
+
+      Scenario: Session-start routing
+        Given a fresh Claude Code session
+        When the session loads the agency-system plugin
+        Then a routing surface is available within the documented cold-load budget
+        And the routing surface explains the workflow
+
+      Scenario: What-next query
+        Given the user asks "what should I do next?"
+        When the routing surface processes the intent
+        Then candidates are returned ranked by graph adjacency, not substring match
+
+      Scenario: New domain plug-in
+        Given a developer adds a new workflow domain "podcast"
+        When they create `domains/workflows/podcast/manifest.toml` and the skills/handlers folder
+        Then no base file is modified
+        And the central MCP picks up the new tools on next boot
+        And the central routing skill picks up the new skills automatically
+
+      Scenario: Typed envelope
+        Given a tool returns a result
+        When the wire payload is inspected
+        Then it matches the ToolResult schema (ok, data, warnings, archived_to, next_suggested_tools, error)
+
+      Scenario: Cross-domain reference via graph
+        Given a workflow skill cites a context node in its frontmatter
+        When the graph is queried for skills adjacent to that context node
+        Then the workflow skill appears in the result
+
+      Scenario: Code-mode delegation
+        Given a skill frontmatter declares code-mode preference
+        When the skill is dispatched
+        Then the central MCP renders tools in code-mode for that skill's call surface
+        And an envelope-archive interceptor applies inside the sandbox
+
+      Scenario: Frontmatter pre-write gate
+        Given a skill writes a markdown file with frontmatter
+        When the PreToolUse hook fires
+        Then the frontmatter is schema-validated against the appropriate kind
+        And invalid frontmatter blocks the write
+
+      Scenario: Graph auto-ingest
+        Given a new markdown file with frontmatter lands on disk
+        When the PostToolUse hook fires
+        Then the graph store is updated with the new node and edges
+        And no manual rebuild is required
+
+      Scenario: Lesson-learned link-back
+        Given a skill execution produces a lesson
+        When the lesson is written
+        Then its frontmatter cites the originating spec
+        And the graph records a lesson→spec edge
+
+      Scenario: Harness-in-harness (recursive orchestration)
+        Given a domain (e.g. agentic/jules) orchestrates other domains
+        When its handler dispatches into a workflow domain
+        Then the handler uses the SAME four-verb contract as a leaf domain
+        And the graph records the cross-domain dispatch edge
+
+      Scenario: Cold-boot budget
+        Given a fresh session loads the plugin
+        When token-usage is measured by a documented method
+        Then the cold-boot total is below a documented numeric budget
+        And the budget is enforced by a CI check
+
+      Scenario: Pandoc render
+        Given a context node with frontmatter and body
+        When the user invokes `pandoc render <node>`
+        Then the node is rendered to all output formats declared in its frontmatter
+        And the output paths are recorded in the graph
+
+    ## Source repos to clone (read-only)
+    git clone --depth=1 --branch=claude/agency-plugin-refactor-PgMQ4 \
+      https://github.com/netzkontrast/agency.git ~/work/vendor/agency
+    git clone --depth=1 https://github.com/jlowin/fastmcp.git ~/work/vendor/fastmcp
+    git clone --depth=1 --branch=v0.91.0 \
+      https://github.com/bitwize-music-studio/claude-ai-music-skills.git \
+      ~/work/vendor/bitwize-music
+
+    ## Output (write these 5 files ONLY — affects allow-list)
+
+    1. `Plan/_reviews/session-C-from-scratch/CORE.md` (≤300 lines)
+       - The core conception under the triad: four-verb contract, central
+         routing skill, codemode MCP, ToolResult envelope, graph, manifest.
+       - One ASCII diagram of the triad + their interfaces.
+
+    2. `Plan/_reviews/session-C-from-scratch/DOMAIN-EXAMPLES.md` (≤150 lines)
+       - Sketch `workflows/music` and `workflows/novel` under your design.
+       - Show how their handlers / skills / manifests fit. No code, just shape.
+
+    3. `Plan/_reviews/session-C-from-scratch/GRAPH.md` (≤150 lines)
+       - How the graph connects domains.
+       - One Cypher example: "skills in workflows adjacent to a context-template".
+       - One Graphviz/ASCII visualization of a cross-domain query.
+       - Explicitly address harness-in-harness: how recursion appears as edges.
+
+    4. `Plan/_reviews/session-C-from-scratch/GHERKIN.md` (≤200 lines)
+       - The 12 scenarios above, but each refined with concrete expected outputs
+         (exact file paths, exact envelope values, exact graph edge types).
+       - At least one Scenario per feature listed.
+
+    5. `Plan/_reviews/session-C-from-scratch/DIVERGENCE.md` (≤100 lines)
+       - For every term you used that differs from Plan/harness/VOCABULARY.md,
+         note: old term → new term + one-sentence rationale.
+       - Includes structural divergences (e.g. "I removed 'shared' because…").
+
+    ## Discipline (Plan/JULES_PROTOCOL.md applies)
+    - Gate-1 confidence ≥0.90; cite VOCABULARY § or source-repo file:line.
+    - ## Evidence + ## Self-Review in PR body.
+    - `affects:` allow-list = `Plan/_reviews/session-C-from-scratch/*` only.
+
+    Publish your work via the standard flow.
