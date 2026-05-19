@@ -39,23 +39,19 @@ implements_for_jules:
 
 ## Purpose
 
-This spec defines the implementation contract for the **context column
-base layer** at `context/` (repo root, NOT under `vision/`). It is the
-target a Jules session executes to build the context column's
-infrastructure: the SQLite ontology store, the Pre/PostToolUse hook
-callables, and the cross-cutting JSON Schemas in `_shared/schemas/`.
+Implementation contract for the **context column base layer** at
+`context/` (repo root, NOT under `vision/`). A Jules session reads
+this spec and builds: the SQLite ontology store, the Pre/PostToolUse
+hook callables, and the cross-cutting JSON Schemas in
+`_shared/schemas/` that the agentic and workflow base layers import
+by path. Schemas live in exactly one canonical place. Anyone needing
+isomorphism reads from there. Row-specific cells (`context/<row>/`)
+do not land in this PR — the base layer must boot with zero rows.
 
-The context column owns the schemas the rest of the matrix validates
-against. Agentic and workflow base layers (specs 06 and 07) **import**
-these schemas by path — they do NOT redefine them. This is the
-resolution to the Phase 3 schema-locality friction: schemas live in
-exactly one canonical place; anyone needing isomorphism reads from
-there.
-
-This spec also resolves Phase 3 **Context Q2** (hook execution layer):
-hooks are exposed as plain Python callables in `context._hooks`. The
-agentic harness applies them as decorators during tool registration —
-the context column ships the logic, not the wiring.
+Resolves Phase 3 **Context Q2** (hook execution layer): hooks are
+plain Python callables in `context._hooks`. The agentic harness
+applies them as decorators during tool registration; this column
+ships logic, not wiring.
 
 ## Folder layout
 
@@ -81,10 +77,6 @@ context/
         └── gate.schema.json            (from spec 05)
 ```
 
-Row-specific cells (`context/<row>/`) do NOT land in this PR — they
-arrive through the meta-row pipeline. This base layer must boot with
-zero rows present.
-
 ## Functional requirements
 
 ### 1. SQLite ontology store
@@ -103,11 +95,11 @@ class Store:
 ```
 
 - Default `db_path` resolves to `context/_store/ontology.db`.
-- `boot()` is idempotent: applies `schema.sql` if the file is new.
+- `boot()` is idempotent; applies `schema.sql` if file is new.
 - `upsert_node` uses `INSERT ... ON CONFLICT(id) DO UPDATE SET payload = excluded.payload, updated_at = ?`.
-- `upsert_edge` upserts on `(type, from_node, to_node)` and returns the row id.
-- `log_tool_call` is append-only; provenance must never be mutated.
-- All writes are wrapped in a single SQLite transaction per call.
+- `upsert_edge` upserts on `(type, from_node, to_node)`; returns row id.
+- `log_tool_call` is append-only; provenance never mutates.
+- Each call wraps a single SQLite transaction.
 
 ### 2. Cypher-compatible query subset
 
@@ -117,21 +109,18 @@ class Store:
 def translate(cypher: str, params: dict | None = None) -> tuple[str, list]: ...
 ```
 
-Returns a parameterized SQL string and its positional argument list.
-The `Store.query` method calls this then executes against `nodes` /
-`edges`.
-
-Supported dialect (initial slice — additions land in follow-up PRs):
+Returns parameterized SQL + positional args. `Store.query` calls it
+and executes against `nodes` / `edges`. Supported dialect:
 
 - `MATCH (n:NodeType) RETURN n`
 - `MATCH (n:NodeType {prop: $val}) RETURN n`
 - `MATCH (a)-[:EDGE_TYPE]->(b) RETURN a, b`
-- `MATCH (a:NodeTypeA {prop: $val})-[:EDGE_TYPE]->(b:NodeTypeB) RETURN a, b`
+- `MATCH (a:A {prop: $val})-[:EDGE_TYPE]->(b:B) RETURN a, b`
 - `LIMIT N` clause appended to any of the above.
 
-**Out of scope:** variable-length paths (`*1..3`), `WHERE` clauses,
-aggregation (`count`, `collect`), `WITH`, `OPTIONAL MATCH`, edge
-payload filters, multi-hop chains beyond a single `(a)-[:E]->(b)`.
+**Out of scope:** variable-length paths, `WHERE`, aggregation, `WITH`,
+`OPTIONAL MATCH`, edge-payload filters, multi-hop chains beyond a
+single `(a)-[:E]->(b)`.
 
 ### 3. PreToolUse hook
 
@@ -142,24 +131,19 @@ def validate(tool_name: str, args: dict) -> dict:
     """Return {ok: bool, errors: list[str]}."""
 ```
 
-Behavior:
-
-- If `tool_name` matches `mcp__*_write_*` AND `args` contains a `path`
-  that ends in `manifest.toml`, dispatch on the path prefix:
-  `agentic/` → `agentic-cell.schema.json`, `workflow/` →
-  `workflow-cell.schema.json`, `context/` → `context-cell.schema.json`.
-  Parse the TOML, validate, accumulate errors.
-- If `args` contains a `path` ending in `.gate.yaml` or matching
+- If `tool_name` matches `mcp__*_write_*` AND `args.path` ends in
+  `manifest.toml`: dispatch on path prefix (`agentic/` →
+  `agentic-cell.schema.json`, `workflow/` → `workflow-cell.schema.json`,
+  `context/` → `context-cell.schema.json`). Parse TOML, validate.
+- If `args.path` ends in `.gate.yaml` or matches
   `workflow/*/gates/*.yaml`, validate against `gate.schema.json`.
-- If `args` contains a `path` ending in `.md` AND `args.content`
-  starts with `---`, parse the YAML frontmatter and validate it
-  against the frontmatter schema selected by `frontmatter.type`.
-  Frontmatter schemas live alongside their owning cell; the base layer
-  ships the universal shape only (slug/type/status/owner/created/
-  updated/summary/affects). Row-specific frontmatter validation
-  attaches once `context/<row>/` lands.
-- Return `{ok: True, errors: []}` for any tool the hook does not
-  recognise — silence is non-blocking.
+- If `args.path` ends in `.md` AND `args.content` starts with `---`,
+  parse YAML frontmatter and validate against the frontmatter schema
+  selected by `frontmatter.type`. Base layer ships only the universal
+  shape (slug/type/status/owner/created/updated/summary/affects);
+  row-specific frontmatter validation attaches later.
+- Unknown tools: return `{ok: True, errors: []}` (silence is
+  non-blocking).
 
 ### 4. PostToolUse hook
 
@@ -169,17 +153,15 @@ Behavior:
 def ingest(tool_name: str, envelope: dict) -> None: ...
 ```
 
-Behavior:
-
-1. Log the envelope to `tools_call_log` regardless of `ok` value.
+1. Log envelope to `tools_call_log` regardless of `ok` value.
    Provenance is unconditional.
 2. If `envelope.ok is False`, return.
-3. If `envelope.data.artefact_ref` is present, read the sidecar JSON
-   from that path. Validate against `sidecar.schema.json`. Upsert a
-   node `(<row>/Artefact/<sha256>, type="Artefact", payload=sidecar)`.
-4. For each entry in `sidecar.derived_from`, upsert an edge
-   `(DERIVED_FROM, artefact_node, derived_from_entry)`.
-5. If `sidecar.satisfies_phase` is set, upsert an edge
+3. If `envelope.data.artefact_ref` present: read sidecar JSON,
+   validate against `sidecar.schema.json`, upsert node
+   `(<row>/Artefact/<sha256>, type="Artefact", payload=sidecar)`.
+4. For each entry in `sidecar.derived_from`, upsert edge
+   `(DERIVED_FROM, artefact_node, entry)`.
+5. If `sidecar.satisfies_phase` set, upsert edge
    `(SATISFIES_PHASE, artefact_node, phase:<row>/<phase_id>)`.
 6. If `envelope.data.emitted_edges` is a list (spec 05), upsert each
    edge as-typed. This is the workflow-runner-driven path.
@@ -188,19 +170,17 @@ Behavior:
 ### 5. Hook execution layer (Context Q2 resolved)
 
 Default execution model: **Python decorators applied by the agentic
-harness during tool registration**. The agentic harness imports
+harness during tool registration.** Agentic imports
 `context._hooks.pre_tool_use.validate` and
 `context._hooks.post_tool_use.ingest` and wraps each registered
-FastMCP tool. The context column ships only the callables — wiring
-is owned by agentic (spec 06).
-
-MCP-native middleware is deferred. If FastMCP gains middleware support
-the same callables will move there with no signature change.
+FastMCP tool. The context column ships only the callables; wiring is
+owned by agentic (spec 06). MCP-native middleware is deferred; the
+same callables move there with no signature change if FastMCP later
+exposes middleware.
 
 ### 6. Schemas exported
 
-All six JSON Schemas land as files in `_shared/schemas/`. Each is the
-canonical instance derived verbatim from its source spec:
+All six JSON Schemas land verbatim from their source specs:
 
 | File | Source | `$id` |
 |---|---|---|
@@ -211,8 +191,8 @@ canonical instance derived verbatim from its source spec:
 | `sidecar.schema.json` | spec 03 | `tag:agency-system.local,2026:schema:shared/sidecar` |
 | `gate.schema.json` | spec 05 | `tag:agency-system.local,2026:schema:shared/gate` |
 
-Schemas are public — any column reads them by path. There is no
-in-memory schema registry; readers re-load from disk on cold boot.
+Schemas are public — any column reads them by path. No in-memory
+schema registry; readers re-load from disk on cold boot.
 
 ## SQL schema
 
@@ -221,8 +201,6 @@ Full contents of `context/_store/schema.sql`:
 ```sql
 -- context/_store/schema.sql
 -- Ontology + provenance store for the 3xN matrix.
--- Idempotent: every CREATE uses IF NOT EXISTS.
-
 PRAGMA journal_mode = WAL;
 PRAGMA foreign_keys = ON;
 
@@ -233,7 +211,6 @@ CREATE TABLE IF NOT EXISTS nodes (
     created_at  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
     updated_at  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
 );
-
 CREATE INDEX IF NOT EXISTS idx_nodes_type ON nodes(type);
 
 CREATE TABLE IF NOT EXISTS edges (
@@ -245,7 +222,6 @@ CREATE TABLE IF NOT EXISTS edges (
     created_at  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
     UNIQUE(type, from_node, to_node)
 );
-
 CREATE INDEX IF NOT EXISTS idx_edges_type      ON edges(type);
 CREATE INDEX IF NOT EXISTS idx_edges_from_node ON edges(from_node);
 CREATE INDEX IF NOT EXISTS idx_edges_to_node   ON edges(to_node);
@@ -256,25 +232,20 @@ CREATE TABLE IF NOT EXISTS tools_call_log (
     envelope    JSON NOT NULL,
     called_at   TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
 );
-
 CREATE INDEX IF NOT EXISTS idx_tools_call_log_tool ON tools_call_log(tool);
 ```
 
 Foreign keys are NOT declared on `edges.from_node` / `to_node`. The
-graph must accept forward references — an edge can land before the
-node it points at exists. The PostToolUse ingest order does not
-guarantee node-before-edge.
+graph accepts forward references — an edge can land before the node
+it points at exists.
 
 ## Cypher subset
 
-Each example shows the Cypher input and the SQL the adapter emits.
-
-**Single label:**
+**Single label + LIMIT:**
 
 ```cypher
 MATCH (n:Artefact) RETURN n LIMIT 5
 ```
-
 ```sql
 SELECT id, type, payload FROM nodes WHERE type = ? LIMIT ?;
 -- params: ["Artefact", 5]
@@ -285,7 +256,6 @@ SELECT id, type, payload FROM nodes WHERE type = ? LIMIT ?;
 ```cypher
 MATCH (n:Phase {name: $name}) RETURN n
 ```
-
 ```sql
 SELECT id, type, payload FROM nodes
 WHERE type = ? AND json_extract(payload, '$.name') = ?;
@@ -297,11 +267,9 @@ WHERE type = ? AND json_extract(payload, '$.name') = ?;
 ```cypher
 MATCH (a:Artefact)-[:DERIVED_FROM]->(b) RETURN a, b
 ```
-
 ```sql
-SELECT
-  a.id AS a_id, a.type AS a_type, a.payload AS a_payload,
-  b.id AS b_id, b.type AS b_type, b.payload AS b_payload
+SELECT a.id AS a_id, a.type AS a_type, a.payload AS a_payload,
+       b.id AS b_id, b.type AS b_type, b.payload AS b_payload
 FROM edges e
 JOIN nodes a ON a.id = e.from_node
 JOIN nodes b ON b.id = e.to_node
@@ -309,51 +277,33 @@ WHERE e.type = ? AND a.type = ?;
 -- params: ["DERIVED_FROM", "Artefact"]
 ```
 
-**Typed both ends:**
-
-```cypher
-MATCH (a:Artefact {sha256: $hash})-[:SATISFIES_PHASE]->(b:Phase) RETURN a, b
-```
-
-```sql
-SELECT
-  a.id AS a_id, a.type AS a_type, a.payload AS a_payload,
-  b.id AS b_id, b.type AS b_type, b.payload AS b_payload
-FROM edges e
-JOIN nodes a ON a.id = e.from_node
-JOIN nodes b ON b.id = e.to_node
-WHERE e.type = ? AND a.type = ? AND b.type = ?
-  AND json_extract(a.payload, '$.sha256') = ?;
--- params: ["SATISFIES_PHASE", "Artefact", "Phase", <hash>]
-```
-
-Rows return as `list[dict]`. Multi-node rows expose `n_id`,
-`n_type`, `n_payload` per matched binding name (`a_*`, `b_*`).
+Rows return as `list[dict]`. Multi-node rows expose `<name>_id`,
+`<name>_type`, `<name>_payload` per binding (`a_*`, `b_*`).
 
 ## Worked example
 
 Cold boot, no rows present:
 
 1. Process imports `context._store.sqlite.Store`. `Store().boot()`
-   creates `context/_store/ontology.db` with the three tables.
+   creates `context/_store/ontology.db` with three tables.
 2. The agentic harness imports `context._hooks` and decorates a
    synthetic tool `mcp__test_write_manifest`.
 3. The harness invokes the tool with
    `args = {"path": "agentic/test/manifest.toml", "content": "<toml>"}`.
-   PreToolUse fires first. The hook detects the `manifest.toml`
-   filename + `agentic/` prefix, validates against
-   `agentic-cell.schema.json`. If `[skills]` is missing, the hook
-   returns `{ok: False, errors: ["agentic-cell: missing [skills]"]}`,
-   the harness short-circuits and does not invoke the tool body.
-4. With a valid manifest the body runs and returns
+   PreToolUse fires, detects the `manifest.toml` filename + `agentic/`
+   prefix, validates against `agentic-cell.schema.json`. If `[skills]`
+   is missing it returns `{ok: False, errors: [...]}`; the harness
+   short-circuits and the tool body never runs.
+4. With a valid manifest the body returns
    `{"ok": true, "data": {"artefact_ref": "result/test/.meta/foo.mp3.meta.json"}, "warnings": [], "next_suggested_tools": []}`.
-5. PostToolUse fires. It (a) inserts a row into `tools_call_log`,
-   (b) reads the sidecar, validates against `sidecar.schema.json`,
-   (c) upserts node `test/Artefact/<sha256>`, (d) emits one
-   `DERIVED_FROM` edge per entry, (e) if `satisfies_phase` is set,
-   emits `SATISFIES_PHASE` from the artefact to `phase:test/<id>`.
-6. A subsequent `MATCH (a:Artefact)-[:DERIVED_FROM]->(b) RETURN a, b`
-   query returns the new edge in a single SQL round-trip.
+5. PostToolUse fires: inserts a `tools_call_log` row; reads the
+   sidecar; validates against `sidecar.schema.json`; upserts node
+   `test/Artefact/<sha256>`; emits one `DERIVED_FROM` edge per entry;
+   if `satisfies_phase` set, emits a `SATISFIES_PHASE` edge from the
+   artefact to `phase:test/<id>`.
+6. A subsequent
+   `MATCH (a:Artefact)-[:DERIVED_FROM]->(b) RETURN a, b`
+   returns the new edge in a single SQL round-trip.
 
 ## Acceptance criteria
 
@@ -363,7 +313,7 @@ Scenario: Store boots and creates the database
   When `Store().boot()` is invoked
   Then `context/_store/ontology.db` exists
   And tables `nodes`, `edges`, `tools_call_log` exist
-  And the four required indexes exist
+  And the required indexes exist
   And re-invoking `boot()` is a no-op
 
 Scenario: PreToolUse rejects an invalid agentic manifest
@@ -372,12 +322,6 @@ Scenario: PreToolUse rejects an invalid agentic manifest
   When `pre_tool_use.validate(tool_name, args)` runs
   Then it returns `{ok: False, errors: [...]}`
   And at least one error mentions the missing required key
-
-Scenario: PreToolUse passes a valid context-cell manifest
-  Given a write call targeting `context/music/manifest.toml`
-  And the TOML body conforms to `context-cell.schema.json`
-  When `pre_tool_use.validate` runs
-  Then it returns `{ok: True, errors: []}`
 
 Scenario: PostToolUse logs every envelope
   Given a tool returns any well-formed envelope
@@ -398,7 +342,7 @@ Scenario: SATISFIES_PHASE edge from gate emission
   And the upsert is idempotent across re-runs
 
 Scenario: JSON Schemas validate sample manifests from spec 01
-  Given the three sample manifests in `vision/specs/01-cell-manifest.md` (agentic/music, workflow/music, context/music)
+  Given the three sample manifests in `vision/specs/01-cell-manifest.md`
   When each is validated against its matching `*-cell.schema.json`
   Then all three pass without error
 
@@ -407,7 +351,6 @@ Scenario: Cypher single-hop translates to SQL
   When `cypher_adapter.translate` runs
   Then the emitted SQL joins `edges` with `nodes` twice
   And the parameter list contains `["DERIVED_FROM", "Artefact"]`
-  And executing it against a populated store returns the expected rows
 
 Scenario: Unsupported Cypher raises a clear error
   Given the query `MATCH (a)-[:E*1..3]->(b) RETURN a`
@@ -417,7 +360,7 @@ Scenario: Unsupported Cypher raises a clear error
 
 ## `affects:` allow-list for the implementation PR
 
-The Jules session that executes this spec writes ONLY these paths:
+The Jules session writes ONLY these paths:
 
 ```
 context/__init__.py
@@ -442,17 +385,15 @@ tests/context/test_schemas.py
 
 Any path outside this list — `agentic/`, `workflow/`, `vision/`,
 existing repo files — is out of scope. If the session feels pressure
-to edit another column, it must stop with a friction note instead.
+to edit another column, it must stop with a friction note.
 
 ## Out of scope
 
-- Template rendering (pandoc / Jinja) — that's a later spec.
+- Template rendering (pandoc / Jinja) — later spec.
 - Full Cypher coverage — only the documented single-hop subset.
-- Hot reload of schemas — schemas re-read on cold boot only.
-- Row-specific frontmatter schemas (`context/<row>/schemas/*.json`) —
-  arrive with the row scaffold pipeline.
-- In-memory graph caching — every query hits SQLite. Sub-millisecond
-  latency at thousands of nodes is acceptable per `ONTOLOGY.md`.
+- Hot reload of schemas — re-read on cold boot only.
+- Row-specific frontmatter schemas — arrive with the row scaffold.
+- In-memory graph caching — every query hits SQLite.
 - Cross-row dispatch — owned by spec 09 (follow-up).
 
 ## Dependencies
