@@ -4,7 +4,7 @@ from .protocol import ArtefactDriver
 
 class FSArtefactDriver(ArtefactDriver):
     def _get_path(self, artefact_node: Dict[str, Any]) -> str:
-        # Assuming artefact_node is the node payload conforming to sidecar schema
+        # artefact_node is the node payload validated against artefact-node.schema.json
         path = artefact_node.get("artefact_path")
         if not path:
             raise ValueError("artefact_node missing 'artefact_path'")

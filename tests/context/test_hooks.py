@@ -12,7 +12,7 @@ def test_pre_tool_use_rejects_invalid_agentic_manifest():
     """
 
     args = {"path": "agentic/test/manifest.toml", "content": toml_content}
-    res = pre_tool_use.validate("mcp__test_write_manifest", args)
+    res = pre_tool_use.validate_envelope_in("mcp__test_write_manifest", args)
 
     assert not res["ok"]
     assert "errors" in res

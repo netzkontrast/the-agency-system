@@ -37,6 +37,17 @@ implements_for_jules:
 
 # Spec 08 — Context Base Layer
 
+> **DEPRECATED — 2026-05-19**: superseded by
+> [`vision/specs/08-context-base-v1.md`](08-context-base-v1.md). The
+> v1 spec locks GraphQLite as the lone graph substrate (no raw-SQLite
+> fallback), pins the driver `REGISTRY` surface in
+> `context/_drivers/__init__.py`, names the Artefact node schema
+> canonical (renamed in N2 PR #155 from `sidecar.schema.json` →
+> `artefact-node.schema.json`), and codifies the graph-bootstrap
+> behaviour. This v0 document is retained for archeology only — do
+> not implement against it. The `sidecar.schema.json` references
+> below describe a file that no longer exists in the tree.
+
 > **STATUS — 2026-05-19**: ✅ **Implemented and merged** in PR #149. The substrate is **GraphQLite** (https://github.com/colliery-io/graphqlite) via `from graphqlite import Graph` in `context/_store/sqlite.py`, with a raw-SQLite fallback when the extension isn't installed. Six runtime JSON Schemas live at `context/_shared/schemas/`. Artifact-driver Protocol (`_drivers/protocol.py`) + `fs` driver (`_drivers/fs.py`) are in place. PostToolUse hook upserts `Artefact` nodes; **no `.meta.json` sidecar files are written to user storage** (deprecation of spec 03 file-on-disk pattern per `vision/03-architecture.md` §8). **Open follow-up (C5)**: the Pre/PostToolUse hooks need to be **registered** with the FastMCP server in `agentic/_bootloader.py::boot()` so they fire on every tool call — see `vision/04-nextsteps.md`. The v1 rewrite anchored by `vision/03-architecture.md` also locks: driver registry pattern (`context/_drivers/__init__.py` exposing a `REGISTRY: dict`), Artefact node JSON Schema (rename `sidecar.schema.json` → `artefact-node.schema.json`), graph bootstrap behaviour, drop the raw-SQLite fallback.
 
 ## Purpose

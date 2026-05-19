@@ -1,0 +1,13 @@
+[cell]
+row = "jules"
+column = "context"
+
+[ontology]
+node_types = ["ResearchTopic", "Finding"]
+
+[schemas]
+ResearchTopic = { path = "schemas/research-topic.schema.json" }
+Finding = { path = "schemas/finding.schema.json" }
+
+[templates]
+"research-brief" = { path = "templates/research-brief.md.jinja" }

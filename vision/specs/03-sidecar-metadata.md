@@ -19,7 +19,17 @@ referenced_by:
 
 # Spec 03 — Sidecar Metadata
 
-> **STATUS — 2026-05-19**: ⚠️ **DEPRECATED as file-on-disk format.** Per `vision/03-architecture.md` §8, the system writes NO `.meta.json` sidecar files to user storage — that pattern leaks system metadata into user-owned vaults. The fields defined in this spec (`sha256`, `content_type`, `derived_from`, `satisfies_phase`, `produced_by`, `artifact_driver`, `driver_pointer`) remain canonical, but they live as properties on the `Artefact` graph node in `context/_store/ontology.db`, never as files next to artifacts. A v1 rewrite will rename `context/_shared/schemas/sidecar.schema.json` → `artefact-node.schema.json` and retire the file-on-disk language below.
+> **DEPRECATED — 2026-05-19**: ⚠️ superseded by
+> [`vision/specs/08-context-base-v1.md`](08-context-base-v1.md) §FR5
+> ("Artefact node schema is canonical"). The fields enumerated here
+> (`sha256`, `content_type`, `derived_from`, `satisfies_phase`,
+> `produced_by`, `artifact_driver`, `driver_pointer`) remain canonical
+> on the `Artefact` graph node; the **file-on-disk format is retired**.
+> The schema previously known as `context/_shared/schemas/sidecar.schema.json`
+> was renamed to `artefact-node.schema.json` in N2 PR #155 — `sidecar.schema.json`
+> no longer exists in the tree. The body of this spec describes the
+> historical `.meta.json` pattern and is retained for archeology only;
+> do not implement against it.
 
 ## Purpose
 

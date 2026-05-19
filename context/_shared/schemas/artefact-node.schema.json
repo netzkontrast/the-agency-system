@@ -1,6 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "tag:agency-system.local,2026:schema:shared/sidecar",
+  "$id": "tag:agency-system.local,2026:schema:shared/artefact-node",
+  "title": "Artefact Node Payload",
+  "description": "Payload of an `Artefact` graph node in `context/_store/ontology.db`. Ingested by the PostToolUse hook from a tool envelope's `data.artefact_metadata` field. Replaces the deprecated file-on-disk `.meta.json` sidecar (see `vision/specs/03-sidecar-metadata.md`); the `artifact_driver` / `driver_pointer` pair points to the bytes via the driver registry instead.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -14,7 +16,7 @@
   "properties": {
     "artefact_path": {
       "type": "string",
-      "description": "Path to the artifact, relative to the repository root. Example: `result/music/whispers.mp3`."
+      "description": "OPTIONAL legacy field. Path of the artefact relative to the repository root. Prefer `driver_pointer` for new code."
     },
     "content_type": {
       "type": "string",
@@ -48,11 +50,20 @@
     "derived_from": {
       "type": "array",
       "items": {"type": "string"},
-      "description": "Graph node IDs the artifact derives from. Each becomes a DERIVED_FROM edge in the SQLite graph."
+      "description": "Graph node IDs the artifact derives from. Each becomes a DERIVED_FROM edge in the ontology graph."
     },
     "satisfies_phase": {
       "type": "string",
       "description": "OPTIONAL. Workflow phase id this artifact completes. Emits a SATISFIES_PHASE edge when set."
+    },
+    "artifact_driver": {
+      "type": "string",
+      "description": "OPTIONAL until v1. Key into `context/_drivers/REGISTRY` selecting how to fetch the bytes (e.g. `fs`, `repo`, `s3`).",
+      "pattern": "^[a-z][a-z0-9-]{0,30}$"
+    },
+    "driver_pointer": {
+      "type": "string",
+      "description": "OPTIONAL until v1. Driver-specific pointer the chosen driver uses to resolve the bytes (e.g. an `fs` path, an S3 key)."
     }
   }
 }

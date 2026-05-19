@@ -65,8 +65,14 @@ def _validate_manifest(path: str, content: str) -> Dict[str, Any]:
     return {"ok": True, "errors": []}
 
 
-def validate(tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
-    """Return {ok: bool, errors: list[str]}."""
+def validate_envelope_in(tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
+    """PreToolUse hook — validate the inbound tool envelope.
+
+    Returns ``{ok: bool, errors: list[str]}``. For manifest-write tools
+    (``mcp__*_write_*`` with ``path`` ending in ``manifest.toml``) the
+    args are parsed as TOML and validated against the matching cell
+    schema. All other tool calls pass through unchecked.
+    """
 
     path = args.get("path", "")
     content = args.get("content", "")
