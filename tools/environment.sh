@@ -630,4 +630,7 @@ for row in "${STANDALONE_MCPS[@]}"; do
     IFS='|' read -r M_NAME M_TRANSPORT _ _ <<<"${row}"
     log "    - $(printf '%s' "${M_NAME}" | xargs) (${M_TRANSPORT})"
 done
-[ "${AIRIS_GATEWAY}" = "1" ] && log "    - airis-mcp-gateway (http :9400)"
+if [ "${AIRIS_GATEWAY}" = "1" ]; then
+    log "    - airis-mcp-gateway (http :9400)"
+fi
+exit 0
