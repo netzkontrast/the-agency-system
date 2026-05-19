@@ -18,6 +18,8 @@ referenced_by:
 
 # Spec 04 — Phase State Envelope
 
+> **STATUS — 2026-05-19**: 🟡 **Partial-deprecation.** Per `vision/03-architecture.md` §4 & §9, the TypedDict wire format defined below remains canonical for tool returns. The **file-on-disk serialization** (`workflow/_state/<session_id>/<phase_id>.json`) is SUPERSEDED — `Continuation` is now a graph node in `context/_store/ontology.db`, upserted via `context.upsert_node(Continuation{...})`. The shipped implementation (PR #150) already follows the new model: `workflow/_runner/envelope.py::persist` writes to the graph, and the `workflow/_state/` directory is GONE. Sections of this spec describing file paths, atomic-write rename, and the TTL sweep against on-disk JSON are obsolete; sweep semantics will move to the graph-side `Continuation` node.
+
 ## Purpose
 
 A workflow pipeline is multi-phase, gated, and frequently blocked on a human reply. The MCP wire is request/response — there is no streaming "yield" primitive. The `PhaseStateEnvelope` is the **async-yield envelope** the workflow runner returns whenever a phase suspends. It wraps a canonical `tool_result` (spec 02) with phase metadata so the agentic runner can recognise the pipeline is paused, surface the block reason, persist the runner's internal state, and resume cleanly on the next turn.

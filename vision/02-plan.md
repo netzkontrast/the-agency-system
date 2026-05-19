@@ -1,11 +1,11 @@
 ---
 slug: vision-implementation-plan
 type: implementation-plan
-status: ready
+status: complete
 owner: claude
 created: 2026-05-19
 updated: 2026-05-19
-summary: Concrete plan to materialize the 3xN matrix base layer. Eight numbered specs define what to build. Foundation specs (01-05) define cross-column contracts; per-column specs (06-08) define the base implementation of agentic / workflow / context. After this PR merges, three Jules sessions implement 06/07/08 in parallel.
+summary: Implementation plan for the base layer — COMPLETE. Foundation specs 01-05 and per-column specs 06-08 landed in PR #146. Three Jules sessions implemented 06/07/08 in parallel (PR #148/#149/#150). Architecture clarification landed in PR #147 (`03-architecture.md`). Two integration gaps (W5/C5) tracked in `04-nextsteps.md`. Next milestone: v0.1 running `agency` MCP plugin.
 affects:
   - vision/02-plan.md
   - vision/specs/01-cell-manifest.md
@@ -19,6 +19,8 @@ affects:
 ---
 
 # 02-plan — Implementation Plan for the 3×N Matrix Base Layer
+
+> **STATUS — 2026-05-19**: Plan complete. All nine planned spec files landed in PR #146. All three column base layers shipped (PR #148 agentic, PR #149 context, PR #150 workflow). Architecture clarification merged in PR #147 (`vision/03-architecture.md`). Two integration gaps (W5 meta-scaffolder → graph; C5 hooks → FastMCP) tracked in `04-nextsteps.md` for the next session. The history below is preserved for traceability.
 
 This plan converts the design in `vision/00.1-Overview.md` + the Phase 3 INTEGRATED-DRAFTs into eight concrete spec files and a Jules fan-out. No code lands in this PR — only the specs that drive the next PR.
 

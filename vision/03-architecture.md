@@ -199,19 +199,21 @@ Spec 04 (`PhaseStateEnvelope`) becomes mostly informational:
 - The file-on-disk serialization section is obsolete (replaced by `Continuation` graph node).
 - Keep as a reference; flag the deprecated sections in a v1 rewrite.
 
-## 9. Migration plan — v0 → v1
+## 9. Migration status (v0 → v0.1)
 
-The three in-flight Jules sessions (agentic / workflow / context base layers) are implementing specs 06/07/08 as written under the old framing. Their output (v0) is correct under the old framing and partially correct under the new framing:
+**Update 2026-05-19**: the three v0 base-layer Jules sessions absorbed the architecture-update messages in-flight and pushed second commits. The merged v0 PRs (#148/#149/#150) therefore already include most of what was originally planned for a v1 refactor wave:
 
-- **v0 agentic** (spec 06) — correct as-is.
-- **v0 workflow** (spec 07) — implements markdown-phase pipelines + file-on-disk state. v1 refactor converts these to graph nodes.
-- **v0 context** (spec 08) — implements SQLite-only store + Pre/PostToolUse hooks. v1 refactor pluralizes the store into a driver registry; SQLite becomes the default driver.
+- **v0 agentic** (PR #148) — FastMCP harness + four-verb contract + cell loader. Unchanged by the architecture clarification, as expected.
+- **v0 workflow** (PR #150) — Continuation persisted via `context.upsert_node(Continuation{...})` (no `workflow/_state/` JSON files). Pipeline runner abstracts Phase retrieval through a mockable `_query_phase` seam (real `context.query` wiring is the v1 follow-up). `lazy_link` flag is first-class on `pipeline.start()`. **Gap W5**: `_run_meta_scaffold` writes filesystem cells but does NOT yet emit `Cell`/`Phase`/`Row` graph nodes.
+- **v0 context** (PR #149) — GraphQLite Python binding (`from graphqlite import Graph`) with raw-SQLite fallback. Artifact-driver Protocol + `fs` driver. PostToolUse hook upserts an `Artefact` node; no `.meta.json` sidecar files written. **Gap C5**: hooks exist as standalone modules but are not registered with the FastMCP server in `agentic/_bootloader.py`.
 
-After the three v0 base PRs merge:
+What remains for the v0.1 milestone (see `04-nextsteps.md`):
 
-1. Write `specs/07-workflow-base-v1.md` and `specs/08-context-base-v1.md` (this document anchors them).
-2. Dispatch a Jules wave to implement the v1 refactor — two sessions (workflow v1, context v1), each in its own folder. Agentic does not need a refactor.
-3. After v1 PRs merge, scaffold the first row (jules or music) as proof. Per the earlier preference: jules is most real; music is most expressive.
+1. **Close W5 + C5** in one in-session follow-up PR (~50 lines + 2 tests).
+2. **Canonicalize schemas** — diff `vision/specs/schemas/<col>/` drafts against `context/_shared/schemas/` runtime stubs; promote the vision drafts.
+3. **Write specs 07-v1 and 08-v1** to lock the lazy-link opt-in mechanism, driver registry, Artefact node schema (rename `sidecar.schema.json` → `artefact-node.schema.json`), and graph bootstrap.
+4. **Materialize the first row (`jules`)** via the meta-row scaffolder, prove the architecture end-to-end. Plan: `vision/04-nextsteps.md`.
+5. **Drop the raw-SQLite fallback** once GraphQLite is locked in as the substrate.
 
 ## 10. What is NOT in this document
 

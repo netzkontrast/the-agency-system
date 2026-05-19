@@ -19,6 +19,8 @@ referenced_by:
 
 # Spec 03 — Sidecar Metadata
 
+> **STATUS — 2026-05-19**: ⚠️ **DEPRECATED as file-on-disk format.** Per `vision/03-architecture.md` §8, the system writes NO `.meta.json` sidecar files to user storage — that pattern leaks system metadata into user-owned vaults. The fields defined in this spec (`sha256`, `content_type`, `derived_from`, `satisfies_phase`, `produced_by`, `artifact_driver`, `driver_pointer`) remain canonical, but they live as properties on the `Artefact` graph node in `context/_store/ontology.db`, never as files next to artifacts. A v1 rewrite will rename `context/_shared/schemas/sidecar.schema.json` → `artefact-node.schema.json` and retire the file-on-disk language below.
+
 ## Purpose
 
 Binary artifacts (audio, PDF, image) live in the **result registry** at `result/<row>/` — outside the context graph (per `00.1-Overview.md` §2). They cannot carry frontmatter and must not be parsed by the graph layer. Every binary the system produces is paired with a sidecar JSON holding the metadata the graph DOES need: content-type, hash, provenance, derivation edges.
