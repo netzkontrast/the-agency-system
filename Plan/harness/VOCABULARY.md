@@ -282,11 +282,13 @@ Research source: `Plan/_research/agency-repo-analysis/findings.md` §1.5.
 
 Imported from agency `/tmp/agency-research/SKILLS.md:227-235`. **Every artefact has three content tiers** loaded progressively:
 
-| Content tier | Size cap | Loaded when | Lives at |
+| Content tier | Size cap (target) | Loaded when | Lives at |
 |---|---|---|---|
-| **T1 Trigger** | ≤ 200 chars | always (in manifest) | first 200 chars of body (after frontmatter) |
+| **T1 Trigger** | ≤ 200 chars (target; see note) | always (in manifest) | first 200 chars of body, OR the frontmatter `summary:` field verbatim per §6A — see "extractor convergence" below |
 | **T2 Body** | ≤ 5 KB | on dispatch (`dispatch_skill` / `context_read`) | the full SKILL.md / spec.md body |
 | **T3 References** | unlimited | on explicit demand only | `references/` subdirectory |
+
+**Extractor convergence (T1 is aspirational today).** The current `servers/agency-mcp/bin/build_context_manifest.py` synthesises the manifest's T1 trigger from `title + first body paragraph`, which empirically produces 300-400-char strings for ADRs — *exceeding* the 200-char target. The 200-char cap is therefore the **design target**, not the audited current behaviour. The simplest convergence path (tracked as a follow-up to Spec 111 / the builder) is: extractor uses the frontmatter `summary:` field verbatim when present (which §6A already caps at 240 chars for ADRs/specs and 120 for skills). Until the extractor lands that change, validators measuring against ADR-0012's T1 cap will flag the committed manifest as non-compliant; that gap is documented, not silently tolerated.
 
 This is the progressive-disclosure ladder that `Plan/harness/L3-progressive-disclosure.md` (deferred follow-up sub-spec) will codify for the L3 daemon. **§6C and §6D both use T1/T2/T3 because the canonical names map** — content tier T1 is what triggers a T1 repair decision; content tier T3 (`references/`) is governed by T4 immutability when the parent is closed.
 
