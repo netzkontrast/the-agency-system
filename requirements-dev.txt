@@ -1,0 +1,24 @@
+# Development requirements for the agency v0.1 base layer.
+#
+# Use bin/agency-venv-setup to install these into a .venv/ at the
+# repo root. This file is the single source of truth for what's
+# needed to run the test suite over `agentic/`, `workflow/`, and
+# `context/`.
+#
+# Heavyweight runtime deps for the music side (scipy / librosa /
+# pyloudnorm / soundfile / numpy / textstat) are NOT here — they
+# live in servers/agency-mcp/pyproject.toml and are only needed
+# when installing the plugin for actual MCP-server runtime.
+
+# --- Runtime: agentic / workflow / context base layer ---
+fastmcp[code-mode]>=3.1.0
+graphqlite>=0.1.0
+jsonschema>=4.21.0
+jinja2>=3.1.0
+tomli>=2.0.0
+PyYAML>=6.0
+tiktoken>=0.5.0
+
+# --- Test framework ---
+pytest>=9.0.0
+pytest-asyncio>=1.0.0

@@ -10,7 +10,7 @@ def test_store_boots_and_creates_database(tmp_path):
     store.boot()
 
     # In graphqlite fallback/mock, we create tables on upsert. Let's just do an upsert
-    store.upsert_node('a', 'test', {})
+    store.upsert_node('a', {}, label='test')
 
     assert os.path.exists(db_path)
 
@@ -26,8 +26,8 @@ def test_upsert_edge_idempotent(tmp_path):
     store = Store(db_path=db_path)
     store.boot()
 
-    store.upsert_edge("SATISFIES_PHASE", "music/Artefact/abc", "phase:music/02")
-    store.upsert_edge("SATISFIES_PHASE", "music/Artefact/abc", "phase:music/02")
+    store.upsert_edge("music/Artefact/abc", "phase:music/02", rel_type="SATISFIES_PHASE")
+    store.upsert_edge("music/Artefact/abc", "phase:music/02", rel_type="SATISFIES_PHASE")
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()

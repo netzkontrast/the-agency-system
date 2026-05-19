@@ -3,6 +3,7 @@ from typing import Dict, Any, List
 import jinja2
 from pathlib import Path
 from workflow._runner.envelope import PhaseStateEnvelope, persist, hydrate, delete, sweep_ttl
+from context import Store
 
 def boot() -> None:
     sweep_ttl()
@@ -140,6 +141,9 @@ def _run_meta_scaffold(session_id: str, inputs: Dict[str, Any]) -> PhaseStateEnv
     template_dir = Path("workflow/meta/templates")
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=False)
 
+    g = Store()
+    g.boot()
+
     for col in ["agentic", "workflow", "context"]:
         out_dir = Path(f"{col}/{new_row}")
         out_dir.mkdir(parents=True, exist_ok=False)
@@ -166,6 +170,37 @@ def _run_meta_scaffold(session_id: str, inputs: Dict[str, Any]) -> PhaseStateEnv
             (out_dir / "schemas" / ".gitkeep").touch()
             (out_dir / "templates").mkdir()
             (out_dir / "templates" / ".gitkeep").touch()
+
+        # W5: emit a Cell node per column so the scaffolded cell is
+        # discoverable in the graph, not just on disk.
+        g.upsert_node(
+            f"cell/{col}/{new_row}",
+            {
+                "row": new_row,
+                "column": col,
+                "manifest_path": str(manifest_path),
+            },
+            label="Cell",
+        )
+
+    # W5: emit the Row node and a Phase node for the scaffold step, plus a
+    # PRECEDES edge so the meta workflow's two phases are linked in the graph.
+    g.upsert_node(
+        f"row/{new_row}",
+        {"row": new_row, "scaffolded_by": session_id},
+        label="Row",
+    )
+    g.upsert_node(
+        f"phase/meta/02:{new_row}",
+        {"row": "meta", "phase_id": "02", "target_row": new_row},
+        label="Phase",
+    )
+    g.upsert_edge(
+        "phase/meta/01",
+        f"phase/meta/02:{new_row}",
+        {},
+        rel_type="PRECEDES",
+    )
 
     return {
         "status": "completed",
