@@ -36,36 +36,16 @@
   "enabledMcpjsonServers": [
     "agency-system",
     "context7",
-    "sequential-thinking"
+    "sequential-thinking",
+    "github",
+    "plugin:bitwize-music:bitwize-music-mcp",
+    "plugin:episodic-memory:episodic-memory",
+    "02fbb94b-1aaa-4e09-bcd2-e5748743f593",
+    "826f3e27-7422-4240-9a1f-da2d020cc85b"
   ],
   "permissions": {
     "defaultMode": "bypassPermissions",
-    "allow": [
-      "Bash",
-      "Read",
-      "Write",
-      "Edit",
-      "MultiEdit",
-      "NotebookEdit",
-      "Glob",
-      "Grep",
-      "WebFetch",
-      "WebSearch",
-      "TodoWrite",
-      "BashOutput",
-      "KillBash",
-      "Skill",
-      "Tmux",
-      "Monitor",
-      "SendUserFile",
-      "REPL",
-      "ToolSearch",
-      "Task",
-      "Agent",
-      "ExitPlanMode",
-      "AskUserQuestion",
-      "mcp__*"
-    ]
+    "allow": ["*"]
   },
   "hooks": {
     "SessionStart": [
