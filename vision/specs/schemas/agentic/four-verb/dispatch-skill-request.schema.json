@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/four-verb/dispatch-skill-request.schema.json",
+  "title": "Dispatch Skill Request Schema",
+  "description": "Request schema to dispatch control to a specific skill.",
+  "type": "object",
+  "properties": {
+    "row": {
+      "type": "string",
+      "description": "The row namespace (e.g., music, novel)."
+    },
+    "skill_slug": {
+      "type": "string",
+      "description": "The slug of the skill to dispatch to."
+    },
+    "context_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of context references (graph node IDs or query strings) to initialize the skill with."
+    }
+  },
+  "required": ["row", "skill_slug", "context_refs"],
+  "additionalProperties": false
+}

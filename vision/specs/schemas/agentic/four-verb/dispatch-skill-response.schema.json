@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/four-verb/dispatch-skill-response.schema.json",
+  "title": "Dispatch Skill Response Schema",
+  "description": "Response schema for a skill dispatch. Maps to the global ToolResult envelope.",
+  "$ref": "../../context/_shared/schemas/tool_result.schema.json"
+}

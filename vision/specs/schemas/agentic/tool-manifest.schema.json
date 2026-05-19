@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/tool-manifest.schema.json",
+  "title": "FastMCP Tool Registration Metadata Schema",
+  "description": "Defines FastMCP tool registration metadata, including derived name and deferred schema status.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The derived name of the tool, typically formatted as mcp__<row>_<group>_<action>."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the tool for the LLM to understand."
+    },
+    "defer_schema": {
+      "type": "boolean",
+      "description": "If true, defers full schema loading at boot to save token budget. Required to be true for most tools to stay under the 500 token cold-boot limit.",
+      "default": true
+    },
+    "parameters": {
+      "type": "object",
+      "description": "The JSON schema of the arguments the tool accepts. May be omitted or minimal if defer_schema is true."
+    }
+  },
+  "required": [
+    "name",
+    "description"
+  ],
+  "additionalProperties": true
+}
