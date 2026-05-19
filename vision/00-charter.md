@@ -9,6 +9,7 @@ summary: Shared inheritance for the three column-owning Jules agents — matrix 
 ---
 
 # Charter — the 3×N matrix and its three rules
+> **Successor: see `vision/00.1-Overview.md`**
 
 Every Jules agent dispatched from `vision/` MUST read this charter
 before doing any column-specific work. The charter is the floor; each
