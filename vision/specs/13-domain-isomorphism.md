@@ -1,45 +1,21 @@
 ---
-slug: harness-restructure-domains
-status: superseded
-superseded_by: [vision/specs/13-domain-isomorphism.md]
+slug: vision-domain-isomorphism
+type: spec
+status: vision
 owner: claude
-depends_on: [harness/design]
-related: [023, 022, 008, 015, 016, 018, 021]
-phase: 7+   # gates Phase 7 (specs 015/016/018/021); should not start until Phase 7 batch is dispatched OR explicitly paused
-affects:
+created: 2026-05-20
+updated: 2026-05-20
+summary: Path B — the full domain isomorphism endgame. A unified per-domain registry (Domain base class with register_handlers/register_skills/register_phases/register_gates/register_schemas), one target tree layout, one migration strategy. Path A levers (vision/specs/10-harness-ladder.md §11) are the active incremental path; this spec is the long-horizon target.
+depends_on:
+  - vision/specs/10-harness-ladder.md
+  - vision/specs/12-vocabulary.md
+referenced_by:
+  - vision/specs/10-harness-ladder.md
+supersedes:
   - Plan/harness/restructure/spec.md
-  - Plan/harness/restructure/_migration/checklist.md
-  - servers/agency-mcp/src/agency_mcp/domains/_base/__init__.py
-  - servers/agency-mcp/src/agency_mcp/domains/_base/domain.py
-  - servers/agency-mcp/src/agency_mcp/domains/_base/state.py
-  - servers/agency-mcp/src/agency_mcp/domains/_base/handlers.py
-  - servers/agency-mcp/src/agency_mcp/domains/_base/manifest.py
-  - servers/agency-mcp/src/agency_mcp/domains/_base/conventions.py
-  - servers/agency-mcp/src/agency_mcp/domains/music/   # 17 handler modules + state + skills + tests
-  - servers/agency-mcp/src/agency_mcp/domains/novel/   # 13 handler modules + state + tests
-  - servers/agency-mcp/src/agency_mcp/domains/jules/   # 6 handler modules + state + skill + tests
-  - servers/agency-mcp/src/agency_mcp/domains/context/ # 2 handler modules + state + tests
-  - servers/agency-mcp/src/agency_mcp/domains/shared/  # 6 handler modules + state + tests
-  - servers/agency-mcp/src/agency_mcp/server.py        # create_mcp() collapses to 5-line loop
-  - tests/_harness/normalisation.py                    # removed — no longer needed
-  - bin/agency-dev-install                             # skill walk path updated
-  - Plan/000-overview.md                               # §7 target file structure updated
-source-repos: []
-estimated_jules_sessions: 6   # one per domain + one for _base + one for migration sweep
-domain: agentic
-wave: C
-spec_kind: vision
-tag_target: design/harness-v2-restructure
-supersedes_in_part_of: [023]  # the daemon work that Plan/023 owned is in harness/design.md; this spec is orthogonal
 ---
 
-> **Status:** `vision` — this is a "someday" 10/10 target. The active implementation path is `Plan/harness/design.md` Path A (9/10 via low-cost source levers + harness normalisation). This spec is on record so the path is visible and reviewable; it should not start until the Phase 2-8 surge from Plan/000-v2 has slowed enough that a 2-3 week refactor PR will not collide with concurrent Jules dispatches.
->
-> **Working branch (when scheduled):** to be assigned. **Reference design:** `Plan/harness/design.md` §11.4 (Harness Path B). **Naming canon:** [`Plan/harness/VOCABULARY.md`](../VOCABULARY.md) §6 documents the disambiguation between Harness Path A/B (this spec) and Context Mode Path A/B (Phase 4); never use the bare form once both contexts are in scope.
-
-# Restructure for native isomorphism — `domains/<name>/` tree with `Domain` base class
-
-## 1. Why
+## §1 Motivation
 
 `Plan/harness/design.md` §11.4 names Path B — the structural restructure that lifts uniformity from 6/10 (today) to 10/10 (native) by making **every domain conform to the same five-file, single-base-class interface**. The current codebase has three registration patterns, two tag conventions, manifest gaps on the novel domain (56 handlers absent from `manifest.json`), and a skills tree that's top-level for music/jules/agentic but nonexistent for novel/context/shared. Path A (the chosen first-implementation path) papers these over with harness-side normalisation; Path B cures them at the source.
 
@@ -58,24 +34,9 @@ The case for **not** rushing it:
 
 This spec exists to make Path B's design visible and reviewable *before* it's scheduled, so when the orchestrator does schedule it the decisions are pre-baked.
 
-## 2. Done When
+State plainly: this spec is `status: vision`, not `status: ready`. The active path stays Path A.
 
-- [ ] `servers/agency-mcp/src/agency_mcp/domains/_base/` exists with the five base modules listed in `affects:`. Each base module ≤ 100 LOC.
-- [ ] Each of the five concrete domains (`music`, `novel`, `jules`, `context`, `shared`) has its `__init__.py` exporting a `<Name>Domain(Domain)` subclass with `name`, `state_cls`, `handler_modules`, and `tool_only` declared.
-- [ ] Each domain's handler modules have been ported to use `@tool(domain="X", ...)` from `_base/handlers.py` instead of bare `@mcp.tool(...)` or post-wrap `mcp.tool(...)(fn)`. Existing function bodies unchanged; only the decoration line changes.
-- [ ] Each domain has a `state.py` exporting `<Name>State(DomainState)`. Today's `StateCache` (in `servers/agency-mcp/src/agency_mcp/state/cache.py`) gets a thin `MusicState` wrapper that delegates to it; full collapse of `StateCache` into `DomainState` is a follow-up.
-- [ ] Each domain has a `tests/` subdirectory mirroring the current `tests/unit/<domain>/` layout. Test imports updated from `from agency_mcp.handlers.<domain>` to `from agency_mcp.domains.<domain>.handlers`.
-- [ ] `servers/agency-mcp/src/agency_mcp/server.py` `create_mcp()` collapses to the five-line for-loop sketched in `Plan/harness/design.md` §11.4.
-- [ ] `tests/_harness/normalisation.py` is **removed** — the `Domain` base class makes its two normalisation passes redundant. L1's `list_tools` / `dispatch_skill` delegate directly to the registered domains.
-- [ ] `manifest.json` is fully regenerated by `_base.manifest.sync_manifest_from_registrations(mcp)`; the check-in version becomes a generated artefact with a clear header.
-- [ ] `bin/agency-dev-install` line 53 (skill walk) updated to walk `servers/agency-mcp/src/agency_mcp/domains/*/skills/`.
-- [ ] `Plan/000-overview.md` §7 "Target file structure" replaced with the new tree.
-- [ ] `tests/integration/test_context_anchor_triad.py` still passes unchanged — the four-verb contract is preserved.
-- [ ] Boot budget regression: `tools/list` payload size unchanged within ±5% (no perf regression from the abstraction).
-- [ ] All ~50 affected test files compile and pass under the new import paths.
-- [ ] `docs/architecture/domains.md` (NEW, ≤200 lines) describes the `Domain` base class contract and how a new domain is authored.
-
-## 3. Target tree (canonical)
+## §2 Target tree
 
 ```
 servers/agency-mcp/src/agency_mcp/
@@ -123,7 +84,9 @@ servers/agency-mcp/src/agency_mcp/
 
 The `agentic` skill-only domain (today at `skills/agentic/`) doesn't get a `domains/agentic/` because it has no handlers. Open question for the migration: either move `agentic/` skills to `shared/skills/agentic/` (cross-cutting) or keep them at the repo root as `skills/agentic/` (preserves the "cross-domain skill" semantics). Recommendation: keep them at the repo root with a `_root_skills_only = True` carve-out documented in `conventions.py`.
 
-## 4. The `Domain` base class contract (full signature)
+## §3 Domain base class
+
+contract (full signature)
 
 ```python
 # servers/agency-mcp/src/agency_mcp/domains/_base/domain.py
@@ -243,7 +206,7 @@ def tool(
     return wrap
 ```
 
-## 5. Migration strategy
+## §4 Migration strategy
 
 The restructure ships as **one PR per domain plus one base-class PR plus one server-collapse PR plus one cleanup PR — eight PRs total.** Each domain PR is parallel-safe; the others sequence.
 
@@ -286,28 +249,7 @@ from agency_mcp.domains.music.handlers import *  # noqa
 
 This keeps existing tests + handlers running while individual domain PRs land. The shims are deleted in PR 7.
 
-## 6. Coordination with Plan/000-v2
-
-This restructure **gates Phase 7 specs (015, 016, 018, 021)** if they have not yet dispatched at the time it's scheduled. The orchestrator's options:
-
-- **Schedule before Phase 7.** Run the 8-PR sequence to completion, then dispatch Phase 7 against the new tree. Lowest conflict risk.
-- **Schedule after Phase 7.** Let Phase 7 land in the old tree, then migrate the new handlers as part of PR 2-6. Higher conflict risk but unblocks Phase 7 in the short term.
-- **Pause Phase 7 mid-dispatch.** Cancel in-flight Phase 7 Jules sessions, run the restructure, re-dispatch Phase 7 against the new tree. Highest cost.
-
-Recommendation: **schedule after Phase 7 if Phase 7 is already in flight, before Phase 7 otherwise.** The eight-PR sequence is ~2-3 weeks elapsed; this is acceptable downtime between Phase 6 and Phase 7 but not between Phase 7's dispatch and merge.
-
-`Plan/000-overview.md` §9 Phase 7 dispatch matrix must be updated by PR 8 to reference the new domain paths.
-
-## 7. Out of scope
-
-- **Per-tool refactoring.** Tool bodies stay exactly as they are today. The decorator changes, the import path changes, but the handler logic is untouched. The handler-modernisation work (e.g. converting raw-kwarg signatures to Pydantic models) is a separate spec family.
-- **StateCache collapse.** `state/cache.py` keeps its current implementation; `MusicState` etc. are thin wrappers around it. A full collapse of `StateCache` into per-domain `DomainState` is a follow-up spec only if the indirection becomes painful.
-- **Skill back-fill for context/novel/shared (lever L-η).** The `tool_only = True` flag formalises the no-skill choice for shared. Whether context/novel ever grow skills is a content decision, not this spec's.
-- **Stateful-tool refactor (lever L-ε).** The `@tool(requires_state=[...])` decorator parameter exists in this spec but is opt-in per tool. The full audit of stateful tools and per-tool decisions stays in `Plan/harness/L-epsilon-stateful-tools.md`.
-- **Binary-payload envelope (lever L-ζ).** `conventions.BinaryEnvelope` is defined here but not enforced on existing tools. The migration to standardised envelopes is `Plan/harness/L-zeta-binary-envelope.md`.
-- **External-agent reachability (L3 work).** That's `Plan/harness/design.md` §5; this spec is orthogonal.
-
-## 8. Risks
+## §5 Risk register
 
 | Risk | Likelihood | Mitigation |
 |---|---|---|
@@ -318,26 +260,6 @@ Recommendation: **schedule after Phase 7 if Phase 7 is already in flight, before
 | Backward-compat shims linger after PR 7 | Medium | PR 7's checklist includes `grep -rln 'agency_mcp.handlers' --exclude-dir=domains` returning zero hits |
 | The `Domain` abstraction proves wrong for a future domain (e.g. cross-cutting concern) | Low | `skill_root` override + `tool_only` flag already handle the two known divergences (agentic, shared); extension via additional class variables |
 
-## 9. Dependencies
+## §6 Compatibility with Path A
 
-- `Plan/harness/design.md` — the active design's tag must land first. This spec consumes the four-verb contract and the L1+L3 implementation as substrate.
-- Plan/000-v2 Phase 7 status — see §6 above.
-- Plan/023 — the daemon work is in `Plan/harness/design.md` §5; this spec is orthogonal.
-
-## 10. References
-
-- [`Plan/harness/design.md`](../design.md) §11.4 — Path B summary that this spec elaborates
-- [`Plan/harness/_research/05-domain-isomorphism.md`](../_research/05-domain-isomorphism.md) — the audit that motivated Path B
-- [`Plan/000-overview.md`](../../000-overview.md) §7 — current target tree, replaced by §3 of this spec
-- [`Plan/JULES_PROTOCOL.md`](../../JULES_PROTOCOL.md) §3 (branch/PR discipline), §8 (silent-fail recovery)
-- [`Plan/JULES-REVIEW-LOOP.md`](../../JULES-REVIEW-LOOP.md) §4 — review-loop applied to each of the 8 PRs above
-
-## 11. Status / next steps
-
-This spec is **`vision`** status. It does NOT dispatch Jules. It's on record so:
-
-1. Future reviewers can see the endgame design before it's scheduled.
-2. The next time the orchestrator considers scope-creeping a handler refactor into Phase 7+, this spec is the place to land it cleanly.
-3. When Phase 7 completes (or before, if the orchestrator chooses), this spec is promoted to `status: ready` and PR 1 of the eight-PR sequence dispatches per the JULES-REVIEW-LOOP.
-
-Until then: the active path is `Plan/harness/design.md` Path A — L-α/β/γ landing alongside the L1+L3 implementation, with L-δ/ε/ζ/η as named follow-up sub-specs.
+Path A is forward-compatible with Path B; the levers (L-α/β/γ) are stepping stones, not detours. See `vision/specs/10-harness-ladder.md` §11.
