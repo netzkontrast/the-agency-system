@@ -58,11 +58,19 @@ def ingest(tool_name: str, envelope: Dict[str, Any]) -> None:
                  del artefact_metadata["raw_bytes"] # Remove from metadata payload
 
             for entry in artefact_metadata.get("derived_from", []):
+                # GraphQLite silently drops edges whose target node does
+                # not yet exist (it falls back to a self-loop). Upsert a
+                # placeholder ExternalRef so the edge lands intact; the
+                # placeholder is overwritten in-place once the real node
+                # is ingested through its own channel.
+                _ensure_node(store, entry, label="ExternalRef")
                 store.upsert_edge(node_id, entry, rel_type="DERIVED_FROM")
 
             satisfies_phase = artefact_metadata.get("satisfies_phase")
             if satisfies_phase:
-                store.upsert_edge(node_id, f"phase:{row}/{satisfies_phase}", rel_type="SATISFIES_PHASE")
+                target = f"phase:{row}/{satisfies_phase}"
+                _ensure_node(store, target, label="Phase")
+                store.upsert_edge(node_id, target, rel_type="SATISFIES_PHASE")
 
     emitted_edges = data.get("emitted_edges")
     if emitted_edges and isinstance(emitted_edges, list):
@@ -72,4 +80,26 @@ def ingest(tool_name: str, envelope: Dict[str, Any]) -> None:
                  from_node = edge.get("from")
                  to_node = edge.get("to")
                  if type_ and from_node and to_node:
+                     # Same placeholder-target rule as above — emitted_edges
+                     # references nodes by id, and GraphQLite needs both
+                     # endpoints to exist before the edge will land.
+                     _ensure_node(store, from_node, label="ExternalRef")
+                     _ensure_node(store, to_node, label="ExternalRef")
                      store.upsert_edge(from_node, to_node, rel_type=type_)
+
+
+def _ensure_node(store, node_id: str, *, label: str) -> None:
+    """Upsert an empty placeholder if no node with this id exists yet.
+
+    Idempotent: the GraphQLite ``upsert_node`` is a write-or-replace,
+    so calling this on an already-ingested node overwrites the payload
+    with ``{}``. To avoid clobbering, we probe first via a Cypher
+    lookup and only upsert when the node is absent.
+    """
+    rows = store.query(
+        "MATCH (n {id: $id}) RETURN n",
+        params={"id": node_id},
+    )
+    if rows:
+        return
+    store.upsert_node(node_id, {"id": node_id}, label=label)
