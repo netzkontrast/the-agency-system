@@ -1,7 +1,8 @@
 ---
 spec_id: 023
 slug: harness-in-harness
-status: ready
+status: superseded
+superseded_by: [vision/specs/10-harness-ladder.md §5, vision/specs/14-progressive-disclosure-roadmap.md]
 owner: jules
 depends_on: [008, 022]
 affects:
