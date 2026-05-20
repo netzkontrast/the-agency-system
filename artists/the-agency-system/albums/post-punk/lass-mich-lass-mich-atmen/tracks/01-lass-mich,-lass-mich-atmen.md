@@ -102,8 +102,8 @@ Male vocals German, dynamic register split: snarling baritone in verses (jaw-cle
 no autotune, no maximalist production, no sidechain pump
 ```
 
-### Lyrics Box — Version A (Observational, post-punk register)
-*Copy this into Suno's "Lyrics" field for Version A:*
+### Lyrics Box — Alternative (Observational, post-punk register)
+*Alternative Lyrics-Variante. Beim Suno-Generieren genau EINE Version (canonical oder Alternative) in das Lyrics-Feld pasten.*
 
 <!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
      Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
@@ -192,8 +192,8 @@ lass mich. Lass mich.
 [End]
 ```
 
-### Lyrics Box — Version B (Verb-Sharpened / Swans-Hammer)
-*Alternative Lyrics-Variante. Style Box und Exclude Styles bleiben identisch. Beim Suno-Generieren genau EINE Version in das Lyrics-Feld pasten.*
+### Lyrics Box
+*Canonical Version (Verb-Sharpened / Swans-Hammer). Copy this into Suno's "Lyrics" field. Eine Alternative-Variante (Observational, post-punk register) ist oberhalb dokumentiert.*
 
 ```
 [Verse 1]
