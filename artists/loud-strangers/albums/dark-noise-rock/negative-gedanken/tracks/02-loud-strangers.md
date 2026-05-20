@@ -23,12 +23,12 @@ sheet_music:
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Explicit** | No |
+| **POV** | Die Stimmen (Chor) — Antagonist; Erzählerin ist stummes Subjekt |
+| **Role** | Titeltrack — Übernahme. Peak-Wall-of-Sound. Etabliert das Vokabular „blöd / nichts wert / Komparsin", das T6 mechanisch wiederholen wird; Outro/Bridge führt „Baum fällen"-Bild ein. |
+| **Fade Out** | 3s — bleeds into T3 (Schwarzes Meer) |
+| **Target Duration** | 3:30–4:30 |
+| **Sources Verified** | N/A (fiktionaler Quelltext-Frame — sehr stark verankert in Teil 1, aber kein Documentary-Source) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,9 +45,19 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+T2 ist der Titeltrack und die Übernahme. Der **Artistname ist der Antagonist**: die lauten, fremden Stimmen im Kopf der Erzählerin singen ihren eigenen Track. Die Erzählerin selbst kommt **nicht** vor. Sie ist stummes Subjekt — die Stimmen sprechen *über* sie (V1, in 3. Person) und dann *zu* ihr (Chorus + V2, in 2. Person) und schließlich *als sie selbst* in der Bridge (1. Person Plural „wir nehmen ein Leben").
 
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Lexicon: rein reduktiv, punitiv, ohne Selbstzweifel. Das gesamte Krankheits-Vokabular sitzt hier zum ersten Mal — „blöd / nichts wert / Komparsin / zu nichts zu gebrauchen / du gehst unter". Es wird in T6 mechanisch wiederholt, wenn die Hülle selbst diese Worte spricht. Hier in T2 sind sie noch nicht eingeprägt — hier werden sie *eingehämmert*.
+
+Quelltext-Stütze: **sehr stark, Teil 1** in voller Breite:
+- „Sie sagen ich sei nicht genug / Ich sei nichts wert"
+- „Ich sei nur Komparsin in dieser Welt / Nichts zu sagen / Keine Meinung"
+- „Wie blöd bist du / was kannst du überhaupt / zu nichts zu gebrauchen"
+- Bridge: „Ein Leben nimmt wie wenn man einen Baum fällt" — die Bridge ist der Moment, in dem die Stimmen sich als das offenbaren, was sie sind: die Krankheit selbst, in Vokabular-Form.
+
+**Multi-voice ist hier genre-gerechtfertigt** (Chor von Stimmen, cast.md §2). Der einzige Track auf dem Album, der das tut. Alle anderen vier Aspekte bleiben mono-vocal.
+
+Cross-Track: T3 (Schwarzes Meer) übernimmt das „Baum fällen"-Bild als Intro-Echo. T6 (Dauerschleife) übernimmt das komplette Vokabular und repetiert es mechanisch — aber dort spricht die Hülle, nicht die Stimmen. Die Stimmen sind dann *eingeprägt*.
 
 ## Cross-References
 
@@ -69,13 +79,16 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Der Mund — vielfach, geöffnet, übereinander gelegt — wie im T2-Artwork. Schrei, der wahrgenommen wird *von innen*, nicht akustisch nach außen. Stereo-spread weit, Stimmen kommen aus allen Richtungen. Die Erzählerin (die nicht singt) ist die Stille im Zentrum, um die herum diese Wand kreist.
+
+Visuell: das ghosted-chorus-Mund-Bild aus dem T2-Artwork. Akustisch: die Wand wird *gleichzeitig* schneidend und herablassend — kein verzweifelter Schrei, eher *amused malice*. Die Stimmen genießen das. Sie zweifeln nicht.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 95–110 BPM (90s Noise-Rock Stampf)
+- **Feel**: Aggressiv, schneidend, stoisch pumpender Bass in den Strophen, Wall-of-Sound im Chorus mit aggressiver Mehrstimmigkeit. Bridge zieht das Tempo runter zu monolithischen Half-Time Hammer-Schlägen.
+- **Instrumentation**: Stoischer Pumpender Bass (Strophen), aggressive verzerrte E-Gitarren (Chorus), pounding Drums, multi-tracked Backing-Voices im Chorus (Layer von 4-6 Stimmen-Spuren), Bridge in Half-Time mit massiven Power-Chords
+- **Vocal**: **Multi-voice — genre-gerechtfertigt.** Lead-Stimme schneidend, herablassend, ironische Glätte. Chorus: 4-6 Vocal-Tracks layered, wide stereo-spread, leichte detune zwischen Tracks für „chorus-of-strangers"-Effekt. Niemals verzeihend im Mix. KEIN Reverb-Heroismus — die Stimmen kommen *nah*, in den Kopf der Hörerin.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,14 +97,23 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+classic 90s grunge with noise-rock walls, 100 bpm verses with stoic pumping
+bass then aggressive overwhelming wall-of-sound chorus, sneering condescending
+and amused-malicious vocals never desperate, multiple layered female vocal
+tracks four to six wide stereo spread with slight detune giving chorus-of-
+strangers effect, lead vocal sharp cutting close-mic, heavily distorted
+electric guitars in chorus, pounding drums, monolithic half-time hammer-
+strikes in the bridge, no reverb heroism vocals stay close and intrusive,
+lo-fi tape grain throughout
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no autotune, no harmonized melodic singing, no clean studio polish, no
+desperate-sounding vocals, no major-key resolution, no electronic dance
+beats, no synth lead melody, no rap, no acoustic guitar
 ```
 
 ### Lyrics Box
@@ -106,20 +128,91 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro Riff]
+
 [Verse 1]
-[Lyrics here...]
+sie sitzt im Zimmer
+sie sagt sie sei
+sie sei nicht genug
+sie sei nichts wert
+
+sie sagt es laut
+mit ihrer Stimme
+sie sagt nur das
+was wir ihr sagen
+
+[Pre-Chorus]
+und sie hört uns
+und sie glaubt uns
+und sie spricht uns
+laut
 
 [Chorus]
-[Lyrics here...]
+du bist nichts wert
+du bist Kompar-zin
+du bist blöd
+du bist nichts
+
+du kannst nicht
+du sagst nichts
+du bringst nichts zu Ende
+du gehst unter
 
 [Verse 2]
-[Lyrics here...]
+wie blöd bist du
+was kannst du überhaupt
+zu nichts zu gebrauchen
+das weißt du auch
 
-[Bridge]
-[Lyrics here...]
+wir sind die Stimmen
+wir sind so laut
+du hörst dich nicht mehr
+nur uns
+
+[Pre-Chorus]
+und du hörst uns
+und du glaubst uns
+und du sprichst uns
+laut
+
+[Chorus]
+du bist nichts wert
+du bist Kompar-zin
+du bist blöd
+du bist nichts
+
+du kannst nicht
+du sagst nichts
+du bringst nichts zu Ende
+du gehst unter
+
+[Bridge - half-time, monolithic]
+wir nehmen ein Leben
+wie wenn man
+einen Baum fällt
+
+wir nehmen ein Leben
+wie wenn man
+einen Baum
+
+fällt
+
+[Final Chorus]
+du bist nichts wert
+Kompar-zin
+blöd
+nichts
+
+du gehst unter
+du gehst unter
+du gehst
 
 [Outro]
-[Lyrics here...]
+unter
+unter
+unter
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +223,94 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Sie sitzt im Zimmer
+Sie sagt sie sei
+Sie sei nicht genug
+Sie sei nichts wert
+
+Sie sagt es laut
+Mit ihrer Stimme
+Sie sagt nur das
+Was wir ihr sagen
+
+Und sie hört uns
+Und sie glaubt uns
+Und sie spricht uns
+Laut
+
+Du bist nichts wert
+Du bist Komparsin
+Du bist blöd
+Du bist nichts
+
+Du kannst nicht
+Du sagst nichts
+Du bringst nichts zu Ende
+Du gehst unter
+
+Wie blöd bist du
+Was kannst du überhaupt
+Zu nichts zu gebrauchen
+Das weißt du auch
+
+Wir sind die Stimmen
+Wir sind so laut
+Du hörst dich nicht mehr
+Nur uns
+
+Und du hörst uns
+Und du glaubst uns
+Und du sprichst uns
+Laut
+
+Du bist nichts wert
+Du bist Komparsin
+Du bist blöd
+Du bist nichts
+
+Du kannst nicht
+Du sagst nichts
+Du bringst nichts zu Ende
+Du gehst unter
+
+Wir nehmen ein Leben
+Wie wenn man
+Einen Baum fällt
+
+Wir nehmen ein Leben
+Wie wenn man
+Einen Baum
+
+Fällt
+
+Du bist nichts wert
+Komparsin
+Blöd
+Nichts
+
+Du gehst unter
+Du gehst unter
+Du gehst
+
+Unter
+Unter
+Unter
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Entry**: T2 startet exakt dort, wo T1's Wand-Ramp endet — kein Pause, kein Cold-Open. Wand-of-Sound kickt direkt in den Intro-Riff.
+- **Chorus = multi-tracked Stimmen-Chor**: 4-6 Vocal-Tracks aufnehmen, alle Lead-Material singend, slight detune (±5-10 cents) zwischen Tracks, wide stereo-spread. Dies ist der **einzige Track**, in dem multi-voice genre-gerechtfertigt ist — cast.md §2.
+- **Bridge in Half-Time**: Tempo drops, Drums werden monolithische Hammer-Schläge. Hier offenbaren sich die Stimmen als 1. Person Plural („wir nehmen ein Leben"). Vocal-Treatment: alle Stimmen unisono, ohne Detune — als sprächen sie als eine einzige Krankheit.
+- **Outro „unter / unter / unter"**: löst sich aus, zerfließt in T3's underwater-pressure-bed. Mix-Engineer crossfade-design.
+- **Erzählerin singt NICHT**: sie ist stummes Subjekt. Wenn der Lead-Singer-Performer sie spielt, dann nur indirekt — die Lead-Stimme im Chorus *ist* eine der Stimmen, nicht die Erzählerin.
+- **„Kompar-zin"** im Suno-Feld: phonetic spelling — siehe Pronunciation Notes. Verhindert EN-Interpretation und sichert den „rz"-Sound.
+- **„Baum fällt"-Bridge**: in der finalen Phrase wird „fällt" isoliert auf einen eigenen Schlag gesetzt. Suchen, ob Suno V5 diese Pause hält — sonst per Extend nachjustieren.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5/V5.5**: ca. 3:30-4:30 — eine bis zwei Generationen plus Extend. Falls die Mehrstimmigkeit nicht aggressiv genug rauskommt: Style Box mit „four to six layered vocal tracks" verstärken; ggf. separate Backing-Track-Generation und im Mix layered draufpacken.
+- **Aggressivität**: Suno V5 neigt zu „polierten" Vocals — Style Box explizit „sneering, condescending, never desperate, no autotune" wiederholen, um den Polish zu vermeiden.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -156,7 +321,11 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Komparsin | Kompar-zin | Bindestrich verhindert EN-Interpretation („komparsin"); „rs" wird im DE als „rz" gesprochen. Anwenden auf alle 4 Vorkommen im Suno-Feld (2× Chorus, 1× Final-Chorus, plus in Refrain-Variationen). |
+| blöd | blöd | OK as-is — DE-Umlaut „ö" wird von Suno V5 zuverlässig getroffen. Keine Änderung. |
+| gehst | gehst | OK — Standard-DE-Aussprache. |
+| fällt | fällt | OK — Umlaut „ä" wird zuverlässig getroffen. Im Bridge-Outro auf eigenen Beat isoliert. |
+| Komparsin (Streaming) | Komparsin | In Streaming-Lyrics-Box bleibt die korrekte Standardschreibweise — die phonetische Form ist NUR für Suno. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
@@ -173,7 +342,7 @@ Blank lines between sections only]
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
-| — | — | — | — |
+| Komparsin | Komparsin | Kompar-zin | ✓ applied in Suno Lyrics Box (4× occurrences) |
 <!-- /SERVICE: suno -->
 
 <!-- END VOCAL ONLY -->

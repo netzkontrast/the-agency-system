@@ -23,12 +23,12 @@ sheet_music:
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Explicit** | No |
+| **POV** | Der Beobachter (primary) + Die Stimmen (Background-Texture, als Wall-of-Sound) |
+| **Role** | Versinken + Agency-Verlust. Beobachter sieht das schwarze Meer von innen. T2's „Baum fällen"-Bild als Intro-Echo; Outro mündet in T4's Vakuum. |
+| **Fade Out** | 5s — Crossfade in T4 (Wahres Gesicht) |
+| **Target Duration** | 3:30–5:00 |
+| **Sources Verified** | N/A (fiktionaler Quelltext-Frame — sehr stark verankert in Teil 2) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,9 +45,17 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+T3 vertont das Versinken — beobachtet von innen. POV: **Der Beobachter** (cast.md §3), lucid bleibend während die Panik einbricht, fragend statt distanziert. „Ich erwische mich / nicht mehr atmen zu können". Der Witz und das Grauen des Tracks: der Beobachter sieht sich selbst untergehen *jetzt, gerade*, und kann nichts tun außer zusehen. Keine Distanz, keine Kälte — Genauigkeit als Gegengift, nicht Abstand.
 
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Die Stimmen aus T2 sind **als Atmosphäre präsent**, nicht als zweite Voice. Sie sind die Wand-of-Sound-Texture, in der der Beobachter spricht — als wäre der Background-Lärm des Albums über sie hereingebrochen und sie spräche dagegen an. Kein separater Chor, kein zweiter Voice-Track. (Production-Note: T2's Outro-Riff als Sub-Bass-Drone unter T3, Loud Strangers-Vokabular als unverständliche distortion-noise-bed.)
+
+Quelltext-Stütze: **sehr stark, Teil 2** in voller Breite:
+- „Panik / nicht mehr atmen / Kehle wie zugeschnürt"
+- „Diese Welle an finsteren Gedanken die sich irgendwann nicht mehr ordnen lassen"
+- „Es fühlt sich an als sei in meinem Kopf das Meer / Nicht das Reise-Ziel / Es ist schwarz / Es ist laut / So einengend / Hört nicht auf zu rauschen"
+- **Agency-Verlust** (zentraler Anker): „Lässt mir nicht die Übersicht und lässt mich nicht wählen / Es wählt für mich / Keine Freiheit selbst zu entscheiden"
+
+Cross-Track: T2's „Baum fällen"-Bild hängt als Sound-Texture im Intro. T6 nimmt den Agency-Verlust mechanisch wieder auf. Outro mündet in T4's Vakuum — Drone-Bed bleibt, Doomgaze-Wand kollabiert.
 
 ## Cross-References
 
@@ -69,13 +77,16 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Unterwasser-Druck. Ein Gesicht, halb unter einer schwarzen Flüssigkeit, Augen offen, lucid — das T3-Artwork. Der Beobachter spricht durch das Wasser, dichte Sub-Bass-Wand drückt von oben. Nicht eskalierend — *unerbittlich*. Das Meer ist nicht in Wellen — es ist als konstanter Druck. Keine Hoffnung auf Luft. Aber auch kein Schreien.
+
+Sensorisch: dichter analoger Tape-Grain, Bass-frequenzen die spürbar sind, gedämpfte hochfrequente Distortion (das Stimmen-Vokabular aus T2 als unverständliches Rauschen darunter), Atem hörbar — knapp und kontrolliert, der Beobachter ringt nicht. Er beobachtet das Ringen.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 55–65 BPM (Doomgaze-Schritt — schleppend, langsamer als T2)
+- **Feel**: Klaustrophobisch, schleppend, monolithisch. Tempo deutlich unter T2. Dröhnende Gitarrenwände erdrücken die Lead-Vocals. Kein klassischer Energy-Build — die Wand ist die ganze Zeit da, nur dichter werdend.
+- **Instrumentation**: Massive verzerrte Doomgaze-Gitarrenwände (slow tremolo + sustain), Sub-Bass-Drone von Anfang an, schwere Half-Time Drums, Cymbals als Druckwellen statt Beats, Background-Texture aus distortion-noise-bed (T2's Stimmen-Vokabular als unverständliches Rauschen), Atem-Layer im Mix
+- **Vocal**: Single-Voice, Beobachter. Close-mic, trocken, KEIN Reverb-Heroismus. Spoken-near-sung Range, fast Sprechgesang — die Lead-Stimme MUSS unter der Wand spürbar bleiben, aber NIE darüber gemischt sein. Sie ringt mit der Wand, sie gewinnt nicht.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,14 +95,24 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+heavy doomgaze and sludge, 60 bpm extremely slow and ponderous, claustrophobic
+underwater pressure mood with relentless density rather than escalation,
+female single-vocal spoken-near-sung sprechgesang close-mic dry never with
+reverb, lucid and questioning never distant or clinical, audible breath in
+the mix, massive distorted doomgaze guitar walls with slow tremolo and
+sustained drones, sub-bass drone underneath throughout, heavy half-time
+drums, cymbals as pressure waves not beats, background distortion noise bed
+of unintelligible voice fragments low in mix, vocal sitting under the wall
+not above it, lo-fi degraded magnetic tape grain texture throughout
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no autotune, no vocal reverb heroism, no major-key resolution, no upbeat
+tempo, no synth lead melody, no electronic dance beats, no clean studio
+polish, no harmonized vocal layers, no rap, no fade-out outro to silence
 ```
 
 ### Lyrics Box
@@ -106,20 +127,77 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro - doomgaze wall, no vocal yet, T2 baum-fallen echo as sound texture]
+
 [Verse 1]
-[Lyrics here...]
+ich erwische mich
+nicht mehr atmen zu können
+die Kehle wie zugeschnürt
+und ich sehe mich
+es passiert gerade jetzt
+
+[Pre-Chorus]
+diese Welle
+diese Welle die sich nicht
+mehr ordnen lässt
+und ich sehe sie kommen
 
 [Chorus]
-[Lyrics here...]
+es ist in meinem Kopf
+das Meer
+nicht das Blaue
+nicht das Reise-Ziel
+
+schwarz
+laut
+einengend
+es rauscht
+und rauscht
 
 [Verse 2]
-[Lyrics here...]
+ich kann mich noch sehen
+das ist das Merkwürdige
+ich bin nicht weg
+ich bin —
+es passiert mit mir
+und ich seh' zu
+
+[Pre-Chorus]
+diese Welle
+diese Welle die sich nicht
+mehr wählen lässt
+sie wählt mich
+
+[Chorus]
+es ist in meinem Kopf
+das Meer
+nicht das Blaue
+nicht das Reise-Ziel
+
+schwarz
+laut
+einengend
+es rauscht
+und rauscht
 
 [Bridge]
-[Lyrics here...]
+es wählt für mich
+nicht ich
+es wählt
+für mich
+
+was ich glaube
+was ich liebe
+keine Wahl
+nicht eine
 
 [Outro]
-[Lyrics here...]
+es rauscht
+es rauscht
+keine Übersicht
+keine Wahl
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +208,81 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Ich erwische mich
+Nicht mehr atmen zu können
+Die Kehle wie zugeschnürt
+Und ich sehe mich
+Es passiert gerade jetzt
+
+Diese Welle
+Diese Welle die sich nicht
+Mehr ordnen lässt
+Und ich sehe sie kommen
+
+Es ist in meinem Kopf
+Das Meer
+Nicht das Blaue
+Nicht das Reise-Ziel
+
+Schwarz
+Laut
+Einengend
+Es rauscht
+Und rauscht
+
+Ich kann mich noch sehen
+Das ist das Merkwürdige
+Ich bin nicht weg
+Ich bin
+Es passiert mit mir
+Und ich seh zu
+
+Diese Welle
+Diese Welle die sich nicht
+Mehr wählen lässt
+Sie wählt mich
+
+Es ist in meinem Kopf
+Das Meer
+Nicht das Blaue
+Nicht das Reise-Ziel
+
+Schwarz
+Laut
+Einengend
+Es rauscht
+Und rauscht
+
+Es wählt für mich
+Nicht ich
+Es wählt
+Für mich
+
+Was ich glaube
+Was ich liebe
+Keine Wahl
+Nicht eine
+
+Es rauscht
+Es rauscht
+Keine Übersicht
+Keine Wahl
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Entry**: T2's „unter / unter / unter"-Outro löst sich auf in T3's doomgaze-wall. Crossfade 3-5s. T2's letzte Sub-Bass-Tonhöhe als Drone-Anker in T3 weiterführen.
+- **„Baum fällen"-Echo im Intro**: KEIN lyrisches Echo. Production-Layer — z.B. ein einzelner schwerer Hammer-Schlag (T2's Bridge-Drum-Sample) gefolgt von einem dumpfen sub-bass-Knall, dann setzt die Doomgaze-Wand ein.
+- **Stimmen-Background-Texture**: T2's Vokabular („blöd / nichts wert / Komparsin") als verzerrtes, **unverständliches** Rauschen im Background-Layer. Heavy low-pass + reverse-reverb + distortion, sodass die Worte nicht mehr erkennbar sind — nur die Anwesenheit der Stimmen-Atmosphäre. Mix-Engineer-Aufgabe.
+- **Vocal sitzt UNTER der Wand**: KEIN Reverb-Heroismus. Lead-Stimme trocken, close-mic, soll spürbar ringen. NIE über die Wand drüber gemischt — sie soll fast verschluckt sein, aber gerade noch verständlich.
+- **Sprechgesang-Range**: Beobachter spricht-fast-singt. Keine melodische Hook-Phrase. Die „Chorus"-Markierung ist strukturell, nicht melodisch — es bleibt Sprechgesang, nur mit massiverer Wand.
+- **Bridge „es wählt für mich"**: Tempo zieht NOCH weiter runter, fast Half-Time davon. Drone wird massiver. Die Lead-Stimme bleibt monoton, fast affektlos — Agency-Verlust wird nicht emotional erklärt, sondern *gelebt*.
+- **Outro**: löst nicht in Stille auf — der Drone bleibt, alle anderen Layer fallen weg. Crossfade direkt in T4's Drone-Bed. Mix-Engineer designt beide gemeinsam.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5/V5.5**: 3:30-5:00 doomgaze ist im Suno-Sweet-Spot. Doomgaze + Sludge sind aber im V5-Genre-Verzeichnis manchmal als „slowcore" / „post-metal" interpretiert — bei zu cleaner Generation: Style Box mit „massive distortion, lo-fi tape grain, no clean production" verstärken.
+- **Wenn Suno zu schnell spielt**: Style Box „extremely slow, ponderous, 60 bpm, half-time feel" wiederholen.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -156,7 +293,11 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| zugeschnürt | zugeschnürt | OK as-is — Suno trifft das Umlaut-„ü" zuverlässig. |
+| Reise-Ziel | Reise-Ziel | Bindestrich erzwingt zwei klare Wörter und verhindert, dass Suno „Reiseziel" als ein einziges schnelles Wort wegnuschelt. |
+| einengend | ein-en-gend | OK as-is bzw. mit leichter Silbentrennung; Suno trifft 3-Silben-DE-Wörter zuverlässig. |
+| Übersicht | Übersicht | OK — Standard-DE-Aussprache, Umlaut „Ü" wird getroffen. |
+| seh' / seh zu | seh / seh zu | Apostroph in Suno-Lyrics-Box erhalten (signal: verschluckte Silbe). In Streaming-Lyrics ohne Apostroph. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
