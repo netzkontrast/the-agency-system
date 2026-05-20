@@ -113,12 +113,11 @@ These are concrete items each known to have at least one downstream
 consequence on the current code. Track as issues; not blockers for
 shipping v0.1.
 
-1. **Bootstrap path for hand-rolled rows.** A fresh ontology has zero
-   `phase/<row>/<phase_id>` nodes for any row not introduced via the
-   meta scaffold. V7 only passes when something seeds the Phase node
-   manually. Need either a `pipeline.boot()` step that walks
-   `workflow/<row>/phases/*.md` and upserts the corresponding `Phase`
-   nodes, or a one-shot `bin/agency-seed-phases` script.
+1. ~~**Bootstrap path for hand-rolled rows.**~~ **Closed before merge** —
+   `pipeline.boot()` now walks `workflow/<row>/phases/*.md` for non-meta
+   rows and upserts the corresponding `Phase` nodes (commit `f8bf5dd`).
+   V7 reaches `status="completed"` on a fresh ontology with no manual
+   seeding.
 
 2. **`research_complete` gate is a placeholder.** Returns `ok=True`
    unconditionally. Real check depends on the spec 08-v1 driver
