@@ -125,12 +125,13 @@ shipping v0.1.
    prose in `workflow/jules/phases/02-synthesize.md` overstates current
    behavior.
 
-3. **Centralise the error-code catalogue.** `HANDLER_NOT_FOUND`,
-   `PHASE_BODY_MISSING`, `RESUME_EXPIRED`, `RESUME_TERMINAL`,
-   `RESUME_PHASE_GONE`, `ENVELOPE_INVALID`, `TOOL_ERROR`,
-   `SKILL_ERROR`, `HANDLER_MISSING_METHOD` — all defined inline.
-   Move to a shared module / spec section so the next contributor finds
-   them, before more codes accrete.
+3. ~~**Centralise the error-code catalogue.**~~ **Closed before merge**
+   (commit `b676f48`) — eleven codes live in
+   `context/_shared/error_codes.py`. All producer call sites
+   (`agentic/_harness/{cell_loader,fastmcp_boot}.py`,
+   `workflow/_runner/pipeline.py`) import from there. A regression test
+   (`tests/context/test_error_codes.py`) rejects any future inline
+   `"code": "<UPPER_SNAKE>"` literal.
 
 4. **Raw-SQLite payload tolerance is technical debt.** `_phase_node`
    and `hydrate` in `workflow/_runner/pipeline.py` accept both
@@ -139,22 +140,24 @@ shipping v0.1.
    will also let us drop the two pre-existing `tests/context/test_hooks.py`
    failures.
 
-5. **`context._STORE` singleton is not thread-safe.** Bare check-and-set
-   in `get_store()`. Documented as "single-threaded process; intentional"
-   but should grow a comment one level deeper, since FastMCP's task model
-   may eventually surface a second consumer.
+5. ~~**`context._STORE` singleton is not thread-safe.**~~ **Closed before
+   merge** (commit `b676f48`) — `get_store()` docstring now names the
+   upgrade path (`threading.Lock` around the lazy init if worker threads
+   ever wrap tools).
 
-6. **`_walk_phase` body-before-handler ordering.** Spec 07-v1 §FR3 lists
-   handler resolution first, but the implementation reads the prose body
-   first to support frontmatter `entry_verb` override. For a phase with
-   *both* body and handler missing, the error code is `PHASE_BODY_MISSING`
-   instead of the spec's `HANDLER_NOT_FOUND`. Defensible (frontmatter
-   drives the verb) but worth either an inline comment or a spec amendment.
+6. ~~**`_walk_phase` body-before-handler ordering.**~~ **Not a follow-up
+   after all** — the implementation already carries an inline comment
+   ("Body presence determines the entry_verb (frontmatter override) so
+   we read it before resolving the handler") explaining the deliberate
+   spec deviation. Documented in place; no further action needed.
 
-7. **Bulk-CLI's `jules_create` lookup is broken.** `bin/jules-bulk`
-   imports `jules_create` from `jules_mcp.server`, but the function
-   lives in `jules_mcp.tools.lifecycle`. Workaround during N4 was a
-   one-shot Python dispatcher. Fix or document the dispatcher pattern.
+7. ~~**Bulk-CLI's `jules_create` lookup is broken.**~~ **Closed before
+   merge** — `jules_mcp.server` re-exports `jules_create`,
+   `jules_status_all`, `jules_approve_awaiting`, `jules_quota`, and the
+   other lifecycle helpers, so the CLI's `from jules_mcp import server
+   as mod; mod.jules_*(...)` pattern works without touching the four
+   heredocs. Verified by `fanout`, `dashboard`, `approve-awaiting`, and
+   `quota` smoke runs.
 
 ## What v0.1 means for downstream work
 
