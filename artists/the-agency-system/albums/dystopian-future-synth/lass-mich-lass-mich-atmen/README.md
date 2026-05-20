@@ -28,7 +28,7 @@ content_warning: "Album re-confronts childhood sexual abuse at album length. Tra
 | **Release position** | Album 4 of The Agency System's catalogue (after *Together We Confide*, *Moment der Klarheit*, *Systematic Agency*) |
 | **Genre** | [Dystopian Future Synth](/genres/dystopian-future-synth/README.md) — artist-coined umbrella; surface tags `darksynth` / `darkwave` / `post-punk` / `industrial` per `overrides/genre-dystopian-future-synth.md` |
 | **Tracks** | 13 (polyphonic suite, movement-not-track structure) |
-| **Status** | In Progress — Phase 0 (spec locked); pending `/bitwize-music:album-conceptualizer` 7-phase deep dive |
+| **Status** | In Progress — album-conceptualizer Phase 7 complete (DESIGN.md v3.3 §14); 13 track-files scaffolded; ready for lyric-writer entry on T02 |
 | **Explicit** | provisional `false` (re-check per track) |
 | **Concept** | Sustained polyphonic authorship of the truth-confrontation from *Kern der Wahrheit*; 13 movements in which 8 canonical alters + Albtraum (carried by Sexualized-Override) hold the position without surrender, escape, fight-alone, or heroic resolution |
 
@@ -66,14 +66,6 @@ The album begins where *Vor der Konfrontation* ended ("Angekommen.") and inhabit
 
 13-movement polyphonic suite. Cross-track motif inventory + heartbeat bookend (callback to *Autoren-Feder*'s 60-BPM intro/outro) connect the tracks. Not committed to attacca transitions or tonal centre — suite, not single-piece. See DESIGN.md §6.1.1 for the cross-track DNA-layer density grid (13×5).
 
-## Themes
-
-- **Sustained authorship of truth** as proof of *Aus Ohnmacht wird Gestaltung* (the position *Autoren-Feder* earned)
-- **Refusal of three escapes**: surrender (the "All Is Lost" outro), flight (the "raus" instinct), and heroic resolution (any "I won" narrative)
-- **Polyphonic stay**: voices distinct but together, alters speaking inside one sustained moment
-- **Yellow as historicized object-color**: not abstract — the yellowed childhood pillow, the yellow flat room, the gelbe Lärm of the dream-Tod
-- **Therapeutic position**: durch + fühlen + anerkannt + getrennt + dableiben (not heal, not escape, not surrender — stay)
-
 ## Voice architecture
 
 8 canonical alters from `what-lies-ahead/the-eleven.md` + Albtraum/Tod (carried by Sexualized-Override). See `DESIGN.md` §4 for the full table with fingerprint axes per voice.
@@ -88,6 +80,49 @@ The album begins where *Vor der Konfrontation* ended ("Angekommen.") and inhabit
 | Integrator | The inner light; holds all voices in T11 | 11 |
 | Witness-of-Witnesses | Spoken-word annotative meta-narrator | 12 |
 | Sexualized-Override (carries Albtraum/Tod) | Perpetrator-introject voice; quotes "All Is Lost" verbatim | 03, 05, 09 (paren-Albtraum) |
+
+## Motif Inventory
+
+Cross-track DNA the album carries — these are the *internal* recurring elements that hold the suite together. (Intertextual citations to "All Is Lost" in T03/T05/T09 are *foreign material* the Albtraum quotes, not motifs.) See `DESIGN.md` §9 + §6.1.1 for full density grid.
+
+| Motif | First | Recurs in | Function |
+|---|---|---|---|
+| Heartbeat (60 BPM) | T01 intro | T13 outro | bookends the album in body-time; callback to *Autoren-Feder* |
+| Yellow noise / HF-glitch | T01 | every track at varying density (§6.1.1) | the sonic body of the yellow |
+| [breath]-marker | T01 | every track | the disputed resource |
+| Pillow-thread imagery | T02 | T06, T09 | the central object — sanctuary-AND-weapon doubled function |
+| Doubled "Lass mich" | T02 refrain | T13 outro silence (refused repetition) | the demand and its eventual unnecessariness |
+| Schriller Alarm | T01 intro | T07 chorus | the threshold-marker |
+
+## Yellow-image-per-track
+
+The yellow-protocol is mandatory: every track carries one historicized yellow image. See `DESIGN.md` §5 for the full per-track yellow inventory.
+
+| # | Track | Yellow image |
+|---|---|---|
+| 01 | Eingetreten | Schwellen-Licht — gelber Streifen unter der Tür des Erinnerungs-Raums |
+| 02 | Lass mich, lass mich atmen | Yellowed thread of the pillow pressed to mouth |
+| 03 | Es war nie leer | Yellow particles dancing — but now they are *bodies*, not stars |
+| 04 | Nicht meine Fehler | Gelblicher Wandanstrich der Kinderzimmer, fleckig |
+| 05 | Fremde Gewalt | Alien yellow EQ-aura around the perpetrator-voice |
+| 06 | Das Kissen (sie schläft) | Gelbliches Kissen, eingedrückt von einem schlafenden Kind |
+| 07 | WARUM | Yellow-blackout flicker — alarm-color collapsing into scream |
+| 08 | Auch ich bin Eis | Cold yellow — winter sun on a yellow flat surface |
+| 09 | Don't Let It Stop | Endless yellow void from "All Is Lost", named as trap |
+| 10 | Raus? | Yellow exit-sign light (kein wirklicher Ausgang) |
+| 11 | Durch. Fühlen. | Yellow-warm bridge-light — held inside, not escaped to |
+| 12 | Anerkannt, getrennt | Aged-paper yellow — the document, the file, the past tense |
+| 13 | Ich bin hier / Das war | Gelblicht durch die Vorhänge, present-tense, jetzt |
+
+## Themes
+
+| Theme | Function |
+|---|---|
+| **Sustained authorship of truth** | Proof of *Aus Ohnmacht wird Gestaltung* (the position *Autoren-Feder* earned) |
+| **Refusal of three escapes** | Surrender (the "All Is Lost" outro), flight (the "raus" instinct), heroic resolution (any "I won" narrative) |
+| **Polyphonic stay** | Voices distinct but together; alters speaking inside one sustained moment |
+| **Yellow as historicized object-color** | Not abstract — the yellowed pillow, the yellow flat room, the gelbe Lärm of the dream-Tod |
+| **Therapeutic position** | durch + fühlen + anerkannt + getrennt + dableiben (not heal, not escape, not surrender — stay) |
 
 ## Sonic Palette
 
@@ -117,10 +152,13 @@ The album begins where *Vor der Konfrontation* ended ("Angekommen.") and inhabit
 ## Production Notes
 
 <!-- SERVICE: suno -->
-**Suno Persona** (optional):
+**Suno Persona** (album-anchor):
 | Attribute | Value |
 |-----------|-------|
-| **Persona Name** | TBD in album-conceptualizer Phase 6 |
+| **Persona Name** | Ich (Agency-System) |
+| **Anchor voice** | Sprechgesang baritone, dry close-mic, throat-audible — lineage from *Autoren-Feder* |
+| **Calibration strategy** | T02 generated first; persona snapshot taken from best T02 candidate; reused across T01–T13 |
+| **Other alters** | Differentiated via Style-Box deskriptors + Parenthesis-Discipline (one with parens, one without per same-gender register) |
 
 **Suno Settings**:
 - **Target Duration**: 3:00–5:30 per track (longer for T11 polyphonic peak, shorter for T13 ambient closer)
@@ -137,10 +175,13 @@ dystopian future synth, cold chorus-rich darkwave pads, downtuned distorted bass
 ## Album Art
 
 ### AI Art Platform
-**Platform**: TBD in album-conceptualizer Phase 5
+**Platform**: DALL-E
+
+### Cover Concept
+**Schwellen-Architektur — gelber Raum hinter Schwarz**: dunkler Vordergrund (Türrahmen / Schwellen-Silhouette), dahinter ein gelber flacher Raum. *Threshold* direkt im Bild; *Yellow* als Innenraum; *Polyphony* über Schwellenmehrfachheit / vielfache Schatten-Ebenen. The album-cover plus 3 Eckpfeiler-Bilder for T02 (title-track), T07 (WARUM-Peak), T13 (Closer).
 
 ### Image Prompt
-*Generated by `/bitwize-music:album-art-director`. Must hold: yellow + threshold + polyphony (per DESIGN.md §0).*
+*Generated by `/bitwize-music:album-art-director` once invoked. Must hold: yellow + threshold + polyphony (per DESIGN.md §0/§5/§14 Phase 5).*
 
 ## Distributor Genres
 

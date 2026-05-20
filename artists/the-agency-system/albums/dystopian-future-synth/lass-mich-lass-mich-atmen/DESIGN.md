@@ -1,11 +1,12 @@
 ---
 title: "Lass mich, lass mich atmen — Album Design Spec"
 date: 2026-05-20
-status: v3.2 — all spec decisions locked; ready for scaffolding
+status: v3.3 — album-conceptualizer 7-phase deep dive complete; ready for track scaffolding + lyric-writer T02
 revision_history:
   - v3.0 (2026-05-20): initial draft from brainstorming
   - v3.1 (2026-05-20): 5-panel review applied (Lyric Craft / Sonic-Suno / Discography / Trauma-Authenticity / Polyphonic Coherence); user-locked 6 spec-architecture decisions (A–F)
   - v3.2 (2026-05-20): final-decisions round locked — v2 consolidated as research material; title final; album-4 release position confirmed
+  - v3.3 (2026-05-20): album-conceptualizer 7-phase deep dive applied — Phases 1–7 locked in §14; persona, anchor, transitions, cover, single strategy, workflow all resolved
 artist: the-agency-system
 album_title: Lass mich, lass mich atmen
 release_type: full-length album, 13 tracks, polyphonic suite
@@ -496,9 +497,69 @@ All open spec questions are now resolved. Ready for `/bitwize-music:new-album` s
 - `artists/the-agency-system/albums/dystopian-future-synth/lass-mich-lass-mich-atmen/tracks/01-eingetreten.md` through `13-ich-bin-hier-das-war.md`
 - `artists/the-agency-system/albums/dystopian-future-synth/lass-mich-lass-mich-atmen/the-cast.md` — voice-DNA documentation for the 7+ alters in this album
 
+## 14. Album-conceptualizer Phase 1–7 decisions (v3.3, 2026-05-20)
+
+Locked via `/bitwize-music:album-conceptualizer` 7-phase deep dive, all user-confirmed via AskUserQuestion.
+
+### Phase 1 — Concept & Frame
+
+| Field | Decision |
+|---|---|
+| Type | Thematic |
+| Frame | Fictional / artistic composite (no documentary source gate; `sources_verified: N/A` per track) |
+
+### Phase 2 — Concept Deep Dive
+
+| Field | Decision |
+|---|---|
+| Listener takeaway | "Eine Wahrheit kann gehalten werden, ohne aufgelöst zu werden" |
+| Album-Statement-Track | **T02 "Lass mich, lass mich atmen"** — namens-tragende Demand |
+| Emotional arc | **Schwelle → Peak → Wende → Anerkennung → Ankunft** (T01 Eintritt → T07 WARUM-Scream → T10/T11 Raus?-Durch → T12 anerkannt → T13 hier/das war) |
+
+### Phase 3 — Sonic Direction
+
+| Field | Decision |
+|---|---|
+| Sonic anchor | **Perturbator × Boy Harsher** — darksynth pads + cold-darkwave vocals als Suno-Kalibrierungs-Referenz |
+| Genre balance | **Darkwave-dominant 60/40** (vs Industrial-Metal). Per-Track-Density-Grid §6.1.1 bleibt; Album-Default mittelt zugunsten Pads, Industrial schaltet pro Track |
+| Vocal strategy | **Eine Album-Persona + Style-Box-Differenzierung** — Persona-Anker auf Ich-Sprechgesang; 7 weitere Alters über Style-Box-Deskriptoren mit Parenthesis-Discipline |
+| Duration | **3:00–5:30 per track** (T11 polyphonic peak bis 6:00 erlaubt, T13 ambient closer ab 2:30) |
+
+### Phase 4 — Structure
+
+| Field | Decision |
+|---|---|
+| Transitions | **Mixed attacca**: T01→T02 (Eintritt → Atemnot), T07→T08 (WARUM-Scream → Eis), T10→T11 (Raus? → Durch.). Sonst kurze Atempausen |
+| README tables | Motif + Voice + Theme als sichtbare Tabellen im Album-README |
+| Track scaffolding | **Alle 13 Tracks jetzt scaffolden** (status="Not Started", frontmatter mit voice-lead/BPM/industrial-metal-%) |
+
+### Phase 5 — Album Art
+
+| Field | Decision |
+|---|---|
+| Cover concept | **Schwellen-Architektur — gelber Raum hinter Schwarz**. Dunkler Vordergrund (Türrahmen/Schwellen-Silhouette), dahinter gelber flacher Raum. Threshold direkt; Yellow als Innen; Polyphony über Schwellenmehrfachheit |
+| Platform | **DALL-E** |
+| Per-track art | **Album-Cover + 3 Eckpfeiler-Bilder** (T02 title-track, T07 WARUM-Peak, T13 Closer) |
+
+### Phase 6 — Practical Details
+
+| Field | Decision |
+|---|---|
+| Suno persona name | **"Ich (Agency-System)"** — Persona-Anker = Caregiver-Protector-Hybrid-Ich (Sprechgesang baritone); übrige Alters via Style-Box differenziert |
+| Lead-Single-Strategie | **T02 + T11 als Doppel-Pre-Release** — Title-Demand + polyphonic-peak gemeinsam vor Album |
+| Generation-Workflow | **T02 zuerst (Suno-Kalibrierung) → dann T01→T13 sequenziell** |
+| Release-Datum | Kein Ziel-Datum — release_date bleibt leer; Status "In Progress" |
+| Distributor genre | Primary Electronic / Secondary Alternative / Subgenre Electronica-Downtempo (avoid surfacing "dystopian-future-synth" to aggregators per `overrides/genre-dystopian-future-synth.md` §1) |
+
+### Phase 7 — Confirmation Gate (passed 2026-05-20)
+
+All seven phases user-confirmed via AskUserQuestion. Album-Plan persistiert in DESIGN.md (this file, v3.3), README.md (Motif/Voice/Theme tables), 13 track-files scaffolded. Lyric-writer entry point: T02.
+
+---
+
 ## 13. Status
 
-**v3.1 — panel review applied; user-decisions A–F locked in §11; ready for user sign-off and album scaffolding.**
+**v3.3 — album-conceptualizer 7-phase deep dive complete; Phases 1–7 locked in §14; 13 track-files scaffolded; ready for lyric-writer entry on T02.**
 
 Three remaining open questions (§11): repo layout, album title final, release-order placement. These do not block scaffolding (the working slug + working title are sufficient); they will be re-confirmed at album-conceptualizer Phase 6.
 
