@@ -53,8 +53,76 @@ def _reset_handler_registry_for_tests() -> None:
 
 
 def boot() -> None:
-    """Pipeline boot: run the Continuation TTL sweep."""
+    """Pipeline boot: Continuation TTL sweep + Phase-node seeding for
+    hand-rolled rows.
+
+    The meta-row scaffolder materialises Phase nodes for any row it creates,
+    but rows that were authored directly on disk (like the `jules` row in
+    v0.1) have a manifest + phase MDs but no graph nodes until something
+    seeds them. Walking `workflow/<row>/phases/*.md` once at boot keeps the
+    walker reachable without forcing a separate seed command.
+    """
     sweep_ttl()
+    _seed_phase_nodes_for_hand_rolled_rows()
+
+
+def _parse_phase_frontmatter(md_path: Path) -> Dict[str, Any]:
+    """Read YAML frontmatter from a phase MD. Tolerates missing frontmatter."""
+    text = md_path.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        return {}
+    end = text.find("\n---", 3)
+    if end == -1:
+        return {}
+    import yaml as _yaml
+    try:
+        meta = _yaml.safe_load(text[3:end]) or {}
+    except Exception:
+        return {}
+    return meta if isinstance(meta, dict) else {}
+
+
+def _seed_phase_nodes_for_hand_rolled_rows() -> None:
+    """Upsert Phase nodes for every workflow/<row>/phases/*.md.
+
+    Idempotent — `upsert_node` is a write-or-replace. The meta row is
+    skipped because its phases are materialised dynamically by the
+    scaffolder for each new target row. Phase id is the leading digits of
+    the MD filename; the rest of the filename is descriptive.
+    """
+    workflow_dir = Path("workflow")
+    if not workflow_dir.exists():
+        return
+    g = get_store()
+    for row_dir in workflow_dir.iterdir():
+        if not row_dir.is_dir() or row_dir.name.startswith("_"):
+            continue
+        if row_dir.name == "meta":
+            continue
+        phases_dir = row_dir / "phases"
+        if not phases_dir.is_dir():
+            continue
+        for md in sorted(phases_dir.glob("*.md")):
+            m = re.match(r"^(\d+)", md.stem)
+            if not m:
+                continue
+            phase_id = m.group(1)
+            meta = _parse_phase_frontmatter(md)
+            payload = {
+                "row": row_dir.name,
+                "phase_id": phase_id,
+                "body_ref": f"phases/{md.name}",
+                "lazy_created": False,
+            }
+            if "entry_verb" in meta:
+                payload["entry_verb"] = meta["entry_verb"]
+            if "description" in meta:
+                payload["description"] = meta["description"]
+            g.upsert_node(
+                f"phase/{row_dir.name}/{phase_id}",
+                payload,
+                label="Phase",
+            )
 
 
 # ---------------------------------------------------------------------------
