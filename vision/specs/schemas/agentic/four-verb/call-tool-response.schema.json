@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/four-verb/call-tool-response.schema.json",
+  "title": "Call Tool Response Schema",
+  "description": "Response schema for a tool invocation. Uses the global ToolResult envelope.",
+  "$ref": "../../context/_shared/schemas/tool_result.schema.json"
+}

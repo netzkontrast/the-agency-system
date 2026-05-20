@@ -43,7 +43,7 @@ three legacy plugins. Without this spec, users see three install paths,
 contradictory doctrine in three `CLAUDE.md` files, and a `jules-plugin/`
 folder that has been superseded by `handlers/jules/` and `skills/jules/`
 since spec 007. With it, version `1.0.0` ships clean: one plugin, one
-config, one doctrine, four domain guides, one CHANGELOG.
+config, one doctrine, four domain guides, one CHANGELOG. (Note: "four domain guides" refers to the four user-facing `docs/domain/{music,novel,jules,agentic}.md` files per `Plan/harness/VOCABULARY.md` §4.1; the canonical handler-bearing domain count is five — `music`, `novel`, `jules`, `context`, `shared` — plus the `agentic` skill-only domain. Subsequent uses of "four domains" / "four domain guides" in this spec refer to the same domain-doc enumeration.)
 
 The four domain guides matter because users entering from different
 angles (musician, novelist, agent operator, spec author) need a single

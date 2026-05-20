@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/edges/blocked-on.schema.json",
+  "title": "BLOCKED_ON Edge",
+  "description": "Indicates a Phase waiting on a Gate.",
+  "type": "object",
+  "properties": {
+    "src": { "type": "string" },
+    "dst": { "type": "string" },
+    "rel_type": { "type": "string", "const": "BLOCKED_ON" },
+    "payload": { "type": "object" }
+  },
+  "required": ["src", "dst", "rel_type"]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/continuation.schema.json",
+  "title": "Continuation Node",
+  "description": "Graph node representing a yielded state in a workflow, awaiting user input or gate satisfaction.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Continuation" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "session_id": { "type": "string" },
+        "phase_id": { "type": "string" },
+        "opaque_state": { "type": "object" }
+      },
+      "required": ["session_id", "phase_id"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}

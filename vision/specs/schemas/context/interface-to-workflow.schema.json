@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/interface-to-workflow.schema.json",
+  "title": "Context Interface to Workflow",
+  "description": "How context sees its interface to workflow: graph state responses and lazy-link capabilities.",
+  "type": "object",
+  "properties": {
+    "graph_state_response": {
+      "type": "object",
+      "description": "Current state of a workflow phase as seen by the graph.",
+      "properties": {
+        "node": {
+          "$ref": "nodes/phase.schema.json"
+        },
+        "blocked_on": {
+          "type": "array",
+          "items": { "$ref": "nodes/gate.schema.json" }
+        }
+      }
+    },
+    "lazy_create_path_request": {
+      "type": "object",
+      "description": "Request from workflow to lazily create a path of nodes/edges if missing.",
+      "properties": {
+        "start_node_id": { "type": "string" },
+        "target_phase_id": { "type": "string" },
+        "row": { "type": "string" }
+      },
+      "required": ["start_node_id", "target_phase_id", "row"]
+    }
+  }
+}

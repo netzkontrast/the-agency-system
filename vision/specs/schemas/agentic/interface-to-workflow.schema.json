@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/interface-to-workflow.schema.json",
+  "title": "Interface to Workflow Schema",
+  "description": "Defines what agentic sends to workflow.start, workflow.resume, and workflow.get_state.",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["start", "resume", "get_state"],
+      "description": "The workflow action to execute."
+    },
+    "row": {
+      "type": "string",
+      "description": "The row namespace (e.g., music, novel)."
+    },
+    "phase": {
+      "type": "string",
+      "description": "The specific phase inside the row workflow (e.g., '01-ideation')."
+    },
+    "inputs": {
+      "type": "object",
+      "description": "The payload sent to the workflow pipeline.",
+      "additionalProperties": true
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Optional session identifier to resume or check state of a specific workflow instance."
+    }
+  },
+  "required": ["action", "row"],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": { "action": { "enum": ["start"] } }
+      },
+      "then": {
+        "required": ["phase", "inputs"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "action": { "enum": ["resume", "get_state"] } }
+      },
+      "then": {
+        "required": ["session_id"]
+      }
+    }
+  ]
+}

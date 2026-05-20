@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/edges/produces.schema.json",
+  "title": "PRODUCES Edge",
+  "description": "Indicates a Phase or Session producing an Artefact.",
+  "type": "object",
+  "properties": {
+    "src": { "type": "string" },
+    "dst": { "type": "string" },
+    "rel_type": { "type": "string", "const": "PRODUCES" },
+    "payload": { "type": "object" }
+  },
+  "required": ["src", "dst", "rel_type"]
+}

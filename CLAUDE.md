@@ -388,6 +388,15 @@ Invoke as slash commands: `/bitwize-music:<name>`.
 - **Full skill list:** `/bitwize-music:help`
 - **What a specific skill does:** `/bitwize-music:about <skill-name>` or
   `get_skill` MCP tool with the skill name.
+- **Canonical naming for the unified `agency-system` plugin** (three-layer
+  harness ladder L1/L2/L3, four-verb contract, five handler-bearing
+  domains + agentic skill-only, Path A vs. Path B disambiguation, frontmatter
+  conventions, repair-authority tiers, content tiers): see
+  [`Plan/harness/VOCABULARY.md`](Plan/harness/VOCABULARY.md). When a phase
+  document, sub-spec, ADR, or skill needs to cite a cross-cutting term,
+  link to VOCABULARY rather than re-deriving the canon.
+- **Architecture decisions (ADRs, MADR 4.0.0):**
+  [`Plan/decisions/readme.md`](Plan/decisions/readme.md).
 - **Cross-project preferences (lyric craft, Suno mappings, research
   standards, vocal registers, mastering presets, voice-craft principles):**
   `overrides/lyric-writing-guide.md`,

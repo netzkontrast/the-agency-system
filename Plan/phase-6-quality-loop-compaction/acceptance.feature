@@ -6,7 +6,7 @@ Feature: Phase 6 — Quality / loop / compaction
   Background:
     Given the the-agency-system repository is loaded
     And the unified plugin and agency-mcp server are booted
-    And the session-log MCP server at servers/session-log-mcp/ is running
+    And the session-log MCP server at servers/session-log-mcp/ (sibling event store, not part of agency-mcp) is running
     And the orchestrator has instantiated the session event stream
 
   # anchor: phase-6.session-log-persistence

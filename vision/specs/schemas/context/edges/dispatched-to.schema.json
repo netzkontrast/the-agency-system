@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/edges/dispatched-to.schema.json",
+  "title": "DISPATCHED_TO Edge",
+  "description": "Indicates a cross-row dispatch or orchestration trigger. Skill -> Phase or Skill -> Skill.",
+  "type": "object",
+  "properties": {
+    "src": { "type": "string" },
+    "dst": { "type": "string" },
+    "rel_type": { "type": "string", "const": "DISPATCHED_TO" },
+    "payload": { "type": "object" }
+  },
+  "required": ["src", "dst", "rel_type"]
+}

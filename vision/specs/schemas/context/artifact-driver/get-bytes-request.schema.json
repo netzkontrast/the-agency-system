@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/artifact-driver/get-bytes-request.schema.json",
+  "title": "Get Bytes Request",
+  "description": "Request to an artifact driver to retrieve bytes for a given node.",
+  "type": "object",
+  "properties": {
+    "node_id": {
+      "type": "string",
+      "description": "The unique identifier of the Artefact node."
+    },
+    "driver_pointer": {
+      "type": "string",
+      "description": "The driver-specific pointer (e.g., file path, S3 key) stored on the node."
+    }
+  },
+  "required": ["node_id", "driver_pointer"]
+}

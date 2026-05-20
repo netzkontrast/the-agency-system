@@ -6,6 +6,7 @@ Feature: Phase 3 — GitHub sink wrapper
   Background:
     Given the the-agency-system repository is loaded
     And the agency-mcp server has successfully booted
+    And the shared ToolResult envelope from Spec 130 is registered
 
   # anchor: phase-3.pr-summary-size-cap
   Scenario: gh_pr_summary returns a typed Pydantic proto under 2.5 KB for a representative 50-comment PR

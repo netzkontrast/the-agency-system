@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:workflow-cell",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cell",
+    "workflow"
+  ],
+  "properties": {
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "row",
+        "column"
+      ],
+      "properties": {
+        "row": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,30}$"
+        },
+        "column": {
+          "const": "workflow"
+        }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_verbs"
+      ],
+      "properties": {
+        "entry_verbs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lazy_link": {
+          "description": "Opt-in for the graph walker to create placeholder Phase nodes for unknown (row, phase_id) tuples. Spec 07-v1 §FR1.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        }
+      }
+    },
+    "phases": {
+      "description": "LEGACY: hard-coded phase list. Meta-row only — other rows declare phases as Phase nodes in the graph (spec 07-v1 §FR1, §FR2).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "path"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "path",
+          "blocks_phase"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "blocks_phase": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artefacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "produced": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

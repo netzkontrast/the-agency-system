@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/gate.schema.json",
+  "title": "Gate Node",
+  "description": "Graph node representing a policy gate in a workflow.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Gate" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "row": { "type": "string" },
+        "satisfied": { "type": "boolean" }
+      },
+      "required": ["name", "row"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}
