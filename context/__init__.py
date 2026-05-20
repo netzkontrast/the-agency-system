@@ -16,6 +16,11 @@ def get_store():
     ``monkeypatch.setattr("context._STORE", Store(db_path=tmp))``).
 
     See ``vision/specs/08-context-base-v1.md`` §FR1.
+
+    Concurrency: FastMCP serves requests in a single asyncio loop, so the
+    bare check-and-set is intentional. If a future deployment wraps tools
+    in worker threads, this needs an :class:`threading.Lock` around the
+    lazy init.
     """
     global _STORE
     if _STORE is None:

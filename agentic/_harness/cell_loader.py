@@ -10,6 +10,7 @@ from agentic._harness.name_deriver import (
     handler_module,
 )
 from agentic._harness.codemode import wrap_for_codemode
+from context._shared import error_codes
 
 
 class CellRegistry:
@@ -124,7 +125,7 @@ def _register_agentic(registry: CellRegistry, row: str, data: dict, root: Path):
                     "ok": False,
                     "data": {
                         "error": {
-                            "code": "HANDLER_NOT_FOUND",
+                            "code": error_codes.HANDLER_NOT_FOUND,
                             "message": f"Could not import {_mod_name}",
                             "fix_hint": "Create the handler module.",
                         }
@@ -137,7 +138,7 @@ def _register_agentic(registry: CellRegistry, row: str, data: dict, root: Path):
                     "ok": False,
                     "data": {
                         "error": {
-                            "code": "HANDLER_MISSING_METHOD",
+                            "code": error_codes.HANDLER_MISSING_METHOD,
                             "message": f"Module {_mod_name} does not define 'handle'",
                             "fix_hint": "Define a 'handle(**kwargs)' method.",
                         }

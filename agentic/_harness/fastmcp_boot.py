@@ -3,6 +3,8 @@ from pathlib import Path
 from fastmcp import FastMCP
 from jsonschema import validate, ValidationError
 
+from context._shared import error_codes
+
 # spec 02 §Schema: We need to validate the tool result envelope
 ENVELOPE_SCHEMA_PATH = Path("context/_shared/schemas/tool_result.schema.json")
 
@@ -19,7 +21,7 @@ def validate_tool_result(result: dict) -> dict:
                 "ok": False,
                 "data": {
                     "error": {
-                        "code": "ENVELOPE_INVALID",
+                        "code": error_codes.ENVELOPE_INVALID,
                         "message": str(e.path),
                         "fix_hint": "Tool must return the spec-02 envelope.",
                     }
@@ -63,7 +65,7 @@ def register_four_verb_contract(mcp: FastMCP, registry) -> None:
                     "ok": False,
                     "data": {
                         "error": {
-                            "code": "TOOL_ERROR",
+                            "code": error_codes.TOOL_ERROR,
                             "message": str(e),
                             "fix_hint": "Check the tool implementation and inputs.",
                         }
@@ -109,7 +111,7 @@ def register_four_verb_contract(mcp: FastMCP, registry) -> None:
                     "ok": False,
                     "data": {
                         "error": {
-                            "code": "SKILL_ERROR",
+                            "code": error_codes.SKILL_ERROR,
                             "message": str(e),
                             "fix_hint": "Check the skill implementation.",
                         }

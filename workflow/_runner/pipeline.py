@@ -21,6 +21,7 @@ from typing import Any, Callable, Dict, List, Optional
 import jinja2
 
 from context import Store, get_store
+from context._shared import error_codes
 from workflow._runner import manifest as manifest_reader
 from workflow._runner.envelope import (
     PhaseStateEnvelope,
@@ -301,7 +302,7 @@ def resume(
             "opaque_state": {},
             "tool_result": {
                 "ok": False,
-                "data": {"error": {"code": "RESUME_EXPIRED"}},
+                "data": {"error": {"code": error_codes.RESUME_EXPIRED}},
                 "warnings": [],
                 "next_suggested_tools": [],
             },
@@ -311,7 +312,7 @@ def resume(
 
     if env["status"] in ("completed", "failed"):
         env["tool_result"]["ok"] = False
-        env["tool_result"]["data"] = {"error": {"code": "RESUME_TERMINAL"}}
+        env["tool_result"]["data"] = {"error": {"code": error_codes.RESUME_TERMINAL}}
         return env
 
     # Shallow merge of user_response into opaque_state (spec 07-v1 §FR4:
@@ -334,7 +335,7 @@ def resume(
             row,
             phase_id,
             f"row {row} phase {phase_id} not in graph on resume",
-            code="RESUME_PHASE_GONE",
+            code=error_codes.RESUME_PHASE_GONE,
         )
 
     new_env = _walk_phase(session_id, row, phase_id, phase_node, env["opaque_state"])
@@ -428,7 +429,7 @@ def _walk_phase(
         env = _failed_envelope(
             session_id, row, phase_id,
             f"phase body not found at {resolved}",
-            code="PHASE_BODY_MISSING",
+            code=error_codes.PHASE_BODY_MISSING,
         )
         return env
 
@@ -441,7 +442,7 @@ def _walk_phase(
         env = _failed_envelope(
             session_id, row, phase_id,
             f"no MCP tool registered for mcp__{row}_{entry_verb}",
-            code="HANDLER_NOT_FOUND",
+            code=error_codes.HANDLER_NOT_FOUND,
         )
         return env
 
@@ -474,7 +475,7 @@ def _walk_phase(
         # Handler signature mismatch — surface as failed envelope.
         tool_result = {
             "ok": False,
-            "data": {"error": {"code": "HANDLER_BAD_SIGNATURE",
+            "data": {"error": {"code": error_codes.HANDLER_BAD_SIGNATURE,
                                "message": f"handler mcp__{row}_{entry_verb} rejected inputs"}},
             "warnings": [],
             "next_suggested_tools": [],
@@ -482,7 +483,7 @@ def _walk_phase(
     except Exception as exc:
         tool_result = {
             "ok": False,
-            "data": {"error": {"code": "HANDLER_EXCEPTION", "message": repr(exc)}},
+            "data": {"error": {"code": error_codes.HANDLER_EXCEPTION, "message": repr(exc)}},
             "warnings": [],
             "next_suggested_tools": [],
         }
@@ -490,7 +491,7 @@ def _walk_phase(
     if not isinstance(tool_result, dict):
         tool_result = {
             "ok": False,
-            "data": {"error": {"code": "HANDLER_BAD_RETURN",
+            "data": {"error": {"code": error_codes.HANDLER_BAD_RETURN,
                                "message": "handler did not return a dict"}},
             "warnings": [],
             "next_suggested_tools": [],
