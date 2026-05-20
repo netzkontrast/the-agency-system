@@ -1,298 +1,222 @@
 ---
-title: "[Album Title]"
+title: "Negative Gedanken"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: []  # e.g., ["hip-hop", "documentary"]
-tags: []  # e.g., ["tech", "linux", "true-story"]
-explicit: false  # true or false
-# anchor_track: null  # Optional: 1-based track number to anchor album mastering (issue #290). Empty = auto-select by composite score.
+genres: ["rock", "noise-rock", "post-grunge", "shoegaze"]
+tags: ["concept-album", "mini-album", "german", "mental-health", "noise-loop"]
+explicit: false
 streaming:
-  soundcloud: ""    # Fill in when released
-  spotify: ""       # Fill in when released
-  apple_music: ""   # Fill in when released
-  youtube_music: "" # Fill in when released
-  amazon_music: ""  # Fill in when released
+  soundcloud: ""
+  spotify: ""
+  apple_music: ""
+  youtube_music: ""
+  amazon_music: ""
 sheet_music:
   songbook: ""
-# mastering:  # Optional - per-album mastering settings
-#   adm_validation_enabled: true
-# slug: ""  # Optional - only uncomment if you need to override auto-generated slug
 ---
 
-# [Album Title]
+# Negative Gedanken
 
 ## Album Details
 
-<!-- NOTE: When releasing, set Status: Released and fill in release_date in frontmatter. Albums stay in place. -->
-
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
-| **Album** | [Album Title] |
-| **Genre** | [Genre](/genres/[genre]/README.md) / [Subgenre] |
-| **Tracks** | [Number] |
+| **Artist** | [Loud Strangers](../../../README.md) |
+| **Album** | Negative Gedanken |
+| **Genre** | rock / dark-noise-rock (Post-Grunge × Dark Shoegaze × Industrial Ambient) |
+| **Tracks** | 7 (Mini-Album) |
 | **Status** | Concept |
-| **Explicit** | Yes / No |
-| **Concept** | [Brief concept description] |
-
-## Frontmatter Reference
-
-### mastering (optional)
-
-Per-album mastering settings. Currently supports:
-
-- `adm_validation_enabled: true` — opt in to Apple Digital Masters
-  inter-sample peak validation. **Defaults to OFF** even when
-  global `config.yaml::mastering.adm_validation_enabled` is `true`.
-  ADM runs the AAC encode/decode check on every mastered file and
-  can add 3-5 min/track to the pipeline. Only enable when the
-  album's source material is spectrally viable (well-balanced
-  highs) AND you're submitting the album for Apple Digital Masters
-  certification. For most Suno-generated albums, leave this off.
-
-Example (opt in for this album only):
-
-```yaml
-mastering:
-  adm_validation_enabled: true
-```
-
-Omit the block entirely to use the default (ADM off).
+| **Explicit** | No |
+| **Concept** | Sieben Tracks zur psychischen Erfahrung intrusiver negativer Stimmen, Panik, Dissoziation und Wiedersturz. Album als Endlosschleife — Track 7 mündet per Noise-Loop nahtlos in Track 1. |
 
 ## Concept
 
-[Detailed description of the album's concept, narrative, and themes. What story does this album tell? What's the artistic vision?]
+Loud Strangers ist ein Single-Voice Konzept-Projekt. Der Artistname *ist* der Antagonist: die fremden, lauten Stimmen im Kopf der Erzählerin. „Negative Gedanken" ist kein Krankheitsbericht. Es ist die Vertonung dessen, was eine Krankheit einer Person *antut, während sie weitergeht*.
+
+Der Basistext (4 datierte Teile, 5. November 2021, abgelegt in [`SOURCE-TEXT.md`](SOURCE-TEXT.md)) liefert die rohe Sprache — Bilder, Vokabular, Rhythmus. Die Lyrik darf weit interpretieren, dramatisieren, fiktionalisieren. Es ist kein Documentary-Frame: `sources_verified = N/A` für alle Tracks zulässig.
+
+### Drei Achsen jenseits „Depression"
+
+Das Album bewegt sich auf drei Achsen, mit **Sprache als Primärachse**:
+
+1. **Die Sprache, die die Krankheit aufzwingt** *(primär)* — „blöd", „nichts wert", „Komparsin". Wörter, die nicht ihre sind, aber die sie laut ausspricht. Der Kampf um die eigene Stimme im Vokabular der Krankheit. T2 (Titeltrack), T7 (Coda).
+
+2. **Beobachter vs. Subjekt** — sich selbst funktionieren, zerfallen, sprechen sehen, ohne damit zusammenzufallen. Das Gleiten zwischen den beiden Polen. T3 (Beobachter sieht das schwarze Meer), T4 (zentriert in Spoken Word).
+
+3. **Die soziale Komparsen-Rolle** — „nur Komparsin in dieser Welt". Die Reduktion auf eine Nebenrolle im eigenen Leben. Resonanz in T2 / T6.
+
+### Narrativer Bogen — „vorsichtiger Funke"
+
+T1 (Stille) → T2 (Übernahme) → T3-T4 (Versinken) → T5 (Fluchtparadies) → T6 (Dauerschleife) → T7 (vorsichtiger Funke + Loop zurück).
+
+T7 ist *keine Heilung* und *kein Triumph*. Es ist eine leise Anerkennung der eigenen Stimme — und die Noise-Loop-Endlosschleife sagt: morgen kommt es wieder. Die Form selbst ist die These: Die Krankheit IST der Kreislauf.
 
 ## Structure
 
-[How is the album organized? What's the narrative arc? How do tracks relate to each other?]
+### Energy-Curve
+
+```
+01 (Soft-Grunge):    ▃▃▃ Trügerische Stille mit aufsteigendem Rauschen
+02 (Noise-Rock):     ███ PEAK — Wall-of-Sound Übernahme
+03 (Doomgaze):       ▇▇▇ Druck, Tempo runter
+04 (Spoken Word):    ▂▂▂ VALLEY — akustisches Vakuum
+05 (Dream-Pop):      ▄▄▄ Schwebe — bittersüß
+06 (Industrial):     ███ PEAK — mechanisch treibend
+07 (Post-Rock):      ▆▆▆→███→▂ Aufbau, Kollaps, Loop-Static
+```
+
+Sequencing-Logik: Build → PEAK → Druck → VALLEY → Schwebe → PEAK → Coda+Loop. Zwei Peaks (T2, T6) flankieren das Vakuum (T4). T7 baut zum Kollaps und löst in das Loop-Static auf, das T1 wieder anschiebt.
+
+### Cross-Track Constraint — Endlosschleife
+
+**Track 1 ↔ Track 7 sind ein Paar**, geplant gemeinsam ab Phase 5:
+
+- T7 endet in präzisem Noise-Loop (Drone + Static-Glitch + sub-bass pulse)
+- T1 darf **keinen Cold-Open** haben — muss aus T7's Noise-Texture entstehen
+- Gemeinsamer Noise-Layer als sonic anchor (gleicher Sample-Source, gleicher Tonhöhen-Punkt)
+- Mix-Engineer designt Outro/Intro gemeinsam
+- Mastering dokumentiert Crossfade-Spec
+- Distributor: Gapless-Playback-Flag erzwingen (alle Plattformen)
 
 ## Themes
 
-- [Theme 1]
-- [Theme 2]
-- [Theme 3]
+- Die Sprache der Krankheit (primär)
+- Beobachter vs. Subjekt
+- Komparsen-Rolle / Reduktion auf Nebenrolle
+- Wahres Gesicht / vermeintliche Maskenlosigkeit
+- Paradies als Fluchtphantasie
+- Dauerschleife / Wiederkehr / die Krankheit *ist* die Form
 
 ## Motifs & Threads
-
-*(Remove this section if not a concept/narrative/thematic album)*
 
 ### Lyrical Motifs
 
 | Motif | Description | First Appears | Recurrences |
 |-------|-------------|---------------|-------------|
-| [phrase/image] | [what it represents] | Track XX | Track XX (context), Track XX (context) |
+| „laute Stimmen" / „fremde im Kopf" | die Antagonisten — wörtlich und sonisch | T1 (subtil, als rauschen) | T2 (peak), T3 (flood), T6 (mechanical) |
+| „blöd" / „nichts wert" / „Komparsin" | die aufgezwungenen Worte | T2 | T6 (mechanisch wiederholt), T7 (in Klammern, leise) |
+| schwarzes Meer / Wellen | das Versinken | T3 | T4 (echo), T7 (letzte Welle vor Loop) |
+| Paradies | die Fluchtphantasie | T5 | T7 (als Trugbild verworfen) |
+| Dauerschleife / Loop | die Form der Krankheit | T6 (lyrisch) | T7 (musikalisch — der Loop selbst) |
+| Eigene Stimme / leise / Funke | die fragile Selbstanerkennung | T7 | — (gate-keeping; einziger Auftritt) |
 
 ### Character Threads
 
-| Character/Voice | Arc Summary | Tracks |
-|-----------------|-------------|--------|
-| [name/voice] | [how they develop across the album] | XX, XX, XX |
+| Voice | Arc Summary | Tracks |
+|-------|-------------|--------|
+| Die Hülle | äußerlich funktionierend, innerlich kollabiert; trägt T1 + T6 | 1, 6 |
+| Die Stimmen (Chor) | Antagonist; Eskalation in T2, flood in T3, mechanisch in T6 | 2, 3, 6 (background) |
+| Der Beobachter | distanzierte, lucid bleibende Instanz; T4 ist sein Track | 3 (background), 4 |
+| Das verlorene Ich / Frohnatur | nahezu unhörbar; nur in T5 (Traum) und T7 (Funke) | 5, 7 |
+
+→ Vollständige Spezifikation: [`cast.md`](cast.md).
 
 ### Thematic Progression
 
-| Track | Theme Focus | Advances From | Sets Up |
-|-------|-------------|---------------|---------|
-| 01 | [theme] | — | [what it establishes for later] |
-| 02 | [theme] | Track 01's [element] | [what it sets up] |
+| # | Theme Focus | Advances From | Sets Up |
+|---|-------------|---------------|---------|
+| 01 | Stille vor Sprache | — | etabliert Hülle + bald einbrechende Stimmen |
+| 02 | Sprache der Krankheit (Achse 1) | T1's brüchige Fassade | das Vokabular, das T6 mechanisch wiederholen wird |
+| 03 | Versinken (Achse 2 emergent) | T2's Übernahme | das schwarze Meer als Motiv für T4 |
+| 04 | Beobachter vs. Subjekt (Achse 2) | T3's Versinken | „wahres Gesicht"-Frage als Setup für T7 |
+| 05 | Paradies / Flucht (Bridge) | T4's Nullpunkt | das Trugbild, das T7 verwerfen wird |
+| 06 | Komparsen-Rolle + Loop (Achse 3) | T2's Vokabular, T5's Trug | mechanisch repetitiver Loop als Setup für T7's Static-Loop |
+| 07 | Eigene Stimme / Funke + Loop zurück | alle vorigen | T1 (das Album beginnt von vorn) |
 
-*Seeded by album-conceptualizer during Phase 4. Updated by lyric-writer as tracks are written.*
-
-<!-- OST: Include this section for OST albums (video game, film, TV, anime, etc.). Remove if not an OST. -->
-
-## World / Setting
-
-| Attribute | Detail |
-|-----------|--------|
-| **Media Type** | [Video Game / Film / TV Series / Anime / Theater / Podcast] |
-| **Title** | [Fictional property name] |
-| **Genre** | [Platformer / RPG / Noir / Sci-fi / Slice-of-life / etc.] |
-| **Setting** | [Fantasy / Sci-fi / Post-apocalyptic / Modern / Historical / etc.] |
-| **Era/Aesthetic** | [8-bit retro / Cinematic / Noir / Cel-shaded / etc.] |
-
-### Locations & Scenes
-
-| # | Location/Scene | Mood | Track(s) |
-|---|---------------|------|----------|
-| 1 | [Location or scene name] | [Mood description] | XX |
-
-### Leitmotif Plan
-
-| Theme | Represents | First Appears | Variations |
-|-------|-----------|---------------|------------|
-| [Main theme melody] | [What it represents] | Track XX | Track XX (minor key), Track XX (orchestral) |
-
-*Leitmotifs are tracked here AND in the Motifs & Threads section. This table focuses on musical themes; Motifs & Threads tracks lyrical/textual callbacks.*
-
-<!-- END OST -->
+*Seeded by album-conceptualizer (Phase 4). Updated by lyric-writer as tracks are written.*
 
 ## Sonic Palette
 
-- **Beats**: [Production style description]
-- **Samples**: [Sample sources/types if applicable]
-- **Vocals**: [Vocal style and delivery]
-- **Mood**: [Overall emotional tone]
+Vollständige Per-Track Sound-Briefs: [`GENRE-BRIEF.md`](GENRE-BRIEF.md). Hier nur Album-Level:
+
+- **Obergenre**: Post-Grunge × Dark Shoegaze × Industrial Ambient (User-Briefing „Systemischer Kollaps")
+- **Production**: roh, dicht, ungeschönte 90s Laut-Leise-Dynamik plus Wall-of-Sound-Dichte
+- **Vocals**: Single-Voice. Multi-tracking nur für T2's Chor-Antagonist und ggf. T7's Layering. Sonst mono-vocal, close-mic, intimate.
+- **Mood**: erdrückend, klaustrophobisch, mit zwei Atemstellen (T4 Vakuum, T5 Schwebe)
+- **Target Duration**: 3:30–5:00 default; T1 2:00–3:00 (Intro); T4 5:00–6:00 (Spoken Word); T7 7:00–9:00 (Post-Rock Epic)
 
 ## Tracklist
 
-| # | Title | POV | Concept | Status |
-|---|-------|-----|---------|--------|
-| 01 | [Track Name](tracks/01-track-name.md) | [POV] | [Brief concept] | Not Started |
-| 02 | [Track Name](tracks/02-track-name.md) | [POV] | [Brief concept] | Not Started |
+Track-Titel sind **Arbeitsstand** — finale Titel + Lyrik-Konzepte werden track-by-track in Phase 5 (Track Production Loop) festgezogen. Sound + POV + Anker sind locked.
 
-## Key Characters
-
-*(Remove this section if not a narrative album)*
-
-### [Character Group 1]
-- **Name** - Role and description
-
-### [Character Group 2]
-- **Name** - Role and description
+| # | Working Title | Sound | POV | Sprache | Anker | Status |
+|---|---|---|---|---|---|---|
+| 01 | *Bevor sie kamen* | Deceptive Soft-Grunge | Die Hülle | DE / vorsprachlich | Stille vor den Stimmen; muss aus T7's Noise-Loop hervorgehen | Not Started |
+| 02 | *Loud Strangers* | 90s Grunge / Noise-Rock | Die Stimmen (Chor) | DE | Titeltrack — Übernahme (Teil 1) | Not Started |
+| 03 | *Schwarzes Meer* | Heavy Doomgaze / Sludge | Beobachter + Stimmen (Background) | DE | Versinken, Atemnot (Teil 2) | Not Started |
+| 04 | *Wahres Gesicht* | Dark Ambient / Spoken Word | Der Beobachter | DE | „wahres Gesicht"-Frage (Teil 3) | Not Started |
+| 05 | *Paradise* | Melancholic Dream-Pop / Shoegaze | Das verlorene Ich | EN | Fluchtparadies — Bridge | Not Started |
+| 06 | *Dauerschleife* | Driving Post-Punk / Industrial | Die Hülle + Stimmen (mechanisch) | DE | Komparsen-Rolle, Loop (Teil 4) | Not Started |
+| 07 | *Funke* | Epic Post-Rock / Noise-Loop | Das verlorene Ich | DE + EN-Anker „loud strangers" | Coda — vorsichtiger Funke; T7-Outro = Loop in T1 | Not Started |
 
 ## Production Notes
 
-<!-- SERVICE: suno -->
-**Suno Persona** (optional):
-| Attribute | Value |
-|-----------|-------|
-| **Persona Name** | [Name in Suno] |
-| **Persona Link** | [Suno persona URL] |
-
 **Suno Settings**:
-- **Target Duration**: [3:30–5:00]
-- Per-track overrides noted in individual track files
-- [Vocal consistency notes]
-- [Production continuity notes]
+- **Target Duration**: siehe Tracklist (variabel pro Track)
+- Mono-vocal default; multi-voice nur track-explicit (T2 Chor, ggf. T7)
+- Style-Prompts: per Track, ausgehend von GENRE-BRIEF.md
+- DE-Tracks brauchen pronunciation-specialist-Pass (Suno-DE-Performance)
 
 **Style Prompt Base**:
 ```
-[Base style prompt to use across all tracks, modified per track as needed]
-```
-<!-- /SERVICE: suno -->
-
-## Source Material
-
-*(Remove this section if not based on real events)*
-
-- [Source 1](URL)
-- [Source 2](URL)
-
-<!-- DOCUMENTARY/TRUE STORY ALBUMS: Include this section for albums based on real people/events. Delete if purely fictional. -->
-
-## Documentary Standards
-
-### Album Classification
-
-| Attribute | Selection |
-|-----------|-----------|
-| **Album Type** | ☐ True Crime/Documentary / ☐ Dramatized Story / ☐ Inspired By / ☐ Fictional |
-| **Real People Featured** | ☐ Yes / ☐ No |
-| **Legal Sensitivity** | ☐ High / ☐ Medium / ☐ Low |
-
-### Narrative Approach
-
-| Principle | Approach |
-|-----------|----------|
-| **Primary Voice** | [e.g., Third-person narrator throughout] |
-| **Perspective on Subjects** | [e.g., External observation, not impersonation] |
-| **Quote Handling** | [e.g., Paraphrased and attributed, or narrator describes what was said] |
-| **Artistic License** | [e.g., Dialogue smoothed for flow, timelines compressed] |
-
-### Real People Depicted
-
-| Person | Role in Album | Depicted How | Sensitivity |
-|--------|---------------|--------------|-------------|
-| [Name] | [Protagonist/Subject/etc.] | [Narrator describes / Quotes attributed / etc.] | [High/Med/Low] |
-
-### Legal Safeguards
-
-- [ ] **No defamation**: All negative claims are documented facts from public sources
-- [ ] **No fabricated statements**: Real people's words are sourced, paraphrased, or described (not invented)
-- [ ] **Fair use/commentary**: Album constitutes commentary on matters of public interest
-- [ ] **Public figures doctrine**: Subjects are public figures or involved in newsworthy events
-- [ ] **No private facts**: Private information only included if already public or newsworthy
-- [ ] **Narrator voice**: Tracks maintain storyteller perspective, not impersonation
-
-### Source Verification Status
-
-Source verification is tracked per-track in each track file's `Sources Verified` field (single source of truth). Use `/bitwize-music:resume` or `/bitwize-music:validate-album` to see verification status across all tracks.
-
-### Legal Notes
-
-[Album-level legal considerations, potential sensitivities, and mitigations]
-
-### Disclaimer Text
-
-*(Optional: Include in album description/liner notes)*
-
-```
-[e.g., "This album is a dramatic interpretation of documented events.
-All factual claims are based on publicly available sources including [source names].
-Dialogue and internal thoughts are dramatized for artistic purposes."]
+dark noise rock, post-grunge, shoegaze, industrial ambient, intimate close-mic
+female vocal, raw dynamics, wall-of-sound layering, claustrophobic atmosphere
 ```
 
-<!-- END DOCUMENTARY SECTIONS -->
+**Mastering**:
+- Albumspezifische Genre-Presets müssen erstellt werden (post-grunge, doomgaze, dream-pop, shoegaze, industrial-rock, post-rock, noise-rock). Nur `dark-ambient` existiert in overrides für T4.
+- Per CLAUDE.md: Presets liegen im Album-Ordner, NICHT in `overrides/`.
+- Target Loudness: -14 LUFS, -1.0 dBTP
+- Crossfade T7 → T1 (Spec wird in Phase 6 dokumentiert)
 
 ## Album Art
 
+### Visual Direction — Hybrid Strategy
+
+**Album-Cover (Anker, hart):**
+- Palette: Knochenweiß / Pechschwarz / Bluterguss (Violett-Grau)
+- Mood: flächig, fast plakativ, körperlich
+- Imagery TBD: faceless figure / mouth screaming static / hand against glass — wird in `/bitwize-music:album-art-director` finalisiert
+
+**Per-Track-Artworks (variieren):**
+- T1, T2, T7: Cover-Palette beibehalten (hart, Bone/Black/Bruise)
+- T3, T6: Static-Grain / VHS-degraded / TV-snow
+- T4: tiefer Schwarz, fast leerer Frame
+- T5: Greyscale-Wash + ein Punkt kaltes Licht (Dream-Pop-Idiom)
+
 ### AI Art Platform
-<!-- Set your platform: Midjourney, Leonardo.ai, DALL-E, Stable Diffusion -->
-**Platform**: [Not selected]
+**Platform**: [Not selected — wird in album-art-director gewählt]
 
 ### Image Prompt
-*Generated by `/bitwize-music:album-art-director`. Platform-specific format.*
-
 ```
-[Prompt will be generated in the format matching your selected platform.
-Run /bitwize-music:album-art-director to create a visual concept and prompt.]
+[Wird von /bitwize-music:album-art-director generiert.]
 ```
 
-### Negative Prompt
-<!-- Leonardo.ai / Stable Diffusion only. Remove this section if using Midjourney or DALL-E. -->
-```
-[Elements to exclude — only applicable for Leonardo.ai and Stable Diffusion]
-```
-
-**Note**: Artist name should always appear in the bottom right. Preserve the artist's preferred casing/spelling.
-
-### File Naming Convention
-
-Save generated album art using `/bitwize-music:import-art` or manually to these locations:
-- **Audio directory**: `{audio_root}/artists/{artist}/albums/{genre}/{album}/album.png` (used by promo videos, SoundCloud)
-- **Content directory**: `{content_root}/artists/{artist}/albums/{genre}/{album}/album-art.png` (tracked in git)
-
-Format: PNG preferred, JPEG acceptable. Resolution: at least 3000x3000 for distribution, 1500x1500 minimum.
+**Note**: Artist name „Loud Strangers" sollte unten rechts erscheinen, in stark gespacedem Serifen-Schriftbild (Distress-Aesthetic erlaubt).
 
 ## SoundCloud
 
 ### Description
-*Copy this into SoundCloud's description field:*
-
 ```
-[Album description with concept, themes, credits]
+[TBD — wird vor Release befüllt]
 ```
 
 ### Genre
 ```
-[SoundCloud genre dropdown selection]
+Noise Rock
 ```
 
 ### Tags
 ```
-[tag1, tag2, tag3, tag4, tag5]
+[TBD — wird vor Release befüllt]
 ```
 
 ## Distributor Genres
 
 | Attribute | Selection |
 |-----------|-----------|
-| **Primary Genre** | [e.g., Hip-Hop/Rap, Electronic, Rock, Pop] |
-| **Secondary Genre** | [e.g., Electronic, R&B/Soul, or "None"] |
-| **Electronic Subgenre** | [Required if Primary or Secondary is Electronic] |
-
-*Common primary genres: Hip-Hop/Rap, Electronic, Pop, Rock, R&B/Soul, Alternative, Metal, Folk, Country, Jazz, Classical, Soundtrack, Spoken Word*
-
-*Electronic subgenres: Electronica/Downtempo, House, Deep House, Techno, Drum & Bass, Dubstep, Trance, Chill Out, Big Room, Breaks, Electro House, Glitch Hop, Minimal/Deep Tech, Progressive House, Psy-Trance, Tech House*
+| **Primary Genre** | Rock |
+| **Secondary Genre** | Alternative |
+| **Sub-Categories** | Noise Rock, Post-Grunge, Shoegaze |
 
 ---
 
@@ -302,10 +226,30 @@ Format: PNG preferred, JPEG acceptable. Resolution: at least 3000x3000 for distr
 
 | Attribute | Detail |
 |-----------|--------|
-| **Released** | [Month Year] |
+| **Released** | TBD |
 
 ### Track Listing
 
 | # | Title | Duration | Listen |
 |---|-------|----------|--------|
-| 01 | [Track Name] | 0:00 | [SoundCloud](URL) |
+| 01 | TBD | 0:00 | TBD |
+| 02 | TBD | 0:00 | TBD |
+| 03 | TBD | 0:00 | TBD |
+| 04 | TBD | 0:00 | TBD |
+| 05 | TBD | 0:00 | TBD |
+| 06 | TBD | 0:00 | TBD |
+| 07 | TBD | 0:00 | TBD |
+
+---
+
+## DNA Isolation Note
+
+Loud Strangers teilt **keine DNA** mit anderen Artists in diesem Repo:
+- `children-of-agatha` (atmospheric-dark-folk, dark-trip-hop) — kein Voice/Narrative-Bleed
+- `the-agency-system` — kein Themen-Bleed
+- Cross-Project overrides (`lyric-writing-guide.md`, `voice-craft-principles.md`, `suno-preferences.md`) enthalten multi-voice / plurality / alter-coded Defaults, die **NICHT** auf dieses Album anzuwenden sind. Siehe `cast.md` für Voice-Architektur.
+
+## Session History
+
+- **Session 1 (2026-05-20)**: Brainstorming + Spec + Pre-Conceptualizer-Audit (0 BLOCKING, 3 CAUTION). Album-Ordner mit Auxiliary-Docs angelegt (BRIEFING, WORKFLOW-PLAN, GENRE-BRIEF, SOURCE-TEXT, SESSION-START-PROMPT). Branch: `claude/loud-strangers-album-ZY1Bv`.
+- **Session 2 (2026-05-20)**: bitwize MCP wieder online. Phase 1 (Idee), Phase 2 (new-album), Phase 3 (Conceptualizer — dieses Dokument). Branch: `claude/loud-strangers-session2`. Config umgestellt auf `artist.name=loud-strangers`.
