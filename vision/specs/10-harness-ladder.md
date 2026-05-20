@@ -1,58 +1,26 @@
 ---
-slug: harness-in-harness
-status: superseded
-superseded_by: [vision/specs/10-harness-ladder.md, vision/specs/11-four-verb-canon.md]
+slug: vision-harness-ladder
+type: spec
+status: ready
 owner: claude
-depends_on: [022, 008, 112]
-related: [023, 131, 105, 104, 132, 133]
-supersedes: [023]  # absorbs Plan/023's MVP scope; Plan/023's research-epic items deferred to a follow-up sub-spec
-phase:
-  L1: 1            # ships now — pytest harness, conftest, smoke-test retrofit
-  L2: 2-deferred   # design stable; implementation deferred — see §4 "L2 implementation phasing"
-  L3: 1            # ships now (MVP scope per §5.6) — daemon + CLI + bootstrap
-affects:
+created: 2026-05-20
+updated: 2026-05-20
+summary: The three-layer harness ladder (L1 in-memory FastMCP, L2 subprocess probe, L3 sidecar daemon + bin/agency CLI). Defines the four-verb contract surface at every layer, the cross-layer equivalence invariant, the bootstrap path, the token-budget invariants (boot <500 tokens, tools/list <4 KB, per-result ≤4 KB), and the Path-A levers (L-α/β/γ) that are active in the implementation tag. Path B (full domain isomorphism) is vision-only (see spec 13); the deferred levers L-δ/ε/ζ/η + progressive disclosure are roadmap (see spec 14).
+depends_on:
+  - vision/specs/02-tool-result-envelope.md
+  - vision/specs/06-agentic-base.md
+  - vision/specs/09-crossover-matrix.md
+  - vision/specs/11-four-verb-canon.md
+  - vision/specs/12-vocabulary.md
+referenced_by:
+  - vision/specs/09-crossover-matrix.md
+  - vision/specs/13-domain-isomorphism.md
+  - vision/specs/14-progressive-disclosure-roadmap.md
+supersedes:
   - Plan/harness/design.md
-  - Plan/harness/_research/01-fastmcp-in-memory.md
-  - Plan/harness/_research/02-claude-bare-plugin-dir.md
-  - Plan/harness/_research/03-test-coverage-baseline.md
-  - Plan/harness/_research/04-fastmcp-http-transport.md
-  - Plan/harness/_research/05-domain-isomorphism.md
-  - Plan/harness/_research/06-phase-2-through-8-forward-compat.md
-  - tests/_harness/__init__.py
-  - tests/_harness/mcp.py
-  - tests/_harness/skills.py
-  - tests/_harness/normalisation.py     # source-of-truth + schema-shape passes (§3.7)
-  - tests/conftest.py
-  - tests/smoke/test_dev_install.py
-  - tests/smoke/test_nested_claude.py   # ships disabled-by-default; activated when L2 implementation lands in Phase 2
-  - bin/agency
-  - servers/agency-mcp/src/agency_mcp/lib/devmode/__init__.py
-  - servers/agency-mcp/src/agency_mcp/lib/devmode/server.py
-  - servers/agency-mcp/src/agency_mcp/lib/devmode/discovery.py
-  - servers/agency-mcp/src/agency_mcp/lib/devmode/lifecycle.py
-  - docs/architecture/harness-in-harness.md
-  - tests/integration/test_devmode_server.py
-source-repos: []
-estimated_jules_sessions:
-  L1: 1
-  L3-mvp: 2
-  L2-deferred: 1   # Phase 2
-  L3-progressive-disclosure: 2   # follow-up sub-spec (deferred Plan/023 items 1+4)
-domain: agentic
-wave: B
-spec_kind: design
-tag_target: design/harness-v1   # the git tag this design supports once approved
 ---
 
-> **Status:** draft 2026-05-18 by orchestrator session (Claude Code).
-> **Working branch:** `claude/fix-pr-merge-issues-sn1CS`
-> **Reference PR:** [#115](https://github.com/netzkontrast/the-agency-system/pull/115) — coordination point for all parallel sessions working on this.
-> **Cross-link:** [PR #111](https://github.com/netzkontrast/the-agency-system/pull/111) (`Plan/000-overview.md` v2) places this design's deliverables in Phase 1 alongside specs 131, 105, 104, 107, 130.
-> **Naming canon:** [`Plan/harness/VOCABULARY.md`](VOCABULARY.md) extracts this design's canonical terms (three layers, four-verb contract, five domains + agentic, Harness Path A/B vs. Context Mode Path A/B). All downstream documents are expected to cite VOCABULARY.md for definitions rather than this design's prose.
-
-# Harness in a Harness — Three-layer access ladder for the agency-system plugin
-
-## 1. Why
+## 1. Motivation
 
 The `agency-system` plugin has one supported access path today: a fresh Claude Code session launched with `claude --plugin-dir /home/user/the-agency-system` (or, post-marketplace, an installed plugin). Three distinct audiences hit that single path as a wall:
 
@@ -66,7 +34,15 @@ Plan/000-v2 (PR #111) commissions the next two Phase 1 smoke tests — `tests/sm
 
 This design closes all three gaps with a single layered abstraction: **one four-verb contract** (*list tools, call tool, list skills, dispatch skill*) exposed via three transports at three fidelity tiers.
 
-## 2. North star — three layers, one shared mental model
+## 2. North-star table
+
+**Spec 09 r2 reconciliation with the promoted Harness-in-Harness — stated plainly:**
+
+Spec 09 and the promoted Harness ladder describe **the same isomorphism viewed from two different axes**.
+- Spec 09 r2's axis: **caller-column × callee-column**, 9 cells, one MCP server, one envelope, four verbs at every cell boundary.
+- Harness ladder's axis: **transport fidelity**, 3 layers, one MCP server, one envelope, four verbs at every layer boundary.
+
+The single-MCP-server / single-envelope / single-four-verb invariants are **literally the same statements**. Neither supersedes the other. Wave 0's promotion makes the cross-axis citation explicit: spec 09 §3 bullets 1-2 cite `vision/specs/10-harness-ladder.md` §2 for the layer-fidelity axis, and 10-harness-ladder §2 cites `vision/specs/09-crossover-matrix.md` §2 for the matrix-cell axis.
 
 | Layer | Audience | Boots via | Cost / call | What it proves |
 |---|---|---|---|---|
@@ -78,7 +54,9 @@ This design closes all three gaps with a single layered abstraction: **one four-
 
 **Relationship to Plan/023.** Plan/023 was structured as a *research-epic* — its Done-When item 1 commissions a ≥1500-word epic plan with ≥6 sources before MVP code lands. This design absorbs Plan/023's MVP scope (items 2, 3, 5, 6, 7, 8-basic — daemon lifecycle, single-binary CLI, MCP wire pass-through, bootstrap self-doc, smoke tests, basic docs) into the unified ladder so it can ship in parallel with L1+L2. **The research-epic items (1, 4 — prior-art survey + progressive-disclosure ladder design) are explicitly deferred** to a follow-up sub-spec `Plan/harness/L3-progressive-disclosure.md` that will resume the research subagents A/B/C. Plan/023's transport decision (Streamable HTTP, UDS fallback) is preserved verbatim; this design does not re-research transport.
 
-## 3. L1 — In-process harness module
+**Token caps**: Boot context < 500 tokens, tools/list < 4 KB, per-tool result ≤ 4 KB.
+
+## 3. L1 — in-memory FastMCP
 
 ### 3.1 Module layout
 
@@ -294,7 +272,7 @@ The codebase has five domains (music, novel, jules, context, shared) plus an `ag
 
 **Post-design uniformity score.** With L1's two normalisations in place and §11's low-cost restructures landed, the score lifts from 6/10 to 9/10. The remaining 1/10 (full schema enforcement + binary-envelope standardisation) is named in §11 as follow-up work.
 
-## 4. L2 — Subprocess probe
+## 4. L2 — subprocess probe
 
 ### 4.1 The probe
 
@@ -360,7 +338,7 @@ The probe spawns a real Claude session and consumes API tokens for the trivial p
 
 In CI with the `claude` CLI installed, the probe adds one nested session per run. The L1 in-process harness is the fast path; L2 is the boot-fidelity backstop.
 
-## 5. L3 — Sidecar daemon + CLI
+## 5. L3 — sidecar daemon + bin/agency CLI
 
 ### 5.1 Why daemon + CLI (and not just "MCP server in subprocess")
 
@@ -391,6 +369,7 @@ tests/integration/
 └── test_devmode_server.py                # daemon lifecycle + tool execute round-trip
 ```
 
+**Same `create_mcp()` factory, three transports on top of it** (design.md:393).
 The daemon lives **inside the existing MCP server package** (`servers/agency-mcp/src/agency_mcp/lib/devmode/`) rather than as a sibling — this preserves the single-source-of-truth invariant (one `create_mcp()` factory, three transports on top of it). The CLI binary at `bin/agency` is the only new top-level entry point.
 
 ### 5.3 The four-verb contract over HTTP JSON-RPC
@@ -515,7 +494,7 @@ agency skill describe music-lyric-writer
 
 This means the dev / agent iterating on the plugin **doesn't need to restart Claude Code at all** to verify their changes — L3 + a `agency server stop && agency server start` reload-cycle is faster than `--plugin-dir` restart, and works inside the existing session. This is the highest-leverage cross-layer win: **L3 makes L1's "dev-iteration loop" work even for non-pytest verification.**
 
-## 6. Out of scope
+## 6. Out-of-scope
 
 - **Skill execution semantics.** `dispatch_skill` (L1) and `agency skill describe` (L3) prove routing (name → file → frontmatter + body) but do not interpret skills — skills are LLM instructions, not executable code. A "skill simulator" that runs a skill's process inside the harness is a future extension.
 - **Hot-reload of `--plugin-dir` into an already-running Claude Code session.** Not possible per the CLI's architecture; L1 + L3 are the workarounds.
@@ -526,7 +505,7 @@ This means the dev / agent iterating on the plugin **doesn't need to restart Cla
 - **Windows compatibility for L3.** POSIX-only (Linux + macOS). Windows uses WSL. (Same exclusion Plan/023 took.)
 - **Cross-machine federation of L3 daemons.** Out of scope. The daemon owns one repo's plugin instance only.
 
-## 7. Done When
+## 7. Done-When (acceptance criteria)
 
 ### L1 — In-process harness
 
@@ -560,9 +539,16 @@ This means the dev / agent iterating on the plugin **doesn't need to restart Cla
 - [ ] Plan/000-overview.md §2.1 lists this design with PR references once merged. The reference points to L1+L2 under Phase 1 and L3 under Phase 8.
 - [ ] Plan/023-harness-in-harness/spec.md is updated with a `superseded_by: Plan/harness/design.md` marker for items 2-3-5-6-7-8 and a `defers_to: Plan/harness/L3-progressive-disclosure.md` marker for items 1-4.
 
-## 8. Acceptance scenarios (Gherkin)
+## 8. Gherkin acceptance anchors
 
 ```gherkin
+
+# anchor: harness.matrix.iso
+Scenario: L1 vs L3 returns identical payloads for the same verb
+  Given the same tool and parameters
+  When an L1 mcp__call_tool against mcp__<row>_start is executed
+  And an L3 daemon `agency tool execute mcp__<row>_start` is executed
+  Then they return the exact same body payload
 # anchor: harness.L1.1
 Scenario: In-process harness boots create_mcp() once per pytest session
   Given a pytest session starts in tests/
@@ -657,7 +643,7 @@ Scenario: L3 makes in-session dogfooding possible without restarting Claude Code
   And no Claude Code restart was required
 ```
 
-## 9. Evidence (cited)
+## 9. Evidence and references
 
 | Claim | Source |
 |---|---|
@@ -675,7 +661,7 @@ Scenario: L3 makes in-session dogfooding possible without restarting Claude Code
 | Transport choice locked: Streamable HTTP default, UDS fallback | `Plan/023-harness-in-harness/spec.md` §Approach "Pre-research finding (locked 2026-05-18)" |
 | External MCP clients (Cursor, Continue, Cline) speak MCP JSON-RPC over HTTP | MCP 2025-06-18 spec — cited in Plan/023 |
 
-## 10. Out-of-tree references
+## 10. Migration notes
 
 - [FastMCP Client transports — in-memory](https://gofastmcp.com/clients/transports#in-memory-transport)
 - [FastMCP Server transports](https://gofastmcp.com/servers/transports) — Streamable HTTP for L3
@@ -687,326 +673,10 @@ Scenario: L3 makes in-session dogfooding possible without restarting Claude Code
 - [`Plan/JULES-REVIEW-LOOP.md`](../JULES-REVIEW-LOOP.md) §4.1 — review prompt template used for the first review pass on this design
 - [`Plan/023-harness-in-harness/spec.md`](../023-harness-in-harness/spec.md) — origin of L3 design; this design absorbs items 2-3-5-6-7-8 and defers items 1-4
 
-## 11. Path to native isomorphism
+## 11. Path-A levers (active)
 
-The §3.7 / §5.8 normalisation passes lift uniformity from 6/10 to 9/10 by treating the *symptoms* at the harness layer. The deeper question — raised by the orchestrator after the audit landed — is whether the **domains themselves** can be restructured so isomorphism becomes a property of the codebase rather than a harness convention. This section names three concrete implementation paths (A, B, C), maps them to seven discrete structural levers (L-α through L-η), gives migration sketches for each path, and proposes the split between what lands before this design's tag and what becomes follow-up sub-specs.
+- **L-α** Unified `register(mcp)` per row. Status: active. Single entry point per domain. Anchor: `Plan/harness/design.md:861`.
+- **L-β** `@domain_tool` decorator. Status: active. Standardised decorator macro. Anchor: `Plan/harness/design.md:841`.
+- **L-γ** Manifest auto-sync at boot. Status: active. Regenerates manifest JSON at boot. Anchor: `Plan/harness/design.md:873`.
 
-**All three paths are first-class options.** The design includes their full sketches so the orchestrator (or a reviewer) can choose any of them after tagging — none of them is a pure "rejected alternative."
-
-### 11.1 The three implementation paths at a glance
-
-| | **Path A — Minimal source fix** | **Path C — A + skill colocation** | **Path B — Full restructure** |
-|---|---|---|---|
-| **One-line summary** | Harness-side normalisation + three low-cost source levers (L-α/β/γ) | Path A, plus `skills/<domain>/` moves under `domains/<domain>/skills/` (no logic change, just colocation) | All handlers + state + skills + tests move under `domains/<name>/` behind a `Domain` base class |
-| **Uniformity score** | 9/10 | 9.5/10 | **10/10 (native)** |
-| **Effort** | 1-2 days | ~1 week | 2-3 weeks |
-| **Breaking changes** | none (backward-compat) | skill import paths (one `git mv` + grep-replace; manifest paths in plugin.json) | every `from agency_mcp.handlers.X import Y` → must become `from agency_mcp.domains.X.handlers...` (~50+ test files, plus `server.py`) |
-| **Risk** | low | low-medium | high — long-running PR conflicts with every concurrent Phase 2-8 PR until merged |
-| **Forward-compat with Phase 2-8** | ✅ — Phase 2 hooks, Phase 3 GitHub wrapper, Phase 4-5-6-7-8 all consume the current handler-tree layout unchanged | ✅ — skills tree is rarely imported; the move is mechanical | ⚠️ — every concurrent PR that touches `handlers/` rebases through the restructure; Plan/000-v2 §9 dispatch matrices need updating |
-| **Tag-ready when** | ~1 day after design approval | ~1 week after design approval | 2-3 weeks; gates Phase 7 (specs 015/016/018/021) and parts of Phase 8 |
-
-### 11.2 Path A — Harness normalisation + minimal source levers (FAST, BACKWARD-COMPAT)
-
-The recommended path for shipping the harness now. Three low-cost source-side levers land alongside the L1+L3 implementation PR; harness-side normalisation (§3.7 + §5.8) handles the remaining strains.
-
-**What changes:**
-
-- `servers/agency-mcp/src/agency_mcp/lib/handlers.py` — new file with `domain_tool()` decorator macro (lever **L-β**, ≤30 LOC).
-- `servers/agency-mcp/src/agency_mcp/server.py` — `register_all()` gains a `_sync_manifest(mcp)` post-step (lever **L-γ**, ≤40 LOC).
-- `servers/agency-mcp/src/agency_mcp/handlers/<domain>/__init__.py` (all five) — add a thin `def register(mcp): ...` wrapper around the existing per-module registration helpers (lever **L-α**, ≤10 LOC per domain). Existing function names preserved.
-
-**What does NOT change:**
-
-- No file moves. Every test, handler, skill, and import path stays exactly where it is.
-- Existing `register_<domain>_<module>_handlers()` functions keep working — the new `register(mcp)` wrapper calls them.
-- `manifest.json` stays human-readable and check-in-able; `_sync_manifest` regenerates it at boot with a "do-not-hand-edit-this-section" header.
-
-**Score:** 9/10 (8.5/10 codebase, 9/10 harness API surface, combined 9/10).
-
-**Decision criteria for picking Path A:** want the harness shipped this week; willing to leave 4 follow-up sub-specs (L-δ/ε/ζ/η) to close the remaining gap; comfortable with manifest auto-sync mutating a check-in file at runtime.
-
-### 11.3 Path C — Path A + skill colocation (MEDIUM)
-
-Adds one structural move on top of Path A: skill files live with their domains instead of in a top-level tree. No logic changes, but it brings skills under the same `domains/<name>/` ownership model that Path B fully commits to — useful as a stepping stone if you eventually want Path B but not yet.
-
-**What changes (in addition to Path A):**
-
-- `git mv skills/music/* servers/agency-mcp/src/agency_mcp/domains/music/skills/` (and same for jules, agentic).
-- Update `.claude-plugin/plugin.json` if it ever references explicit skill paths (today it doesn't — skills auto-discovered).
-- Update `bin/agency-dev-install` line 53 (the skill-namespace audit loop) to walk the new tree.
-- Update `Plan/000-overview.md` §7 "Target file structure" — the skill section moves under `servers/agency-mcp/`.
-
-**What does NOT change:**
-
-- Handler modules stay in `handlers/<domain>/`.
-- Tests stay in `tests/`.
-- No `Domain` base class.
-
-**Score:** 9.5/10 — closes the "skills are top-level while handlers are nested" inconsistency; small uniformity bump.
-
-**Decision criteria for picking Path C:** want the partial benefit of domain ownership over skills without the full restructure cost; comfortable with breaking the existing `skills/<domain>/` import paths for any tooling that walks them.
-
-### 11.4 Path B — Full restructure into `domains/` (THE ENDGAME)
-
-The structure that makes the four-verb contract trivially isomorphic. Every domain has the same five files, the same base class, the same conventions. No harness-side normalisation needed; the codebase itself is uniform.
-
-**Target tree:**
-
-```
-servers/agency-mcp/src/agency_mcp/domains/
-├── _base/
-│   ├── domain.py          # class Domain(ABC) — name, state_cls, modules, register(), warm(), list_skills()
-│   ├── state.py           # class DomainState(ABC) — base cache abstraction; .warm() / .invalidate()
-│   ├── handlers.py        # @tool(domain="X") decorator that auto-tags + auto-manifests + enforces conventions
-│   ├── manifest.py        # sync_manifest_from_registrations(mcp) — boot-time regeneration
-│   └── conventions.py     # invariants: tag fmt (`domain:<name>`), name fmt (`<domain>_<verb>`), SKILL.md schema, binary envelope
-├── music/
-│   ├── __init__.py        # class MusicDomain(Domain): name="music", state_cls=MusicState, modules=[core,audio,...]
-│   ├── handlers/          # the 17 modules, each exporting `register_to(mcp, domain="music")`
-│   ├── state.py           # class MusicState(DomainState)
-│   ├── skills/            # the 54 skills MOVE here (mirror of skills/music/)
-│   └── tests/             # the per-domain pytest files MOVE here (from tests/unit/music/)
-├── novel/                 # same five children, same shape — 13 handler modules
-├── jules/                 # same — 6 handler modules
-├── context/               # same — 2 handler modules
-└── shared/                # same — 6 handler modules
-```
-
-Then `create_mcp()` collapses to:
-
-```python
-# servers/agency-mcp/src/agency_mcp/server.py
-from .domains import MusicDomain, NovelDomain, JulesDomain, ContextDomain, SharedDomain
-from .domains._base.manifest import sync_manifest_from_registrations
-
-def create_mcp() -> FastMCP:
-    mcp = FastMCP("agency-system", transform=_AnchorAwareCodeMode())
-    for D in (MusicDomain, NovelDomain, JulesDomain, ContextDomain, SharedDomain):
-        D().register(mcp)
-    sync_manifest_from_registrations(mcp)
-    return mcp
-```
-
-And the harness's four verbs are *trivially* isomorphic — every per-domain branch in `tests/_harness/normalisation.py` disappears, because every domain reports through the same `Domain` interface:
-
-```python
-async def list_tools(*, domain: str | None = None):
-    if domain is None:
-        return [{"name": t.name, "tags": list(t.tags)} for t in await harness_mcp().list_tools()]
-    return DomainRegistry.get(domain).list_tools()        # uniform, no fallbacks
-```
-
-**What also lands under Path B (the seven levers, in this order):**
-
-1. **L-α** (uniform `register()`) — implicit in the `Domain` base class.
-2. **L-β** (`domain_tool` decorator) — implicit in the `_base.handlers.@tool(domain=...)` decorator.
-3. **L-γ** (manifest auto-sync) — implicit in `sync_manifest_from_registrations`.
-4. **L-δ** (SKILL.md required-base schema) — `Domain.list_skills()` validates each file's frontmatter against `_base.conventions.SKILL_SCHEMA`; missing required fields fail boot loudly.
-5. **L-ε** (stateful tools) — `DomainState.warm()` is part of the base contract; tools that need warm state declare `requires_state: list[str]` in their `@tool()` call and `Domain.register()` injects an auto-warm wrapper.
-6. **L-ζ** (binary envelope) — `_base.conventions.BinaryEnvelope` is the canonical return type for file-producing tools; the harness ships `agency_file_get(path)` as a `_base` tool.
-7. **L-η** (skill back-fill) — explicit decision per domain: `MusicDomain` has 54 skills, `JulesDomain` has 1, `ContextDomain` / `NovelDomain` / `SharedDomain` declare `tool_only = True` to formalise the no-skills choice.
-
-**Breaking changes & migration:**
-
-- Every `from agency_mcp.handlers.<domain> import <name>` in tests, server code, and tools breaks. The migration is mechanical (sed-able) but voluminous: ~50 test files + `server.py` + a handful of `tools/` scripts.
-- `.claude-plugin/plugin.json` references `servers/agency-mcp/` — unchanged, but the inner tree changes.
-- `bin/agency-dev-install` line 53 (skill namespace audit) walks the new tree.
-- `Plan/000-overview.md` §7 "Target file structure" replaced entirely with the new layout.
-- Phase 7 specs (015, 016, 018, 021) all author handlers; they need to be re-pointed at the new domain tree before they dispatch. If Phase 7 is in flight when Path B starts, dispatch matrices in Plan/000-v2 §9 need updating.
-
-**Score:** 10/10 — native uniformity, no harness branching, no manifest gaps possible, no Pattern-A-vs-B-vs-C confusion. Each Phase 2-8 spec that adds a domain handler does so by adding a module under `domains/<name>/handlers/` and the `Domain` class picks it up automatically.
-
-**Decision criteria for picking Path B:** willing to absorb a 2-3 week refactor PR; willing to pause / coordinate Phase 7 dispatches around it; want the codebase itself to be a clean source-of-truth without harness-side rescue logic.
-
-### 11.5 The seven structural levers (mapped to paths)
-
-Each lever is shippable independently; Paths A/C/B differ in which levers they include.
-
-| # | Lever | Cost | Risk | Path A | Path C | Path B |
-|---|---|---|---|---|---|---|
-| **L-α** | Unified `register(mcp)` signature on every `handlers/<domain>/__init__.py` | low | low | ✅ as wrapper | ✅ as wrapper | ✅ via `Domain.register()` (no wrappers needed) |
-| **L-β** | `domain_tool(mcp, domain="X")` decorator macro | low | low | ✅ | ✅ | ✅ (decorator lives in `_base/handlers.py`) |
-| **L-γ** | Manifest auto-sync at boot | medium | medium | ✅ | ✅ | ✅ (in `_base/manifest.py`) |
-| **L-δ** | SKILL.md required-base schema + migration script for the 4 non-music skills | low-med | low | follow-up sub-spec | follow-up sub-spec | ✅ (enforced by `Domain.list_skills()`) |
-| **L-ε** | Stateful-tool refactor (idempotent or `requires_state` metadata) — ~20 tools | high | med-high | follow-up sub-spec | follow-up sub-spec | ✅ (enforced by `DomainState.warm()` + `@tool(requires_state=...)`) |
-| **L-ζ** | Binary-payload envelope standardisation — ~5 tools | medium | low | follow-up sub-spec | follow-up sub-spec | ✅ (enforced by `BinaryEnvelope` type) |
-| **L-η** | Skill back-fill / formal "tool-only domain" rule for context/novel/shared | high | low | follow-up sub-spec | follow-up sub-spec | ✅ (`tool_only=True` flag on `Domain`) |
-
-Path A picks the three cheapest levers and defers the rest to follow-up sub-specs. Path C is Path A plus the skill colocation move (no new lever; structural-only). Path B picks all seven and codifies them in the base class.
-
-### 11.6 Migration sketches
-
-#### 11.6.1 Path A — full code sketch
-
-```python
-# servers/agency-mcp/src/agency_mcp/lib/handlers.py  (NEW, ≤30 LOC) — lever L-β
-from typing import Callable
-from fastmcp import FastMCP
-
-def domain_tool(
-    mcp: FastMCP,
-    *,
-    domain: str,
-    hidden: bool = True,
-    defer_schema: bool = True,
-    **tool_kwargs,
-) -> Callable:
-    """Standardised decorator. Replaces ad-hoc `tags={...}` per call site."""
-    def wrap(fn: Callable) -> Callable:
-        tags = (tool_kwargs.pop("tags", set()) or set()) | {f"domain:{domain}"}
-        return mcp.tool(tags=tags, hidden=hidden, **tool_kwargs)(fn)
-    return wrap
-```
-
-```python
-# servers/agency-mcp/src/agency_mcp/handlers/music/__init__.py  (lever L-α — thin wrapper)
-from fastmcp import FastMCP
-from . import core, audio, content, ideas  # plus the other 13 modules
-
-def register(mcp: FastMCP) -> None:
-    """L-α: single entry point per domain. Backward-compat: old per-module
-    `register_<domain>_<module>_handlers` functions still exposed."""
-    for module in (core, audio, content, ideas):  # plus the other 13
-        module.register(mcp)
-```
-
-```python
-# servers/agency-mcp/src/agency_mcp/server.py — register_all() post-step (lever L-γ)
-def register_all(mcp: FastMCP) -> None:
-    register_context_handlers(mcp)
-    # ... existing calls ...
-    _sync_manifest(mcp)   # NEW: regenerates manifest.json
-
-def _sync_manifest(mcp: FastMCP) -> None:
-    """Walk mcp.list_tools(), write codemode/manifest.json with current
-    eager/deferred classification. Idempotent. The check-in version
-    is the human-readable baseline; runtime regeneration ensures novel's
-    56 tools land in manifest even if the file wasn't hand-updated."""
-    # implementation: ≤40 LOC
-```
-
-The decorator macro and manifest-sync are **opt-in for existing handlers** — they only normalise *new* registrations. Existing handlers continue to work. A separate cleanup PR could later migrate all handlers to the new decorator; that PR is mechanical and parallel-safe.
-
-#### 11.6.2 Path C — additional sketch (Path A + skills move)
-
-```bash
-# Stage 1 — move skill trees
-git mv skills/music/  servers/agency-mcp/src/agency_mcp/domains/music/skills/
-git mv skills/jules/  servers/agency-mcp/src/agency_mcp/domains/jules/skills/
-git mv skills/agentic/ servers/agency-mcp/src/agency_mcp/domains/agentic/skills/
-
-# Stage 2 — keep top-level skills/ as a symlink for backward-compat during transition
-ln -s servers/agency-mcp/src/agency_mcp/domains/music/skills skills/music
-ln -s servers/agency-mcp/src/agency_mcp/domains/jules/skills skills/jules
-ln -s servers/agency-mcp/src/agency_mcp/domains/agentic/skills skills/agentic
-```
-
-Plugin manifest auto-discovery handles either layout — Claude Code walks any directory tree it sees. The symlinks let in-flight Jules sessions referencing `skills/music/<name>/SKILL.md` keep working until everything's migrated.
-
-Update `bin/agency-dev-install` line 53 to walk `find servers/agency-mcp/src/agency_mcp/domains/*/skills -name SKILL.md` instead of `skills/`. Update `Plan/000-overview.md` §7 target structure diagram.
-
-`tests/_harness/skills.py` `SKILLS_ROOT` constant flips from `REPO_ROOT / "skills"` to the new path.
-
-#### 11.6.3 Path B — `Domain` base class sketch
-
-```python
-# servers/agency-mcp/src/agency_mcp/domains/_base/domain.py  (NEW)
-from abc import ABC
-from pathlib import Path
-from typing import ClassVar
-from fastmcp import FastMCP
-from .state import DomainState
-from .manifest import register_for_manifest
-
-class Domain(ABC):
-    name: ClassVar[str]
-    state_cls: ClassVar[type[DomainState]]
-    handler_modules: ClassVar[list]
-    tool_only: ClassVar[bool] = False   # L-η: true means "no skills directory expected"
-
-    def __init__(self):
-        self.state = self.state_cls()
-
-    def register(self, mcp: FastMCP) -> None:
-        """Register every handler module with the MCP instance, tagging
-        each tool with `domain:<self.name>` automatically."""
-        for module in self.handler_modules:
-            module.register_to(mcp, domain=self.name, state=self.state)
-        register_for_manifest(mcp, domain=self.name)
-
-    def warm(self) -> None:
-        """Ensure the domain's StateCache is warm — called by harness_warm()."""
-        self.state.warm()
-
-    def skills_dir(self) -> Path:
-        return Path(__file__).parent.parent / self.name / "skills"
-
-    def list_skills(self) -> list[dict]:
-        if self.tool_only:
-            return []
-        # Walks self.skills_dir(), parses SKILL.md frontmatter against
-        # _base.conventions.SKILL_SCHEMA, fails boot if any required field
-        # is missing (lever L-δ enforced at the source).
-        ...
-```
-
-```python
-# servers/agency-mcp/src/agency_mcp/domains/music/__init__.py
-from .._base.domain import Domain
-from . import handlers
-from .state import MusicState
-
-class MusicDomain(Domain):
-    name = "music"
-    state_cls = MusicState
-    handler_modules = [
-        handlers.core, handlers.audio, handlers.content, handlers.ideas,
-        # ... the other 13 modules
-    ]
-```
-
-```python
-# servers/agency-mcp/src/agency_mcp/domains/_base/handlers.py
-def tool(*, domain: str, requires_state: list[str] | None = None, **mcp_kwargs):
-    """Canonical decorator. Used by every handler module across every domain.
-
-    - Auto-injects `tags={f"domain:{domain}"}`.
-    - If `requires_state` is set, wraps the handler so that the listed
-      tools are auto-called first to warm the cache (lever L-ε at source).
-    - Validates the function name matches `<domain>_<verb>` per
-      conventions.NAME_RE."""
-    def wrap(fn):
-        # ... ≤50 LOC implementation
-        return fn
-    return wrap
-```
-
-Migration is module-by-module: each handler module currently uses `mcp.tool(tags={"domain:X"})(fn)` (Pattern B) or `@mcp.tool` (Pattern C). Replace with `@tool(domain="X")` from `_base.handlers`. Module exports a `register_to(mcp, domain, state)` function instead of `register(mcp)`.
-
-### 11.7 What lands before the design tag
-
-| Path | Lands pre-tag | Lands as follow-up sub-spec | Tag-ready when |
-|---|---|---|---|
-| **Path A (recommended)** | L-α + L-β + L-γ | L-δ (`Plan/harness/L-delta-skill-schema.md`)<br>L-ε (`Plan/harness/L-epsilon-stateful-tools.md`)<br>L-ζ (`Plan/harness/L-zeta-binary-envelope.md`)<br>L-η (`Plan/harness/L-eta-skill-coverage.md`) | ~1 day after design approval |
-| **Path C** | L-α + L-β + L-γ + skill colocation move | L-δ, L-ε, L-ζ, L-η | ~1 week after design approval |
-| **Path B** | All seven levers absorbed into `_base/` | (none — Path B is exhaustive) | 2-3 weeks; gates Phase 7 dispatches |
-
-Each follow-up sub-spec under Paths A and C gets a `depends_on: [harness/design]` so they sequence cleanly behind this design's tag.
-
-### 11.8 Decision (locked 2026-05-18)
-
-**Path A ships now; Path B is on record as a `vision` spec.**
-
-- **Path A is the active implementation path** for this design's first tag. L-α (`register(mcp)` signature normalisation), L-β (`domain_tool` decorator), and L-γ (manifest auto-sync at boot) land alongside the L1+L3 implementation PR. The four high-cost levers ship as named follow-up sub-specs (`Plan/harness/L-delta-...`, `L-epsilon-...`, `L-zeta-...`, `L-eta-...`) over the following weeks. Target uniformity score at tag: **9/10**.
-
-- **Path B is documented as a vision spec at [`Plan/harness/restructure/spec.md`](restructure/spec.md)** — `status: vision`. It does NOT dispatch Jules now. It's on record so the endgame is reviewable before it's scheduled, and so the next time the orchestrator considers a structural handler refactor there's a clean place to land it. When promoted to `status: ready`, the spec runs an 8-PR sequence (1 base-class PR + 5 per-domain PRs + 1 server-collapse PR + 1 cleanup PR) — see `restructure/spec.md` §5 for the full migration strategy. Target uniformity score after Path B: **10/10**.
-
-- **Path C is rejected as a standalone option.** Its only contribution over Path A is the skill-tree colocation move, which Path B does anyway — and Path A alone is sufficient for the harness's immediate consumers. If the skill colocation becomes valuable independently of the full restructure, it can be authored as a tiny follow-up.
-
-The implementation PR for the harness references this decision in its body (Path A levers L-α/β/γ are part of the PR's `affects:` list). Reviewers of the harness PR can confirm or contest the Path-A scope; reviewers of `restructure/spec.md` can confirm or contest the Path-B endgame independently.
-
-## 12. First review pass
-
-The first review pass on this design uses the JULES-REVIEW-LOOP §4.1 template with `phase=1+8`, `spec=harness-design`, `spec_path=Plan/harness/design.md`. PR #115 is the working branch; the design doc + research files land there; a `@jules` review request posts in the PR thread. See the orchestrator's coordination comment on [PR #111](https://github.com/netzkontrast/the-agency-system/pull/111#issuecomment-4482634644).
-
-The §11 in-scope levers (L-α / L-β / L-γ) ship as part of the implementation PR after this design's tag — they are explicitly enumerated above so reviewers can confirm or contest the cost/risk split.
+Path B (target tree, Domain base class) and deferred levers L-δ/ε/ζ/η + progressive disclosure 4-tier ladder are explicitly OUT of this spec. See `vision/specs/13-domain-isomorphism.md` for Path B and `vision/specs/14-progressive-disclosure-roadmap.md` for deferred levers.
