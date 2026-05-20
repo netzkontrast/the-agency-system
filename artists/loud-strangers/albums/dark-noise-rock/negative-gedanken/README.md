@@ -196,25 +196,153 @@ female vocal, raw dynamics, wall-of-sound layering, claustrophobic atmosphere
 ### Visual Direction — Hybrid Strategy
 
 **Album-Cover (Anker, hart):**
-- Palette: Knochenweiß / Pechschwarz / Bluterguss (Violett-Grau)
-- Mood: flächig, fast plakativ, körperlich
-- Imagery TBD: faceless figure / mouth screaming static / hand against glass — wird in `/bitwize-music:album-art-director` finalisiert
+- **Concept:** Hybrid Bacon-Frame + Dumas-Face. Vertikaler Vorhang/Drapery-Frame im Sinne von Francis Bacon's *Head VI* (1949) — Figur ist eingeschlossen in einem akustisch-toten Raum, der Schrei hat keinen Außenraum, wo er hingehen könnte. Gesicht und Mund malerisch ausgeführt in der Manier von Marlene Dumas — verschmierter Mund, washed-bone skin, Bluterguss-Tönung an Lippen + Kieferlinie.
+- **Palette:** Knochenweiß / Pechschwarz / Bluterguss (Violett-Grau). Keine anderen Farben.
+- **Mood:** Körperlich, restrained body-horror, mehr Schmerz als Spektakel.
+- **Lineage:** Francis Bacon *Head VI* (1949) + Marlene Dumas *Dead Girl* (2002). Album-Cover-Tradition: Have a Nice Life *Deathconsciousness* (2008) als hard-cropped-iconic-image Idiom.
 
-**Per-Track-Artworks (variieren):**
+**Per-Track-Artworks (variieren — Strategie):**
 - T1, T2, T7: Cover-Palette beibehalten (hart, Bone/Black/Bruise)
-- T3, T6: Static-Grain / VHS-degraded / TV-snow
-- T4: tiefer Schwarz, fast leerer Frame
-- T5: Greyscale-Wash + ein Punkt kaltes Licht (Dream-Pop-Idiom)
+- T3, T6: Static-Grain / VHS-degraded / TV-snow (Daido-Moriyama-Lineage)
+- T4: tiefer Schwarz, fast leerer Frame (Planning for Burial *Below the House* Idiom)
+- T5: Greyscale-Wash + ein Punkt kaltes Licht (Genieve-Figgis-Lineage, Dream-Pop)
 
 ### AI Art Platform
-**Platform**: [Not selected — wird in album-art-director gewählt]
 
-### Image Prompt
+**Platform**: DALL-E (conversational, sentence-based prompts, no negative prompt)
+
+### Cover Image Prompt
+
 ```
-[Wird von /bitwize-music:album-art-director generiert.]
+Create a square album cover artwork showing a single human figure shown
+in painterly half-length portrait, mouth open mid-scream — but the scream
+has nowhere to go. The figure is enclosed by vertical curtain-like drapes
+that compress the frame inward, creating a claustrophobic acoustic-dead
+space (in the visual lineage of Francis Bacon's "Head VI" from 1949).
+The face and open mouth are executed in the smeared, painterly style of
+Marlene Dumas's "Dead Girl" — washed bone-white skin, the mouth a dark
+smear with violet-grey bruise tones at the lip-line and jawline. The
+background is deep matte black. Composition centered, figure occupying
+roughly two-thirds of the frame, surrounded by negative space at top
+and sides. Mood: restrained body-horror, more pain than spectacle.
+Palette strictly: bone-white, pitch-black, and bruise (violet-grey,
+purple-grey). No other colors. The artist name "LOUD STRANGERS"
+appears in the bottom right corner in a heavily letter-spaced serif
+typeface with subtle distress / wear texture. No other text on the
+image. Square aspect ratio 1:1. High resolution album cover artwork.
 ```
 
-**Note**: Artist name „Loud Strangers" sollte unten rechts erscheinen, in stark gespacedem Serifen-Schriftbild (Distress-Aesthetic erlaubt).
+**Note**: Artist name „Loud Strangers" unten rechts, stark gespacedes Serifen-Schriftbild, leichte Distress-Aesthetic. Resolution mindestens 3000×3000.
+
+### Per-Track Image Prompts (Vorab-Skizzen — Phase 4)
+
+Diese Mini-Prompts sind **Drafts**. Final-Iteration nach Track-Lyrik in Phase 5/7.
+
+**Track 01 — *Bevor sie kamen*** *(Bone/Black/Bruise, Anders-Petersen-Lineage)*
+```
+A single human figure seated in a still interior, half-lit from a
+single off-frame source, head turned slightly downward. The room is
+spare and dark. The frame appears calm — but in the lower third, a
+faint VHS-static noise has begun to accumulate, as if the image
+itself is starting to corrupt. Skin is bone-white against a pitch-
+black room. Palette: bone-white skin, deep matte black room, only
+a hint of bruise (violet-grey) in the static. Mood: stillness with
+subliminal threat — the moment before the voices arrive. Square
+aspect ratio.
+```
+
+**Track 02 — *Loud Strangers*** *(Bone/Black/Bruise, Dumas-mouth-chorus)*
+```
+A painterly extreme close-up of an open screaming mouth, executed
+in the smeared, washed style of Marlene Dumas — bone-white skin,
+the open mouth a deep smear with violet-grey bruise tones around
+the lips and gums. Surrounding the central screaming mouth, several
+ghosted overlapping mouths in different scales, all open, all
+washed-faint, forming a chorus — as if the sound itself is visible.
+Background: pitch-black. The image feels overwhelming, the sound
+visually taking the entire field. Palette: bone-white, pitch-black,
+bruise. Square aspect ratio.
+```
+
+**Track 03 — *Schwarzes Meer*** *(Static-Grain, Michael-Ackerman-Lineage)*
+```
+A human figure half-submerged in a black liquid surface, only the
+upper face visible, eyes open and lucid even as the body disappears
+below the surface. The liquid has subtle violet-grey iridescence,
+deep and viscous. Heavy VHS-static grain across the entire frame,
+as if shot through degraded analog tape. The viewer's perspective
+is just above the surface — close, claustrophobic, no horizon. The
+face is bone-white against the dark liquid. Palette: bone-white
+face, pitch-black liquid, bruise iridescence on the surface, static-
+grain texture throughout. Square aspect ratio.
+```
+
+**Track 04 — *Wahres Gesicht*** *(Deep Black / Empty Frame, Planning-for-Burial-Lineage)*
+```
+An almost entirely empty frame — deep matte black, no figure, no
+horizon, no visible source of light. In the center, a barely-
+perceptible faint outline of a human face appears in negative
+space, like an after-image left on closed eyes after a flash. No
+features visible — no mouth open, no expression — only the
+suggestion that a face exists. Minimal grain, near-silent visual.
+Palette: deep matte black with one ghost-faint bone-white outline.
+Mood: held breath, suspended. Square aspect ratio.
+```
+
+**Track 05 — *Paradise*** *(Greyscale + Single Cold Light, Figgis-Lineage)*
+```
+A greyscale wash — soft, blurred, foggy, as if looking through a
+fogged window. In the upper right of the frame, one single point
+of cold blue-white light, like a far-off star or a distant
+hospital window. In the lower half, the faint suggestion of a
+human figure, almost dissolved into the wash, no clear features
+or pose — in the lineage of Genieve Figgis's faceless dissolving
+portraits. The image is beautiful and unmistakably sedated, dream-
+like and pharmaceutical at once. Palette: greys, washed bone-
+white, single cold-light highlight. No bruise tones — this is the
+album's only respite from the bruise palette. Square aspect ratio.
+```
+
+**Track 06 — *Dauerschleife*** *(Static-Grain + Ghosted Repetition)*
+```
+A human figure photographed from slightly above, head tilted
+forward, mouth small and moving mechanically — repeating words.
+Heavy VHS-static grain across the entire frame, as if from
+degraded analog tape. The same figure appears faintly ghosted
+twice more, slightly offset in position, as if multi-exposed —
+suggesting visual repetition, the same gesture happening over
+and over. Palette: bone-white skin, pitch-black background,
+static-grain texture, bruise undertones in the ghosted offset
+layers. Mood: mechanical, looped, inescapable. Square aspect
+ratio.
+```
+
+**Track 07 — *Funke*** *(Single Point of Cold Light in Black, Bacon-residue)*
+```
+A single small spark or match flame at the exact center of an
+almost entirely black frame. The light is cold, fragile, near-
+extinguishing — not warm, not hopeful in the conventional sense.
+Around the spark, a thin halo of bone-white glow that bleeds at
+its outermost edge into violet-grey bruise, before disappearing
+into deep matte black. No figure visible — only the spark and
+the dark. The image carries both the possibility of light and
+the certainty that this spark will go out. Palette: deep matte
+black, single point of cold light, faint bone-halo, bruise outer
+ring. Square aspect ratio.
+```
+
+### Generation Strategy
+
+1. **Generate cover first** (4 variations from the cover prompt). Pick the strongest.
+2. **Use cover's exact face/mouth treatment as a reference image** for T2 (the chorus extends it).
+3. **Generate per-track artwork in sequence** — but T1 last, because T1 must visually emerge from T7's static-grain (parallel to the sonic loop).
+4. **Final check**: all artworks must read at 300×300 thumbnail size. If any rely on detail invisible at thumbnail, revise.
+
+### Output File Naming
+
+- Cover: `album.png` (audio dir) + `album-art.png` (content dir, git-tracked)
+- Per-Track: `tracks/01-bevor-sie-kamen.png` etc. (audio dir + content dir)
+- Format: PNG preferred, 3000×3000 minimum for cover, 1500×1500 minimum for per-track
 
 ## SoundCloud
 
