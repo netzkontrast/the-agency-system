@@ -1,6 +1,6 @@
 ---
 title: "Wieder atmen lernen"
-track_number: 7
+track_number: 13
 instrumental: false
 explicit: false
 suno_url: ""
@@ -16,7 +16,7 @@ sheet_music:
 
 | Attribute | Detail |
 |-----------|--------|
-| **Track #** | 07 |
+| **Track #** | 13 |
 | **Title** | Wieder atmen lernen |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
@@ -47,7 +47,7 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 **Der Closer. Der einzige sanfte Track des Albums.** Aber kein Heilungs-Song. Die Aggression-Kalibrierung war explizit: keine Erlösungserzählung, keine Heilungsbögen, kein „und am Ende ist es gut". Track 07 löst diese Vorgabe ein, indem er sanft wird OHNE zu heilen.
 
-Suite-Position: Closer (Slot 07 in der ursprünglichen 7-Track-Proposal; im 13-Track Mini-Album voraussichtlich Slot 13). Renumbering via `/bitwize-music:rename` nach Phase 4-Lock.
+Suite-Position: Closer / Slot 13 / final track. Renamed from Slot 07 (7-Track-Proposal) auf Slot 13 (13-Track Mini-Album-Suite) via `/bitwize-music:rename`.
 
 **Was kommt nach „Ich atme"?** Track 01 endet mit der atemlosen Forderung, die zum reclaimten Atem wird. Track 03 endet mit dem klugen Wachsein, das nicht hilft. Track 07 endet mit dem Atem-der-einfach-da-ist. Aber das ist kein Triumph — es ist die Korrektur der falschen Erzählung: „nicht geheilt. nur leiser."
 
