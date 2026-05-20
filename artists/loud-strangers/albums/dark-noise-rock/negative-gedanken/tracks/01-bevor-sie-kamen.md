@@ -18,17 +18,17 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 01 |
 | **Title** | Bevor sie kamen |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Negative Gedanken](../README.md) |
 | **Status** | Not Started |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Explicit** | No |
+| **POV** | Die Hülle |
+| **Role** | Album-Opener (no cold open) — emerges aus T7's Noise-Loop-Bed; ramp-up in T2 |
+| **Fade Out** | 0s — direct ramp into T2 (Loud Strangers) |
+| **Target Duration** | 2:00–3:00 (Intro track) |
+| **Sources Verified** | N/A (formale Erfindung — kein direkter Quelltext-Anker; sparsamer Echo von Teil 1's „Wie oft ich hier sitze") |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,9 +45,13 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+T1 ist der Loop-Pair-Partner von T7. **Kein Cold-Open** — die Spur entsteht aus T7's Noise-Loop-Bed (Drone + Static-Glitch + Sub-Bass-Pulse) heraus. Wer das Album noch einmal hört, hört keinen Anfang, sondern eine Fortsetzung. Wer es zum ersten Mal hört, hört einen Raum, der schon offen war, bevor die Tür sich öffnete.
 
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+POV: **Die Hülle** (siehe cast.md §1). Position im Stuhl, gegenwärtig aber kraftlos, halb-bewusst dass gleich was kommt. Lexicon: sachlich, raumbezogen, deiktisch („hier", „noch", „gleich"). **Kein Pathos. Keine erzählerische Exposition.** Der Mood entsteht durch Sound + Schweigen — der Text ist nur Ankerpunkt, sehr sparsam.
+
+Quelltext-Stütze: **keine** im strengen Sinn. T1 zitiert sparsam aus Teil 1's Eröffnung („Wie oft ich hier sitze" / „Ich hör meine eigene kaum mehr") — aber im Modus *vor* dem Einbruch: sie hört sich *noch*. Die Stimmen sind noch nicht da. Sie kommen gleich. Das ist die These des Tracks: die Stille ist nicht Ruhe. Sie ist *Vor-Erwachen*.
+
+Cross-Track: das aufsteigende Rauschen unter der Stimme ist der Vorhall des Stimmen-Vokabulars in T2 — aber **kein** lexikalisches Echo. „blöd / nichts wert / Komparsin" gehört T2. T1 hat nur den Raum, den diese Worte gleich füllen werden.
 
 ## Cross-References
 
@@ -69,13 +73,16 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Ein Innenraum, halb-erleuchtet, ohne Tiefenschärfe. Eine Figur sitzt — nicht aktiv, nicht entkommend. Im unteren Drittel des Bildes bröselt der Frame: analog-tape grain, das langsam aufsteigt, wie eine Korruption, die vom Boden hochkriecht. Sensorisch: hörbarer Atem, eine clean-Guitar-Arpeggio-Linie, die zu ordentlich klingt, um wahr zu sein. Sub-Bass-Drone, der nie aussetzt — der Vorhall der nächsten Welle.
+
+Der Track ist „aufgeräumt-trügerisch". Die akustische Fassade darf nicht weinen. Sie darf nur durchhalten, bis sie reißt.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 70–80 BPM (kein metronomischer Puls — die Gitarre atmet)
+- **Feel**: Trügerisch ruhig. Quiet Soft-Grunge. Static accumulating from below. Final 20-30 Sekunden: Wand-Aufbau, ramp direkt in T2.
+- **Instrumentation**: Clean Electric Guitar Arpeggios (sparse, langsam), Sub-Bass-Drone (kontinuierlich, sehr tief), Distant Cymbal Swells (gelegentlich), KEINE Drums in den ersten zwei Dritteln, Static-Texture aus T7's Outro-Bed (low-mixed) accumulating, am Ende Distorted Guitars Wand-Aufbau für T2-Übergang
+- **Vocal**: Whispered Fragments, sehr sparse, close-mic, Atem hörbar. Wenig Text, viel Stille zwischen Fragmenten. Position der Sprecherin = im Raum, nicht über ihm.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,14 +91,23 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+deceptive soft-grunge intro track, 75 bpm, deceptively calm and held with
+rising threat underneath, female single-vocal whispered fragments with
+audible breath very close-mic, sparse clean electric guitar arpeggios that
+sound too tidy to be true, sustained low sub-bass drone underneath that
+never resolves, distant cymbal swells, no drums in the first two thirds,
+quiet wall of distorted guitars building in the final twenty seconds, lo-fi
+analog tape grain texture rising slowly from below, intimate claustrophobic
+close-mic placement, restrained delivery never raising voice
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no autotune, no upbeat drums, no major-key chord progression, no vocal
+harmonies, no electronic synth lead, no rap, no clean studio polish, no
+fade-out outro, no triumphant resolution
 ```
 
 ### Lyrics Box
@@ -106,20 +122,30 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Verse 1]
-[Lyrics here...]
+[Intro]
 
-[Chorus]
-[Lyrics here...]
+[Whispered]
+hier
+hier sitze ich
+wie oft
 
-[Verse 2]
-[Lyrics here...]
+[Whispered]
+ich höre noch
+mich
+meine Stimme
+noch
 
-[Bridge]
-[Lyrics here...]
+[Whispered]
+es wird laut
+gleich
+es wird
 
-[Outro]
-[Lyrics here...]
+[Build]
+gleich
+gleich
+gleich
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +156,37 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Hier
+Hier sitze ich
+Wie oft
+
+Ich höre noch
+Mich
+Meine Stimme
+Noch
+
+Es wird laut
+Gleich
+Es wird
+
+Gleich
+Gleich
+Gleich
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Intro = T7 Outro**: T1 hat **keinen Cold-Open**. Das Static-Bed aus T7's Noise-Loop-Outro läuft direkt in T1 hinein. Mix-Engineer designt beide Übergänge gemeinsam. Distributor: Gapless-Playback-Flag erzwingen.
+- **Lyric-Density extrem niedrig**: ca. 25-30 Wörter über 2-3 Minuten. Viele Sekunden Stille zwischen Whisper-Fragmenten — der Atem und die Gitarre tragen den Track, nicht der Text.
+- **Vocal-Trajectory**: Whispered, intim, close-mic durchgehend. Atem hörbar. Niemals laut. In der finalen „gleich gleich gleich"-Phase wird die Wand aufgebaut, aber die Stimme bleibt leise — die *Wand* eskaliert, nicht die Sängerin.
+- **„gleich gleich gleich"**: dreimal repetiert als Pre-Ramp. Suno V5 wird das natürlich beschleunigen, wenn die Style-Box „building wall" enthält. Im Mix kann es auch leicht overdubbed werden, aber nicht als Chor — als Echo-Layer.
+- **Ramp in T2**: die letzten 10-15 Sekunden sind reine Wand-Akkumulation (Distorted Guitars, Drums kicken ein). T2 startet exakt dort. Mix-Engineer schneidet beide nahtlos.
+- **Keine Stimmen-Vokabular-Echos**: T1 hat KEIN „blöd / nichts wert / Komparsin". Das gehört T2. T1 hat nur die Stille davor.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5/V5.5**: Track-Länge 2-3 min — eine Generation reicht meist. Bei zu viel „Füllung" (Suno hasst lange Stille) → Extend nutzen oder Empty-Bars im Style-Box mit „long silences between whispered fragments" erzwingen.
+- **Falls Suno die Stille frisst**: separate Generation als Ambient-Bett („dark ambient room tone with sub-bass drone and slow analog tape grain") und Vocal-Fragmente separat darüber im Mix anlegen.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -156,7 +197,7 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | Keine phonetischen Risiken — alle Wörter sind Standard-DE-Basisvokabular (hier, ich, oft, höre, Stimme, noch, laut, gleich, wird). Suno trifft diese zuverlässig. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist

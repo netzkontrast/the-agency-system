@@ -18,17 +18,17 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 07 |
 | **Title** | Funke |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Negative Gedanken](../README.md) |
 | **Status** | Not Started |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Explicit** | No |
+| **POV** | Das verlorene Ich / Frohnatur (Memoria) |
+| **Role** | Coda — vorsichtiger Funke; Outro = präziser Noise-Loop, der nahtlos in T1's Intro übergeht (Loop-Pair) |
+| **Fade Out** | 0s — bleeds into T1 (gemeinsamer Noise-Layer) |
+| **Target Duration** | 7:00–9:00 (Post-Rock Epic) |
+| **Sources Verified** | N/A (formale Erfindung — kein direkter Quelltext-Anker; Konjunktiv-Material aus Teil 4) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,9 +45,13 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+T7 ist die Coda und gleichzeitig die formale Klammer, die das Album zum Loop schließt. POV: das verlorene Ich / Frohnatur — sparsam, atemtragend, **nie triumphierend**. Material wird aus dem Konjunktiv-Stoff von Teil 4 gezogen („es liegt an mir / so viel Mut / Geduld die ich nicht hab' / Freude die ich nicht verspür' / versprüh'") und aus dem Echo „eigentlich so eine Frohnatur" (Teil 1). Beide Quellen sind im Original unerfüllt — der Funke bleibt Konjunktiv.
 
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Der „Funke" ist eine **formale Erfindung des Albums**, kein Quelltext-Anker. Der Quelltext endet in Teil 4 mit dem Wiedersturz („Holen diese dunklen Wellen mich") — T7 zitiert diese Linie wörtlich („und morgen / holen die dunklen Wellen mich") und beweist damit, dass der Funke die Welle nicht aufhält. Die Funke-Szene ist ein einziger Atemzug zwischen zwei Wellen.
+
+Das Outro kollabiert in einen präzisen Noise-Loop (Drone + Static-Glitch + Sub-Bass-Pulse), der nahtlos T1's Intro wird. Der EN-Anker „loud strangers" erscheint ganz am Ende, leise, fast verschluckt — als kämen die Stimmen schon wieder durch.
+
+**POV-Discipline:** Konjunktiv + Vergangenheit + EIN einziges „atme ich" im Präsens, leise. Keine zweite Voice. Die Stimmen-Echos („blöd / nichts wert / Komparsin") sind **eingeprägt** in derselben Lead-Stimme — in Klammern, low-mixed — kein zweiter Voice-Track.
 
 ## Cross-References
 
@@ -69,13 +73,16 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Ein Streichholz im fast komplett schwarzen Raum. Ein einzelner Atemzug zwischen zwei Wellen. Die Wand-of-Sound baut auf, kollabiert, und das, was bleibt, ist nicht Stille — sondern statisches Rauschen, das schon wieder zur nächsten Welle wird. Visuell: der kalte, fragile Funke aus dem T7-Artwork — auf der Kippe, am Ausgehen.
+
+Sensorisch: Atem hörbar im Mix, trocken auf Mikro im Intro. Im Climax: ertrinkend in Wand-of-Sound. Im Outro: Voice wird vom Static absorbiert. Die letzte Phrase „loud strangers" ist nicht gesprochen — sie ist gehört, von außen, schon wieder.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 70–85 BPM (Intro/Verse), Build zu 90 (Climax), zerfällt im Outro
+- **Feel**: Trocken-intim → langsamer Post-Rock-Build → Wand-of-Sound-Kollaps → endloser Static-Loop
+- **Instrumentation**: Clean Electric Guitar Tremolo-Picking, Wachsende Wand verzerrter Gitarren, Sub-Bass-Drone, sparse Cymbal-Swells, Drums treten erst im Pre-Climax ein, Static-Glitch-Texture, Sub-Bass-Pulse im Outro
+- **Vocal**: Single-Voice. Intim/dry im Intro. Im Climax fast verschluckt von der Wand (nicht überlayered, sondern darunter). Im Outro near-gone. Die Stimmen-Echos in Klammern sind **dieselbe Lead-Stimme** doppel-getrackt und unter den Mix gedrückt — kein separater Chor.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,14 +91,25 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+epic post-rock with noise-loop outro, 75 bpm building to 90 then collapsing,
+fragile and dissociated to overwhelming wall-of-sound, female single-vocal
+intimate close-mic whispered start then dry conversational middle then almost
+swallowed by the wall in climax, breathy low-register delivery never
+triumphant, clean electric guitar tremolo-picking, slow-building wall of
+heavily distorted layered guitars, sub-bass drone underneath throughout,
+sparse drums entering only at the climax, static-glitch texture rising into
+the outro, sub-bass pulse, lo-fi degraded magnetic-tape grain throughout,
+long extended noise-loop outro that does not resolve, very intimate and
+claustrophobic close-mic vocal
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no autotune, no clean studio polish, no triumphant major-key resolution, no
+electronic dance beats, no synth lead melody, no rap, no harmonized chorus
+vocals, no fade-out outro, no upbeat tempo
 ```
 
 ### Lyrics Box
@@ -106,20 +124,65 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Verse 1]
-[Lyrics here...]
+[Intro]
+[Whispered]
+ich war so eine Frohnatoor
+ich war —
+glaub' ich
 
-[Chorus]
-[Lyrics here...]
+[Verse 1]
+ich weiß es läge an mir
+diesen Funken zu halten
+es braucht so viel Mut
+Geduld die ich nicht hab'
 
 [Verse 2]
-[Lyrics here...]
+Freude die ich nicht verspür'
+nicht versprüh'
+und doch — hier —
+atme ich
+
+[Pre-Build]
+ein Streichholz nur
+kein Feuer
+ein vorsichtiges Ja
+ein leises Ja
+
+[Wall of Sound Climax]
+wenn das mein Ich wär'
+wenn die Welle nicht
+wenn die Stimmen nicht
+diesmal nicht
+einen Atemzug nur
+
+[Post-Climax]
+und doch
+und doch
+ich
 
 [Bridge]
-[Lyrics here...]
+blöd
+nichts wert
+Kompar-zin
+in Klammern jetzt
+in Klammern leise
 
 [Outro]
-[Lyrics here...]
+ich war eine Frohnatoor
+ich war
+und morgen
+holen die dunklen Wellen mich
+das weiß ich
+das weiß ich auch
+
+[Outro Noise Loop]
+ich war
+ich war
+
+[Whispered]
+loud strangers
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +193,67 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Ich war so eine Frohnatur
+Ich war
+Glaub ich
+
+Ich weiß es läge an mir
+Diesen Funken zu halten
+Es braucht so viel Mut
+Geduld die ich nicht hab
+
+Freude die ich nicht verspür
+Nicht versprüh
+Und doch hier
+Atme ich
+
+Ein Streichholz nur
+Kein Feuer
+Ein vorsichtiges Ja
+Ein leises Ja
+
+Wenn das mein Ich wär
+Wenn die Welle nicht
+Wenn die Stimmen nicht
+Diesmal nicht
+Einen Atemzug nur
+
+Und doch
+Und doch
+Ich
+
+Blöd
+Nichts wert
+Komparsin
+In Klammern jetzt
+In Klammern leise
+
+Ich war eine Frohnatur
+Ich war
+Und morgen
+Holen die dunklen Wellen mich
+Das weiß ich
+Das weiß ich auch
+
+Ich war
+Ich war
+
+Loud strangers
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Outro = T1 Intro**: das Static-Loop-Bed im T7-Outro MUSS exakt zu T1's Intro werden. Mix-Engineer designt beide gemeinsam — gleicher Sample-Source, gleicher Tonhöhen-Punkt, kein Crossfade-Hörbar.
+- **Vocal-Trajectory**: dry/intim/whispered (Intro+V1) → conversational dry (V2+Pre-Build) → fast verschluckt unter Wand (Climax) → near-gone in Static (Outro). Im Climax die Stimme **nicht** über der Wand mixen — sie soll darunter ringen.
+- **„Stimmen-Echo"-Bridge**: dieselbe Lead-Stimme doppelt getrackt, beide unter Mix gedrückt, mit slight pitch-shift detune. KEIN separater Chor, kein zweiter Voice-Track — die Stimmen sind eingeprägt in derselben Sängerin.
+- **„loud strangers"-Phrase**: ganz am Ende, gewhispered, fast vom Static absorbiert. Nicht als Hook, nicht als Drop. Als ob die Stimmen schon wieder durchkommen.
+- **Drums**: erst beim Pre-Build/Climax. Davor nur Sub-Bass-Drone + Cymbal-Swells.
+- **„Frohnatur" + „Komparsin"**: phonetic spelling im Suno-Lyrics-Feld („Frohnatoor", „Kompar-zin") — siehe Pronunciation Notes.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5/V5.5**: Track-Länge 7-9 min — Extend nutzen (initial Generation 3-4 min, dann strategisch extenden). Static-Outro vermutlich separate Generation und in Mix anhängen.
+- **Drone-Bed**: separate Generation als „dark ambient drone with static glitch and sub-bass pulse" für den Outro-Loop — über Mix-Engineer mit T1's Intro joinen.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -156,7 +264,11 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Frohnatur | Frohnatoor | Suno verfälscht das DE „u" oft zu „ju"-Laut; phonetische Schreibweise sichert das offene „u". Anwenden auf alle 3 Vorkommen im Suno-Feld. |
+| Komparsin | Kompar-zin | „rs" wird in DE als „rz" gesprochen; Bindestrich-Trennung verhindert, dass Suno es als EN „komparsin" interpretiert. Anwenden auf das Vorkommen in der Bridge. |
+| läge | läge | OK as-is — Suno trifft Konjunktiv-II-„ä" zuverlässig. Keine Änderung nötig. |
+| versprüh' | versprüh' | OK — Apostroph signalisiert verschluckte Silbe. Suno respektiert das. |
+| loud strangers | loud strangers | NICHT phonetisch — bleibt EN. Im Outro gewhispered, low-mixed; phonetische Verfremdung würde den Anker brechen. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
@@ -173,7 +285,9 @@ Blank lines between sections only]
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
-| — | — | — | — |
+| Frohnatur | Frohnatur | Frohnatoor | ✓ applied in Suno Lyrics Box (2× occurrence: Intro + Outro) |
+| Komparsin | Komparsin | Kompar-zin | ✓ applied in Suno Lyrics Box (Bridge) |
+| loud strangers | loud strangers | (keep EN) | ✓ intentional — band-name anchor, do not phoneticize |
 <!-- /SERVICE: suno -->
 
 <!-- END VOCAL ONLY -->
