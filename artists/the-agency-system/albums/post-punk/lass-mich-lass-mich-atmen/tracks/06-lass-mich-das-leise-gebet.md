@@ -1,5 +1,5 @@
 ---
-title: "Lass mich (Akustische Variante)"
+title: "Lass mich (das leise Gebet)"
 track_number: 6
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Lass mich (Akustische Variante)
+# Lass mich (das leise Gebet)
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 06 |
-| **Title** | Lass mich (Akustische Variante) |
+| **Title** | Lass mich (das leise Gebet) |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -45,9 +45,9 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-**Dark-Folk × Darkwave. Die andere Stimme für dieselbe Forderung.** Nach dem Verteidiger (05) — der Industrial-Metal-Hammer-Setzung — gibt Track 06 die „Lass mich"-Forderung an die SOFT-Stimme weiter. Gleiche Worte. Anderer Modus. Track 01 ist Demand-as-Refusal (der Wütende fordert von außen); Track 06 ist Demand-as-Prayer (der weiche Anteil bittet von innen).
+**Dark-Folk × Darkwave. Die andere Stimme für dieselbe Forderung.** Nach dem „Wer hier wohnt, schläft nicht" (05) — der Industrial-Metal-Hammer-Setzung — gibt Track 06 die „Lass mich"-Forderung an die SOFT-Stimme weiter. Gleiche Worte. Anderer Modus. Track 01 ist Demand-as-Refusal (der Wütende fordert von außen); Track 06 ist Demand-as-Prayer (der weiche Anteil bittet von innen).
 
-Suite-Position: Slot 06. Sitzt zwischen Verteidiger (05) und Beobachter (07). Strukturell ist Track 06 das STIMMEN-WECHSEL-Momentum — nach 5 Tracks mit dem snarling Baritone als Haupt-Stimme tritt hier eine zweite Vokal-Identität auf, die für den Rest des Albums (07-13) als alternativer Pol fungiert.
+Suite-Position: Slot 06. Sitzt zwischen „Wer hier wohnt, schläft nicht" (05) und „Jemand schreibt mit" (07). Strukturell ist Track 06 das STIMMEN-WECHSEL-Momentum — nach 5 Tracks mit dem snarling Baritone als Haupt-Stimme tritt hier eine zweite Vokal-Identität auf, die für den Rest des Albums (07-13) als alternativer Pol fungiert.
 
 **Konzept-Achse:** Track 01's „lass mich. Lass mich. Lass mich atmen!" ist VERLANGEN. Track 06's „lass mich atmen / lass mich liegen / lass mich hier" ist BITTE. Beide Tracks tragen dieselbe Phrase — aber Modus, Tempo, Stimme, Begleitung sind komplett anders. Das ist eine *Variante* im musikwissenschaftlichen Sinne: gleiches Material, neuer Affekt.
 
@@ -70,9 +70,9 @@ Suite-Position: Slot 06. Sitzt zwischen Verteidiger (05) und Beobachter (07). St
 |----------|---------------|------------|--------|
 | 01 — Lass mich, lass mich atmen | character | gesamter Track | Same demand, different voice/mode. Track 01 ist Demand-as-Refusal (snarling baritone, Industrial-Metal Hammer, atemlose Forderung). Track 06 ist Demand-as-Prayer (whisper-baritone oder female lead, Dark-Folk × Darkwave, ruhige Bitte). |
 | 01 — Lass mich, lass mich atmen | motif | Chorus: „lass mich atmen / lass mich liegen / lass mich hier" | Erweitert Track 01's „lass mich atmen" um zwei zusätzliche Bitten („liegen", „hier"). Die Forderung wird zur dreiteilischen Bitte — Liegen und Hiersein als zusätzlich beantragte Räume. |
-| 05 — Der Verteidiger | contrast | V2: „ich frage leise / weil ich nicht mehr schreien kann." | Inverse zu Track 05's „ich bin der mit der Stimme / die zu hart ist für Gespräche". Track 05's harte Stimme schreit nicht mehr; Track 06's leise Stimme fragt. Komplementäre Vokal-Funktion. |
-| 13 — Wieder atmen lernen | motif | V3: „lass mich atmen / mit leiser Stimme. / lass mich atmen / ohne Belt. / lass mich atmen / ohne Wut." | Foreshadows Track 13's „nicht geheilt. nur leiser." Der Wechsel von Belt zu leiser Stimme ist hier vorbereitet — Track 06 als pre-Closer-Setup. |
-| 02 — Das Geräusch im Hals | resolution | Chorus: „lass mich atmen" | Resolves Track 02's broken phoneme „... lass ... mich ... at ...". Track 02 endet vor „atmen"; Track 06 vollendet das Wort vier Tracks später. Der zerbrochene Satz wird im Album-Bogen wieder ganz. |
+| 05 — Wer hier wohnt, schläft nicht | contrast | V2: „ich frage leise / weil ich nicht mehr schreien kann." | Inverse zu Track 05's „ich bin der mit der Stimme / die zu hart ist für Gespräche". Track 05's harte Stimme schreit nicht mehr; Track 06's leise Stimme fragt. Komplementäre Vokal-Funktion. |
+| 13 — Wieder lernen, wie das geht | motif | V3: „lass mich atmen / mit leiser Stimme. / lass mich atmen / ohne Belt. / lass mich atmen / ohne Wut." | Foreshadows Track 13's „nicht geheilt. nur leiser." Der Wechsel von Belt zu leiser Stimme ist hier vorbereitet — Track 06 als pre-Closer-Setup. |
+| 02 — Etwas zwischen Hals und Stimme | resolution | Chorus: „lass mich atmen" | Resolves Track 02's broken phoneme „... lass ... mich ... at ...". Track 02 endet vor „atmen"; Track 06 vollendet das Wort vier Tracks später. Der zerbrochene Satz wird im Album-Bogen wieder ganz. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 

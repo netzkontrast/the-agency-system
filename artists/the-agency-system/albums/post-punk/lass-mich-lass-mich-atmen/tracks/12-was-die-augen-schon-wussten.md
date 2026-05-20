@@ -1,5 +1,5 @@
 ---
-title: "Augen (Was sie sehen)"
+title: "Was die Augen schon wussten"
 track_number: 12
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Augen (Was sie sehen)
+# Was die Augen schon wussten
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 12 |
-| **Title** | Augen (Was sie sehen) |
+| **Title** | Was die Augen schon wussten |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -81,12 +81,12 @@ Suite-Position: Slot 12. Letzter Track vor dem Closer (13). Strukturell ist Trac
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| 07 — Der Beobachter | character | gesamter Track | Resolves Track 07's Personifikation in Organ-Befund. Track 07: ICH sehe (Anteil als Sprecher). Track 12: DIE AUGEN sehen (Organ als Subjekt). Subjekt-Verschiebung von Anteil zu Organ — die endgültige Album-Identitäts-Bewegung. |
-| 07 — Der Beobachter | callback | Outro: „ich sehe noch. / ich sehe immer noch." | Direkter Echo zu Track 07's Outro „Ich sehe. Ich sehe noch." Track 12 erweitert um „immer noch" — das Sehens-Statement wird zeitlich tiefer. Track 07-09-12 bilden die „Verb-noch / Verb-immer-noch"-Achse des Albums. |
-| 10 — Körperliche Erinnerung | character | V2: „Es bleibt im Sehnerv. / Es bleibt in der Linse. / Es bleibt in der Pupille" | Parallel zu Track 10's „Es sitzt im Kiefer / Es sitzt im Zwerchfell / Es sitzt zwischen den Schulterblättern." Beide Tracks lokalisieren das Archiv in konkreten Körperteilen. Track 10: somatic-storage-allgemein. Track 12: visuelle-storage-spezifisch. |
-| 13 — Wieder atmen lernen | contrast | V3: „Manchmal träume ich / was die Augen aufgenommen haben. / manchmal nicht." | Foreshadows Track 13's ambient-drone closer. Track 12 ist die ruhigste Stelle des Albums VOR dem Closer — der Übergang ist intentional. Track 13 ist sufficient breath; Track 12 ist sufficient-aber-archiviert vision. |
-| 09 — Das Kind | callback | Outro: „ich sehe noch. / ich sehe immer noch." | Echoes Track 09's „Ich warte noch. / Ich warte immer noch." Album-Anwesenheits-Achse: drei Tracks (07, 09, 12) enden mit „Verb-noch / Verb-immer-noch"-Struktur. |
-| 11 — Atmen als Politik | contrast | V1: „Was die Augen / gesehen haben / geht nicht weg." | Inverse zu Track 11's „Atmen ist nicht beendet." Track 11: laufender Akt der Refuse. Track 12: laufender Befund der visuellen Speicherung. Beide Tracks zeigen nicht-Aufgehört-Sein, aber Track 11 ist aktiv-treibend, Track 12 ist passive-meditativ. |
+| 07 — Jemand schreibt mit | character | gesamter Track | Resolves Track 07's Personifikation in Organ-Befund. Track 07: ICH sehe (Anteil als Sprecher). Track 12: DIE AUGEN sehen (Organ als Subjekt). Subjekt-Verschiebung von Anteil zu Organ — die endgültige Album-Identitäts-Bewegung. |
+| 07 — Jemand schreibt mit | callback | Outro: „ich sehe noch. / ich sehe immer noch." | Direkter Echo zu Track 07's Outro „Ich sehe. Ich sehe noch." Track 12 erweitert um „immer noch" — das Sehens-Statement wird zeitlich tiefer. Track 07-09-12 bilden die „Verb-noch / Verb-immer-noch"-Achse des Albums. |
+| 10 — Was die Haut nicht vergisst | character | V2: „Es bleibt im Sehnerv. / Es bleibt in der Linse. / Es bleibt in der Pupille" | Parallel zu Track 10's „Es sitzt im Kiefer / Es sitzt im Zwerchfell / Es sitzt zwischen den Schulterblättern." Beide Tracks lokalisieren das Archiv in konkreten Körperteilen. Track 10: somatic-storage-allgemein. Track 12: visuelle-storage-spezifisch. |
+| 13 — Wieder lernen, wie das geht | contrast | V3: „Manchmal träume ich / was die Augen aufgenommen haben. / manchmal nicht." | Foreshadows Track 13's ambient-drone closer. Track 12 ist die ruhigste Stelle des Albums VOR dem Closer — der Übergang ist intentional. Track 13 ist sufficient breath; Track 12 ist sufficient-aber-archiviert vision. |
+| 09 — Der Stuhl, der wartet | callback | Outro: „ich sehe noch. / ich sehe immer noch." | Echoes Track 09's „Ich warte noch. / Ich warte immer noch." Album-Anwesenheits-Achse: drei Tracks (07, 09, 12) enden mit „Verb-noch / Verb-immer-noch"-Struktur. |
+| 11 — Eine Rede an die Lunge | contrast | V1: „Was die Augen / gesehen haben / geht nicht weg." | Inverse zu Track 11's „Atmen ist nicht beendet." Track 11: laufender Akt der Refuse. Track 12: laufender Befund der visuellen Speicherung. Beide Tracks zeigen nicht-Aufgehört-Sein, aber Track 11 ist aktiv-treibend, Track 12 ist passive-meditativ. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 

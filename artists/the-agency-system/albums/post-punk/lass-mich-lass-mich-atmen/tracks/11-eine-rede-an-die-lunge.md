@@ -1,5 +1,5 @@
 ---
-title: "Atmen als Politik"
+title: "Eine Rede an die Lunge"
 track_number: 11
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Atmen als Politik
+# Eine Rede an die Lunge
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 11 |
-| **Title** | Atmen als Politik |
+| **Title** | Eine Rede an die Lunge |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -79,9 +79,9 @@ Suite-Position: Slot 11. Zweite der drei späten Tracks (10-12). Sitzt zwischen 
 |----------|---------------|------------|--------|
 | 01 — Lass mich, lass mich atmen | resolution | gesamter Track | Beantwortet Track 01's Forderung „Lass mich atmen". Track 01: Atem als demanded right. Track 11: Atem als POSITION — definiert was Atmen IST und WARUM. Vom Forderung-Modus zum Definition-Modus. |
 | 01 — Lass mich, lass mich atmen | callback | Outro: „ich atme. [breath] deshalb." | Echoes Track 01's Outro „Ich atme." Track 01 endet mit reclaimter Forderung-die-zum-Atem-wird; Track 11 endet mit Atem-als-Begründung („deshalb"). Atem ist nicht mehr Forderung, sondern Antwort. |
-| 05 — Der Verteidiger | character | V1-V2: „Wer atmet, / der weigert sich. / Wer weigert sich, / der atmet." | Spiegelt Track 05's Selbst-Setzungs-Logik. Verteidiger: „Ich bin der Hammer, ich bin die Wand, ich bin das Nein." Track 11: Atem IST das Nein. Beide Tracks setzen sich durch konditionale Identität, aber Track 05 ist statisch (ich bin X), Track 11 ist dynamisch (wer X, der Y). |
-| 10 — Körperliche Erinnerung | callback | V2 (Bezug Track 10): „Ich atme tief / und es kommt hoch." | Echoes Track 10's „Ich atme tief / und es kommt hoch." Track 10: Atmen als Trigger für somatische Erinnerung. Track 11: Atmen als politische Position. Beide Tracks zeigen Atmen NICHT als neutral. |
-| 13 — Wieder atmen lernen | contrast | Outro: „ich atme. [breath] deshalb." | Inverse zu Track 13's „ich atme. ich atme noch. das ist alles. das ist genug." Track 11: Atem als KAMPF-Akt (deshalb!). Track 13: Atem als sufficient-im-Vorbeigehen. Komplementäre Atem-Modi am Ende des Albums. |
+| 05 — Wer hier wohnt, schläft nicht | character | V1-V2: „Wer atmet, / der weigert sich. / Wer weigert sich, / der atmet." | Spiegelt Track 05's Selbst-Setzungs-Logik. Verteidiger: „Ich bin der Hammer, ich bin die Wand, ich bin das Nein." Track 11: Atem IST das Nein. Beide Tracks setzen sich durch konditionale Identität, aber Track 05 ist statisch (ich bin X), Track 11 ist dynamisch (wer X, der Y). |
+| 10 — Was die Haut nicht vergisst | callback | V2 (Bezug Track 10): „Ich atme tief / und es kommt hoch." | Echoes Track 10's „Ich atme tief / und es kommt hoch." Track 10: Atmen als Trigger für somatische Erinnerung. Track 11: Atmen als politische Position. Beide Tracks zeigen Atmen NICHT als neutral. |
+| 13 — Wieder lernen, wie das geht | contrast | Outro: „ich atme. [breath] deshalb." | Inverse zu Track 13's „ich atme. ich atme noch. das ist alles. das ist genug." Track 11: Atem als KAMPF-Akt (deshalb!). Track 13: Atem als sufficient-im-Vorbeigehen. Komplementäre Atem-Modi am Ende des Albums. |
 | 06 — Lass mich (Akustische Variante) | contrast | gesamter Track | Inverse zu Track 06's Bitte-Modus. Track 06: leise Bitte um Atem. Track 11: lauter Befund über Atem. Beide haben den Atem im Zentrum — aber 06 fragt, 11 definiert. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)

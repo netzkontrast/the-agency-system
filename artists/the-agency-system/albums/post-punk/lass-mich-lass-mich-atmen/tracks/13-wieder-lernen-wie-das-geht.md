@@ -1,5 +1,5 @@
 ---
-title: "Wieder atmen lernen"
+title: "Wieder lernen, wie das geht"
 track_number: 13
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Wieder atmen lernen
+# Wieder lernen, wie das geht
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 13 |
-| **Title** | Wieder atmen lernen |
+| **Title** | Wieder lernen, wie das geht |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -77,9 +77,9 @@ Suite-Position: Closer / Slot 13 / final track. Renamed from Slot 07 (7-Track-Pr
 | 01 — Lass mich, lass mich atmen | motif | V2 L4-6: „Die Wand ist immernoch eine Wand / sie hält jetzt einfach / das hatte ich vergessen" | Track 01: „vier Wände kommen mit". Track 07: Wand hält jetzt. Vom mitkommenden Käfig zum statisch-haltenden Raum. |
 | 01 — Lass mich, lass mich atmen | resolution | Outro: „ich atme noch. / das ist alles. / das ist genug." | Resolves Track 01's Outro „Ich atme" — derselbe Dreiteiler, aber Track 01 reclaimt unter Atemlosigkeit; Track 07 beobachtet im Vorbeigehen. Genug-Statement ist neu. |
 | 01 — Lass mich, lass mich atmen | contrast | PC: „nicht geheilt. nur leiser." | Inverse zu Track 01's PC „Es ist nicht laut. Es ist alles." — gleiche Negation-dann-Affirmation-Struktur, jetzt mit Korrektur statt Eskalation. |
-| 03 — Lucider Traum | contrast | PC: „nicht geheilt. nur leiser. / nicht woanders. nur hier." | Inverse zu Track 03's „ich weiß. ich weiß. ich weiß — und atme trotzdem nicht." Track 03: Wissen ohne Atem. Track 07: Atem ohne Wissensbedarf. |
-| 03 — Lucider Traum | contrast | Outro: „das ist alles. das ist genug." | Direkter Konter zu Track 03's Outro „Ich bin wach. Das hilft mir nicht." — Track 03 hat Wissen, das nicht hilft; Track 07 hat Wenig, das genügt. |
-| 03 — Lucider Traum | callback | Bridge: „Es kann wiederkommen. / Das weiß ich." | Echoes Track 03's „ich weiß. ich weiß. ich weiß" — gleiche Wissens-Setzung, aber Track 03's Wissen ist Klarheits-Falle; Track 07's Wissen ist akzeptierte Möglichkeit. |
+| 03 — Ich träume durch ein Fenster | contrast | PC: „nicht geheilt. nur leiser. / nicht woanders. nur hier." | Inverse zu Track 03's „ich weiß. ich weiß. ich weiß — und atme trotzdem nicht." Track 03: Wissen ohne Atem. Track 07: Atem ohne Wissensbedarf. |
+| 03 — Ich träume durch ein Fenster | contrast | Outro: „das ist alles. das ist genug." | Direkter Konter zu Track 03's Outro „Ich bin wach. Das hilft mir nicht." — Track 03 hat Wissen, das nicht hilft; Track 07 hat Wenig, das genügt. |
+| 03 — Ich träume durch ein Fenster | callback | Bridge: „Es kann wiederkommen. / Das weiß ich." | Echoes Track 03's „ich weiß. ich weiß. ich weiß" — gleiche Wissens-Setzung, aber Track 03's Wissen ist Klarheits-Falle; Track 07's Wissen ist akzeptierte Möglichkeit. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 

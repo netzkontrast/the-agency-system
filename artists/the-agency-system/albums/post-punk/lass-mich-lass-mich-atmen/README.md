@@ -28,7 +28,7 @@ sheet_music:
 | **Tracks** | 13 (komplette Mini-Album-Suite, alle gedraftet, alle In Progress) |
 | **Status** | In Progress — alle 13 Tracks gedraftet, Lyric-Reviewer/Pronunciation-Specialist/Pre-Generation-Check ausstehend |
 | **Explicit** | No (alle 13 Tracks) |
-| **Concept** | 13-Track Mini-Album-Suite um „Lass mich, lass mich atmen" — Industrial-Metal-Eckpfeiler (01 Demand, 05 Defender) plus Darkwave-Variationen über vier thematische Territorien: **Besucher** (02 Witch-house wordless), **Somatik & Körper** (04 Slowcore Bett, 10 Witch-house Körper), **System-Anteile** (07 Coldwave Beobachter, 08 Industrial-Drone Container, 09 Post-Punk Kind), **Stimmen-Wechsel & Closer** (06 Dark-Folk Variante, 11 Post-Punk Atem-Politik, 12 Dark-Ambient Augen, 13 Ambient-Dream-Pop Wieder-Atmen). Track 03 (Doom × Dream-Pop Lucider Traum) als Mittelpunkt der mentalen Achse. |
+| **Concept** | 13-Track Mini-Album-Suite um „Lass mich, lass mich atmen" — Industrial-Metal-Eckpfeiler (01 Demand, 05 Defender) plus Darkwave-Variationen über vier thematische Territorien: **Besucher** (02 Witch-house wordless), **Somatik & Körper** (04 Slowcore Bett, 10 Witch-house Körper), **System-Anteile** (07 Coldwave Beobachter, 08 Industrial-Drone Container, 09 Post-Punk Kind), **Stimmen-Wechsel & Closer** (06 Dark-Folk Variante, 11 Post-Punk Atem-Politik, 12 Dark-Ambient Augen, 13 Ambient-Dream-Pop Closer). Track 03 (Doom × Dream-Pop Klartraum-Falle) als Mittelpunkt der mentalen Achse. |
 
 ## Concept
 
@@ -37,14 +37,14 @@ sheet_music:
 Die 12 weiteren Tracks erkunden die isomorphen Lesarten in eigenen Klang-Welten:
 
 - **Industrial-Metal-Eckpfeiler** (01, 05): die wütende Forderung und ihr Selbst-Porträt
-- **Mentale Klarheits-Achse** (03 Lucider Traum): Klarheit als Falle
-- **Witch-house-Achse** (02 Geräusch im Hals wordless, 10 Körperliche Erinnerung verbal): das Im-Hals-Steckende als Klang und als Befund
-- **Somatic-Achse** (04 Bett Slowcore × Darkwave): der ambivalente Ort
-- **System-Anteil-Trilogie** (07 Beobachter Coldwave, 08 Container Industrial-Drone, 09 Kind Post-Punk): drei innere Funktionen in Selbst-Porträts
-- **Stimmen-Wechsel** (06 Dark-Folk Variante): die Forderung in soft voice
-- **Atem-Politik** (11 Post-Punk): Atem als Refuse-Akt
-- **Augen-Archiv** (12 Dark-Ambient): das Sehen als Organ-Befund
-- **Closer** (13 Ambient-Dream-Pop): earned softness ohne Heilungsbogen
+- **Mentale Klarheits-Achse** (03 Ich träume durch ein Fenster): Klarheit als Falle
+- **Witch-house-Achse** (02 Etwas zwischen Hals und Stimme wordless, 10 Was die Haut nicht vergisst verbal): das Im-Hals-Steckende als Klang und als Befund
+- **Somatic-Achse** (04 Das Bett stellt Fragen Slowcore × Darkwave): der ambivalente Ort
+- **System-Anteil-Trilogie** (07 Jemand schreibt mit Coldwave, 08 Was hineinpasst, bleibt Industrial-Drone, 09 Der Stuhl, der wartet Post-Punk): drei innere Funktionen in Selbst-Porträts
+- **Stimmen-Wechsel** (06 Lass mich (das leise Gebet) Dark-Folk): die Forderung in soft voice
+- **Atem-Politik** (11 Eine Rede an die Lunge Post-Punk): Atem als Refuse-Akt
+- **Augen-Archiv** (12 Was die Augen schon wussten Dark-Ambient): das Sehen als Organ-Befund
+- **Closer** (13 Wieder lernen, wie das geht Ambient-Dream-Pop): earned softness ohne Heilungsbogen
 
 **Darkwave als Verbindungs-Layer:** chorus-rich kalte synth pads laufen durch fast alle Tracks und verbinden die unterschiedlichen Genre-Sektoren zu einer einheitlichen Album-Atmosphäre. Industrial-Metal-Eckpfeiler haben Darkwave-Pads als Atmosphäre-Layer; Witch-house-, Coldwave-, Slowcore-Tracks haben Darkwave als Haupt-Pad-DNA.
 
@@ -127,18 +127,18 @@ Der Song folgt einer klaren temporalen Architektur, in der Verses und Refrain un
 | # | Title | Genre | POV | Concept | Status |
 |---|-------|-------|-----|---------|--------|
 | 01 | [Lass mich, lass mich atmen](tracks/01-lass-mich,-lass-mich-atmen.md) | Industrial-Metal × Doom | First-person (Survivor-Heute mit Damals-Echo) | Wütende Forderung gegen erstickende Präsenz; polysemisch offenes Du | In Progress |
-| 02 | [Das Geräusch im Hals](tracks/02-das-geräusch-im-hals.md) | Witch-house × Darkwave | Third-person (visitor's voice as sound) | Wordless Witch-house. Die Besucher-Stimme als Klang. Endet mit zerbrochenen Phonemen „... lass ... mich ... at ..." — vollendet nie das Wort. | In Progress |
-| 03 | [Lucider Traum](tracks/03-lucider-traum.md) | Industrial-Metal × Doom × Dream-Pop | First-person (lucid dreamer, awake-in-dream) | Du weißt es ist nicht real. Du weißt die Wand ist nur eine Idee. Das hilft nichts. Klarheit als Falle. | In Progress |
-| 04 | [Bett](tracks/04-bett.md) | Slowcore × Darkwave | First-person (about the bed) | Das Bett als grammatikalisches Subjekt. Frage und Antwort. Der Ort, an dem ich war — und bin. | In Progress |
-| 05 | [Der Verteidiger](tracks/05-der-verteidiger.md) | Industrial-Metal × Doom (Centerpiece) | First-person (defender profiling himself) | Centerpiece. Selbstporträt des wütenden Anteils, der Track 01 gesungen hat — sein Profil, seine Funktion, sein Preis. | In Progress |
-| 06 | [Lass mich (Akustische Variante)](tracks/06-lass-mich-(akustische-variante).md) | Dark-Folk × Darkwave | First-person (the soft self praying) | Dieselbe Forderung in soft voice — Demand-as-Prayer statt Demand-as-Refusal. Stimmen-Wechsel-Track. | In Progress |
-| 07 | [Der Beobachter](tracks/07-der-beobachter.md) | Coldwave × Darkwave | First-person (observer, cold not warm) | System-Anteil-Trilogie 1/3. Der Anteil, der nicht handelt, nur sieht. Monotone baritone, distanced. | In Progress |
-| 08 | [Der Container](tracks/08-der-container.md) | Industrial × Darkwave-Drone | First-person (container, heavy sustained) | System-Anteil-Trilogie 2/3. Der Beutel, der Eimer, das Fass — das nicht überläuft, weil es kein Maß hat. | In Progress |
-| 09 | [Das Kind](tracks/09-das-kind.md) | Darkwave × Post-Punk | First-person (child-self, no infantilization) | System-Anteil-Trilogie 3/3. Der Teil, der gewartet hat. Nicht traurig, nicht wütend — nur klein und nicht weg. | In Progress |
-| 10 | [Körperliche Erinnerung](tracks/10-körperliche-erinnerung.md) | Witch-house × Darkwave | First-person (somatic, body parts as subjects) | Spätt-Trilogie 1/3. Mein Hals erinnert sich. Mein Kopf hat es vergessen. Das geht in Ordnung. | In Progress |
-| 11 | [Atmen als Politik](tracks/11-atmen-als-politik.md) | Post-Punk × Darkwave | First-person (declamatory manifesto) | Spätt-Trilogie 2/3. Atmen ist nicht passiv. Atmen ist eine Position. Wer atmet, der weigert sich. | In Progress |
-| 12 | [Augen (Was sie sehen)](tracks/12-augen-(was-sie-sehen).md) | Dark-Ambient × Darkwave | First-person observer of eyes as subject | Spätt-Trilogie 3/3. Die Augen sind ein Archiv, das niemand durchsucht. Sie sehen weiter, auch im Schlaf. | In Progress |
-| 13 | [Wieder atmen lernen](tracks/13-wieder-atmen-lernen.md) | Ambient-Drone × Dream-Pop | First-person (self-witnessing, morning) | Closer. Der einzige sanfte Track. Nicht geheilt — nur leiser. Earned softness, kein Heilungsbogen. | In Progress |
+| 02 | [Etwas zwischen Hals und Stimme](tracks/02-etwas-zwischen-hals-und-stimme.md) | Witch-house × Darkwave | Third-person (visitor's voice as sound) | Wordless Witch-house. Die Besucher-Stimme als Klang. Endet mit zerbrochenen Phonemen „... lass ... mich ... at ..." — vollendet nie das Wort. | In Progress |
+| 03 | [Ich träume durch ein Fenster](tracks/03-ich-träume-durch-ein-fenster.md) | Industrial-Metal × Doom × Dream-Pop | First-person (lucid dreamer, awake-in-dream) | Du weißt es ist nicht real. Du weißt die Wand ist nur eine Idee. Das hilft nichts. Klarheit als Falle. | In Progress |
+| 04 | [Das Bett stellt Fragen](tracks/04-das-bett-stellt-fragen.md) | Slowcore × Darkwave | First-person (about the bed) | Das Bett als grammatikalisches Subjekt. Frage und Antwort. Der Ort, an dem ich war — und bin. | In Progress |
+| 05 | [Wer hier wohnt, schläft nicht](tracks/05-wer-hier-wohnt-schläft-nicht.md) | Industrial-Metal × Doom (Centerpiece) | First-person (defender profiling himself) | Centerpiece. Selbstporträt des wütenden Anteils, der Track 01 gesungen hat — sein Profil, seine Funktion, sein Preis. | In Progress |
+| 06 | [Lass mich (das leise Gebet)](tracks/06-lass-mich-das-leise-gebet.md) | Dark-Folk × Darkwave | First-person (the soft self praying) | Dieselbe Forderung in soft voice — Demand-as-Prayer statt Demand-as-Refusal. Stimmen-Wechsel-Track. | In Progress |
+| 07 | [Jemand schreibt mit](tracks/07-jemand-schreibt-mit.md) | Coldwave × Darkwave | First-person (observer, cold not warm) | System-Anteil-Trilogie 1/3. Der Anteil, der nicht handelt, nur sieht. Monotone baritone, distanced. | In Progress |
+| 08 | [Was hineinpasst, bleibt](tracks/08-was-hineinpasst-bleibt.md) | Industrial × Darkwave-Drone | First-person (container, heavy sustained) | System-Anteil-Trilogie 2/3. Der Beutel, der Eimer, das Fass — das nicht überläuft, weil es kein Maß hat. | In Progress |
+| 09 | [Der Stuhl, der wartet](tracks/09-der-stuhl-der-wartet.md) | Darkwave × Post-Punk | First-person (child-self, no infantilization) | System-Anteil-Trilogie 3/3. Der Teil, der gewartet hat. Nicht traurig, nicht wütend — nur klein und nicht weg. | In Progress |
+| 10 | [Was die Haut nicht vergisst](tracks/10-was-die-haut-nicht-vergisst.md) | Witch-house × Darkwave | First-person (somatic, body parts as subjects) | Spätt-Trilogie 1/3. Mein Hals erinnert sich. Mein Kopf hat es vergessen. Das geht in Ordnung. | In Progress |
+| 11 | [Eine Rede an die Lunge](tracks/11-eine-rede-an-die-lunge.md) | Post-Punk × Darkwave | First-person (declamatory manifesto) | Spätt-Trilogie 2/3. Atmen ist nicht passiv. Atmen ist eine Position. Wer atmet, der weigert sich. | In Progress |
+| 12 | [Was die Augen schon wussten](tracks/12-was-die-augen-schon-wussten.md) | Dark-Ambient × Darkwave | First-person observer of eyes as subject | Spätt-Trilogie 3/3. Die Augen sind ein Archiv, das niemand durchsucht. Sie sehen weiter, auch im Schlaf. | In Progress |
+| 13 | [Wieder lernen, wie das geht](tracks/13-wieder-lernen-wie-das-geht.md) | Ambient-Drone × Dream-Pop | First-person (self-witnessing, morning) | Closer. Der einzige sanfte Track. Nicht geheilt — nur leiser. Earned softness, kein Heilungsbogen. | In Progress |
 
 ## Production Notes
 
@@ -221,17 +221,17 @@ Industrial Metal
 | # | Title | Duration | Listen |
 |---|-------|----------|--------|
 | 01 | Lass mich, lass mich atmen | 3:30 | [SoundCloud](URL) |
-| 02 | Das Geräusch im Hals | 3:00 | [SoundCloud](URL) |
-| 03 | Lucider Traum | 3:45 | [SoundCloud](URL) |
-| 04 | Bett | 4:30 | [SoundCloud](URL) |
-| 05 | Der Verteidiger | 4:00 | [SoundCloud](URL) |
-| 06 | Lass mich (Akustische Variante) | 3:15 | [SoundCloud](URL) |
-| 07 | Der Beobachter | 3:45 | [SoundCloud](URL) |
-| 08 | Der Container | 4:15 | [SoundCloud](URL) |
-| 09 | Das Kind | 3:30 | [SoundCloud](URL) |
-| 10 | Körperliche Erinnerung | 3:30 | [SoundCloud](URL) |
-| 11 | Atmen als Politik | 3:20 | [SoundCloud](URL) |
-| 12 | Augen (Was sie sehen) | 4:00 | [SoundCloud](URL) |
-| 13 | Wieder atmen lernen | 5:00 | [SoundCloud](URL) |
+| 02 | Etwas zwischen Hals und Stimme | 3:00 | [SoundCloud](URL) |
+| 03 | Ich träume durch ein Fenster | 3:45 | [SoundCloud](URL) |
+| 04 | Das Bett stellt Fragen | 4:30 | [SoundCloud](URL) |
+| 05 | Wer hier wohnt, schläft nicht | 4:00 | [SoundCloud](URL) |
+| 06 | Lass mich (das leise Gebet) | 3:15 | [SoundCloud](URL) |
+| 07 | Jemand schreibt mit | 3:45 | [SoundCloud](URL) |
+| 08 | Was hineinpasst, bleibt | 4:15 | [SoundCloud](URL) |
+| 09 | Der Stuhl, der wartet | 3:30 | [SoundCloud](URL) |
+| 10 | Was die Haut nicht vergisst | 3:30 | [SoundCloud](URL) |
+| 11 | Eine Rede an die Lunge | 3:20 | [SoundCloud](URL) |
+| 12 | Was die Augen schon wussten | 4:00 | [SoundCloud](URL) |
+| 13 | Wieder lernen, wie das geht | 5:00 | [SoundCloud](URL) |
 
 **Total Runtime:** ca. 49:20

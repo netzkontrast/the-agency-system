@@ -1,5 +1,5 @@
 ---
-title: "Bett"
+title: "Das Bett stellt Fragen"
 track_number: 4
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Bett
+# Das Bett stellt Fragen
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 04 |
-| **Title** | Bett |
+| **Title** | Das Bett stellt Fragen |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -47,7 +47,7 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 **Slowcore × Darkwave. Das Bett als ambivalentes Objekt — als ganzer Song.** Nach Track 03's lucider Falle setzt sich das Album in die KÖRPERLICHE Anker-Position: der Ort, an dem alles passiert ist. Das Bett ist nicht Refuge, nicht Gefängnis, nicht Bühne — es ist alles drei zugleich.
 
-Suite-Position: Slot 04. Sitzt zwischen Lucider Traum (03) und Verteidiger (05). Strukturell ist Track 04 die SOMATISCHE Vertiefung — nach der mentalen Klarheits-Falle von Track 03 kommt der Körper zur Sprache. Aber: in der Slowcore-Tradition (Codeine, Low, Red House Painters) ist die Sprache karg, langsam, fast unmusikalisch. Darkwave gibt der Spärlichkeit die kalte gothic Atmosphäre, die zur Album-DNA passt.
+Suite-Position: Slot 04. Sitzt zwischen „Ich träume durch ein Fenster" (03) und „Wer hier wohnt, schläft nicht" (05). Strukturell ist Track 04 die SOMATISCHE Vertiefung — nach der mentalen Klarheits-Falle von Track 03 kommt der Körper zur Sprache. Aber: in der Slowcore-Tradition (Codeine, Low, Red House Painters) ist die Sprache karg, langsam, fast unmusikalisch. Darkwave gibt der Spärlichkeit die kalte gothic Atmosphäre, die zur Album-DNA passt.
 
 **Das Bett als grammatikalisches Subjekt.** Der Sprecher beschreibt das Bett, nicht sich selbst. Das ist die wichtigste konzeptuelle Verschiebung: in Track 01-03 ist das Ich aktiv (fordernd, lucid, wissend); in Track 04 wird der ORT gesungen. Das Bett ist eine Frage. Das Bett ist eine Antwort. Das Bett ist der Ort an dem alles war und ist.
 
@@ -69,10 +69,10 @@ Suite-Position: Slot 04. Sitzt zwischen Lucider Traum (03) und Verteidiger (05).
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
 | 01 — Lass mich, lass mich atmen | motif | V2 L1-4: „Das Kissen weiß alles / was ich gesagt habe / ohne es zu sagen. / das Kissen schweigt." | Vertieft Track 01's V2 „Im Kissen ein altes Bild". Das Kissen wird zum Subjekt — es weiß, es schweigt, es nimmt an. |
-| 03 — Lucider Traum | contrast | V1: „Das Bett ist eine Frage / die ich nicht beantworte." | Inverse zu Track 03's „ich kenne diesen Raum schon zu lang / war beim letzten Mal hier. Beim ersten." Track 03 weiß den Raum zu gut; Track 04 lässt die Frage offen. |
-| 13 — Wieder atmen lernen | motif | Chorus: „Das Bett. Das Bett. Das Bett. / Der Ort, an dem ich war. / Der Ort, an dem ich bin." | Echoes Track 13's V1 „Das Bett ist dasselbe Bett". Track 04 setzt das Bett als Subjekt; Track 13 setzt es als bekanntes Gleiches. Continuity ohne Auflösung. |
-| 05 — Der Verteidiger | contrast | Bridge: „Wenn ich aufstehe, fängt der Tag an. / Wenn ich liegen bleibe, fängt nichts an. / Beides ist eine Form / von Leben." | Inverse zu Track 05's „Wenn ich nicht da bin, ist da nichts. / Wenn ich da bin, ist da nur ich." Beide haben Bridge-Doppelbinds, aber Track 04 löst in Ambivalenz-Akzeptanz auf („beides ist Leben"); Track 05 in Funktions-Akzeptanz („beides ist Job und Preis"). |
-| 10 — Körperliche Erinnerung | motif | V2: „das Kissen weiß alles" | Foreshadows Track 10's „Mein Körper erinnert sich". Das Kissen IST eine externe Körper-Erinnerung — das, was der Körper nicht halten konnte, ist im Kissen geblieben. |
+| 03 — Ich träume durch ein Fenster | contrast | V1: „Das Bett ist eine Frage / die ich nicht beantworte." | Inverse zu Track 03's „ich kenne diesen Raum schon zu lang / war beim letzten Mal hier. Beim ersten." Track 03 weiß den Raum zu gut; Track 04 lässt die Frage offen. |
+| 13 — Wieder lernen, wie das geht | motif | Chorus: „Das Bett. Das Bett. Das Bett. / Der Ort, an dem ich war. / Der Ort, an dem ich bin." | Echoes Track 13's V1 „Das Bett ist dasselbe Bett". Track 04 setzt das Bett als Subjekt; Track 13 setzt es als bekanntes Gleiches. Continuity ohne Auflösung. |
+| 05 — Wer hier wohnt, schläft nicht | contrast | Bridge: „Wenn ich aufstehe, fängt der Tag an. / Wenn ich liegen bleibe, fängt nichts an. / Beides ist eine Form / von Leben." | Inverse zu Track 05's „Wenn ich nicht da bin, ist da nichts. / Wenn ich da bin, ist da nur ich." Beide haben Bridge-Doppelbinds, aber Track 04 löst in Ambivalenz-Akzeptanz auf („beides ist Leben"); Track 05 in Funktions-Akzeptanz („beides ist Job und Preis"). |
+| 10 — Was die Haut nicht vergisst | motif | V2: „das Kissen weiß alles" | Foreshadows Track 10's „Mein Körper erinnert sich". Das Kissen IST eine externe Körper-Erinnerung — das, was der Körper nicht halten konnte, ist im Kissen geblieben. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 

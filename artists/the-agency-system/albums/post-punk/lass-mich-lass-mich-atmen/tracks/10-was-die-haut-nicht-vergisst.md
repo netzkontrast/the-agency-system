@@ -1,5 +1,5 @@
 ---
-title: "Körperliche Erinnerung"
+title: "Was die Haut nicht vergisst"
 track_number: 10
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Körperliche Erinnerung
+# Was die Haut nicht vergisst
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 10 |
-| **Title** | Körperliche Erinnerung |
+| **Title** | Was die Haut nicht vergisst |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -47,9 +47,9 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 **Witch-house × Darkwave. Der Körper als Archiv. Was der Kopf vergessen hat, hält das Soma.** Nach der System-Anteil-Trilogie (07-09) öffnet sich das Album in die KÖRPERLICHE Dimension. Track 10 ist das Befund-Statement: der Körper erinnert sich, der Kopf nicht — und das ist in Ordnung.
 
-Suite-Position: Slot 10. Erste der drei späten Tracks (10-12): Körperliche Erinnerung → Atmen als Politik → Augen (Was sie sehen). Drei Tracks über das Körper-als-Archiv-Konzept.
+Suite-Position: Slot 10. Erste der drei späten Tracks (10-12): „Was die Haut nicht vergisst" → „Eine Rede an die Lunge" → „Was die Augen schon wussten". Drei Tracks über das Körper-als-Archiv-Konzept.
 
-**Konzept-Achse:** Track 02 (Das Geräusch im Hals) war die wordless Manifestation des Im-Hals-Steckenden. Track 10 ist die LINGUISTIC Manifestation desselben Phänomens: der Körper-als-Archiv wird benannt, kartographiert, akzeptiert. Track 02 ist Klang ohne Sprache; Track 10 ist Sprache über Klang.
+**Konzept-Achse:** Track 02 (Etwas zwischen Hals und Stimme) war die wordless Manifestation des Im-Hals-Steckenden. Track 10 ist die LINGUISTIC Manifestation desselben Phänomens: der Körper-als-Archiv wird benannt, kartographiert, akzeptiert. Track 02 ist Klang ohne Sprache; Track 10 ist Sprache über Klang.
 
 **Was der Track aussagt:**
 - Mein Hals erinnert sich. Mein Bauch erinnert sich. Meine Hände erinnern sich.
@@ -77,12 +77,12 @@ Suite-Position: Slot 10. Erste der drei späten Tracks (10-12): Körperliche Eri
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| 02 — Das Geräusch im Hals | resolution | V1: „Mein Hals erinnert sich." | Names what Track 02 manifested as wordless sound. Track 02 ist Klang ohne Sprache; Track 10 ist Sprache über Klang. Die Witch-house-Achse des Albums schließt sich hier. |
-| 04 — Bett | callback | gesamter Track | Echoes Track 04's „Das Kissen weiß alles". Track 04: externe Körper-Erinnerung (Kissen). Track 10: interne Körper-Erinnerung (Soma). Beide bewahren, was der Kopf nicht halten kann. |
-| 08 — Der Container | character | Chorus: „Es sitzt im Kiefer. / Es sitzt im Zwerchfell. / Es sitzt zwischen den Schulterblättern. / da wo niemand hinkommt. / da, wo es bleibt." | Verbindet Container (Halte-Funktion als psychische Struktur) mit Soma (Halte-Funktion als körperliche Topographie). Beide halten — Container abstrakt, Soma konkret. |
-| 07 — Der Beobachter | contrast | V1: „Mein Kopf hat es vergessen. / das geht in Ordnung." | Inverse zu Track 07's „Ich erinnere. Ich vergesse nichts." Beobachter erinnert ALLES; Kopf vergisst manches. Das Wissen verteilt sich asymmetrisch über System und Soma. |
+| 02 — Etwas zwischen Hals und Stimme | resolution | V1: „Mein Hals erinnert sich." | Names what Track 02 manifested as wordless sound. Track 02 ist Klang ohne Sprache; Track 10 ist Sprache über Klang. Die Witch-house-Achse des Albums schließt sich hier. |
+| 04 — Das Bett stellt Fragen | callback | gesamter Track | Echoes Track 04's „Das Kissen weiß alles". Track 04: externe Körper-Erinnerung (Kissen). Track 10: interne Körper-Erinnerung (Soma). Beide bewahren, was der Kopf nicht halten kann. |
+| 08 — Was hineinpasst, bleibt | character | Chorus: „Es sitzt im Kiefer. / Es sitzt im Zwerchfell. / Es sitzt zwischen den Schulterblättern. / da wo niemand hinkommt. / da, wo es bleibt." | Verbindet Container (Halte-Funktion als psychische Struktur) mit Soma (Halte-Funktion als körperliche Topographie). Beide halten — Container abstrakt, Soma konkret. |
+| 07 — Jemand schreibt mit | contrast | V1: „Mein Kopf hat es vergessen. / das geht in Ordnung." | Inverse zu Track 07's „Ich erinnere. Ich vergesse nichts." Beobachter erinnert ALLES; Kopf vergisst manches. Das Wissen verteilt sich asymmetrisch über System und Soma. |
 | 12 — Augen (Was sie sehen) | character | gesamter Track | Foreshadows Track 12. Track 10 ist Soma-als-Archiv; Track 12 ist Augen-als-Archiv. Beide sind körperliche Archiv-Tracks. Track 10 verbal-thematisch, Track 12 dark-ambient-meditativ. |
-| 13 — Wieder atmen lernen | resolution | V2: „Im Hals ist es still." | Resolves Track 10's „Mein Hals erinnert sich." Track 10: aktive somatische Präsenz. Track 13: somatische Beruhigung (nicht Weggehen, nur „nicht mehr mitsummen"). |
+| 13 — Wieder lernen, wie das geht | resolution | V2: „Im Hals ist es still." | Resolves Track 10's „Mein Hals erinnert sich." Track 10: aktive somatische Präsenz. Track 13: somatische Beruhigung (nicht Weggehen, nur „nicht mehr mitsummen"). |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 
@@ -98,8 +98,8 @@ Suite-Position: Slot 10. Erste der drei späten Tracks (10-12): Körperliche Eri
 - **Es sitzt im Kiefer. Es sitzt im Zwerchfell. Es sitzt zwischen den Schulterblättern.** — Chorus L1-3. Drei spezifische somatic-storage-Orte. Kiefer (oral-tension), Zwerchfell (breath-anchor), Schulterblätter (back-of-the-body, where you can't reach). Topographie statt Diagnose.
 - **da wo niemand hinkommt. / da, wo es bleibt.** — Chorus L4-5. Unzugänglichkeit als Befund. Das „Es" bleibt, weil niemand hinkommt — und niemand kommt hin, weil es bleibt. Tautologische Geschlossenheit.
 - **Ich strecke mich / und es kommt hoch.** — V2 L1-2. Bewegung als Trigger.
-- **Ich atme tief / und es kommt hoch.** — V2 L3-4. Tieferes Atmen als Trigger — auch das Atmen ist NICHT neutral. Track-10-Echo zu Track 11 (Atmen als Politik).
-- **Ich liege still / und es bleibt unten.** — V2 L5-6. Die einzige Stelle, an der es UNTEN bleibt: im Liegen. Echo zu Track 04 (Bett) und Track 13 (Liegen-Üben).
+- **Ich atme tief / und es kommt hoch.** — V2 L3-4. Tieferes Atmen als Trigger — auch das Atmen ist NICHT neutral. Track-10-Echo zu Track 11 (Eine Rede an die Lunge).
+- **Ich liege still / und es bleibt unten.** — V2 L5-6. Die einzige Stelle, an der es UNTEN bleibt: im Liegen. Echo zu Track 04 (Das Bett stellt Fragen) und Track 13 (Liegen-Üben).
 - **der Körper wählt / wann er es zeigt.** — V2 L7-8. Agency des Körpers. Der Körper hat ein eigenes Timing.
 - **ich rede nicht mit dem Therapeuten darüber. / ich rede mit dem Kiefer. / ich rede mit dem Zwerchfell. / sie sagen was zurück / nur nicht mit Worten.** — Bridge. Kommunikations-Achse: Therapie ⇒ Körper. Bewusste Auswahl der Gesprächspartner. Der Körper redet zurück, in Körper-Sprache.
 - **Mein Körper erinnert sich. / Ich bin der Körper.** — Outro. Letzte Setzung: Identität-mit-dem-Körper, nicht im-Körper. Das Soma IST das Ich, nicht das, wo das Ich wohnt.
@@ -114,7 +114,7 @@ Suite-Position: Slot 10. Erste der drei späten Tracks (10-12): Körperliche Eri
 - **Instrumentation**: Drum machine 808-style kick (halftime feel, kick on 1 + 3), closed hihat with triplet stutters, pitched-down snare hits (Witch-house-Marker). Multiple dark synth pads (Darkwave-DNA: chorus-rich, reverb-soaked, minor harmonics). Sub-bass drone underneath. **Gepitched/reversed vocal samples** als Texture-Layer — Echo zu Track 02. Sparse rim shots. KEIN Industrial-Bite, KEINE Gitarre, KEIN concrete kit.
 - **Vocal**: **Snarling baritone aber spoken-not-sung** in Verses (somatic-präzise Aufzählung), mit gepitched female/androgyne backing samples als shadow-layer (umgekehrte Architektur von Track 02). Im Chorus: baritone wird emphatic — die drei „Es sitzt"-Setzungen erhalten Verdichtung durch backing harmonies. Bridge: spoken near-whispered, intim, fast confessional. Outro: baritone solo, settling-down.
 - **Doubling-Spezifikum**: Track 10 hat die UMGEKEHRTE Vocal-Doubling-Architektur von Track 02. In Track 02 ist female lead + male shadow. In Track 10 ist male lead + female shadow. Das ist intentional — die Witch-house-Achse spiegelt sich zwischen den beiden Tracks.
-- **Outro-Spezifikum**: 8s Fade. Drum machine drops first, dark pads bleiben, breath samples linger. Übergang zu Track 11 (Atmen als Politik): von Körper-Befund zu Atem-Politik — die Bewegung führt von Soma-als-Archiv zu Atem-als-Akt.
+- **Outro-Spezifikum**: 8s Fade. Drum machine drops first, dark pads bleiben, breath samples linger. Übergang zu Track 11 (Eine Rede an die Lunge): von Körper-Befund zu Atem-Politik — die Bewegung führt von Soma-als-Archiv zu Atem-als-Akt.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -299,7 +299,7 @@ Ich bin der Körper
 - **Outro: 8s Fade.** Drum machine drops first, dark pads bleiben, breath samples linger. „Ich bin der Körper" als final statement — die zentrale Identitäts-Verschiebung des Tracks.
 <!-- SERVICE: suno -->
 - **Suno V5 Spezifikum**: Weirdness ~65 für authentic witch-house texture. Style Influence ~75 damit Darkwave-pad-layer nicht in pure Industrial drift. Wenn Suno melodische Vocal-Linie generiert, neu mit „spoken-not-sung delivery, conversational enumeration, no melodic vocal lead" und explizit „same vocal character as Track 01/05 but spoken not sung".
-- **Konsistenz mit Track 02**: gleiche Witch-house-Sound-Architektur, aber UMGEKEHRTES vocal layering. „Same witch-house atmosphere as Track 02 Das Geräusch im Hals, but male lead with female backing shadow instead of female lead with male shadow" als Hint.
+- **Konsistenz mit Track 02**: gleiche Witch-house-Sound-Architektur, aber UMGEKEHRTES vocal layering. „Same witch-house atmosphere as Track 02 (Etwas zwischen Hals und Stimme), but male lead with female backing shadow instead of female lead with male shadow" als Hint.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->

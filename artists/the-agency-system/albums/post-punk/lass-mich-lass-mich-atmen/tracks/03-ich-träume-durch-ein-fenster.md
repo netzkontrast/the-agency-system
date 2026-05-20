@@ -1,5 +1,5 @@
 ---
-title: "Lucider Traum"
+title: "Ich träume durch ein Fenster"
 track_number: 3
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Lucider Traum
+# Ich träume durch ein Fenster
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 03 |
-| **Title** | Lucider Traum |
+| **Title** | Ich träume durch ein Fenster |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -45,7 +45,7 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-**Lucider Traum-Modus.** Du weißt es ist nicht real. Du weißt die Wand ist nur eine Idee, das Licht ist falsch, die Tür existiert nur weil dein Hirn sie malt. **Das hilft alles nichts.** Die Klarheit ist die Falle, nicht die Befreiung. Das Wissen ist da — und der Atem bleibt trotzdem weg.
+**Klartraum-Modus.** Du weißt es ist nicht real. Du weißt die Wand ist nur eine Idee, das Licht ist falsch, die Tür existiert nur weil dein Hirn sie malt. **Das hilft alles nichts.** Die Klarheit ist die Falle, nicht die Befreiung. Das Wissen ist da — und der Atem bleibt trotzdem weg.
 
 Suite-Position 3. Tonalität: schwebend, suspended, weniger direkt-aggressiv als Track 01, mehr disorienting Stretching. Snarling Baritone als Wachzustand, weniger ugly-Belt-Eruptionen, mehr helpless rage.
 

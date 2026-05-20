@@ -1,5 +1,5 @@
 ---
-title: "Das Geräusch im Hals"
+title: "Etwas zwischen Hals und Stimme"
 track_number: 2
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Das Geräusch im Hals
+# Etwas zwischen Hals und Stimme
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 02 |
-| **Title** | Das Geräusch im Hals |
+| **Title** | Etwas zwischen Hals und Stimme |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -47,7 +47,7 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 **Witch-house × Darkwave. Die Besucher-Stimme bekommt Form — aber keine Sprache.** Was in Track 01's V2 als „Im Hals ein altes Geräusch" benannt wird, bekommt hier seinen eigenen Track. Wordless. Phonetisch. Vor-Sprachlich. Das Album öffnet sich aus dem brutalen Industrial-Metal-Opener heraus in einen rituellen, dunklen Witch-house-Raum — die Besucher-Stimme als gesampelte Atemmuster und stotternde Vokal-Fragmente.
 
-Suite-Position: Slot 02. Sitzt zwischen Titel-Opener (01) und Lucider Traum (03). Strukturell ist Track 02 der ÜBERGANG vom direkten Demand-Modus zum Lucid-Modus — die Sprache zerfällt, bevor sie sich in der Lucidität neu zusammensetzt.
+Suite-Position: Slot 02. Sitzt zwischen Titel-Opener (01) und „Ich träume durch ein Fenster" (03). Strukturell ist Track 02 der ÜBERGANG vom direkten Demand-Modus zum Lucid-Modus — die Sprache zerfällt, bevor sie sich in der Lucidität neu zusammensetzt.
 
 **Konzept-Achse:** Track 01 endet mit reclaimter Stimme („Ich atme"). Track 02 fragmentiert diese reclaimte Stimme zurück in Phoneme — als ob das Atmen nicht stabil war, als ob die Sprache nicht hielt. Die letzte Section enthält ein zerbrochenes „lass mich at..." (das „atmen" nie vollständig). Der Titel-Song RISST aus den Phonemen heraus auf.
 
@@ -68,8 +68,8 @@ Suite-Position: Slot 02. Sitzt zwischen Titel-Opener (01) und Lucider Traum (03)
 |----------|---------------|------------|--------|
 | 01 — Lass mich, lass mich atmen | callback | Section C: „... lass ... mich ... at ..." | Zerbricht Track 01's Titel-Phrase in unvollständige Phoneme. Das „atmen" wird nie vollendet — die Sprache scheitert dort, wo Track 01's Reclaim begann. |
 | 01 — Lass mich, lass mich atmen | motif | gesamter Track | Gibt Track 01's V2-Bild „Im Hals ein altes Geräusch" einen eigenen Track. Das Im-Hals-Steckende wird hier als Klang-Spur hörbar. |
-| 13 — Wieder atmen lernen | contrast | Section A: wordless mmh/hhh | Inverse zu Track 13's „Im Hals ist es still" — Track 02: Hals VOLL Geräusch. Track 13: Hals still. Das Geräusch ist nicht weg in Track 13, aber es summt nicht mehr mit. Track 02 ist das, was in Track 13 NICHT MEHR mitsummt. |
-| 10 — Körperliche Erinnerung | motif | wordless throughout | Echoes Track 10's „Es sitzt im Kiefer / Es sitzt im Zwerchfell". Track 02 ist das Es selbst — als Klang, nicht als Beschreibung. |
+| 13 — Wieder lernen, wie das geht | contrast | Section A: wordless mmh/hhh | Inverse zu Track 13's „Im Hals ist es still" — Track 02: Hals VOLL Geräusch. Track 13: Hals still. Das Geräusch ist nicht weg in Track 13, aber es summt nicht mehr mit. Track 02 ist das, was in Track 13 NICHT MEHR mitsummt. |
+| 10 — Was die Haut nicht vergisst | motif | wordless throughout | Echoes Track 10's „Es sitzt im Kiefer / Es sitzt im Zwerchfell". Track 02 ist das Es selbst — als Klang, nicht als Beschreibung. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 
@@ -95,7 +95,7 @@ Suite-Position: Slot 02. Sitzt zwischen Titel-Opener (01) und Lucider Traum (03)
 - **Feel**: Ritual, stotternd, hypnotic. Nicht treibend — eher schwer, schleppend, mit unerwarteten micro-stops.
 - **Instrumentation**: Drum machine (808-style kick + closed hihat sequenced, witch-house-style triplet stutters, pitched-down snare). Mehrere dark synth pads geschichtet (Darkwave-Charakter: chorus-rich, reverb-soaked, minor harmonics). Sub-bass drone unter allem. Vocal samples gepitched/reversed als Texture-Layer. Gefilterte Atem-Samples als rhythmisches Element. KEIN Gitarren-Element, KEIN Industrial-Kit.
 - **Vocal**: Wordless. Female/androgyne whisper-moans als Haupt-Layer (Lana Del Rabies / Boy Harsher feel). Snarling baritone (vom Titel-Track) als shadow-layer im hintergrund, gefiltert und half-volume — als ob der Wütende noch da ist, aber jetzt im Hintergrund. In Section B fast-aber-nicht-Sprache. In Section C einzige fast-Wörter „lass / mich / at" — aber nie zu Sprache zusammengesetzt.
-- **Outro-Spezifikum**: 8s Fade, alle Synth-Pads fallen weg, breath-samples bleiben übrig, gefolgt von Stille. Übergang zu Track 03 (Lucider Traum) ist abrupter — Track 02 endet vor-sprachlich, Track 03 beginnt voll-sprachlich. Der Schnitt ist intentional.
+- **Outro-Spezifikum**: 8s Fade, alle Synth-Pads fallen weg, breath-samples bleiben übrig, gefolgt von Stille. Übergang zu Track 03 (Ich träume durch ein Fenster) ist abrupter — Track 02 endet vor-sprachlich, Track 03 beginnt voll-sprachlich. Der Schnitt ist intentional.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -216,7 +216,7 @@ hhh.
 - **Vocal-Architektur**: female/androgyne whisper-moans im Vordergrund (closer-mic, breath-rich); snarling baritone vom Titel-Track als shadow-layer, gefiltert, half-volume, im Hintergrund. Das Album-Vokal-DNA bleibt erhalten, nur als Schatten.
 - **Sample-Sources**: gesampelte Vokal-Fragmente von der eigenen Stimme (oder Suno-generiert), gepitched (-3 bis -6 Halbtöne), reversed in einigen Fragmenten, gestottert. Diese SIND das Klangmaterial, kein melodischer Lead.
 - **Sprach-Bruch-Architektur**: Section A pure wordless, Section B almost-language (mmh-mmh, nn-nn — silbenartig aber nicht semantisch), Section C die drei broken phonemes „lass / mich / at" — Tasche progresses von vor-sprachlich zu fast-sprachlich zu zerbrochen-sprachlich. Track endet VOR „atmen" — das vollendete Wort kommt erst in Track 01 (chronologisch davor) bzw. nie in Track 02.
-- **Outro: 8s Fade** auf breath-samples. Übergang zu Track 03 (Lucider Traum) ist abrupt — Track 02 vor-sprachlich, Track 03 voll-sprachlich. Beim Album-Mastering KEINEN crossfade zwischen 02 und 03 anwenden — der harte Schnitt ist intentional.
+- **Outro: 8s Fade** auf breath-samples. Übergang zu Track 03 (Ich träume durch ein Fenster) ist abrupt — Track 02 vor-sprachlich, Track 03 voll-sprachlich. Beim Album-Mastering KEINEN crossfade zwischen 02 und 03 anwenden — der harte Schnitt ist intentional.
 <!-- SERVICE: suno -->
 - **Suno V5**: Weirdness hoch (~70) für authentic witch-house texture. Style Influence ~75 damit Darkwave-Synth-Layer nicht in pure Industrial drift. Suno tendiert dazu, wordless tracks mit Hum-Melodie zu füllen — explizit „no melodic hum, no la-la-la, only breath and phoneme stutter" als Exclude verstärken.
 - **Konsistenz mit Track 01**: snarling baritone shadow-layer muss von der gleichen Vocal-Identity wie Track 01 stammen. „Same male vocal as title track, filtered and shadowed, half-volume" als prompt-Hinweis. Wenn Suno klare männliche Stimme im Vordergrund generiert, neu generieren mit verstärktem „female/androgyne lead, male shadow only".

@@ -1,5 +1,5 @@
 ---
-title: "Das Kind"
+title: "Der Stuhl, der wartet"
 track_number: 9
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Das Kind
+# Der Stuhl, der wartet
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 09 |
-| **Title** | Das Kind |
+| **Title** | Der Stuhl, der wartet |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -82,11 +82,11 @@ Suite-Position: Slot 09. Letzter System-Track. Der LEISESTE und gleichzeitig DIR
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| 07 — Der Beobachter | character | gesamter Track | Dritter Track der System-Anteil-Trilogie. Beobachter sieht, Container hält, Kind wartet. Die drei System-Funktionen complete im Slot 09. |
-| 08 — Der Container | character | gesamter Track | Letzter der drei System-Tracks. Container hält (schwer, aktiv), Kind wartet (leise, passiv). Komplementäre Funktionen — der Container nimmt auf, das Kind verharrt. |
-| 05 — Der Verteidiger | callback | V3: „Ich höre die anderen. / Den Hammer. Den Verteidiger. / Den Beobachter. / Sie reden über mich, / nicht mit mir." | Direkter Echo zu Track 05's „Hammer / Wand / Nein". Das Kind hört die anderen Anteile — und nennt sie beim ihren Selbst-gegebenen Namen (Hammer aus Track 05, Beobachter aus Track 07). |
+| 07 — Jemand schreibt mit | character | gesamter Track | Dritter Track der System-Anteil-Trilogie. Beobachter sieht, Container hält, Kind wartet. Die drei System-Funktionen complete im Slot 09. |
+| 08 — Was hineinpasst, bleibt | character | gesamter Track | Letzter der drei System-Tracks. Container hält (schwer, aktiv), Kind wartet (leise, passiv). Komplementäre Funktionen — der Container nimmt auf, das Kind verharrt. |
+| 05 — Wer hier wohnt, schläft nicht | callback | V3: „Ich höre die anderen. / Den Hammer. Den Verteidiger. / Den Beobachter. / Sie reden über mich, / nicht mit mir." | Direkter Echo zu Track 05's „Hammer / Wand / Nein". Das Kind hört die anderen Anteile — und nennt sie beim ihren Selbst-gegebenen Namen (Hammer aus Track 05, Beobachter aus Track 07). |
 | 01 — Lass mich, lass mich atmen | contrast | V2: „Ich bin nicht traurig. / Ich bin nicht wütend. / Ich bin nur klein / und nicht weg." | Inverse zu Track 01's gepresster Wut. Track 01: erschöpfte Wut. Track 09: nicht-Wut, nicht-Trauer, nur klein-und-da. Affekt-Verzicht als andere Form von Präsenz. |
-| 13 — Wieder atmen lernen | callback | Outro: „Ich warte. / Ich warte noch. / Ich bin hier." | Echo zur Track 13's „ich atme. / ich atme noch. / das ist alles. / das ist genug." Beide Outros mit drei-Setzungs-Struktur + breath markers. Track 13 ist Atem-Sufficiency; Track 09 ist Warte-Sufficiency. „Ich bin hier" als final Statement ist auch der Beobachter-Outro-Marker (Track 07) — drei System-Tracks enden mit Anwesenheits-Affirmationen. |
+| 13 — Wieder lernen, wie das geht | callback | Outro: „Ich warte. / Ich warte noch. / Ich bin hier." | Echo zur Track 13's „ich atme. / ich atme noch. / das ist alles. / das ist genug." Beide Outros mit drei-Setzungs-Struktur + breath markers. Track 13 ist Atem-Sufficiency; Track 09 ist Warte-Sufficiency. „Ich bin hier" als final Statement ist auch der Beobachter-Outro-Marker (Track 07) — drei System-Tracks enden mit Anwesenheits-Affirmationen. |
 | 06 — Lass mich (Akustische Variante) | contrast | Chorus: „Ich warte noch. / Ich warte immer noch. / Niemand kommt. / Das macht nichts. / Ich warte trotzdem." | Inverse zu Track 06's „manchmal hilft fragen / manchmal hilft nichts / ich frage trotzdem". Track 06: trotzdem fragen. Track 09: trotzdem warten. Beide „trotzdem"-Setzungen — die Variante fragt, das Kind wartet. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
@@ -113,12 +113,12 @@ Suite-Position: Slot 09. Letzter System-Track. Der LEISESTE und gleichzeitig DIR
 ## Musical Direction
 
 - **Genre**: Darkwave × Post-Punk. Post-Punk-Bass-Architektur (Joy Division „Decades"-Stil: propulsive eight-note pattern, melodisch aber introspektiv) trifft Darkwave-Pad-Cold. Die einzige Stelle im Album mit klassischer Post-Punk-Energie. Bezugspunkte: Echo & the Bunnymen „Killing Moon", Drab Majesty „Cold Souls", Lebanon Hanover „Sadness Is Rebellion".
-- **Tempo**: 95–105 BPM. Schneller als Coldwave (07) und Container (08). Das Kind hat mehr Bewegung als die anderen System-Anteile — aber introspektiv-propulsiv, nicht treibend.
+- **Tempo**: 95–105 BPM. Schneller als Coldwave (07) und „Was hineinpasst, bleibt" (08). Das Kind hat mehr Bewegung als die anderen System-Anteile — aber introspektiv-propulsiv, nicht treibend.
 - **Feel**: Propulsive aber leise. Wie ein Atem-Rhythmus, der nicht aufhört. Post-Punk-Energie ohne Post-Punk-Aggression.
 - **Instrumentation**: Post-Punk-Bass-Line (melodisch, mid-range, eight-note pattern). Drum-machine + concrete-kit Hybrid: drum-machine kick und hihat sequenced, concrete snare auf 2+4 (klassische Post-Punk-Backbeat). Dark synth pad (Darkwave-DNA: chorus-rich, kalt, reverb-soaked). Reverb-soaked elektrische Gitarre als Lead-Texture (chorus-pedal, Cocteau-Twins-feel, sparse arpeggios). Sub-bass drone. KEIN Belt, KEIN Hammer-Bass, KEIN Industrial-Bite.
 - **Vocal**: **Baritone mit thinner timbre** als 01/05/08. Das Kind hat eine andere Resonanz-Kammer — höher in der Brust, weniger throat-engagement. Trotzdem dieselbe Sänger-Identity (consistent Album-vocal-DNA). Close-mic, dry, conversational, fast spoken auf manchen Phrasen. KEIN Belt, KEIN Cracking. Im Chorus subtle backing harmony (Darkwave-Doubling).
 - **Doubling**: in Chorus Backing-Harmonies (third above + fifth below) — Darkwave-Layering. In Verses solo Lead. In Bridge: solo Lead mit subtle pad-doubling.
-- **Outro-Spezifikum**: 7s Fade. Bass-line continues to penultimate beat, drum machine drops first, dark pad fadet, guitar reverb-tail lingers. Übergang zu Track 10 (Körperliche Erinnerung): von Warte-Position zu Körper-Befund — die Bewegung führt vom System ins Soma.
+- **Outro-Spezifikum**: 7s Fade. Bass-line continues to penultimate beat, drum machine drops first, dark pad fadet, guitar reverb-tail lingers. Übergang zu Track 10 (Was die Haut nicht vergisst): von Warte-Position zu Körper-Befund — die Bewegung führt vom System ins Soma.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs

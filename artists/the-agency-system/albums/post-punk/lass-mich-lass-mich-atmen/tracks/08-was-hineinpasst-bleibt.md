@@ -1,5 +1,5 @@
 ---
-title: "Der Container"
+title: "Was hineinpasst, bleibt"
 track_number: 8
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Der Container
+# Was hineinpasst, bleibt
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 08 |
-| **Title** | Der Container |
+| **Title** | Was hineinpasst, bleibt |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -78,12 +78,12 @@ Suite-Position: Slot 08. Mittlerer Track der System-Trilogie. Tonalität: indust
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| 07 — Der Beobachter | character | gesamter Track | Zweiter Track der System-Anteil-Trilogie. Beobachter sieht, Container hält. Beide setzen sich als Funktion-ohne-Subjektivität, aber Beobachter ist kalt-distanziert, Container ist schwer-belastet. |
-| 09 — Das Kind | character | V2: „Ich halte das Geräusch. Ich halte die Wand. Ich halte die Form von Türen. Ich halte das Bett. Ich halte den Atem der nicht da ist." | Foreshadows Track 09's „Sie reden über mich, nicht mit mir." Container hält, Kind wartet. Beide werden von den anderen Anteilen nicht angesprochen — der Container ist die schwere Last, das Kind die wartende Präsenz. |
-| 05 — Der Verteidiger | contrast | Chorus: „Ich bin der Beutel. / Ich bin der Eimer. / Ich bin das Fass / das nicht überläuft / weil es kein Maß hat." | Inverse zu Track 05's „Ich bin der Hammer / ich bin die Wand / ich bin das Nein". Beide identifizieren-durch-Objekt-Setzung (Hammer/Wand/Nein vs Beutel/Eimer/Fass). Aber Verteidiger ist STRIKE-Werkzeug, Container ist HOLD-Gefäß. Komplementäre Funktionen. |
-| 02 — Das Geräusch im Hals | resolution | V2: „Ich halte das Geräusch." | Names what the Container holds: Track 02's wordless noise. Das was Track 02 als Klang manifestiert, hält Track 08 als kontinuierliche Last. |
-| 04 — Bett | resolution | V2: „Ich halte das Bett." | Connects to Track 04's „Das Kissen weiß alles". Container ist die innere Version des externen Kissen-Gedächtnisses — beides hält, was nicht weitergegeben wurde. |
-| 13 — Wieder atmen lernen | contrast | V2 L5-6: „Ich halte den Atem / der nicht da ist." | Inverse zu Track 13's „Heute Morgen war der Atem schon da". Track 13: Atem da, ohne Halten nötig. Track 08: Atem nicht da, Container hält stellvertretend. Komplementäre Atem-Konfigurationen. |
+| 07 — Jemand schreibt mit | character | gesamter Track | Zweiter Track der System-Anteil-Trilogie. Beobachter sieht, Container hält. Beide setzen sich als Funktion-ohne-Subjektivität, aber Beobachter ist kalt-distanziert, Container ist schwer-belastet. |
+| 09 — Der Stuhl, der wartet | character | V2: „Ich halte das Geräusch. Ich halte die Wand. Ich halte die Form von Türen. Ich halte das Bett. Ich halte den Atem der nicht da ist." | Foreshadows Track 09's „Sie reden über mich, nicht mit mir." Container hält, Kind wartet. Beide werden von den anderen Anteilen nicht angesprochen — der Container ist die schwere Last, das Kind die wartende Präsenz. |
+| 05 — Wer hier wohnt, schläft nicht | contrast | Chorus: „Ich bin der Beutel. / Ich bin der Eimer. / Ich bin das Fass / das nicht überläuft / weil es kein Maß hat." | Inverse zu Track 05's „Ich bin der Hammer / ich bin die Wand / ich bin das Nein". Beide identifizieren-durch-Objekt-Setzung (Hammer/Wand/Nein vs Beutel/Eimer/Fass). Aber Verteidiger ist STRIKE-Werkzeug, Container ist HOLD-Gefäß. Komplementäre Funktionen. |
+| 02 — Etwas zwischen Hals und Stimme | resolution | V2: „Ich halte das Geräusch." | Names what the Container holds: Track 02's wordless noise. Das was Track 02 als Klang manifestiert, hält Track 08 als kontinuierliche Last. |
+| 04 — Das Bett stellt Fragen | resolution | V2: „Ich halte das Bett." | Connects to Track 04's „Das Kissen weiß alles". Container ist die innere Version des externen Kissen-Gedächtnisses — beides hält, was nicht weitergegeben wurde. |
+| 13 — Wieder lernen, wie das geht | contrast | V2 L5-6: „Ich halte den Atem / der nicht da ist." | Inverse zu Track 13's „Heute Morgen war der Atem schon da". Track 13: Atem da, ohne Halten nötig. Track 08: Atem nicht da, Container hält stellvertretend. Komplementäre Atem-Konfigurationen. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 
@@ -291,7 +291,7 @@ Ich halte noch
 - **Outro: 8s langsamer Fade.** Bass drone fadet zuerst (intentional — die schwerste Schicht geht zuerst, was leichter ist bleibt länger). Dark pads bleiben am längsten. Concrete kit hat schon vorher gestoppt. Übergang zu Track 09 (Kind): von schwer-präsent zu leise-wartend.
 <!-- SERVICE: suno -->
 - **Suno V5 Spezifikum**: Style Influence ~75 für Industrial-Darkwave-Hybrid-Konsistenz. Wenn Suno die Drone-Sektionen mit Chord-Progressions füllt, neu mit „sustained single bass note for long sections, no chord movement except at section boundaries". Wenn der Vocal Belt-eruptive wird, neu mit verstärktem „sustained baritone, no belt explosion, controlled not breathless".
-- **Singer-Konsistenz mit Track 05**: gleicher snarling Baritone wie der Verteidiger, aber in SUSTAINED-MODE statt HAMMERED-MODE. „Same vocal character as Track 05 Der Verteidiger, but holding rather than striking" als Hint. Wenn Suno hammered Mode generiert, neu mit Konsistenz-Hint zu Track 05 plus „but sustained presence not eruption".
+- **Singer-Konsistenz mit Track 05**: gleicher snarling Baritone wie der Verteidiger, aber in SUSTAINED-MODE statt HAMMERED-MODE. „Same vocal character as Track 05 (Wer hier wohnt, schläft nicht), but holding rather than striking" als Hint. Wenn Suno hammered Mode generiert, neu mit Konsistenz-Hint zu Track 05 plus „but sustained presence not eruption".
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->

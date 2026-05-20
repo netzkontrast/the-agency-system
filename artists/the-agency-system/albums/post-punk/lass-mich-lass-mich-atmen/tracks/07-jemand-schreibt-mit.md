@@ -1,5 +1,5 @@
 ---
-title: "Der Beobachter"
+title: "Jemand schreibt mit"
 track_number: 7
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# Der Beobachter
+# Jemand schreibt mit
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 07 |
-| **Title** | Der Beobachter |
+| **Title** | Jemand schreibt mit |
 | **Album** | [Lass mich, lass mich atmen](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -78,10 +78,10 @@ Suite-Position: Slot 07. Erster der drei System-Track. Folgt auf den Wechsel vom
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| 05 — Der Verteidiger | contrast | V1: „Ich sehe. / Ich blinzle nicht. / Ich sehe, was geschieht." | Inverse zu Track 05's „Ich bin der mit den Zähnen / ich bin der mit den Fäusten". Der Verteidiger HANDELT. Der Beobachter SIEHT. Beide sind System-Funktionen, beide ohne Apologie, aber komplementär. |
-| 03 — Lucider Traum | callback | V1: „Ich sehe, was geschieht. / Ich sehe, was nicht geschieht. / Ich unterscheide nicht." | Echoes Track 03's „ich weiß. ich weiß. ich weiß." Track 03's lucides Wissen ist Falle; Track 07's lucides Sehen ist Funktion ohne Falle. Wissen vs Sehen — Sehen ist neutraler. |
-| 08 — Der Container | character | Chorus: „Ich beobachte. / Ich bewerte nicht. / Ich sehe. / Ich erinnere. / Ich vergesse nichts." | Beginnt die System-Anteil-Trilogie (07-08-09). Beobachter → Container → Kind. Three internal parts in sequence. Track 07 erinnert; Track 08 hält; Track 09 wartet. Komplementäre Funktionen. |
-| 09 — Das Kind | character | V3: „Ich war beim Anfang. / Ich werde beim Ende sein. / Dazwischen / sehe ich." | Foreshadows Track 09's „Ich war damals dabei. / Ich bin immer noch dabei." Beide sind Anwesenheits-Setzungen über Zeit — Beobachter sieht weiter, Kind wartet weiter. |
+| 05 — Wer hier wohnt, schläft nicht | contrast | V1: „Ich sehe. / Ich blinzle nicht. / Ich sehe, was geschieht." | Inverse zu Track 05's „Ich bin der mit den Zähnen / ich bin der mit den Fäusten". Der Verteidiger HANDELT. Der Beobachter SIEHT. Beide sind System-Funktionen, beide ohne Apologie, aber komplementär. |
+| 03 — Ich träume durch ein Fenster | callback | V1: „Ich sehe, was geschieht. / Ich sehe, was nicht geschieht. / Ich unterscheide nicht." | Echoes Track 03's „ich weiß. ich weiß. ich weiß." Track 03's lucides Wissen ist Falle; Track 07's lucides Sehen ist Funktion ohne Falle. Wissen vs Sehen — Sehen ist neutraler. |
+| 08 — Was hineinpasst, bleibt | character | Chorus: „Ich beobachte. / Ich bewerte nicht. / Ich sehe. / Ich erinnere. / Ich vergesse nichts." | Beginnt die System-Anteil-Trilogie (07-08-09). Beobachter → Container → Kind. Three internal parts in sequence. Track 07 erinnert; Track 08 hält; Track 09 wartet. Komplementäre Funktionen. |
+| 09 — Der Stuhl, der wartet | character | V3: „Ich war beim Anfang. / Ich werde beim Ende sein. / Dazwischen / sehe ich." | Foreshadows Track 09's „Ich war damals dabei. / Ich bin immer noch dabei." Beide sind Anwesenheits-Setzungen über Zeit — Beobachter sieht weiter, Kind wartet weiter. |
 | 12 — Augen (Was sie sehen) | character | V1: „Ich sehe. / Ich blinzle nicht." | Foreshadows Track 12's „Was die Augen / gesehen haben / geht nicht weg." Track 07 ist der Beobachter; Track 12 sind die Augen. Beide Sehens-Tracks — Track 07 personifiziert, Track 12 objektifiziert das Sehen als Organ-Befund. |
 | 01 — Lass mich, lass mich atmen | contrast | gesamter Track | Inverse zum Titel-Opener: Track 01 fordert (lass mich), Track 07 beobachtet (ich sehe). Beide ohne Auflösung — aber Track 01 ist heiß, Track 07 ist kalt. |
 
@@ -97,7 +97,7 @@ Suite-Position: Slot 07. Erster der drei System-Track. Folgt auf den Wechsel vom
 - **Ich sehe, was geschieht / Ich sehe, was nicht geschieht / Ich unterscheide nicht** — V1 L3-5. Das wichtigste Beobachter-Statement: Geschehnis-Nicht-Geschehnis-Symmetrie. Der Beobachter ist nicht selektiv.
 - **Ich sehe den Raum. Ich sehe den Schlaf. Ich sehe den Wachzustand. Ich sehe das Bett. Ich sehe den Hals.** — V2 L1-5. Liste der Sehens-Objekte. Räume und Körperteile, die in anderen Tracks Subjekte waren. Der Beobachter sieht sie alle aus außen — auch wenn er der innere Anteil IST.
 - **Ich beobachte. Ich bewerte nicht.** — Chorus L1-2. Die zentrale Setzung: Sehen ohne Urteil.
-- **Ich erinnere. Ich vergesse nichts.** — Chorus L4-5. Das Beobachter-Archiv. Komplementär zu Track 10 (Körperliche Erinnerung) und Track 12 (Augen) — der Beobachter speichert ALLES.
+- **Ich erinnere. Ich vergesse nichts.** — Chorus L4-5. Das Beobachter-Archiv. Komplementär zu Track 10 (Was die Haut nicht vergisst) und Track 12 (Augen) — der Beobachter speichert ALLES.
 - **Ich war beim Anfang. Ich werde beim Ende sein. Dazwischen sehe ich.** — V3. Zeit-Setzung. Der Beobachter ist nicht episodenhaft — er ist konstant.
 - **Manchmal frage ich mich / ob ich noch da bin / oder nur das Sehen. / Die Antwort interessiert mich nicht.** — Bridge. Existential-Setzung mit Achselzucken. Der Beobachter zweifelt seine eigene Subjektivität an und macht weiter.
 - **Ich sehe. Ich sehe noch.** — Outro. Zwei Setzungen, mit breath dazwischen. Echo zu Track 13's „ich atme. ich atme noch." — beide Outros verwenden den ich-Verb-Verb-noch Bau. Aber Track 13 ist Atem-Sufficiency, Track 07 ist Sehens-Konstanz.
