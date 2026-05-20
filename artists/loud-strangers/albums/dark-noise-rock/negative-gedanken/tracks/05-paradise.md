@@ -147,7 +147,7 @@ if she were me
 this skin
 this face
 this hair
-mine
+if mine
 
 [Chorus]
 in paradise
@@ -174,7 +174,7 @@ to be
 this skin
 this face
 this hair
-mine
+if mine
 
 [Chorus]
 in paradise
@@ -230,7 +230,7 @@ If she were me
 This skin
 This face
 This hair
-Mine
+If mine
 
 In paradise
 I would see this face
@@ -254,7 +254,7 @@ To be
 This skin
 This face
 This hair
-Mine
+If mine
 
 In paradise
 I would see this face
@@ -293,6 +293,7 @@ In the
 - **Outro „in the night / in the night / in the —"**: wash fadet langsam. Unter dem Wash fängt bereits **T6's mechanischer Puls** an, leise zu pulsieren — als ob die Realität durch die Betäubung wieder durchsickert. Crossfade direkt in T6.
 - **EN-Aussprache**: Die Sängerin ist DE-Sprecherin auf einem DE-Album. EN-Lyrics sollen einen leichten DE-Akzent halten — kein hyperkorrektes Schul-EN. Style-Box: „with subtle German accent, soft EN delivery" — verstärkt die „Watte"-Wirkung.
 - **„How can it be" (Quelltext-Echo)**: Quelltext „Doch wie kann es sein dass das im wahren Leben nicht auch geht?" — wörtlich übersetzt als rhetorische Frage. Sitzt direkt vor dem zweiten Chorus, hält das Konjunktiv-Frame aufrecht.
+- **Pre-Chorus „if mine" — Konjunktiv-Disziplin**: ursprünglich „mine" (Indikativ-Possessiv) — nach Spec-Panel-Review zu „if mine" (elliptisch für „if it were mine") überarbeitet. Hält das verlorenes-Ich-Aspekt (cast.md §4) sauber im Konjunktiv, echoed V1's „if she were me", behält den 2/2/2/2-Silben-Rhythmus. Der einzige Indikativ-Bruch im Track bleibt damit die Bridge („numb me / my only") — strukturell motiviert durch den Mask-Rutscht-Moment. T7's „atme ich" behält dadurch seinen privilegierten Status als einziges Präsens im verlorenes-Ich-Arc.
 <!-- SERVICE: suno -->
 - **V5/V5.5**: Dream-Pop ist Suno's bestes Genre. Eine Generation reicht meist. Bei zu glücklicher/triumphaler Generation: Style Box „melancholic, sedated, never triumphant" verstärken. Wenn V5 zu viel Drums setzt: „no drums or very soft slowcore drums" wiederholen.
 - **EN mit DE-Akzent**: V5 kann das simulieren mit „female vocal subtle German accent, soft and breathy"; wenn die Generation zu American Indie klingt, das nachschärfen.
