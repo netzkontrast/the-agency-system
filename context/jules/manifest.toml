@@ -1,15 +1,19 @@
 # Context cell manifest for the `jules` row.
 #
 # Conforms to context/_shared/schemas/context-cell.schema.json (spec 01).
-# The `jules` row owns research-oriented context: topics under
-# investigation and findings collected against them.
+# The `jules` row owns two complementary context families:
+#   - Research-oriented: ResearchTopic + Finding (phases 01-02).
+#   - Session-orchestration: JulesSession + SessionPatch (phases 03-08).
+# The state-machine label on JulesSession.state is the canonical source
+# of truth that the row's gates (plan-approved, session-completed,
+# patch-applied) query at phase entry.
 
 [cell]
 row = "jules"
 column = "context"
 
 [ontology]
-node_types = ["ResearchTopic", "Finding"]
+node_types = ["ResearchTopic", "Finding", "JulesSession", "SessionPatch"]
 
 [schemas.ResearchTopic]
 path = "schemas/research-topic.schema.json"
@@ -17,5 +21,14 @@ path = "schemas/research-topic.schema.json"
 [schemas.Finding]
 path = "schemas/finding.schema.json"
 
+[schemas.JulesSession]
+path = "schemas/jules-session.schema.json"
+
+[schemas.SessionPatch]
+path = "schemas/session-patch.schema.json"
+
 [templates."research-brief"]
 path = "templates/research-brief.md.jinja"
+
+[templates."session-summary"]
+path = "templates/session-summary.md.jinja"

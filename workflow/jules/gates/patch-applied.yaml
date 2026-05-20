@@ -1,0 +1,16 @@
+id: patch-applied
+type: hard-blocking
+blocks_phase: "08"
+description: "Block integrate (phase 08) until the session is in PATCH_EXTRACTED or VERIFIED — the two valid pre-integrate states."
+evaluator:
+  kind: callable
+  module: workflow.jules.gates.patch_applied
+  callable: evaluate
+on_success:
+  emit_edge:
+    type: SATISFIES_PHASE
+    from: "${session_id}"
+    to: "phase:jules/07"
+on_failure:
+  message: "session has not reached PATCH_EXTRACTED (silent-fail path) or VERIFIED (clean path) — run verify then recover."
+  fix_hint_tools: ["mcp__jules_verify", "mcp__jules_recover"]

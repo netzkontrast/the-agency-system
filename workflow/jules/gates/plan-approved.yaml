@@ -1,0 +1,16 @@
+id: plan-approved
+type: hard-blocking
+blocks_phase: "05"
+description: "Block monitor (phase 05) until the session has advanced past AWAITING_PLAN_APPROVAL."
+evaluator:
+  kind: callable
+  module: workflow.jules.gates.plan_approved
+  callable: evaluate
+on_success:
+  emit_edge:
+    type: SATISFIES_PHASE
+    from: "${session_id}"
+    to: "phase:jules/04"
+on_failure:
+  message: "session has not yet been plan-approved — run phase 04 (await_plan) first."
+  fix_hint_tools: ["mcp__jules_await_plan"]

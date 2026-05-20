@@ -119,11 +119,13 @@ shipping v0.1.
    V7 reaches `status="completed"` on a fresh ontology with no manual
    seeding.
 
-2. **`research_complete` gate is a placeholder.** Returns `ok=True`
-   unconditionally. Real check depends on the spec 08-v1 driver
-   REGISTRY plus spec 09 cross-row dispatch. Until then, the phase-02
-   prose in `workflow/jules/phases/02-synthesize.md` overstates current
-   behavior.
+2. ~~**`research_complete` gate is a placeholder.**~~ **Closed in
+   the v0.3 jules-orchestration milestone** — the evaluator now
+   counts `Finding` nodes in the ontology (filtered by the input
+   topic) and returns ok=False with a precise message when none
+   exist. Spec 09 cross-row dispatch can still upgrade this later
+   to go through the driver REGISTRY, but the gate is no longer a
+   bypass.
 
 3. ~~**Centralise the error-code catalogue.**~~ **Closed before merge**
    (commit `b676f48`) — eleven codes live in
@@ -169,16 +171,50 @@ With V2–V11 green:
 - **Spec 08-v1 driver REGISTRY** can land any time — the
   `artefact-node.schema.json` already declares the `artifact_driver` +
   `driver_pointer` slots; current behaviour is fs-by-default.
-- **The jules row itself** is intentionally minimal (one tool + one
-  skill + two phases + one placeholder gate). It exists primarily as
-  a vehicle to prove the three columns interconnect; expanding it to
-  a real autonomous coding agent is a separate milestone (v0.3?).
+- ~~**The jules row itself** is intentionally minimal (one tool + one
+  skill + two phases + one placeholder gate).~~ **Filled out in the
+  v0.3 jules-orchestration milestone below.**
+
+## v0.3 — jules-orchestration state machine (in this branch)
+
+The retrospective above describes the v0.1 vehicle. The same branch
+carries the v0.3 completion: the jules row now drives a real Jules
+session through its full lifecycle.
+
+**New ontology nodes** (context/jules/schemas/):
+- `JulesSession` — state machine with the nine labels
+  `DISPATCHED, IN_PROGRESS, AWAITING_PLAN_APPROVAL, COMPLETED,
+  VERIFIED, SILENT_FAIL, PATCH_EXTRACTED, APPLIED, FAILED`.
+- `SessionPatch` — patch metadata derived from
+  `jules_patch_summary`; linked to the session via `DERIVED_FROM`.
+
+**New handlers** (agentic/jules/handlers/): `dispatch`, `await_plan`,
+`monitor`, `verify`, `recover`, `integrate`. Each one is one-shot;
+the pipeline drives outer polling. Network calls go through
+`jules_mcp.server` (re-exports added in commit `2d8d6ca`).
+
+**New gates** (workflow/jules/gates/): `plan-approved` (blocks 05),
+`session-completed` (blocks 06), `patch-applied` (blocks 08). All
+three evaluate by reading the session's `state` field from the graph
+— so a caller cannot skip a phase by bypassing the orchestrate skill.
+
+**Two skills** (agentic/jules/skills/): `orchestrate` (full lifecycle
+composer) and `recover` (silent-fail recovery only).
+
+**State machine guarantees** (per `_session_state.assert_can_transition`):
+illegal jumps return `SESSION_STATE_INVALID` rather than corrupting
+the node. The transition table is unit-tested for parity with the
+schema enum.
+
+**Tests landed**: state-machine (9), gates (14), pipeline integration
+(6), schema round-trips (4). Plus the updated cell discovery
+assertions (3). 38 new tests; 90 passing in `tests/{agentic,workflow,context}`.
 
 ## Numbers
 
-- 7 commits ahead of `Master` at merge time
-- ~2200 lines net additions across 35 files
-- 52 passing tests, 2 known-failing pre-existing context-hook tests
+- 7 commits ahead of `Master` at v0.1 merge time
+- v0.3 work adds ~1500 lines net across ~25 files
+- 90 passing tests, 2 known-failing pre-existing context-hook tests
 - ~340 lines `pipeline.py` (target: split `_run_meta_scaffold` into its
   own module before adding row-type-specific logic)
 - Cold-boot payload: well under 500 tokens (test threshold)

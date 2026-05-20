@@ -80,3 +80,35 @@ RESUME_TERMINAL = "RESUME_TERMINAL"
 RESUME_PHASE_GONE = "RESUME_PHASE_GONE"
 """Continuation hydrated cleanly but the Phase node it points at no
 longer exists in the graph."""
+
+
+# Jules orchestration (jules-row handlers) -----------------------------
+
+JULES_SOURCE_UNRESOLVED = "JULES_SOURCE_UNRESOLVED"
+"""``jules_resolve_source(owner, repo)`` returned no matching source —
+the GitHub repo is not connected to the Jules account."""
+
+JULES_DISPATCH_FAILED = "JULES_DISPATCH_FAILED"
+"""``jules_create`` returned an error response or raised before the
+session id was minted."""
+
+JULES_API_ERROR = "JULES_API_ERROR"
+"""Any other failure surfaced by the jules_mcp lifecycle calls
+(``jules_get``, ``jules_approve``, ``jules_message``)."""
+
+SESSION_NOT_FOUND = "SESSION_NOT_FOUND"
+"""Handler was given a ``session_id`` with no matching JulesSession node
+in the ontology graph."""
+
+SESSION_STATE_INVALID = "SESSION_STATE_INVALID"
+"""Handler refused to transition the session because the current state
+violates the state-machine contract (e.g. await_plan called on a
+DISPATCHED session that never reached AWAITING_PLAN_APPROVAL)."""
+
+PATCH_UNAVAILABLE = "PATCH_UNAVAILABLE"
+"""``jules_patch_summary`` returned an error — patch endpoint failed
+or session has produced no diff yet."""
+
+PATCH_APPLY_FAILED = "PATCH_APPLY_FAILED"
+"""``jules_patch_apply`` reported ``applied=false`` (typically a
+git-apply conflict captured in ``git_stderr``)."""

@@ -1,0 +1,27 @@
+# Jules session — {{ title or session_id }}
+
+| Field | Value |
+|---|---|
+| Session ID | `{{ session_id }}` |
+| Local state | **{{ state }}** |
+| Jules API state | {{ jules_state or "—" }} |
+| Repo | `{{ owner }}/{{ repo }}` (branch `{{ branch }}`) |
+| Created | {{ created_at }} |
+{% if plan_approved_at %}| Plan approved | {{ plan_approved_at }} |
+{% endif %}{% if completed_at %}| Completed | {{ completed_at }} |
+{% endif %}{% if verified_at %}| Verified | {{ verified_at }} |
+{% endif %}{% if branch_on_remote is not none %}| Branch on remote | {{ "yes" if branch_on_remote else "no — silent-fail recovery used" }} |
+{% endif %}{% if pr_url %}| Pull request | {{ pr_url }} |
+{% endif %}{% if patch_bytes %}| Patch | {{ patch_bytes }} bytes across {{ patch_files }} files |
+{% endif %}
+
+## Prompt
+
+> {{ prompt }}
+
+{% if last_error %}## Last error
+
+```
+{{ last_error }}
+```
+{% endif %}

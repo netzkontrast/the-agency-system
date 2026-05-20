@@ -45,8 +45,19 @@ def test_jules_manifest_validates():
 
     assert manifest["cell"]["row"] == "jules"
     assert manifest["cell"]["column"] == "agentic"
-    assert manifest["skills"]["exports"] == ["research"]
-    assert manifest["tools"]["exports"] == ["query"]
+    # The jules row carries both the research placeholder (query) and the
+    # six Jules-orchestration verbs (dispatch through integrate). Skills
+    # cover the two user-facing flows: research + orchestrate + recover.
+    assert set(manifest["skills"]["exports"]) == {"research", "orchestrate", "recover"}
+    assert set(manifest["tools"]["exports"]) == {
+        "query",
+        "dispatch",
+        "await_plan",
+        "monitor",
+        "verify",
+        "recover",
+        "integrate",
+    }
 
 
 def test_jules_query_tool_returns_valid_envelope():
@@ -69,4 +80,22 @@ def test_jules_cell_discoverable(monkeypatch):
 
     registry = discover(Path("."))
 
-    assert "mcp__jules_query" in registry.tools
+    # All seven jules tools must register — query (research) plus the six
+    # orchestration verbs.
+    expected_tools = {
+        "mcp__jules_query",
+        "mcp__jules_dispatch",
+        "mcp__jules_await_plan",
+        "mcp__jules_monitor",
+        "mcp__jules_verify",
+        "mcp__jules_recover",
+        "mcp__jules_integrate",
+    }
+    assert expected_tools.issubset(set(registry.tools.keys())), (
+        f"missing: {expected_tools - set(registry.tools.keys())}"
+    )
+
+    expected_skills = {"/jules-research", "/jules-orchestrate", "/jules-recover"}
+    assert expected_skills.issubset(set(registry.skills.keys())), (
+        f"missing: {expected_skills - set(registry.skills.keys())}"
+    )

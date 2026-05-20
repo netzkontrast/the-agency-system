@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:jules/session-patch",
+  "title": "SessionPatch",
+  "description": "Metadata about a unified-diff patch produced by a Jules session. The patch body itself is NOT stored on the node (token-expensive); the bytes are addressable via the jules_patch tool when needed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["session_id", "lines_added", "lines_removed", "patch_bytes", "files", "extracted_at"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Session that produced the patch. Forms a 1:1 edge `DERIVED_FROM` -> JulesSession."
+    },
+    "files": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "description": "Repository-relative paths the diff touches."
+    },
+    "lines_added": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lines_removed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "patch_bytes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total size of the unified diff in bytes."
+    },
+    "base_commit": {
+      "type": "string",
+      "description": "Commit SHA the patch was produced against, when available."
+    },
+    "suggested_commit_message": {
+      "type": "string",
+      "description": "Commit message that jules_patch_summary recommends for the change."
+    },
+    "extracted_at": {
+      "type": "integer",
+      "description": "Unix epoch when the recover phase pulled the patch metadata."
+    },
+    "applied": {
+      "type": ["boolean", "null"],
+      "description": "True once integrate (or recover) successfully runs `git apply`. Null when only the summary was fetched."
+    },
+    "applied_at": {
+      "type": ["integer", "null"]
+    }
+  }
+}

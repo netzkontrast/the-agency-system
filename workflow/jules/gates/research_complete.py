@@ -1,42 +1,67 @@
 """Callable evaluator for the `research-complete` gate.
 
-v0.1 placeholder. The real implementation will query the ontology for
-``Finding`` nodes matching the envelope's topic and emit a
-``SATISFIES_PHASE`` edge from the gate's resolved artefact id to
-``phase:jules/01`` when that count is non-zero. That work is gated on
-two pieces still in flight:
+Returns ok=True when the ontology contains at least one ``Finding``
+node whose ``topic`` matches the envelope's input topic. Falls back to
+counting all Finding nodes when no topic was supplied — this matches
+the gate's plain-English description ("at least one Finding exists").
 
-* ``context._drivers.REGISTRY`` graduates to the canonical dispatch
-  surface (spec 08-v1 §FR3) — the gate needs a stable way to ask the
-  driver for the Finding bytes when the on-disk fallback isn't enough.
-* Cross-row dispatch (spec 09) — the gate must hand control back to
-  the row that owns the next phase without bypassing the harness.
-
-Until both land, this evaluator returns ``ok=True`` unconditionally so
-the synthesize phase doesn't deadlock on a graph the v0.1 base layer
-can't yet populate exhaustively. The gate YAML's ``on_success.emit_edge``
-remains the source of truth for the eventual edge wiring.
+Spec 09 cross-row dispatch will eventually let this gate query the
+context column via the driver REGISTRY; until then a direct graph
+query is the canonical contract.
 """
 
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, Optional
+
+from context import get_store
 
 
-def evaluate(envelope_state: Dict[str, Any], args: Dict[str, Any] | None = None) -> Dict[str, Any]:
-    """Return the gate's pass/fail verdict.
+def _topic(envelope_state: Dict[str, Any]) -> Optional[str]:
+    inputs = envelope_state.get("inputs") if isinstance(envelope_state, dict) else None
+    if isinstance(inputs, dict):
+        t = inputs.get("topic")
+        if isinstance(t, str) and t:
+            return t
+    return None
 
-    Args:
-        envelope_state: The PhaseStateEnvelope (or a slice of it) handed
-            in by ``workflow._runner.gate.evaluate_gate``.
-        args: Optional evaluator arguments from the gate YAML's
-            ``evaluator.args`` field. Unused in v0.1.
 
-    Returns:
-        A dict with exactly ``{"ok": bool, "message": str}`` per the
-        contract enforced by ``workflow._runner.gate.evaluate_gate``.
+def _count_findings(topic: Optional[str]) -> int:
+    """Count Finding nodes for a topic (or all of them when topic is None).
+
+    Tolerates the two GraphQLite property-encoding shapes the v0.1 store
+    surfaces (``properties`` dict or raw-SQLite ``payload`` string) so
+    the gate works both before and after spec 08-v1 fallback removal.
     """
+    g = get_store()
+    rows = g.query("MATCH (f:Finding) RETURN f", params={})
+    count = 0
+    for row in rows:
+        node = row.get("f", row) if isinstance(row, dict) else None
+        if not isinstance(node, dict):
+            continue
+        props = node.get("properties") or node.get("payload") or node
+        if isinstance(props, str):
+            import json
+            try:
+                props = json.loads(props)
+            except Exception:
+                continue
+        if not isinstance(props, dict):
+            continue
+        if topic is None or props.get("topic") == topic:
+            count += 1
+    return count
+
+
+def evaluate(envelope_state: Dict[str, Any], args: Dict[str, Any] | None = None) -> Dict[str, str]:
+    topic = _topic(envelope_state)
+    n = _count_findings(topic)
+    if n > 0:
+        scope = f"topic={topic!r}" if topic else "any topic"
+        return {"ok": True, "message": f"{n} Finding node(s) recorded for {scope}"}
+    scope = f"topic={topic!r}" if topic else "any topic"
     return {
-        "ok": True,
-        "message": "v0.1 placeholder — Finding-count check arrives with spec 09 cross-row dispatch.",
+        "ok": False,
+        "message": f"no Finding nodes recorded for {scope} yet — run research first",
     }
