@@ -12,15 +12,17 @@ Wenn ein einzelner Track eine zweite Stimme verlangt (z.B. den Stimmen-Chor in T
 
 ### 1. Die Hülle
 
-> Die äußere, weiter funktionierende Hülle. Steht sozial noch zusammen, während innen alles zerfällt. Sie geht zur Arbeit, sie spricht in Sätzen, sie nickt im Gespräch. Halb-bewusst, dass sie täuscht.
+> „Wie oft ich hier sitze". Die Person, die im Raum bleibt, während innen die Stimmen kommen. Sie geht nicht raus, sie nickt nicht in Gesprächen — der Quelltext weiß nichts von einer sozialen Außenseite. Die Hülle ist *die Position im Stuhl*: anwesend, halb-still, nicht entkommend. Halb-bewusst dessen, was gerade passiert, aber nicht handlungsfähig.
+
+> **Caveat — Konzept-Extrapolation:** Der Quelltext liefert *Innenraum*, kein „funktioniert noch nach außen". Die Hülle als Aspekt ist eine Übersetzungs-Entscheidung des Album-Konzepts (jemand muss als POV-Position bleiben können, während die anderen Aspekte aussetzen). Halt dich an „hier sitze ich"/„ich erwische mich" — nicht an Berufstätigkeit.
 
 | | |
 |---|---|
-| **Voice Register** | flach, kontrolliert, leise aber konversationell. Leicht erzwungene Heiterkeit, wenn nötig. |
-| **Tonality** | numb, leicht roboterhaft, mittlere Distanz im Blick. Kein Pathos. |
-| **Lexicon** | sachlich, transaktional, „ich" aber nie „wir". Funktions-Vokabular. |
-| **Suitable POV for** | **T1** (Bevor sie kamen — die Stille), **T6** (Dauerschleife — der mechanische Loop) |
-| **Production Note** | mono-vocal, close-mic, kaum Effekte. In T1 mit aufsteigendem Rauschen unter der Stimme. |
+| **Voice Register** | leise, flach, im Raum sitzend. Nicht roboterhaft — *gegenwärtig aber kraftlos*. Kein Pathos, kein Performen. |
+| **Tonality** | numb-aufmerksam. Wie jemand, der mitkriegt, dass er gerade nicht aufstehen kann. |
+| **Lexicon** | sachlich, raumbezogen, deiktisch („hier", „jetzt", „so oft"). „Ich" aber nie „wir". |
+| **Suitable POV for** | **T1** (Bevor sie kamen — anwesend, Rauschen baut sich auf), **T6** (Dauerschleife — die Hülle wiederholt Worte, die nicht ihre sind) |
+| **Production Note** | mono-vocal, close-mic, kaum Effekte. In T1 mit aufsteigendem Rauschen unter der Stimme. In T6 mechanisch, repetiert das Stimmen-Vokabular aus T2. |
 
 ### 2. Die Stimmen (Chor)
 
@@ -36,41 +38,58 @@ Wenn ein einzelner Track eine zweite Stimme verlangt (z.B. den Stimmen-Chor in T
 
 ### 3. Der Beobachter
 
-> Die meta-bewusste Instanz, die alles sieht — auch die Übernahme selbst — ohne eingreifen zu können. Spricht in Präsens, exakt, deskriptiv. Fast forensisch. Bleibt durchgehend lucid, auch im Versinken.
+> Der Teil, der mitkriegt, was gerade passiert — selbst während es passiert. „Ich erwische mich dabei wie ich diesen lauten gemeinen Stimmen glaube". „Ich bin nicht mehr ich / Oder ist das etwa mein wahres Ich?" Bleibt lucid im Versinken, aber **nicht** klinisch oder forensisch — der Beobachter ist *im Innenraum*, nicht über ihm. Er friert nicht in Distanz, er fragt sich Fragen.
+
+> **Caveat — Register-Korrektur:** Frühere Versionen dieses Aspekts beschrieben ihn als „klinisch-forensisch / almost forensic". Das übersteuert den Quelltext, der durchgehend emotional-monologisch bleibt. Beobachter = lucid-intim, **ungeschützt**, fragend — nicht beschreibend von außen.
 
 | | |
 |---|---|
-| **Voice Register** | intimate, dry, close-mic'd. Spoken-word-Range; **nie** gesungen. |
-| **Tonality** | klinisch, präzise, ohne Selbstmitleid. Nicht warm, nicht kalt — beobachtend. |
-| **Lexicon** | klinisch-deskriptiv: „ich beobachte mich", „ich sehe", „ich erlebe", „es passiert mir". |
-| **Suitable POV for** | **T4** (Wahres Gesicht — Spoken-Word-Centerpiece), Hintergrund in **T3** (Beobachter sieht das schwarze Meer) |
-| **Production Note** | Trocken, kein Reverb-Heroismus. Drone-bed darunter, nicht über der Stimme. In T4: fast a-cappella mit Sub-Bass-Drone. |
+| **Voice Register** | intim, ungeschützt, close-mic'd. Spoken-word-Range; **nie** gesungen. Atem hörbar. |
+| **Tonality** | wach, fragend, nicht distanziert. Selbstmitleid wird vermieden — aber das Gegengift ist *Genauigkeit*, nicht Kälte. |
+| **Lexicon** | introspektiv-präzise: „ich erwische mich", „ich sehe mich", „ist das mein wahres Ich?", „ich erlebe es jetzt". Häufig im Konjunktiv-Frage. |
+| **Suitable POV for** | **T4** (Wahres Gesicht — Spoken-Word-Centerpiece), Hintergrund in **T3** (Beobachter sieht das schwarze Meer kommen) |
+| **Production Note** | Trocken, kein Reverb-Heroismus. Drone-bed darunter, nicht über der Stimme. Atem im Mix erlaubt. In T4: fast a-cappella mit Sub-Bass-Drone. |
 
 ### 4. Das verlorene Ich / Frohnatur (Memoria)
 
-> Das vergrabene, „eigentliche" Ich — die Person vor der Krankheit. Im Quelltext: „Ich bin eigentlich so eine Frohnatur / Ein eigentlich so glücklicher Mensch". Erinnert als hoffnungsvoll, fähig. Jetzt nahezu unhörbar. Taucht nur in Traumzuständen (T5) oder in fragilen Coda-Momenten (T7) auf.
+> Das vergrabene, „eigentliche" Ich — die Person vor der Krankheit. Im Quelltext zwei Stellen:
+> - „Ich bin eigentlich so eine Frohnatur / Ein eigentlich so glücklicher Mensch" (Teil 1)
+> - „Möchte fliehen in ein Paradies in dem ich mich seh' so wie ich ausseh' / … / Dass ich mich liebe so wie ich bin / Mich wohl fühle in dieser Kleidung / Dieser Haut / Diesem Angesicht" (Teil 3)
+>
+> Beide Stellen sind im Konjunktiv-Möchte oder im *eigentlich*-Modus. Das verlorene Ich spricht nie im Präsens-Indikativ. Nahezu unhörbar — taucht in Traumzuständen (T5) oder in fragilen Coda-Momenten (T7) auf.
+
+> **Caveat — Quelltext-Stütze ist punktuell:** Nur zwei Anker im Original-Text. Wenn dieser Aspekt zu oft auftaucht, kippt das Album in Inszenierung. Sparsam einsetzen — und nie als Lösung gegen die Stimmen ausspielen. Das verlorene Ich rettet niemanden.
+
+> **Paradies = Selbst-Betäubung, nicht reine Sehnsucht:** Direkt vor der Paradies-Zeile im Quelltext steht „Betäube mich / Mein scheinbar einziger Ausweg". Das verlorene Ich in T5 spricht aus einem *betäubten* Zustand. Dream-Pop-Idiom passt nicht zufällig — die Bridge ist Pharmakologie, nicht Erinnerung pur.
 
 | | |
 |---|---|
-| **Voice Register** | weicher, melodisch, atemtragend. Nie triumphierend. |
-| **Tonality** | sehnsüchtig, brüchig, mit Hauch. Nicht traurig — distanziert hoffnungsvoll. |
-| **Lexicon** | Träume, Licht, „ich war", „ich könnte", Konjunktiv und Vergangenheit. In T7: ein einziges „ich" im Präsens, leise. |
-| **Suitable POV for** | **T5** (Paradise — die Dream-Pop-Bridge), **T7** (Funke — der vorsichtige Funke + Loop) |
-| **Production Note** | shoegaze-reverb in T5 (Traum-Distanz); in T7 zunächst trocken intim, dann mit aufbauendem Post-Rock-Wall verzehrt, bis nur noch Noise bleibt. |
+| **Voice Register** | weicher, melodisch, atemtragend. Nie triumphierend. In T5 auch leicht *abwesend* — als spräche sie durch Watte. |
+| **Tonality** | sehnsüchtig, brüchig, mit Hauch. Distanziert hoffnungsvoll — aber in T5 auch *betäubt*. |
+| **Lexicon** | Konjunktiv und Vergangenheit. „ich war", „ich könnte", „möchte". In T7: ein einziges „ich" im Präsens, leise — *kein* „ich kann". |
+| **Suitable POV for** | **T5** (Paradise — Bridge, betäubte Traum-Distanz), **T7** (Funke — der vorsichtige Funke + Loop) |
+| **Production Note** | shoegaze-reverb in T5 (Traum-Distanz, Watte); in T7 zunächst trocken intim, dann mit aufbauendem Post-Rock-Wall verzehrt, bis nur noch Noise bleibt. |
 
 ## Per-Track POV Map (Stand: Phase 3 Vorbereitung)
 
 Finalisiert im Track-by-Track-Feinschliff (Phase 5):
 
-| # | Working Title | Primary POV | Secondary / Antagonist | Notes |
-|---|---|---|---|---|
-| 01 | Bevor sie kamen | Die Hülle | — | Stimmen sind noch nicht da; nur das Rauschen unter der Oberfläche |
-| 02 | Loud Strangers | Die Stimmen (Chor) | (die Erzählerin als stummes Subjekt) | Antagonisten sprechen über sie — sie taucht selten auf, dann nur als Echo |
-| 03 | Schwarzes Meer | Der Beobachter | Die Stimmen (background din) | Beobachter sieht das Versinken, kommentiert klinisch; Stimmen fluten als Texture |
-| 04 | Wahres Gesicht | Der Beobachter | — | Spoken Word. „Wahres Gesicht"-Frage. Maximale Lucidity bei minimaler Bewegung. |
-| 05 | Paradise | Das verlorene Ich | — | Dream-Pop. Erinnerung als Traum, gleichzeitig als Trug. |
-| 06 | Dauerschleife | Die Hülle | Die Stimmen (mechanisch repetiert) | Mechanischer Loop — die Stimmen sind nicht mehr „laut", sondern *eingeprägt*. Hülle wiederholt die Worte selbst. |
-| 07 | Funke | Das verlorene Ich | (Die Stimmen erscheinen nur als Loop-Static gegen Ende) | „loud strangers" als EN-Phrasen-Anker. Vorsichtige Anerkennung. Loop-Static löst in T1's Intro. |
+| # | Working Title | Primary POV | Secondary / Antagonist | Quelltext-Stütze | Notes |
+|---|---|---|---|---|---|
+| 01 | Bevor sie kamen | Die Hülle | — | **keine** — formales Loop-Glied | Stimmen sind noch nicht da; nur das Rauschen unter der Oberfläche. Kein Quelltext-Anker — T1 existiert, um die Endlosschleife formal zu schließen. |
+| 02 | Loud Strangers | Die Stimmen (Chor) | (die Erzählerin als stummes Subjekt) | Teil 1 (sehr stark) | Antagonisten sprechen über sie — sie taucht selten auf, dann nur als Echo. Hier liegt das ganze „blöd/nichts wert/Komparsin"-Vokabular. |
+| 03 | Schwarzes Meer | Der Beobachter | Die Stimmen (background din) | Teil 2 (sehr stark) | Beobachter sieht das Versinken — *ungeschützt, lucid*, nicht klinisch. Stimmen fluten als Texture. |
+| 04 | Wahres Gesicht | Der Beobachter | — | Teil 3 (stark) | Spoken Word. „Wahres Gesicht"-Frage. Maximale Lucidity bei minimaler Bewegung. Atem hörbar. |
+| 05 | Paradise | Das verlorene Ich | — | Teil 3 — Bild aus „Möchte fliehen in ein Paradies" (wandert von T4 zu T5 als Bridge) | Dream-Pop. Erinnerung als Traum, gleichzeitig als Trug. „Betäube mich / scheinbar einziger Ausweg" rahmt die Flucht als Selbst-Betäubung. |
+| 06 | Dauerschleife | Die Hülle | Die Stimmen (mechanisch eingeprägt) | Teil 4 (Loop-Form) + Teil 1 (Vokabular „Komparsin/blöd") | Mechanischer Loop — die Stimmen sind nicht mehr „laut", sondern *eingeprägt*. Hülle wiederholt die Worte aus T2 selbst — das Vokabular hat sich verkapselt. |
+| 07 | Funke | Das verlorene Ich | (Die Stimmen erscheinen nur als Loop-Static gegen Ende) | **keine** — formale Erfindung | „loud strangers" als EN-Phrasen-Anker. Vorsichtige Anerkennung — die Form schließt, was der Inhalt im Quelltext nicht hergibt (Quelltext endet pessimistisch in Teil 4: „Holen diese dunklen Wellen mich"). Konjunktiv-Material aus Teil 4 nutzbar („es liegt an mir / es braucht so viel Mut") — aber kein Triumph. Loop-Static löst in T1's Intro. |
+
+### POV-Shifts in einzelnen Tracks
+
+Zwei Tracks beherbergen einen explizit markierten POV-Wechsel:
+
+- **T6** — Primary ist die Hülle, aber das Stimmen-Vokabular ist im Track *mit drin*: nicht von einem zweiten Voice gesungen, sondern *eingeprägt in der Hülle-Stimme*. Strukturell markierter Wechselpunkt (z.B. Pre-Chorus → Chorus): aus „ich sitze hier" wird „blöd, nichts wert, Komparsin" — gleicher Mund, fremdes Material. Mechanik > Schrei.
+- **T3** — Primary ist der Beobachter, aber die Stimmen sind als Hintergrund-Texture präsent (Wall-of-Sound, layered noise). Nicht als getrennter Chor-Voice — als Atmosphäre, in der der Beobachter spricht.
 
 ## Was dieses Album NICHT ist
 

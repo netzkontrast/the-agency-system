@@ -46,9 +46,11 @@ Das Album bewegt sich auf drei Achsen, mit **Sprache als Primärachse**:
 
 ### Narrativer Bogen — „vorsichtiger Funke"
 
-T1 (Stille) → T2 (Übernahme) → T3-T4 (Versinken) → T5 (Fluchtparadies) → T6 (Dauerschleife) → T7 (vorsichtiger Funke + Loop zurück).
+T1 (Stille) → T2 (Übernahme) → T3-T4 (Versinken) → T5 (Fluchtparadies / Betäubung) → T6 (Dauerschleife) → T7 (vorsichtiger Funke + Loop zurück).
 
 T7 ist *keine Heilung* und *kein Triumph*. Es ist eine leise Anerkennung der eigenen Stimme — und die Noise-Loop-Endlosschleife sagt: morgen kommt es wieder. Die Form selbst ist die These: Die Krankheit IST der Kreislauf.
+
+**Ehrliche Notiz zum Funke:** Der Quelltext endet in Teil 4 mit dem Wiedersturz („Holen diese dunklen Wellen mich") — *nicht* mit Anerkennung. T7's Funke ist eine **formale Erfindung des Albums**, die die Loop-Form schließt. Sie zieht ihr Material aus dem Konjunktiv-Stoff in Teil 4 („es liegt an mir / es braucht so viel Mut / Geduld die ich nicht hab'") und aus dem „eigentlich so eine Frohnatur" (Teil 1) — beide unerfüllt, beide hoffnungs-konditional. Die Funke-Vertonung sollte diesen Konjunktiv hörbar lassen: kein Indikativ, kein „ich kann jetzt".
 
 ## Structure
 
@@ -83,21 +85,35 @@ Sequencing-Logik: Build → PEAK → Druck → VALLEY → Schwebe → PEAK → C
 - Beobachter vs. Subjekt
 - Komparsen-Rolle / Reduktion auf Nebenrolle
 - Wahres Gesicht / vermeintliche Maskenlosigkeit
-- Paradies als Fluchtphantasie
+- Paradies als Fluchtphantasie — *und* als Selbst-Betäubung
+- Agency-Verlust / Wahllosigkeit („es wählt für mich")
+- Albträume und ihr Übergreifen in den Tag
+- Talent-/Wert-Negation („nichts was ich je zu Ende bring'")
 - Dauerschleife / Wiederkehr / die Krankheit *ist* die Form
+
+### Vokabular ist NICHT linear
+
+Wichtige Korrektur zur Quelltext-Verteilung: das Krankheits-Vokabular sitzt nicht teil-für-teil sortiert. „Komparsin / blöd / nichts wert" stehen in **Teil 1**, materialisieren sich aber lyrisch in T2 (Übernahme) und mechanisch in T6 (Dauerschleife). „Paradies" steht in **Teil 3**, materialisiert sich in T5 (Bridge) — nicht in T4. Die Tracklist mappt **Motive, nicht Quelltext-Reihenfolge**. Die thematische Progression (siehe Tabelle unten) folgt der Musik, nicht der chronologischen Ordnung des Originaltexts.
 
 ## Motifs & Threads
 
 ### Lyrical Motifs
 
-| Motif | Description | First Appears | Recurrences |
-|-------|-------------|---------------|-------------|
-| „laute Stimmen" / „fremde im Kopf" | die Antagonisten — wörtlich und sonisch | T1 (subtil, als rauschen) | T2 (peak), T3 (flood), T6 (mechanical) |
-| „blöd" / „nichts wert" / „Komparsin" | die aufgezwungenen Worte | T2 | T6 (mechanisch wiederholt), T7 (in Klammern, leise) |
-| schwarzes Meer / Wellen | das Versinken | T3 | T4 (echo), T7 (letzte Welle vor Loop) |
-| Paradies | die Fluchtphantasie | T5 | T7 (als Trugbild verworfen) |
-| Dauerschleife / Loop | die Form der Krankheit | T6 (lyrisch) | T7 (musikalisch — der Loop selbst) |
-| Eigene Stimme / leise / Funke | die fragile Selbstanerkennung | T7 | — (gate-keeping; einziger Auftritt) |
+| Motif | Description | Quelltext | First Appears | Recurrences |
+|-------|-------------|-----------|---------------|-------------|
+| „laute Stimmen" / „fremde im Kopf" | die Antagonisten — wörtlich und sonisch | Teil 1 | T1 (subtil, als rauschen) | T2 (peak), T3 (flood), T6 (mechanical) |
+| „blöd" / „nichts wert" / „Komparsin" | die aufgezwungenen Worte | Teil 1 (Vokabular sitzt früh, materialisiert sich später) | T2 | T6 (mechanisch wiederholt), T7 (in Klammern, leise) |
+| Baum fällen / „Ein Leben nimmt" | brutal-körperliche Metaphorik des Krankheits-Schadens | Teil 1 | T2 (Outro / Bridge) | T3 (Intro-Echo) |
+| Agency-Verlust / „es wählt für mich" | Wahllosigkeit als eigenes Symptom (jenseits Komparsin) | Teil 2 | T3 | T6 (mechanischer Loop = Agency-Verlust verdichtet) |
+| schwarzes Meer / Wellen | das Versinken | Teil 2 | T3 | T4 (echo), T7 (letzte Welle vor Loop) |
+| „Keine Träume mehr / außer in der Nacht" | Träume nur als Albträume — direkte Brücke T4 → T5 | Teil 2 | T4 (Outro / Transition) | T5 (als Eröffnungs-Echo) |
+| Albträume / „Gefressen von Dämonen" | körperliche Bedrohungs-Imagery aus dem Schlaf, die in den Tag spillt | Teil 3 | T3 (Hintergrund-Texture) | T4 (lyrisch zentral), T6 (Mechanik = Albtraum-im-Wachen) |
+| „Betäube mich" / Selbst-Betäubung | scheinbar einziger Ausweg — rahmt Paradies als Pharmakologie, nicht Sehnsucht | Teil 3 | T5 (Bridge — die Bridge IST die Betäubung) | T7 (verworfen mit dem Trug) |
+| Paradies | die Fluchtphantasie | Teil 3 | T5 | T7 (als Trugbild verworfen) |
+| Wahres Gesicht / Maskenlosigkeit | „Ganz ohne Mimik nicht mal mehr Tränen" — die Frage nach dem echten Ich | Teil 3 | T4 | T7 (im Funke-Moment wieder gefragt) |
+| Talent-Negation / „nichts was ich je zu Ende bring'" | Wert-Aushöhlung, Komparsin-Resonanz | Teil 4 | T6 | T7 (im Konjunktiv-Material aufgelöst) |
+| Dauerschleife / Loop | die Form der Krankheit | Teil 4 (lyrisch + formal) | T6 (lyrisch) | T7 (musikalisch — der Loop selbst) |
+| Eigene Stimme / leise / Funke | die fragile Selbstanerkennung | **kein Quelltext-Anker** — formale Erfindung, die die Loop-Form schließt | T7 | — (gate-keeping; einziger Auftritt) |
 
 ### Character Threads
 
@@ -114,13 +130,13 @@ Sequencing-Logik: Build → PEAK → Druck → VALLEY → Schwebe → PEAK → C
 
 | # | Theme Focus | Advances From | Sets Up |
 |---|-------------|---------------|---------|
-| 01 | Stille vor Sprache | — | etabliert Hülle + bald einbrechende Stimmen |
-| 02 | Sprache der Krankheit (Achse 1) | T1's brüchige Fassade | das Vokabular, das T6 mechanisch wiederholen wird |
-| 03 | Versinken (Achse 2 emergent) | T2's Übernahme | das schwarze Meer als Motiv für T4 |
-| 04 | Beobachter vs. Subjekt (Achse 2) | T3's Versinken | „wahres Gesicht"-Frage als Setup für T7 |
-| 05 | Paradies / Flucht (Bridge) | T4's Nullpunkt | das Trugbild, das T7 verwerfen wird |
-| 06 | Komparsen-Rolle + Loop (Achse 3) | T2's Vokabular, T5's Trug | mechanisch repetitiver Loop als Setup für T7's Static-Loop |
-| 07 | Eigene Stimme / Funke + Loop zurück | alle vorigen | T1 (das Album beginnt von vorn) |
+| 01 | Stille vor Sprache (formal — kein Quelltext-Anker) | — | etabliert Hülle + bald einbrechende Stimmen; muss aus T7's Loop-Static hervorgehen |
+| 02 | Sprache der Krankheit (Achse 1) | T1's brüchige Fassade | das Vokabular „blöd/nichts wert/Komparsin", das T6 mechanisch wiederholen wird; Outro-Bridge führt „Baum fällen"-Bild ein |
+| 03 | Versinken + Agency-Verlust („es wählt für mich") | T2's Übernahme | das schwarze Meer + Albtraum-Imagery („gefressen") als Texture für T4 |
+| 04 | Beobachter vs. Subjekt — „wahres Gesicht" | T3's Versinken | „Keine Träume mehr / außer in der Nacht" als Outro-Brücke nach T5 |
+| 05 | Paradies als Selbst-Betäubung (Bridge) | T4's „Keine Träume mehr"-Outro | das Trugbild, das T7 verwerfen wird; Pharmakologie statt reiner Sehnsucht |
+| 06 | Komparsen-Rolle + Loop + Talent-Negation (Achse 3) | T2's Vokabular (jetzt eingeprägt), T5's Trug, Teil-4-Material („nichts was ich je zu Ende bring'") | mechanisch repetitiver Loop als Setup für T7's Static-Loop |
+| 07 | Funke (formale Erfindung — schließt was Quelltext nicht hergibt) + Loop zurück | alle vorigen — *Konjunktiv-Material aus Teil 4* („es liegt an mir / es braucht so viel Mut"), nie als Triumph | T1 (das Album beginnt von vorn) |
 
 *Seeded by album-conceptualizer (Phase 4). Updated by lyric-writer as tracks are written.*
 
@@ -147,6 +163,13 @@ Track-Titel sind **Arbeitsstand** — finale Titel + Lyrik-Konzepte werden track
 | 05 | *Paradise* | Melancholic Dream-Pop / Shoegaze | Das verlorene Ich | EN | Fluchtparadies — Bridge | Not Started |
 | 06 | *Dauerschleife* | Driving Post-Punk / Industrial | Die Hülle + Stimmen (mechanisch) | DE | Komparsen-Rolle, Loop (Teil 4) | Not Started |
 | 07 | *Funke* | Epic Post-Rock / Noise-Loop | Das verlorene Ich | DE + EN-Anker „loud strangers" | Coda — vorsichtiger Funke; T7-Outro = Loop in T1 | Not Started |
+
+### Quelltext-Stütze pro Track (per Self-Review)
+
+- **T2 / T3 / T4** — *sehr stark* im Original-Text verankert (jeweils Teil 1 / Teil 2 / Teil 3).
+- **T5** *(Paradise)* — Paradies-Linie steht in Teil 3 (im Quelltext eigentlich T4-Bereich). Wandert als Bridge zu T5; gerahmt durch „Betäube mich" als Pharmakologie.
+- **T6** *(Dauerschleife)* — Loop-Form aus Teil 4 + Komparsen-Vokabular aus Teil 1 + Talent-Negation aus Teil 4. Non-linear assembliert; das macht den Track produktionsanspruchsvoller, weil das Vokabular aus T2 hier mechanisch wiederholt werden muss.
+- **T1, T7** — **formale Erfindungen** ohne direkten Quelltext-Anker. T1 schließt den Loop von vorn (Hülle vor den Stimmen), T7 von hinten (Funke + Loop-Static). Künstlerische Lizenz, explizit deklariert. T7 zieht Material aus Teil-4-Konjunktivstoff.
 
 ## Production Notes
 
