@@ -4,7 +4,7 @@ discovery.
 Three assertions:
 
 1. The manifest validates against the agentic-cell schema.
-2. ``agentic.jules.tools.query.handle`` returns a result that conforms
+2. ``agentic.jules.handlers.query.handle`` returns a result that conforms
    to the shared ``tool_result`` schema and carries the expected payload.
 3. The cell loader's ``discover()`` finds the cell and registers the
    ``mcp__jules_query`` tool name.
@@ -50,7 +50,7 @@ def test_jules_manifest_validates():
 
 
 def test_jules_query_tool_returns_valid_envelope():
-    from agentic.jules.tools import query as query_mod
+    from agentic.jules.handlers import query as query_mod
 
     result = query_mod.handle(topic="x")
 
