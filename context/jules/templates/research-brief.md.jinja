@@ -1,0 +1,42 @@
+{#-
+  Research brief — renders a single ResearchTopic and its findings as
+  Markdown. Inputs:
+    topic    — dict matching schemas/research-topic.schema.json
+    findings — list of dicts matching schemas/finding.schema.json
+
+  Sections (H2 headings are part of the contract):
+    ## Topic
+    ## Findings
+    ## Sources
+-#}
+# Research brief: {{ topic.topic }}
+
+## Topic
+
+**Name:** {{ topic.topic }}
+{% if topic.get('status') %}**Status:** {{ topic.status }}
+{% endif %}{% if topic.get('created_at') %}**Opened:** {{ topic.created_at }}
+{% endif %}
+{% if topic.get('description') %}{{ topic.description }}
+{% endif %}
+## Findings
+{% if findings %}
+{% for f in findings %}
+- **{{ f.claim }}** (confidence: {{ '%.2f' | format(f.confidence | float) }})
+{% endfor %}
+{% else %}
+_No findings recorded yet._
+{% endif %}
+## Sources
+{%- set seen = [] %}
+{% for f in findings %}
+{%- for url in f.source_urls %}
+{%- if url not in seen %}
+{%- if seen.append(url) %}{% endif %}
+- {{ url }}
+{%- endif %}
+{%- endfor %}
+{%- endfor %}
+{% if not seen %}
+_No sources cited yet._
+{% endif %}

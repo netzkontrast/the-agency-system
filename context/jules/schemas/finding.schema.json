@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:jules/finding",
+  "title": "Finding",
+  "description": "A single research finding attached to a ResearchTopic. Confidence is a probability in [0, 1].",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "topic",
+    "claim",
+    "confidence",
+    "source_urls"
+  ],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of the ResearchTopic this finding belongs to."
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "The finding itself — a single declarative statement."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence in the claim, expressed as a probability in [0, 1]."
+    },
+    "source_urls": {
+      "type": "array",
+      "description": "URLs that back the claim. At least one is recommended; the array may be empty for in-progress findings.",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

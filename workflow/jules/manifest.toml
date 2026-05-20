@@ -1,0 +1,20 @@
+# Workflow cell manifest for the `jules` row.
+#
+# Conforms to context/_shared/schemas/workflow-cell.schema.json (spec 01,
+# extended in spec 07-v1 §FR1 with the optional `[workflow.lazy_link]`
+# sub-table). The legacy `[[phases]]` array is intentionally absent —
+# jules's phases live as `Phase` nodes in the ontology graph (spec 07-v1
+# §FR2). The graph walker in `workflow/_runner/pipeline.py::_walk_phase`
+# reads them via `MATCH (p:Phase {row: "jules", phase_id: ...}) RETURN p`.
+
+[cell]
+row = "jules"
+column = "workflow"
+
+[workflow]
+entry_verbs = ["start", "resume"]
+
+[workflow.lazy_link]
+# Opt-out: an unknown (row="jules", phase_id) tuple must NOT auto-create
+# a placeholder Phase node. The runner returns a failed envelope instead.
+enabled = false

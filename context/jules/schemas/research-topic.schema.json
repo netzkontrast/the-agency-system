@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:jules/research-topic",
+  "title": "ResearchTopic",
+  "description": "A topic the jules row is investigating. Findings cite their topic by id.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "topic",
+    "created_at"
+  ],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Short human-readable name of the topic under investigation."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the topic was opened. RFC 3339 / ISO 8601 with timezone."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional longer-form description of the topic."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "investigating", "complete"],
+      "description": "Lifecycle status of the topic."
+    }
+  }
+}

@@ -39,38 +39,50 @@ def get_version() -> str:
 
 
 def boot() -> FastMCP:
-    """Plugin entrypoint. Builds the server, scans cells, registers everything."""
+    """Plugin entrypoint. Builds the server, scans cells, registers everything.
+
+    Per spec 06 §Cold-boot: only the four verbs are registered as FastMCP
+    tools. Individual cell tools live in the CellRegistry and are reached via
+    ``mcp__call_tool``. PreToolUse / PostToolUse hooks (C5) fire inside the
+    registry's ``call_tool`` dispatch so they cover the deferred-discovery
+    path uniformly.
+    """
     version = get_version()
     mcp = FastMCP("agency-system", version=version)
 
     registry = discover()
+    _wrap_registry_with_hooks(registry)
     register_four_verb_contract(mcp, registry)
 
-    # Register all dynamically discovered tools with defer_schema=True.
-    # Each registered tool is wrapped so PreToolUse fires before, PostToolUse
-    # after (C5). make_hooked_wrapper also fixes the prior closure
-    # capture-by-reference bug by binding t_name/t_func via keyword defaults.
-    for t_name, t_func in registry.tools.items():
-        wrapped = make_hooked_wrapper(t_name, t_func)
-        mcp.add_tool(wrapped, name=t_name, defer_schema=True)
-
     return mcp
+
+
+def _wrap_registry_with_hooks(registry) -> None:
+    """Wrap every tool in the registry through make_hooked_wrapper so the
+    PreToolUse / PostToolUse C5 contract fires uniformly via ``mcp__call_tool``.
+    """
+    for t_name, t_func in list(registry.tools.items()):
+        registry.tools[t_name] = make_hooked_wrapper(t_name, t_func)
 
 
 if __name__ == "__main__":
     mcp = boot()
 
     if "--emit-cold-boot" in sys.argv:
-        # We simulate the MCP payload for `tools/list` plus some system prompt if needed.
-        # The tools are in mcp._local_provider.list_tools() if we inspect the internals
-        # but to run it synchronously we just dump the stored tool schemas.
-        tools_list = []
-        for t in mcp._tool_handlers.values():
-            if hasattr(t, "inputSchema") and t.inputSchema is not None:
-                schema = t.inputSchema
-            else:
-                schema = {"type": "object", "properties": {}}
+        # Cold-boot payload simulation. Matches what an MCP client would see
+        # on `tools/list` — only the four verbs are pre-registered with
+        # FastMCP per spec 06; every cell tool is reached through
+        # mcp__call_tool, so it does NOT appear here.
+        import asyncio
 
+        tools_response = asyncio.run(mcp._local_provider.list_tools())
+        tools_list = []
+        for t in tools_response:
+            schema = (
+                t.inputSchema
+                if getattr(t, "inputSchema", None) is not None
+                else {"type": "object", "properties": {}}
+            )
             tools_list.append(
                 {"name": t.name, "description": t.description, "inputSchema": schema}
             )

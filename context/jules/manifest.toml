@@ -1,0 +1,21 @@
+# Context cell manifest for the `jules` row.
+#
+# Conforms to context/_shared/schemas/context-cell.schema.json (spec 01).
+# The `jules` row owns research-oriented context: topics under
+# investigation and findings collected against them.
+
+[cell]
+row = "jules"
+column = "context"
+
+[ontology]
+node_types = ["ResearchTopic", "Finding"]
+
+[schemas.ResearchTopic]
+path = "schemas/research-topic.schema.json"
+
+[schemas.Finding]
+path = "schemas/finding.schema.json"
+
+[templates."research-brief"]
+path = "templates/research-brief.md.jinja"

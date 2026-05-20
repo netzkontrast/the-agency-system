@@ -5,8 +5,7 @@
   "additionalProperties": false,
   "required": [
     "cell",
-    "workflow",
-    "phases"
+    "workflow"
   ],
   "properties": {
     "cell": {
@@ -38,10 +37,22 @@
           "items": {
             "type": "string"
           }
+        },
+        "lazy_link": {
+          "description": "Opt-in for the graph walker to create placeholder Phase nodes for unknown (row, phase_id) tuples. Spec 07-v1 §FR1.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            }
+          }
         }
       }
     },
     "phases": {
+      "description": "LEGACY: hard-coded phase list. Meta-row only — other rows declare phases as Phase nodes in the graph (spec 07-v1 §FR1, §FR2).",
       "type": "array",
       "items": {
         "type": "object",
