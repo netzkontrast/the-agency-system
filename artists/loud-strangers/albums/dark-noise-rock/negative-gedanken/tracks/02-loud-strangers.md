@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | Titeltrack — Übernahme. Peak-Wall-of-Sound. Etabliert das Vokabular „blöd / nichts wert / Komparsin", das T6 mechanisch wiederholen wird; Outro/Bridge führt „Baum fällen"-Bild ein. |
 | **Fade Out** | 3s — bleeds into T3 (Schwarzes Meer) |
 | **Target Duration** | 3:30–4:30 |
-| **Sources Verified** | N/A (fiktionaler Quelltext-Frame — sehr stark verankert in Teil 1, aber kein Documentary-Source) |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)

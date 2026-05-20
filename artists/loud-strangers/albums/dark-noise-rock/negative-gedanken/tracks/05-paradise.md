@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | Schwebe — bittersüß. Paradies als Selbst-Betäubung. Dream-Pop-Bridge nimmt T4's „keine Träume mehr / außer in der Nacht"-Outro auf. |
 | **Fade Out** | 4s — Crossfade in T6 (Dauerschleife) |
 | **Target Duration** | 3:30–5:00 |
-| **Sources Verified** | N/A (fiktionaler Quelltext-Frame — verankert in Teil 3 „Möchte fliehen in ein Paradies" + „Betäube mich") |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)

@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | Coda — vorsichtiger Funke; Outro = präziser Noise-Loop, der nahtlos in T1's Intro übergeht (Loop-Pair) |
 | **Fade Out** | 0s — bleeds into T1 (gemeinsamer Noise-Layer) |
 | **Target Duration** | 7:00–9:00 (Post-Rock Epic) |
-| **Sources Verified** | N/A (formale Erfindung — kein direkter Quelltext-Anker; Konjunktiv-Material aus Teil 4) |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)

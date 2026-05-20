@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | VALLEY — akustisches Vakuum der Erschöpfung. Zentrale „wahres Gesicht"-Frage. Outro „Keine Träume mehr / außer in der Nacht" als Brücke zu T5. |
 | **Fade Out** | 5s — Crossfade in T5 (Paradise) |
 | **Target Duration** | 5:00–6:00 (Spoken Word — lange Pausen) |
-| **Sources Verified** | N/A (fiktionaler Quelltext-Frame — sehr stark verankert in Teil 3 + Outro-Brücke aus Teil 2) |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)

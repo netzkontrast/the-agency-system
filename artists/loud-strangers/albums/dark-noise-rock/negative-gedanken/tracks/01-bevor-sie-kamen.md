@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | Album-Opener (no cold open) — emerges aus T7's Noise-Loop-Bed; ramp-up in T2 |
 | **Fade Out** | 0s — direct ramp into T2 (Loud Strangers) |
 | **Target Duration** | 2:00–3:00 (Intro track) |
-| **Sources Verified** | N/A (formale Erfindung — kein direkter Quelltext-Anker; sparsamer Echo von Teil 1's „Wie oft ich hier sitze") |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)

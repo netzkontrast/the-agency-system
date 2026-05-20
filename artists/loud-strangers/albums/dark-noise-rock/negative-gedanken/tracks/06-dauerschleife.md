@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | PEAK 2 — Komparsen-Rolle + Loop + Talent-Negation. Stimmen-Vokabular aus T2 ist jetzt eingeprägt und wird mechanisch von der Hülle selbst wiederholt. Setup für T7's Static-Loop-Outro. |
 | **Fade Out** | 3s — mechanischer Puls läuft in T7's stillen Intro hinein (Kontrast: Industrial → Post-Rock intim) |
 | **Target Duration** | 3:30–4:30 |
-| **Sources Verified** | N/A (fiktionaler Quelltext-Frame — verankert in Teil 4 [Loop-Form + Talent-Negation] + Teil 1 [Komparsin-Vokabular]) |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)

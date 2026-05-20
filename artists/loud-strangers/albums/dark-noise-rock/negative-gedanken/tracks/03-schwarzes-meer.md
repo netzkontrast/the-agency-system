@@ -28,7 +28,7 @@ sheet_music:
 | **Role** | Versinken + Agency-Verlust. Beobachter sieht das schwarze Meer von innen. T2's „Baum fällen"-Bild als Intro-Echo; Outro mündet in T4's Vakuum. |
 | **Fade Out** | 5s — Crossfade in T4 (Wahres Gesicht) |
 | **Target Duration** | 3:30–5:00 |
-| **Sources Verified** | N/A (fiktionaler Quelltext-Frame — sehr stark verankert in Teil 2) |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
