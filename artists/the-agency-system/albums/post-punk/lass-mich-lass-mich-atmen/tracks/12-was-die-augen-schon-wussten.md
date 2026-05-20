@@ -175,9 +175,9 @@ das ist ein Befund.
 [Verse 2]
 [same delivery, dark pads thicken slightly, breath samples surface]
 
-Es bleibt im Sehnerv.
+Es bleibt im zay-nerf.
 Es bleibt in der Linse.
-Es bleibt in der Pupille
+Es bleibt in der poo-pee-le
 auch wenn sie sich weitet.
 
 die Augen sind ein Archiv

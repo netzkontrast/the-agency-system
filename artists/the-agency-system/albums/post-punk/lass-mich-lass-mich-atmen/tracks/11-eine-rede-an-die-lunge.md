@@ -161,7 +161,7 @@ no belt, no power vocal, no eruption, no slogan singing, no demo chant, no concr
 [snarling baritone with edge but controlled, sing-spoken declamatory, close-mic, sharp delivery — manifesto recitation]
 
 Atmen ist nicht
-selbstverständlich.
+zelpst-fer-shtent-lich.
 Atmen ist nicht
 neutral.
 Atmen ist eine Position.

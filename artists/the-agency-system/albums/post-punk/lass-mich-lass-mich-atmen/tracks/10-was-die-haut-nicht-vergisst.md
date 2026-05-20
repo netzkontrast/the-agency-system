@@ -175,8 +175,8 @@ der Körper ist mehr.
 [baritone becomes emphatic, subtle backing harmonies enter, the three "Es sitzt" lines get densification, drum machine pulse heavier]
 
 Es sitzt im Kiefer.
-Es sitzt im Zwerchfell.
-Es sitzt zwischen den Schulterblättern.
+Es sitzt im tsvairch-fell.
+Es sitzt zwischen den shool-ter-bletern.
 da wo niemand hinkommt.
 da, wo es bleibt.
 
@@ -197,17 +197,17 @@ wann er es zeigt.
 [backing harmonies fuller, no escalation, same hammered statement]
 
 Es sitzt im Kiefer.
-Es sitzt im Zwerchfell.
-Es sitzt zwischen den Schulterblättern.
+Es sitzt im tsvairch-fell.
+Es sitzt zwischen den shool-ter-bletern.
 da wo niemand hinkommt.
 da, wo es bleibt.
 
 [Bridge]
 [drum machine drops to minimal pulse, dark pads widen, breath samples surface, vocal returns close-mic intimate near-whispered confessional]
 
-ich rede nicht mit dem Therapeuten darüber.
+ich rede nicht mit dem terra-poyten darüber.
 ich rede mit dem Kiefer.
-ich rede mit dem Zwerchfell.
+ich rede mit dem tsvairch-fell.
 sie sagen was zurück
 nur nicht mit Worten.
 
@@ -215,8 +215,8 @@ nur nicht mit Worten.
 [full return, backings thicker, no climax — sustained witch-house weight]
 
 Es sitzt im Kiefer.
-Es sitzt im Zwerchfell.
-Es sitzt zwischen den Schulterblättern.
+Es sitzt im tsvairch-fell.
+Es sitzt zwischen den shool-ter-bletern.
 da wo niemand hinkommt.
 da, wo es bleibt.
 
