@@ -16,12 +16,17 @@
 
 
 ### Lass mich, lass mich atmen
-
-**Genre**: rock
-**Type**: Thematic
-**Concept**: Standalone-Single. Trauma-Flashback als Adressat — der Song schreit nicht eine Person an, sondern die Erinnerung selbst. Verdoppeltes "Lass mich" als Riss von der eingefrorenen Damals-Stimme zur wütenden Heute-Stimme. Verses = Flashback-Fragmente, Refrain = wütender Riss zurück in die Gegenwart. Geplantes Ende: Bruch + ein einziger geerdeter Satz ("Ich bin hier"). Modus: wütende Forderung; Genre-Tendenz Post-Punk / Industrial / schwerer Alt-Rock — final beim Suno-Engineering festzulegen.
-**Status**: In Progress
-Backlog of album concepts. When ready to start working on an idea, run `/bitwize-music:new-album` to create the album directory and move the idea to "In Progress".
+- **Artist**: the-agency-system
+- **Genre**: dystopian-future-synth (artist-coined umbrella; surface tags darksynth / darkwave / post-punk / industrial per `overrides/genre-dystopian-future-synth.md`)
+- **Type**: Full-length album, 13 tracks, polyphonic suite
+- **Release position**: Album 4 (after Together We Confide, Moment der Klarheit, Systematic Agency)
+- **Concept**: Sustained polyphonic authorship of the truth-confrontation from "Kern der Wahrheit"; 13 movements in which 8 canonical alters + Albtraum (carried by Sexualized-Override) hold the position without surrender, escape, fight-alone, or heroic resolution. Therapeutic position: durch + fühlen + anerkannt + getrennt + dableiben. Yellow-protocol per track. Heartbeat-bookend callback to *Autoren-Feder*.
+- **Content warning**: Album re-confronts childhood sexual abuse at album length. Track 07 sustains simultaneous adult-belt + child-scream peak. Tracks 03/05/09 give an introjected perpetrator-voice (carried by Sexualized-Override) verbatim quotation rights.
+- **DNA sources**: "All Is Lost" + "Perfect World" (Together We Confide, 2024), "Vor der Konfrontation" + "Kern der Wahrheit" (Moment der Klarheit), "Autoren-Feder" (Systematic Agency)
+- **Spec**: `artists/the-agency-system/albums/dystopian-future-synth/lass-mich-lass-mich-atmen/DESIGN.md` (v3.2, all decisions locked)
+- **Research**: `artists/the-agency-system/albums/dystopian-future-synth/lass-mich-lass-mich-atmen/RESEARCH/` (v2 album consolidated as reference material)
+- **Added**: 2026-05-20
+- **Status**: In Progress
 
 
 ### Negative Gedanken

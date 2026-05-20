@@ -1,16 +1,20 @@
 ---
 title: "Lass mich, lass mich atmen — Album Design Spec"
 date: 2026-05-20
-status: v3.1 — panel review applied, pending final user sign-off
+status: v3.2 — all spec decisions locked; ready for scaffolding
 revision_history:
   - v3.0 (2026-05-20): initial draft from brainstorming
   - v3.1 (2026-05-20): 5-panel review applied (Lyric Craft / Sonic-Suno / Discography / Trauma-Authenticity / Polyphonic Coherence); user-locked 6 spec-architecture decisions (A–F)
+  - v3.2 (2026-05-20): final-decisions round locked — v2 consolidated as research material; title final; album-4 release position confirmed
 artist: the-agency-system
+album_title: Lass mich, lass mich atmen
 release_type: full-length album, 13 tracks, polyphonic suite
-working_slug: lass-mich-lass-mich-atmen
+release_position: Album 4 of The Agency System's catalogue (after Together We Confide, Moment der Klarheit, Systematic Agency)
+album_slug: lass-mich-lass-mich-atmen
+album_path: artists/the-agency-system/albums/dystopian-future-synth/lass-mich-lass-mich-atmen/
+research_path: artists/the-agency-system/albums/dystopian-future-synth/lass-mich-lass-mich-atmen/RESEARCH/
 working_branch: claude/trauma-flashback-song-2BU7j
-discography_position: Album 4 in the artist's arc; release-order position TBD — see §0
-existing_v2_branch: claude/song-idea-breathing-an1Wr (different shape, kept as reference)
+consolidated_from: claude/song-idea-breathing-an1Wr (PR #129, closed; v2 album moved to RESEARCH/)
 content_warning: Album re-confronts childhood sexual abuse at album length. Track 07 sustains a simultaneous Fighter-belt + Child-Freeze-scream peak; Tracks 03/05/09 give an introjected perpetrator-voice (carried by Sexualized-Override) verbatim quotation rights. CW must appear in album README front-matter before scaffolding.
 ---
 
@@ -460,9 +464,9 @@ Per-track LUFS targets (target spread caps at 8 LU due to ambient closer vs. ind
 
 **Master-bus character:** tape and console saturation for glue rather than brick-wall limiting (per the territory's documented practice — see `overrides/genre-dystopian-future-synth.md` §7). True Peak ceiling -1 dBTP for sub--14 LUFS tracks, -2 dBTP for above--14 LUFS tracks (codec headroom).
 
-## 11. Decisions locked (v3.1) + remaining open questions
+## 11. All decisions locked (v3.2)
 
-### Decisions locked by user-sign-off (panel-question round, 2026-05-20)
+### Locked by user-sign-off in panel-question round (2026-05-20)
 
 | Q | Decision | Source |
 |---|---|---|
@@ -474,11 +478,15 @@ Per-track LUFS targets (target spread caps at 8 LU due to ambient closer vs. ind
 | F — Witness-of-Witnesses role | Only Track 12 lead; cross-album annotation dropped — one alter, one function | user-decision F |
 | Cast subset | 8 canonical alters + Albtraum (carried by Sexualized-Override). Ur-Getier dropped. Container, Rationalist, Caregiver-solo excluded with named reasons | spec §4 |
 
-### Remaining open questions (require user input before scaffolding)
+### Locked by user-sign-off in final-decisions round (2026-05-20)
 
-1. **Repo layout decision** (still open): replace existing v2-branch's `lass-mich-lass-mich-atmen` slug (same path, old version archived in branch — recoverable), or land parallel (e.g., suffix or alt genre folder)?
-2. **Album title final**: "Lass mich, lass mich atmen" — keep (spec assumes keep), or shift to *"Durch"* / *"Das war"* / *"Anerkannt, getrennt"*?
-3. **Release-order placement** (also still open): release this as Album 4 (after *Systematic Agency*), or as parallel side-album, or as expanded re-statement of *Moment der Klarheit*? Affects how the album is marketed and how the discography reads on streaming.
+| Decision | Resolved |
+|---|---|
+| **Repo layout** | v2 album content lives as **research material** at `RESEARCH/` inside the v3 album folder. The `dark-industrial/lass-mich-lass-mich-atmen/` path was deleted; v2 was moved to `dystopian-future-synth/lass-mich-lass-mich-atmen/RESEARCH/v2-album-README.md` + `RESEARCH/v2-tracks/01-13.md`. See `RESEARCH/README.md` for the research-usage protocol |
+| **Album title final** | **"Lass mich, lass mich atmen"** — final, no shift |
+| **Release-order placement** | **Album 4** of The Agency System's discography, after *Systematic Agency*. In catalogue-release terms this is the fourth release; in arc terms it is the sustained form of *Kern der Wahrheit* |
+
+All open spec questions are now resolved. Ready for `/bitwize-music:new-album` scaffolding and `/bitwize-music:album-conceptualizer` 7-phase deep dive.
 
 ## 12. Files to create (informational — implementation plan will specify)
 
