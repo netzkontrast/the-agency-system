@@ -149,7 +149,7 @@ nicht das Reise-Ziel
 
 schwarz
 laut
-einengend
+ein-en-gend
 es rauscht
 und rauscht
 
@@ -175,7 +175,7 @@ nicht das Reise-Ziel
 
 schwarz
 laut
-einengend
+ein-en-gend
 es rauscht
 und rauscht
 
@@ -296,7 +296,8 @@ Keine Wahl
 | Reise-Ziel | Reise-Ziel | Bindestrich erzwingt zwei klare Wörter und verhindert, dass Suno „Reiseziel" als ein einziges schnelles Wort wegnuschelt. |
 | einengend | ein-en-gend | OK as-is bzw. mit leichter Silbentrennung; Suno trifft 3-Silben-DE-Wörter zuverlässig. |
 | Übersicht | Übersicht | OK — Standard-DE-Aussprache, Umlaut „Ü" wird getroffen. |
-| seh' / seh zu | seh / seh zu | Apostroph in Suno-Lyrics-Box erhalten (signal: verschluckte Silbe). In Streaming-Lyrics ohne Apostroph. |
+<!-- Documentation note (not a phonetic rule): in Suno-Lyrics-Box bleiben Apostrophe bei "seh'" / "seh zu" — Signal für verschluckte Silbe. In Streaming-Lyrics ohne Apostroph schreiben. Diese Zeile wurde aus der enforcement-Tabelle entfernt, weil sie eine Konvention dokumentiert, nicht eine 1:1-Phonetik-Substitution. -->
+
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist

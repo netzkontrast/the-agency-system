@@ -326,7 +326,8 @@ Unter
 | blöd | blöd | OK as-is — DE-Umlaut „ö" wird von Suno V5 zuverlässig getroffen. Keine Änderung. |
 | gehst | gehst | OK — Standard-DE-Aussprache. |
 | fällt | fällt | OK — Umlaut „ä" wird zuverlässig getroffen. Im Bridge-Outro auf eigenen Beat isoliert. |
-| Komparsin (Streaming) | Komparsin | In Streaming-Lyrics-Box bleibt die korrekte Standardschreibweise — die phonetische Form ist NUR für Suno. |
+<!-- Documentation note (not a phonetic rule): In Streaming-Lyrics-Box bleibt die korrekte Standardschreibweise "Komparsin" — die phonetische Form "Kompar-zin" ist NUR für Suno. Diese Zeile wurde aus der enforcement-Tabelle entfernt, weil sie eine Konvention dokumentiert, nicht eine 1:1-Phonetik-Substitution. -->
+
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
