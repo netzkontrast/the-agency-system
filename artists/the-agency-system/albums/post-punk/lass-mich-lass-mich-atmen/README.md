@@ -1,8 +1,8 @@
 ---
 title: "Lass mich, lass mich atmen"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: ["industrial-metal", "gothic-batcave", "cyberpunk-metal"]
-tags: ["suite", "german", "trauma-processing", "dystopian-future-metal"]
+genres: ["industrial-metal", "doom", "darkwave", "witch-house", "coldwave", "post-punk", "slowcore", "dark-folk", "dark-ambient", "ambient-drone", "dream-pop", "gothic-batcave", "cyberpunk-metal"]
+tags: ["mini-album", "suite", "german", "trauma-processing", "dystopian-future-metal", "darkwave-hybrid", "system-portrait"]
 explicit: false  # to be confirmed in lyric pass
 streaming:
   soundcloud: ""
@@ -23,18 +23,34 @@ sheet_music:
 | Attribute | Detail |
 |-----------|--------|
 | **Artist** | [the-agency-system](../../../README.md) |
-| **Album** | Lass mich, lass mich atmen (Suite, in Konzeption) |
-| **Genre** | **Dystopian Batcave × Future Metal × Cyber Punk** — Industrial-Metal Hybrid mit Gothic-Batcave Atmosphäre und Cyberpunk-Synth-Schichten. Swans/Killing-Joke-Modus: pulverisierende Repetition, kein Climax, erschöpfte Wut. |
-| **Tracks** | 1 (Title) — Suite in Phase 4 Strukturplanung; weitere Companions folgen |
-| **Status** | In Concept (Phase 1–3 abgeschlossen, Phase 4 läuft) |
-| **Explicit** | No (confirmed im Lyric-Review) |
-| **Concept** | Suite um „Lass mich, lass mich atmen" — Titel-Anker plus Varianten und Companions, die vier thematische Territorien erkunden: Besucher-Figur, Somatik & Körper, das System drinnen, Wieder-Atmen & Agency. |
+| **Album** | Lass mich, lass mich atmen (13-Track Mini-Album-Suite) |
+| **Genre** | **Industrial-Metal × Doom × Darkwave Hybrid** mit zusätzlichen Achsen: Witch-house (Tracks 02, 10), Slowcore (04), Dark-Folk (06), Coldwave (07), Industrial-Drone (08), Post-Punk (09, 11), Dark-Ambient (12), Ambient-Dream-Pop (13). Gothic-Batcave-Atmosphäre und Cyberpunk-Synth-Schichten durchgängig. Swans/Killing-Joke-Modus auf Industrial-Achse; Lebanon-Hanover/Drab-Majesty-Tradition auf Darkwave-Achse. Pulverisierende Repetition, kein Climax, erschöpfte Wut; keine Heilungsbögen. |
+| **Tracks** | 13 (komplette Mini-Album-Suite, alle gedraftet, alle In Progress) |
+| **Status** | In Progress — alle 13 Tracks gedraftet, Lyric-Reviewer/Pronunciation-Specialist/Pre-Generation-Check ausstehend |
+| **Explicit** | No (alle 13 Tracks) |
+| **Concept** | 13-Track Mini-Album-Suite um „Lass mich, lass mich atmen" — Industrial-Metal-Eckpfeiler (01 Demand, 05 Defender) plus Darkwave-Variationen über vier thematische Territorien: **Besucher** (02 Witch-house wordless), **Somatik & Körper** (04 Slowcore Bett, 10 Witch-house Körper), **System-Anteile** (07 Coldwave Beobachter, 08 Industrial-Drone Container, 09 Post-Punk Kind), **Stimmen-Wechsel & Closer** (06 Dark-Folk Variante, 11 Post-Punk Atem-Politik, 12 Dark-Ambient Augen, 13 Ambient-Dream-Pop Wieder-Atmen). Track 03 (Doom × Dream-Pop Lucider Traum) als Mittelpunkt der mentalen Achse. |
 
 ## Concept
 
-Standalone-Single. Wütende Forderung gegen eine erstickende Präsenz — und das **Du** im Song ist bewusst **polysemisch offen**: es kann die Erinnerung selbst sein, der wiederkehrende Traum, der innere Teil der Person, der sie jede Nacht weckt, oder die Atmung des Körpers selbst (z.B. ein Asthma-Anfall). Vier isomorphe Lesarten desselben Erstickens — alle gleich nah, der Hörer wählt.
+**13-Track Mini-Album-Suite.** Aufbau um den Titel-Anker „Lass mich, lass mich atmen" — eine wütende Forderung gegen erstickende Präsenz, deren **Du** bewusst **polysemisch offen** ist: Erinnerung, wiederkehrender Traum, innerer Anteil, Atmung des Körpers selbst (z.B. Asthma). Vier isomorphe Lesarten desselben Erstickens.
 
-Verarbeitet biografisches Material. Konkrete Hintergrundinhalte sind bewusst nicht dokumentiert — die Lyric trägt das verschlüsselte Bild (siehe `overrides/voice-craft-principles.md`).
+Die 12 weiteren Tracks erkunden die isomorphen Lesarten in eigenen Klang-Welten:
+
+- **Industrial-Metal-Eckpfeiler** (01, 05): die wütende Forderung und ihr Selbst-Porträt
+- **Mentale Klarheits-Achse** (03 Lucider Traum): Klarheit als Falle
+- **Witch-house-Achse** (02 Geräusch im Hals wordless, 10 Körperliche Erinnerung verbal): das Im-Hals-Steckende als Klang und als Befund
+- **Somatic-Achse** (04 Bett Slowcore × Darkwave): der ambivalente Ort
+- **System-Anteil-Trilogie** (07 Beobachter Coldwave, 08 Container Industrial-Drone, 09 Kind Post-Punk): drei innere Funktionen in Selbst-Porträts
+- **Stimmen-Wechsel** (06 Dark-Folk Variante): die Forderung in soft voice
+- **Atem-Politik** (11 Post-Punk): Atem als Refuse-Akt
+- **Augen-Archiv** (12 Dark-Ambient): das Sehen als Organ-Befund
+- **Closer** (13 Ambient-Dream-Pop): earned softness ohne Heilungsbogen
+
+**Darkwave als Verbindungs-Layer:** chorus-rich kalte synth pads laufen durch fast alle Tracks und verbinden die unterschiedlichen Genre-Sektoren zu einer einheitlichen Album-Atmosphäre. Industrial-Metal-Eckpfeiler haben Darkwave-Pads als Atmosphäre-Layer; Witch-house-, Coldwave-, Slowcore-Tracks haben Darkwave als Haupt-Pad-DNA.
+
+**Voice-Craft-Disziplin (album-weit):** keine Trauma-Narrative, keine Therapie-Sprache, keine Heilungserzählung, keine Programmatik. Stattdessen: konkrete Bilder, Setzungen, Befunde. Subjekt-Verschiebung über das Album: Ich (01-05) → Anteile (07-09) → Organe (10, 12) → Akt (11) → sufficient breath (13).
+
+Verarbeitet biografisches Material. Konkrete Hintergrundinhalte sind bewusst nicht dokumentiert — die Lyrics tragen das verschlüsselte Bild (siehe `overrides/voice-craft-principles.md`).
 
 ## Structure
 
@@ -73,20 +89,56 @@ Der Song folgt einer klaren temporalen Architektur, in der Verses und Refrain un
 
 ## Sonic Palette
 
-- **Beats**: Concrete-Room Drum Kit — tight, dry, klaustrophobisch, heavy metal weight, kein Reverb-Käfig. Bridge mit Industrial-Schichten (Metallklang, Hydraulik, Maschinen-Rhythmus). Tempo: 100–110 BPM (Titel), Companions variieren je nach Funktion (slowcore-doom langsamer, ritual-tracks ohne festes Tempo).
-- **Bass**: Downtuned distorted Bass, low-register industrial-metal bite. Hauptträger des Sound-Gefüges.
-- **Synths/Pads**: **Cyberpunk-Synth-Pads als Album-Leitmotiv** — dystopisch, broken, glitch-textured, laufen durch ALLE Tracks als Erkennungssignatur. Manchmal vorne, manchmal kaum hörbar, immer da.
-- **Guitars**: Detuned Metal-Guitar-Feedback-Stabs, atonal, dissonant. Keine flanged/melodischen Stabs.
-- **Vocals**: Deutsch. Hauptregister: snarling Baritone (Verses, jaw-clenched, growl-edged) → ugly belted Tenor (Choruses, throat-shredding, voice cracking, not pretty). Erschöpfte Wut durchgängig. Eine female/androgyne Stimme (akustische Variante), spoken word (Closer), und wortlose Vocals (Hals-Geräusch-Companion) als Kontrastregister in einzelnen Suite-Tracks.
-- **Atem-Sample**: **[breath]-Marker als Album-Leitmotiv** — hörbarer Atem in jedem Track an Bruchstellen, manchmal als Beat-Element, manchmal als Pause-Signal.
-- **Production**: Contemporary abrasive Industrial-Metal-Production — keine Late-70s-Cavernous-Reverb, kein Dub-Spaciousness. Klaustrophobisch, eng, hart.
-- **Mood**: Swans/Killing-Joke-Modus — pulverisierende Repetition, Wut als Hammer, kein Climax. Closer bricht die Härte für die einzige Auflösung.
+**Album-weite DNA-Layer (laufen durch alle Tracks, mit unterschiedlicher Prominenz):**
+
+- **Cyberpunk-Synth-Pads** als Album-Leitmotiv — dystopisch, broken, glitch-textured. Prominent in 01/05/08, dezent in 03/07/09/11, dichter in Bridge-Sektionen.
+- **[breath]-Marker** als Album-Leitmotiv — hörbarer Atem in jedem Track an Bruchstellen, manchmal als Beat-Element, manchmal als Pause-Signal. Track 13's Outro ist FAST nur breath.
+- **Darkwave-Pads** (chorus-rich, kalt, reverb-soaked, gothic atmosphere) — verbinden die unterschiedlichen Genre-Sektoren des Albums. Prominent in 02/04/06/07/08/09/10/11/12, dezent in 01/03/05.
+- **Sub-bass-Drone** — laufend unter fast allen Tracks, mehr gefühlt als gehört.
+
+**Genre-Sektoren (per Track-Cluster):**
+
+- **Industrial-Metal-Eckpfeiler** (01, 05): Concrete-Room Drum Kit + downtuned distorted Bass + Detuned Metal-Guitar-Feedback-Stabs + snarling Baritone → ugly belted Tenor. Swans/Killing-Joke-Modus. 100–115 BPM, hammered.
+- **Doom × Dream-Pop** (03): Industrial-Bass-Hammer mit Dream-Pop-Pads spreizen den Raum oben offen während Bass ihn unten schließt. Suspended-Hammer, 100-105 BPM.
+- **Witch-house × Darkwave** (02, 10): Drum-machine slow pulse, 808 kick, pitched-down snare, witch-house triplet stutters. Female/androgyne lead (02) bzw. male lead (10) mit jeweils umgekehrter shadow-vocal. Lana Del Rabies / Boy Harsher reference.
+- **Slowcore × Darkwave** (04): Reverb-soaked single-chord guitar (Codeine), drum machine kick on 1 only, dark synth pad. Sehr langsam, sehr sparse. 65-75 BPM.
+- **Dark-Folk × Darkwave** (06): Nylon-acoustic fingerpicked, chorus-rich dark pad, minimal drum machine. Female/androgyne lead ODER male whisper-baritone. Marissa Nadler / Lebanon Hanover. 80-85 BPM.
+- **Coldwave × Darkwave** (07): Drum machine 808 kick on 1+3, sharp programmed snare 2+4, cold synth lead distant. Monotone baritone delivery, Coldwave-doubling +/- 3 halftones. Lebanon Hanover / Drab Majesty / Cold Cave. 85-95 BPM.
+- **Industrial × Darkwave-Drone** (08): Heavy distorted bass drone (Earth), dichteste Darkwave-pad-architecture (4+ layers), snarling baritone slow-controlled. 75-80 BPM, sustained presence.
+- **Darkwave × Post-Punk** (09, 11): Post-punk bass line (melodic eight-note pattern), drum-machine + concrete-kit hybrid, Cocteau-Twins guitar arpeggios. Bauhaus / The Sound / Drab Majesty. 95-120 BPM, propulsive.
+- **Dark-Ambient × Darkwave** (12): Multi-layered sustained dark pads, sub-bass drone prominent, no drums in verses/chorus, spoken near-whispered vocal. Lustmord / Brian Eno / Bohren and der Club of Gore. 60-70 BPM, meditation-mode.
+- **Ambient-Drone × Dream-Pop** (13, Closer): Lush dream-pop pads widescreen, no kit drums, filtered breath samples load-bearing, speak-sung baritone close-mic. Warm not cold. 60-70 BPM.
+
+**Vocal-Architektur (album-weit):**
+
+- **Snarling baritone** (Track-01-Identity): Verses 01/03/05/08/10/11. Jaw-clenched, dry close-mic, no vibrato.
+- **Ugly belted tenor**: Choruses 01/03/05. Throat-shredding, voice cracking. Suspended in 03 (Dream-Pad-Echo), unsoftened in 05.
+- **Speak-sung baritone**: 04/07/09/12/13. Same singer, different modes (slowcore-flat 04, coldwave-monotone 07, post-punk-introspective 09, dark-ambient-whispered 12, ambient-drone-warm 13).
+- **Female/androgyne lead**: 02 (witch-house). Backing shadow in 06, 10.
+- **Wordless vocals**: 02 only.
+- **Backing harmonies**: chorus-based throughout, Darkwave-third+fifth pattern in 06/07/09/11/12; same-pitch densification in 08; Cyberpunk-shadow „(Lass mich)" in 01, „(Sieh es)" in 03.
+
+**Production-Konsistenz:** Contemporary abrasive Industrial-Metal-Production für Eckpfeiler (01/05); Witch-house-precision für 02/10; Coldwave-precision für 07; Slowcore-room für 04; Dark-Folk-intimacy für 06; Post-Punk-treibend für 09/11; Dark-Ambient-meditation für 12; Ambient-Dream-Pop-warmth für 13. Cross-Track: Darkwave-pad-DNA, Cyberpunk-synth-leitmotif, [breath]-marker, snarling baritone als Identitäts-Marker.
+
+**Mood-Achse:** Swans/Killing-Joke-Modus auf Industrial-Achse (pulverisierende Repetition, kein Climax). Lebanon-Hanover/Drab-Majesty-Tradition auf Darkwave-Achse (kalte gothic Atmosphäre, melodisch zurückgehalten). Closer (13) ist die einzige Auflösung — earned softness, kein Heilungsbogen.
 
 ## Tracklist
 
-| # | Title | POV | Concept | Status |
-|---|-------|-----|---------|--------|
-| 01 | [Lass mich, lass mich atmen](tracks/01-lass-mich,-lass-mich-atmen.md) | First-person (Survivor-Heute mit Damals-Echo) | Wütende Forderung gegen erstickende Präsenz; polysemisch offenes Du | Not Started |
+| # | Title | Genre | POV | Concept | Status |
+|---|-------|-------|-----|---------|--------|
+| 01 | [Lass mich, lass mich atmen](tracks/01-lass-mich,-lass-mich-atmen.md) | Industrial-Metal × Doom | First-person (Survivor-Heute mit Damals-Echo) | Wütende Forderung gegen erstickende Präsenz; polysemisch offenes Du | In Progress |
+| 02 | [Das Geräusch im Hals](tracks/02-das-geräusch-im-hals.md) | Witch-house × Darkwave | Third-person (visitor's voice as sound) | Wordless Witch-house. Die Besucher-Stimme als Klang. Endet mit zerbrochenen Phonemen „... lass ... mich ... at ..." — vollendet nie das Wort. | In Progress |
+| 03 | [Lucider Traum](tracks/03-lucider-traum.md) | Industrial-Metal × Doom × Dream-Pop | First-person (lucid dreamer, awake-in-dream) | Du weißt es ist nicht real. Du weißt die Wand ist nur eine Idee. Das hilft nichts. Klarheit als Falle. | In Progress |
+| 04 | [Bett](tracks/04-bett.md) | Slowcore × Darkwave | First-person (about the bed) | Das Bett als grammatikalisches Subjekt. Frage und Antwort. Der Ort, an dem ich war — und bin. | In Progress |
+| 05 | [Der Verteidiger](tracks/05-der-verteidiger.md) | Industrial-Metal × Doom (Centerpiece) | First-person (defender profiling himself) | Centerpiece. Selbstporträt des wütenden Anteils, der Track 01 gesungen hat — sein Profil, seine Funktion, sein Preis. | In Progress |
+| 06 | [Lass mich (Akustische Variante)](tracks/06-lass-mich-(akustische-variante).md) | Dark-Folk × Darkwave | First-person (the soft self praying) | Dieselbe Forderung in soft voice — Demand-as-Prayer statt Demand-as-Refusal. Stimmen-Wechsel-Track. | In Progress |
+| 07 | [Der Beobachter](tracks/07-der-beobachter.md) | Coldwave × Darkwave | First-person (observer, cold not warm) | System-Anteil-Trilogie 1/3. Der Anteil, der nicht handelt, nur sieht. Monotone baritone, distanced. | In Progress |
+| 08 | [Der Container](tracks/08-der-container.md) | Industrial × Darkwave-Drone | First-person (container, heavy sustained) | System-Anteil-Trilogie 2/3. Der Beutel, der Eimer, das Fass — das nicht überläuft, weil es kein Maß hat. | In Progress |
+| 09 | [Das Kind](tracks/09-das-kind.md) | Darkwave × Post-Punk | First-person (child-self, no infantilization) | System-Anteil-Trilogie 3/3. Der Teil, der gewartet hat. Nicht traurig, nicht wütend — nur klein und nicht weg. | In Progress |
+| 10 | [Körperliche Erinnerung](tracks/10-körperliche-erinnerung.md) | Witch-house × Darkwave | First-person (somatic, body parts as subjects) | Spätt-Trilogie 1/3. Mein Hals erinnert sich. Mein Kopf hat es vergessen. Das geht in Ordnung. | In Progress |
+| 11 | [Atmen als Politik](tracks/11-atmen-als-politik.md) | Post-Punk × Darkwave | First-person (declamatory manifesto) | Spätt-Trilogie 2/3. Atmen ist nicht passiv. Atmen ist eine Position. Wer atmet, der weigert sich. | In Progress |
+| 12 | [Augen (Was sie sehen)](tracks/12-augen-(was-sie-sehen).md) | Dark-Ambient × Darkwave | First-person observer of eyes as subject | Spätt-Trilogie 3/3. Die Augen sind ein Archiv, das niemand durchsucht. Sie sehen weiter, auch im Schlaf. | In Progress |
+| 13 | [Wieder atmen lernen](tracks/13-wieder-atmen-lernen.md) | Ambient-Drone × Dream-Pop | First-person (self-witnessing, morning) | Closer. Der einzige sanfte Track. Nicht geheilt — nur leiser. Earned softness, kein Heilungsbogen. | In Progress |
 
 ## Production Notes
 
@@ -168,4 +220,18 @@ Industrial Metal
 
 | # | Title | Duration | Listen |
 |---|-------|----------|--------|
-| 01 | Lass mich, lass mich atmen | 0:00 | [SoundCloud](URL) |
+| 01 | Lass mich, lass mich atmen | 3:30 | [SoundCloud](URL) |
+| 02 | Das Geräusch im Hals | 3:00 | [SoundCloud](URL) |
+| 03 | Lucider Traum | 3:45 | [SoundCloud](URL) |
+| 04 | Bett | 4:30 | [SoundCloud](URL) |
+| 05 | Der Verteidiger | 4:00 | [SoundCloud](URL) |
+| 06 | Lass mich (Akustische Variante) | 3:15 | [SoundCloud](URL) |
+| 07 | Der Beobachter | 3:45 | [SoundCloud](URL) |
+| 08 | Der Container | 4:15 | [SoundCloud](URL) |
+| 09 | Das Kind | 3:30 | [SoundCloud](URL) |
+| 10 | Körperliche Erinnerung | 3:30 | [SoundCloud](URL) |
+| 11 | Atmen als Politik | 3:20 | [SoundCloud](URL) |
+| 12 | Augen (Was sie sehen) | 4:00 | [SoundCloud](URL) |
+| 13 | Wieder atmen lernen | 5:00 | [SoundCloud](URL) |
+
+**Total Runtime:** ca. 49:20
