@@ -102,24 +102,21 @@ Sensorisch: hörbarer Atem im Mix (close-mic, fast aufdringlich nah), trockene S
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark ambient spoken word, no tempo or 50 bpm breath-tempo anchor only, deep
-sub-bass drone bed underneath throughout, exhausted vacuum mood as if there
-is no energy left to even sing, female single-vocal spoken word never sung
-intimate close-mic dry with audible breath, very long silences between
-phrases, deep matte sub-bass drone, no drums no cymbals no guitar, one very
-low dark synth pad layer for depth, occasional faint deep resonance,
-restrained delivery never performative, vocal sometimes near-whisper, the
-silence is part of the track not a gap, lo-fi quiet recording
+Female single-vocal spoken word, never sung, intimate close-mic dry with
+audible breath, restrained delivery never performative, sometimes
+near-whisper, exhausted as if there is no energy left to even sing. Dark
+ambient, spoken word. 50 bpm breath-tempo anchor only. Deep matte sub-bass
+drone underneath throughout, one very low dark synth pad layer for depth,
+occasional faint deep resonance. Very long silences between phrases — the
+silence is part of the track, not a gap. Lo-fi quiet recording. Voice
+forward, dynamic range.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no drums, no percussion, no electric guitar, no acoustic guitar, no rhythmic
-elements, no autotune, no singing, no vocal melody, no harmonized vocals,
-no reverb heroism, no synth lead, no electronic dance beats, no rap, no
-upbeat tempo, no fade-out to silence at end (must crossfade to next track)
+no singing, no drums, no autotune, no upbeat tempo
 ```
 
 ### Lyrics Box
@@ -137,6 +134,7 @@ upbeat tempo, no fade-out to silence at end (must crossfade to next track)
 [Intro - sub-bass drone, no vocal, T3 outro drone continuing]
 
 [Spoken]
+[Female spoken-word, never sung, intimate close-mic dry, audible breath, exhausted]
 Albträume
 ich hab sie schon
 mein Leben lang

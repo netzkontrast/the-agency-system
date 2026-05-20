@@ -91,25 +91,23 @@ Sensorisch: Atem hörbar im Mix, trocken auf Mikro im Intro. Im Climax: ertrinke
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-epic post-rock with noise-loop outro, 75 bpm building to 90 then collapsing,
-fragile and dissociated to overwhelming wall-of-sound, female single-vocal
-intimate close-mic whispered start then dry conversational middle then almost
-swallowed by the wall in climax, breathy low-register delivery never
-triumphant, clean electric guitar tremolo-picking, slow-building wall of
-heavily distorted layered guitars, sub-bass drone underneath throughout,
-sparse drums entering only at the climax, static-glitch texture rising into
-the outro, sub-bass pulse, lo-fi degraded magnetic-tape grain throughout,
-long extended noise-loop outro that does not resolve, very intimate and
-claustrophobic close-mic vocal
+Female single-vocal, intimate close-mic whispered start then dry
+conversational middle then almost swallowed by the wall in climax, breathy
+low-register delivery never triumphant. Epic post-rock, noise-loop outro.
+75 bpm building to 90 then collapsing, fragile and dissociated to
+overwhelming wall-of-sound. Clean electric guitar tremolo-picking,
+slow-building wall of heavily distorted layered guitars, sub-bass drone
+underneath throughout, sparse drums entering only at climax, static-glitch
+texture rising into outro, sub-bass pulse. Lo-fi degraded magnetic-tape
+grain throughout. Long extended noise-loop outro that does not resolve.
+Voice forward, dynamic range.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no autotune, no clean studio polish, no triumphant major-key resolution, no
-electronic dance beats, no synth lead melody, no rap, no harmonized chorus
-vocals, no fade-out outro, no upbeat tempo
+no autotune, no triumphant major-key resolution, no harmonized chorus vocals, no fade-out outro
 ```
 
 ### Lyrics Box
@@ -125,12 +123,13 @@ vocals, no fade-out outro, no upbeat tempo
 
 ```
 [Intro]
-[Whispered]
+[Whispered, breath audible, close-mic, fragile]
 ich war so eine Frohnatoor
 ich war —
 glaub' ich
 
 [Verse 1]
+[Female vocal, dry conversational close-mic, breathy low-register]
 ich weiß es läge an mir
 diesen Funken zu halten
 es braucht so viel Mut
@@ -149,6 +148,7 @@ ein vorsichtiges Ja
 ein leises Ja
 
 [Wall of Sound Climax]
+[Female vocal almost swallowed by wall, never above it, ringing not winning]
 wenn das mein Ich wär'
 wenn die Welle nicht
 wenn die Stimmen nicht
@@ -161,9 +161,10 @@ und doch
 ich
 
 [Bridge]
-blöd
-nichts wert
-Kompar-zin
+[Same lead vocal double-tracked, both pressed under mix, slight pitch detune, parenthesized]
+(blöd)
+(nichts wert)
+(Kompar-zin)
 in Klammern jetzt
 in Klammern leise
 
@@ -176,10 +177,11 @@ das weiß ich
 das weiß ich auch
 
 [Outro Noise Loop]
+[Female vocal near-gone, dissolving into static]
 ich war
 ich war
 
-[Whispered]
+[Whispered, almost swallowed by static, low-mixed]
 loud strangers
 
 [End]

@@ -103,25 +103,22 @@ Sensorisch: harte synthetische Drum-Patterns, hart verzerrte Gitarren-Riffs, tre
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-driving post-punk and industrial rock, 128 bpm mechanical metronomic drive,
-locked-in cold energy-without-will mood, aggressive in the beat never in the
-vocal, female single-vocal flat almost monotone delivery never raising voice
-never screaming, mechanical repetition in the chorus, hard synthetic
-programmed drum patterns precise and metronomic, driving distorted bass,
-heavily distorted staccato electric guitar riffs, industrial synth stab
-chords, continuous metronomic background pulse element, subtle vocoder touch
-on chorus words for mechanical effect but not autotuned, light plate reverb
-on vocal, lo-fi industrial production
+Female single-vocal flat almost monotone delivery, never raising voice,
+never screaming, mechanical repetition in the chorus, subtle vocoder touch
+on chorus words for mechanical effect but not autotuned, light plate
+reverb. Driving post-punk, industrial rock. 128 bpm mechanical metronomic
+drive, locked-in cold energy-without-will mood, aggressive in the beat
+never in the vocal. Hard synthetic programmed drum patterns precise and
+metronomic, driving distorted bass, heavily distorted staccato electric
+guitar riffs, industrial synth stab chords, continuous metronomic
+background pulse element. Lo-fi industrial production. Voice forward.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no autotune-as-effect, no melodic singing, no vocal harmonies, no
-triumphant resolution, no clean studio polish, no synth lead melody, no
-rap, no acoustic guitar, no warm reverb, no fade-out outro, no upbeat
-positive feel
+no autotune as effect, no melodic singing, no triumphant resolution, no warm reverb
 ```
 
 ### Lyrics Box
@@ -139,6 +136,7 @@ positive feel
 [Intro - mechanical pulse rises from under T5's outro wash]
 
 [Verse 1]
+[Female vocal, flat monotone, light plate reverb, mechanically delivered]
 ich sitze hier
 ich sitze
 wieder hier
@@ -155,6 +153,7 @@ und ich sage
 und ich sage
 
 [Chorus]
+[Female vocal, mechanical repetition, subtle vocoder touch, not autotuned]
 blöd
 nichts wert
 Kompar-zin

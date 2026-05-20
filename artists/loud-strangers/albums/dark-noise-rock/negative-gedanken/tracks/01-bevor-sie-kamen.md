@@ -91,23 +91,20 @@ Der Track ist „aufgeräumt-trügerisch". Die akustische Fassade darf nicht wei
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-deceptive soft-grunge intro track, 75 bpm, deceptively calm and held with
-rising threat underneath, female single-vocal whispered fragments with
-audible breath very close-mic, sparse clean electric guitar arpeggios that
-sound too tidy to be true, sustained low sub-bass drone underneath that
-never resolves, distant cymbal swells, no drums in the first two thirds,
-quiet wall of distorted guitars building in the final twenty seconds, lo-fi
-analog tape grain texture rising slowly from below, intimate claustrophobic
-close-mic placement, restrained delivery never raising voice
+Female single-vocal whispered fragments, audible breath, very close-mic,
+restrained delivery never raising voice, intimate and claustrophobic.
+Deceptive soft-grunge, 75 bpm, deceptively calm with rising threat
+underneath. Sparse clean electric guitar arpeggios, sustained low sub-bass
+drone, distant cymbal swells. Quiet wall of distorted guitars building
+only in final twenty seconds. Lo-fi analog tape grain rising slowly from
+below. Voice forward, dark production, dynamic range.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no autotune, no upbeat drums, no major-key chord progression, no vocal
-harmonies, no electronic synth lead, no rap, no clean studio polish, no
-fade-out outro, no triumphant resolution
+no autotune, no upbeat drums, no major-key resolution, no vocal harmonies
 ```
 
 ### Lyrics Box
@@ -124,23 +121,27 @@ fade-out outro, no triumphant resolution
 ```
 [Intro]
 
-[Whispered]
+[Verse 1]
+[Whispered, breath audible, close-mic, fragile]
 hier
 hier sitze ich
 wie oft
 
+[Verse 2]
 [Whispered]
 ich höre noch
 mich
 meine Stimme
 noch
 
-[Whispered]
+[Pre-Outro]
+[Whispered, urgent]
 es wird laut
 gleich
 es wird
 
-[Build]
+[Outro Build]
+[Whispered to half-shouted]
 gleich
 gleich
 gleich

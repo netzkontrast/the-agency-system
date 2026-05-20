@@ -99,24 +99,22 @@ Sensorisch: ätherische multi-layered vocals (vom Hall vervielfacht, nicht durch
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-melancholic dream-pop and shoegaze, 85 bpm dream-pop float, ethereal and
-deceptively comforting on the surface with subtle wrongness underneath, never
-fully triumphant, female single-vocal soft and breathy delivery sounding as
-if through cotton or sedation, multi-layered through dense reverb not through
-multi-tracking, washed electric guitars with heavy reverb and delay slow
-tremolo picking, shimmering synth pads, very soft slowcore drums or no drums
-at all, sub-bass gentle pulse only, shoegaze wall in pre-chorus and chorus,
-cool blue-white high frequencies, lo-fi cassette warmth, bittersweet
-pharmaceutical paradise feeling
+Female single-vocal, soft and breathy delivery sounding as if through
+cotton or sedation, with subtle German accent on English lyrics,
+multi-layered through dense reverb not through multi-tracking. Melancholic
+dream-pop, shoegaze. 85 bpm dream-pop float, ethereal and deceptively
+comforting on the surface with subtle wrongness underneath, never fully
+triumphant. Washed electric guitars with heavy reverb and delay, slow
+tremolo picking, shimmering synth pads, very soft slowcore drums or no
+drums, sub-bass gentle pulse only. Shoegaze wall in pre-chorus and chorus.
+Cool blue-white high frequencies, lo-fi cassette warmth. Voice forward.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no autotune, no triumphant major-key resolution, no clean studio polish, no
-strong beats, no electronic dance beats, no synth lead melody, no rap, no
-death metal vocals, no aggressive guitars, no fade-out outro to silence
+no autotune, no triumphant major-key resolution, no strong beats, no aggressive vocals
 ```
 
 ### Lyrics Box
@@ -134,6 +132,7 @@ death metal vocals, no aggressive guitars, no fade-out outro to silence
 [Intro - washed pad swell, T4 drone fading into shimmer]
 
 [Verse 1]
+[Female vocal, soft breathy, sedated, subtle German accent, dense reverb-multiplied]
 no dreams left for me
 except in the night
 and in the night
@@ -188,6 +187,7 @@ I would have been
 the one I was
 
 [Bridge - the wash thins, vocal slightly drier]
+[Female vocal, drier, less reverb, ungeschützt for one moment]
 numb me
 my only
 way out

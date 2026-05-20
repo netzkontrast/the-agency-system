@@ -97,23 +97,21 @@ Visuell: das ghosted-chorus-Mund-Bild aus dem T2-Artwork. Akustisch: die Wand wi
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-classic 90s grunge with noise-rock walls, 100 bpm verses with stoic pumping
-bass then aggressive overwhelming wall-of-sound chorus, sneering condescending
-and amused-malicious vocals never desperate, multiple layered female vocal
-tracks four to six wide stereo spread with slight detune giving chorus-of-
-strangers effect, lead vocal sharp cutting close-mic, heavily distorted
-electric guitars in chorus, pounding drums, monolithic half-time hammer-
-strikes in the bridge, no reverb heroism vocals stay close and intrusive,
-lo-fi tape grain throughout
+Multiple layered female vocal tracks, four to six layers, wide stereo
+spread with slight detune for chorus-of-strangers effect. Lead vocal
+sneering, condescending, amused-malicious, never desperate, sharp and
+cutting, close-mic. Classic 90s grunge, noise-rock. 100 bpm verses with
+stoic pumping bass building to aggressive overwhelming wall-of-sound
+chorus. Heavily distorted electric guitars in chorus, pounding drums,
+monolithic half-time hammer-strikes in bridge. No reverb heroism — vocals
+stay close and intrusive. Lo-fi tape grain throughout. Dynamic range.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no autotune, no harmonized melodic singing, no clean studio polish, no
-desperate-sounding vocals, no major-key resolution, no electronic dance
-beats, no synth lead melody, no rap, no acoustic guitar
+no autotune, no clean studio polish, no melodic harmonized singing, no major-key resolution
 ```
 
 ### Lyrics Box
@@ -131,6 +129,7 @@ beats, no synth lead melody, no rap, no acoustic guitar
 [Intro Riff]
 
 [Verse 1]
+[Female lead vocal, sneering, condescending, close-mic]
 sie sitzt im Zimmer
 sie sagt sie sei
 sie sei nicht genug
@@ -148,6 +147,7 @@ und sie spricht uns
 laut
 
 [Chorus]
+[Four to six layered female vocals, wide stereo, slight detune]
 du bist nichts wert
 du bist Kompar-zin
 du bist blöd
@@ -187,6 +187,7 @@ du bringst nichts zu Ende
 du gehst unter
 
 [Bridge - half-time, monolithic]
+[All voices unisono, no detune, monolithic]
 wir nehmen ein Leben
 wie wenn man
 einen Baum fällt

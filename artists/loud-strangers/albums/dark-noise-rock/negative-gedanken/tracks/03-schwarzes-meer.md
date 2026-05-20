@@ -95,24 +95,22 @@ Sensorisch: dichter analoger Tape-Grain, Bass-frequenzen die spürbar sind, ged�
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-heavy doomgaze and sludge, 60 bpm extremely slow and ponderous, claustrophobic
-underwater pressure mood with relentless density rather than escalation,
-female single-vocal spoken-near-sung sprechgesang close-mic dry never with
+Female single-vocal spoken-near-sung sprechgesang, close-mic dry never with
 reverb, lucid and questioning never distant or clinical, audible breath in
-the mix, massive distorted doomgaze guitar walls with slow tremolo and
-sustained drones, sub-bass drone underneath throughout, heavy half-time
-drums, cymbals as pressure waves not beats, background distortion noise bed
-of unintelligible voice fragments low in mix, vocal sitting under the wall
-not above it, lo-fi degraded magnetic tape grain texture throughout
+the mix, vocal sitting under the wall not above it. Heavy doomgaze, sludge.
+60 bpm extremely slow and ponderous, claustrophobic underwater pressure,
+relentless density rather than escalation. Massive distorted guitar walls
+with slow tremolo and sustained drones, sub-bass drone throughout, heavy
+half-time drums, cymbals as pressure waves not beats. Background distortion
+noise bed of unintelligible voice fragments low in mix. Lo-fi degraded
+magnetic tape grain. Voice forward, dark production.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no autotune, no vocal reverb heroism, no major-key resolution, no upbeat
-tempo, no synth lead melody, no electronic dance beats, no clean studio
-polish, no harmonized vocal layers, no rap, no fade-out outro to silence
+no autotune, no vocal reverb heroism, no upbeat tempo, no clean studio polish
 ```
 
 ### Lyrics Box
@@ -130,6 +128,7 @@ polish, no harmonized vocal layers, no rap, no fade-out outro to silence
 [Intro - doomgaze wall, no vocal yet, T2 baum-fallen echo as sound texture]
 
 [Verse 1]
+[Female sprechgesang, dry close-mic, lucid, audible breath, sitting under the wall]
 ich erwische mich
 nicht mehr atmen zu können
 die Kehle wie zugeschnürt
