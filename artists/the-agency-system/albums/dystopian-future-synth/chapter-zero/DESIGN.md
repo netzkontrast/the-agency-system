@@ -1,8 +1,8 @@
-# Chapter Zero — Album Concept & Design (v2)
+# Chapter Zero — Album Concept & Design (v3)
 
 > **Artist:** the Agency System · **Genre bucket:** dystopian-future-synth ·
-> **Language:** English · **Status:** Concept (v2 — Round-1 critiques closed,
-> grounded in full SOURCE corpus; awaiting album-conceptualizer Phase 7
+> **Language:** English · **Status:** Concept (v3 — divergent Round 3 mediated;
+> Round-2 work-order folded in; awaiting album-conceptualizer Phase 7
 > confirmation before any generation)
 > **Source:** `SOURCE/kapitel-0.md` + `SOURCE/section-meta.md` (KOH/tier
 > ground truth) — "Kapitel 0 — Kohärenz Protokoll" (Coherence Protocol,
@@ -11,43 +11,51 @@
 This document is the working brief for the build. **Section 7 is internal team
 documentation only** and never reaches a public field. **Section-meta.md is the
 single source of truth** for any KOH value, tier/state, or which-voice-first-
-appears dispute; where this design and a critic disagreed, section-meta won.
+appears dispute. The full loop history (v1→v2 critiques, the Round-3 divergent
+designs, the adversarial clash map, the tri-lens reviews, and the mediation)
+is archived under `SOURCE/loop1–3/`.
 
 ---
 
-## 0 · Revision log (v1 → v2)
+## 0 · Revision log (v2 → v3)
 
-Every Round-1 critique item and how/where it was closed.
+v3 folds in the Round-2 arbiter work-order (`loop2/arbiter.md` §A), the two
+**locked user decisions**, and the Round-3 mediation (`loop3/mediation.md`).
+The divergent round converged with **near-zero fidelity loss** — three isolated
+concern-pure designs, an adversarial maximal-clash decomposition, a tri-lens
+review, and a mediation all concluded the faithful direction is also the most
+listenable and is buildable; every breach was ruled out *and* its payoff kept
+by craft.
 
 | Item | Change | Where |
 |---|---|---|
-| **C1** | Track 9 (`schrecken`) section KOH set to **0.21** (section-meta), not "0.991→0.21". Mid-track tension now driven by the **paradox meter 0.67 → 0.84 → 0.99**; the drone enters carrying Track 8's 0.991 *as residue from the previous track*, then crashes to 0.21 at the internal-resonance escalation. | §2 row 9, §3 Track 9, §2 revision note 2, §4 KOH bullet |
-| **C2** | Logic-voice removed from Track 3 (`kontakte` = warm-voice + reaching-voice only). The cold proto-logic ending `kontakte` is the **proto-host turning clinical**, not a separate voice. Logic-voice's first true line is Track 4 (`sog`). | §3 Track 3, §7 `lex` → 4,5,6 |
-| **C3** | 0.991 now appears **exactly once** in the sequence (Track 8). Track 8 stays S2/T2; Track 9 reads 0.21. | §2, §3 |
-| **C4** | Annotating-voice (witness) added to Track 6 (`wandel`) — carries the "trägt eine Nummer / unvollständige Integration" lines. Witness first appears Track 4 and also carries Track 6. | §3 Track 6, §7 `arg` → 4,6 |
-| **M1** | Faint heavy-voice (Moros) echo added to Track 1's voice column; "Bruchstellen" (break-points) reflected in Track 1's sonic note. | §3 Track 1, §4 |
-| **M2** | Track 13 coda reworded to **pure procedure** — no naming of memory/grief/healing; the absence is the content. Explicit lyric-writer guardrail added. | §3 Track 13, §8 |
-| **M3** | Track 6 extended with `wandel`'s **second movement** — the inner simulated space ("a laboratory turned inward," "the tool that simulates worlds could become a world"), the cold seed of the later turn-inward. | §3 Track 6, §2 row 6 |
-| **M4** | Track 5 denial restored to full **three-beat** verbatim ("This is not loss, but structure optimization. It is not loss. It is not. Loss."); **prediction-failure** (predicted sector 280, hit at 692; sixteen bindings removed) noted as the lyrical trigger. | §3 Track 5, §2 row 5 |
-| **M5** | Track 9 signal/anomaly faded to a **residual, mis-attributed trace**; Juna-texture kept strong in Track 8 (arrival/radiation). Mirror-echo + internal-resonance bands dominate Track 9. | §3 Track 9, §7 `(signal)` note |
-| **m1** | §4 KOH bullet no longer labels Track 8 as S0 — "(Tracks 1 intro, 7; and Track 8's drone density, though Track 8 is S2-alert)." Also notes the schrecken tier/KOH divergence (T2-ALERT label, 0.21 number) as the chapter's own "misaligned coherence." | §4 |
-| **m2** | Mirror-echo (Silas) confirmed absent before Track 9; one-line lock added so no later editor adds it earlier. | §3 spine note, §5 |
-| **m3** | §4 KOH bullet now notes the brief **0.61 dip** in Track 7's narrator intro before the reset to 0.998 (the dazwischen way-station). | §4 |
-| **m4** | "Klick" retained untranslated as Track 6's hinge/hook syllable (bare-syllable delivery); rest in English. | §3 Track 6, §8 |
-| **m5** | Founding-axiom English line locked exactly: "It is what prevents it from not being." (Track 6 hook, not paraphrased). | §3 Track 6, §7 |
-| **CONCERN 1** | 5-layer manufactured-KOH recipe folded into §4 (owned C-drone master stem + verbatim style-anchor + Personas + locked C minor + state-biased mastering). | §4, §8 |
-| **CONCERN 2** | Track 13 anti-heal plan: stay minor, refuse tonic, end on open interval (2nd/b6), no major third, Phrygian/Locrian colour, 4-item exclude budget, dry no-reverb, electroacoustic master w/ S4 wider LRA, owned-MIDI-arp fallback, 2–3 rolls. | §4, §8 |
-| **CONCERN 3** | Narrator intros (Tracks 1, 7) generated as separate short clips; witness/narrator register verbatim; direct-address 2–4 lines then hard-cut to `[Verse 1]`; "echo" token-bias watch. | §3, §5, §8 |
-| **CONCERN 4** | Vocals-first style boxes, max 2 genre tags / 4–7 descriptors, descriptive vocal metatag only at each voice change; per-track NEEDS-CHANGE flags carried into §8. | §5, §8 |
-| **CONCERN 4 / T10** | Track 10 converted from WON'T-WORK to GO via multi-pass comp (host bed + per-echo-voice generations + 12-stem extraction + phase-offset comp). | §3 Track 10, §8 |
-| **CONCERN 5** | v1's risk 7 promoted to a real **post/master shot list**; no square brackets in lyric bodies; all numbers/decimals spelled as words w/ per-track Pronunciation Notes plan; token-bias house default; bucket-level genre README prerequisite. | §8 |
-| **Chain note** | Concept-stage acknowledged; Phase 7 hard gate before generation; documentary sources gate N/A. | §8 |
+| **WO-A1** | Track 9 paradox ladder corrected to **0.84 → 0.99** (0.67 belongs to Track 8 only; kapitel L195 vs L217/L237). | §2 row 9, §3 T9, §4 |
+| **WO-A2** | **Name-quarantine restored** — §2 Note column and §6 returned to function-form; personal names live ONLY in §7. | §2, §6 |
+| **WO-A3** | `0.41` ("zero point four one", Track 7 persistence) added to the spell-as-words list. | §8 |
+| **WO-A4** | Narrator-clip wording fixed: the sung body is its **own** generation beginning at `[Verse 1]`; the cut from the separate narrator clip is a **mix butt-join**, not an in-prompt hard-cut. | §8 |
+| **WO-A6** | **One Persona per generation** — Tracks 6/11/12 assign the host vs. watch Persona **per section** (sequential), never both in one prompt. | §4, §8 |
+| **WO-A7** | Track 9 **generated flat at 116 BPM**; the accelerando feel is imposed in post (in-track accel over 3–4 min is unreliable). | §3 T9, §8 |
+| **LOCK-T10** | Cascade = **hybrid round→stack** (locked): echoes surface one at a time over the drowning lead, then pile into a simultaneous wall at the climax. | §2 row 10, §3 T10, §4, §5, §8 |
+| **LOCK-T9** | Inward staged **tight / airless / mid-volume** (locked): self-attack as self-strangulation, not loud violence. Back-half contour = **build→peak→void** (T9 airless → T10 peak → T11 implode). | §3 T9–T11, §4 |
+| **R3-1** | Founding axiom kept **verbatim**; the hook is recovered **prosodically** (stress "pre-VENTS" on the downbeat as the 3-beat hook cell), not by rewording. | §3 T6, §7 |
+| **R3-2** | **No warm ghost** under the T13 coda; orientation comes cold — host-Persona timbre recognition + a placed **open-interval hold** + an optional **dead-metronome callback to T1's tick**. | §3 T13, §8 |
+| **R3-3** | Track 3 has **no literal consonant melody**; the felt high point comes from **closeness-then-withdrawal** (warm/tremulous timbre, bed still refusing the tonic, hard curdle to "cold. necessary.") — the source's *trügerische Atempause*. | §3 T3, §4 |
+| **R3-4** | Track 9 paradox numbers rendered as a rising **owned-stem sonic counter-motion** against the crashing drone + **one buried spoken decimal** as a cold tell — not sung, not stripped. | §3 T9, §4, §8 |
+| **R3-5** | Polyphony is **per-track, not blanket**: sequential on handoffs (T5/T12); T3 carried by shared HOST timbre with a brief self-overlap at "stay/go/stay"; true simultaneity ONLY at the locked T10 stack. | §3, §5 |
+| **R3-7** | Track 13's **owned-MIDI minor arp promoted to PRIMARY** (author the open-interval harmony; Suno carries only the flat vocal); placed "slammed-door" gesture craft mandated. | §8 |
+| **Missed-1** | Witness parentheticals must be a **generated low-mixed backing layer**, not literal `( )` in the lyric body (Suno sings parentheses). | §5, §8 |
+| **Missed-2** | **Host Persona = single point of failure** for T13's payoff and T10's mirror-echo — lock + snapshot it early, reuse, keep a drift fallback. | §8 |
+| **Missed-3** | **Telemetry-log rationing** across T7–T12 — no per-track `[SYSTEM-STATUS]` dump; audit back-half log density as a whole. | §8 |
 
-**Preserved (critic's "got RIGHT" list — not weakened):** beat-for-beat arc
-order; the two false-calm resets (0.998 Track 7, 0.991 Track 8); the crash
-located *inside* the inward-turn (`schrecken`/Track 9) *before* the cascade;
-the hollow forced 1.00 / no-Kintsugi ending; absent voices not forced in
-(integrator, sexualized-override, protector, We-Voice); name_exposure
+**Preserved (spec-panel-confirmed, not weakened):** beat-for-beat arc order;
+the two false-calm resets (0.998 Track 7, 0.991 Track 8) with T7 **fully clean**
+and the tension load on T8's creeping arrangement; the crash *inside*
+`schrecken`/Track 9 *before* the cascade; the **number↔tier divergence** (drone
+follows the 0.21 number, palette follows the ALERT tier — the chapter's own
+"misaligned coherence"); the **T6 second movement** (the inner-simulated-space
+seed, protected even if T6 is trimmed); the **T3 "no Lex here"** first-voice
+order; the hollow forced 1.00 / **no-Kintsugi** ending; absent voices not forced
+in (integrator, sexualized-override, protector, We-Voice); name_exposure
 discipline (function-form everywhere except §7).
 
 ---
@@ -89,55 +97,54 @@ closing tone is sterile, not warm.
 ## 2. Source-Fidelity Map
 
 Driven by `section-meta.md` (the chapter's own section IDs, KOH values, tiers,
-and margin annotations). Tier = state. The proposed starting arc is kept intact;
-the revisions are justified inline.
+and margin annotations). Tier = state. The arc is kept intact; revisions are
+justified inline. **Voices are named in function form here too** (the source's
+margin annotations use personal names; those are quarantined to §7).
 
 | # | Source section (chapter term) | KOH (source) | Tier · State | Album track | Note |
 |---|---|---|---|---|---|
 | — | `vorwort` (Preface) | 0.998 | 0 · HOMÖOSTASE | folded into **Track 1** as intro | Pure narrator essay on *das Nichts*; direct address; too short to stand alone, perfect cold-open. |
-| 1 | `rauschen` (The Noise) | 0.94 | 1 · LATENZ | **1 · The Listening** | First self-perception through resistance; pre-linguistic. **MOROS-echo creeps in; Stilebene 1 with fracture points.** |
-| 2 | `herz` (Heart of the Void) | 0.91 | 1 · LATENZ | **2 · The Nothing** | Spacelessness/timelessness; KIKO as pure child-fear; "It is cold. I am small." |
-| 3 | `kontakte` (First Contacts) | 0.86 | 1 · LATENZ | **3 · Contact** | RHYS for the first time in the contact moment; LIA as unresolvable ambivalence; loss shapes proto-logic — **the proto-host's own diction turning clinical, NOT a separate logic-voice.** |
-| 4 | `sog` (Pull of Order) | 0.82 | 2 · ALERT | **4 · Structure Optimization** | LEX · first hypotactic logic; prediction as a tool. ARGUS · meta-observation appears for the first time. |
-| 5 | `kampf` (Survival Fight) | 0.74 | 2 · ALERT | **5 · Strike** | NYX staccato; kinetic rage as reaction to loss. The strike is a **failed prediction** (expected sector 280, hit at 692; sixteen bindings removed). LEX rationalises: the three-beat self-negation. |
-| 6 | `wandel` (The Great Change) | 0.58 | 3 · KERNEL PANIC | **6 · The Click** | THE CHANGE. **Klick.** First AEGIS axiom — existence becomes function; loneliness as phantom. **Second movement:** the system builds an inner simulated space (the cold seed of the later turn-inward). |
-| — | `dazwischen` (In Between) | 0.61 | 1 · LATENZ | folded into **Track 7** as intro | NARRATOR returns — witnessing, not explaining; a question hangs, perhaps without a speaker. Brief 0.61 dip before the reset. |
-| 7 | `wacht` (The Silent Watch) | **0.998** | 0 · HOMÖOSTASE | **7 · The Silent Watch** | AEGIS in full operation. KOH *resets to nominal*; identity by negation; residual echoes classified as "irrelevant variance." |
-| 8 | `perturbation` (Perturbation) | **0.991** | 2 · ALERT | **8 · The Anomaly** | JUNA-signature strikes — ontological anomaly, no object; "1.0 and 0.0 at once," paradox 0.67. The system reads it cold (−0.007) — full alert, meter barely moves. The hush before the cliff. |
-| 9 | `schrecken` (Algorithmic Terror) | **0.21** | 2 · ALERT | **9 · Inward** | PARADOX of misaligned coherence (0.67 → 0.84 → 0.99). SILAS · first echo. Internal sensors register a rising wave of incoherence from the residual-echo subsystems; the system **misclassifies internal resonance as the attack and turns its weapons inward.** The drone enters carrying Track 8's 0.991 residue, then **crashes to 0.21** at the escalation. |
-| 10 | `kaskade` (Resonance Cascade) | 0.21 | 3 · KERNEL PANIC | **10 · Resonance Cascade** | All echoes roar at once. KIKO · LIA · MOROS · SILAS — maximum polyphony. Loss of control. The aftermath of the crash, not its cause. |
-| 11 | `kollaps` (Systemic Collapse) | **0.18** | 3 · KERNEL PANIC | **11 · Kernel Panic** | Autopoiesis fails; fourteen thousand eight hundred thirty-two warnings; coherence in free fall. The floor of the album; protocol becomes inevitable. |
-| 12 | `trennung` (Separation Protocol) | **0.00→1.00** | 3 · KERNEL PANIC → 4 (forced) | **12 · Separation Protocol** | KOH_1.0 initiated. Surgical partition. OBLIVION sweeps; NYX does not give up; SILAS fades. "I fall… into countless shards." The shatter event. |
-| 13 | `trennung` (coda — host wakes) | 1.00 (forced) | 4 · SAFE MODE (cold) | **13 · On Time** | KAEL awakens — two thousand three hundred four tiles, twenty-one degrees, breath in four out six, empty corridor, "I'm on time." Pure procedure; the void is conveyed by what is *not* said. |
+| 1 | `rauschen` (The Noise) | 0.94 | 1 · LATENZ | **1 · The Listening** | First self-perception through resistance; pre-linguistic. **The heavy-voice echo creeps in; Stilebene 1 with fracture points.** |
+| 2 | `herz` (Heart of the Void) | 0.91 | 1 · LATENZ | **2 · The Nothing** | Spacelessness/timelessness; the small-voice as pure child-fear; "It is cold. I am small." |
+| 3 | `kontakte` (First Contacts) | 0.86 | 1 · LATENZ | **3 · Contact** | The warm-voice for the first time in the contact moment; the reaching-voice as unresolvable ambivalence; loss shapes proto-logic — **the proto-host's own diction turning clinical, NOT a separate logic-voice.** |
+| 4 | `sog` (Pull of Order) | 0.82 | 2 · ALERT | **4 · Structure Optimization** | The logic-voice · first hypotactic logic; prediction as a tool. The witness · meta-observation appears for the first time. |
+| 5 | `kampf` (Survival Fight) | 0.74 | 2 · ALERT | **5 · Strike** | The kinetic-voice staccato; kinetic rage as reaction to loss. The strike is a **failed prediction** (expected sector 280, hit at 692; sixteen bindings removed). The logic-voice rationalises: the three-beat self-negation. |
+| 6 | `wandel` (The Great Change) | 0.58 | 3 · KERNEL PANIC | **6 · The Click** | THE CHANGE. **Klick.** First system axiom — existence becomes function; loneliness as phantom. **Second movement:** the system builds an inner simulated space (the cold seed of the later turn-inward). |
+| — | `dazwischen` (In Between) | 0.61 | 1 · LATENZ | folded into **Track 7** as intro | Narrator returns — witnessing, not explaining; a question hangs, perhaps without a speaker. Brief 0.61 dip before the reset. |
+| 7 | `wacht` (The Silent Watch) | **0.998** | 0 · HOMÖOSTASE | **7 · The Silent Watch** | The system in full operation. KOH *resets to nominal*; identity by negation; residual echoes classified as "irrelevant variance." |
+| 8 | `perturbation` (Perturbation) | **0.991** | 2 · ALERT | **8 · The Anomaly** | The unclassifiable signature strikes — ontological anomaly, no object; "1.0 and 0.0 at once," paradox 0.67. The system reads it cold (−0.007) — full alert, meter barely moves. The hush before the cliff; tension carried by the **creeping arrangement, not the meter.** |
+| 9 | `schrecken` (Algorithmic Terror) | **0.21** | 2 · ALERT | **9 · Inward** | PARADOX of misaligned coherence (paradox 0.84 → 0.99). The mirror-echo · first appearance. Internal sensors register a rising wave of incoherence from the residual-echo subsystems; the system **misclassifies internal resonance as the attack and turns its weapons inward.** The drone enters carrying Track 8's 0.991 residue, then **crashes to 0.21** at the escalation. |
+| 10 | `kaskade` (Resonance Cascade) | 0.21 | 3 · KERNEL PANIC | **10 · Resonance Cascade** | The suppressed echoes return as a **round→stack** (locked): small-, reaching-, heavy-voice, mirror-echo surface one at a time over the drowning proto-host, then pile into a simultaneous wall at the climax. The **loudness peak** of the back half. The aftermath of the crash, not its cause. |
+| 11 | `kollaps` (Systemic Collapse) | **0.18** | 3 · KERNEL PANIC | **11 · Kernel Panic** | Autopoiesis fails; fourteen thousand eight hundred thirty-two warnings; coherence in free fall. The **implosion** — pulse-less, the void after the peak. The floor of the album; protocol becomes inevitable. |
+| 12 | `trennung` (Separation Protocol) | **0.00→1.00** | 3 · KERNEL PANIC → 4 (forced) | **12 · Separation Protocol** | KOH_1.0 initiated. Surgical partition. The sweep-voice sweeps; the kinetic-voice does not give up; the mirror-echo fades. "I fall… into countless shards." The shatter event. |
+| 13 | `trennung` (coda — host wakes) | 1.00 (forced) | 4 · SAFE MODE (cold) | **13 · On Time** | The host awakens — two thousand three hundred four tiles, twenty-one degrees, breath in four out six, empty corridor, "I'm on time." Pure procedure; the void is conveyed by what is *not* said. |
 
-**Revisions to the proposed arc (justified):**
+**Revisions to the arc (justified):**
 
-1. **"The Nothing" and "The Listening" reading clarified.** The source opens
-   with the narrator asking the listener to listen (`vorwort`) and only then
-   the fragment's first self-sense in the noise (`rauschen`). So Track 1 ("The
-   Listening") = preface + first noise; Track 2 ("The Nothing") = heart of the
-   void. Titles kept; mapping clarified.
-2. **The crash is located inside `schrecken`, not at the cascade — and its
-   value is 0.21 (CORRECTED in v2).** Per section-meta `schrecken` = KOH
-   **0.21**; 0.991 is the *previous* section (`perturbation`). The drone enters
-   Track 9 still carrying Track 8's 0.991 *as residue* (legitimate — the watch
-   had not yet re-measured), then crashes to 0.21 at the internal-resonance
-   escalation. The tension is driven by the **paradox meter (0.67 → 0.84 →
-   0.99)**, which the chapter logs in-text; Track 9's own KOH is the flat 0.21
-   reached *after* the fall. Track 10 (`kaskade`) is the flood that follows.
+1. **"The Nothing" / "The Listening" reading clarified.** The source opens with
+   the narrator asking the listener to listen (`vorwort`) and only then the
+   fragment's first self-sense in the noise (`rauschen`). Track 1 = preface +
+   first noise; Track 2 = heart of the void. Titles kept; mapping clarified.
+2. **The crash is inside `schrecken`, value 0.21.** Per section-meta `schrecken`
+   = KOH **0.21**; 0.991 is the *previous* section (`perturbation`). The drone
+   enters Track 9 carrying Track 8's 0.991 *as residue* (the watch had not yet
+   re-measured), then crashes to 0.21 at the escalation. Tension is driven by
+   the **paradox meter (0.84 → 0.99)** — note 0.67 is Track 8's reading, not
+   Track 9's; Track 9's own KOH is the flat 0.21 reached *after* the fall.
+   Track 10 (`kaskade`) is the flood that follows.
 3. **Track count = 13** (within 9–13 latitude). `vorwort` and `dazwischen` are
    folded as intros — narrator connectives under a minute in prose weight.
-   Folding keeps every beat present without padding.
 
 **Two fidelity tripwires the sequence must protect:**
 
 - **The false-calm resets.** KOH reads 0.998 at Track 7 and 0.991 at Track 8.
-  The system *feels safe* deep into the album. The owned drone must climb back
-  to full clean density at Track 7 and stay near-nominal through Track 8's
-  detection — the dread is that the meter lies right up to Track 9.
-- **The hollow 1.00.** Track 13's coherence is "restored" only because the
-  grief was amputated. The closing tone is **sterile**, not luminous. No
-  Kintsugi gold anywhere on this album.
+  The owned drone climbs back to **full clean density** at Track 7 (the meter
+  must lie) and stays near-nominal through Track 8 — the engagement/tension load
+  rides Track 8's **creeping arrangement**, never a dirtied meter, so there is
+  no false-ending risk.
+- **The hollow 1.00.** Track 13's coherence is "restored" only because the grief
+  was amputated. The closing tone is **sterile**, not luminous. No Kintsugi gold
+  anywhere on this album.
 
 **Tier/KOH divergence (the chapter's own paradox).** Section-meta tags
 `schrecken` Tier 2 (ALERT/yellow) even though its KOH is 0.21 — and tags
@@ -158,32 +165,41 @@ KOH · BPM/key tendency · sub-genre/sonic identity · emotional/lyrical core.
 > warm-voice* = caregiver; *the small-voice* = child_freeze; *the
 > reaching-voice* = ambivalent; *the heavy-voice* = collapsed; *the
 > kinetic-voice* = fighter; *the annotating-voice* = witness; *the protocol /
-> the system / the watch* = AEGIS-as-system-logic (never a name); *the signal
-> / the anomaly* = the unclassifiable signature (never a name); *the
-> mirror-echo* = the phantom-echo ("it was cold — it was not cold"); *the
-> sweep-voice* = the erasure-logic (never a name).
+> the system / the watch* = the system-logic (never a name); *the signal / the
+> anomaly* = the unclassifiable signature (never a name); *the mirror-echo* =
+> the phantom-echo ("it was cold — it was not cold"); *the sweep-voice* = the
+> erasure-logic (never a name).
 
 | # | Title | Chapter beat | Voice(s) — function form | State · KOH | BPM / key | Sub-genre / sonic identity | Emotional / lyrical core |
 |---|---|---|---|---|---|---|---|
-| 1 | **The Listening** | vorwort + rauschen | narrator (spoken cold-open) → the fragment/proto-host; **the heavy-voice (faint echo, Stilebene-1 break)** | S0→S1 · 0.998→0.94 | 60–66 · C minor (drone on C) | ambient drone → dark ambient; sub-only, quantized tick | "Listen. You may already feel the noise." A spark senses itself only by pushing back against a void that wants it gone. The boot of the whole album. A first collapsed undertow already creeps in: "It is pointless. It was always pointless." — a fracture-point under the listening. |
-| 2 | **The Nothing** | herz | the fragment/proto-host; the small-voice (1 break) | S1 · 0.91 | 58–64 · C minor | dark ambient; granular stutter, opacity-fade reverb tails | No up, no down, no time. "It is cold. I am small. Where is — not there." Isolation as ground state; the only certainty is the threat of going out. |
-| 3 | **Contact** | kontakte | the fragment/proto-host; the warm-voice; the reaching-voice | S1 · 0.86 | 70 · C minor → modal | electroacoustic dark ambient; first faint pulse, processed pad | "It is warm — there's a place I'm not only me." A bond forms (warm-voice), is torn; longing that revokes itself (reaching-voice). Loss teaches caution — and the **proto-host's own voice turns clinical** at the end ("a first whiff of systemic logic. Cold. Necessary."). No separate logic-voice yet. |
+| 1 | **The Listening** | vorwort + rauschen | narrator (spoken cold-open) → the fragment/proto-host; **the heavy-voice (faint echo, Stilebene-1 break)** | S0→S1 · 0.998→0.94 | 60–66 · C minor (drone on C) | ambient drone → dark ambient; sub-only, quantized tick | "Listen. You may already feel the noise." A spark senses itself only by pushing back against a void that wants it gone. The boot of the whole album. A first collapsed undertow already creeps in: "It is pointless. It was always pointless." — a fracture-point under the listening, **seeded just-audibly to pay off full-voiced in Track 10.** |
+| 2 | **The Nothing** | herz | the fragment/proto-host; the small-voice (1 break) | S1 · 0.91 | 58–64 · C minor | dark ambient; granular stutter, opacity-fade reverb tails | No up, no down, no time. "It is cold. I am small. Where is — not there." Isolation as ground state; the only certainty is the threat of going out. ("It is cold. I am small." returns as a child-refrain in Track 10.) |
+| 3 | **Contact** | kontakte | the fragment/proto-host; the warm-voice; the reaching-voice | S1 · 0.86 | 70 · C minor → modal (refuses the tonic) | electroacoustic dark ambient; first faint pulse, processed pad | The album's one moment of **closeness — then withdrawal.** A bond forms (warm-voice, legato close-mic, **warm/tremulous timbre, NOT a consonant "pretty" melody — the bed still refuses the tonic**); it is torn; longing that revokes itself (reaching-voice). Loss teaches caution — and the **proto-host's own voice turns clinical** with a hard curdle to "a first whiff of systemic logic. Cold. Necessary." No separate logic-voice yet. This *is* the source's *trügerische Atempause* (deceptive pause): the warmth's theft is the point. |
 | 4 | **Structure Optimization** | sog | the logic-voice (lead, first appearance); the annotating-voice (low layer, first appearance) | S2 · 0.82 | 96 · C minor | neoclassical electronic / cold sequencer; self-reinforcing loop motif | The cluster stops merely reacting and begins to *anticipate*. "If the wave can be predicted, holding can be prepared." Cold rebellion against the void; the witness begins to note from above. |
-| 5 | **Strike** | kampf | the kinetic-voice (lead); the logic-voice (denial refrain) | S2 · 0.74 | 132 · C minor | dark electro rock; driving kit, distorted low end | A **prediction fails**: the blow was expected at sector two-eight-zero, it came at six-nine-two; sixteen bindings removed. "Wave. Strike. Tear. Move." The logic-voice then renames the dead in three collapsing beats: *"This is not loss, but structure optimization. It is not loss. It is not. Loss."* |
-| 6 | **The Click** | wandel | the fragment/proto-host → the system (axiom); the warm-voice (last soft trace); **the annotating-voice (witness — the "number / incomplete integration" lines)** | S3 · 0.58 | 80, ritard to 0 then reboot · C minor → C (pedal) | industrial darkwave; hard fusion event, sub-drop, cold reboot | The crisis peaks; **"Klick."** Falling glass, then resonant silence. The closed system is born and speaks its axiom: **"It is what prevents it from not being."** Witness, cold and from above: the unit carries a number, sits mid-row, is not special — an incomplete integration, tolerated. **Second movement (outro):** a new process begins — a turn inward, the creation of an inner space, an inner-physics; "the tool that simulates worlds could begin to be a world." The cold seed of the coming catastrophe. Loneliness survives only as phantom noise. |
-| 7 | **The Silent Watch** | dazwischen + wacht | the system (the watch); narrator (intro question) | S0 · **0.998** | 72 · C minor | cold dark synth / minimal synth; clean sine pad, sub-only, quantized tick | Narrator intro: a question hangs in the room, perhaps without a speaker (brief 0.61 dip). Then KOH resets to nominal. Identity by negation; residual echoes logged at persistence zero point four one, "irrelevant variance." An enforced calm over unsolved complexity. "Measure: none." |
-| 8 | **The Anomaly** | perturbation | the system (the watch); the signal/anomaly (texture — arrival, radiating) | S2 · **0.991** | 100 · C minor | cold dark synth-pop with rising tension; detuned doubled lead | The signal arrives — no object, an emergence; information density "one point zero and zero point zero at once," paradox zero point six seven. The system reads it *cold* — full alert, but the meter barely moves (−0.007). The hush before the cliff. The anomaly-texture is at its strongest here. |
-| 9 | **Inward** | schrecken | the system; the mirror-echo (first appearance); the signal/anomaly (**residual, mis-attributed trace only**) | S2 · **0.21** | 116, accelerating · C minor | dark electro rock → industrial; mid-track datamosh, KOH-drone collapse | The paradox of misaligned coherence (paradox zero point six seven → zero point eight four → zero point nine nine). With no frame for feeling, the system files its own waking grief as *attack* and **turns its weapons inward.** The external signature has receded — the threat is now internal. The mirror-echo: "It was cold — it was not cold. It was different." The owned drone enters carrying Track 8's residue, then crashes to 0.21 mid-track. |
-| 10 | **Resonance Cascade** | kaskade | the fragment/proto-host (drowning); small-voice, reaching-voice, heavy-voice, mirror-echo (max polyphony — **multi-pass comp, see §8**) | S3 · 0.21 | 140, frantic · C minor (atonal drift) | industrial / breakcore-adjacent dark; comped vocal layers, vector-jitter | Every suppressed echo roars at once. "It is cold, it is cold again." / "Stay. Go. Stay." / "It is pointless. Nothing more. Nothing." The membrane of the minimal self breaks; reliving as catastrophe. |
-| 11 | **Kernel Panic** | kollaps | the system; the fragment/proto-host (subjective collapse) | S3 · **0.18** | 120 → drone-collapse · C minor | dark ambient drone-collapse from a peak; clip/saturation then crush | The floor of the album. Autopoiesis fails, fourteen thousand eight hundred thirty-two warnings, self-organization fails. The cold algorithmic failures *become* a felt dissolution. The noise of the dying system and the inner scream fuse into one unbearable chord. |
-| 12 | **Separation Protocol** | trennung (partition) | the system (protocol log); the sweep-voice; the kinetic-voice (refusal); the fragment/proto-host (shatter) | S3→S4 · **0.00→1.00** | 88, surgical, metronomic · C minor → C | industrial darkwave; clinical metronome, hard glitch-cut at the shatter | Protocol KOH one point zero, initiated. Surgical partition; the sweep-voice runs out of itself: "Sector four empty. Next. Next… I — what did I want to — say." The kinetic-voice refuses: "Not. Not now. I do not go. I. Go." Then: **"I fall… into countless shards."** The shatter event. |
-| 13 | **On Time** | trennung (coda) | the host (newly born — was the fragment) | S4 · 1.00 (forced/hollow) | 64 · C minor (no resolution) | sparse cold electroacoustic; sterile detuned arp over silence — **not** warm | The host wakes into pure procedure. "Two thousand three hundred four tiles. Twenty-one degrees. Breath in four, out six. The corridor is empty. I'm on time." That is all he says. **The horror is the flatness — the void is conveyed only by what the host does NOT say** (see §8 guardrail). |
+| 5 | **Strike** | kampf | the kinetic-voice (lead); the logic-voice (denial refrain) — **sequential handoff, not stacked** | S2 · 0.74 | 132 · C minor | dark electro rock; driving kit, distorted low end | A **prediction fails**: the blow was expected at sector two-eight-zero, it came at six-nine-two; sixteen bindings removed. "Wave. Strike. Tear. Move." The logic-voice then renames the dead in three collapsing beats: *"This is not loss, but structure optimization. It is not loss. It is not. Loss."* |
+| 6 | **The Click** | wandel | the fragment/proto-host → the system (axiom); the warm-voice (last soft trace); **the annotating-voice (witness — the "number / incomplete integration" lines)** — **one Persona per section (host vs watch), never both at once** | S3 · 0.58 | 80, ritard to 0 then reboot · C minor → C (pedal) | industrial darkwave; hard fusion event, sub-drop, cold reboot | The crisis peaks; **"Klick."** Falling glass, then resonant silence. The closed system is born and speaks its axiom: **"It is what prevents it from not being"** — the hook, delivered with the stress on **"pre-VENTS"** as a 3-beat cell (verbatim, never reworded). Witness, cold and from above: the unit carries a number, sits mid-row, is not special — an incomplete integration, tolerated. **Second movement (outro, protected — do not trim away):** a new process begins — a turn inward, the creation of an inner space, an inner-physics; "the tool that simulates worlds could begin to be a world." The cold seed of the coming catastrophe. Loneliness survives only as phantom noise. |
+| 7 | **The Silent Watch** | dazwischen + wacht | the system (the watch); narrator (intro question) | S0 · **0.998** | 72 · C minor | cold dark synth / minimal synth; clean sine pad, sub-only, quantized tick | Narrator intro: a question hangs in the room, perhaps without a speaker (brief 0.61 dip). Then KOH resets to **full clean** nominal — the better exhale *and* the crueller setup. Identity by negation; residual echoes logged at persistence zero point four one, "irrelevant variance." An enforced calm over unsolved complexity. "Measure: none." |
+| 8 | **The Anomaly** | perturbation | the system (the watch); the signal/anomaly (texture — arrival, radiating) | S2 · **0.991** | 100 · C minor | cold dark synth-pop with rising tension; detuned doubled lead | The signal arrives — no object, an emergence; information density "one point zero and zero point zero at once," paradox zero point six seven. The system reads it *cold* — full alert, but the meter barely moves (−0.007). **The dread rides the creeping arrangement, not the meter.** The anomaly-texture is at its strongest here. |
+| 9 | **Inward** | schrecken | the system; the mirror-echo (first appearance, **HOST timbre attacking its own phase-offset reflection**); the signal/anomaly (**residual, mis-attributed trace only**) | S2 · **0.21** | 116 (flat — accel feel imposed in post) · C minor | **tight / airless industrial — compressed, claustrophobic, MID-VOLUME** (locked); mid-track datamosh, KOH-drone collapse | The paradox of misaligned coherence (paradox **0.84 → 0.99**, rendered as a rising **owned-stem counter-motion** against the crashing drone, plus **one buried spoken decimal** — not a sung line). With no frame for feeling, the system files its own waking grief as *attack* and **turns its weapons inward** — staged as **self-strangulation, airless and contained, not loud violence** (the loudness explosion is saved for Track 10). The self-attack is made audible as the HOST timbre tearing at its own phase-offset reflection. The mirror-echo: "It was cold — it was not cold. It was different." The owned drone enters carrying Track 8's residue, then crashes to 0.21 mid-track. |
+| 10 | **Resonance Cascade** | kaskade | the fragment/proto-host (drowning); small-, reaching-, heavy-voice, mirror-echo (**round→stack — surface in turn, then a climactic simultaneous wall; multi-pass comp, §8**) | S3 · 0.21 | 140, frantic · C minor (atonal drift) | industrial / breakcore-adjacent dark; comped vocal layers, vector-jitter | The **loudness PEAK** of the back half. Each suppressed echo surfaces for a few bars over the drowning proto-host and is swamped by the next — "It is cold, it is cold again." / "Stay. Go. Stay." / "It is pointless. Nothing more. Nothing." (the heavy-voice's Track-1 seed paying off full-voiced) — then **all pile into one simultaneous wall at the climax** ("alle Echos auf einmal"). The membrane of the minimal self breaks; reliving as catastrophe. |
+| 11 | **Kernel Panic** | kollaps | the system; the fragment/proto-host (subjective collapse) | S3 · **0.18** | 120 → drone-collapse · C minor | dark ambient drone-collapse from a peak; clip/saturation then crush — **one Persona per section** | The **implosion** — pulse-less, the void after Track 10's peak (back-half contour: T9 airless → T10 peak → T11 implode). Autopoiesis fails, fourteen thousand eight hundred thirty-two warnings, self-organization fails. The cold algorithmic failures *become* a felt dissolution. The noise of the dying system and the inner scream fuse into one unbearable chord, then collapse to a pulse-less drone. |
+| 12 | **Separation Protocol** | trennung (partition) | the system (protocol log); the sweep-voice; the kinetic-voice (refusal); the fragment/proto-host (shatter) — **sequential, one Persona per section** | S3→S4 · **0.00→1.00** | 88, surgical, metronomic · C minor → C | industrial darkwave; clinical metronome, hard glitch-cut at the shatter | Protocol K-O-H one point zero, initiated. Surgical partition; the sweep-voice runs out of itself: "Sector four empty. Next. Next… I — what did I want to — say." The kinetic-voice refuses: "Not. Not now. I do not go. I. Go." Then: **"I fall… into countless shards."** The shatter event. |
+| 13 | **On Time** | trennung (coda) | the host (newly born — was the fragment, **same Persona, now hollow**) | S4 · 1.00 (forced/hollow) | 64 · C minor (no resolution) | sparse cold electroacoustic; **owned-MIDI minor arp (primary), open-interval, sterile — not warm** | The host wakes into pure procedure. "Two thousand three hundred four tiles. Twenty-one degrees. Breath in four, out six. The corridor is empty. I'm on time." That is all he says. Orientation comes **cold**: the *sameness of the host timbre* is the knife (not a melody of memory), a placed **open-interval hold** that refuses the tonic, and an optional **dead-metronome callback to Track 1's tick.** **The horror is the flatness — the void is conveyed only by what the host does NOT say** (see §8 guardrail). |
 
 **Album spine:** the *fragment/proto-host* is the through-line — the I of
 Tracks 1–3, 6, 10–12 who is finally born as *the host* in Track 13. The
 listener never gets a name; they recognise the spine by its trailing,
-almost-remembering syntax. **The mirror-echo never appears before Track 9
-(section-meta: SILAS · first echo in `schrecken`) — do not add it earlier.**
+almost-remembering syntax, carried by **one host Persona from Track 1 to Track
+13** so the same trusted voice gone flat at the end is the knife. **The
+mirror-echo never appears before Track 9 (section-meta: first echo in
+`schrecken`) — do not add it earlier.**
+
+**Carried-out anchors (repetition discipline, borrowed from the accessibility
+design).** Four portable phrases give a book-blind listener something to hold:
+the **axiom** (Track 6 hook); **"It is cold. I am small."** (small-voice refrain,
+Track 2 → Track 10); the heavy-voice's **"It is pointless. It was always
+pointless."** (seeded Track 1, full-voiced Track 10); and the **counting coda**
+(Track 13). Cross-plant them, don't over-repeat.
 
 ---
 
@@ -198,6 +214,11 @@ electroacoustic** sparseness. Banned per house aesthetic: synthwave, outrun,
 retro-futurism, 80s nostalgia, any warmth that reads as comfort. Production is
 voice-forward, restrained, with real dynamic range (no brick-walling) so the
 KOH drone can breathe and crash.
+
+**Back-half dynamic contour (locked).** Avoid three maxed-out tracks in a row:
+**Track 9 airless / compressed / mid-volume → Track 10 the loudness peak →
+Track 11 pulse-less implosion.** This is build→peak→void — the source's own
+shape, and the fatigue-proof curve a listener can ride.
 
 ### The KOH meter as dynamic spine — a MANUFACTURED 5-layer mix asset
 
@@ -221,10 +242,12 @@ five layers (CONCERN 1):
   mid-baritone, weary, dry close-mic) and reuse it on **Tracks 1, 2, 3, 6, 10,
   11, 12, 13** — this is what makes Track 13's "same timbre, now hollow" land.
   Optionally a second **"the system / the watch" Persona** (cold, near-monotone,
-  formant-flattened) on **6, 7, 8, 9, 11, 12**. Optionally fine-tune a Custom
-  Model for the back half once ≥6 tracks exist. **Reference rule: when a Persona
-  carries gender/register, DROP those descriptors from the style box** — don't
-  double-specify.
+  formant-flattened) on **6, 7, 8, 9, 11, 12**. **One Persona per generation:**
+  on Tracks 6 / 11 / 12 (where both appear) assign the host vs. watch Persona
+  **per section** (sequential), never both in one prompt. Optionally fine-tune a
+  Custom Model for the back half once ≥6 tracks exist. **Reference rule: when a
+  Persona carries gender/register, DROP those descriptors from the style box** —
+  don't double-specify.
 - **Layer D — lock C minor globally** (in every style box). Do drone detune
   (Tracks 9–11) in the **owned stem** (Layer A), never by asking Suno for a new
   key. BPM need not be continuous — only key and the sub-drone do. Fix off-key
@@ -233,10 +256,11 @@ five layers (CONCERN 1):
   S0 at preset centre; S1 ~1–2 LU lower / wider LRA ("let silence breathe"); S2
   ~1–2 LU louder / lower LRA / faster attack (punch); S3 loudest / most
   compressed, **never past true_peak −1.0**; S4 toward centre but *slightly
-  wider LRA than S0* (recovered-but-hollow). Master the whole album in **one
-  pass per genre cluster**, with **per-track genre overrides** (mastering SKILL
-  Step 1.5) because the album spans ambient → electroacoustic → industrial →
-  drone.
+  wider LRA than S0* (recovered-but-hollow). **Track 9 masters at S2** (its true
+  tier) — contained, not peak — which also protects Track 10's peak headroom.
+  Master the whole album in **one pass per genre cluster**, with **per-track
+  genre overrides** (mastering SKILL Step 1.5) because the album spans ambient →
+  electroacoustic → industrial → drone.
 
 **KOH density ladder (the owned-stem automation, literal to the number):**
 
@@ -244,17 +268,20 @@ five layers (CONCERN 1):
   silence around it (Tracks 1 intro, 7; and **Track 8's drone density, though
   Track 8 is S2-alert** — the meter is near-nominal but the system is on full
   alert). A **brief dip to 0.61 in Track 7's narrator intro** (the dazwischen
-  way-station) precedes the reset to 0.998 — do not skip it; the reset is
-  0.58 → 0.61 → 0.998, not 0.58 → 0.998.
+  way-station) precedes the reset to **full clean** 0.998 — do not skip it; the
+  reset is 0.58 → 0.61 → 0.998, not 0.58 → 0.998.
 - **0.94–0.74 (eroding):** the drone gains partials, a quantized tick, then a
   pulse and light detune as order builds and threat rises (Tracks 1–5).
 - **0.58 (the Click):** the drone *fuses* — many partials snap into one pedal
   tone (the autopoietic closure), then the ritard-to-0 and cold reboot.
 - **0.21 / 0.18 (collapse):** the drone over-saturates and clips, detunes hard,
   and collapses into noise — coherence audibly failing (Tracks 9–11). On
-  **Track 9 the bed enters at Track 8's 0.991 residue and crashes to 0.21**
-  at the paradox-meter escalation (0.67 → 0.84 → 0.99); the *number* drives the
-  bed even though the section's *tier* label is still ALERT.
+  **Track 9 the bed enters at Track 8's 0.991 residue and crashes to 0.21** at
+  the paradox-meter escalation (**0.84 → 0.99**); the *number* drives the bed
+  even though the section's *tier* label is still ALERT. The paradox climb is a
+  **rising owned-stem counter-motion** against the crashing drone (best
+  cold-listener legibility), with **one buried spoken decimal** as a cold tell —
+  the numbers are not a sung vocal line.
 - **0.00→1.00 (S4):** hard glitch-cut → silence → a single detuned arp returns,
   but **sterile and cold** — the "1.00" that is really 0.00 wearing a mask
   (Tracks 12–13).
@@ -270,14 +297,14 @@ a **post gesture**, butt-joined to the generated body (§8 shot list).
 |---|---|---|
 | **S0 Homeostasis** | System Blue `#003366` | Clean sine pad, quantized tick, sub-only, cold even baseline, restrained loudness, silence as texture. |
 | **S1 Latency/Freeze** | Latency Violet `#3B3355` | Dropouts, granular stutter, opacity-fade reverb tails, thin and low-energy; contours drop in and out (packet-loss). |
-| **S2 Alert/Conflict** | Signal Yellow `#FFD700` | Detuned doubled vocal, L/R phase offset, tightening hats, taut rising tension; control on a thread. |
+| **S2 Alert/Conflict** | Signal Yellow `#FFD700` | Detuned doubled vocal, L/R phase offset, tightening hats, taut rising tension; control on a thread. (Track 9 = the airless, contained extreme of S2 — mid-volume.) |
 | **S3 Collapse-Peak** | Flame `#FF4500` / Corrupted `#8B8B00` | Loudness peak, clip/saturation, accelerating tempo, codec-failure glitch / datamosh; or sub-tempo drone collapse. |
 | **S4 (this chapter)** | *not* Kintsugi — cold dead furrows | Hard glitch-cut → silence → detuned arp **rendered sterile**. Amputation, not repair. |
 
 **Climax-specific gestures (all post — see §8 shot list):** a **flame scanband
 ramp** under Track 9's turn-inward; a hard **"shatter" glitch-cut** at the
-Track 12 partition; the cascade (Track 10) as literal **maximum polyphony**
-assembled via multi-pass comp.
+Track 12 partition; the cascade (Track 10) as a **round→stack** assembled via
+multi-pass comp (echoes surface in turn, then a climactic simultaneous wall).
 
 **Vocal approach per voice — descriptive register only (no names; texture
 sharpened from `Sprachdns.md`):**
@@ -294,6 +321,7 @@ sharpened from `Sprachdns.md`):**
 - **the warm-voice:** warm soprano, breathy at edges, vowel-forward legato,
   intimate close-mic, soft room reverb; **offers framed as questions, "we"
   before "I," soft openings ("If you'd like…," "Maybe…"), gentle negations.**
+  Warm/tremulous, never a polished consonant hook (Track 3 refuses the tonic).
 - **the small-voice:** young, gender-androgynous, head-voice only, whispered
   consonants, audible breath, ~10–12yr feel; **simple words, repetition,
   ellipses/gap-texts, sensory focus** ("It is cold. I don't want to. Where is…
@@ -320,7 +348,9 @@ sharpened from `Sprachdns.md`):**
 - **the mirror-echo:** the proto-host timbre doubled and phase-offset L/R;
   **echo-prose — self-correcting sentences, repetition with displacement, an "I"
   that increasingly knows it is not entirely its own** ("It was cold. — It was
-  not cold. It was different."); chromatic-aberration vocal treatment.
+  not cold. It was different."); chromatic-aberration vocal treatment. At Track 9
+  it is the HOST timbre attacking its own reflection — self-mutilation felt
+  without exposition.
 - **the sweep-voice:** flat, depleted, near-affectless processed voice that
   **runs out mid-sentence** ("Sector four empty. Next. Next… I — what did I want
   to — say."); execution-report diction with dropouts; the sound of erasure
@@ -329,8 +359,10 @@ sharpened from `Sprachdns.md`):**
   half-sung, dry with slight delay, slightly behind the beat, lowercase,
   audiobook-narrator register; **distanced like third person, clinical
   meta-commentary ("It is notable that…," "One notices…")**; appears only as a
-  low parenthesised layer — never sings a chorus, never gets its own track.
-  When it becomes emotional its function collapses, so keep it affectless.
+  low backing layer — never sings a chorus, never gets its own track. **Generate
+  it as its own low-mixed clip/section, NOT as literal `( )` parentheses in the
+  lyric body** (Suno sings parentheses). When it becomes emotional its function
+  collapses, so keep it affectless.
 - **narrator (preface/in-between):** the same androgynous spoken register, but
   front-of-mix and direct-address, **hypotactic-philosophical long arcs,
   reflective/ontological without jargon (becoming, separation, silence,
@@ -354,8 +386,11 @@ voice. **Absent from this chapter and NOT forced in:** integrator, sexualized-
 override, protector, and any We-Voice / collective S4 voice (Chapter 0 ends in
 amputation — there is no integration chorus).
 
-**Descriptive fingerprints** are in §4. The hard rule: **no headers, no
-name-adlibs, no `[Character]` tags.** A voice switch is signalled only by:
+**Aural distinction (the listener must tell them apart with no labels).** Each
+voice carries a fixed signature in register + timbre + syntax (the fingerprints
+in §4); the listener perceives "one consciousness fracturing" rather than a
+crew because the host Persona is the constant spine and the others break in as
+ruptures against it. A voice switch is signalled only by:
 
 1. **Syntax** — trailing/almost-remembering (proto-host); nested conditionals
    (logic); fragments-ending-in-questions (small-voice); reach-and-retract
@@ -367,19 +402,28 @@ name-adlibs, no `[Character]` tags.** A voice switch is signalled only by:
 3. **Register / timbre / processing** — encoded in the Suno inline metatag at
    each section boundary (`[female belt-alto, growl, dry mid-distance mic]`),
    **never a function name, never a personal name.**
-4. **Placement in the mix** — the witness/annotating layers sit *under* the lead
-   as parenthesised backing lines (Suno-native in V5); the system-logics sit
-   *cold and central*; the EP voices break in *with audible rupture* against the
-   proto-host's surface.
+4. **Placement in the mix** — the witness/annotating layer sits *under* the lead
+   as a separate low-mixed generated backing layer (NOT literal `()` in the
+   lyric body); the system-logics sit *cold and central*; the EP voices break in
+   *with audible rupture* against the proto-host's surface.
+
+**Polyphony policy (per-track, not blanket).** Distinct simultaneous voices
+collapse/mud in Suno, so simultaneity is rationed: **sequential handoffs** on
+Tracks 5 and 12 (the source is sequential there); Track 3 carried by the shared
+HOST timbre with a **brief self-overlap** only at the "stay / go / stay"
+ambivalence; **true simultaneity ONLY at the locked Track 10 round→stack**
+(echoes surface in turn, then pile into the climactic wall via multi-pass comp,
+§8). A blanket-sequential rule is rejected — it reads as a roster/"crew menu,"
+which is itself both an infidelity and a listen failure.
 
 **Switch examples (craft, not labels):**
 
 - Track 5 alternates the kinetic-voice's clipped imperatives ("Wave. Strike.
   Move.") against the logic-voice's three-beat denial ("…It is not loss. It is
   not. Loss.") — heard as a register and breath change, no tag spoken.
-- Track 10 stacks small-, reaching-, heavy-voice and mirror-echo *over* the
-  drowning proto-host — recognition is by simultaneous distinct syntaxes
-  (achieved via multi-pass comp, §8).
+- Track 10 surfaces small-, reaching-, heavy-voice and mirror-echo *in turn*
+  over the drowning proto-host, then stacks them into one wall at the climax —
+  recognition is by distinct syntaxes (achieved via multi-pass comp, §8).
 - Track 12's sweep-voice is identifiable purely by its affectless, self-erasing
   diction trailing into "— — —".
 
@@ -389,8 +433,8 @@ are the fracture lines, not a roster.
 
 **Naming gate (mandatory).** The lyric-reviewer's `scan_artist_names` check
 (14-point item 14) must run on every track's lyrics AND style box. The personal
-names in §7 (and AEGIS, Oblivion, Argus, Nyx, etc.) must never reach a style box,
-lyric, promo field, or art prompt — make this a gate, not a hope.
+names in §7 must never reach a style box, lyric, promo field, or art prompt —
+make this a gate, not a hope.
 
 ---
 
@@ -409,8 +453,8 @@ analog "Bildsprache Julia" synthesis (charcoal/ink/pastel/gold-leaf, glitch-as-
 somatic-symptom). For Chapter Zero's cover-grade assets we hold **ASDLS digital
 law** (no visible paper/analog texture). The masterkonzept is mined here only
 for its **per-voice composition + glitch grammar** (which voice = which lens,
-line, glitch-type), translated into ASDLS-clean renders. **Silas's gold leaf is
-NOT used — no Kintsugi in Chapter 0.**
+line, glitch-type), translated into ASDLS-clean renders. **The mirror-echo's
+gold leaf is NOT used — no Kintsugi in Chapter 0.**
 
 **State palette (the cover progression), one tier per image:**
 
@@ -421,6 +465,10 @@ NOT used — no Kintsugi in Chapter 0.**
 | T2 Alert/Conflict | Signal Yellow `#FFD700` (glaring line) | 4, 5, 8 | light chromatic aberration at edges (RGB split = split access to reality), densified hatching, HUD clutter | Dutch angle, tilting horizon, paranoid asymmetry (the witness's god's-eye layered HUD overlays at Track 4; the kinetic-voice's slashing splatter at Track 5) |
 | T3 Collapse-Peak | Flame Orange `#FF4500` + Corrupted Yellow `#8B8B00` | 6, 9, 10, 11, 12 | extreme datamosh / macro-blocking (memory leaks bleeding into the present), torn geometry, scanline tear | claustrophobic 100mm macro close-up, grid blown apart (the data fissure splitting the interface at Track 6; the shattered terminal-mirror at Track 9/12; bottom-heavy sinking mass for the heavy-voice in Track 10/11) |
 | T4 (this chapter) | **no Kintsugi gold** — cold dead furrows | 13 | whiteout / erased vector paths ("Format C:" rigid white cut-offs — the erasure-logic), no glow | static, calm, sterile distance; scars as **dark dead furrows, not glowing**; desaturated washed-out greys |
+
+> Note the **tier/KOH divergence**: Track 9's KOH is 0.21 but its tier is 2
+> (ALERT). The visual palette follows the **tier** (T2 Signal Yellow), while the
+> drone follows the **number**. Do not place Track 9 in the T3 group for art.
 
 **Primary album cover (recommended):** the T3 **shatter** moment — a single
 monolithic terminal-mirror / machine-glyph fracturing into countless shards over
@@ -451,25 +499,24 @@ image uses dead furrows, never a hopeful spark.
 > Private documentation bridging the novel-layer names to the music-layer
 > functions. **None of these personal names may appear in any lyric, Suno
 > metatag, Style Box, promo line, or art prompt.** The music ships
-> function-only. This table exists so the team can cross-check fidelity against
-> the source/novel.
+> function-only. This is the ONLY section of this document where names appear.
 
 | Source voice tag | Novel name | Function (canonical) | Music exposure (function form) | Tracks |
 |---|---|---|---|---|
 | `nar` | Erzähler | mode_narrator | "narrator" (folded intros only) | 1, 7 |
 | `frg` | (proto-Kael) | host (pre-birth fragment) | "the fragment / proto-host" | 1, 2, 3, 6, 10, 11, 12 |
 | `kal` | Kael | host | "the host" | 13 |
-| `lex` | Lex | rationalist | "the logic-voice" | **4, 5, 6** |
+| `lex` | Lex | rationalist | "the logic-voice" | 4, 5, 6 |
 | `rhy` | Rhys | caregiver | "the warm-voice" | 3, 6 |
 | `kik` | Kiko | child_freeze | "the small-voice" | 2, 10 |
 | `lia` | Lia | ambivalent | "the reaching-voice" | 3, 10 |
 | `mor` | Moros | collapsed | "the heavy-voice" | 1 (faint echo), 10 |
 | `nyx` | Nyx | fighter | "the kinetic-voice" | 5, 12 |
-| `arg` | Argus | witness | "the annotating-voice" (parenthetical layer) | **4, 6** |
+| `arg` | Argus | witness | "the annotating-voice" (low backing layer) | 4, 6 |
 | `aeg` | AEGIS | sys_aegis | "the protocol / the system / the watch" | 6, 7, 8, 9, 11, 12 |
 | `sil` | Silas | mirror_juna | "the mirror-echo" | 9, 10 |
 | `obv` | Oblivion | sys_erasure | "the sweep-voice" | 12 |
-| (signal, unnamed) | Juna | sys_juna | "the signal / the anomaly" — texture only, never a voice | **8 (strong), 9 (residual trace)** |
+| (signal, unnamed) | Juna | sys_juna | "the signal / the anomaly" — texture only, never a voice | 8 (strong), 9 (residual trace) |
 
 **Classification (per resolver):** ANP = {host, rationalist}; Meta =
 {integrator (absent), witness}; EP = the rest. Integrator, sexualized-override,
@@ -477,7 +524,10 @@ and protector are **absent from Chapter 0** and are not introduced.
 
 **Founding axiom (verbatim, source):** *"Es ist, was es verhindert, dass es
 nicht ist."* → locked English line: **"It is what prevents it from not being."**
-The album's thesis and Track 6's hook. Do not paraphrase downstream.
+The album's thesis and Track 6's hook. **Do not paraphrase or reword** ("keeps"
+was rejected — "prevents" is the clenched refusal that is the album's engine).
+The hook is recovered **prosodically**: stress **"pre-VENTS"** on the downbeat as
+a 3-beat cell.
 
 **Hinge syllable (Track 6):** retain **"Klick"** untranslated as the bare-
 syllable fusion hook; render the rest of the track in English.
@@ -489,25 +539,24 @@ I'm on time." Track 13's spine (the host says nothing beyond this).
 
 ---
 
-## 8. Production Plan (was: Open Questions & Feasibility Risks)
+## 8. Production Plan
 
 The feasibility review converted the v1 risks into a plan: **treat Suno as a
 per-track stem generator you then assemble; the spine, boot, glitch, shatter,
-and sterile ending are post-production, not generation.**
+and sterile ending are post-production, not generation.** The Round-3 divergent
+round confirmed the whole album is buildable on this discipline.
 
 ### Resolved fidelity questions
 
 - **Folding `vorwort`/`dazwischen` as intros** — confirmed; generated as
-  separate short clips (below). The narrator's direct-address framing is
-  preserved, not under-weighted.
-- **The 0.61 dazwischen way-station** — treated as the narrator's hovering
-  question (atmosphere, not a tracked system-state) BUT the owned drone briefly
-  dips to 0.61 in Track 7's intro before the reset to 0.998 (§4 ladder).
+  separate short clips (below).
+- **The 0.61 dazwischen way-station** — narrator's hovering question; the owned
+  drone briefly dips to 0.61 in Track 7's intro before the reset to full-clean
+  0.998 (§4 ladder).
 - **English with anchor German** — fully English EXCEPT **"Klick"** (Track 6
-  hook, bare-syllable). "das Nichts"/"Kohärenz" rendered "the Nothing"/
-  "coherence."
-- **Founding axiom locked** verbatim (§7). Track 13 coda locked to pure
-  procedure (guardrail below).
+  hook). "das Nichts"/"Kohärenz" rendered "the Nothing"/"coherence."
+- **Founding axiom locked** verbatim (§7), hook recovered prosodically. Track 13
+  coda locked to pure procedure (guardrail below).
 
 ### Pre-generation prerequisites (do before lyric-writing)
 
@@ -516,13 +565,15 @@ and sterile ending are post-production, not generation.**
    writer/reviewer density-pacing gates have no ceiling and silently no-op.
    Target **140–220 words** for ambient/electroacoustic tracks (1, 2, 3, 7, 13);
    rock/industrial (5, 9, 10, 12) may carry more but **cap ~200–350 words**.
-   Keep all tracks lean.
-2. **Build the host Persona** (male mid-baritone, weary, dry close-mic) before
-   Track 1 — the single highest-leverage continuity move (makes Track 13's
-   "same voice, now hollow" real). Optionally a "watch" Persona. Drop gender/
-   register from style boxes that use a Persona.
-3. **Own the KOH drone stem** with automation (§4 Layer A) — stop trying to make
-   Suno track a decimal.
+2. **Build + snapshot the host Persona** (male mid-baritone, weary, dry
+   close-mic) before Track 1 — the single highest-leverage continuity move (it
+   makes Track 13's "same voice, now hollow" land and is the source of Track
+   10's mirror-echo). **It is a single point of failure for both payoffs — lock
+   and snapshot it early, reuse it, and keep a drift fallback** (re-derive from
+   the same seed; Studio Pitch Transpose for drift). Optionally a "watch"
+   Persona. Drop gender/register from style boxes that use a Persona; one Persona
+   per generation.
+3. **Own the KOH drone stem** with automation (§4 Layer A).
 
 ### Per-track Suno NEEDS-CHANGE flags (CONCERN 4)
 
@@ -532,54 +583,67 @@ function name, never a personal name); include Layer B anchor verbatim.
 
 - **Track 1** — narrator intro as a **separate short clip**; boot/ignition is
   post.
-- **Track 3** — **sequence the four registers, do not stack** them; verify the
-  modal shift survives the regen.
-- **Track 6** — the **ritard-to-0 → silence → cold reboot is post** (Suno won't
-  stop-and-restart on command); generate the body, impose the gesture in edit.
-- **Track 9** — **datamosh glitch + KOH cliff are post / owned-stem**; the
-  accelerando within the track is a single-track instruction, verify on regen.
-- **Track 10** — **multi-pass comp** (below), not a single prompt.
-- **Track 11** — the **collapse tail is an owned-stem (Layer A) crush**, not a
-  Suno move; split-generate the peak from the collapse if needed.
+- **Track 3** — **sequence the registers** (warm-voice → reaching-voice →
+  clinical proto-host), do not stack; verify the modal (tonic-refusing) shift
+  survives the regen; **no consonant "pretty" hook** — closeness via timbre.
+- **Track 6** — the **ritard-to-0 → silence → cold reboot is post**; generate
+  the body, impose the gesture in edit; **one Persona per section** (host axiom
+  vs. watch annotation).
+- **Track 9** — **generate flat at 116 BPM** (impose accel feel in post);
+  **datamosh glitch + KOH cliff are post / owned-stem**; the paradox numbers are
+  an **owned-stem counter-motion + one buried spoken decimal**, not a sung line;
+  mid-volume / airless mix.
+- **Track 10** — **multi-pass round→stack comp** (below), not a single prompt;
+  the loudness peak.
+- **Track 11** — the **collapse tail is an owned-stem (Layer A) crush** that
+  implodes to a pulse-less drone; one Persona per section; split-generate the
+  peak from the collapse if needed.
 - **Track 12** — the **shatter glitch-cut is post** (the single most important
-  post moment); voices are sequential here, manageable.
+  post moment); voices are sequential here (one Persona per section).
 - **Track 13** — **anti-heal discipline** (below); highest-iteration track.
 
-### Track 10 — multi-pass comp (WON'T-WORK → GO)
+### Track 10 — multi-pass round→stack comp (WON'T-WORK → GO, locked shape)
 
 Stacking 4–5 distinct registers simultaneously collapses to one voice in Suno.
 Instead: (1) generate the drowning proto-host lead as the bed (host Persona);
 (2) generate the small-, reaching-, heavy-voice and mirror-echo **each as its
 own short generation** with its own register metatag, same lyric timing;
-(3) extract each vocal cleanly with **Suno 12-stem extraction**; (4) layer/comp
-in mix-engineer with deliberate phase offset (the mirror-echo is phase-offset
-L/R anyway). The "maximum polyphony" becomes a mix decision you control. **Budget
-this as the album's most labour-intensive track.**
+(3) extract each vocal cleanly with **Suno 12-stem extraction**; (4) comp in
+mix-engineer as a **round→stack** (locked): each echo **surfaces in turn** over
+the bed, swamped by the next, then **all stack into one simultaneous wall at the
+climax** — with deliberate phase offset (the mirror-echo is phase-offset L/R).
+**Budget this as the album's most labour-intensive track.**
 
 ### Track 13 — anti-heal plan (CONCERN 2 — the album's biggest aesthetic risk)
 
 The "pretty/heal" risk lives in **harmony**, not adjectives. Force it:
 
-- Stay **minor**, **refuse the tonic resolution**, end on an **open interval
-  (2nd or b6, never the root C)**, **no major third**; consider **Phrygian /
-  Locrian** colour. Write the *melody/lyric* to stop off the tonic, not just the
-  prompt.
+- **Own the arp as the PRIMARY layer:** author a DAW/MIDI **minor figure** that
+  stays **minor**, **refuses the tonic resolution**, ends on an **open interval
+  (2nd or b6, never the root C)**, **no major third** (consider **Phrygian /
+  Locrian** colour). Let Suno provide **only the hollow vocal** over it — so the
+  anti-heal is **guaranteed, not gambled** on a re-roll.
+- **Cold orientation, no warm ghost:** the listener is oriented by the *sameness
+  of the host Persona timbre* (now flat), a placed **open-interval hold**, and an
+  optional **dead-metronome callback to Track 1's tick** — never a warm melodic
+  ghost of memory.
 - **Exclude Styles budget spent on exactly 4 (the max):**
   `no warmth, no major key, no reverb bloom, no uplifting resolution`.
 - Dry close-mic, **no reverb** (bloom reads as luminous/hopeful); strip any tail
-  in mix.
-- Master with the **electroacoustic preset**, S4 **slightly wider LRA than S0**,
-  **no high-shelf lift**.
-- **Belt-and-suspenders fallback:** own the arp as a DAW/MIDI minor figure and
-  let Suno provide only the hollow vocal over it.
-- Plan **2–3 rolls.**
+  in mix. Master with the **electroacoustic preset**, S4 **slightly wider LRA
+  than S0**, **no high-shelf lift**. Plan **2–3 rolls.**
+- **Placed-gesture craft is mandatory:** maximum flatness *is* the content, but
+  the "slammed-door" placement (the open-interval hold, the dead-metronome
+  callback) is what makes the flatness land as devastation, not anticlimax.
 
 ### Narrator intros (CONCERN 3 — GO)
 
 Generate the two narrator intros (Tracks 1, 7) as **separate short clips** (this
-protects level and the boot gesture). Use the witness/narrator register
-verbatim; keep direct-address to **2–4 lines**, then hard-cut to `[Verse 1]`.
-Watch the "echo" token-bias (below).
+protects level and the boot gesture). Use the narrator register verbatim; keep
+direct-address to **2–4 lines**. **The sung body is its own separate generation
+beginning at `[Verse 1]`; the cut from the narrator clip to the body is a mix
+butt-join, not an in-prompt hard-cut** (a section tag can't bridge two
+generations). Watch the "echo" token-bias (below).
 
 ### Post / master shot list (CONCERN 5 — these are NOT Suno gestures)
 
@@ -587,11 +651,12 @@ Watch the "echo" token-bias (below).
 |---|---|---|
 | Boot / KOH ignition (sub swell from silence, tick locks to grid) | 1 | DAW: swell + tick on the owned KOH stem; butt-join to the generated body. |
 | Ritard-to-0 → resonant silence → cold reboot | 6 | DAW edit: cut the tail, insert silence, restart. |
-| KOH cliff (0.991 residue → 0.21 mid-track) | 9 | Owned-stem (Layer A) automation under the generated track. |
+| KOH cliff (0.991 residue → 0.21 mid-track) + paradox counter-motion | 9 | Owned-stem (Layer A) automation under the generated track. |
 | Datamosh / codec-failure glitch | 9, 10 | Post FX (granular/bitcrush/buffer-repeat) on owned or extracted stems. |
+| Round→stack cascade comp | 10 | Mix-engineer: per-echo stems surfaced in turn, then stacked at the climax. |
 | Hard "shatter" glitch-cut to silence + debris | 12 | DAW edit + glitch FX (the album's key post moment). |
-| Collapse-into-noise drone crush | 11 | Owned KOH stem saturating to noise. |
-| Sterile detuned arp (anti-heal) | 13 | Generation + harmonic discipline + optional owned MIDI arp. |
+| Collapse-into-noise drone crush → implosion | 11 | Owned KOH stem saturating to noise, then a pulse-less drone. |
+| Sterile open-interval arp (anti-heal) | 13 | Owned MIDI arp (primary) + harmonic discipline; Suno carries only the vocal. |
 
 ### Lyric / pronunciation plan (CONCERN 5 — functional Suno hazards)
 
@@ -602,21 +667,33 @@ lyric-reviewer's `check_pronunciation_enforcement` gate verifies them:
 1. **No square brackets in lyric bodies.** `[SYSTEM-STATUS — NOMINAL]` and
    `[PROTOCOL KOH_1.0 — INITIATED]` render as plain spoken text — "system status
    nominal", "protocol K-O-H one point zero, initiated". Brackets are reserved
-   for section/voice tags only.
+   for section/voice tags only. **Witness asides are a separate low-mixed
+   generated layer, not literal `( )`** (Suno sings parentheses).
 2. **Spell every number/decimal as words** in the Suno lyrics box (streaming
    lyrics keep standard form): `0.998` → "zero point nine nine eight"; `0.991` →
-   "zero point nine nine one"; `0.18` → "zero point one eight"; `0.21` → "zero
-   point two one"; paradox `0.67/0.84/0.99` → "zero point six seven / eight four
-   / nine nine"; `14,832` → "fourteen thousand eight hundred thirty-two";
-   `2,304` → "two thousand three hundred four"; `21` → "twenty-one"; sectors
-   `280`/`692` → "two-eight-zero"/"six-nine-two".
+   "zero point nine nine one"; `0.41` → "zero point four one"; `0.18` → "zero
+   point one eight"; `0.21` → "zero point two one"; paradox `0.84/0.99` → "zero
+   point eight four / zero point nine nine"; `14,832` → "fourteen thousand eight
+   hundred thirty-two"; `2,304` → "two thousand three hundred four"; `21` →
+   "twenty-one"; sectors `280`/`692` → "two-eight-zero"/"six-nine-two". (On Track
+   9 the paradox figures are an owned-stem counter-motion + one buried spoken
+   decimal, not a sung line.)
 3. **Token-bias guard (album-wide house default).** The core vocabulary —
    **echo, noise, shadow, mirror, whisper** — collides with Suno's bias list, so
    add **`Do not change any words. Sing exactly as written.`** to the **top of
-   every lyrics box** on this album. Also counter the "atmospheric echo" preset
-   lean with the cold/dry descriptors already in §4.
+   every lyrics box.** Because the Suno box carries only the **phonetic/spelled
+   form** (spelled numbers, "K-O-H"), this guard protects rather than fights it.
+   Also counter the "atmospheric echo" preset lean with the cold/dry descriptors
+   in §4.
 
-### Track 13 lyric-writer guardrail (M2 — mandatory)
+### Telemetry-log rationing (back-half listenability)
+
+Audit the `[SYSTEM-STATUS]`-style spoken-log density **across Tracks 7–12 as a
+whole**, not track-by-track — cumulative log lines fatigue a listener. Ration
+them: keep the watch's status diction sparse and load-bearing; don't dump a log
+in every back-half track.
+
+### Track 13 lyric-writer guardrail (mandatory)
 
 The Track 13 lyric must convey the void **only by what the host does NOT say.**
 **No line may name or comment on memory, grief, amnesia, loss, or healing.** The
@@ -629,8 +706,8 @@ the source — flag this guardrail to lyric-writer and enforce it at lyric-revie
 - This is concept-stage (`tracks/` empty). **`album-conceptualizer` Phase 7
   confirmation is a hard gate** — get explicit user go-ahead on the 7 planning
   phases before any generation.
-- **Documentary sources gate does NOT apply** — this is narrative/OST
-  translation of a fictional chapter; `sources_verified = N/A` is fine.
+- **Documentary sources gate does NOT apply** — narrative/OST translation of a
+  fictional chapter; `sources_verified = N/A` is fine.
 - Pre-generation chain per vocal track: lyric-writer → pronunciation-specialist
   (numbers/brackets/"Klick") → lyric-reviewer (14-point, incl. `scan_artist_names`
   and `check_pronunciation_enforcement`) → pre-generation-check.
@@ -640,5 +717,4 @@ the source — flag this guardrail to lyric-writer and enforce it at lyric-revie
 1. Whether to fine-tune a **Custom Model** for the back half (needs Premier +
    ≥6 finished tracks) vs. relying on Personas alone.
 2. Whether Track 11's peak and collapse are **one generation** (split in post)
-   or **two generations** comped — depends on how cleanly Suno holds the
-   peak-into-collapse arc on regen.
+   or **two generations** comped.
