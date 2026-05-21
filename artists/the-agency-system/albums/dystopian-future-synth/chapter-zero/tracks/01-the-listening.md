@@ -46,8 +46,8 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 ## Concept
 
 The album's cold open — the boot of the whole system from silence. A framing
-narrator delivers an **expanded spoken-word essay** (the full *Vorwort*
-cold-open, pure imagery, no philosopher names): *Nothing* is a word that resists
+narrator delivers a **spoken-word essay** (the *Vorwort* cold-open condensed to
+~10 lines of pure imagery, no philosopher names): *Nothing* is a word that resists
 the tongue, an abyss disguised as a concept — not the absence of light or matter
 but the absence of the possibility of existence; the fish that knows only the
 absence of water; the invitation to *imagine you are the spark*. Then the first
@@ -104,8 +104,8 @@ deafening noise bleeding into each other.
 Weary, breathy male mid-baritone, present-tense and under-articulated, sentences that trail off and don't punctuate; dry close-mic, no reverb, vocal intimate and up front. A buried, very-deep near-spoken bass murmur far under the bed. Ambient drone into dark ambient; glacial 60 BPM, C minor, a sustained drone on C; sub-bass foundation, a quantized sub-only tick, granular void textures, opacity-fade tails; profound negative space, cold and clinical, low-contrast dynamics; a slow-burn build from near-silence.
 ```
 
-> **Narrator intro — SEPARATE generation (DESIGN §8).** This is now an expanded
-> ~18-line spoken-word movement; generate it as its own clip (the drone can build
+> **Narrator intro — SEPARATE generation (DESIGN §8).** This is a ~10-line
+> spoken-word essay; generate it as its own clip (the drone can build
 > underneath), then butt-join it to the sung body in the DAW (a section tag
 > cannot bridge two generations). Intro Style Box:
 > ```
@@ -138,26 +138,16 @@ the comped sections, and the host Persona is held across every pass.
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-Do not change any words. Sing exactly as written.
-
 [Intro: spoken word, calm philosophical narrator, measured cadence, direct address, intimate dry close-mic, no music bed]
-There are words that resist the tongue,
-that crumble like dry ash before they take shape.
-Nothing is one of them — an abyss wearing the shape of a word.
-Not the absence of light, of matter, of space —
-the absence of the possibility of existence itself.
-You feel it already: we fail.
-The mind cannot hold an absolute absence;
-it fills the emptiness with negation, with the echo of what is.
-Some have called such emptiness a fullness that gives birth; but this is none of those — something else.
+Nothing is a word that resists the tongue — an abyss wearing the shape of a word.
+Not the absence of light, of matter, of space — the absence of the possibility of existence itself.
+The mind cannot hold an absolute absence; it fills the emptiness with negation, with the echo of what is.
 The fish cannot understand dryness, only the absence of water.
-We cannot think the Nothing.
-But a tiny fragment — a spark of structure fighting dissolution —
-maybe a spark like that can grant us a glimpse.
+And we cannot think the Nothing.
+But a tiny fragment — a spark of structure fighting dissolution — might grant us a glimpse.
 So imagine you are the spark:
-a tiny I, barely a pattern, adrift where silence and a deafening noise pass into each other.
-This story begins where our power to imagine ends.
-We can only go quiet now, and listen.
+a tiny I, barely a pattern, where silence and a deafening noise pass into each other.
+This story begins where our power to imagine ends. We can only go quiet now, and listen.
 Listen closely. You may already feel the noise.
 
 [Verse 1: male mid-baritone, weary, breathy, present tense, dry close-mic, no reverb]
@@ -195,23 +185,15 @@ You may already feel the noise.
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-There are words that resist the tongue
-That crumble like dry ash before they take shape
-Nothing is one of them an abyss wearing the shape of a word
-Not the absence of light of matter of space
-The absence of the possibility of existence itself
-You feel it already we fail
-The mind cannot hold an absolute absence
-It fills the emptiness with negation with the echo of what is
-Some have called such emptiness a fullness that gives birth but this is none of those something else
+Nothing is a word that resists the tongue an abyss wearing the shape of a word
+Not the absence of light of matter of space the absence of the possibility of existence itself
+The mind cannot hold an absolute absence it fills the emptiness with negation with the echo of what is
 The fish cannot understand dryness only the absence of water
-We cannot think the Nothing
-But a tiny fragment a spark of structure fighting dissolution
-Maybe a spark like that can grant us a glimpse
+And we cannot think the Nothing
+But a tiny fragment a spark of structure fighting dissolution might grant us a glimpse
 So imagine you are the spark
-A tiny I barely a pattern adrift where silence and a deafening noise pass into each other
-This story begins where our power to imagine ends
-We can only go quiet now and listen
+A tiny I barely a pattern where silence and a deafening noise pass into each other
+This story begins where our power to imagine ends we can only go quiet now and listen
 Listen closely you may already feel the noise
 
 I am this noise
@@ -241,13 +223,13 @@ You may already feel the noise
 
 ## Production Notes
 
-- **Narrator intro = separate generation.** The `[Intro]` is an **expanded ~18-line spoken-word essay movement** (the full *Vorwort* cold-open, pure imagery, no philosopher names) generated as its own clip over the building drone, then **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8, narrator cap lifted for T1).
+- **Narrator intro = separate generation.** The `[Intro]` is a **~10-line spoken-word essay** (the *Vorwort* cold-open condensed to pure imagery, no philosopher names) generated as its own clip over the building drone, then **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8).
 - **Boot / KOH ignition is a post gesture, not a Suno gesture.** The sub swell from silence and the tick locking to grid happen in the DAW on the owned KOH stem; butt-join to the generated body (DESIGN §8 shot list).
 - **The host Persona spine begins here.** Snapshot this vocal as the host Persona and reuse it across all 13 tracks (single point of failure — snapshot early, reuse, keep a drift fallback). The same trusted voice gone flat in Track 13 is the knife.
 - **Heavy-voice seed stays buried.** The `[Bridge]` collapse-undertow is faint, sub-low, almost under the drone — it pays off full-voiced in Track 10. Do not bring it forward.
 - **Lean by design.** ~130 words over ~8:00 is intentional: the length is atmospheric expanse, not lyric density. Do not pad word-count to "fill" the runtime (DESIGN §8 ceilings hold).
 <!-- SERVICE: suno -->
-- **Token-bias guard** is the first line of the Lyrics Box ("Do not change any words. Sing exactly as written.") — "noise" collides with Suno's bias list. Counter the "atmospheric echo" preset lean with the cold/dry vocal descriptors in the Style Box.
+- **Token-bias protection (no in-lyrics guard).** Do NOT place a "sing exactly as written" sentence in the Lyrics Box — Suno sings it. Rely on V5's literal mode plus the cold/dry vocal descriptors in the Style Box to keep bias words ("noise", "echo") intact and counter the atmospheric-echo preset.
 - POV shift narrator (2nd-person address) → proto-host (1st-person) at the Intro→Verse boundary is intentional function-DNA, carried by syntax, never by a label.
 <!-- /SERVICE: suno -->
 
@@ -263,8 +245,9 @@ You may already feel the noise
 
 *No phonetic substitutions required: homograph scan is clean ("refuse" reworded to
 "resist", closer to the source "sich sträuben"); no numbers, acronyms, or proper
-nouns. Token-bias words ("noise", "echo") are protected by the guard line at the
-top of the Lyrics Box (see Production Notes), not by phonetic substitution.*
+nouns. Token-bias words ("noise", "echo") are protected by V5's literal mode and
+the cold/dry Style Box descriptors (see Production Notes) — not by an in-lyrics
+guard line (Suno would sing it) or a phonetic substitution.*
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
@@ -296,15 +279,15 @@ annihilating *Nichts* pressing inward. Per DESIGN §6 the album assigns **Track 
 art to Tier 0** (one tier per image): ≤2% System Blue over ≥98% Terminal Black /
 Deep Charcoal, no glitch (Tier 0 integrity), razor-sharp orthographic stillness.
 
-**SPECD prompt (ASDLS §7.1 skeleton):**
+**Art prompt (DALL-E / generic, square 1:1, 3000×3000 min):**
 
 ```
-a single infinitesimal cold point of status-light, a minimal spark of structure, alone dead-centre in a vast seamless black interior, the void pressing inward :: Tier 0 Homeostasis — ~2% System Blue #003366 faint status light over 98% Terminal Black #0B0D17 and Deep Charcoal #1A1D24, no glitch, razor-sharp flawless vectors :: the perfect windowless cube, centred frontal orthographic projection, crushing negative space, extreme stillness, the point tiny and far :: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope / medical-imaging fidelity, absolute desaturation, profound silence :: --no 1980s retro, synthwave, outrun, purple-orange gradient, neon grid, daylight, sun, natural elements, cute, soft lighting, watercolor, analog painting, visible paper texture, lens flare, organic curves --style raw --ar 1:1
+Create a square image of a single, almost-infinitesimal cold point of blue status-light — a minimal spark of structure — suspended dead-centre in a vast, seamless, crushing black void, like the interior of a perfect windowless cube, the emptiness pressing inward on the tiny point. Style: interface brutalism and clinical dystopian digital art — high-contrast dark mode, synthetic digital materiality, the fidelity of electron-microscope or medical imaging, absolute desaturation, razor-sharp flawless vectors, no glitches or distortion. Mood: profound silence, extreme stillness. Color: almost entirely deep terminal black and dark charcoal (hex #0B0D17 and #1A1D24), with only a tiny faint accent of cold system blue (hex #003366, about two percent of the frame) as the single status-light point. Composition: centred, frontal, orthographic, crushing negative space, the point tiny and far. Avoid daylight, sun, any natural or organic elements, retro or synthwave styling, soft lighting, lens flare, and any paper or analog texture.
 ```
 
-*Square 1:1 for cover/track art (3000×3000 min); ASDLS editorial default is
-`--ar 4:5`. name_exposure: role language only — no personal names. Law of
-exclusion: no Flame Orange / no Kintsugi in Chapter 0.*
+*Derived from the ASDLS §7.1 SPECD skeleton, rendered DALL-E/generic per user
+preference. name_exposure: role language only — no personal names. Tier 0 only
+(one tier per image); no Flame Orange / no Kintsugi in Chapter 0.*
 
 ## Generation Log
 

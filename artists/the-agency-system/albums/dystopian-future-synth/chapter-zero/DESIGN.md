@@ -745,13 +745,13 @@ The "pretty/heal" risk lives in **harmony**, not adjectives. Force it:
 
 Generate the two narrator intros (Tracks 1, 7) as **separate clips** (this
 protects level and the boot gesture). Use the narrator register verbatim. **Cap
-lifted for Track 1 (user decision):** T1's narrator is an **expanded spoken-word
-essay movement (~16–18 lines)** — the full *Vorwort* cold-open rendered as pure
-imagery (no philosopher names), the drone building underneath. **Track 7's
-narrator stays brief (2–4 lines)** — the hanging question, not an essay. **The
-sung body is its own separate generation beginning at `[Verse 1]`; the cut from
-the narrator clip to the body is a mix butt-join, not an in-prompt hard-cut** (a
-section tag can't bridge two generations). Watch the "echo" token-bias (below).
+lifted for Track 1 (user decision):** T1's narrator is a **~10-line spoken-word
+essay** — the *Vorwort* cold-open condensed to pure imagery (no philosopher
+names), the drone building underneath. **Track 7's narrator stays brief (2–4
+lines)** — the hanging question, not an essay. **The sung body is its own
+separate generation beginning at `[Verse 1]`; the cut from the narrator clip to
+the body is a mix butt-join, not an in-prompt hard-cut** (a section tag can't
+bridge two generations). Watch the "echo" token-bias (below).
 
 ### Post / master shot list (CONCERN 5 — these are NOT Suno gestures)
 
@@ -786,13 +786,14 @@ lyric-reviewer's `check_pronunciation_enforcement` gate verifies them:
    "twenty-one"; sectors `280`/`692` → "two-eight-zero"/"six-nine-two". (On Track
    9 the paradox figures are an owned-stem counter-motion + one buried spoken
    decimal, not a sung line.)
-3. **Token-bias guard (album-wide house default).** The core vocabulary —
-   **echo, noise, shadow, mirror, whisper** — collides with Suno's bias list, so
-   add **`Do not change any words. Sing exactly as written.`** to the **top of
-   every lyrics box.** Because the Suno box carries only the **phonetic/spelled
-   form** (spelled numbers, "K-O-H"), this guard protects rather than fights it.
-   Also counter the "atmospheric echo" preset lean with the cold/dry descriptors
-   in §4.
+3. **Token-bias protection (album-wide house default).** The core vocabulary —
+   **echo, noise, shadow, mirror, whisper** — collides with Suno's bias list.
+   **Do NOT add a "sing exactly as written" sentence to the lyrics box** — Suno
+   sings everything in that box literally, so the instruction would be vocalised.
+   Instead rely on **V5's literal mode** (it follows the written words) plus the
+   **cold/dry vocal + production descriptors in the Style Box** to keep the bias
+   words intact and counter the "atmospheric echo" preset lean (§4). The Suno box
+   still carries only the **phonetic/spelled form** (spelled numbers, "K-O-H").
 
 ### Telemetry-log rationing (back-half listenability)
 
