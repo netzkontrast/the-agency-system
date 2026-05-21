@@ -259,6 +259,39 @@ citing a different commit / repo), audit them before using the skills
 that load them — obsolete project DNA will silently steer skills toward
 the wrong aesthetic.
 
+## Arbeit an the Agency System (Musik / Novel / Design)
+
+**the Agency System** is a single DID-system concept expressed across three
+layers — music, a novel, and a visual design language — that share one cast
+and one world. When work starts (or continues) on this artist/project, invoke
+the gate skill **`skills/theagencysystem/`** *before* the bitwize chain (or a
+novel writing phase) so the right DNA is in context.
+
+- **Gate first.** The skill asks "Artist/Projekt = the Agency System?" — on
+  *No* it exits silently and loads nothing. On *Yes* it loads only the snippets
+  the active `(function × state × layer)` needs. Do not bulk-read the snippet
+  tree.
+- **One cast, keyed by function.** Design + Music reference voices by
+  **function/role**; the Novel references them by **name**. The bidirectional
+  name↔function map lives in
+  [`skills/theagencysystem/references/resolver.yaml`](skills/theagencysystem/references/resolver.yaml).
+  Classification (CONFIRMED): ANP = {host, rationalist}; Meta = {integrator
+  (ISH), witness}; the remaining seven are EP.
+- **The 2D matrix.** `(function × state)` → 1-line essence + exact pointers:
+  [`skills/theagencysystem/references/matrix-index.yaml`](skills/theagencysystem/references/matrix-index.yaml).
+  The S0–S4 state axis is
+  [`skills/theagencysystem/references/state-axis.md`](skills/theagencysystem/references/state-axis.md).
+- **name_exposure (hard rule).** In **music** and **design** outputs use
+  function/role only — a personal name (Kael, Nyx, Selene, …) must never reach
+  a lyric, Suno metatag, promo field, or art prompt. Only the **novel** layer
+  may use names. This extends `overrides/voice-craft-principles.md`.
+- **Where DNA attaches to bitwize.**
+  [`skills/theagencysystem/references/bitwize-attachment.md`](skills/theagencysystem/references/bitwize-attachment.md)
+  routes each bitwize skill's own phase/field to the refs it should load.
+- **Source overrides** (cross-project DNA the snippets were distilled from):
+  `overrides/visual-language-guide.md`, `overrides/image-style-spec.md`,
+  `overrides/kohaerenz-protokoll-sprach-dna.md`, `overrides/the-eleven.md`.
+
 ## Workflow patterns to remember
 
 ### Session-start audit (fresh session, especially after switching projects)

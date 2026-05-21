@@ -1,0 +1,154 @@
+# Resolver — single source of truth for the the-agency-system cast.
+# Canonical key = function/archetype. Names are layer aliases.
+# Design + Music reference by function/role; Novel references by name.
+version: 1
+
+# Which name may surface in which layer (privacy by design).
+name_exposure_default:
+  novel: name        # the alter NAME may appear
+  music: function    # function/role only — NEVER the personal name
+  design: function   # function/role only — NEVER the personal name
+
+# Structural-dissociation classes (CONFIRMED).
+# ANP = apparently-normal parts; EP = emotional parts; Meta = meta-cognitive.
+classes:
+  ANP: [host, rationalist]
+  EP:  [protector, caregiver, fighter, child_freeze, ambivalent, sexualized_override, collapsed]
+  Meta: [integrator, witness]      # integrator carries the ISH role
+
+# ---- Core 11 (all three layers) -------------------------------------------
+functions:
+  host:
+    class: ANP
+    novel_name: Kael
+    the_eleven: The Container (Host)
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/host.md
+  rationalist:
+    class: ANP
+    novel_name: Lex
+    the_eleven: The Rationalist
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/rationalist.md
+  protector:
+    class: EP
+    novel_name: Alex
+    the_eleven: The Protector
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/protector.md
+  caregiver:
+    class: EP
+    novel_name: Rhys
+    the_eleven: The Caregiver
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/caregiver.md
+  integrator:
+    class: Meta
+    subtype: ISH
+    novel_name: Selene
+    the_eleven: The Integrator (ISH)
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/integrator.md
+  fighter:
+    class: EP
+    novel_name: Nyx
+    the_eleven: The Fighter
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/fighter.md
+  child_freeze:
+    class: EP
+    novel_name: Kiko
+    the_eleven: The Child-Freeze
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/child-freeze.md
+  ambivalent:
+    class: EP
+    novel_name: Lia
+    the_eleven: The Ambivalent
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/ambivalent.md
+  sexualized_override:
+    class: EP
+    novel_name: Isabelle
+    the_eleven: The Sexualized-Override
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/sexualized-override.md
+  collapsed:
+    class: EP
+    novel_name: Moros
+    the_eleven: The Collapsed One
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/collapsed.md
+  witness:
+    class: Meta
+    novel_name: Argus
+    the_eleven: Witness-of-Witnesses
+    tier: core
+    layers: [music, novel, design]
+    entity: entities/witness.md
+
+# ---- Mirrors (visual + novel only; echoes of a system voice) --------------
+mirrors:
+  mirror_juna:
+    novel_name: Silas
+    mirrors: sys_juna
+    tier: mirror
+    layers: [novel, design]
+    entity: entities/_ext/silas.md
+  mirror_aegis:
+    novel_name: Oblivion
+    mirrors: sys_aegis
+    tier: mirror
+    layers: [novel, design]
+    entity: entities/_ext/oblivion.md
+
+# ---- System voices (novel only) -------------------------------------------
+system:
+  sys_aegis:     { novel_name: AEGIS,       tier: system, layers: [novel], entity: entities/_ext/aegis.md }
+  sys_mnemosyne: { novel_name: Mnemosyne,   tier: system, layers: [novel], entity: entities/_ext/mnemosyne.md }
+  sys_erasure:   { novel_name: Erasure-Pol, tier: system, layers: [novel], entity: entities/_ext/erasure-pol.md }
+  sys_juna:      { novel_name: Juna,        tier: system, layers: [novel], entity: entities/_ext/juna.md }
+
+# ---- Narrative modes (novel; we-voice also surfaces in music at S4) -------
+modes:
+  mode_narrator: { novel_name: Erzähler,    tier: mode, layers: [novel],        entity: entities/_modes/narrator.md }
+  mode_we:       { novel_name: Wir-Stimme,  tier: mode, layers: [novel, music], entity: entities/_modes/we-voice.md }
+
+# ---- Blends (composite voices) --------------------------------------------
+blends:
+  ich_lassmich:
+    blend_of: [caregiver, protector]
+    note: lyric "Ich" in *Lass mich, lass mich atmen* — composite, function-exposed only
+    name_exposure: function
+
+# ---- Reverse lookup: name -> function (novel text -> matrix bridge) -------
+aliases:
+  Kael: host
+  Lex: rationalist
+  Alex: protector
+  Rhys: caregiver
+  Selene: integrator
+  Nyx: fighter
+  Kiko: child_freeze
+  Lia: ambivalent
+  Isabelle: sexualized_override
+  Moros: collapsed
+  Argus: witness
+  Silas: mirror_juna
+  Oblivion: mirror_aegis
+  AEGIS: sys_aegis
+  Mnemosyne: sys_mnemosyne
+  Erasure-Pol: sys_erasure
+  Juna: sys_juna
+  Erzähler: mode_narrator
+  Wir-Stimme: mode_we

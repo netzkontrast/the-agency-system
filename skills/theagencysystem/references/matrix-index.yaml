@@ -1,0 +1,75 @@
+# Matrix index — the 2D lookup (function × state) for all three layers.
+# Cell = short inline essence + the ONLY snippet pointers that cell needs.
+# Resolve names→functions via resolver.yaml (aliases) before lookup.
+version: 1
+
+defaults:
+  # Loaded once per session, regardless of cell:
+  always_load: [resolver.yaml, state-axis.md]
+  # Base pointers every cell implies (also listed explicitly per cell):
+  per_cell_base: ["entities/<function>.md", "states/<state>.md"]
+  # Layer overlays applied on top of a cell's pointers:
+  layer_overlays:
+    music:  [cross-cutting/hard-rules.md]                       # name_exposure guard (function-only)
+    design: [cross-cutting/hard-rules.md, cross-cutting/color-thermodynamics.md,
+             cross-cutting/glitch-typology.md, cross-cutting/semiotic-symbols.md,
+             cross-cutting/composition-rules.md, cross-cutting/specd-formula.md]
+    novel:  []                                                  # names allowed; no guard overlay
+
+# Only states where a function is meaningfully active are listed.
+# "(lead)" marks the function's home state.
+cells:
+  host:
+    S0: { inline: "Lead — flawless surface, faint System Blue calm.", pointers: [entities/host.md, states/s0.md] }
+    S1: { inline: "Pulled toward silence; the surface thins.",        pointers: [entities/host.md, states/s1.md] }
+    S3: { inline: "The seal breaks; collapse breaks through.",        pointers: [entities/host.md, states/s3.md, cross-cutting/collision-matrix.md] }
+  rationalist:
+    S0: { inline: "Lead — logical order, the dissecting grid holds.", pointers: [entities/rationalist.md, states/s0.md] }
+    S2: { inline: "Recalculates control; the grid hyperventilates.",  pointers: [entities/rationalist.md, states/s2.md, cross-cutting/collision-matrix.md] }
+    S3: { inline: "Cognitive core fails; instinct takes over.",       pointers: [entities/rationalist.md, states/s3.md, cross-cutting/collision-matrix.md] }
+  protector:
+    S0: { inline: "Quiet covering presence, body half-braced.",       pointers: [entities/protector.md, states/s0.md] }
+    S2: { inline: "Lead — vigilance fires, body braced for breach.",  pointers: [entities/protector.md, states/s2.md, cross-cutting/collision-matrix.md] }
+    S3: { inline: "Defenses overrun; the breach lands.",              pointers: [entities/protector.md, states/s3.md, cross-cutting/collision-matrix.md] }
+  caregiver:
+    S0: { inline: "Holds the relational tissue together.",            pointers: [entities/caregiver.md, states/s0.md] }
+    S2: { inline: "Terror near a heat she cannot soothe.",            pointers: [entities/caregiver.md, states/s2.md, cross-cutting/collision-matrix.md] }
+    S4: { inline: "Lead — warmth as true holding, not appeasement.",  pointers: [entities/caregiver.md, states/s4.md, entities/_modes/we-voice.md] }
+  integrator:
+    S0: { inline: "Holds the pre-trauma blueprint; gatekeeps.",       pointers: [entities/integrator.md, states/s0.md] }
+    S2: { inline: "EPs misread her buffering as control.",            pointers: [entities/integrator.md, states/s2.md, cross-cutting/collision-matrix.md] }
+    S4: { inline: "Lead — the bridge; Kintsugi Gold integration.",    pointers: [entities/integrator.md, states/s4.md, entities/_modes/we-voice.md] }
+  fighter:
+    S0: { inline: "A cold spot; rage held in reserve.",               pointers: [entities/fighter.md, states/s0.md] }
+    S2: { inline: "Lead — kinetic eruption tears the order open.",    pointers: [entities/fighter.md, states/s2.md, cross-cutting/collision-matrix.md] }
+    S3: { inline: "Burns through; debris shatters the field.",        pointers: [entities/fighter.md, states/s3.md, cross-cutting/collision-matrix.md] }
+  child_freeze:
+    S0: { inline: "Hidden in the best-sightline corner.",             pointers: [entities/child-freeze.md, states/s0.md] }
+    S1: { inline: "Lead — held breath, Latency Violet stillness.",    pointers: [entities/child-freeze.md, states/s1.md] }
+    S2: { inline: "Terrified even of protection aimed at her.",       pointers: [entities/child-freeze.md, states/s2.md, cross-cutting/collision-matrix.md] }
+  ambivalent:
+    S0: { inline: "Recognized only by the child-freeze.",             pointers: [entities/ambivalent.md, states/s0.md] }
+    S1: { inline: "Flickers between freeze and reach.",               pointers: [entities/ambivalent.md, states/s1.md] }
+    S2: { inline: "Longing provokes the override; spikes.",           pointers: [entities/ambivalent.md, states/s2.md, cross-cutting/collision-matrix.md] }
+  sexualized_override:
+    S0: { inline: "A mask of artificial control.",                    pointers: [entities/sexualized-override.md, states/s0.md] }
+    S2: { inline: "Preemptive control fires before contact.",         pointers: [entities/sexualized-override.md, states/s2.md, cross-cutting/collision-matrix.md] }
+    S4: { inline: "Vulnerability surfaces, reclaimed as power.",      pointers: [entities/sexualized-override.md, states/s4.md, entities/_modes/we-voice.md] }
+  collapsed:
+    S1: { inline: "Nervous system gave up; leaden weight.",           pointers: [entities/collapsed.md, states/s1.md] }
+    S3: { inline: "Lead at peak — carries the unbearable.",           pointers: [entities/collapsed.md, states/s3.md, cross-cutting/collision-matrix.md] }
+    S4: { inline: "What he carried begins to be held.",               pointers: [entities/collapsed.md, states/s4.md, entities/_modes/we-voice.md] }
+  witness:
+    S0: { inline: "Observes from a higher floor; finds the design error.", pointers: [entities/witness.md, states/s0.md] }
+    S2: { inline: "Names what each part hides; dread.",               pointers: [entities/witness.md, states/s2.md, cross-cutting/collision-matrix.md] }
+    S4: { inline: "Constructive critique; saw the integrator first.", pointers: [entities/witness.md, states/s4.md, entities/_modes/we-voice.md] }
+
+# Composite voices resolve to a blend, then load each member's active cell.
+blends:
+  ich_lassmich:
+    blend_of: [caregiver, protector]
+    pointers: [entities/caregiver.md, entities/protector.md, cross-cutting/hard-rules.md]
+
+# Novel-only entities (mirrors/system/modes) have no state grid — load by name
+# straight from resolver.yaml when the novel layer references them.
+novel_only: [mirror_juna, mirror_aegis, sys_aegis, sys_mnemosyne, sys_erasure, sys_juna, mode_narrator, mode_we]
