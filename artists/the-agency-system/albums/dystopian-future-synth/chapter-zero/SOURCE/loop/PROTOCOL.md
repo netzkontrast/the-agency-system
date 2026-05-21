@@ -26,7 +26,8 @@ CRITICS (Opus, parallel — one message, three agents)
    │        full critique → file · ≤300-word summary + VERDICT line → orchestrator
    ▼
 ARBITER (Sonnet, cheap)
-   │  merges the 3 critiques → one ranked, de-conflicted work-order
+   │  consolidates the agreed, non-conflicting fixes → one ranked work-order, AND
+   │  surfaces every cross-lens conflict (does NOT resolve it) → "Conflicts & Tensions"
    │  → SOURCE/loop<n>/arbiter.md
    ▼
 CONVERGENCE GATE (orchestrator)
@@ -45,15 +46,33 @@ CONVERGENCE GATE (orchestrator)
 **Convergence = ALL of:** fidelity `SHIP` & CRITICAL=0; feasibility `GO` &
 BLOCKERS=0; accessibility `STRONG|WORKABLE` & BLOCKERS=0.
 
-## Arbiter conflict-resolution precedence
+## Arbiter: surface conflicts, do NOT resolve them
 
-1. **Source truth wins fidelity facts** (`section-meta.md` → `kapitel-0.md`); non-negotiable.
-2. **Feasibility is a hard constraint** — a fix that can't be built in Suno is not a fix.
-3. **Accessibility may not betray the source or break feasibility.** When a
-   listenability ask tensions with fidelity/feasibility, choose the reconciliation
-   that keeps the source truth *and* is buildable.
-4. **name_exposure hard rule overrides everything** — function/role only in any
-   output field; personal names live solely in `DESIGN.md §7` and SOURCE files.
+The arbiter is a **synthesizer, not a judge.** Its job is to make the next
+Design pass *fully informed*, not to make decisions for it. Concretely:
+
+1. **Consolidate the agreed work.** Where the three critics align (or don't
+   touch each other), merge their fixes into ONE ranked, de-duplicated work-order
+   the Design agent can execute top-to-bottom.
+2. **Surface every cross-lens conflict — explain, don't decide.** Wherever two
+   lenses pull in different directions (e.g. accessibility wants the Track-10
+   cascade thinned for listenability while fidelity requires maximum polyphony),
+   write it up in a dedicated **"Conflicts & Tensions"** section: state each
+   lens's position *in its own terms*, the concrete stake/cost of each option,
+   and the realistic choices — then **hand the decision to the Design agent.**
+   Do not pick a winner. Do not bury the tradeoff. The Design needs to know this.
+3. **State the two hard constraints as fixed** (these are NOT conflicts to
+   debate, just boundaries every option must respect): **source truth** for
+   fidelity facts (`section-meta.md` → `kapitel-0.md`) and the **name_exposure**
+   hard rule (function/role only in any output field; names live solely in
+   `DESIGN.md §7` and SOURCE files). If a critic ask would breach either, the
+   arbiter flags it as out-of-bounds — but everything else is a genuine,
+   surfaced tradeoff for Design (and the user) to weigh.
+
+**Orchestrator routing:** the Design agent decides routine tensions with the
+arbiter's framing in hand; the orchestrator escalates *significant* or
+architectural conflicts to the user (via `AskUserQuestion`) before the next
+Design pass, rather than letting them be silently chosen.
 
 ## Model tiering (cost control)
 
