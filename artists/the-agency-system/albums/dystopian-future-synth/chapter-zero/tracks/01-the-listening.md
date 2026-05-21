@@ -141,34 +141,54 @@ the comped sections, and the host Persona is held across every pass.
 
 ```
 [Intro: spoken word, calm philosophical narrator, very slow and deliberate, pronounced emphatic enunciation, long pauses between lines, direct address, intimate dry close-mic, faint sub-drone bleeding in underneath]
-Nothing is a word that resists the tongue —
-an abyss wearing the shape of a word.
+[slow, hushed, deliberate]
+NOTHING … is a word that resists the tongue —
+[trailing, pause]
+an abyss … wearing the shape of a word.
 
+[measured, a touch louder]
 Not the absence of light, of matter, of space —
-the absence of the possibility of existence itself.
+[weighted, emphatic, slow]
+the absence of the POSSIBILITY of existence itself.
 
+[quieter, intimate]
 The mind cannot hold an absolute absence;
+[gentle]
 it fills the emptiness with negation,
-with the echo of what is.
+[fading, long pause after]
+with the echo of what is …
 
-The fish cannot understand dryness,
+[plain, tender]
+The fish cannot understand dryness …
+[soft, resigned]
 only the absence of water.
 
-And we cannot think the Nothing.
+[very slow, long pause after]
+And we cannot think … the NOTHING.
 
+[hushed]
 But a tiny fragment —
-a spark of structure fighting dissolution —
+[deliberate, building]
+a spark of structure … fighting dissolution —
+[soft]
 might grant us a glimpse.
 
-So imagine you are the spark:
-a tiny I, barely a pattern,
-where silence and a deafening noise pass into each other.
+[direct address, intimate]
+So imagine you are the SPARK:
+[softer, tender]
+a tiny I … barely a pattern,
+[hushed, trailing]
+where silence and a deafening NOISE … pass into each other.
 
-This story begins where our power to imagine ends.
-We can only go quiet now, and listen.
+[slow, weighted]
+This story begins … where our power to imagine ends.
+[very soft, slowing]
+We can only go quiet now … and listen.
 
-Listen closely.
-You may already feel the noise.
+[whispered, long pause before]
+LISTEN … closely.
+[barely voiced, fade out]
+You may already feel the noise …
 
 [Verse 1: male mid-baritone, weary, breathy, present tense, dry close-mic, no reverb]
 I am this noise.
@@ -244,6 +264,7 @@ You may already feel the noise
 ## Production Notes
 
 - **Narrator intro = separate generation.** The `[Intro]` is a **~10-line spoken-word essay** (the *Vorwort* cold-open condensed to pure imagery, no philosopher names) generated as its own clip over the building drone, then **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8).
+- **Narration delivery toolkit (narrator clip).** Three layers stack to drive a slow, *pointiert* spoken delivery: (1) **per-line metatags** — a bracketed delivery cue on its own line above each lyric line (`[slow, hushed]`, `[weighted, emphatic]`, `[whispered, long pause before]`, …); (2) **ellipsis pause-cues** (`…`) at breath points to force gaps; (3) **CAPS on the load-bearing word** for vocal stress (`NOTHING`, `POSSIBILITY`, `SPARK`, `NOISE`, `LISTEN`). Metatags sit on their own lines so V5 reads them as directions, not lyrics. **V5 caveats:** if a tag leaks into the vocal, thin the densest ones; if CAPS gets spelled-out or shouted, swap to `*asterisks*` or lowercase; the actual words stay verbatim. All three layers live in the **Suno Lyrics Box only** — the Streaming Lyrics stay clean (no tags, standard caps, no ellipses). Reusable pattern saved to `overrides/suno-preferences.md` → "Narration / Spoken-Word Delivery DNA".
 - **Boot / KOH ignition is a post gesture, not a Suno gesture.** The sub swell from silence and the tick locking to grid happen in the DAW on the owned KOH stem; butt-join to the generated body (DESIGN §8 shot list).
 - **The host Persona spine begins here.** Snapshot this vocal as the host Persona and reuse it across all 13 tracks (single point of failure — snapshot early, reuse, keep a drift fallback). The same trusted voice gone flat in Track 13 is the knife.
 - **Heavy-voice seed stays buried.** The `[Bridge]` collapse-undertow is faint, sub-low, almost under the drone — it pays off full-voiced in Track 10. Do not bring it forward.

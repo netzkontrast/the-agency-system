@@ -153,6 +153,46 @@ way to signal a voice change — the function stays nameless.
 
 ---
 
+## Narration / Spoken-Word Delivery DNA
+
+For framed spoken-word narration and philosophical voice-over (the preface /
+in-between narrator register above), drive a **slow, deliberate, *pointiert***
+delivery — each phrase weighted, generous pauses, the philosophy given room to
+land. Three layers stack in the Suno **Lyrics Box only**; the Streaming Lyrics
+stay clean (no tags, standard caps, no ellipses).
+
+**Style Box (delivery descriptors).** e.g.:
+`Spoken word, calm philosophical narrator, very slow and deliberate delivery, weighty measured cadence, each phrase pronounced and emphatic, generous pauses between sentences, direct address to the listener; very close dry mic`
+— then the bed: append `with a faint sustained sub-bass drone bleeding in underneath, low and distant` if a drone should carry under the clip, or `no music bed, profound silence around the voice` for bone-dry.
+
+**Lyrics-box layers:**
+
+1. **Per-line metatags** — a bracketed delivery cue on its **own line above**
+   each lyric line, so V5 reads it as a direction, not a lyric:
+   `[slow, hushed]`, `[measured]`, `[weighted, emphatic]`, `[gentle]`,
+   `[fading, long pause after]`, `[whispered, long pause before]`,
+   `[barely voiced, fade out]`.
+2. **Ellipsis pause-cues** (`…`) at breath points to force longer gaps.
+3. **CAPS on the single load-bearing word** of a line for vocal stress (at most
+   one per line — e.g. `NOTHING`, `POSSIBILITY`, `LISTEN`).
+
+**Worked micro-example:**
+```
+[slow, hushed, deliberate]
+NOTHING … is a word that resists the tongue —
+[trailing, pause]
+an abyss … wearing the shape of a word.
+```
+
+**Caveats (V5):** keep delivery vocabulary conventional (slow, hushed,
+whispered, soft, gentle, weighted, fading, pause) so tags aren't sung; if a tag
+leaks into the vocal, thin the densest ones; if CAPS gets spelled-out or
+shouted, swap to `*asterisks*` or lowercase. **The words never change** — these
+are pacing and stress cues only. name_exposure still applies: function/role
+language only, never a personal name.
+
+---
+
 ## Exclude Styles Defaults
 
 Most tracks land with these or similar exclusions; adjust per track:
