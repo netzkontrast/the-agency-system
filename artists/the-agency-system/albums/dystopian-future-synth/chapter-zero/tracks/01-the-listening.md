@@ -46,11 +46,14 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 ## Concept
 
 The album's cold open — the boot of the whole system from silence. A framing
-narrator delivers a **spoken-word essay** (the *Vorwort* cold-open condensed to
-~10 lines of pure imagery, no philosopher names): *Nothing* is a word that resists
-the tongue, an abyss disguised as a concept — not the absence of light or matter
-but the absence of the possibility of existence; the fish that knows only the
-absence of water; the invitation to *imagine you are the spark*. Then the first
+**androgynous narrator** delivers a **breathing, chunked spoken-word essay** (the
+*Vorwort* cold-open — no fixed line cap; broken into digestible philosophical
+beats with deliberate pauses and em-dashes so the heavy philosophy lands; no
+philosopher names): *Nothing* is a word that resists the tongue, an abyss
+disguised as a concept — not the absence of light or matter but the absence of
+the possibility of existence; the mind that fills emptiness with negation; the
+fish that knows only the absence of water; the invitation to *imagine you are
+the spark*. Then the first
 self-perception. A fragment — the
 proto-host — senses itself **only by pushing back** against a void that is not
 empty but a force that wants it gone: a spark holding against extinction, not
@@ -104,14 +107,18 @@ deafening noise bleeding into each other.
 Weary, breathy male mid-baritone, present-tense and under-articulated, sentences that trail off and don't punctuate; dry close-mic, no reverb, vocal intimate and up front. A buried, very-deep near-spoken bass murmur far under the bed. Ambient drone into dark ambient; glacial 60 BPM, C minor, a sustained drone on C; sub-bass foundation, a quantized sub-only tick, granular void textures, opacity-fade tails; profound negative space, cold and clinical, low-contrast dynamics; a slow-burn build from near-silence.
 ```
 
-> **Narrator intro — SEPARATE generation (DESIGN §8).** This is a ~10-line
-> spoken-word essay; generate it as its own clip (the drone can build
-> underneath), then butt-join it to the sung body in the DAW (a section tag
-> cannot bridge two generations). Intro Style Box:
+> **Narrator intro — SEPARATE generation (DESIGN §8).** This is a breathing,
+> chunked spoken-word essay (the *Vorwort* cold-open — no fixed line cap;
+> broken into digestible philosophical beats with deliberate pauses so the
+> heavy philosophy lands). Generate it as its own clip with the **drone
+> bleeding in** underneath, then butt-join it to the sung body in the DAW (a
+> section tag cannot bridge two generations). **Voice = androgynous spoken-word**
+> (DESIGN §4 narrator register) — distinct from the male host who enters at
+> Verse 1, so the frame/voice boundary stays crisp. Intro Style Box:
 > ```
-> Spoken word, calm and philosophical male narrator, measured cadence, direct address to the listener; very close dry mic, no music bed, profound silence around the voice.
+> Calm philosophical androgynous spoken-word narrator, measured unhurried cadence, direct address to the listener, long deliberate pauses between thoughts, crisp articulated consonants and clear diction so every word lands; very close dry intimate mic, front of mix, no singing. Dark ambient drone underneath — a faint sustained sub-bass drone on C, low and distant, cold and clinical, profound silence around the voice, no rhythm, no melody.
 > ```
-> Intro exclusions: `no singing, no music bed, no beat`
+> Intro exclusions: `no singing, no beat, no reverb wash`
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
@@ -138,17 +145,70 @@ the comped sections, and the host Persona is held across every pass.
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Intro: spoken word, calm philosophical narrator, measured cadence, direct address, intimate dry close-mic, no music bed]
-Nothing is a word that resists the tongue — an abyss wearing the shape of a word.
-Not the absence of light, of matter, of space — the absence of the possibility of existence itself.
-The mind cannot hold an absolute absence; it fills the emptiness with negation, with the echo of what is.
-The fish cannot understand dryness, only the absence of water.
+[Intro: androgynous spoken-word narrator, measured and unhurried, direct address, long deliberate pauses, crisp clear diction, very close dry mic, faint sub-drone underneath]
+Some words resist the tongue.
+They crumble like dry ash —
+the moment you try to give them shape.
+
+Nothing is such a word.
+An abyss — wearing the shape of a concept.
+
+Try it.
+Say it — think it —
+the absolute Nothing.
+Not the absence of light, of matter, of space.
+The absence of the possibility of existence itself.
+
+You feel it already.
+We fail.
+
+The mind cannot hold an absolute absence.
+It fills the emptiness with negation —
+with the echo of what is.
+Wherever we reach, something is already there —
+if only the shape of our own hand.
+
+But this is not that Nothing.
+Not a riddle. Not a paradox. Not a womb that gives birth.
+Something else —
+a hint of impossibility
+that stays when every word has failed.
+
+The fish cannot understand dryness.
+Only the absence of water.
 And we cannot think the Nothing.
-But a tiny fragment — a spark of structure fighting dissolution — might grant us a glimpse.
-So imagine you are the spark:
-a tiny I, barely a pattern, where silence and a deafening noise pass into each other.
-This story begins where our power to imagine ends. We can only go quiet now, and listen.
-Listen closely. You may already feel the noise.
+
+But a tiny fragment —
+a spark of structure, fighting dissolution —
+might grant us a glimpse.
+A glimpse at the border.
+The other side of the water.
+
+So let us try.
+Not by looking inward — that always fails at itself.
+But by imagining we are the spark.
+
+A tiny I — barely more than a pattern —
+adrift in a vastness at once endlessly old and forever new,
+where silence and a deafening noise
+pass into each other.
+
+This story begins
+where our power to imagine ends.
+
+Perhaps this is not the first time it begins.
+Perhaps what comes next has happened before —
+or something like it —
+or exactly like it —
+in a time too long ago to have been a time.
+
+We do not know.
+No one knows.
+We can only be quiet now —
+and listen.
+
+Listen closely.
+You may already feel the noise.
 
 [Verse 1: male mid-baritone, weary, breathy, present tense, dry close-mic, no reverb]
 I am this noise.
@@ -185,16 +245,69 @@ You may already feel the noise.
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Nothing is a word that resists the tongue an abyss wearing the shape of a word
-Not the absence of light of matter of space the absence of the possibility of existence itself
-The mind cannot hold an absolute absence it fills the emptiness with negation with the echo of what is
-The fish cannot understand dryness only the absence of water
+Some words resist the tongue
+They crumble like dry ash
+The moment you try to give them shape
+
+Nothing is such a word
+An abyss wearing the shape of a concept
+
+Try it
+Say it think it
+The absolute Nothing
+Not the absence of light of matter of space
+The absence of the possibility of existence itself
+
+You feel it already
+We fail
+
+The mind cannot hold an absolute absence
+It fills the emptiness with negation
+With the echo of what is
+Wherever we reach something is already there
+If only the shape of our own hand
+
+But this is not that Nothing
+Not a riddle not a paradox not a womb that gives birth
+Something else
+A hint of impossibility
+That stays when every word has failed
+
+The fish cannot understand dryness
+Only the absence of water
 And we cannot think the Nothing
-But a tiny fragment a spark of structure fighting dissolution might grant us a glimpse
-So imagine you are the spark
-A tiny I barely a pattern where silence and a deafening noise pass into each other
-This story begins where our power to imagine ends we can only go quiet now and listen
-Listen closely you may already feel the noise
+
+But a tiny fragment
+A spark of structure fighting dissolution
+Might grant us a glimpse
+A glimpse at the border
+The other side of the water
+
+So let us try
+Not by looking inward that always fails at itself
+But by imagining we are the spark
+
+A tiny I barely more than a pattern
+Adrift in a vastness at once endlessly old and forever new
+Where silence and a deafening noise
+Pass into each other
+
+This story begins
+Where our power to imagine ends
+
+Perhaps this is not the first time it begins
+Perhaps what comes next has happened before
+Or something like it
+Or exactly like it
+In a time too long ago to have been a time
+
+We do not know
+No one knows
+We can only be quiet now
+And listen
+
+Listen closely
+You may already feel the noise
 
 I am this noise
 Or the noise wants to swallow me
