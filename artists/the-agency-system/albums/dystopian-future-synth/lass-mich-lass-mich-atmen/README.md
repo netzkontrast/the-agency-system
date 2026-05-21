@@ -28,7 +28,7 @@ content_warning: "Album re-confronts childhood sexual abuse at album length. Tra
 | **Release position** | Album 4 of The Agency System's catalogue (after *Together We Confide*, *Moment der Klarheit*, *Systematic Agency*) |
 | **Genre** | [Dystopian Future Synth](/genres/dystopian-future-synth/README.md) — artist-coined umbrella; surface tags `darksynth` / `darkwave` / `post-punk` / `industrial` per `overrides/genre-dystopian-future-synth.md` |
 | **Tracks** | 13 (polyphonic suite, movement-not-track structure) |
-| **Status** | In Progress — album-conceptualizer Phase 7 complete (DESIGN.md v3.3 §14); 13 track-files scaffolded; ready for lyric-writer entry on T02 |
+| **Status** | In Progress — all 13 tracks lyrics-complete + Style-Box + pre-generation **ALL READY** (8/8 gates each, 2026-05-20); ready for Suno generation (T02 first per Phase 6) |
 | **Explicit** | provisional `false` (re-check per track) |
 | **Concept** | Sustained polyphonic authorship of the truth-confrontation from *Kern der Wahrheit*; 13 movements in which 8 canonical alters + Albtraum (carried by Sexualized-Override) hold the position without surrender, escape, fight-alone, or heroic resolution |
 
@@ -135,19 +135,19 @@ The yellow-protocol is mandatory: every track carries one historicized yellow im
 
 | # | Title | POV | Concept | Status |
 |---|-------|-----|---------|--------|
-| 01 | [Eingetreten](tracks/01-eingetreten.md) | Ich + (Child paren) | Continuity bridge from "Vor der Konfrontation"; somatic peak inherited; the album begins inside | Not Started |
-| 02 | [Lass mich, lass mich atmen](tracks/02-lass-mich-lass-mich-atmen.md) | Ich + (Child doubled refrain) | Title-track demand; pillow on the mouth in the dream; full industrial-metal stack | Not Started |
-| 03 | [Es war nie leer](tracks/03-es-war-nie-leer.md) | Ich + (Albtraum/Sexualized-Override) | Realization 1: the void was filled; Albtraum first quotes "All Is Lost" | Not Started |
-| 04 | [Nicht meine Fehler](tracks/04-nicht-meine-fehler.md) | Ich + (Schuld-Stimme abblätternd) | Realization 2: re-attribution; the guilt belongs to the abuser | Not Started |
-| 05 | [Fremde Gewalt](tracks/05-fremde-gewalt.md) | Ich + Albtraum/Sexualized-Override verbatim | Realization 3: naming the perpetrator-presence; alien EQ on the introject-voice | Not Started |
-| 06 | [Das Kissen (sie schläft)](tracks/06-das-kissen-sie-schlaeft.md) | Ambivalent lead | Sanctuary-mode of the pillow; Child-Freeze sleeps, not hand-held; her agency-track | Not Started |
-| 07 | [WARUM](tracks/07-warum.md) | Fighter + Child-Freeze | The WARUM scream sustained; album's peak by intensity; mix-required ⚠ CW | Not Started |
-| 08 | [Auch ich bin Eis](tracks/08-auch-ich-bin-eis.md) | Ich + (Collapsed One paren) | The Heute-Ich also freezes; Collapsed whispers surrender; Ich holds | Not Started |
-| 09 | [Don't Let It Stop](tracks/09-dont-let-it-stop.md) | Collapsed One lead, EN | Direct answer-track to "All Is Lost"; "set me free" uttered, not answered with surrender | Not Started |
-| 10 | [Raus?](tracks/10-raus.md) | Fighter + (Child paren), Ich silent | Escape-instinct; Ich withholds answer until T11 | Not Started |
-| 11 | [Durch. Fühlen.](tracks/11-durch-fuehlen.md) | Integrator lead, all voices | Album center; polyphonic peak; "durch! fühlen!" held by all simultaneously; mix-required | Not Started |
-| 12 | [Anerkannt, getrennt](tracks/12-anerkannt-getrennt.md) | Witness-of-Witnesses spoken-word | The separation; "Das war Missbrauch. Es geschah. Es ist vorbei." | Not Started |
-| 13 | [Ich bin hier / Das war](tracks/13-ich-bin-hier-das-war.md) | Ich alone (Child-Freeze present-tense once near end) | Closer; heartbeat callback to T01; "Ich bin hier. Das war." | Not Started |
+| 01 | [Eingetreten](tracks/01-eingetreten.md) | Ich + (Child paren) | Continuity bridge from "Vor der Konfrontation"; somatic peak inherited; the album begins inside | Pre-gen READY |
+| 02 | [Lass mich, lass mich atmen](tracks/02-lass-mich-lass-mich-atmen.md) | Ich + (Child doubled refrain) | Title-track demand; pillow on the mouth in the dream; full industrial-metal stack | Pre-gen READY |
+| 03 | [Es war nie leer](tracks/03-es-war-nie-leer.md) | Ich + (Albtraum/Sexualized-Override) | Realization 1: the void was filled; Albtraum first quotes "All Is Lost" | Pre-gen READY |
+| 04 | [Nicht meine Fehler](tracks/04-nicht-meine-fehler.md) | Ich + (Schuld-Stimme abblätternd) | Realization 2: re-attribution; the guilt belongs to the abuser | Pre-gen READY |
+| 05 | [Fremde Gewalt](tracks/05-fremde-gewalt.md) | Ich + Albtraum/Sexualized-Override verbatim | Realization 3: naming the perpetrator-presence; alien EQ on the introject-voice | Pre-gen READY |
+| 06 | [Das Kissen (sie schläft)](tracks/06-das-kissen-sie-schlaeft.md) | Ambivalent lead | Sanctuary-mode of the pillow; Child-Freeze sleeps, not hand-held; her agency-track | Pre-gen READY |
+| 07 | [WARUM](tracks/07-warum.md) | Fighter + Child-Freeze | The WARUM scream sustained; album's peak by intensity; mix-required ⚠ CW | Pre-gen READY (mix-required) |
+| 08 | [Auch ich bin Eis](tracks/08-auch-ich-bin-eis.md) | Ich + (Collapsed One paren) | The Heute-Ich also freezes; Collapsed whispers surrender; Ich holds | Pre-gen READY |
+| 09 | [Don't Let It Stop](tracks/09-dont-let-it-stop.md) | Collapsed One lead, EN | Direct answer-track to "All Is Lost"; "set me free" uttered, not answered with surrender | Pre-gen READY |
+| 10 | [Raus?](tracks/10-raus.md) | Fighter + (Child paren), Ich silent | Escape-instinct; Ich withholds answer until T11 | Pre-gen READY |
+| 11 | [Durch. Fühlen.](tracks/11-durch-fuehlen.md) | Integrator lead, all voices | Album center; polyphonic peak; "durch! fühlen!" held by all simultaneously; mix-required | Pre-gen READY (mix-required) |
+| 12 | [Anerkannt, getrennt](tracks/12-anerkannt-getrennt.md) | Witness-of-Witnesses spoken-word | The separation; "Das war Missbrauch. Es geschah. Es ist vorbei." | Pre-gen READY |
+| 13 | [Ich bin hier / Das war](tracks/13-ich-bin-hier-das-war.md) | Ich alone (Child-Freeze present-tense once near end) | Closer; heartbeat callback to T01; "Ich bin hier. Das war." | Pre-gen READY |
 
 ## Production Notes
 
