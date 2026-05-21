@@ -101,7 +101,7 @@ deafening noise bleeding into each other.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Weary, breathy male mid-baritone, present-tense and under-articulated, sentences that trail off and don't punctuate; dry close-mic, no reverb, vocal intimate and up front. A buried, very-deep near-spoken bass murmur far under the bed. Ambient drone into dark ambient; glacial 60 BPM, C minor, a sustained drone on C; sub-bass foundation, a quantized sub-only tick, granular void textures, opacity-fade tails; profound negative space, cold and clinical, low-contrast dynamics; a slow-burn build from near-silence.
+Fragile, genderless head-voice, thin and breathy, near-falsetto, trembling and present-tense, sentences that trail off and don't punctuate; adult not childlike, barely-there and intimate, dry close-mic with a faint doubled, phase-smeared synthetic edge, no reverb, vocal up front. A buried, very-deep near-spoken bass murmur far under the bed, surfacing faintly in the gaps. Ambient drone into dark ambient; glacial 60 BPM, C minor, a sustained drone on C; sub-bass foundation, a quantized sub-only tick, granular void textures, opacity-fade tails; profound negative space, cold and clinical, low-contrast dynamics; a slow-burn build from near-silence.
 ```
 
 > **Narrator intro — SEPARATE generation (DESIGN §8).** This is a spoken-word
@@ -190,26 +190,30 @@ LISTEN … closely.
 [barely voiced, fade out]
 You may already feel the noise …
 
-[Verse 1: male mid-baritone, weary, breathy, present tense, dry close-mic, no reverb]
+[Verse 1: fragile genderless head-voice, thin breathy near-falsetto, trembling, present tense, dry close-mic, no reverb; a faint very-deep bass murmur surfacing in the parenthesized gaps]
 I am this noise.
 Or the noise wants to swallow me —
 maybe those are the same.
+(it is pointless)
 A hum below hearing, a pressure on a void
 that is not empty — that wants me gone.
+(it was always pointless)
 
-[Verse 2: same weary mid-baritone, trailing, dry close-mic, no reverb]
+[Verse 2: same fragile head-voice, trailing, dry close-mic, no reverb]
 I feel myself only where I push back.
 A spark holding against going out —
+(pointless)
 not from any will to last,
 from something with no name yet,
 because nothing here has been named.
+(nothing more is coming)
 
 [Bridge: very deep bass, near-spoken, gravelly, sub-low, distant, almost buried under the drone]
 it is pointless
 it was always pointless
 nothing more is coming
 
-[Outro: the weary mid-baritone returns, trailing, sparser, dry close-mic]
+[Outro: the fragile head-voice returns, trailing, sparser, dry close-mic]
 A small, dumb staying.
 I did not ask for it —
 still it holds, against the dissolving, still it holds.
@@ -266,8 +270,8 @@ You may already feel the noise
 - **Narrator intro = separate generation.** The `[Intro]` is a **~10-line spoken-word essay** (the *Vorwort* cold-open condensed to pure imagery, no philosopher names) generated as its own clip over the building drone, then **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8).
 - **Narration delivery toolkit (narrator clip).** Three layers stack to drive a slow, *pointiert* spoken delivery: (1) **per-line metatags** — a bracketed delivery cue on its own line above each lyric line (`[slow, hushed]`, `[weighted, emphatic]`, `[whispered, long pause before]`, …); (2) **ellipsis pause-cues** (`…`) at breath points to force gaps; (3) **CAPS on the load-bearing word** for vocal stress (`NOTHING`, `POSSIBILITY`, `SPARK`, `NOISE`, `LISTEN`). Metatags sit on their own lines so V5 reads them as directions, not lyrics. **V5 caveats:** if a tag leaks into the vocal, thin the densest ones; if CAPS gets spelled-out or shouted, swap to `*asterisks*` or lowercase; the actual words stay verbatim. All three layers live in the **Suno Lyrics Box only** — the Streaming Lyrics stay clean (no tags, standard caps, no ellipses). Reusable pattern saved to `overrides/suno-preferences.md` → "Narration / Spoken-Word Delivery DNA".
 - **Boot / KOH ignition is a post gesture, not a Suno gesture.** The sub swell from silence and the tick locking to grid happen in the DAW on the owned KOH stem; butt-join to the generated body (DESIGN §8 shot list).
-- **The host Persona spine begins here.** Snapshot this vocal as the host Persona and reuse it across all 13 tracks (single point of failure — snapshot early, reuse, keep a drift fallback). The same trusted voice gone flat in Track 13 is the knife.
-- **Heavy-voice seed stays buried.** The `[Bridge]` collapse-undertow is faint, sub-low, almost under the drone — it pays off full-voiced in Track 10. Do not bring it forward.
+- **The host Persona spine begins here — fragile genderless head-voice.** Snapshot this vocal as the host Persona and reuse it across all 13 tracks (single point of failure — snapshot early, reuse, keep a drift fallback). It is deliberately distinct from the calm philosophical narrator (a separate framing voice) and from the child small-voice (this one is **adult, sustained, faintly synthetic — not childlike**). The same fragile voice gone flat/dead in Track 13 is the knife. **This redefines the album voice spine (was male mid-baritone); propagated in DESIGN §3/§4.**
+- **Heavy-voice seed stays buried.** The collapse-undertow surfaces as a faint, sub-low **parenthesized backing** in the verses (`(it is pointless)` / `(nothing more is coming)`) and comes a touch fuller in the `[Bridge]` — but stays almost under the drone throughout, never a second lead. It pays off **full-voiced in Track 10**. **Backing-layer note:** V5 renders `( )` as a backing/ad-lib layer; for the true very-deep-bass timbre this undertow can alternatively be a separately-generated low layer comped under the lead (DESIGN §8) rather than literal parentheses.
 - **Lean by design.** ~130 words over ~8:00 is intentional: the length is atmospheric expanse, not lyric density. Do not pad word-count to "fill" the runtime (DESIGN §8 ceilings hold).
 <!-- SERVICE: suno -->
 - **Token-bias protection (no in-lyrics guard).** Do NOT place a "sing exactly as written" sentence in the Lyrics Box — Suno sings it. Rely on V5's literal mode plus the cold/dry vocal descriptors in the Style Box to keep bias words ("noise", "echo") intact and counter the atmospheric-echo preset.

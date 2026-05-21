@@ -307,9 +307,14 @@ five layers (CONCERN 1):
   own beds sit over the owned drone without clashing:
   `sustained low C drone underpinning, sub-bass continuo, cold, no key change`.
   Keep it identical, verbatim, across all 13.
-- **Layer C — Personas for vocal continuity.** Build a **host Persona** (male
-  mid-baritone, weary, dry close-mic) and reuse it on **Tracks 1, 2, 3, 6, 10,
-  11, 12, 13** — this is what makes Track 13's "same timbre, now hollow" land.
+- **Layer C — Personas for vocal continuity.** Build a **host Persona**
+  (**fragile genderless head-voice** — thin, breathy, near-falsetto, trembling;
+  adult not childlike; dry close-mic with a faint doubled, phase-smeared
+  synthetic edge) and reuse it on **Tracks 1, 2, 3, 6, 10, 11, 12, 13** — this is
+  what makes Track 13's "same timbre, now hollow" land. **Distinct from** the
+  calm philosophical narrator (a separate framing voice) **and** the child
+  small-voice (the host is adult / sustained / faintly synthetic, never
+  childlike).
   Optionally a second **"the system / the watch" Persona** (cold, near-monotone,
   formant-flattened) on **6, 7, 8, 9, 11, 12**. **One Persona per generation:**
   on Tracks 6 / 11 / 12 (where both appear) assign the host vs. watch Persona
@@ -378,11 +383,13 @@ multi-pass comp (echoes surface in turn, then a climactic simultaneous wall).
 **Vocal approach per voice — descriptive register only (no names; texture
 sharpened from `Sprachdns.md`):**
 
-- **the fragment / proto-host:** male mid-baritone, weary, present-tense,
-  slightly under-articulated; dry close-mic, no reverb; sober/observing,
-  short-declarative with gaps where memory should be; trailing lines that don't
-  punctuate ("I must have —"). Becomes *the host* at Track 13, same Persona
-  timbre, now hollow and counting (counting-mania as a somatic tic).
+- **the fragment / proto-host:** **fragile, genderless head-voice** — thin and
+  breathy, near-falsetto, trembling, present-tense, slightly under-articulated;
+  adult not childlike; dry close-mic with a faint doubled, phase-smeared
+  synthetic edge, no reverb; sober/observing, short-declarative with gaps where
+  memory should be; trailing lines that don't punctuate ("I must have —").
+  Becomes *the host* at Track 13, same Persona timbre, now hollow and counting
+  (counting-mania as a somatic tic).
 - **the logic-voice:** clear tenor, sibilant precision, no vibrato, thin reverb
   tail; **hypotactic, nested, controlled** — long subordinate clauses, qualifiers
   ("in principle," "under the assumption of"), syllogism-energy; never swears,
@@ -673,10 +680,11 @@ owns these assets; here they are pointed at the long-form problem:
    writer/reviewer density-pacing gates have no ceiling and silently no-op.
    Target **140–220 words** for ambient/electroacoustic tracks (1, 2, 3, 7, 13);
    rock/industrial (5, 9, 10, 12) may carry more but **cap ~200–350 words**.
-2. **Build + snapshot the host Persona** (male mid-baritone, weary, dry
-   close-mic) before Track 1 — the single highest-leverage continuity move (it
-   makes Track 13's "same voice, now hollow" land and is the source of Track
-   10's mirror-echo). **It is a single point of failure for both payoffs — lock
+2. **Build + snapshot the host Persona** (**fragile genderless head-voice** —
+   thin/breathy/near-falsetto, trembling, adult not childlike, dry close-mic with
+   a faint doubled phase-smeared synthetic edge) before Track 1 — the single
+   highest-leverage continuity move (it makes Track 13's "same voice, now hollow"
+   land and is the source of Track 10's mirror-echo). **It is a single point of failure for both payoffs — lock
    and snapshot it early, reuse it, and keep a drift fallback** (re-derive from
    the same seed; Studio Pitch Transpose for drift). Optionally a "watch"
    Persona. Drop gender/register from style boxes that use a Persona; one Persona
