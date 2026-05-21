@@ -46,9 +46,12 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 ## Concept
 
 The album's cold open — the boot of the whole system from silence. A framing
-narrator (essayistic, philosophical, direct address) asks the listener to go
-quiet and listen: *Nothing* is a word that refuses the tongue, an abyss
-disguised as a concept. Then the first self-perception. A fragment — the
+narrator delivers an **expanded spoken-word essay** (the full *Vorwort*
+cold-open, pure imagery, no philosopher names): *Nothing* is a word that resists
+the tongue, an abyss disguised as a concept — not the absence of light or matter
+but the absence of the possibility of existence; the fish that knows only the
+absence of water; the invitation to *imagine you are the spark*. Then the first
+self-perception. A fragment — the
 proto-host — senses itself **only by pushing back** against a void that is not
 empty but a force that wants it gone: a spark holding against extinction, not
 from any will to last, but from resistance before it has a name. Beneath the
@@ -101,8 +104,9 @@ deafening noise bleeding into each other.
 Weary, breathy male mid-baritone, present-tense and under-articulated, sentences that trail off and don't punctuate; dry close-mic, no reverb, vocal intimate and up front. A buried, very-deep near-spoken bass murmur far under the bed. Ambient drone into dark ambient; glacial 60 BPM, C minor, a sustained drone on C; sub-bass foundation, a quantized sub-only tick, granular void textures, opacity-fade tails; profound negative space, cold and clinical, low-contrast dynamics; a slow-burn build from near-silence.
 ```
 
-> **Narrator intro — SEPARATE generation (DESIGN §8).** Generate this as its own
-> short clip, then butt-join it to the sung body in the DAW (a section tag
+> **Narrator intro — SEPARATE generation (DESIGN §8).** This is now an expanded
+> ~18-line spoken-word movement; generate it as its own clip (the drone can build
+> underneath), then butt-join it to the sung body in the DAW (a section tag
 > cannot bridge two generations). Intro Style Box:
 > ```
 > Spoken word, calm and philosophical male narrator, measured cadence, direct address to the listener; very close dry mic, no music bed, profound silence around the voice.
@@ -136,9 +140,23 @@ the comped sections, and the host Persona is held across every pass.
 ```
 Do not change any words. Sing exactly as written.
 
-[Intro: spoken word, calm philosophical narrator, intimate dry close-mic, no music bed]
-There are words that refuse the tongue.
+[Intro: spoken word, calm philosophical narrator, measured cadence, direct address, intimate dry close-mic, no music bed]
+There are words that resist the tongue,
+that crumble like dry ash before they take shape.
 Nothing is one of them — an abyss wearing the shape of a word.
+Not the absence of light, of matter, of space —
+the absence of the possibility of existence itself.
+You feel it already: we fail.
+The mind cannot hold an absolute absence;
+it fills the emptiness with negation, with the echo of what is.
+Some have called such emptiness a fullness that gives birth; but this is none of those — something else.
+The fish cannot understand dryness, only the absence of water.
+We cannot think the Nothing.
+But a tiny fragment — a spark of structure fighting dissolution —
+maybe a spark like that can grant us a glimpse.
+So imagine you are the spark:
+a tiny I, barely a pattern, adrift where silence and a deafening noise pass into each other.
+This story begins where our power to imagine ends.
 We can only go quiet now, and listen.
 Listen closely. You may already feel the noise.
 
@@ -177,8 +195,22 @@ You may already feel the noise.
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-There are words that refuse the tongue
+There are words that resist the tongue
+That crumble like dry ash before they take shape
 Nothing is one of them an abyss wearing the shape of a word
+Not the absence of light of matter of space
+The absence of the possibility of existence itself
+You feel it already we fail
+The mind cannot hold an absolute absence
+It fills the emptiness with negation with the echo of what is
+Some have called such emptiness a fullness that gives birth but this is none of those something else
+The fish cannot understand dryness only the absence of water
+We cannot think the Nothing
+But a tiny fragment a spark of structure fighting dissolution
+Maybe a spark like that can grant us a glimpse
+So imagine you are the spark
+A tiny I barely a pattern adrift where silence and a deafening noise pass into each other
+This story begins where our power to imagine ends
 We can only go quiet now and listen
 Listen closely you may already feel the noise
 
@@ -209,7 +241,7 @@ You may already feel the noise
 
 ## Production Notes
 
-- **Narrator intro = separate generation.** The `[Intro]` is generated as its own short clip (narrator register, 2–4 lines, direct address) and **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8).
+- **Narrator intro = separate generation.** The `[Intro]` is an **expanded ~18-line spoken-word essay movement** (the full *Vorwort* cold-open, pure imagery, no philosopher names) generated as its own clip over the building drone, then **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8, narrator cap lifted for T1).
 - **Boot / KOH ignition is a post gesture, not a Suno gesture.** The sub swell from silence and the tick locking to grid happen in the DAW on the owned KOH stem; butt-join to the generated body (DESIGN §8 shot list).
 - **The host Persona spine begins here.** Snapshot this vocal as the host Persona and reuse it across all 13 tracks (single point of failure — snapshot early, reuse, keep a drift fallback). The same trusted voice gone flat in Track 13 is the knife.
 - **Heavy-voice seed stays buried.** The `[Bridge]` collapse-undertow is faint, sub-low, almost under the drone — it pays off full-voiced in Track 10. Do not bring it forward.
@@ -227,9 +259,12 @@ You may already feel the noise
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| `Do not change any words. Sing exactly as written.` | keep verbatim at the TOP of the Lyrics Box | Token-bias guard (album-wide house default) |
-| noise | sing as written ("noise") | On Suno's token-bias list (echo / noise / shadow / mirror / whisper); guard line enforces the exact wording |
-| (no homographs) | — | Scanned: no live / lead / read / wind / tear / wound / bass / close present. No numbers, acronyms, or proper nouns in this track. |
+| — | — | — |
+
+*No phonetic substitutions required: homograph scan is clean ("refuse" reworded to
+"resist", closer to the source "sich sträuben"); no numbers, acronyms, or proper
+nouns. Token-bias words ("noise", "echo") are protected by the guard line at the
+top of the Lyrics Box (see Production Notes), not by phonetic substitution.*
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
@@ -238,7 +273,7 @@ You may already feel the noise
 
 - [x] **Proper nouns scanned**: None present
 - [x] **Foreign names**: None present
-- [x] **Homographs checked**: None present ("will to last" used in place of "will to live" to avoid the live/lyve ambiguity)
+- [x] **Homographs checked**: None remain — "refuse" reworded to "resist" (closer to source "sich sträuben"); "will to last" used in place of "will to live" to avoid live/lyve. MCP check_homographs: clean.
 - [x] **Acronyms**: None present
 - [x] **Numbers**: None present (T1 is pre-linguistic — the system speaks numbers later)
 - [x] **Tech terms**: None present

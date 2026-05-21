@@ -743,12 +743,15 @@ The "pretty/heal" risk lives in **harmony**, not adjectives. Force it:
 
 ### Narrator intros (CONCERN 3 — GO)
 
-Generate the two narrator intros (Tracks 1, 7) as **separate short clips** (this
-protects level and the boot gesture). Use the narrator register verbatim; keep
-direct-address to **2–4 lines**. **The sung body is its own separate generation
-beginning at `[Verse 1]`; the cut from the narrator clip to the body is a mix
-butt-join, not an in-prompt hard-cut** (a section tag can't bridge two
-generations). Watch the "echo" token-bias (below).
+Generate the two narrator intros (Tracks 1, 7) as **separate clips** (this
+protects level and the boot gesture). Use the narrator register verbatim. **Cap
+lifted for Track 1 (user decision):** T1's narrator is an **expanded spoken-word
+essay movement (~16–18 lines)** — the full *Vorwort* cold-open rendered as pure
+imagery (no philosopher names), the drone building underneath. **Track 7's
+narrator stays brief (2–4 lines)** — the hanging question, not an essay. **The
+sung body is its own separate generation beginning at `[Verse 1]`; the cut from
+the narrator clip to the body is a mix butt-join, not an in-prompt hard-cut** (a
+section tag can't bridge two generations). Watch the "echo" token-bias (below).
 
 ### Post / master shot list (CONCERN 5 — these are NOT Suno gestures)
 
