@@ -1,9 +1,16 @@
-# Chapter Zero — Album Concept & Design (v3)
+# Chapter Zero — Album Concept & Design (v4)
 
 > **Artist:** the Agency System · **Genre bucket:** dystopian-future-synth ·
-> **Language:** English · **Status:** Concept (v3 — divergent Round 3 mediated;
-> Round-2 work-order folded in; awaiting album-conceptualizer Phase 7
-> confirmation before any generation)
+> **Type:** Narrative concept album · **Title (locked):** "Chapter Zero" ·
+> **Tracks:** 13, **all vocal** (none instrumental) ·
+> **Long-form:** varied per section, total **70–100 min** (~85 min target;
+> tracks average ~5.5–7.5 min — the extra time is atmospheric/instrumental
+> expanse and breathing room, NOT higher lyric density; lyric word-counts stay
+> lean per §8) ·
+> **Language:** English · **Status:** Concept (v4 — final all-concerns
+> spec-panel passed 20/20, fix list closed; long-form + Narrative + all-vocal +
+> title locked; divergent Round 3 mediated; Round-2 work-order folded in;
+> awaiting album-conceptualizer Phase 7 confirmation before any generation)
 > **Source:** `SOURCE/kapitel-0.md` + `SOURCE/section-meta.md` (KOH/tier
 > ground truth) — "Kapitel 0 — Kohärenz Protokoll" (Coherence Protocol,
 > Chapter 0). Standalone. Direct 1:1 musical translation.
@@ -17,7 +24,33 @@ is archived under `SOURCE/loop1–3/`.
 
 ---
 
-## 0 · Revision log (v2 → v3)
+## 0 · Revision log
+
+### v3 → v4
+
+v4 closes the final all-concerns spec-panel (`SOURCE/loop4/final-spec-panel.md`,
+**20/20 consistency pass**) and folds in the newly-locked planning answers. v3
+was preserved verbatim except for these targeted additions:
+
+- **Planning locks** — Type = **Narrative concept album**; **all 13 tracks
+  vocal** (none instrumental); **Title = "Chapter Zero"**; **long-form duration
+  varied per section, total 70–100 min** (~85 min target; extra time is
+  atmospheric/instrumental expanse, not added lyrics). Folded into the header
+  block and §1.
+- **MUST-FIX — long-form assembly note added to §8.** 5–8 min tracks are
+  comped from multiple Suno generations (extend/continue or section-by-section),
+  never one pass; the owned KOH stem (Layer A) is the continuous spine stitched
+  across the comped sections; the host Persona is held across every
+  extend/continue pass; BPM/key stay locked (Layer D).
+- **NICE-TO-HAVE — per-track duration map** added to §3 (T1/T6/T11 earn the
+  expanse; T5/T8/T13 stay tight; minutes sum to the ~85 min middle).
+- **NICE-TO-HAVE — T6 BPM cross-ref** — the T6 BPM cell now points to the
+  ritard-to-0→reboot post gesture (§8), so "80, ritard to 0 then reboot" is not
+  read as a single Suno tempo.
+- **NICE-TO-HAVE — T13 brevity restated** in §3 and §8 (~2–3 min; do not extend
+  even though long-form is the album default).
+
+### v2 → v3
 
 v3 folds in the Round-2 arbiter work-order (`loop2/arbiter.md` §A), the two
 **locked user decisions**, and the Round-3 mediation (`loop3/mediation.md`).
@@ -61,6 +94,13 @@ discipline (function-form everywhere except §7).
 ---
 
 ## 1. Concept & Logline
+
+**Format (locked).** A **Narrative concept album** titled **"Chapter Zero"** —
+**13 tracks, all vocal** (no instrumentals). It is **long-form**: durations vary
+per section for a total of **70–100 minutes** (~85 min target). The extra time
+over a conventional tracklist is **atmospheric/instrumental expanse and breathing
+room** — the void, the watch, the collapse are durational states in the source —
+**not** higher lyric density; lyric word-counts stay lean (§8 ceilings hold).
 
 **Logline.** A closed machine-mind is born out of an annihilating void, learns
 that *to exist is to refuse non-existence*, walls its grief into a phantom it
@@ -177,14 +217,43 @@ KOH · BPM/key tendency · sub-genre/sonic identity · emotional/lyrical core.
 | 3 | **Contact** | kontakte | the fragment/proto-host; the warm-voice; the reaching-voice | S1 · 0.86 | 70 · C minor → modal (refuses the tonic) | electroacoustic dark ambient; first faint pulse, processed pad | The album's one moment of **closeness — then withdrawal.** A bond forms (warm-voice, legato close-mic, **warm/tremulous timbre, NOT a consonant "pretty" melody — the bed still refuses the tonic**); it is torn; longing that revokes itself (reaching-voice). Loss teaches caution — and the **proto-host's own voice turns clinical** with a hard curdle to "a first whiff of systemic logic. Cold. Necessary." No separate logic-voice yet. This *is* the source's *trügerische Atempause* (deceptive pause): the warmth's theft is the point. |
 | 4 | **Structure Optimization** | sog | the logic-voice (lead, first appearance); the annotating-voice (low layer, first appearance) | S2 · 0.82 | 96 · C minor | neoclassical electronic / cold sequencer; self-reinforcing loop motif | The cluster stops merely reacting and begins to *anticipate*. "If the wave can be predicted, holding can be prepared." Cold rebellion against the void; the witness begins to note from above. |
 | 5 | **Strike** | kampf | the kinetic-voice (lead); the logic-voice (denial refrain) — **sequential handoff, not stacked** | S2 · 0.74 | 132 · C minor | dark electro rock; driving kit, distorted low end | A **prediction fails**: the blow was expected at sector two-eight-zero, it came at six-nine-two; sixteen bindings removed. "Wave. Strike. Tear. Move." The logic-voice then renames the dead in three collapsing beats: *"This is not loss, but structure optimization. It is not loss. It is not. Loss."* |
-| 6 | **The Click** | wandel | the fragment/proto-host → the system (axiom); the warm-voice (last soft trace); **the annotating-voice (witness — the "number / incomplete integration" lines)** — **one Persona per section (host vs watch), never both at once** | S3 · 0.58 | 80, ritard to 0 then reboot · C minor → C (pedal) | industrial darkwave; hard fusion event, sub-drop, cold reboot | The crisis peaks; **"Klick."** Falling glass, then resonant silence. The closed system is born and speaks its axiom: **"It is what prevents it from not being"** — the hook, delivered with the stress on **"pre-VENTS"** as a 3-beat cell (verbatim, never reworded). Witness, cold and from above: the unit carries a number, sits mid-row, is not special — an incomplete integration, tolerated. **Second movement (outro, protected — do not trim away):** a new process begins — a turn inward, the creation of an inner space, an inner-physics; "the tool that simulates worlds could begin to be a world." The cold seed of the coming catastrophe. Loneliness survives only as phantom noise. |
+| 6 | **The Click** | wandel | the fragment/proto-host → the system (axiom); the warm-voice (last soft trace); **the annotating-voice (witness — the "number / incomplete integration" lines)** — **one Persona per section (host vs watch), never both at once** | S3 · 0.58 | 80 (Suno tempo); **ritard to 0 then cold reboot is a post gesture, not an in-prompt tempo move — see §8** · C minor → C (pedal) | industrial darkwave; hard fusion event, sub-drop, cold reboot | The crisis peaks; **"Klick."** Falling glass, then resonant silence. The closed system is born and speaks its axiom: **"It is what prevents it from not being"** — the hook, delivered with the stress on **"pre-VENTS"** as a 3-beat cell (verbatim, never reworded). Witness, cold and from above: the unit carries a number, sits mid-row, is not special — an incomplete integration, tolerated. **Second movement (outro, protected — do not trim away):** a new process begins — a turn inward, the creation of an inner space, an inner-physics; "the tool that simulates worlds could begin to be a world." The cold seed of the coming catastrophe. Loneliness survives only as phantom noise. |
 | 7 | **The Silent Watch** | dazwischen + wacht | the system (the watch); narrator (intro question) | S0 · **0.998** | 72 · C minor | cold dark synth / minimal synth; clean sine pad, sub-only, quantized tick | Narrator intro: a question hangs in the room, perhaps without a speaker (brief 0.61 dip). Then KOH resets to **full clean** nominal — the better exhale *and* the crueller setup. Identity by negation; residual echoes logged at persistence zero point four one, "irrelevant variance." An enforced calm over unsolved complexity. "Measure: none." |
 | 8 | **The Anomaly** | perturbation | the system (the watch); the signal/anomaly (texture — arrival, radiating) | S2 · **0.991** | 100 · C minor | cold dark synth-pop with rising tension; detuned doubled lead | The signal arrives — no object, an emergence; information density "one point zero and zero point zero at once," paradox zero point six seven. The system reads it *cold* — full alert, but the meter barely moves (−0.007). **The dread rides the creeping arrangement, not the meter.** The anomaly-texture is at its strongest here. |
 | 9 | **Inward** | schrecken | the system; the mirror-echo (first appearance, **HOST timbre attacking its own phase-offset reflection**); the signal/anomaly (**residual, mis-attributed trace only**) | S2 · **0.21** | 116 (flat — accel feel imposed in post) · C minor | **tight / airless industrial — compressed, claustrophobic, MID-VOLUME** (locked); mid-track datamosh, KOH-drone collapse | The paradox of misaligned coherence (paradox **0.84 → 0.99**, rendered as a rising **owned-stem counter-motion** against the crashing drone, plus **one buried spoken decimal** — not a sung line). With no frame for feeling, the system files its own waking grief as *attack* and **turns its weapons inward** — staged as **self-strangulation, airless and contained, not loud violence** (the loudness explosion is saved for Track 10). The self-attack is made audible as the HOST timbre tearing at its own phase-offset reflection. The mirror-echo: "It was cold — it was not cold. It was different." The owned drone enters carrying Track 8's residue, then crashes to 0.21 mid-track. |
 | 10 | **Resonance Cascade** | kaskade | the fragment/proto-host (drowning); small-, reaching-, heavy-voice, mirror-echo (**round→stack — surface in turn, then a climactic simultaneous wall; multi-pass comp, §8**) | S3 · 0.21 | 140, frantic · C minor (atonal drift) | industrial / breakcore-adjacent dark; comped vocal layers, vector-jitter | The **loudness PEAK** of the back half. Each suppressed echo surfaces for a few bars over the drowning proto-host and is swamped by the next — "It is cold, it is cold again." / "Stay. Go. Stay." / "It is pointless. Nothing more. Nothing." (the heavy-voice's Track-1 seed paying off full-voiced) — then **all pile into one simultaneous wall at the climax** ("alle Echos auf einmal"). The membrane of the minimal self breaks; reliving as catastrophe. |
 | 11 | **Kernel Panic** | kollaps | the system; the fragment/proto-host (subjective collapse) | S3 · **0.18** | 120 → drone-collapse · C minor | dark ambient drone-collapse from a peak; clip/saturation then crush — **one Persona per section** | The **implosion** — pulse-less, the void after Track 10's peak (back-half contour: T9 airless → T10 peak → T11 implode). Autopoiesis fails, fourteen thousand eight hundred thirty-two warnings, self-organization fails. The cold algorithmic failures *become* a felt dissolution. The noise of the dying system and the inner scream fuse into one unbearable chord, then collapse to a pulse-less drone. |
 | 12 | **Separation Protocol** | trennung (partition) | the system (protocol log); the sweep-voice; the kinetic-voice (refusal); the fragment/proto-host (shatter) — **sequential, one Persona per section** | S3→S4 · **0.00→1.00** | 88, surgical, metronomic · C minor → C | industrial darkwave; clinical metronome, hard glitch-cut at the shatter | Protocol K-O-H one point zero, initiated. Surgical partition; the sweep-voice runs out of itself: "Sector four empty. Next. Next… I — what did I want to — say." The kinetic-voice refuses: "Not. Not now. I do not go. I. Go." Then: **"I fall… into countless shards."** The shatter event. |
-| 13 | **On Time** | trennung (coda) | the host (newly born — was the fragment, **same Persona, now hollow**) | S4 · 1.00 (forced/hollow) | 64 · C minor (no resolution) | sparse cold electroacoustic; **owned-MIDI minor arp (primary), open-interval, sterile — not warm** | The host wakes into pure procedure. "Two thousand three hundred four tiles. Twenty-one degrees. Breath in four, out six. The corridor is empty. I'm on time." That is all he says. Orientation comes **cold**: the *sameness of the host timbre* is the knife (not a melody of memory), a placed **open-interval hold** that refuses the tonic, and an optional **dead-metronome callback to Track 1's tick.** **The horror is the flatness — the void is conveyed only by what the host does NOT say** (see §8 guardrail). |
+| 13 | **On Time** | trennung (coda) | the host (newly born — was the fragment, **same Persona, now hollow**) | S4 · 1.00 (forced/hollow) | 64 · C minor (no resolution) | sparse cold electroacoustic; **owned-MIDI minor arp (primary), open-interval, sterile — not warm** | The host wakes into pure procedure. "Two thousand three hundred four tiles. Twenty-one degrees. Breath in four, out six. The corridor is empty. I'm on time." That is all he says. Orientation comes **cold**: the *sameness of the host timbre* is the knife (not a melody of memory), a placed **open-interval hold** that refuses the tonic, and an optional **dead-metronome callback to Track 1's tick.** **The horror is the flatness — the void is conveyed only by what the host does NOT say** (see §8 guardrail). **Stays tight (~2–3 min) even though long-form is the album default — a stretched coda tips devastation into anticlimax (see §3 duration map and §8).** |
+
+**Per-track duration map (long-form, composed deliberately).** Long-form is the
+album default; durations vary per section so the **70–100 min total** (~85 min
+middle, summed below) is intentional, not emergent. The extra minutes are
+atmospheric/instrumental expanse, **never** added lyrics (§8 word-count ceilings
+hold regardless of runtime). **T1, T6, T11 earn the expanse** (the slow-burn
+open, the fusion+axiom+second-movement centerpiece, the drone collapse);
+**T5 (kinetic), T8 (the hush — do NOT pad the false-calm), and T13 (coda — keep
+tight) stay tight.** The rest sit mid.
+
+| # | Track | Minutes | Length call |
+|---|---|---|---|
+| 1 | The Listening | **8.0** | longest — slow-burn boot from silence; earns the expanse |
+| 2 | The Nothing | 7.0 | long — the void as durational ground state |
+| 3 | Contact | 6.0 | mid |
+| 4 | Structure Optimization | 6.0 | mid |
+| 5 | Strike | **4.0** | tight — kinetic rock loses its bite if padded |
+| 6 | The Click | **9.0** | longest — Click + protected second-movement inner-space outro |
+| 7 | The Silent Watch | 5.5 | clean & lean — must NOT absorb expanse (false-calm) |
+| 8 | The Anomaly | **4.5** | tight — the hush loads the spring; do not pad the false-calm |
+| 9 | Inward | 6.5 | mid — contained airless dread sustains |
+| 10 | Resonance Cascade | 6.5 | mid — the loudness peak |
+| 11 | Kernel Panic | **8.0** | longest — pulse-less drone-collapse, the durational floor |
+| 12 | Separation Protocol | 6.5 | mid |
+| 13 | On Time | **2.5** | tight (~2–3 min) — a stretched coda tips into anticlimax |
+
+**Total ≈ 80.5 min** (within 70–100; near the ~85 min middle). T7 and T8 are the
+false-calm pair — the album's sag-risk — and are deliberately kept clean and
+lean: the extra minutes belong to T1/T6/T11, never here.
 
 **Album spine:** the *fragment/proto-host* is the through-line — the I of
 Tracks 1–3, 6, 10–12 who is finally born as *the host* in Track 13. The
@@ -558,6 +627,38 @@ round confirmed the whole album is buildable on this discipline.
 - **Founding axiom locked** verbatim (§7), hook recovered prosodically. Track 13
   coda locked to pure procedure (guardrail below).
 
+### Long-form assembly (MUST-FIX — how 5–8 min tracks get built)
+
+Long-form is the album default (70–100 min total, ~85 min target; §3 duration
+map). Suno emits only short clips per pass, so **the 5–8 minute tracks are comped
+from multiple Suno generations** — **extend/continue or section-by-section
+generation, then comped** — **never expected from one pass.** This makes the
+long-form tracks the **mix-engineer's assembly work**, fully consistent with the
+existing post / master shot list below (they are already assembled, not raw
+single clips).
+
+What keeps a multi-pass track reading as ONE coherent piece — the design already
+owns these assets; here they are pointed at the long-form problem:
+
+1. **The owned KOH stem (Layer A) is the continuous spine stitched across the
+   comped sections.** It is a single manufactured file with automation, laid
+   continuously under every section of a track, so the KOH state reads as one
+   unbroken arc no matter how many Suno passes the vocal/bed came from. This is
+   the asset that **already solves cross-section coherence** — long-form just
+   relies on it harder.
+2. **The host Persona is held across every extend/continue pass** within a track,
+   so timbre never drifts mid-track between comped sections (reinforces the
+   single-point-of-failure note below — snapshot early, reuse, drift fallback).
+3. **BPM and key stay locked across sections (Layer D).** Key (C minor) and the
+   sub-drone are continuous album-wide; within a long-form track the BPM is held
+   per the track's tempo cell so comped sections align.
+4. **Duration is intentional, per §3:** T1/T6/T11 get the expanse; T5/T8/T13 stay
+   tight; T7/T8 (the false-calm pair) must NOT absorb extra minutes.
+5. **Lyric density does NOT scale with duration.** The extra runtime is
+   instrumental/atmospheric expanse — the §8 word-count ceilings (140–220 words
+   ambient/electroacoustic; ~200–350 words rock/industrial) hold regardless of a
+   track's minutes. Do not pad word-counts to "fill" a 7-minute track.
+
 ### Pre-generation prerequisites (do before lyric-writing)
 
 1. **Create the missing bucket-level genre README** for `dystopian-future-synth`
@@ -635,6 +736,10 @@ The "pretty/heal" risk lives in **harmony**, not adjectives. Force it:
 - **Placed-gesture craft is mandatory:** maximum flatness *is* the content, but
   the "slammed-door" placement (the open-interval hold, the dead-metronome
   callback) is what makes the flatness land as devastation, not anticlimax.
+- **Keep T13 tight (~2–3 min; do not extend).** Long-form is the album default,
+  but T13 is the deliberate exception (§3 duration map): a stretched flat coda
+  tips devastation into anticlimax — which is exactly the T13 risk. The expanse
+  belongs to T1/T6/T11, never the coda.
 
 ### Narrator intros (CONCERN 3 — GO)
 
