@@ -111,7 +111,7 @@ Weary, breathy male mid-baritone, present-tense and under-articulated, sentences
 > with extra line breaks and blank lines** so the philosophical text breathes —
 > same words, more space. Intro Style Box:
 > ```
-> Spoken word, calm and philosophical male narrator, measured cadence, direct address to the listener; very close dry mic, with a faint sustained sub-bass drone on C bleeding in underneath, low and distant, profound silence around the voice.
+> Spoken word, calm and philosophical male narrator, very slow and deliberate delivery, weighty measured cadence, each phrase pronounced and emphatic, generous pauses between sentences, direct address to the listener; very close dry mic, with a faint sustained sub-bass drone on C bleeding in underneath, low and distant, profound silence around the voice.
 > ```
 > Intro exclusions: `no singing, no beat`
 
@@ -140,7 +140,7 @@ the comped sections, and the host Persona is held across every pass.
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Intro: spoken word, calm philosophical narrator, measured cadence, direct address, intimate dry close-mic, faint sub-drone bleeding in underneath]
+[Intro: spoken word, calm philosophical narrator, very slow and deliberate, pronounced emphatic enunciation, long pauses between lines, direct address, intimate dry close-mic, faint sub-drone bleeding in underneath]
 Nothing is a word that resists the tongue —
 an abyss wearing the shape of a word.
 
