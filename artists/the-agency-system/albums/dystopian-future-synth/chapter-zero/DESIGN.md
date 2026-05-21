@@ -509,6 +509,13 @@ make this a gate, not a hope.
 
 ## 6. Album-Art / ASDLS Visual Direction
 
+> **Generation route (binding).** Art is produced for **DALL-E** via the
+> art-direction override `overrides/album-art-preferences.md`, which encodes the
+> full normative spec `SOURCE/ASDLS-spec.md` for DALL-E's conversational prompt
+> style. The `::`-block SPECD skeleton below is the Midjourney-native form; for
+> DALL-E it is translated to one paragraph + an "Avoid" clause (see the override).
+> Every per-track prompt lives in that track file's **Track Art (ASDLS)** section.
+
 **Base law (ASDLS §6 state machine — binding).** ≤5% state colour over ≥95%
 **Terminal Black `#0B0D17`** / **Deep Charcoal `#1A1D24`**. Hard edges only —
 gradient ban. One core symbol per image; **one tier per image** (mixing

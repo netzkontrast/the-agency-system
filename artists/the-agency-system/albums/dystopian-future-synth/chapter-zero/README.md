@@ -36,6 +36,8 @@ Before the self, there is only void — a pre-conscious listening, a first orien
 
 Full concept detail in `DESIGN.md`. Source text: `SOURCE/kapitel-0.md`. KOH/tier ground truth: `SOURCE/section-meta.md`.
 
+**Visual direction (binding).** All art for this album follows the **ASDLS** visual law, generated for **DALL-E** via the art-direction override `overrides/album-art-preferences.md` (full normative spec `SOURCE/ASDLS-spec.md`). The album's emotional arc maps onto the ASDLS Tier 0–4 state machine (homeostasis → latency → alert → kernel-panic → safe-mode) — one tier per image, the 95/5 colour split, function-form subjects only. See **Album Art** below.
+
 ## Source
 
 This album is a direct 1:1 musical translation of *Kapitel 0 — Kohärenz Protokoll* (Coherence Protocol, Chapter 0). Source text: `SOURCE/kapitel-0.md` (decoded prose). KOH/tier ground truth: `SOURCE/section-meta.md`. Non-documentary (fictional source).
@@ -153,10 +155,12 @@ Pre-generation prerequisites (complete before lyric-writer): (1) Create `genres/
 - KOH/tier ground truth → `SOURCE/section-meta.md`
 - Voice DNA → `SOURCE/Sprachdns.md` + `overrides/kohaerenz-protokoll-sprach-dna.md`
 - Visual grammar → `overrides/visual-language-guide.md` + `overrides/image-style-spec.md`
+- **ASDLS visual law (binding, full spec)** → `SOURCE/ASDLS-spec.md` (+ `SOURCE/ASDLS.md` summary)
+- **Art direction for generation (DALL-E)** → `overrides/album-art-preferences.md` (ASDLS encoded for DALL-E; loaded by `album-art-director`)
 
 ## Album Art
 
-Platform: TBD — generated via `/bitwize-music:album-art-director` using the ASDLS visual law (`overrides/visual-language-guide.md`). State→tier→colour state machine; 5%-rule (state colour ≤5% of frame); glitch-as-clinical-symptom; function-form subjects only (no personal names in prompts).
+**Platform: DALL-E.** All art is generated via `/bitwize-music:album-art-director`, which **must load the ASDLS DALL-E art-direction override** (`overrides/album-art-preferences.md`) — the operational encoding of the binding **ASDLS** visual law (full spec `SOURCE/ASDLS-spec.md`). Binding rules: the **95/5 split** (background ≥95% Terminal Black `#0B0D17` / Deep Charcoal `#1A1D24`; state colour ≤5%, **hard-edged, no gradients**); **one tier per image** (the Tier 0–4 state machine); one core symbol per image; glitch-as-clinical-symptom; **function-form subjects only — no personal names in prompts**; law of exclusion (no Flame Orange + Clean Ping; Chapter Zero has no Kintsugi). Per-track prompts live in each track file's **Track Art (ASDLS)** section; the primary album cover is the **Tier 3 shatter** (DESIGN §6).
 
 ## Distributor Genres
 

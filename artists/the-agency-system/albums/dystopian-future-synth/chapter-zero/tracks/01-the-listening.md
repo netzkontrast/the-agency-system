@@ -282,12 +282,14 @@ Deep Charcoal, no glitch (Tier 0 integrity), razor-sharp orthographic stillness.
 **Art prompt (DALL-E / generic, square 1:1, 3000×3000 min):**
 
 ```
-Create a square image of a single, almost-infinitesimal cold point of blue status-light — a minimal spark of structure — suspended dead-centre in a vast, seamless, crushing black void, like the interior of a perfect windowless cube, the emptiness pressing inward on the tiny point. Style: interface brutalism and clinical dystopian digital art — high-contrast dark mode, synthetic digital materiality, the fidelity of electron-microscope or medical imaging, absolute desaturation, razor-sharp flawless vectors, no glitches or distortion. Mood: profound silence, extreme stillness. Color: almost entirely deep terminal black and dark charcoal (hex #0B0D17 and #1A1D24), with only a tiny faint accent of cold system blue (hex #003366, about two percent of the frame) as the single status-light point. Composition: centred, frontal, orthographic, crushing negative space, the point tiny and far. Avoid daylight, sun, any natural or organic elements, retro or synthwave styling, soft lighting, lens flare, and any paper or analog texture.
+Create a square image of a single, almost-infinitesimal cold point of blue status-light — a minimal spark of structure — suspended dead-centre in a vast, seamless, light-absorbing black void, like the interior of a perfect windowless cube, the emptiness pressing inward. Tier 0 homeostasis: minimalist clinical precision, perfectly centered frontal orthographic composition, crushing negative space, razor-sharp flawless vector edges, no glitches or distortion, profound silence and extreme stillness. Style: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope and medical-imaging fidelity, deep raytraced black shadows. Color, the 95/5 split: about 98% deep terminal black and dark charcoal (hex #0B0D17 and #1A1D24), with no more than a 2% accent of cold system blue (hex #003366) as the single status-light point — hard-edged, no gradient, a sharp cut between the black and the blue. Avoid 1980s retro and synthwave, purple-orange gradients, neon grids, daylight or sun, natural or organic elements, anything cute, soft lighting, lens flare, watercolor or painterly looks, visible paper or analog texture, and any text or watermark.
 ```
 
-*Derived from the ASDLS §7.1 SPECD skeleton, rendered DALL-E/generic per user
-preference. name_exposure: role language only — no personal names. Tier 0 only
-(one tier per image); no Flame Orange / no Kintsugi in Chapter 0.*
+*Built via the ASDLS DALL-E art-direction (`overrides/album-art-preferences.md`);
+full normative spec at `SOURCE/ASDLS-spec.md`. **Tier 0 only** (one tier per
+image); the spark = the **≤5% System Blue** point on ≥95% Terminal Black /
+Deep Charcoal, hard-edged. name_exposure: role language only — no personal names.
+No Flame Orange / no Kintsugi / no Clean Ping in Chapter 0.*
 
 ## Generation Log
 
