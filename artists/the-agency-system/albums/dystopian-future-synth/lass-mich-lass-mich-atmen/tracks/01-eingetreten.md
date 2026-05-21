@@ -85,6 +85,8 @@ Mein Atem wird schneller. Der Puls zieht an.
 Die Wände rücken näher. Die Maschine erwacht.
 Ich bleibe. Ich bin hier. Ich atme noch.
 
+Eingetreten. Kein Zurück.
+
 Schneller. Das Ticken wird lauter.
 Der gelbe Streifen schiebt sich vor.
 Kein Geräusch von draußen. Nur das hier.
@@ -116,7 +118,11 @@ Mein Atem wird schneller. Der Puls zieht an.
 Die Wände rücken näher. Die Maschine erwacht.
 Ich bleibe. Ich bin hier. Ich atme noch.
 
-[Bridge — 90 BPM, machine-pulse build, breath audible]
+[Hook — recurrence after V2, Ich + (Child whisper echo)]
+Eingetreten. Kein Zurück.
+(Eingetreten.)
+
+[Bridge — 90 BPM, machine-pulse build, breath audible, attacca prep]
 Schneller. Das Ticken wird lauter.
 Der gelbe Streifen schiebt sich vor.
 (schneller)
