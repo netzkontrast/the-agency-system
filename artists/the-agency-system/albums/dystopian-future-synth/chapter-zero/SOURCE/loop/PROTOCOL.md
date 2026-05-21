@@ -12,10 +12,53 @@ A translation of *Kapitel 0 — Kohärenz Protokoll* that is simultaneously:
 3. **Listenable** — enriching for a novel reader *and* accessible/enjoyable for a
    music lover who never read it (accessibility lens).
 
-## Pipeline (per round `n`)
+## Two loop modes
+
+The loop runs in one of two modes per round. **Divergent mode** is the richer
+front-end used to open up or significantly improve a design; **Default mode** is
+the steady-state critique→converge loop. The Opus arbiter at the end of a
+divergent round feeds its mediated synthesis into the next default round.
+
+### Divergent mode (3 isolated designs → adversary → tri-review → mediating arbiter)
+
+Use when the design space should be re-opened or sharply improved (e.g. Round 3).
 
 ```
-DESIGN (Opus)
+PHASE 1 — DESIGN ×3 (Opus, parallel, ISOLATED)
+   one agent per goal-concern, each maximizing ITS concern only:
+   ├─ Fidelity-Design      → SOURCE/loop<n>/design-fidelity.md
+   ├─ Feasibility-Design   → SOURCE/loop<n>/design-feasibility.md
+   └─ Accessibility-Design → SOURCE/loop<n>/design-accessibility.md
+   ISOLATION RULE: no design agent sees another's brief or output. Each is told
+   the other concerns are handled separately and must NOT hedge/balance — push
+   its concern to its strongest, most uncompromising form. Divergence is the goal.
+        ▼
+PHASE 2 — ADVERSARIAL (Opus)
+   critical-thinking decomposition of the 3 designs; arranges them into the
+   MAXIMALLY clashing conflicts (steel-man each side, expose real
+   incompatibilities) → SOURCE/loop<n>/adversarial.md
+        ▼  (all FOUR docs — the 3 designs + the adversarial map — feed forward)
+PHASE 3 — TRI-REVIEW (Opus, parallel)
+   each reads ALL FOUR docs and weighs in from its lens:
+   ├─ Review agent (feasibility)   → SOURCE/loop<n>/review.md
+   ├─ Listener agent (accessibility) → SOURCE/loop<n>/listener.md
+   └─ Spec-Panel agent (fidelity)  → SOURCE/loop<n>/spec-panel.md
+        ▼  (all SEVEN docs feed forward)
+PHASE 4 — OPUS ARBITER (mediating)
+   reads everything; surfaces the conflicts AND mediates — proposes
+   reconciliations, flags residual user-decisions — and writes the integration
+   directive that informs the next default-mode iteration.
+   → SOURCE/loop<n>/arbiter.md
+        ▼
+PHASE 5 — INTEGRATE → DESIGN.md v(n+1)  → re-enter Default mode for convergence.
+```
+
+Data-flow guarantee: every phase reads the full set of files produced by all
+prior phases (Phase 3 gets the 4 docs; Phase 4 gets all 7). Agents pass **file
+paths**, not pasted bodies, and read `NAVIGATION.md` + `loop<n>/DECISIONS.md`
+first so locked user decisions are never re-litigated.
+
+### Default mode (1 design → 3 parallel critics → arbiter → converge)
    │  writes/revises DESIGN.md (+ §0 revision log) · archives → SOURCE/loop<n>/design.md
    ▼
 CRITICS (Opus, parallel — one message, three agents)
