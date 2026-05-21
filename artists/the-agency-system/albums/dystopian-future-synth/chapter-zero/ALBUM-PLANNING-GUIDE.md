@@ -222,3 +222,40 @@ the recommended next skill and what it would check. Surface; let the user decide
 After Phase 2, the pre-release chain begins: import-audio → mix-engineer →
 mastering-engineer → album-art-director/import-art → validate-album →
 plagiarism-checker → explicit-checker → check_streaming_lyrics → release-director.
+
+---
+
+## Session handoff (build status)
+
+**T1 "The Listening" — rebuilt, QC green.**
+- **Narrator clip** (separate generation): slow, deliberate, *pointiert*
+  spoken-word using the **3-layer delivery DNA** (per-line bracketed metatags on
+  their own lines · ellipsis pause-cues · CAPS on load-bearing words) with a
+  faint **drone bleeding in**. Words were only **reformatted for breathing**
+  (line breaks / blank lines) — not rewritten.
+- **Sung body**: the **fragile, genderless head-voice** (the new voice spine),
+  with the **heavy-voice collapse-seed** surfacing as a faint **parenthesized
+  backing undertow** in the verses, building to the Bridge.
+- **QC**: `scan_artist_names` clean · `check_homographs` clean ("nothing" is not
+  a homograph — a delivery matter, handled by diction, not respelling) ·
+  `check_streaming_lyrics` READY 7/7.
+
+**Voice spine (redefined this session).** The proto-host → host is a **fragile,
+genderless head-voice** (adult, sustained, faintly synthetic — distinct from the
+framing narrator and from the child small-voice), held T1→T13. Propagated to
+`DESIGN.md` (§3/§4/§8) and to the `theagencysystem` skill (`host.md` Voice arc,
+`_modes/narrator.md` music fingerprint, `resolver.yaml`, `matrix-index.yaml`).
+The reusable narration delivery craft is in
+`overrides/suno-preferences.md → "Narration / Spoken-Word Delivery DNA"`.
+
+**Open decisions.**
+- Apply the per-line delivery toolkit to the **sung body** too, or leave it?
+- Then build **T2 "The Nothing"** onward — **one track at a time, in the main
+  session, with AskUserQuestion at every decision point, NO subagents.**
+
+**Process learnings (honor next session).**
+- When asked to "reformat / give it room to breathe," **reformat ONLY** (line
+  breaks, blank lines, spacing) — **never** rewrite, expand, or trim the words.
+- **Ask at every creative fork** (voice, register, structure) — do not assume.
+- On **bitwize-MCP disconnect** (it flaps), fall back to **direct file edits**
+  (the documented fallback) and **re-run the MCP QC** when it reconnects.

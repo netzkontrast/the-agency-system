@@ -70,6 +70,14 @@ blends:
     blend_of: [caregiver, protector]
     pointers: [entities/caregiver.md, entities/protector.md, cross-cutting/hard-rules.md]
 
-# Novel-only entities (mirrors/system/modes) have no state grid — load by name
+# Novel-only entities (mirrors/system) have no state grid — load by name
 # straight from resolver.yaml when the novel layer references them.
-novel_only: [mirror_juna, mirror_aegis, sys_aegis, sys_mnemosyne, sys_erasure, sys_juna, mode_narrator, mode_we]
+novel_only: [mirror_juna, mirror_aegis, sys_aegis, sys_mnemosyne, sys_erasure, sys_juna]
+
+# Cross-layer modes (no state grid) — load the entity directly. The narrator
+# now appears in MUSIC too (spoken intros), so it must NOT sit in novel_only or
+# a music session will never load its music fingerprint. Music spoken-word
+# delivery craft lives in overrides/suno-preferences.md.
+cross_layer_modes:
+  mode_narrator: { layers: [novel, music], entity: entities/_modes/narrator.md, note: "framing / direct-address spoken-word; music intro voice — must stay distinct from the sung host; delivery craft in overrides/suno-preferences.md" }
+  mode_we:       { layers: [novel, music], entity: entities/_modes/we-voice.md }

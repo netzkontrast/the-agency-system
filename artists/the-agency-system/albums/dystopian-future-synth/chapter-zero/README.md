@@ -38,6 +38,8 @@ Full concept detail in `DESIGN.md`. Source text: `SOURCE/kapitel-0.md`. KOH/tier
 
 **Visual direction (binding).** All art for this album follows the **ASDLS** visual law, generated for **DALL-E** via the art-direction override `overrides/album-art-preferences.md` (full normative spec `SOURCE/ASDLS-spec.md`). The album's emotional arc maps onto the ASDLS Tier 0–4 state machine (homeostasis → latency → alert → kernel-panic → safe-mode) — one tier per image, the 95/5 colour split, function-form subjects only. See **Album Art** below.
 
+**Voice direction (binding).** The sung **voice spine** is a **fragile, genderless head-voice** (the proto-host → host, held T1→T13 so the same voice gone flat at the end is the knife). The framing **narrator** is a **separate, distinct** spoken-word voice (slow & *pointiert*; delivery DNA in `overrides/suno-preferences.md`). Function/role language only — **no personal names** in any lyric, metatag, or prompt. Detail in `DESIGN.md` §3–§4.
+
 ## Source
 
 This album is a direct 1:1 musical translation of *Kapitel 0 — Kohärenz Protokoll* (Coherence Protocol, Chapter 0). Source text: `SOURCE/kapitel-0.md` (decoded prose). KOH/tier ground truth: `SOURCE/section-meta.md`. Non-documentary (fictional source).

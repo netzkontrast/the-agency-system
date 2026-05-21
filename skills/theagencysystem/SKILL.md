@@ -137,6 +137,11 @@ config + craft overrides reflect this artist. Full surface + script in
 - It will **never** touch album/project-specific overrides
   (`visual-language-guide.md`, `the-eleven.md`, `kohaerenz-protokoll-*`,
   `image-style-spec.md`, `genre-*`) — those hold album content, not craft.
+- **Spoken-word / narration delivery craft** (slow & *pointiert*; per-line
+  bracketed metatags; ellipsis pause-cues; CAPS emphasis; **reformat for
+  breathing, never rewrite the words**) lives in `overrides/suno-preferences.md →
+  "Narration / Spoken-Word Delivery DNA"`. Load it whenever a track has a
+  narrator / spoken intro (and see `entities/_modes/narrator.md`).
 
 ## Optional — SessionStart nudge
 
