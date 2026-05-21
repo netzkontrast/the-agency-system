@@ -14,9 +14,9 @@
 |---|-----------|-------|-------------|----------------|------------------|
 | 1 | **The Container** (Host) | ANP | Internal chaos overtaking the façade | → Fractality | Mixed (container of all registers) |
 | 2 | **The Rationalist** | ANP | Irrationality, emotional overflow | → Intuition | Orchestral electronic (cold strings) |
-| 3 | **The Protector** | ANP | Helplessness, system-breach | → Growth | Band-driven dark electro rock |
-| 4 | **The Caregiver** | ANP | Disconnection, abandonment of the weak | → Acceptance (warmth → smothering, see Inner Posture) | Orchestral electronic (warm) |
-| 5 | **The Integrator** (ISH) | ANP | Premature collapse of the system | → Mediator | Spacious electroacoustic, reverbed |
+| 3 | **The Protector** | EP | Helplessness, system-breach | → Growth | Band-driven dark electro rock |
+| 4 | **The Caregiver** | EP | Disconnection, abandonment of the weak | → Acceptance (warmth → smothering, see Inner Posture) | Orchestral electronic (warm) |
+| 5 | **The Integrator** (ISH) | Meta | Premature collapse of the system | → Mediator | Spacious electroacoustic, reverbed |
 | 6 | **The Fighter** | EP (Fight) | Re-victimization, surrender | → Constructive protection | Band-driven dark electro rock |
 | 7 | **The Child-Freeze** | EP (Freeze) | Abandonment, criticism | → Trust | Piano-and-voice intimate |
 | 8 | **The Ambivalent** | EP (Approach/Withdraw) | Betrayal of approached intimacy | → Leave superposition | Piano-intimate, microtonal |
@@ -86,7 +86,7 @@ Gender assignments are **craft choices for vocal differentiation**, not identity
 
 ---
 
-### 3. The Protector (ANP)
+### 3. The Protector (EP)
 
 **Function.** Proactive crisis manager. Where the Fighter is reactive, the Protector is *strategic* — plans defenses, anticipates threats, prepares the body. His vigilance is the silence that follows the moment of fragmentation.
 
@@ -98,7 +98,7 @@ Gender assignments are **craft choices for vocal differentiation**, not identity
 
 ---
 
-### 4. The Caregiver (ANP)
+### 4. The Caregiver (EP)
 
 **Function.** Holds the relational tissue. Attachment, caregiving, social interfacing. Tries, against all evidence, to keep the cut connections from going necrotic.
 
@@ -110,7 +110,7 @@ Gender assignments are **craft choices for vocal differentiation**, not identity
 
 ---
 
-### 5. The Integrator (ISH, ANP) — *also the Gatekeeper*
+### 5. The Integrator (ISH, Meta) — *also the Gatekeeper*
 
 **Function.** Witness *with agency*. Holds the blueprint of the time before the dissociation. Not stuck in trauma, not focused on daily survival — the bridge. Waits for the system to be ready. **Also the system's gatekeeper:** manages what is accessible to whom and when. Centrally (not alone, but centrally) responsible for what the Host does not remember. The amnesia is not only the Container's avoidance — it is also the Integrator's protection. She decides what can be held, by whom, safely. Her patience is curatorial: she is waiting for the system to be ready *because she controls when ready is*. Not from malice. From love. But it has costs.
 

@@ -139,7 +139,7 @@ Voice-Fingerprints in [`the-eleven.md`](the-eleven.md).
   zugrundeliegende Substrat seine geforderte Konsistenz nicht aufrechterhalten
   kann.*
 
-## Alex (ANP / Protektor)
+## Alex (EP / Protektor)
 
 - **Funktion:** Hypervigilanz, physischer Schutz, Bedrohungs-Assessment.
 - **POV / Syntax:** 1. Person. Direkt, imperativ, tactical. Kurze Sätze mit
@@ -152,7 +152,7 @@ Voice-Fingerprints in [`the-eleven.md`](the-eleven.md).
 - **Mikro:** *Sieh hin. Drei Schritte links. Tür schließt in vier Sekunden. Geh
   jetzt.*
 
-## Rhys (ANP / Caregiver)
+## Rhys (EP / Caregiver)
 
 - **Funktion:** Bindung, Fürsorge, Harmonie-Versuch. Hält zusammen, was AEGIS
   zerschnitten hat.
@@ -167,7 +167,7 @@ Voice-Fingerprints in [`the-eleven.md`](the-eleven.md).
 - **Mikro:** *Wenn du möchtest, könnten wir kurz... vielleicht nur einen Moment
   hier sitzen. Es muss nichts geschehen.*
 
-## Selene (ANP / Integrator / ISH)
+## Selene (Meta / Integrator / ISH)
 
 - **Funktion:** Vermittlung, Systemübersicht, Internal Self-Helper. Trägt den
   Bauplan der Zeit vor beiden Trauma-Schichten.
@@ -355,7 +355,7 @@ Voice-Fingerprints in [`the-eleven.md`](the-eleven.md).
 - **KW3 — Cerberus-Labyrinth.** NP-Hard. Stakkato-Parataxis. Muskel-Somatik. Nyx
   und Alex dominieren in EP-Modus. Hypervigilanz, Bedrohungs-Rekalkulation.
 - **KW4 — Möglichkeits-Garten.** Generativ. Hände öffnen sich. Selene dominiert
-  in ANP-Modus; Wir-Stimme tritt erstmals ganz auf. Poetisch, zeitlos. Junas
+  in Meta/ISH-Modus; Wir-Stimme tritt erstmals ganz auf. Poetisch, zeitlos. Junas
   Atmosphäre kommt hier durch.
 
 ---
