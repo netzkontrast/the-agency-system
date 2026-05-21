@@ -11,7 +11,7 @@ across all documentary-edge or research-driven projects.
 
 Ranked by trust and verifiability:
 
-1. **Clinical / peer-reviewed literature** — for any claim about trauma, dissociation, neurobiology, psychiatry, somatic experiencing. Required for medical/psychological framing.
+1. **Clinical / peer-reviewed literature** — for any claim about trauma, dissociation, neurobiology, psychiatry, somatic experiencing. Required for medical/psychological framing. the Agency System's subject matter (DID, structural dissociation, system-states) sits here first.
 2. **Primary-source testimony** — first-person accounts (interviews, blogs, recorded statements, court records) from people inside the experience being rendered.
 3. **Investigative journalism** (NYT, WaPo, ProPublica, Der Spiegel, Die Zeit, longform podcasts) — for factual events, public-figure claims, public-interest matters.
 4. **Government / institutional records** (DOJ, SEC, court PACER, agency reports) — for legal/financial facts in documentary work.
@@ -28,6 +28,7 @@ Ranked by trust and verifiability:
 - **Citation format**: clickable markdown links `[Source Name](URL)` in SOURCES.md, organized by category
 - **Cross-reference requirement**: Yes for all claims that name real people, name real events, or render internal states of real people
 - **Archive when fragile**: capture Web Archive snapshots for blog posts, social media, video transcripts — these vanish
+- **Privacy guardrail**: research informs the *craft* of rendering inner-system experience; it never produces or publishes an alter's personal name. The system is rendered by function/role only (see `voice-craft-principles.md`).
 
 ---
 
@@ -36,6 +37,7 @@ Ranked by trust and verifiability:
 - **Timeline precision**: exact dates when available; year + season minimum
 - **Quote handling**: verbatim with citation; paraphrase only when source structure prevents direct quotation
 - **Internal-state claims** (what a real person thought/felt): require a source. No invented thoughts.
+- **System-state grounding**: when a track maps to a clinical state model (hyper/hypoarousal, structural dissociation phases), ground the S0–S4 framing in the literature rather than inventing the mechanism.
 - **Documentary five rules** apply automatically (see Documentary Standards below)
 
 ---
@@ -88,6 +90,11 @@ Ranked by trust and verifiability:
 | **Documentary / true-story** | Full gate; `/bitwize-music:verify-sources` before generation | RESEARCH.md + SOURCES.md required |
 | **Thematic with documentary edge** (e.g., trauma-themed but not biographical) | Research grounds craft, no per-claim gate | RESEARCH.md recommended for craft decisions |
 | **Pure fictional / character / OST** | Research optional; if used, document | SOURCES.md only if used |
+
+Most the Agency System work is **thematic with documentary edge** — the
+DID-system concept is rendered from clinical and lived-experience grounding
+without being any single real person's biography. Such work is not gated on
+per-claim source verification, but the clinical grounding should be real.
 
 ---
 

@@ -6,7 +6,7 @@ this file holds the genre mappings, vocal defaults, and avoidances that
 apply across projects.
 
 For the no-character-name-in-tags rule that governs multi-voice work,
-see `voice-craft-principles.md`. For per-project voice fingerprints (alter
+see `voice-craft-principles.md`. For per-project voice fingerprints (function
 or character vocal metatags), use the album's own voice reference file.
 
 ---
@@ -43,9 +43,12 @@ Applied unless the track explicitly overrides:
 
 ## Vocal Preferences
 
-Cross-project vocal defaults by register. Album-specific per-alter or
+Cross-project vocal defaults by register. Album-specific per-function or
 per-character voice metatags live in each album's voice-DNA reference
-file (e.g., `the-eleven.md` or equivalent).
+file. The register table maps loosely onto the Agency System's function set
+(host, rationalist, protector, caregiver, integrator, fighter,
+child_freeze, ambivalent, sexualized_override, collapsed, witness) — but
+the metatag describes the **vocal sound**, never the function by name.
 
 | Register | Vocal Description |
 |---|---|
@@ -53,10 +56,10 @@ file (e.g., `the-eleven.md` or equivalent).
 | Default alto (female) | female alto, intimate, vowel-forward, controlled vibrato, slight room reverb |
 | Tenor (male) | male clear tenor, controlled, no vibrato, thin processed reverb tail |
 | Soprano (female) | female warm soprano, breathy at edges, vowel-forward legato, intimate close-mic |
-| Aggressive / fight | belt-alto with growl, raw, breathless intensity, clipped lines, dry mid-distance mic |
+| Aggressive / fight | female belt-alto, growl, raw, breathless intensity, clipped lines, dry mid-distance mic |
 | Soft / freeze (child / fragile) | head-voice only, whispered consonants, audible breath between phrases, fragile, lo-fi texture, ~10–12yr if child voice |
-| Spoken-word / narrator | androgynous spoken-word, monotone or half-sung, dry, layered with slight delay/echo, lowercase delivery, audiobook-narrator register |
-| Override / control | low contralto, controlled, deliberate, restrained vibrato held as a weapon |
+| Spoken-word / narrator (witness) | androgynous spoken-word, monotone or half-sung, dry, layered with slight delay/echo, lowercase delivery, audiobook-narrator register |
+| Control / deliberate | low contralto, controlled, deliberate, restrained vibrato held as a weapon |
 | Collapsed / submit | very deep bass, sub-tempo near-spoken, gravelly, breath audible between fragments |
 | Microtonal / ambivalent | alto with microtonal pitch-bending, sliding vibrato, oscillating dynamics within phrases |
 
@@ -72,6 +75,7 @@ Never use these in style prompts:
 - country, bluegrass, americana (unless specifically called for in a project)
 - gospel, worship (unless documentary use)
 - reggae, ska
+- synthwave / outrun / retro-futurism — banned per the Agency System aesthetic (no 1980s/90s nostalgia in any layer)
 
 ### Descriptors
 - happy, upbeat, cheerful, joyful, sunny, bright
@@ -89,6 +93,7 @@ Never use these in style prompts:
 
 ### Artist Names
 - Per `/reference/suno/artist-blocklist.md` — never reference real artists by name; describe the sound instead. Use era descriptions ("late-70s post-punk") not artist names.
+- This same ban extends to the system's own functions: never name an alter or function in a metatag. Describe the voice's timbre and register only.
 
 ---
 
@@ -113,20 +118,24 @@ Preferred starting palette by genre cluster:
 - Always use V5 section tags: `[Intro]`, `[Verse 1]`, `[Pre-Chorus]`, `[Chorus]`, `[Bridge]`, `[Outro]`, `[End]`
 - Instrumental sections: `[Instrumental Break]`, `[Piano Solo]`, `[Guitar Solo]` — never wrap in parentheses (Suno sings parenthesized words)
 - Vocal-style inline tags at section openings: `[Whispered]`, `[Spoken]`, `[Belted]`, `[Falsetto]`, etc.
-- **Voice-character tags forbidden in lyrics** (per `voice-craft-principles.md`): never `[Container]`, `[Witness]`, `[Character Name]`. Describe the vocal sound only: `[male mid-baritone, weary, dry close-mic]`.
-- Parenthesized lyric lines `(like this)` render as backing/ad-lib layers in V5 — use deliberately for annotative voices and Witness-style layers.
+- **Voice-character tags forbidden in lyrics** (per `voice-craft-principles.md`): never `[Container]`, `[Witness]`, `[Fighter]`, `[Character Name]`, never an alter's personal name. Describe the vocal sound only: `[male mid-baritone, weary, dry close-mic]`.
+- Parenthesized lyric lines `(like this)` render as backing/ad-lib layers in V5 — use deliberately for annotative voices and witness-style layers.
 
 ---
 
 ## Inline Voice Metatag Pattern
 
-For any track with multiple voices (solos with Witness annotation, duets,
+For any track with multiple voices (solos with witness annotation, duets,
 ensemble tracks), insert a descriptive vocal metatag at the start of
 each section where the voice changes:
 
 ```
 [Verse 1]
 [male mid-baritone, weary, slightly under-articulated, dry close-mic]
+... lyrics ...
+
+[Chorus]
+[female belt-alto, growl, dry mid-distance mic]
 ... lyrics ...
 
 [Bridge]
@@ -138,7 +147,9 @@ each section where the voice changes:
 ```
 
 Format: `[gender + register + texture + processing markers]`. Never the
-character form `[Character Name]`.
+character form `[Fighter]` / `[Container]` / `[Character Name]`, never an
+alter's personal name. The descriptive register is the *only* permitted
+way to signal a voice change — the function stays nameless.
 
 ---
 
@@ -163,4 +174,4 @@ Max **2–4 items** in the Exclude Styles section (over-specification dilutes th
 2. Genre mappings translate working vocabulary to Suno tags
 3. Default settings + vocal preferences are applied unless overridden per-track
 4. Avoidance rules filter out unwanted terms automatically
-5. Section-tag and metatag conventions enforced (especially voice-character ban)
+5. Section-tag and metatag conventions enforced (especially the voice-character / no-personal-name ban)

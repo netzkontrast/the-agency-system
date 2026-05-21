@@ -15,15 +15,20 @@ substitution in the Suno Lyrics Box (streaming lyrics keep standard spelling).
 | Standard | Phonetic | Notes |
 |----------|----------|-------|
 | the-agency-system | thee A-jen-see SIS-tem | Artist name; ALWAYS lowercase + hyphens in text |
+| the Agency System | thee A-jen-see SIS-tem | Display form of the artist name |
 | bitwize | bit-wize | Studio name |
+
+> Privacy note: alter personal names never appear in lyrics, metadata, or
+> any public field, so they are never entered here. Functions are rendered
+> by role only (see `voice-craft-principles.md`).
 
 ---
 
 ## Cross-Project Recurring Terms
 
-Album-specific pronunciations (alter names, character names, location
-names tied to one album) belong in that album's track files'
-Pronunciation Notes tables — not here.
+Album-specific pronunciations (location names tied to one album, project
+codenames) belong in that album's track files' Pronunciation Notes
+tables — not here.
 
 | Standard | Phonetic | Notes |
 |----------|----------|-------|
@@ -33,6 +38,8 @@ Pronunciation Notes tables — not here.
 | Weltschmerz | VELT-shmerts | German: world-weariness |
 | Doppelgänger | DOP-pel-geng-er | German: double, often used un-translated in English |
 | Zeitgeist | TSITE-gyste | German: spirit of the age |
+| Homöostase | ho-mer-oh-STAH-zeh | German: homeostasis (S0 state name) |
+| Latenz | lah-TENTS | German: latency (S1 state name) |
 | Über- | OO-ber | German prefix |
 
 ---
@@ -117,6 +124,7 @@ is NEVER an acceptable resolution.
 | CEO | Individual letters | C-E-O |
 | PhD | Individual letters | P-H-D |
 | HTML | Individual letters | H-T-M-L |
+| DID | Individual letters | D-I-D |
 | NASA | Word | Nah-sah |
 | SCUBA | Word | Scoo-bah |
 | RICO | Word | Ree-koh |
@@ -216,8 +224,8 @@ phonetic spelling in the Suno lyrics. The table is **not documentation
 
 ### Verification format
 
-- ❌ "Strömungen" in pronunciation table but "Strömungen" in lyrics = FAIL
-- ✅ "SHTRER-mung-en" in lyrics matches table = PASS
+- "Strömungen" in pronunciation table but "Strömungen" in lyrics = FAIL
+- "SHTRER-mung-en" in lyrics matches table = PASS
 
 ### Common failures
 

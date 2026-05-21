@@ -15,12 +15,40 @@
 # Aesthetic: "honest over beautiful" - favor dynamics preserved over
 # loudness-war competitiveness, even at the cost of perceived volume
 # on shuffle playlists. Output 24-bit for archival.
+#
+# ------------------------------------------------------------
+# the Agency System STATE AXIS (S0-S4) -> loudness/dynamics tendency
+# ------------------------------------------------------------
+# These are MIXING/SEQUENCING tendencies, not new parser keys. Pick the
+# genre preset below, then nudge target_lufs / target_lra WITHIN the
+# -14 LUFS streaming standard band toward the active system-state:
+#
+#   S0 Homoestase (host, rationalist)  -> centered. Sit AT the genre
+#        preset; balanced LRA. No drama in the master.
+#   S1 Latenz / Freeze (child_freeze, collapsed)
+#        -> quieter + wider dynamics. Bias target_lufs ~1-2 LU LOWER
+#           (more negative) and target_lra HIGHER. Let the silence breathe.
+#   S2 Alert / Konflikt (fighter, protector)
+#        -> louder + tighter. Bias target_lufs ~1-2 LU HIGHER (less
+#           negative), target_lra LOWER, faster compress_attack. Punch.
+#   S3 Kollaps-Peak (collapsed peak)
+#        -> loudest, most compressed transient wall, but NEVER brick-walled
+#           past true_peak -1.0. Push toward the loud end of the genre band;
+#           keep the limiter honest.
+#   S4 Repair / Integration (integrator, mode_we)
+#        -> return toward S0 center but slightly WIDER LRA than S0 to mark
+#           the opened-out, resolved feeling. Gentle, recovered loudness.
+#
+# Rule: state biases the master WITHIN -14 LUFS streaming reality. Never
+# let a state push past true_peak -1.0 or invent loudness the genre band
+# does not support.
 
 genres:
 
   # ============================================================
   # Intimate / voice-forward / acoustic-leaning
   # Maximum dynamics preserved; voice carries the meaning.
+  # Tends to live at S0/S1 - quiet, dynamic, breath audible.
   # ============================================================
 
   electroacoustic:
@@ -97,6 +125,7 @@ genres:
   # ============================================================
   # Band-driven / electro rock
   # More competitive loudness; preserve some dynamics.
+  # Often carries S2 (alert/conflict) energy - lean louder/tighter.
   # ============================================================
 
   dark-electro-rock:
@@ -136,6 +165,7 @@ genres:
   # ============================================================
   # Industrial / darkwave / electronic
   # Genre convention is loud; fast-attack compression for punch.
+  # Natural home of S3 (collapse-peak) - loudest band, still honest.
   # ============================================================
 
   industrial-darkwave:
@@ -198,6 +228,7 @@ genres:
   # ============================================================
   # Ambient / drone
   # Maximum dynamic range; minimal processing.
+  # Natural home of S1 (latency/freeze) - quietest, widest.
   # ============================================================
 
   ambient:
@@ -229,11 +260,12 @@ genres:
 
 # ============================================================
 # Default settings - applied when no genre matches
+# Corresponds to S0 (homeostasis): centered, streaming-standard.
 # ============================================================
 
 defaults:
   target_lufs: -14.0            # Streaming standard
-  true_peak: -1.0               # Headroom below 0 dBTP
+  true_peak: -1.0               # Headroom below 0 dBTP - state biases never exceed this
   cut_highmid: -1.5             # Gentle default high-mid tame
   cut_highs: 0
   compress_ratio: 1.5           # Light default compression
