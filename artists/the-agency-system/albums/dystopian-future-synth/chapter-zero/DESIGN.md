@@ -1,4 +1,4 @@
-# Chapter Zero — Album Concept & Design (v4)
+# Chapter Zero — Album Concept & Design (v5)
 
 > **Artist:** the Agency System · **Genre bucket:** dystopian-future-synth ·
 > **Type:** Narrative concept album · **Title (locked):** "Chapter Zero" ·
@@ -7,10 +7,11 @@
 > tracks average ~5.5–7.5 min — the extra time is atmospheric/instrumental
 > expanse and breathing room, NOT higher lyric density; lyric word-counts stay
 > lean per §8) ·
-> **Language:** English · **Status:** Concept (v4 — final all-concerns
-> spec-panel passed 20/20, fix list closed; long-form + Narrative + all-vocal +
-> title locked; divergent Round 3 mediated; Round-2 work-order folded in;
-> awaiting album-conceptualizer Phase 7 confirmation before any generation)
+> **Language:** English · **Status:** In production (v5 — album-conceptualizer
+> Phase 7 **confirmed**; T1 "The Listening" pilot **built & QC-green**; T2–T13
+> pending. v4's all-concerns spec-panel 20/20 still holds; long-form + Narrative
+> + all-vocal + title locked. **Voice spine = fragile genderless head-voice**
+> (§3–§4); narrator spoken-word delivery DNA (§8).)
 > **Source:** `SOURCE/kapitel-0.md` + `SOURCE/section-meta.md` (KOH/tier
 > ground truth) — "Kapitel 0 — Kohärenz Protokoll" (Coherence Protocol,
 > Chapter 0). Standalone. Direct 1:1 musical translation.
@@ -25,6 +26,33 @@ is archived under `SOURCE/loop1–3/`.
 ---
 
 ## 0 · Revision log
+
+### v4 → v5
+
+v5 records the **build-phase** decisions taken during the T1 "The Listening"
+pilot (album-conceptualizer **Phase 7 confirmed**; the build is proceeding one
+track at a time). v4 content is preserved — these are refinements, not a concept
+reopen.
+
+- **Voice spine redefined.** The sung **proto-host → host** spine is now a
+  **fragile, genderless head-voice** (thin, breathy, near-falsetto, faint
+  synthetic edge; adult, not childlike), held T1→T13 — *not* the earlier male
+  mid-baritone. Deliberately distinct from the framing narrator and the child
+  small-voice. Propagated to §3 (album spine), §4 (Layer C + the
+  fragment/proto-host fingerprint), §8 (host-Persona prereq). The cross-project
+  skill (`skills/theagencysystem/`) records this as the host's *genesis* timbre
+  on a developmental arc (matures toward the mid-baritone in later work).
+- **Narrator = a music-layer voice with a delivery DNA.** The T1/T7 spoken
+  intros generate as their own clips, **slow & *pointiert***, a faint drone
+  bleeding in; built with a 3-layer Suno toolkit (per-line bracketed metatags ·
+  ellipsis pause-cues · CAPS on the load-bearing word) and **reformatted for
+  breathing, never reworded**. Reusable craft saved to
+  `overrides/suno-preferences.md → "Narration / Spoken-Word Delivery DNA"`.
+- **Heavy-voice undertow.** The collapsed seed may surface early as a faint
+  **parenthesized backing undertow** (V5 `( )` = backing/ad-lib), building to
+  full voice later (still pays off full-voiced at T10).
+- **T1 pilot built** — lyrics + Suno boxes + ASDLS Tier-0 art prompt; QC green
+  (scan_artist_names clean, no homographs, streaming READY 7/7). T2–T13 pending.
 
 ### v3 → v4
 

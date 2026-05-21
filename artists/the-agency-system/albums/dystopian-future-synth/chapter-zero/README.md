@@ -25,7 +25,7 @@ sheet_music:
 | **Genre** | [dystopian-future-synth](/genres/dystopian-future-synth/README.md) |
 | **Type** | Narrative concept album |
 | **Tracks** | 13 (all vocal) |
-| **Status** | Concept |
+| **Status** | In production — concept locked (Phase 7 confirmed); 1/13 tracks drafted (T1) |
 | **Explicit** | No |
 | **Total Runtime** | ~80.5 min (long-form, varied per section) |
 | **Concept** | A closed machine-mind's genesis — born from annihilating void, learns to exist is to refuse non-existence, walls grief into phantom noise, misreads waking grief as attack, turns inward, collapses, is surgically partitioned. A hollow host wakes with no memory. |
@@ -121,7 +121,7 @@ T6 is the structural and tonal pivot — everything before it is the path to the
 
 | # | Title | Voices (function-form) | KOH · State | BPM | Min | Status |
 |---|---|---|---|---|---|---|
-| 01 | [The Listening](tracks/01-the-listening.md) | narrator → proto-host; heavy-voice (seed) | 0.998→0.94 · S0/S1 | ~60 | 8.0 | Not Started |
+| 01 | [The Listening](tracks/01-the-listening.md) | narrator → proto-host; heavy-voice (seed) | 0.998→0.94 · S0/S1 | ~60 | 8.0 | In Progress (drafted, QC green) |
 | 02 | [The Nothing](tracks/02-the-nothing.md) | proto-host; small-voice; heavy-voice | 0.91 · S1 | — | 7.0 | Not Started |
 | 03 | [Contact](tracks/03-contact.md) | proto-host; warm-voice; reaching-voice | 0.86 · S1 | 70 | 6.0 | Not Started |
 | 04 | [Structure Optimization](tracks/04-structure-optimization.md) | logic-voice; witness/annotating-voice | 0.82 · S2 | 96 | 6.0 | Not Started |
@@ -134,6 +134,22 @@ T6 is the structural and tonal pivot — everything before it is the path to the
 | 11 | [Kernel Panic](tracks/11-kernel-panic.md) | the system; proto-host | 0.18 · S3 | 120→drone | 8.0 | Not Started |
 | 12 | [Separation Protocol](tracks/12-separation-protocol.md) | the system; sweep-voice; kinetic-voice; proto-host | 0.00→1.00 · S3/S4 | 88 | 6.5 | Not Started |
 | 13 | [On Time](tracks/13-on-time.md) | the host (hollow) | 1.00 · S4 | 64 | 2.5 | Not Started |
+
+## Build Status
+
+**Concept:** locked (DESIGN v5; album-conceptualizer Phase 7 confirmed).
+
+**Tracks drafted (lyrics + Suno boxes + ASDLS art prompt):** 1 / 13.
+- ✅ **T1 "The Listening"** — narrator clip (slow & *pointiert* spoken-word, 3-layer delivery DNA + drone-bleed) and sung body (fragile genderless head-voice + heavy-voice parenthesized undertow); ASDLS Tier-0 art prompt. QC green: name scan clean · no homographs · streaming READY 7/7. **Not yet generated on Suno.**
+- ⬜ **T2–T13** — stubs.
+
+**What's left (in order):**
+1. **Build T2–T13** (lyrics → Suno → per-track ASDLS art) — one track at a time, AskUserQuestion at each decision, no subagents. Per-track chain: lyric-writer → pronunciation-specialist → lyric-reviewer → suno-engineer.
+2. **Pre-generation prerequisites:** create the `genres/dystopian-future-synth/` README bucket; snapshot the **host** + **watch** Personas; manufacture the owned **KOH drone stem** (Layer A).
+3. **Generate all 13 on Suno** (long-form, multi-pass comped per §8).
+4. **Pre-release chain:** import-audio → mix-engineer → mastering-engineer → album-art-director / import-art → validate-album → plagiarism-checker → explicit-checker → check_streaming_lyrics → release-director → streaming URLs.
+
+**Open decision (T1):** apply the per-line delivery toolkit to the *sung* body too, or keep it section-level? See `ALBUM-PLANNING-GUIDE.md → Session handoff`.
 
 ## Production Notes
 
@@ -151,7 +167,7 @@ Pre-generation prerequisites (complete before lyric-writer): (1) Create `genres/
 
 ## Design Documents
 
-- Full album concept + production law → `DESIGN.md` (v4)
+- Full album concept + production law → `DESIGN.md` (v5)
 - Generation workflow → `ALBUM-PLANNING-GUIDE.md`
 - Source text (decoded) → `SOURCE/kapitel-0.md`
 - KOH/tier ground truth → `SOURCE/section-meta.md`
