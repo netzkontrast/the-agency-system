@@ -430,7 +430,7 @@ Each track is a polyphonic angle on the same sustained truth-confrontation momen
 
 1. **User reviews this spec (v3.1)** — final sign-off required before scaffolding
 2. **Decide repo layout** (replace v2 / parallel slug)
-3. `/bitwize-music:new-album` — scaffold album directory (run requires `rebuild_state` first per MCP state)
+3. `/bitwize-music:new-album` — scaffold album directory. **Skip if the album folder already exists** (`create_album_structure` aborts on an existing path); run `rebuild_state` instead.
 4. `/bitwize-music:album-conceptualizer` — 7-phase deep-dive (Phase 7 is hard gate before lyric-writing)
 5. Per-track loop:
    - `/bitwize-music:lyric-writer` (auto-invokes suno-engineer)
@@ -483,7 +483,7 @@ Per-track LUFS targets (target spread caps at 8 LU due to ambient closer vs. ind
 
 | Decision | Resolved |
 |---|---|
-| **Repo layout** | v2 album content lives as **research material** at `RESEARCH/` inside the v3 album folder. The `dark-industrial/lass-mich-lass-mich-atmen/` path was deleted; v2 was moved to `dystopian-future-synth/lass-mich-lass-mich-atmen/RESEARCH/v2-album-README.md` + `RESEARCH/v2-tracks/01-13.md`. See `RESEARCH/README.md` for the research-usage protocol |
+| **Repo layout** | v2 album content lives as **research material** at `RESEARCH/` inside the v3 album folder. The `dark-industrial/lass-mich-lass-mich-atmen/` path was deleted; v2 was moved to `dystopian-future-synth/lass-mich-lass-mich-atmen/RESEARCH/v2-album-README.md` + `RESEARCH/v2-tracks/` (13 files, 01–13). See `RESEARCH/README.md` for the research-usage protocol |
 | **Album title final** | **"Lass mich, lass mich atmen"** — final, no shift |
 | **Release-order placement** | **Album 4** of The Agency System's discography, after *Systematic Agency*. In catalogue-release terms this is the fourth release; in arc terms it is the sustained form of *Kern der Wahrheit* |
 

@@ -12,7 +12,7 @@ The full README of the prior **v2 album draft** (formerly at `artists/the-agency
 - Captures the *Industrial-Metal × Doom × Darkwave Hybrid* sonic palette per track, with sub-axes (Witch-house, Slowcore, Dark-Folk, Coldwave, Post-Punk, Dark-Ambient, Ambient-Dream-Pop)
 - Names the System-Anteil-Trilogy structure (Beobachter / Container / Kind) that the v3 design re-distributed across different alters
 
-### `v2-tracks/01-13.md`
+### `v2-tracks/` — 13 files (01–13)
 **Thirteen fully-drafted track files** with Lyrics Box, Style Box, Sonic Profile, and partial Suno-Input. Approximately 5000 lines of drafted lyrics across the 13 tracks.
 
 | File | v2 Title | What it offers as research |
@@ -21,7 +21,7 @@ The full README of the prior **v2 album draft** (formerly at `artists/the-agency
 | `02-etwas-zwischen-hals-und-stimme.md` | Etwas zwischen Hals und Stimme (Witch-house × Darkwave wordless) | Wordless-witch-house craft reference for any v3 track that needs sub-linguistic horror-texture |
 | `03-ich-träume-durch-ein-fenster.md` | Ich träume durch ein Fenster (Doom × Dream-Pop, lucid dream) | Lucid-dream-as-trap concept; v3 absorbed this into Track 11 (Durch. Fühlen.) implicitly |
 | `04-das-bett-stellt-fragen.md` | Das Bett stellt Fragen (Slowcore × Darkwave) | Bed-as-grammatical-subject device; v3 chose not to use this; available if a later v3 track needs the somatic-anchor mode |
-| `05-wer-hier-wohnt-schläft-nicht.md` | Wer hier wohnt, schläft nicht (Industrial-Metal × Doom, Defender self-portrait) | Defender/Fighter self-portrait reference for v3 Track 04 (Wut tritt vor) lyric-writer |
+| `05-wer-hier-wohnt-schläft-nicht.md` | Wer hier wohnt, schläft nicht (Industrial-Metal × Doom, Defender self-portrait) | Defender/Fighter self-portrait reference for v3 Track 04 (Nicht meine Fehler) lyric-writer |
 | `06-lass-mich-das-leise-gebet.md` | Lass mich (das leise Gebet) (Dark-Folk × Darkwave) | Soft-voice mode of the title demand; reference for v3's Caregiver-Protector hybrid in any track |
 | `07-jemand-schreibt-mit.md` | Jemand schreibt mit (Coldwave × Darkwave, observer) | Observer-as-cold reference for v3 Track 12 (Anerkannt, getrennt) — both are witness-function tracks |
 | `08-was-hineinpasst-bleibt.md` | Was hineinpasst, bleibt (Industrial × Darkwave-Drone, Container) | Container-holding-the-noise reference; v3 deliberately excludes Container (per §4) — but his function is research material |
