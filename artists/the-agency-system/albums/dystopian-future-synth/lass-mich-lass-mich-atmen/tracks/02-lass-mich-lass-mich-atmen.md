@@ -70,7 +70,7 @@ The track sits at the album's namens-Position. T01's threshold-arrival tips dire
 
 Yellowed thread of the pillow pressed to mouth — *Perfect World*'s "Yellowed threads, a pillow worn thin" carried into the dream-Tod.
 
-## Lyrics (Streaming)
+## Streaming Lyrics
 
 ```
 Lass mich. Lass mich atmen.
@@ -108,7 +108,7 @@ Lass mich atmen.
 Lass mich. Lass mich atmen.
 ```
 
-## Lyrics (Suno)
+### Lyrics Box
 
 ```
 [Intro — Ich Sprechgesang + (Child whisper doubled), attacca from T01, 105 BPM]
@@ -169,7 +169,9 @@ Lass mich. Lass mich atmen.
 | 2 | Schwellen-Eintritt | T01 "Eingetreten" threshold-marker | Callback — door image | V1 L1: "Der Schlag aus der Tür." (T01's threshold becomes the heartbeat's source) |
 | 3 | Yellowed thread / pillow | *Perfect World* (Together We Confide, 2024) — "Yellowed threads, a pillow worn thin" | DNA-echo (not verbatim quotation) | V2 L1: "Ein gelblicher Faden zieht sich durch das Tuch." |
 
-## Style Box
+## Suno Inputs
+
+### Style Box
 
 ```
 male mid-baritone, paratactic Sprechgesang, German lyrics, demand register, dry close-mic, throat-audible, no vibrato. (female child whispered head-voice doubling refrain — parenthesized backing layer, ~10–12yr register). Industrial darkwave, darksynth. Full industrial-metal stack at 105 BPM — downtuned distorted bass, concrete-room drums, detuned guitar feedback stabs, metal-clang hits, pulverizing repetition. Dystopian-future-synth pads chorus-rich, sub-bass drone prominent, yellow-noise HF-glitch high in mix. Cold darkwave atmosphere, no neon-80s warmth. Dark production, voice forward, dynamic range.
