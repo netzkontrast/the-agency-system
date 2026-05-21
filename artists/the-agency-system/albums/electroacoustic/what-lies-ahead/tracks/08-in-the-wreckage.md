@@ -25,7 +25,7 @@ sheet_music:
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
-| **POV** | The Collapsed One (EP, Submit/Collapse) + The Integrator (ISH, ANP) — duet |
+| **POV** | The Collapsed One (EP, Submit/Collapse) + The Integrator (ISH, Meta) — duet |
 | **Role** | Sufjan license. Integrator arrives *in* the wreckage, not as rescue. The silent alliance per `../the-eleven.md`. |
 | **Fade Out** | 8s (longer than album default — the duet does not resolve, it ceases) |
 | **Target Duration** | 4:30–5:30 |

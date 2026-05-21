@@ -1,0 +1,177 @@
+# Suno Preferences
+
+Cross-project Suno V5 / V5.5 prompt preferences for {{ARTIST_SLUG}}.
+Per-track style prompts are constructed by `/bitwize-music:suno-engineer`;
+this file holds the genre mappings, vocal defaults, and avoidances that
+apply across projects.
+
+For the no-character-name-in-tags rule that governs multi-voice work,
+see `voice-craft-principles.md`. For per-project voice fingerprints (function
+or character vocal metatags), use the album's own voice reference file.
+
+---
+
+## Genre Mappings
+
+Translate working-vocabulary genres to Suno V5 tags:
+
+| Working Genre | Suno Genres |
+|---|---|
+| electroacoustic | electroacoustic, contemporary dark folk, art song |
+| dark folk | contemporary dark folk, dark singer-songwriter, intimate art song |
+| piano-and-voice intimate | intimate piano-and-voice, contemporary dark folk, ambient pop, art song |
+| orchestral electronic | dark cinematic, neoclassical electronic, contemporary classical, dark orchestral |
+| dark electro rock | dark electro rock, post-punk, gothic rock, alternative dark rock |
+| industrial darkwave | industrial darkwave, ebm, dark techno |
+| trip-hop dark | trip-hop, dark trip-hop, cinematic |
+| ambient drone | dark ambient, drone, atmospheric |
+| dark synth-pop | dark synth-pop, cold wave, minimal synth |
+
+---
+
+## Default Settings
+
+Applied unless the track explicitly overrides:
+
+- **Model**: V5
+- **Always include in style**: voice forward, restrained, dark production, contemporary, dynamic range
+- **Default Creative Sliders**: Weirdness ~35, Style Influence ~75, Audio Influence N/A (unless reference audio provided)
+- **Vocals FIRST** in the style prompt (V5 weights first words highest)
+- **Max 2 genre tags** in the style prompt (3+ produces inconsistent results)
+
+---
+
+## Vocal Preferences
+
+Cross-project vocal defaults by register. Album-specific per-function or
+per-character voice metatags live in each album's voice-DNA reference
+file. The register table maps loosely onto {{ARTIST_NAME}}'s function set
+(host, rationalist, protector, caregiver, integrator, fighter,
+child_freeze, ambivalent, sexualized_override, collapsed, witness) — but
+the metatag describes the **vocal sound**, never the function by name.
+
+| Register | Vocal Description |
+|---|---|
+| Default baritone (male) | male mid-baritone, conversational range, dry close-mic, light tape compression, no vibrato, breath audible |
+| Default alto (female) | female alto, intimate, vowel-forward, controlled vibrato, slight room reverb |
+| Tenor (male) | male clear tenor, controlled, no vibrato, thin processed reverb tail |
+| Soprano (female) | female warm soprano, breathy at edges, vowel-forward legato, intimate close-mic |
+| Aggressive / fight | female belt-alto, growl, raw, breathless intensity, clipped lines, dry mid-distance mic |
+| Soft / freeze (child / fragile) | head-voice only, whispered consonants, audible breath between phrases, fragile, lo-fi texture, ~10–12yr if child voice |
+| Spoken-word / narrator (witness) | androgynous spoken-word, monotone or half-sung, dry, layered with slight delay/echo, lowercase delivery, audiobook-narrator register |
+| Control / deliberate | low contralto, controlled, deliberate, restrained vibrato held as a weapon |
+| Collapsed / submit | very deep bass, sub-tempo near-spoken, gravelly, breath audible between fragments |
+| Microtonal / ambivalent | alto with microtonal pitch-bending, sliding vibrato, oscillating dynamics within phrases |
+
+---
+
+## Avoid
+
+Never use these in style prompts:
+
+### Genres
+- happy electro / euphoric trance / festival EDM
+- pop punk / pop rock / radio rock (generic)
+- country, bluegrass, americana (unless specifically called for in a project)
+- gospel, worship (unless documentary use)
+- reggae, ska
+- synthwave / outrun / retro-futurism — banned per {{ARTIST_NAME}} aesthetic (no 1980s/90s nostalgia in any layer)
+
+### Descriptors
+- happy, upbeat, cheerful, joyful, sunny, bright
+- anthemic (unless specifically called for)
+- "feel-good", "uplifting", "vibey"
+- "summer", "tropical", "party"
+- "epic" (overused — describe what you mean specifically)
+- "viral", "TikTok-ready"
+
+### Production Terms
+- heavy autotune (unless project-justified)
+- sidechain pump (unless EDM)
+- maximalist
+- over-mastered, brick-walled, loudness-war
+
+### Artist Names
+- Per `/reference/suno/artist-blocklist.md` — never reference real artists by name; describe the sound instead. Use era descriptions ("late-70s post-punk") not artist names.
+- This same ban extends to the system's own functions: never name an alter or function in a metatag. Describe the voice's timbre and register only.
+
+---
+
+## Instrument Preferences
+
+Preferred starting palette by genre cluster:
+
+| Genre | Instruments |
+|---|---|
+| electroacoustic / dark folk | acoustic piano, processed pad, distant strings, light tape compression, voice forward, often no drums |
+| orchestral electronic | string ensemble (mineral, not lush), processed pad, glass-piano, sparse percussion, sub-bass, dynamic range |
+| dark electro rock | electric bass, post-punk drum kit, processed electric guitar, analog synth pad, dark room reverb |
+| industrial darkwave | analog sub-bass, FM synthesis, hydraulic percussion, dry vocal, granular pads, typewriter percussion |
+| trip-hop | sparse breakbeats, deep sub-bass, vinyl crackle, cinematic strings, dark atmospheric |
+| ambient drone | sub-drone, granular pads, distant choir-as-texture, no rhythm, dynamic range |
+| dark synth-pop | analog synth, cold sequencer, gated reverb, sparse drum machine |
+
+---
+
+## Section-Tag Conventions
+
+- Always use V5 section tags: `[Intro]`, `[Verse 1]`, `[Pre-Chorus]`, `[Chorus]`, `[Bridge]`, `[Outro]`, `[End]`
+- Instrumental sections: `[Instrumental Break]`, `[Piano Solo]`, `[Guitar Solo]` — never wrap in parentheses (Suno sings parenthesized words)
+- Vocal-style inline tags at section openings: `[Whispered]`, `[Spoken]`, `[Belted]`, `[Falsetto]`, etc.
+- **Voice-character tags forbidden in lyrics** (per `voice-craft-principles.md`): never `[Container]`, `[Witness]`, `[Fighter]`, `[Character Name]`, never an alter's personal name. Describe the vocal sound only: `[male mid-baritone, weary, dry close-mic]`.
+- Parenthesized lyric lines `(like this)` render as backing/ad-lib layers in V5 — use deliberately for annotative voices and witness-style layers.
+
+---
+
+## Inline Voice Metatag Pattern
+
+For any track with multiple voices (solos with witness annotation, duets,
+ensemble tracks), insert a descriptive vocal metatag at the start of
+each section where the voice changes:
+
+```
+[Verse 1]
+[male mid-baritone, weary, slightly under-articulated, dry close-mic]
+... lyrics ...
+
+[Chorus]
+[female belt-alto, growl, dry mid-distance mic]
+... lyrics ...
+
+[Bridge]
+[androgynous spoken-word, layered, behind the beat, lowercase, lower in mix]
+(parenthesized backing line)
+(another parenthesized line)
+[male mid-baritone returns, dry close-mic]
+... return lyrics ...
+```
+
+Format: `[gender + register + texture + processing markers]`. Never the
+character form `[Fighter]` / `[Container]` / `[Character Name]`, never an
+alter's personal name. The descriptive register is the *only* permitted
+way to signal a voice change — the function stays nameless.
+
+---
+
+## Exclude Styles Defaults
+
+Most tracks land with these or similar exclusions; adjust per track:
+
+- `no autotune`
+- `no aggressive vocals` (unless project-justified)
+- `no maximalist production`
+- `no sidechain pump`
+
+For intimate / voice-forward tracks, also: `no drums`, `no electric guitar`.
+
+Max **2–4 items** in the Exclude Styles section (over-specification dilutes the effect).
+
+---
+
+## How This Works
+
+1. `/bitwize-music:suno-engineer` loads this file at session start
+2. Genre mappings translate working vocabulary to Suno tags
+3. Default settings + vocal preferences are applied unless overridden per-track
+4. Avoidance rules filter out unwanted terms automatically
+5. Section-tag and metatag conventions enforced (especially the voice-character / no-personal-name ban)

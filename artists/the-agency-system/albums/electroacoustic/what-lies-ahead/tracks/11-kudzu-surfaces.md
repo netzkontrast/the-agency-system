@@ -25,7 +25,7 @@ sheet_music:
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
-| **POV** | The Caregiver (ANP) + The Sexualized-Override (EP, Fight-via-Control) — duet of climbing conflict |
+| **POV** | The Caregiver (EP) + The Sexualized-Override (EP, Fight-via-Control) — duet of climbing conflict |
 | **Role** | Climbing tension. Caregiver's Kudzu surfaces as somatic memory — production callback to track 6 phrase at -6 BPM slower. Inner-critic re-voicing continues from track 10 — dialogic form: each alter names her own mechanism in her own voice, no parenthesized Witness layer. Sets up track 12 (Worldview — all 11 voices). |
 | **Fade Out** | 6s |
 | **Target Duration** | 4:00–5:00 |
