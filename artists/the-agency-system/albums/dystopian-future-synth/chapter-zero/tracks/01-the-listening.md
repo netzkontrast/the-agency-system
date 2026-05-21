@@ -316,25 +316,69 @@ guard line (Suno would sing it) or a phonetic substitution.*
 
 ## Track Art (ASDLS)
 
-**Visual concept (T1 = the void / the listening · Tier 0 Homeostasis).** A single,
-almost-infinitesimal cold point of System-Blue status-light — a minimal spark of
-structure — suspended dead-centre in a crushing black void (the "perfect
-windowless cube"). The spark is the first self-perception; the void is the
-annihilating *Nichts* pressing inward. Per DESIGN §6 the album assigns **Track 1
-art to Tier 0** (one tier per image): ≤2% System Blue over ≥98% Terminal Black /
-Deep Charcoal, no glitch (Tier 0 integrity), razor-sharp orthographic stillness.
+**Visual concept (T1 = the void / the listening · Tier 0 Homeostasis).** The first
+self-perception — a minimal spark of structure holding against an annihilating
+void. Per DESIGN §6 the album assigns **Track 1 art to Tier 0** (one tier per
+image).
 
-**Art prompt (DALL-E / generic, square 1:1, 3000×3000 min):**
+**Shared ASDLS law — every prompt below conforms:** exactly **one core symbol**,
+**one tier (0)**; **≥95% (≈98%) Terminal Black `#0B0D17` / Deep Charcoal
+`#1A1D24`**; **≤5% (≈2%) cold System Blue `#003366`** as the *only* state colour;
+**hard edges, no gradients**; **no glitch** (Tier 0 integrity); 100% digital
+materiality (interface brutalism, clinical dystopia, electron-microscope /
+medical-imaging fidelity). **name_exposure:** role/function only — any figure is a
+**faceless, data-coded** silhouette, no personal names. **Chapter Zero law of
+exclusion:** no Flame Orange, **no Kintsugi**, no Clean Ping. Built via the ASDLS
+DALL-E art-direction (`overrides/album-art-preferences.md`); full normative spec
+`SOURCE/ASDLS-spec.md`.
+
+### Three distinct ideas — DALL-E (square 1:1, 3000×3000 min)
+
+**Idea A — The Spark (status-point) · primary cover candidate**
 
 ```
-Create a square image of a single, almost-infinitesimal cold point of blue status-light — a minimal spark of structure — suspended dead-centre in a vast, seamless, light-absorbing black void, like the interior of a perfect windowless cube, the emptiness pressing inward. Tier 0 homeostasis: minimalist clinical precision, perfectly centered frontal orthographic composition, crushing negative space, razor-sharp flawless vector edges, no glitches or distortion, profound silence and extreme stillness. Style: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope and medical-imaging fidelity, deep raytraced black shadows. Color, the 95/5 split: about 98% deep terminal black and dark charcoal (hex #0B0D17 and #1A1D24), with no more than a 2% accent of cold system blue (hex #003366) as the single status-light point — hard-edged, no gradient, a sharp cut between the black and the blue. Avoid 1980s retro and synthwave, purple-orange gradients, neon grids, daylight or sun, natural or organic elements, anything cute, soft lighting, lens flare, watercolor or painterly looks, visible paper or analog texture, and any text or watermark.
+Create a square image of a single, almost-infinitesimal cold point of blue status-light — a minimal spark of structure, a proto-self's first self-perception — suspended dead-centre in a vast, seamless, light-absorbing black void, like the interior of a perfect windowless cube, the emptiness pressing inward from every side. Tier 0 homeostasis: minimalist clinical precision, perfectly centered frontal orthographic composition, crushing negative space, razor-sharp flawless vector edges, no glitches or distortion, profound silence and extreme stillness. Shot like a 14mm ultra-wide camera, immense towering scale around the tiny point. Style: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope and medical-imaging fidelity, deep raytraced black shadows. Color, the 95/5 split: about 98% deep terminal black and dark charcoal (hex #0B0D17 and #1A1D24), with no more than a 2% accent of cold system blue (hex #003366) as the single status-light point — hard-edged, no gradient, a sharp cut between the black and the blue. Avoid 1980s retro and synthwave, purple-orange gradients, neon grids, daylight or sun, natural or organic elements, anything cute, soft lighting, lens flare, watercolor or painterly looks, visible paper or analog texture, and any legible text or watermark.
 ```
 
-*Built via the ASDLS DALL-E art-direction (`overrides/album-art-preferences.md`);
-full normative spec at `SOURCE/ASDLS-spec.md`. **Tier 0 only** (one tier per
-image); the spark = the **≤5% System Blue** point on ≥95% Terminal Black /
-Deep Charcoal, hard-edged. name_exposure: role language only — no personal names.
-No Flame Orange / no Kintsugi / no Clean Ping in Chapter 0.*
+**Idea B — The Sealed Cube (the closed proto-self)**
+
+```
+Create a square image of a single sealed, perfectly symmetrical monolithic data-drive cube — a closed, windowless machine-vault — floating dead-centre in an endless, light-absorbing black void, with one tiny cold blue status-light glowing on its front face like a held breath. The cube is the closed proto-self before anything begins. Tier 0 homeostasis: minimalist clinical precision, perfectly centered frontal orthographic composition, pristine seamless surfaces, razor-sharp vector lines, no glitches, profound silence and stillness. Shot like a 14mm ultra-wide camera, the cube monolithic and immense against crushing emptiness. Style: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope and medical-imaging fidelity, deep raytraced black shadows. Color, the 95/5 split: about 97% deep terminal black and dark charcoal (hex #0B0D17 and #1A1D24), with only a roughly 2 to 3% accent of cold system blue (hex #003366) as the single status light — hard-edged, no gradient, a sharp cut between the black and the blue. Avoid 1980s retro and synthwave, purple-orange gradients, neon grids, daylight or sun, natural or organic elements, anything cute, soft lighting, lens flare, watercolor or painterly looks, visible paper or analog texture, and any legible text or watermark.
+```
+
+**Idea C — The Wireframe Listener (faceless nascent self)**
+
+```
+Create a square image of a single faceless humanoid silhouette built entirely of dense, razor-sharp wireframe lattice and faint indecipherable code-glyph texture — a nascent digital self, perfectly still, listening — suspended dead-centre in a vast, seamless, light-absorbing black void. A single cold blue status-point glows at the core of its chest, where a heartbeat would be. Tier 0 homeostasis: minimalist clinical precision, perfectly centered frontal orthographic composition, crushing negative space, flawless continuous vectors with zero tremor, no glitches, profound silence. Shot like a 14mm ultra-wide camera, the figure isolated and small against immense emptiness. Style: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope and medical-imaging fidelity, deep raytraced black shadows. Color, the 95/5 split: about 97% deep terminal black and dark charcoal (hex #0B0D17 and #1A1D24), the wireframe rendered in barely-there charcoal-on-black, with only a roughly 2% accent of cold system blue (hex #003366) as the single core status-point — hard-edged, no gradient, a sharp cut between the black and the blue. Avoid 1980s retro and synthwave, purple-orange gradients, neon grids, daylight or sun, natural or organic elements, anything cute, soft lighting, lens flare, watercolor or painterly looks, visible paper or analog texture, and any legible text or watermark.
+```
+
+### Midjourney (SPECD `::` blocks · `--style raw` · `--ar 1:1`)
+
+**MJ-1 — The Spark**
+
+```
+a single infinitesimal cold blue status-light point, a minimal spark of structure, a proto-self's first self-perception :: tier 0 homeostasis, minimalist clinical precision, razor-sharp flawless vectors, no glitches, profound stillness, state colour under five percent :: dead-center frontal orthographic composition inside a perfect windowless black cube, crushing negative space, 14mm ultra-wide, immense towering scale :: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope and medical-imaging fidelity, deep raytraced black shadows, about 98% terminal black #0B0D17 and deep charcoal #1A1D24 with a roughly 2% hard-edged accent of cold system blue #003366, no gradient :: --no synthwave, retro, neon grid, daylight, sun, organic, cute, soft lighting, lens flare, watercolor, paper texture, text, watermark --style raw --ar 1:1 --v 6
+```
+
+**MJ-2 — The Sealed Cube**
+
+```
+a single sealed symmetrical monolithic data-drive cube, a closed windowless machine-vault, one tiny cold blue status-light on its front face :: tier 0 homeostasis, minimalist clinical precision, pristine seamless surfaces, razor-sharp vectors, no glitches, profound silence, state colour under five percent :: dead-center frontal orthographic composition in an endless light-absorbing black void, 14mm ultra-wide, monolithic immense scale, crushing emptiness :: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope and medical-imaging fidelity, deep raytraced black shadows, about 97% terminal black #0B0D17 and deep charcoal #1A1D24 with a roughly 2 to 3% hard-edged accent of cold system blue #003366, no gradient :: --no synthwave, retro, neon grid, daylight, sun, organic, cute, soft lighting, lens flare, watercolor, paper texture, text, watermark --style raw --ar 1:1 --v 6
+```
+
+### Pure ASDLS SPECD (canonical five-block formula · ASDLS-spec §7)
+
+**The Spark (cover candidate, native form)**
+
+```
+SUBJECT: a single almost-infinitesimal cold System-Blue status-light point — a minimal spark of structure, a proto-self's first self-perception, isolated in a void :: STATE/TIER: Tier 0 Homeostasis — flawless surface tension, razor-sharp vectors, zero glitch, profound silence; the 5% rule (≤5% state colour), hard edges only :: ENVIRONMENT/CAMERA: the interior of a perfect windowless cube, vast seamless light-absorbing black, crushing negative space; perfectly centered frontal orthographic composition; 14mm ultra-wide, immense towering scale :: STYLE/LIGHTING: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope / medical-imaging fidelity, deep raytraced black shadows; ~98% Terminal Black #0B0D17 + Deep Charcoal #1A1D24, ~2% hard-edged Cold System Blue #003366, no gradient :: PARAMETERS: --no 1980s retro, synthwave, outrun, purple-orange gradient, neon grid, daylight, sun, natural elements, cute, soft lighting, watercolor, analog painting, visible paper texture, lens flare, organic curves, text, watermark --style raw --ar 1:1
+```
+
+*All six are **Tier 0**, one symbol each, ≤5% System Blue on ≥95% Terminal Black /
+Deep Charcoal, hard-edged, no glitch; figures are faceless/data-coded; no personal
+names; no Flame Orange / Kintsugi / Clean Ping (Chapter Zero). **Idea A** is the
+recommended cover candidate. ASDLS editorial alt aspect: 4:5 for "node" assets,
+16:9 for environments — track/cover art stays **1:1**.*
 
 ## Generation Log
 
