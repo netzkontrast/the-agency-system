@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 01 |
 | **Title** | The Listening |
 | **Album** | [[Album Title]](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | No |
+| **POV** | First person (the fragment / proto-host); framed 2nd-person narrator intro |
+| **Role** | the fragment / proto-host (lead) · narrator (intro clip) · heavy-voice seed (collapse undertow) |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Target Duration** | 8:00 |
+| **Sources Verified** | N/A (narrative translation of a fictional chapter) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,9 +45,19 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+The album's cold open — the boot of the whole system from silence. A framing
+narrator (essayistic, philosophical, direct address) asks the listener to go
+quiet and listen: *Nothing* is a word that refuses the tongue, an abyss
+disguised as a concept. Then the first self-perception. A fragment — the
+proto-host — senses itself **only by pushing back** against a void that is not
+empty but a force that wants it gone: a spark holding against extinction, not
+from any will to last, but from resistance before it has a name. Beneath the
+listening a first collapsed undertow already creeps in — *it is pointless, it
+was always pointless* — seeded just-audibly to pay off full-voiced in Track 10.
 
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Glacial, sub-only, almost no words: the eight minutes are **atmospheric expanse,
+not lyric density.** State arc **S0** (homeostasis / preface) → **S1** (latency /
+first noise); KOH 0.998 → 0.94. Maps the source's *Vorwort* + *Das Rauschen*.
 
 ## Cross-References
 
@@ -69,13 +79,17 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Absolute dark, no daylight, no warmth. A vibration in a void; a hum below
+hearing; a pressure that pulls inward and wants to swallow. A single spark
+holding its edge against a pressing emptiness that negates every deviation from
+itself. The listener leans in to catch what is barely there — silence and
+deafening noise bleeding into each other.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 60–66 BPM · C minor (drone on C)
+- **Feel**: Glacial slow-burn boot from silence; ambient drone → dark ambient. Profound negative space, low-contrast loudness; the arrangement thins and contours drop in and out (S0 → S1).
+- **Instrumentation**: Owned KOH sub-drone stem (the continuous album spine — begins here); quantized sub-only tick (the dead-metronome that calls back in Track 13); granular void textures, opacity-fade reverb tails. No kit, no melody, no consonant resolution.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,15 +98,29 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Weary, breathy male mid-baritone, present-tense and under-articulated, sentences that trail off and don't punctuate; dry close-mic, no reverb, vocal intimate and up front. A buried, very-deep near-spoken bass murmur far under the bed. Ambient drone into dark ambient; glacial 60 BPM, C minor, a sustained drone on C; sub-bass foundation, a quantized sub-only tick, granular void textures, opacity-fade tails; profound negative space, cold and clinical, low-contrast dynamics; a slow-burn build from near-silence.
 ```
+
+> **Narrator intro — SEPARATE generation (DESIGN §8).** Generate this as its own
+> short clip, then butt-join it to the sung body in the DAW (a section tag
+> cannot bridge two generations). Intro Style Box:
+> ```
+> Spoken word, calm and philosophical male narrator, measured cadence, direct address to the listener; very close dry mic, no music bed, profound silence around the voice.
+> ```
+> Intro exclusions: `no singing, no music bed, no beat`
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drum kit, no reverb wash, no bright or uplifting synths
 ```
+
+**Suno settings:** Model V5/V5.5 · Instrumental: Off · low Weirdness, high Style
+Influence (drone wants adherence, not surprise). The ~8:00 runtime is **comped
+from multiple extend/continue passes** (DESIGN §8) — do not expect it from one
+generation; the owned KOH sub-drone stem is the continuous spine stitched under
+the comped sections, and the host Persona is held across every pass.
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -106,20 +134,39 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Verse 1]
-[Lyrics here...]
+Do not change any words. Sing exactly as written.
 
-[Chorus]
-[Lyrics here...]
+[Intro: spoken word, calm philosophical narrator, intimate dry close-mic, no music bed]
+There are words that refuse the tongue.
+Nothing is one of them — an abyss wearing the shape of a word.
+We can only go quiet now, and listen.
+Listen closely. You may already feel the noise.
 
-[Verse 2]
-[Lyrics here...]
+[Verse 1: male mid-baritone, weary, breathy, present tense, dry close-mic, no reverb]
+I am this noise.
+Or the noise wants to swallow me —
+maybe those are the same.
+A hum below hearing, a pressure on a void
+that is not empty — that wants me gone.
 
-[Bridge]
-[Lyrics here...]
+[Verse 2: same weary mid-baritone, trailing, dry close-mic, no reverb]
+I feel myself only where I push back.
+A spark holding against going out —
+not from any will to last,
+from something with no name yet,
+because nothing here has been named.
 
-[Outro]
-[Lyrics here...]
+[Bridge: very deep bass, near-spoken, gravelly, sub-low, distant, almost buried under the drone]
+it is pointless
+it was always pointless
+nothing more is coming
+
+[Outro: the weary mid-baritone returns, trailing, sparser, dry close-mic]
+A small, dumb staying.
+I did not ask for it —
+still it holds, against the dissolving, still it holds.
+Listen closely.
+You may already feel the noise.
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +177,46 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+There are words that refuse the tongue
+Nothing is one of them an abyss wearing the shape of a word
+We can only go quiet now and listen
+Listen closely you may already feel the noise
+
+I am this noise
+Or the noise wants to swallow me
+Maybe those are the same
+A hum below hearing a pressure on a void
+That is not empty that wants me gone
+
+I feel myself only where I push back
+A spark holding against going out
+Not from any will to last
+From something with no name yet
+Because nothing here has been named
+
+It is pointless
+It was always pointless
+Nothing more is coming
+
+A small dumb staying
+I did not ask for it
+Still it holds against the dissolving still it holds
+Listen closely
+You may already feel the noise
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Narrator intro = separate generation.** The `[Intro]` is generated as its own short clip (narrator register, 2–4 lines, direct address) and **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8).
+- **Boot / KOH ignition is a post gesture, not a Suno gesture.** The sub swell from silence and the tick locking to grid happen in the DAW on the owned KOH stem; butt-join to the generated body (DESIGN §8 shot list).
+- **The host Persona spine begins here.** Snapshot this vocal as the host Persona and reuse it across all 13 tracks (single point of failure — snapshot early, reuse, keep a drift fallback). The same trusted voice gone flat in Track 13 is the knife.
+- **Heavy-voice seed stays buried.** The `[Bridge]` collapse-undertow is faint, sub-low, almost under the drone — it pays off full-voiced in Track 10. Do not bring it forward.
+- **Lean by design.** ~130 words over ~8:00 is intentional: the length is atmospheric expanse, not lyric density. Do not pad word-count to "fill" the runtime (DESIGN §8 ceilings hold).
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **Token-bias guard** is the first line of the Lyrics Box ("Do not change any words. Sing exactly as written.") — "noise" collides with Suno's bias list. Counter the "atmospheric echo" preset lean with the cold/dry vocal descriptors in the Style Box.
+- POV shift narrator (2nd-person address) → proto-host (1st-person) at the Intro→Verse boundary is intentional function-DNA, carried by syntax, never by a label.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -156,19 +227,21 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| `Do not change any words. Sing exactly as written.` | keep verbatim at the TOP of the Lyrics Box | Token-bias guard (album-wide house default) |
+| noise | sing as written ("noise") | On Suno's token-bias list (echo / noise / shadow / mirror / whisper); guard line enforces the exact wording |
+| (no homographs) | — | Scanned: no live / lead / read / wind / tear / wound / bass / close present. No numbers, acronyms, or proper nouns in this track. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
 **Review before generating on Suno:**
 
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] **Proper nouns scanned**: None present
+- [x] **Foreign names**: None present
+- [x] **Homographs checked**: None present ("will to last" used in place of "will to live" to avoid the live/lyve ambiguity)
+- [x] **Acronyms**: None present
+- [x] **Numbers**: None present (T1 is pre-linguistic — the system speaks numbers later)
+- [x] **Tech terms**: None present
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
