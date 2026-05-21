@@ -286,6 +286,26 @@ top of the Lyrics Box (see Production Notes), not by phonetic substitution.*
 
 <!-- END VOCAL ONLY -->
 
+## Track Art (ASDLS)
+
+**Visual concept (T1 = the void / the listening · Tier 0 Homeostasis).** A single,
+almost-infinitesimal cold point of System-Blue status-light — a minimal spark of
+structure — suspended dead-centre in a crushing black void (the "perfect
+windowless cube"). The spark is the first self-perception; the void is the
+annihilating *Nichts* pressing inward. Per DESIGN §6 the album assigns **Track 1
+art to Tier 0** (one tier per image): ≤2% System Blue over ≥98% Terminal Black /
+Deep Charcoal, no glitch (Tier 0 integrity), razor-sharp orthographic stillness.
+
+**SPECD prompt (ASDLS §7.1 skeleton):**
+
+```
+a single infinitesimal cold point of status-light, a minimal spark of structure, alone dead-centre in a vast seamless black interior, the void pressing inward :: Tier 0 Homeostasis — ~2% System Blue #003366 faint status light over 98% Terminal Black #0B0D17 and Deep Charcoal #1A1D24, no glitch, razor-sharp flawless vectors :: the perfect windowless cube, centred frontal orthographic projection, crushing negative space, extreme stillness, the point tiny and far :: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, electron-microscope / medical-imaging fidelity, absolute desaturation, profound silence :: --no 1980s retro, synthwave, outrun, purple-orange gradient, neon grid, daylight, sun, natural elements, cute, soft lighting, watercolor, analog painting, visible paper texture, lens flare, organic curves --style raw --ar 1:1
+```
+
+*Square 1:1 for cover/track art (3000×3000 min); ASDLS editorial default is
+`--ar 4:5`. name_exposure: role language only — no personal names. Law of
+exclusion: no Flame Orange / no Kintsugi in Chapter 0.*
+
 ## Generation Log
 
 Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
