@@ -87,6 +87,13 @@ For each voice in play:
 Token discipline: a typical lyric cell is `entities/<fn>.md` + `states/<sN>.md`
 (+ `collision-matrix.md` at S2/S3). Never pre-load the whole tree.
 
+> **Slug note:** function keys use underscores, but entity **filenames use
+> hyphens** — `child_freeze` → `entities/child-freeze.md`,
+> `sexualized_override` → `entities/sexualized-override.md`. Don't substitute the
+> key into `<fn>.md` literally. The canonical path is the function's `entity:`
+> field in `resolver.yaml`, and every `pointers:` entry in `matrix-index.yaml`
+> is already the exact filename — use those.
+
 ## Step 5 — name_exposure gate (hard rule)
 
 From `resolver.yaml → name_exposure_default`:
