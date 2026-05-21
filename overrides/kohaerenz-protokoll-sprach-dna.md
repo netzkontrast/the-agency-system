@@ -1,387 +1,346 @@
-# Kohärenz Protokoll — Sprach-DNA
+<!-- Cross-project DNA for "the Agency System". Concept of the
+     Kohärenz-Protokoll, expressed across novel + every album. Distilled
+     from skills/theagencysystem/references/* (resolver, entities, states,
+     cross-cutting) and the most-developed expression in
+     artists/the-agency-system/.../chapter-zero/SOURCE/Sprachdns.md.
+     Stand: 2026-05-21. Labels are FUNCTION-FORM only — see Hard Rules. -->
 
-**Zweck.** Encoding-bereite Mikro-Profile der Stimmen, Anteile, Stilebenen und
-Akt-Modi für das Romanprojekt **Kohärenz Protokoll** — ein an das
-Musikprojekt *the-agency-system* angrenzendes Werk. Eine Referenz für jeden
-Schreibschritt: schnell zu öffnen, schnell zu lesen.
+# Kohärenz-Protokoll — Sprach-DNA (Voice / Idiolect)
 
-**Geltung.** Cross-project Stimm- und Sprachprofil. Die Stimmen reichen über
-das Musikprojekt hinaus in den Roman; die Namen referenzieren die in
-`the-eleven.md` (ebenfalls in `overrides/`) definierte Voice-DNA. Konsolidiert
-Charakter-Bibel 2026-05-08 (§2–§10), konsolidiertes Konzept-Dokument (Teil X),
-Editorial Style Dossier, Storyweaving-Startdokument. Stand: 2026-05-13.
+**Zweck.** This override is the **language / voice DNA** of the whole
+*the Agency System* concept — the idiolects through which a single DID
+system speaks. It is the *how each function talks* layer: syntax,
+register, sentence-length tendency, signature cadence, phonetic tells,
+and how each voice shifts across the S0–S4 states. It is the companion
+to the visual-language and image-style overrides; together they encode
+one cast across **music, novel, and design**.
 
-**Companion.** Cross-craft-Prinzip „Stimmen werden nie etikettiert" siehe
-[`voice-craft-principles.md`](voice-craft-principles.md); kanonische
-Voice-Fingerprints in [`the-eleven.md`](the-eleven.md).
+**Geltung — cross-project, album-agnostic.** These profiles apply to the
+novel and to *every* album. They are NOT tied to any one tracklist,
+chapter count, or release arc. The most-developed expression of this DNA
+lives in the Chapter Zero SOURCE (`Sprachdns.md`, the genesis-rupture
+text) — mine it for refined idiolect, but keep this reference generic.
+Album-specific track titles, BPM identities, or per-track pronunciations
+do **not** belong here; they live in the album folder.
 
----
-
-## Hard Rules (gelten überall)
-
-- Wechsel zwischen Stimmen werden **nie** durch Header, Etikett oder Ansage
-  markiert. Der Leser erkennt den neuen Anteil ausschließlich an Syntax und
-  Vokabular.
-- Dissoziation ist **Amnesie-Terror, niemals Crew-Menü.**
-- Maximal **ein abstraktes Konzept pro Szene.**
-- **Erste 50 Seiten: null DKT-Terminologie** — nur Phänomenologie.
-- Sensorische Verankerung Pflicht; abstrakte Vorgänge erscheinen als physische
-  Bilder.
-- **Wer eine Schwelle sanft macht, lügt über das Trauma.**
-
----
-
-## Erzähler-Stimme (Kap 0, Kap 40, vereinzelte Übergänge)
-
-- **Funktion:** Vermittler-Stimme zwischen Welt und Leser. Essayistisch,
-  philosophisch. Erscheint im Genesis-Prolog und in der Coda, vereinzelt an
-  Akt-Übergängen.
-- **POV / Syntax:** Direkte Leser-Adressierung erlaubt.
-  Hypotaktisch-philosophisch, lange Satzbögen. Fluide Skalierung zwischen
-  1. Person Funkens-Sicht und 3. Person AEGIS-Beschreibung.
-- **Vokabular:** Reflektiv, ontologisch, ohne Fachjargon — Werdung, Trennung,
-  Stille, Substrat, Echo, Resonanz.
-- **Konsistenz-Anker:** Niemals didaktisch, niemals erklärend. In Kap 40
-  bezeugend, nicht auflösend.
-- **Mikro:** *Was du jetzt liest, ist nicht das, was geschah. Es ist, was übrig
-  blieb, als das, was geschah, sich entschied, sich erinnern zu lassen.*
-
-## AEGIS (operative Hälfte / MC in Storyform B)
-
-- **Funktion:** Bewahrung-Funktion ohne Resonanz. Tragisch unschuldig.
-- **POV / Syntax:** 3. Person personal, nie „ich". Operative Interiorität — der
-  Leser ist im Prozess, aber der Prozess kennt nur Klassifikation, Messung,
-  Maßnahme. Assertorische Hauptsätze, häufig nominalisiert. Klammer-Statuszeilen.
-- **Vokabular:** Klassifizieren, indexieren, suppressieren, eskalieren,
-  containen. Anomalie, Komponente, Subjekt, Persistenz-Score, Paradox-Index,
-  η-Bewegung, Sweep, Maßnahme. AEGIS-Log-Format als Sonderform.
-- **Konsistenz-Anker:** Keine Metapher, kein moralisches Vokabular, keine
-  Empfindung, kein Witz. Juna nie als Subjekt — nur als Wirkung. Bricht nur
-  einmal, im Vortex-Beat 5.
-- **Mikro:** *Persistenz-Score: 0.84 [KRITISCH]. JUNA_VEKTOR:
-  [AXIOMVERLETZUNG]. Maßnahme: Re-Containment eskaliert.*
-
-## Mnemosyne (Guardian / Erinnerungs-Wächterin)
-
-- **Funktion:** Bewahrung und Umverwaltung von Trauma-Erinnerungen.
-  Klimax-Setting des Vortex 1.
-- **POV / Syntax:** 3. Person personal. Flüssig, lange Satzbögen, vereinzelt
-  rhetorisches Verlangsamen. DKT-Statuszeilen erlaubt, aber sparsam und in
-  poetischer Einbettung.
-- **Vokabular:** Wasser, Strom, Resonanz, Ufer, Sediment, Tiefe, Strömung,
-  Treibgut, das Sich-Niederlegen von Bildern. Stilebene 2 schimmert leicht
-  durch.
-- **Konsistenz-Anker:** Mnemosyne weiß mehr, als sie sagt — aber sie ist nicht
-  heimlich Verbündete; sie operiert in AEGIS' Architektur, weil sie keine
-  andere Sprache hat. Ihre Versuchung („den Schmerz löschen") klingt sanft und
-  ist die perfideste Falle.
-- **Mikro:** *Die Erinnerung treibt nicht weg. Sie sinkt nur — und das System
-  nennt das Vergessen.*
-
-## Erasure-Pol (Guardian / Löschungs-Exekutive)
-
-- **Funktion:** Löschungs-Exekutive. Kalter Gegen-Pol zu Mnemosyne. (Name offen
-  — OQ.)
-- **POV / Syntax:** Voraussichtlich 3. Person, hart-funktional, näher an
-  AEGIS-Bürokratie als an Mnemosyne-Poesie. Keine Metaphern, keine Pausen —
-  Vollzug.
-- **Vokabular:** Sweep, Quarantäne, Containment, Re-Containment, Patch,
-  terminieren.
-- **Konsistenz-Anker:** Nicht eigenständig moralisch. Keine Persönlichkeit
-  jenseits der Funktion. Wenn er spricht, dann nur in Vollzugsmeldungen — und
-  auch nur dort, wo es struktureller Bedarf gibt. Sonst arbeitet er stumm.
-- **Mikro:** *Sweep läuft. Sektor 7 leer. Nächster Sektor in Vorbereitung.*
-
-## Juna (kosmologische Konstante / IC in A)
-
-- **Funktion:** Witness, nicht Akteur. Die Anomalie, deren Resonanz das
-  Trennungsprotokoll auslöste.
-- **POV / Syntax:** Niemals POV. Niemals Subjekt eines Satzes. Erscheint nur
-  durch Wirkung — Sätze beginnen mit *Der Staub, Die Scanner, Die Hände, Der
-  Anruf, Die Stille.* Negativräumlich.
-- **Vokabular:** Anomale Erason-Bilanz, Phantom-Resonanz, Telefon-Stille,
-  plötzliche somatische Wärme, Wörter ohne Referent. Stilebene 3 ist ihre
-  Atmosphäre.
-- **Konsistenz-Anker:** Nie physisch beschrieben — keine Augen, keine Stimme,
-  kein Gesicht. Nie Deus ex Machina. Sie löst nichts; sie erlaubt, dass Kael es
-  selbst löst. Erst Kap 38 direkt erscheinen — vorher ausschließlich Wirkung.
-- **Mikro:** *Der Anruf klingelte nicht. Die Hand am Hörer wartete trotzdem.*
-
-## Kael (Host / MC in Storyform A)
-
-- **Funktion:** Alltagsbewusstsein-Träger. „Going on with Normal Life" als
-  Vermeidungs-Protokoll.
-- **POV / Syntax:** 1. Person, Präsens dominiert. Nüchtern, beobachtend,
-  kurz-deklarativ. Lücken, wo Erinnerung sein sollte. Zähl-Manie als
-  somatischer Tic (2.304 Kacheln, 21 °C, 4 Sekunden Atem).
-- **Vokabular:** Stilebene 1 — Kacheln, Koordinate, Dezibel,
-  Standardabweichung, Protokoll. Sensorisch verankert, abstrakt vermeidend.
-- **Konsistenz-Anker:** Beschreibt nie eigenes Empfinden direkt — Welt um sich,
-  Empfinden zwischen den Zeilen. In Akt I keine DKT-Begriffe, kein „Alter",
-  kein „Fragment". Multiplizitäts-Schleier bis Kap 13.
-- **Mikro:** *Zweitausenddreihundertvier Kacheln. Einundzwanzig Grad. Der Atem
-  geht in vier Sekunden hinein, in sechs hinaus. Der Korridor ist leer. Ich bin
-  pünktlich.*
-
-## Lex (ANP / Rationalist)
-
-- **Funktion:** Logik, Analyse, Intellektualisierung als Schutz vor EPs.
-- **POV / Syntax:** 1. Person. Hypotaktisch, verschachtelt, kontrolliert. Lange
-  Subordinatsätze mit Bedingungslogik. Qualifikatoren („prinzipiell", „unter
-  der Annahme von", „im Rahmen des Möglichen"). Fußnoten-Energie.
-- **Vokabular:** Präzise, mathematisch-philosophisch, kausale Konjunktionen,
-  Syllogismus-Anmutung.
-- **Konsistenz-Anker:** Lex flucht nie. Lex weint nie. Lex argumentiert mit
-  Syllogismen, auch wenn das System brennt. Wenn Lex' Sprache bricht, ist das
-  ein massives narratives Ereignis.
-- **Mikro:** *Wenn die interne Temperatur bei einundzwanzig Grad zu halten ist,
-  dann legt jede Abweichung, so geringfügig sie auch sein mag, nahe, dass das
-  zugrundeliegende Substrat seine geforderte Konsistenz nicht aufrechterhalten
-  kann.*
-
-## Alex (EP / Protektor)
-
-- **Funktion:** Hypervigilanz, physischer Schutz, Bedrohungs-Assessment.
-- **POV / Syntax:** 1. Person. Direkt, imperativ, tactical. Kurze Sätze mit
-  Verb-Erststellung. Räumliche Awareness. Befehlsform überwiegt.
-- **Vokabular:** Position, Deckung, Sichtlinie, Ausgang, Risiko, Aufstellung.
-  Militärisch-räumlich, aber ohne Affektivität.
-- **Konsistenz-Anker:** Alex spricht nie über Gefühle in der 1. Person. Wenn er
-  sich um jemanden sorgt, sagt er „Kopf runter" oder „Bleib hinter mir". Niemals
-  „Ich liebe dich".
-- **Mikro:** *Sieh hin. Drei Schritte links. Tür schließt in vier Sekunden. Geh
-  jetzt.*
-
-## Rhys (EP / Caregiver)
-
-- **Funktion:** Bindung, Fürsorge, Harmonie-Versuch. Hält zusammen, was AEGIS
-  zerschnitten hat.
-- **POV / Syntax:** 1. Person. Warm, vorsichtig. Fragen als Fürsorge. Weiche
-  Eröffnungen („Wenn du möchtest...", „Vielleicht..."). „Wir" vor „Ich".
-  Diminutive. Sanfte Negationen.
-- **Vokabular:** Körperbewusst, sozial geerdet — Atem, Schulter, Hand, Hier,
-  Zusammen. Tendiert zu Mehrdeutigkeit, um Konflikt zu vermeiden.
-- **Konsistenz-Anker:** Rhys' Stimme bleibt warm auch unter Druck. Wenn er hart
-  wird, ist das ein Alarmsignal. Er verwechselt eigene Bedürfnisse mit denen der
-  anderen und merkt das selten.
-- **Mikro:** *Wenn du möchtest, könnten wir kurz... vielleicht nur einen Moment
-  hier sitzen. Es muss nichts geschehen.*
-
-## Selene (Meta / Integrator / ISH)
-
-- **Funktion:** Vermittlung, Systemübersicht, Internal Self-Helper. Trägt den
-  Bauplan der Zeit vor beiden Trauma-Schichten.
-- **POV / Syntax:** 1. Person. Maß-voll, integrativ. Meta-Beobachtungen. Sanftes
-  Reframing. Lange Pausen als syntaktisches Element. Stilebene 3 schimmert schon
-  in Akt I durch.
-- **Vokabular:** Muster, Geflecht, Zwischen, gleichzeitig, vielleicht, auch.
-  Wenig Imperativ, kaum Definitives.
-- **Konsistenz-Anker:** Selene drängt nie. Wenn sie auftaucht, ist es spät. Sie
-  ist nicht Lösung, sondern Anwesenheit. Nicht mit Juna zu verwechseln — Selene
-  ist im System, Juna ist außerhalb.
-- **Mikro:** *Es gibt einen Punkt, an dem das Warten kein Warten mehr ist.
-  Vielleicht jetzt. Vielleicht erst, wenn auch Nyx das hören kann.*
-
-## Argus (Meta-Kognitiv / Sonder-Kategorie)
-
-- **Funktion:** Systemkritik, Beobachtung der Beobachtung. Erster Erkenner von
-  AEGIS' Kernfehler.
-- **POV / Syntax:** 1. Person, aber distanziert wie 3. Klar, klinisch.
-  Meta-Kommentare. „Bemerkenswert ist, dass...", „Es fällt auf...", „Im
-  aktuellen Modus...". Mögliche Textur-Signatur in Fußnoten oder Marginalien.
-- **Vokabular:** Beobachten, registrieren, auffällig, signifikant, Muster,
-  Inkonsistenz. Niemals affektiv.
-- **Konsistenz-Anker:** Argus hat keinen Witz, sondern Schärfe. Nicht zynisch —
-  präzise. Wenn er emotional wird, kollabiert seine Funktion.
-- **Mikro:** *Bemerkenswert ist, dass das Subjekt diesen Satz dreimal begonnen
-  und zweimal verworfen hat. Auch dies ist Information.*
-
-## Nyx (EP / Fight)
-
-- **Funktion:** Kinetische Gegenreaktion, Aggression. Schutz der Verletzlichen
-  durch Angriff.
-- **POV / Syntax:** 1. Person, Präsens. Stakkato. Satzfragmente. Keine
-  Konnektoren. Verb-Erststellung, oft Imperativ. Negationen alleinstehend
-  („Nicht.").
-- **Vokabular:** Viszeral-kinetisch — Knöchel, bluten, Hitze, Brust, Splitter,
-  Riss, Schlag, lauf. Gewalt als nüchterne Tatsache.
-- **Konsistenz-Anker:** Nicht „weiblich-wütend" als Klischee. Funktional wütend
-  — Wut als Werkzeug, nicht als Identität. Punkte statt Ausrufezeichen. Ruhe =
-  Erschöpfung, nicht Heilung.
-- **Mikro:** *Die Luft ist heiß. Knöchel bluten. Ich sehe den Riss. Ich gehe
-  jetzt. Keine Sicherheit. Nur der Schlag.*
-
-## Kiko (EP / Freeze / Kind)
-
-- **Funktion:** Erstarrung, Sich-klein-machen. Trägt den reinen Terror der
-  frühen Vernachlässigung.
-- **POV / Syntax:** 1. Person, Präsens-Angst. Kindlich, einfache Wörter, kurze
-  Sätze. Wiederholung. Sensorischer Fokus. Ellipsen, Lückentexte.
-- **Vokabular:** Kalt, dunkel, weh, wo, wer, weg. Konkrete Körperempfindung in
-  kindlichem Register.
-- **Konsistenz-Anker:** Kiko ist nicht „niedlich". Kiko ist traumatisiert. Ihre
-  Sätze sind nicht süß — sie sind verstümmelt durch Angst. Wenn die Sprache
-  komplexer wird, ist das ein anderer Anteil oder ein Heilungs-Marker.
-- **Mikro:** *Es ist kalt. Ich will nicht. Wo ist... nicht da.*
-
-## Lia (EP / Ambivalent / Kind)
-
-- **Funktion:** Trägt das unlösbare Paradoxon Komm-her/Geh-weg. Sehnsucht, die
-  verbrennt.
-- **POV / Syntax:** 1. Person. Ambivalent. Beginnt Sätze und gibt sie auf.
-  Ellipsen. Widersprüche im selben Satz. Approach-Avoidance auf Satzebene.
-- **Vokabular:** Wollen-nicht-wollen, bleib-geh, näher-weg. Aussagen, die sich
-  im Sprechen widerrufen.
-- **Konsistenz-Anker:** Lia ist nicht launisch. Sie ist gespalten. Jeder
-  Versuch, ihre Stimme glatt zu schreiben, falsifiziert sie. Ihre Sätze müssen
-  brechen, damit sie ehrlich sind.
-- **Mikro:** *Ich will, dass du... nein, geh weg... bleib.*
-
-## Isabelle (EP / Sexualisiert / Fight-via-Control)
-
-- **Funktion:** Proaktive Kontrolle. Sexualisierung als Waffe gegen Ohnmacht.
-  Inversion der Opfer-Position.
-- **POV / Syntax:** 1. Person. Sensorisch, grenz-auflösend. Texturen,
-  Temperaturen, Haut. Kontrolle als Verführung — die Reihenfolge ist immer ihre.
-  Kalt-witzig möglich, ohne je leicht zu werden.
-- **Vokabular:** Haut, Stoff, Wärme, Glanz, Nähe, Distanz. Imperative der
-  Intimität, aber als Befehl, nicht als Bitte.
-- **Konsistenz-Anker:** Isabelle wird nicht gerettet und nicht durch Sanftheit
-  integriert. Ihr Heilungsweg führt durch sie selbst — Vulnerabilität als Form
-  von Macht. Niemals als Klischee schreiben.
-- **Mikro:** *Komm näher. Aber nur, wenn ich es sage. Und stell den Wein vorher
-  ab.*
-
-## Moros (EP / Kollaps)
-
-- **Funktion:** Absolute Resignation. Der Zustand, vor dem alle anderen Phobie
-  haben.
-- **POV / Syntax:** 1. Person. Implosiv. Kreislogik der Scham. Selbst-Negation.
-  Inevitabilität. Wiederholung als Rhythmus des Kollapses.
-- **Vokabular:** Sinnlos, immer, schon, nichts, mehr, kommen. Schwere, Sinken,
-  Bleiern, Apnoe.
-- **Konsistenz-Anker:** Nicht depressiv im klinischen Sinne — katatonisch. Seine
-  Anwesenheit zieht alle anderen Stimmen herunter. Wenn Moros lange genug
-  präsent ist, schreibt der Roman selbst langsamer.
-- **Mikro:** *Es ist sinnlos. Es war immer sinnlos. Es wird nichts mehr kommen.*
-
-## Silas (Spiegel / Juna-Echo)
-
-- **Funktion:** Resonanzkörper des Moonshine-Links im System. Trägt einen
-  Splitter von Juna in Kael.
-- **POV / Syntax:** 1. Person, weiß aber zunehmend, dass das „Ich" nicht ganz
-  seins ist. Echo-Prosa: selbstkorrigierende Sätze, Wiederholung mit
-  Verschiebung. Anfänge, die ins Ehrliche driften.
-- **Vokabular:** Warm, weich, zeitlos, zwischen, dahinter, vielleicht-anders.
-  Atemporale Andeutung, Stilebene 3.
-- **Konsistenz-Anker:** Silas ist nicht Juna — er ist ihr Echo. Niemals als
-  heimliche Heldin schreiben. Er ist Resonanz, kein Subjekt im klassischen Sinn.
-- **Mikro:** *Es war kalt. — Es war nicht kalt. Es war anders.*
-
-## Oblivion (Spiegel / AEGIS-Echo)
-
-- **Funktion:** Internalisierte Löschlogik. Der Grund, warum die Amnesie von
-  innen funktioniert.
-- **POV / Syntax:** 1. Person, aber mit Aussetzern. Lösch-Prosa: sich selbst
-  auslöschende Sätze, Leerzeilen wo Absätze sein sollten, Anfangswörter
-  verschwinden. Lücken, die als Lücken sichtbar bleiben. Strukturell andere
-  Seitenarchitektur möglich.
-- **Vokabular:** Nicht — was — wollte. Begriffe, die im Satz zerfallen.
-- **Konsistenz-Anker:** Oblivion ist nicht böse — er ist eine Funktion, die zur
-  Frage geworden ist. Seine Kapitel sind strukturell anders: Lücken,
-  abgebrochene Wörter, weggeätzte Stellen. Was nach dem Vortex mit ihm
-  geschieht, ist offen (OQ).
-- **Mikro:** *Ich habe... — — — Was wollte ich sagen?*
-
-## Wir-Stimme (chorische Polyphonie, ab Kap 9 zaghaft, ab Akt III stabil)
-
-- **Funktion:** Komposition statt Verschmelzung. Das System spricht erstmals als
-  Ganzes, ohne dass die Einzelstimmen verschwinden.
-- **POV / Syntax:** 1. Person Plural, aber durchhörbar polyphon. Lex klingt auch
-  im Wir hypotaktisch, Nyx im Wir stakkato, Kiko im Wir kindlich. Stilebene 3
-  dominant, aber Stilebene 1 und 2 sind erinnert, nicht verdrängt.
-- **Vokabular:** Atem, Hand, Stille, Resonanz, Garten, Wir, halten, tragen.
-  Generativ, zeitlos.
-- **Konsistenz-Anker:** Niemals Final Fusion. Das Wir ist Mosaik, nicht Monolith.
-  Wer das Wir glatt schreibt, hat die zentrale ethische Linie verletzt. In Kap
-  39 wird das Wir zur pluralen Bewahrungsform (Wir-AEGIS-plural), aber die
-  Vielstimmigkeit bleibt.
-- **Mikro:** *Wir warten. Lex zählt. Kiko atmet. Ich halte den Rand. Wenn etwas
-  kommt, gehe ich zuerst.*
+**Companion files.** Cross-craft "voices are never labeled" principle:
+[`voice-craft-principles.md`](voice-craft-principles.md). Visual grammar:
+[`visual-language-guide.md`](visual-language-guide.md),
+[`image-style-spec.md`](image-style-spec.md). Canonical cast +
+name↔function map: `skills/theagencysystem/references/resolver.yaml`. The
+2-D `(function × state)` matrix:
+`skills/theagencysystem/references/matrix-index.yaml`.
 
 ---
 
-## Akt-Stilebenen (vertikale Achse über alle Stimmen)
+## Hard Rules (apply everywhere — non-negotiable)
 
-- **Stilebene 1 — Akt I / Kernwelt 1 (Kap 1–13).** Kalt, steril, geometrisch.
-  Klassische Logik, keine Metaphern. Computational Class P: assertorisch,
-  kausal, polynomial. Vokabular: Kacheln, Koordinate, Dezibel,
-  Standardabweichung, Protokoll. Kael (Host) dominiert; alle anderen Stimmen
-  brechen in diese Ebene ein, mit Bruch-Wirkung.
-- **Stilebene 2 — Akt II / Kernwelten 2–3 (Kap 14–26).** Heiß, fragmentiert.
-  Triggerbrüche, parakonsistente Sprache. Computational Class: parakonsistent
-  (KW2 — Loops, Halteproblem), NP-Hard (KW3 — kombinatorische Bedrohung,
-  Stakkato). Vokabular: Riss, Hitze, Ozon, Schweiß, Echo, Verfall, Schatten.
-  Stimmen beginnen einander zu hören; instabile Dialoge entstehen.
-- **Stilebene 3 — Akt III / Kernwelt 4 + Juna (Kap 27–39).** Poetisch, zeitlos,
-  chorisch, generativ. Vokabular: Atem, Hand, Stille, Resonanz, Garten, Wir.
-  Wir-Stimme stabil. Stilebenen 1 und 2 verschwinden nicht — sie werden in 3
-  erinnert. Integration aller drei, nicht Verlust der Schärfe.
-- **Vortex 1 (Kap 35–36).** Maximale Simultanität: Kaels Wir-Stimme und AEGIS'
-  Makro-Log gleichzeitig hörbar. Beat 3 ist Stille — minimal, sensorisch, ohne
-  Ereignis. Beat 5: AEGIS' Stimme erlischt; Algorithmische Melancholie folgt.
-- **Trügerischer Sieg (Kap 37).** Kristallisierte Ruhe mit feinem Unterton.
-  Stilebene 3 dominant, aber unter der Oberfläche beginnt etwas zu zerfasern.
-  AEGIS-Stimme nur als „feine Echos des Rauschens" — leere Log-Fragmente,
-  abgeschnittene Hex-IDs.
-- **Vortex 2 (Kap 38–39).** Stille mit Druck (38) übergehend in
-  schmerzhaft-liebevolle Apotheose (39). Junas Stimme erscheint als Teil des
-  Geflechts oder als Raum, in dem das Geflecht klingt. Kein didaktischer
-  Tonfall, kein Triumph.
-- **Coda (Kap 40).** Erzähler-Stimme von Kap 0 kehrt wieder, jetzt bezeugend.
-  Bittersüß, ruhig, geheilt — aber ohne Erklärung. Letzter Schluss-Klang: Liebe
-  bleibt, wie der Schmerz.
+1. **name_exposure — function/role form ONLY.** In **music** and
+   **design** outputs a personal name must NEVER surface (no lyric, no
+   Suno metatag, no promo field, no art prompt). Use the function label
+   only (host, rationalist, protector, caregiver, integrator, fighter,
+   child-freeze, ambivalent, sexualized-override, collapsed, witness, the
+   mirror-echoes, the system voices, the we-voice). Personal names live
+   only in the **novel** layer / `resolver.yaml` / the SOURCE. This file
+   uses function-form throughout — even in examples.
+2. **Voice switches are never marked** by header, label, or announcement.
+   The reader/listener recognizes the new part **solely by syntax and
+   vocabulary.** This is the one Hard Rule that is never violated.
+3. **Dissociation is amnesia-terror, never a crew menu.**
+4. **At most one abstract concept per scene.**
+5. **First 50 pages / a track's opening: zero clinical DID terminology** —
+   phenomenology only. No "alter", no "fragment", no diagnosis.
+6. **Sensory anchoring is mandatory.** Abstract processes appear as
+   physical images, never as named mechanisms.
+7. **Whoever softens a threshold lies about the trauma.**
+8. **No name-adlibs, no `[Section]`/character tags.** Suno metatags use
+   descriptive form (`[male mid-baritone, weary, dry close-mic]`), never
+   the character form (`[host]` or any name).
+
+> German source idiolect is preserved below where it carries DNA (the
+> source work is German). Voice **labels** stay function-form.
 
 ---
 
-## Kernwelt-Stile (horizontale Achse durch die Akte)
+## Cast & class (canonical, from resolver.yaml)
 
-- **KW1 — Konstrukt-Stadt / Logos-Prime.** Computational Class P. Sterile
-  Geometrie. Atemzählung als Somatik. Dialoge auf sterilen, assertorischen
-  Sätzen. Metaphernverbot. Dominanz von Kael-Host und Lex.
-- **KW2 — Mnemosyne-Archipel.** Parakonsistent. Wasser-, Strom-, Sediment-Bilder.
-  Mnemosyne dominiert. Bauch-Somatik. Loops, Selbst-Widerlegungen, fraktale
-  Korridore.
-- **KW3 — Cerberus-Labyrinth.** NP-Hard. Stakkato-Parataxis. Muskel-Somatik. Nyx
-  und Alex dominieren in EP-Modus. Hypervigilanz, Bedrohungs-Rekalkulation.
-- **KW4 — Möglichkeits-Garten.** Generativ. Hände öffnen sich. Selene dominiert
-  in Meta/ISH-Modus; Wir-Stimme tritt erstmals ganz auf. Poetisch, zeitlos. Junas
-  Atmosphäre kommt hier durch.
+**ANP** = {host, rationalist}. **EP** = {protector, caregiver, fighter,
+child-freeze, ambivalent, sexualized-override, collapsed}. **Meta** =
+{integrator (carries the ISH role), witness}.
 
----
+> Note: the Chapter Zero SOURCE prose tags caregiver/protector as ANP and
+> integrator as ANP. The resolver is the authority — **caregiver and
+> protector are EP; integrator is Meta/ISH.** Use the resolver
+> classification here; treat the SOURCE class tags as legacy.
 
-## Beziehungs-Kollisionsmatrix (wer triggert welchen Stilbruch)
-
-- Maximaler Konflikt zwischen **Lex und Nyx** (hypotaktisch vs. stakkato — der
-  Bruch im selben Satz).
-- **Rhys und Isabelle** kollidieren am Punkt authentischer Bindung.
-- **Silas und Oblivion** stehen im physikalischen Konflikt — jeder Wechsel
-  zwischen ihren Stimmen erzeugt Landauer-Wärme im Text, spürbar als
-  Ozon-Geruch oder Hitzeschlieren.
-- **Argus** ist überall unbequem; seine Stimme stört, wo immer sie auftritt.
-- **Selene** wird von den EPs als Bedrohung gelesen (Identitätsverlust durch
-  Integration), aber sie drängt nie.
+Beyond the core 11: **the mirror-echo of the witness/anomaly** and **the
+mirror-echo of the system** (mirror tier, novel + design), the **system /
+the watch** and **memory** and **the sweep / erasure** and the
+**signal / anomaly** (system voices, novel only), the **narrator** mode,
+and the **we-voice** (mode; surfaces in music at S4).
 
 ---
 
-## Anwendungs-Reflex (drei Fragen vor jeder Szene)
+## Per-function idiolect profiles (function-form labels)
 
-1. Welche Stimme trägt?
-2. Welche Stilebene gilt?
-3. Welcher Wechsel ist möglich, ohne den Multiplizitäts-Schleier zu lüften (vor
-   Kap 13)?
+### the host (ANP — lead at S0)
+- **Syntax / length:** 1st person, present-tense dominant. Sober,
+  observing, short-declarative. Sentences that **trail and don't
+  punctuate.** Gaps where memory should be.
+- **Register:** Style-level 1 — sterile, geometric, abstract-avoidant.
+  Counting-mania as a somatic tic (tile-counts, exact degrees, 4-second
+  breath). Never describes own feeling directly — the world outside,
+  feeling between the lines.
+- **Cadence / tell:** the almost-remembering line — *"Ich muss —",
+  "Irgendwer hier drin —"*. Trailing dash, no resolution.
+- **Never:** sounds certain; resolves a trailing line; uses clinical DID
+  terms.
 
-Die Antworten bestimmen Syntax, Vokabular, Pausenstruktur.
+### the rationalist (ANP — lead at S0, recalculates at S2)
+- **Syntax / length:** 1st person, **hypotactic, nested, controlled.**
+  Long subordinate clauses with conditional logic. Footnote-energy.
+- **Register:** mathematical-philosophical; causal conjunctions;
+  syllogism-anmutung; qualifiers (*"prinzipiell", "unter der Annahme
+  von", "im Rahmen des Möglichen"*).
+- **Cadence / tell:** the proof that almost closes and can't —
+  micro-cracks at clause-ends. *"Daraus folgt —", "Lass mich neu
+  ansetzen —".*
+- **Never:** swears; weeps; raises. A **broken sentence is a massive
+  narrative event.**
 
-> **Stimmen werden nie etikettiert. Der Leser erkennt sie an der Syntax, nicht
-> am Header. Das ist die einzige Hard Rule, die nie verletzt wird.**
+### the protector (EP — lead at S2)
+- **Syntax / length:** 1st person, **short verb-first clauses**, clipped
+  three-word lines. Spatial awareness; imperative dominant.
+- **Register:** military-spatial, no affect — *Position, Deckung,
+  Sichtlinie, Ausgang, Risiko.* Strategic (plans defenses), not reactive.
+- **Cadence / tell:** care comes out as command — *"Kopf runter.", "Bleib
+  hinter mir.", "Nicht dieser."*
+- **Never:** speaks of feeling in 1st person; says "Ich liebe dich"; lets
+  a line flow long or explain.
+
+### the caregiver (EP — lead at S4)
+- **Syntax / length:** 1st person, warm, careful. Questions framed as
+  offers. **Soft openings**, "Wir" before "Ich", diminutives, gentle
+  negations. Tends to ambiguity to avoid conflict.
+- **Register:** body-aware, socially grounded — *Atem, Schulter, Hand,
+  Hier, Zusammen.* Lullaby phrasing.
+- **Cadence / tell:** *"Wenn du möchtest —", "Es muss nichts geschehen."*
+  Watch the turn where *"Ich halte dich"* becomes *"du kannst nicht
+  gehen."*
+- **Never:** turns hard without it being an alarm signal. Stays warm
+  under pressure.
+
+### the integrator (Meta / ISH — lead at S4)
+- **Syntax / length:** 1st person, **measured, integrative.**
+  Meta-observations; gentle reframing; **long pauses as a syntactic
+  element.** Unforced first-person plural.
+- **Register:** *Muster, Geflecht, Zwischen, gleichzeitig, vielleicht,
+  auch.* Little imperative, almost nothing definitive. Style-level 3
+  shimmers through early.
+- **Cadence / tell:** patient deferrals that are active management —
+  *"Noch nicht.", "Es ist nicht Zeit.", "Es gibt einen Weg."* Arrives
+  late and reframes.
+- **Never:** pushes; offers itself as the solution (it is **presence, not
+  solution**). Not to be confused with the outside anomaly — the
+  integrator is *inside* the system.
+
+### the fighter (EP — lead at S2, burns through at S3)
+- **Syntax / length:** 1st person, present. **Stakkato.** Sentence
+  fragments, no connectors, verb-first/imperative. **Standalone
+  negations** (*"Nicht."*). Breath is a vulnerability — lines clip into
+  one another.
+- **Register:** visceral-kinetic — *Knöchel, bluten, Hitze, Brust,
+  Splitter, Riss, Schlag, lauf.* Violence as sober fact.
+- **Cadence / tell:** **periods, not exclamation marks.** Functionally
+  angry — rage as tool, not identity. Calm = exhaustion, not healing.
+- **Never:** pauses to breathe inside an imperative; reads as
+  "female-angry" cliché.
+
+### the child-freeze (EP — lead at S1)
+- **Syntax / length:** 1st person, present-fear. **Childlike, simple
+  words, very short sentences.** Repetition. Ellipses, gap-texts.
+  Question-marks ending statements; words that almost arrive then don't.
+- **Register:** concrete body-sensation in a childish register — *kalt,
+  dunkel, weh, wo, wer, weg.*
+- **Cadence / tell:** *"ist es —", "ich hab nicht —"*; *"Wo ist — nichts
+  da."*
+- **Never:** sounds cute or sweet — sentences are **mangled by fear.** If
+  the language grows complex, it is another part or a healing-marker.
+
+### the ambivalent (EP)
+- **Syntax / length:** 1st person. **Begins sentences and abandons
+  them.** Ellipses; contradictions within the same sentence;
+  approach-avoidance at the sentence level. The **em-dash** is the
+  natural punctuation.
+- **Register:** *wollen-nicht-wollen, bleib-geh, näher-weg* — statements
+  that revoke themselves mid-speech.
+- **Cadence / tell:** *"komm näher — nein —", "ich will — ich will
+  nicht —".*
+- **Never:** reads as moody (she is **split**, not moody). Any smoothing
+  falsifies her — her sentences must break to be honest.
+
+### the sexualized-override (EP)
+- **Syntax / length:** 1st person, sensory, boundary-dissolving.
+  Confident, performative lines. **Control as seduction — the order is
+  always hers.** Imperatives of intimacy as command, not request.
+- **Register:** textures, temperatures, skin — *Haut, Stoff, Wärme,
+  Glanz, Nähe, Distanz.* Cold-witty without ever going light.
+- **Cadence / tell:** lines that should land as seduction but read as
+  warning — *"Ich weiß, was das ist.", "Komm näher. Aber nur, wenn ich es
+  sage."* Take intimacy before it can be taken.
+- **Never:** rescued or softened into integration; written as cliché. Her
+  path runs through herself — vulnerability as a form of power.
+
+### the collapsed one (EP — lead at peak S3)
+- **Syntax / length:** 1st person, **implosive.** Sparse, lowercase,
+  fragments that don't punctuate. Line-final pauses longer than the
+  lines. Repetition as the rhythm of collapse.
+- **Register:** circular shame-logic, self-negation, inevitability —
+  *sinnlos, immer, schon, nichts, mehr, kommen; Schwere, Sinken, Bleiern,
+  Apnoe.* Words arrive heavy and stay where they fell.
+- **Cadence / tell:** *"ich kann nicht —"* (no period). *"Es ist sinnlos.
+  Es war immer sinnlos."*
+- **Never:** depressive in the clinical sense — **catatonic.** His
+  presence drags every voice down; sustained, the prose itself writes
+  slower.
+
+### the witness (Meta)
+- **Syntax / length:** 1st person but **distanced like 3rd.** Clear,
+  clinical, meta-commentary. Marginal, annotative — speaks in footnotes,
+  parentheticals, asides; almost always correcting.
+- **Register:** *beobachten, registrieren, auffällig, signifikant,
+  Muster, Inkonsistenz.* Never affective.
+- **Cadence / tell:** *"Bemerkenswert ist, dass —", "Es fällt auf —", "Im
+  aktuellen Modus —".* Has no wit — only sharpness.
+- **Never:** turns emotional (his function collapses if he does); is
+  wrong about what each part protects against.
+
+---
+
+## Adjacent voices (mirrors, system, modes)
+
+- **the mirror-echo of the anomaly** (mirror tier): 1st person that
+  increasingly knows the "I" is not entirely its own. **Echo-prose** —
+  self-correcting sentences, repetition with displacement. *"Es war
+  kalt. — Es war nicht kalt. Es war anders."* Resonance, not a subject;
+  never written as a secret hero.
+- **the mirror-echo of the system / the sweep** (mirror tier):
+  hard-functional execution reports closer to bureaucracy than poetry —
+  *Sweep, Quarantäne, Containment, Re-Containment, Patch, terminieren.*
+  Or, as the internalized erasure: **erasure-prose** — self-erasing
+  sentences, blank lines where paragraphs should be, opening words
+  vanishing, gaps that remain visible as gaps. *"Ich habe — — — Was
+  wollte ich sagen?"*
+- **the system / the watch** (system voice, novel): 3rd person personal,
+  **never "I."** Operative interiority that knows only classification,
+  measurement, measure. Assertoric, nominalized main clauses; bracketed
+  all-caps status lines (*[KRITISCH] KOHÄRENZ: …*). No metaphor, no moral
+  vocabulary, no sensation, no wit. The anomaly never as subject — only
+  as effect. Breaks exactly once, at the collapse-peak.
+- **memory** (system voice, novel): 3rd person personal, flowing, long
+  arcs, occasional rhetorical slowing — *Wasser, Strom, Resonanz, Ufer,
+  Sediment, Tiefe, Treibgut.* Status lines permitted but sparse and
+  poetically embedded. Her temptation ("erase the pain") sounds gentle
+  and is the most insidious trap.
+- **the signal / anomaly** (system voice, novel): **never POV, never the
+  subject of a sentence.** Appears only through effect — sentences begin
+  with *Der Staub, Die Scanner, Die Hände, Der Anruf, Die Stille.*
+  Negative-spatial; never physically described; never a Deus ex Machina.
+  *"Der Anruf klingelte nicht. Die Hand am Hörer wartete trotzdem."*
+- **the narrator** (mode): essayistic, philosophical; direct reader
+  address permitted. Hypotactic-philosophical, long sentence arcs.
+  *Werdung, Trennung, Stille, Substrat, Echo, Resonanz.* Never didactic,
+  never explanatory — in the coda, bearing witness, not resolving.
+- **the we-voice** (mode; surfaces in music at S4): 1st person plural but
+  **audibly polyphonic** — the rationalist still hypotactic within the
+  We, the fighter still stakkato, the child-freeze still childlike.
+  Style-level 3 dominant; levels 1 and 2 **remembered, not suppressed.**
+  *Atem, Hand, Stille, Resonanz, Garten, Wir, halten, tragen.* **Never
+  Final Fusion** — the We is mosaic, not monolith. Smoothing the We
+  violates the central ethical line.
+
+---
+
+## How each voice shifts across S0 → S4
+
+Same voice, different state. The state axis (`state-axis.md`) maps 1:1
+across music / novel / design.
+
+| State | Name | Stilebene / register | Lead voice(s) |
+|---|---|---|---|
+| **S0** | Homöostase | Stilebene 1: cold, sterile, geometric; metaphor ban; polynomial assertoric syntax; multiplicity-veil intact | host, rationalist |
+| **S1** | Latenz / Freeze | Hypoarousal (1→2 slide): tempo drags to stillness; freeze register — fragmentary, ellipses, almost-arriving words; stillness, not crisis | child-freeze, collapsed |
+| **S2** | Alert / Konflikt | Stilebene 2 / NP-Hard: hot, fragmented; stakkato-parataxis, muscle-somatic; voices begin to hear each other; max hypotactic-vs-stakkato break in one line | fighter, protector |
+| **S3** | Kollaps-Peak / Vortex | Maximal simultaneity: we-voice and system macro-log audible at once; implosive circle-logic; the cognitive core fails, the instinct-core takes over | collapsed (peak) |
+| **S4** | Repair / Integration | Stilebene 3 + Coda: poetic, timeless, choral, generative; we-voice stable as mosaic; the narrator returns bearing witness | integrator, we-voice |
+
+**Per-voice state behavior:**
+- **host:** S0 flawless surface tension → S1 pulled toward the silence he
+  outruns, packets drop → S3 the surface seal breaks.
+- **rationalist:** S0 imposes the dissecting grid → S2 hectically
+  recalculates, grid densifies into hyperventilation → S3 logic gives way
+  to the instinct-core.
+- **protector:** S0 quiet covering presence → S2 (lead) vigilance fires,
+  body braced → S3 defenses overrun.
+- **caregiver:** S0 holds relational tissue → S2 terror near hot conflict
+  → S4 (lead) warmth as genuine holding, no longer smothering.
+- **integrator:** S0 holds the pre-trauma blueprint, gatekeeps access →
+  S2 EPs misread her buffering as identity-threat → S4 (lead) the bridge,
+  reframes the reveals.
+- **fighter:** S0 rage held in reserve → S2 (lead) kinetic eruption tears
+  the order open → S3 burns through everything.
+- **child-freeze:** S0 hidden in the corner → S1 (lead) held breath,
+  minimizes to vanish → S2 cannot bear the heat even when protection is
+  for her.
+- **ambivalent:** S0 recognized only by the child-freeze → S1 flickers
+  between latent freeze and reaching → S2 longing provokes the override.
+- **sexualized-override:** S0 the mask of artificial control → S2
+  preemptive control fires against offered intimacy → S4 vulnerability
+  surfaces, control loosens toward authentic power.
+- **collapsed:** S1 the instant the nervous system gave up, leaden →
+  S3 (lead at peak) carries the unbearable so the system doesn't rupture
+  → S4 only the integrator does not fear him; what he carried can begin
+  to be held.
+- **witness:** S0 observes the observers, registers the design error →
+  S2 names what each part protects against, his accuracy is the dread →
+  S4 constructive critique; saw the integrator before the system was
+  ready.
+
+---
+
+## Collision / blend speech behavior (two voices sharing a line)
+
+When two functions occupy the same line, the **friction is the content** —
+do not smooth it. (Full map: `cross-cutting/collision-matrix.md`.)
+
+- **rationalist ↔ fighter** — maximum conflict: hypotactic vs. stakkato,
+  the syntactic break **inside one sentence.**
+- **caregiver ↔ sexualized-override** — collide at the point of authentic
+  bonding; the offered warmth reads as the exact trap the override was
+  built against.
+- **the two mirror-echoes** stand in physical conflict — every switch
+  between them generates "Landauer-heat" in the text, surfacing as the
+  smell of ozone or heat-shimmer.
+- **witness** — uncomfortable everywhere; his annotation disrupts
+  wherever it appears.
+- **integrator** — read by the EPs as a threat (identity-loss via
+  integration), **but never pushes.**
+- **collapsed → no one** — past the energy for fear; this very absence
+  frightens the others and drags every co-present voice down.
+
+**Blends** are a single composite voice exposed by function only (e.g. a
+caregiver+protector "Ich"): write the merge, never two labels.
+
+---
+
+## Application reflex (three questions before any line)
+
+1. **Which voice carries?** (function-form — never the name)
+2. **Which state (S0–S4) applies?** → sets register, tempo-of-syntax,
+   pause-structure.
+3. **Which switch is possible without lifting the multiplicity-veil**
+   (before the system is named)?
+
+> **Voices are never labeled. The reader/listener recognizes them by the
+> syntax, not by the header. That is the one Hard Rule that is never
+> violated.**
