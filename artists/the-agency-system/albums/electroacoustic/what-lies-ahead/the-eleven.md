@@ -224,11 +224,6 @@ Read as: **A → B**: A fears B for reason X.
 - **Rationalist → Ambivalent**: she breaks his decidability.
 - **Rationalist → Sexualized-Override**: she uses his categories against him.
 - **Rationalist → Collapsed One**: as proof of structural failure.
-- **Protector → all EPs**: not as fear, but as *workload*. They are who he was built to protect; his anxiety is competence-anxiety.
-- **Caregiver → Fighter**: violence she cannot soothe.
-- **Caregiver → Sexualized-Override**: a closed door that looks like an open one.
-- **Caregiver → Collapsed One**: a person past the reach of care, which is the limit of her selfhood.
-- **Integrator → none in particular**: not phobic. But she *fears the timing* of her own emergence.
 
 ### EP → ANP
 
@@ -236,23 +231,31 @@ Read as: **A → B**: A fears B for reason X.
 - **Fighter → Container**: as collaborator with the surface that erased her.
 - **Child-Freeze → Rationalist**: terror. He invalidates her into smaller.
 - **Child-Freeze → Container**: as the parent who keeps almost-noticing and then doesn't.
+
+### EP ↔ EP (within the emotional parts)
+
+- **Protector → the other EPs**: not as fear, but as *workload*. They are who he was built to protect; his anxiety is competence-anxiety.
+- **Caregiver → Fighter**: violence she cannot soothe.
+- **Caregiver → Sexualized-Override**: a closed door that looks like an open one.
+- **Caregiver → Collapsed One**: a person past the reach of care, which is the limit of her selfhood.
 - **Ambivalent → Caregiver**: because the offered *yes* is precisely the trap.
 - **Sexualized-Override → Caregiver**: she is built against the Caregiver's exact gift.
-- **Collapsed One → no one**: he is past the energy required for fear. (This is part of what frightens the others.)
-
-### ANP ↔ ANP
-
-- **Rationalist ↔ Caregiver**: structural rivalry. Two incompatible theories of value (logic vs. relation).
-- **Container ↔ Protector**: low-grade. The Container exposes; the Protector covers.
 - **Caregiver ↔ Protector**: methodological. Warmth vs. coldness as protection.
-- **Rationalist ↔ Integrator**: he dismisses her as concept. She does not dismiss him at all, which unsettles him.
-
-### EP ↔ EP
-
 - **Fighter ↔ Child-Freeze**: the protector and the protected, asymmetrically. Her shield is her child's nightmare.
 - **Fighter ↔ Collapsed One**: maximum contempt. He is what she swore not to become.
 - **Sexualized-Override ↔ Ambivalent**: the Override pre-empts the Ambivalent's longing — and resents it for existing.
 - **Child-Freeze ↔ Ambivalent**: mutual recognition that neither can bear.
+- **Collapsed One → no one**: he is past the energy required for fear. (This is part of what frightens the others.)
+
+### ANP ↔ EP (cross-class friction)
+
+- **Rationalist ↔ Caregiver**: structural rivalry. Two incompatible theories of value (logic vs. relation).
+- **Container ↔ Protector**: low-grade. The Container exposes; the Protector covers.
+
+### Meta ↔ system (Integrator)
+
+- **Integrator → none in particular**: not phobic. But she *fears the timing* of her own emergence.
+- **Rationalist ↔ Integrator**: he dismisses her as concept. She does not dismiss him at all, which unsettles him.
 
 ### Toward the Witness-of-Witnesses
 

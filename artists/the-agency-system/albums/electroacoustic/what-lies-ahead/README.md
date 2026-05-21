@@ -120,7 +120,7 @@ recovery manual.
 
 13 tracks total. Locked architecture:
 
-- **11 alter-led tracks** — 6 solos + 5 alter-to-alter duets covering 10 of **The Eleven** (5 ANP + 5 EP). Witness, the 11th alter, has no dedicated track — he annotates across all 13. Each track carries its own sonic DNA. No alter is labeled in lyrics or section headers; identity is carried by syntax, vocabulary, rhythm, pause structure. See `the-eleven.md` for full archetype profiles, phobia/alliance networks, and lyrical hooks.
+- **11 alter-led tracks** — 6 solos + 5 alter-to-alter duets covering 10 of **The Eleven** (2 ANP + 7 EP + 1 Meta). Witness, the 11th alter, has no dedicated track — he annotates across all 13. Each track carries its own sonic DNA. No alter is labeled in lyrics or section headers; identity is carried by syntax, vocabulary, rhythm, pause structure. See `the-eleven.md` for full archetype profiles, phobia/alliance networks, and lyrical hooks.
 - **1 worldview track** (track 12) — most fractured. All eleven voices simultaneously, in incompatible registers. The album's central artistic refusal of the "system speaks as one" climax.
 - **1 partner-view track** (track 13) — outside / song-like. Container + Partner duet — the only fully-resolved perspective. The witness from beyond the system.
 
@@ -130,9 +130,9 @@ recovery manual.
 |---|-----------|-------|------------------|-----|
 | 1 | Container (Host) | ANP | Mixed — container of all registers | → Fractality |
 | 2 | Rationalist | ANP | Orchestral electronic (cold strings) | → Intuition |
-| 3 | Protector | ANP | Band-driven dark electro rock | → Growth |
-| 4 | Caregiver | ANP | Orchestral electronic (warm) | → Acceptance → Kudzu (Act II danger) |
-| 5 | Integrator (ISH) | ANP | Spacious electroacoustic, reverbed | → Mediator |
+| 3 | Protector | EP | Band-driven dark electro rock | → Growth |
+| 4 | Caregiver | EP | Orchestral electronic (warm) | → Acceptance → Kudzu (Act II danger) |
+| 5 | Integrator (ISH) | Meta | Spacious electroacoustic, reverbed | → Mediator |
 | 6 | Fighter | EP (Fight) | Band-driven dark electro rock | → Constructive protection |
 | 7 | Child-Freeze | EP (Freeze) | Piano-and-voice intimate | → Trust |
 | 8 | Ambivalent | EP (Approach/Withdraw) | Piano-intimate, microtonal | → Leave superposition |

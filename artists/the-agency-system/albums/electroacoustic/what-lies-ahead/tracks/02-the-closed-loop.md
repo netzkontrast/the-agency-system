@@ -24,7 +24,7 @@ sheet_music:
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
-| **POV** | The Container (Host, ANP) + The Integrator (ISH, ANP) — duet |
+| **POV** | The Container (Host, ANP) + The Integrator (ISH, Meta) — duet |
 | **Role** | The closed loop. Collusion that believes itself to be care. He holds the surface; she holds the door. Each is right; the loop is the wound and the strategy. |
 | **Fade Out** | 5s |
 | **Target Duration** | 3:30–4:30 |
