@@ -147,8 +147,14 @@ Collection — eigenständige Stücke, lose verbunden über Ort (Station, nachts
 
 | # | Title | POV | Concept | Status |
 |---|-------|-----|---------|--------|
-| 01 | [Track Name](tracks/01-track-name.md) | [POV] | [Brief concept] | Not Started |
-| 02 | [Track Name](tracks/02-track-name.md) | [POV] | [Brief concept] | Not Started |
+| 01 | [Tabletten für jeden](tracks/01-tabletten-fuer-jeden.md) | Kollektives Wir | Titeltrack. Der Wagen rollt, die Nacht beginnt — die Ausgabe als Eröffnung der Bar. | Not Started |
+| 02 | [Lichter aus](tracks/02-lichter-aus.md) | Kollektives Wir | Die Spätschicht schläft ein, die Station gehört uns. Der Raum kippt. | Not Started |
+| 03 | [Wir](tracks/03-wir.md) | Kollektives Wir | Der Moment, in dem das Ich ins Wir zerfließt. Thesen-Track, Sub-Herzschlag pur. | Not Started |
+| 04 | [Flackerlicht](tracks/04-flackerlicht.md) | Kollektives Wir | Der Peak. Neonröhre als Stroboskop, die benebelte Euphorie auf Höhe. | Not Started |
+| 05 | [Wessen Gefühl ist das](tracks/05-wessen-gefuehl-ist-das.md) | Kollektives Wir | Verschwimmende Identität — keiner weiß mehr, welche Empfindung wem gehört. | Not Started |
+| 06 | [Schwerelos](tracks/06-schwerelos.md) | Kollektives Wir | Der woozy Float. Tiefster Bass, Zeit dehnt sich, Körper lösen sich auf. | Not Started |
+| 07 | [Niemand ruft an](tracks/07-niemand-ruft-an.md) | Kollektives Wir | Der Riss bricht durch: draußen kommt niemand. Euphorie als Ersatz für Zuwendung. | Not Started |
+| 08 | [Morgenvisite](tracks/08-morgenvisite.md) | Kollektives Wir | Der Comedown. Der Rausch endet, das geliehene „Wir" zerfällt wieder in Einzelne. | Not Started |
 
 ## Key Characters
 
