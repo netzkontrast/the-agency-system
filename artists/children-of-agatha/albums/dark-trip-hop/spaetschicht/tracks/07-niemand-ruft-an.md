@@ -52,7 +52,7 @@ Ein Stationstelefon, das nicht klingelt. Ein leeres Besucherzimmer. Das Wir, das
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark trip hop, cinematic bass, 76 BPM, cold matter-of-fact, female deadpan spoken verse with aching sung "wir" chorus, layered female vocals close-mic, hard deep sub-bass, sparse breaks, unanswered phone foley, empty room reverb, Burial, Anna von Hausswolff
+dark trip hop, cinematic bass, 76 BPM, cold matter-of-fact, female deadpan spoken verse, aching sung "wir" chorus, layered close-mic vocals, hard sub-bass, sparse breaks, unanswered phone foley, empty room reverb, all German, Burial, Anna von Hausswolff
 ```
 
 ### Exclude Styles
