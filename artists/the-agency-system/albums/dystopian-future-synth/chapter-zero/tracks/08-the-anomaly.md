@@ -151,7 +151,7 @@ no synthwave, no autotune, no warm pads, no clean resolution
 
 [Verse 1: the system / the watch — cold, near-monotone, formant-flattened, composed, status diction, third-person, no breath, adult]
 The disturbance came without warning.
-No OB-ject. No motion through space.
+No mass. No motion through space.
 An emergence — out of the sea of potential itself.
 A signature that escapes every class.
 Not unknown. Different. On a fundamental level.
@@ -206,7 +206,7 @@ The boundary is exceeded.
 
 ```
 The disturbance came without warning
-No object no motion through space
+No mass no motion through space
 An emergence out of the sea of potential itself
 A signature that escapes every class
 Not unknown different on a fundamental level
@@ -281,7 +281,7 @@ The boundary is exceeded
 | 1.0 / 0.0 | one point zero / zero point zero | Spell as words in the Suno box (streaming keeps "1.0 / 0.0") |
 | 0.67 / 0.991 / −0.007 | zero point six seven / zero point nine nine one / minus zero point zero zero seven | Spell decimals as words in the Suno box (streaming keeps digits) |
 | 24 threads | twenty-four threads | Spell number as words (no "24") |
-| object (noun) | **OB-ject** | Homograph: noun "a thing" (OB-ject), not the verb "to protest" (ob-JECT). Suno box uses "OB-ject"; **streaming keeps "object"**. `check_homographs`-flagged, resolved. |
+| object → "mass" | mass | Homograph "object" (OB-ject noun vs ob-JECT verb) **reworded to "mass"** (user request — no respelling). "No mass" is clean, clinical, faithful (no physical substance). Applied in Suno box AND streaming. |
 | (read) | avoided → "register" | "read" is a homograph (reed/red); reworded to avoid it |
 
 <!-- SERVICE: suno -->
@@ -300,7 +300,7 @@ The boundary is exceeded
 
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
-| object | object | OB-ject | ✅ Suno box (noun reading); streaming keeps "object" |
+| object | object | reworded → "mass" | ✅ homograph removed by rewording (no respelling) — Suno box and streaming both read "No mass" |
 | decimals | 1.0 / 0.0 / 0.67 / 0.991 / −0.007 | spelled as words | ✅ Suno box (streaming keeps digits) |
 <!-- /SERVICE: suno -->
 
