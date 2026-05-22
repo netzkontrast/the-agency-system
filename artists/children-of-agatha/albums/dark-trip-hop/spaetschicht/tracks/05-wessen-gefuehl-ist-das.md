@@ -52,7 +52,7 @@ Gefühle wandern durch den Raum wie Rauch. Ein Lachen, das in Weinen kippt, ohne
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark trip hop, cinematic bass, ~74 BPM, disorienting and floating, deep sub-bass with subtle wow-and-flutter, smeared delay tails, reverbed vocal fragments, deadpan German spoken verse with a longing sung "we" hook, sacral organ, dissociative haze
+dark trip hop, cinematic bass, 74 BPM, disorienting unmoored, female deadpan spoken verse with longing sung "wir" chorus, reverbed vocal fragments, sub-bass with wow-flutter, smeared delay tails, sacral organ drone, hospital reverb, Burial, FKA twigs
 ```
 
 ### Exclude Styles
