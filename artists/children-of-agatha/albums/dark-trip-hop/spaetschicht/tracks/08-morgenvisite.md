@@ -52,7 +52,7 @@ Graues Morgenlicht, Schichtwechsel, klappernde Klemmbretter. Einzelne, die wiede
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark trip hop, cinematic bass, 66 BPM, ebbing morning-sober, female deadpan spoken verse with longing sung "wir" chorus dissolving to solo voice, layered vocals thinning, deep sub-bass fading, morning foley, sacral organ drone, long fade, Burial, Anna von Hausswolff
+dark trip hop, cinematic bass, 66 BPM, ebbing morning-sober, female deadpan spoken verse, "wir" chorus dissolving to solo voice, layered vocals thinning, sub-bass fading, morning foley, sacral organ drone, long fade, all German, Burial, Anna von Hausswolff
 ```
 
 ### Exclude Styles
