@@ -20,14 +20,14 @@ sheet_music:
 | **Track #** | Single |
 | **Title** | Da haben wir den Salat |
 | **Album** | Standalone Single — Children of Agatha |
-| **Genre** | Comedy-Deutschrap (kein Schlager) |
+| **Genre** | Comedy-Deutschrap, zackig politisch (kein Schlager) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
 | **POV** | Patient-Wir (Insider auf Station) |
-| **Role** | Eigenständige Single — Comedy-Deutschrap über „Salatgate" auf Station |
+| **Role** | Eigenständige Single — politischer Spaß-Deutschrap über „Salatgate" auf Station |
 | **Fade Out** | 5s |
 | **Target Duration** | 2:45–3:30 |
 | **Sources Verified** | N/A |
@@ -36,45 +36,38 @@ sheet_music:
 
 ## Concept
 
-**Logline:** Eine überhitzte Stationsversammlung dreht drei Tage am Rad, weil zu wenig Salat geliefert wurde — bis die Schwester die Schüssel wie eine Reliquie hereinträgt. Comedy-Deutschrap, flott und trocken, erzählt von einem Patienten, der das ganze Theater mit eigener Diagnose im Rücken kommentiert.
+**Logline:** Drei Blatt Salat für die ganze Station — und der Apparat baut eine Liturgie um den Mangel, statt nachzubestellen. Ein richtig geiler Spaß-Deutschrap, zackig politisch, knackig wie Salat, flotte Reime, viel Dynamik. Erzählt von einem Patienten-Insider, der das Theater von innen kommentiert.
 
-**Format:** Eigenständige Single (kein Teil von *Spätschicht*, kein Weimar-Kabarett, kein Schlager). **Comedy-Deutschrap** — schneller, deadpan-witziger Flow, eingängiger Gang-Chant-Hook. Party-Energie ja, Mallorca-Käse nein.
+**Format:** Eigenständige Single (kein Teil von *Spätschicht*). **Comedy-Deutschrap, zackig politisch** — schneller, trockener Boom-bap-Flow, großer Gang-Chant-Hook, Beat-Switch in eine Halftime-Prozession. Kein Schlager, weniger Ballermann (Party-Energie durch Tempo und Witz, nicht durch Mallorca-Synths).
 
-**Story (Salatgate).** Halb drei, nach der Visite. Der Speisewagen kommt — drei Blatt Rucola für die ganze Station. Offiziell heißt es trotzdem: „es ist noch Salat da." Versammlung im 4. Stock unterm Dach: sechsunddreißig Grad, Lüfter kaputt, die Luft steht. Jede:r meldet sich, keiner sagt warum, verantworten will es niemand („das macht die Pflege"). Die Stimmung kippt, Salatgate, Tag drei. Dann kommt die Schwester, trägt die Schüssel wie eine Monstranz durch den Saal — und *endlich* haben wir den Salat.
+**Story (Salatgate).** Halb drei, 4. Stock unterm Dach, sechsunddreißig Grad, Lüfter kaputt. Der Speisewagen bringt drei *Blätter* für dreißig Leute. Zuständig will keiner sein — die Schuld wandert Küche → Einkauf → Verwaltung → „das macht die Pflege", während die Pflege die Schüssel tatsächlich durchs Haus trägt. Versammlung, jeder meldet sich („und jeder so: ich auch"), keiner sagt warum. Dann trägt die Pflege die Schüssel wie eine Monstranz herein — der Saal kniet, und *endlich* haben wir den Salat.
 
-### Warum es zündet (der Mechanismus)
+### Der politische Stich
 
-Der Witz ist die **Fallhöhe**: ein banaler Salatmangel wird mit der ganzen Wucht von Klinik-Diagnostik, Parlaments-Prozedere und Religions-Liturgie behandelt. Je größer der Apparat, desto kleiner der Anlass. Der **Erzähler ist Insider** — selbst Patient, mit eigener Diagnose — und kommentiert die kollektive Hysterie trocken von innen. Der Krankheitsbezug erdet die Komik: das ist Stationsalltag, kein abstrakter Gag.
+Der Witz ist die **Fallhöhe + die Verdrängung**: ein von Sparzwang ausgehungertes System kann seine echte Wunde (Unterfinanzierung, niemand haftet) nicht benennen — also prozessiert es das kleinste sichtbare Ding (drei Blatt) und *weiht* den Mangel, statt ihn zu beheben. Ziel der Satire ist **immer der Apparat**, nie das Kranksein. Die **Pflege ist die heimliche Heldin**: sie liefert, sie trägt, sie kriegt am Ende den Kranz.
 
-### Der Dreh (die Pointe)
+### Motoren
 
-Nichts wird *gelöst*. Der Salat kommt einfach — nicht weil die Versammlung etwas erreicht hätte, sondern weil die Pflege ihn hinstellt. Die „Heilung" („Salat-Trauma, geheilt") ist hohl: gefeiert wird eine Schüssel, nicht eine Einsicht.
-
-### Thematisches Rückgrat: „heiße Luft"
-
-Doppeldeutig: die Dachgeschoss-Hitze (Lüfter kaputt) **und** das leere Versammlungs-Gerede. Wahres Thema: **Verantwortungsdiffusion** — alle reden, keiner haftet.
-
-### Drei Motoren
-
-1. **Klinische Diagnose-Multis** auf *-ession* (Rap-Reimketten): „Salat-Trauma", „akuter Blattmangel", „Rohkost-Depression", „Regression", „Aggression", „keine Konzession", „Dekompression in der Schale". Eingebettet in echten Stationsalltag (Bedarfsmedikation, Visite, Tagesstruktur, Gruppendynamik, Affekt).
-2. **„Ich hab da auch was zu sagen" / „und jeder so: ich auch"** — alle melden sich, zehn Finger hoch, null Inhalt. Versammlung als Selbstzweck.
-3. **Die Prozession (Finale, Beat-Switch)** — Research-Andockung an die St.-Agatha-Reliquienprozession in Catania (Silberschrein/*fercolo*, von weiß gekleideten Gläubigen gezogen): die Salatschüssel wird wie eine Monstranz hereingetragen, der Kopf Romana wie eine Reliquie emporgehalten.
+1. **Zuständigkeits-Pingpong** (politisch): Küche→Einkauf→Verwaltung→„das macht die Pflege"; „Aktenschrank ist satt, Schüssel bleibt leer"; „kürzt ihr auch das Wetter?".
+2. **Klinische Diagnose-Multis** auf *-ession*: Salat-Trauma, akuter Blattmangel, Rohkost-Depression, Regression, Aggression, Konzession, Dekompression in der Schale — eingebettet in echten Stationsalltag (Visite, Affekt, Bedarfstropfen, Tagesstruktur, Klinikbudget). Wortsalat in der **Ich-Form** (der Erzähler besitzt den Begriff selbst).
+3. **„Ich hab da auch was zu sagen" / „und jeder so: ich auch"** — Versammlung als Selbstzweck.
+4. **Prozessions-Finale (Beat-Switch):** die Schüssel als Monstranz, Kopf Romana hochgehalten (St.-Agatha-Reliquienprozession, Catania *fercolo*), „ein Strunk wird zum Altar", „wir beten eine Schüssel an, statt nachzubestellen".
 
 ### Tonalität (Guardrail)
 
-Sardonisch, nicht albern. **Die Pointe ist der Komitee-Apparat, nie das Kranksein.** Der Erzähler ist selbst Patient mit echter Diagnose — der Galgenhumor kommt von innen, als Insider, nicht als Spott von außen. Die Diagnose-Wortspiele zielen auf die *Bürokratie der Aufregung*. Klinische Begriffe (Bedarfsmedikation, Visite, Affekt) schaffen Authentizität, nicht Häme. Würde bleibt gewahrt (vgl. RESEARCH.md, Patient:innen-Sensibilität).
+Sardonisch, nicht albern. **Die Pointe trifft das System / den Apparat — nie die Patient:innen, nie das Kranksein, nie die Pflege als Menschen.** Erzähler ist Patient-Insider; klinische Begriffe schaffen Authentizität, nicht Häme. Kein Patienten-Distress als Spektakel, keine Beobachtung fremder Symptome von außen — Wortsalat bleibt Ich-Form. Würde gewahrt (RESEARCH.md, Patient:innen-Sensibilität).
 
-Der Titel arbeitet doppelt: die Redewendung („jetzt haben wir die Bescherung") und der wörtlich, endlich gelieferte Salat. Tagline: *Salatgate auf Station*.
+*Entwickelt über 3 Design-Agenten (politisch / Insider-Flow / Ritual-Spektakel), ein adversariales Spec-Panel (Patienten · Pflege · Salat) und einen Patienten-/Salat-Review. Diese Fassung = Synthese: Insider-Rückgrat + Salat-Sensorium + politische Zuständigkeits-Kette.*
 
 ## Mood & Imagery
 
-Stuhlkreis im überhitzten Dachgeschoss, halb drei, der Speisewagen mit drei Blatt Rucola. Klemmbrett des Stationsarztes, Bedarfstropfen, schwitzende Gesichter, zehn erhobene Finger ohne Inhalt. Dann Beat-Switch: das Neonlicht kippt in Kerzenschein, die Schwester trägt die Schüssel wie eine Monstranz durch den Mittelgang, ein Kopf Romana hochgehalten, der Saal kniet.
+Stuhlkreis im überhitzten Dachgeschoss, halb drei, der Speisewagen mit drei Blatt Rucola/Romana. Klemmbrett, Bedarfstropfen, Plastiklöffel, der Aktenschrank voll, die Schüssel leer. Dann Beat-Switch: Neon → Kerzen, die Pflege trägt die Schüssel wie eine Monstranz, ein Strunk wird zum Altar, der Saal kniet.
 
 ## Musical Direction
 
-- **Tempo**: ~100 BPM
-- **Feel**: Comedy-Deutschrap, flott und trocken; schneller Wortwitz-Flow, eingängiger Gang-Chant-Hook; am Ende Beat-Switch in eine getragene Halftime-Prozession
-- **Instrumentation**: Boom-bap-Drums mit knackigen Hi-Hats, warmer Sub-Bass, sparsame Piano-Stabs, leichter Trillerpfeifen-Akzent; Beat-Switch (Halftime, Orgel/Glocken) für das Prozessions-Outro
+- **Tempo**: ~94 BPM
+- **Feel**: Comedy-Deutschrap, trockener Boom-bap, zackig-politischer Flow, viel Dynamik; Beat-Switch in eine getragene Halftime-Prozession (Orgel/Glocken), dann zurück in den Drop
+- **Instrumentation**: Boom-bap-Drums, harte Snare, knackige Hi-Hats, Kontrabass-Swing, gechopte Bläser; Prozession: Hammond-Orgel, Kirchenglocken, Hand-Claps als Gemeinde
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -83,14 +76,14 @@ Stuhlkreis im überhitzten Dachgeschoss, halb drei, der Speisewagen mit drei Bla
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-comedy Deutschrap, 100 BPM, fast witty deadpan flow, punchy German rap verses, catchy gang-chant hook, boom-bap drums, crisp hi-hats, warm sub bass, sparse piano stabs, light whistle accent, beat-switch into a half-time procession outro with organ and bells, all German lyrics, clinical wordplay, party energy
+comedy Deutschrap, 94 BPM, fast dry boom-bap, zackig political punchy flow, male rap verses, big gang-vocal chant hook, chopped horns, hard snare, upright bass swing, crisp hi-hats, beat-switch into a half-time procession with Hammond organ and church bells, claps as congregation, all German lyrics, party energy no Mallorca cheese
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno:*
 
 ```
-no Schlager, no Mallorca Ballermann cheese, no four-on-the-floor party EDM, no air-horn spam, no slow ballad, no autotune croon
+no Schlager, no Mallorca Ballermann synths, no four-on-the-floor EDM, no autotune croon, no slow ballad
 ```
 
 ### Lyrics Box
@@ -98,70 +91,73 @@ no Schlager, no Mallorca Ballermann cheese, no four-on-the-floor party EDM, no a
 
 ```
 [Intro]
-Vierter Stock, Mittagshitze, kein Salat —
-na, da haben wir den Salat.
+Vierter Stock, halb drei, sechsunddreißig Grad,
+der Lüfter steht — bläst heiße Luft, sonst nix parat.
+Visite war um zehn, Affekt flach, Tagesstruktur,
+Bedarfstropfen drin. Auf'm Tablett: drei Blatt. Mehr kam nicht durch die Tür.
 
 [Chorus]
-Da haben wir den Salat. (Salat.)
-Drei Blatt, dreißig Mann — und keiner war's, na klar.
-Da haben wir den Salat. (Salat.)
-Das macht die Pflege. Die Pflege macht das schon.
-Da haben wir den Salat.
+Drei Blatt für die Station — da haben wir den Salat!
+Keiner war's gewesen — da haben wir den Salat!
+Schüssel bleibt leer, doch der Aktenschrank ist satt —
+da haben wir den Salat, da haben wir den Salat!
 
 [Verse 1]
-Halb drei, Bedarfsmedikation, die Visite ist durch,
-Tagesstruktur sagt Mittag — ich hör schon das Geschirr.
-Der Wagen rollt rein, die halbe Station guckt gespannt:
-drei Blatt Rucola für dreißig. Na dann. Guten Appetit, Mann.
-Ich bin hier wegen Reizüberflutung — und dann das.
-Sechsunddreißig Grad unterm Dach, der Lüfter ist hin.
-Frau Berger meldet sich, Herr Kunz wird rot wie 'ne Tomate,
-der Stationsarzt notiert: Gruppe zeigt heute Affekt. Aha.
+Frag die Küche — Küche zeigt auf Einkauf, Einkauf zuckt,
+Einkauf zeigt auf Verwaltung, Verwaltung wird verschluckt,
+Verwaltung sagt ganz ruhig: „Also das macht die Pflege" —
+und die Pflege trägt die Schüssel grad durch dreizehn Treppenwege.
+„Wir kürzen", sagt das Amt — ja sag mal, kürzt ihr auch das Wetter?
+Wir teilen ein Blatt durch zwölf und nennen das gerechter.
+Sparzwang oben, unten bloß ein Plastiklöffel in der Hand,
+und die Gurke kapituliert im sechsunddreißig-Grad-Brand.
 
 [Chorus]
-Da haben wir den Salat. (Salat.)
-Drei Blatt, dreißig Mann — und keiner war's, na klar.
-Da haben wir den Salat. (Salat.)
-Das macht die Pflege. Die Pflege macht das schon.
-Da haben wir den Salat.
+Drei Blatt für die Station — da haben wir den Salat!
+Keiner war's gewesen — da haben wir den Salat!
+Schüssel bleibt leer, doch der Aktenschrank ist satt —
+da haben wir den Salat, da haben wir den Salat!
 
 [Verse 2]
-Diagnose Eins: Salat-Trauma, akuter Blattmangel,
-Diagnose Zwei: Rohkost-Depression — der Saal im Wandel.
-Regression, Aggression, im Stuhlkreis keine Konzession,
-Dekompression in der Schale — pure Gruppendynamik-Eskalation.
-Ich hab da auch was zu sagen — und jeder so: ich auch,
-zehn Finger hoch, null Inhalt, der Pegel kocht im Bauch.
-Bedarfstropfen reichen nicht, die Bude brennt, Tag drei,
-und keiner macht das Fenster auf — nur Wortsalat im Brei.
-
-[Chorus]
-Da haben wir den Salat. (Salat.)
-Drei Blatt, dreißig Mann — und keiner war's, na klar.
-Da haben wir den Salat. (Salat.)
-Das macht die Pflege. Die Pflege macht das schon.
-Da haben wir den Salat.
+Diagnose des Tages, Doktor, schreib's mir in die Akte rein:
+Salat-Trauma, akut — der Blattmangel setzt ein.
+Rohkost-Depression, Regression, dann der ganze Saal in Aggression,
+keine Konzession vom Amt — Dekompression in der Schale, Explosion.
+Das Dressing macht klick, ich rede Wortsalat im Takt,
+mein Satzbau Schizophasie-quick — doch das ist kein Wahn, das ist Fakt:
+Statistik, die das Klinikbudget zeigt, schwarz auf weiß.
+„Ich hab da auch was zu sagen" — und jeder so: ich auch, ganz heiß.
+Elf Stimmen, eine Schüssel, Protokoll auf Seite acht,
+und unten wird geteilt — nur das System da oben macht's flach.
 
 [Build]
-Dann wird's still — ein Klappern auf dem Gang,
-die Tür geht auf, der ganze Stuhlkreis hält den Atem an.
+Sechsunddreißig… siebenunddreißig… der Lüfter sagt nix mehr,
+die Luft steht wie Beton, und die Schüssel wiegt jetzt schwer.
+„Ich hab da auch was zu sagen!" (und jeder so: ich auch!)
+Reden, reden, heiße Luft — und keiner macht das Fenster auf.
 
-[Breakdown]
-Die Schwester trägt die Schüssel wie 'ne Monstranz durch den Saal,
-ein Kopf Romana, hochgehalten — Reliquie, grün und schmal.
-Agatha, Patronin der aussichtslosen Fälle,
-das Neon wird zu Kerzen, der Saal kniet auf der Stelle.
+[Breakdown - Prozession]
+Still — die Schale kommt herein,
+die Pflege trägt sie hoch, und der ganze Saal geht in die Knie.
+Kopf Romana hochgehalten, Heilige aus Catania,
+ein Strunk wird zum Altar, und der Schweiß wird zum Hosanna.
+Die Monstranz ist aus Plastik, doch sie glänzt im Mittagslicht —
+wir beten eine Schüssel an, statt nachzubestellen, nicht?
+Und der Apparat ruft „Amen", weil bestellen ist zu spät —
+Sankt Agatha lächelt müd auf drei Blatt, die keiner versteht.
 
 [Drop]
-Da haben wir den Salat! (Salat!)
-Endlich auf dem Tisch — Salat-Trauma, geheilt, na klar!
-Da haben wir den Salat!
-Das macht die Pflege. Die Pflege macht das schon.
-Da haben wir den Salat!
+Drei Blatt für die Station — da haben wir den Salat!
+Endlich auf dem Tisch — da haben wir den Salat!
+Das macht die Pflege — Hände hoch, sie kriegt den Kranz!
+Während oben keiner zahlt, hält unten wer den Glanz —
+da haben wir den Salat, da haben wir den Salat!
 
 [Outro]
-Da haben wir den Salat.
-Da haben wir den Salat.
+Der Lüfter? Steht. Aber hey — es ist noch Salat da.
+Drei Blatt. Nur drei Blatt. Visite morgen um zehn.
+Die Pflege trägt die Schüssel raus, ganz ohne Applaus —
+da haben wir den Salat.
 ```
 <!-- /SERVICE: suno -->
 
@@ -170,112 +166,117 @@ Da haben wir den Salat.
 *Für die Distributor-Einreichung. Keine Section-Tags, alle Wiederholungen ausgeschrieben, Reintext.*
 
 ```
-Vierter Stock, Mittagshitze, kein Salat
-Na, da haben wir den Salat
+Vierter Stock, halb drei, sechsunddreißig Grad
+Der Lüfter steht, bläst heiße Luft, sonst nix parat
+Visite war um zehn, Affekt flach, Tagesstruktur
+Bedarfstropfen drin. Auf'm Tablett: drei Blatt. Mehr kam nicht durch die Tür
 
-Da haben wir den Salat
-Drei Blatt, dreißig Mann, und keiner war's, na klar
-Da haben wir den Salat
-Das macht die Pflege, die Pflege macht das schon
-Da haben wir den Salat
+Drei Blatt für die Station, da haben wir den Salat
+Keiner war's gewesen, da haben wir den Salat
+Schüssel bleibt leer, doch der Aktenschrank ist satt
+Da haben wir den Salat, da haben wir den Salat
 
-Halb drei, Bedarfsmedikation, die Visite ist durch
-Tagesstruktur sagt Mittag, ich hör schon das Geschirr
-Der Wagen rollt rein, die halbe Station guckt gespannt
-Drei Blatt Rucola für dreißig. Na dann. Guten Appetit, Mann
-Ich bin hier wegen Reizüberflutung, und dann das
-Sechsunddreißig Grad unterm Dach, der Lüfter ist hin
-Frau Berger meldet sich, Herr Kunz wird rot wie 'ne Tomate
-Der Stationsarzt notiert: Gruppe zeigt heute Affekt. Aha
+Frag die Küche, Küche zeigt auf Einkauf, Einkauf zuckt
+Einkauf zeigt auf Verwaltung, Verwaltung wird verschluckt
+Verwaltung sagt ganz ruhig: Also das macht die Pflege
+Und die Pflege trägt die Schüssel grad durch dreizehn Treppenwege
+Wir kürzen, sagt das Amt, ja sag mal, kürzt ihr auch das Wetter?
+Wir teilen ein Blatt durch zwölf und nennen das gerechter
+Sparzwang oben, unten bloß ein Plastiklöffel in der Hand
+Und die Gurke kapituliert im sechsunddreißig-Grad-Brand
 
-Da haben wir den Salat
-Drei Blatt, dreißig Mann, und keiner war's, na klar
-Da haben wir den Salat
-Das macht die Pflege, die Pflege macht das schon
-Da haben wir den Salat
+Drei Blatt für die Station, da haben wir den Salat
+Keiner war's gewesen, da haben wir den Salat
+Schüssel bleibt leer, doch der Aktenschrank ist satt
+Da haben wir den Salat, da haben wir den Salat
 
-Diagnose Eins: Salat-Trauma, akuter Blattmangel
-Diagnose Zwei: Rohkost-Depression, der Saal im Wandel
-Regression, Aggression, im Stuhlkreis keine Konzession
-Dekompression in der Schale, pure Gruppendynamik-Eskalation
+Diagnose des Tages, Doktor, schreib's mir in die Akte rein
+Salat-Trauma, akut, der Blattmangel setzt ein
+Rohkost-Depression, Regression, dann der ganze Saal in Aggression
+Keine Konzession vom Amt, Dekompression in der Schale, Explosion
+Das Dressing macht klick, ich rede Wortsalat im Takt
+Mein Satzbau Schizophasie-quick, doch das ist kein Wahn, das ist Fakt
+Statistik, die das Klinikbudget zeigt, schwarz auf weiß
+Ich hab da auch was zu sagen, und jeder so: ich auch, ganz heiß
+Elf Stimmen, eine Schüssel, Protokoll auf Seite acht
+Und unten wird geteilt, nur das System da oben macht's flach
+
+Sechsunddreißig, siebenunddreißig, der Lüfter sagt nix mehr
+Die Luft steht wie Beton, und die Schüssel wiegt jetzt schwer
 Ich hab da auch was zu sagen, und jeder so: ich auch
-Zehn Finger hoch, null Inhalt, der Pegel kocht im Bauch
-Bedarfstropfen reichen nicht, die Bude brennt, Tag drei
-Und keiner macht das Fenster auf, nur Wortsalat im Brei
+Reden, reden, heiße Luft, und keiner macht das Fenster auf
 
-Da haben wir den Salat
-Drei Blatt, dreißig Mann, und keiner war's, na klar
-Da haben wir den Salat
-Das macht die Pflege, die Pflege macht das schon
-Da haben wir den Salat
+Still, die Schale kommt herein
+Die Pflege trägt sie hoch, und der ganze Saal geht in die Knie
+Kopf Romana hochgehalten, Heilige aus Catania
+Ein Strunk wird zum Altar, und der Schweiß wird zum Hosanna
+Die Monstranz ist aus Plastik, doch sie glänzt im Mittagslicht
+Wir beten eine Schüssel an, statt nachzubestellen, nicht?
+Und der Apparat ruft Amen, weil bestellen ist zu spät
+Sankt Agatha lächelt müd auf drei Blatt, die keiner versteht
 
-Dann wird's still, ein Klappern auf dem Gang
-Die Tür geht auf, der ganze Stuhlkreis hält den Atem an
+Drei Blatt für die Station, da haben wir den Salat
+Endlich auf dem Tisch, da haben wir den Salat
+Das macht die Pflege, Hände hoch, sie kriegt den Kranz
+Während oben keiner zahlt, hält unten wer den Glanz
+Da haben wir den Salat, da haben wir den Salat
 
-Die Schwester trägt die Schüssel wie 'ne Monstranz durch den Saal
-Ein Kopf Romana, hochgehalten, Reliquie, grün und schmal
-Agatha, Patronin der aussichtslosen Fälle
-Das Neon wird zu Kerzen, der Saal kniet auf der Stelle
-
-Da haben wir den Salat
-Endlich auf dem Tisch, Salat-Trauma, geheilt, na klar
-Da haben wir den Salat
-Das macht die Pflege, die Pflege macht das schon
-Da haben wir den Salat
-
-Da haben wir den Salat
+Der Lüfter? Steht. Aber hey, es ist noch Salat da
+Drei Blatt. Nur drei Blatt. Visite morgen um zehn
+Die Pflege trägt die Schüssel raus, ganz ohne Applaus
 Da haben wir den Salat
 ```
 
 ## Art Direction
 
-**Konzept: Heilige Salatschüssel.** Eine profane Plastik-Salatschüssel als sakrale Reliquie überhöht — vergoldeter Rand, auf einem silbernen Prozessions-Thron (wie Agathas *fercolo* in Catania), ein Kopf Romana wie eine Reliquie emporgehalten, Strahlenkranz/Heiligenschein um die Schüssel. Barocke Heiligenbild-Inszenierung eines Salats. Neonlicht kippt in Kerzenschein. Im Hintergrund: schwitzende Gesichter im überhitzten Dachgeschoss-Stuhlkreis, erhobene Hände. Kalt-grüner Salat als einziges „heiliges" Objekt im Hitze-Gelb des Raums. Sardonisch, nicht albern.
+**Konzept: Heilige Salatschüssel.** Eine profane Plastik-Salatschüssel als sakrale Reliquie überhöht — vergoldeter Rand, auf einem silbernen Prozessions-Thron (wie Agathas *fercolo* in Catania), ein Kopf Romana wie eine Reliquie emporgehalten, Strahlenkranz um die Schüssel. Barocke Heiligenbild-Inszenierung eines Salats. Neonlicht kippt in Kerzenschein. Im Hintergrund: schwitzende Gesichter im überhitzten Dachgeschoss-Stuhlkreis, erhobene Hände. Kalt-grüner Salat als einziges „heiliges" Objekt im Hitze-Gelb des Raums. Sardonisch, nicht albern.
 
 **Artist-Name** unten rechts; Schreibweise „Children of Agatha" beibehalten.
 
 ## Production Notes
 
-- Strophen = schneller Comedy-Deutschrap-Flow (deadpan, viele Punchlines); Hook = Gang-Chant mit kleinem Call („Salat.")
-- **Weniger Ballermann, mehr Rap** — kein Vier-zu-Boden-Party-Kick als Träger; Boom-bap-Pocket, knackige Hats, der Witz trägt, nicht der Drop
-- **Krankheitsbezug** als Authentizität: Bedarfsmedikation, Visite, Tagesstruktur, Reizüberflutung, Bedarfstropfen, Gruppendynamik, Stationsarzt, Affekt — Stationsalltag, kein abstrakter Gag
-- **Trillerpfeife** nur als leichter Akzent (Ordnungsruf der Versammlung), nicht als gesungenes Wort
-- **Beat-Switch fürs Finale**: zur Prozession in Halftime wechseln (Orgel, Glocken, Neon→Kerzen), Schüssel als Monstranz; danach zurück in den Hook
-- „heiße Luft" doppeldeutig (Dachhitze + leeres Gerede); Research-Andockung: St.-Agatha-Reliquienprozession (Catania, *fercolo*)
+- Strophen = schneller, trockener Comedy-Deutschrap-Flow (zackig, politisch, viele Punchlines); Hook = großer Gang-Chant mit Mitsing-Energie
+- **Zuständigkeits-Kette** (V1) als rhythmischer Stakkato-Lauf: Küche→Einkauf→Verwaltung→Pflege
+- **Beat-Switch fürs Finale**: Drop in Halftime, Orgel + Glocken, Hand-Claps als Gemeinde; Schüssel als Monstranz, Neon→Kerzen; danach zurück in den Hook-Drop
+- **„heiße Luft" doppeldeutig** (Dachhitze + leeres Versammlungs-Gerede); Trillerpfeife höchstens als kurzer Ordnungsruf-Akzent, nicht als gesungenes Wort
+- Krankheitsbezug als Authentizität: Visite, Affekt, Tagesstruktur, Bedarfstropfen, Klinikbudget, Wortsalat/Schizophasie (Ich-Form)
+- Research-Andockung: St.-Agatha-Reliquienprozession (Catania, *fercolo*)
+- **Guardrail in der Produktion**: kein Patienten-Distress als Effekt; die Pflege wird im Drop hörbar geehrt („sie kriegt den Kranz")
 
 ## Pronunciation Notes
 
-**Diese Tabelle ist eine Pflicht-Checkliste.** Umlaute (ä/ö/ü/ß) bleiben im Text — Suno V5 rendert sie korrekt. Einträge unten betreffen Betonung/Fremdwörter.
+**Diese Tabelle ist eine Pflicht-Checkliste.** Umlaute (ä/ö/ü/ß) bleiben im Text — Suno V5 rendert sie korrekt. Einträge betreffen Betonung/Fremdwörter.
 
 | Word/Phrase | Pronunciation (Suno) | Reason |
 |-------------|----------------------|--------|
-| Salatgate | Sa-LAHT-gayt | Hybrid (Salat + -gate); „gate" wie in Watergate |
-| Wortsalat | VORT-sa-laht | „W" = /v/; Pun auf Wortsalat (Schizophasie) + Salat-Thema |
-| Rohkost-Depression | de-pres-SYOHN | deutsche Endung -sion, nicht englisch |
-| Regression / Aggression / Konzession | -gres-SYOHN / -tses-SYOHN | deutsche Endung -sion |
-| Dekompression | de-kom-pres-SYOHN | klinischer Pun; deutsche Endung -sion |
-| Gruppendynamik-Eskalation | ...-eska-la-TSYOHN | langes Kompositum; deutsche Endung -tion |
-| Bedarfsmedikation | be-DARFS-medi-ka-TSYOHN | Stationsbegriff; -tion deutsch |
-| Reizüberflutung | RYTS-ü-ber-flu-tung | langes Kompositum; klinischer Begriff |
-| Bedarfstropfen | be-DARFS-tropfen | Stationsbegriff (PRN-Medikation) |
-| Affekt | a-FEKT | klinisch; Betonung zweite Silbe |
-| Monstranz | mon-STRANTS | liturgisches Gefäß; Betonung hinten |
-| Reliquie | re-LEE-kvi-e | „qu" = /kv/ |
+| Salat / Salatgate | Sa-LAHT / Sa-LAHT-gayt | Betonung hinten; „gate" wie in Watergate |
+| Wortsalat | VORT-sa-laht | „W" = /v/; Pun (Schizophasie) + Salat-Thema, Ich-Form |
+| Rohkost-Depression / Regression / Aggression / Konzession / Dekompression | -pres-SYOHN / -gres-SYOHN / -tses-SYOHN / -kom-pres-SYOHN | deutsche Endung -sion, nicht englisch |
+| Schizophasie | schi-tso-fa-ZEE | klinischer Begriff; Betonung hinten, „sch" = /ʃ/ |
+| Catania | ka-TAH-nia | italienisch, nicht englisch; „c" = /k/ |
 | Romana | ro-MAH-na | Salatsorte (Römersalat); nicht anglisieren |
 | Agatha | AH-ga-ta | Betonung erste Silbe |
-| Berger / Kunz | BAIR-ger / Koonts | Eigennamen; deutsche Aussprache |
+| Monstranz | mon-STRANTS | liturgisches Gefäß; Betonung hinten |
+| Hosanna | ho-ZA-na | „s" = /z/; Betonung Mitte |
+| Visite | vi-ZEE-te | „V" = /v/; Betonung Mitte |
+| Affekt | a-FEKT | klinisch; Betonung zweite Silbe |
+| Bedarfstropfen | be-DARFS-tropfen | Stationsbegriff (PRN-Medikation) |
+| Klinikbudget | KLI-nik-bü-djeh | „budget" französisch (bü-DJEH), nicht englisch |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
 **Vor der Suno-Generierung prüfen:**
 
-- [x] **Eigennamen gescannt**: Berger, Kunz, Agatha, Romana, Salatgate
-- [x] **Fremdwörter**: Salatgate (Hybrid), Reliquie, Monstranz, -ession-Reihe
+- [x] **Eigennamen gescannt**: Agatha, Catania, Romana, Salatgate, Monstranz, Hosanna
+- [x] **Fremdwörter**: Salatgate (Hybrid), Schizophasie, Monstranz, Klinikbudget (frz.), -ession-Reihe
 - [x] **Homographe geprüft**: keine englischen Homographe (rein deutsch)
 - [x] **Akronyme**: keine
-- [x] **Zahlen**: „sechsunddreißig", „dreißig", „drei", „halb drei" ausgeschrieben
+- [x] **Zahlen**: „sechsunddreißig", „siebenunddreißig", „drei", „zwölf", „elf", „halb drei", „um zehn" ausgeschrieben
 - [x] **Umlaute**: ä/ö/ü/ß im Text beibehalten — Suno V5 rendert sie korrekt
-- [x] **Trillerpfeife**: Produktions-Akzent, nicht als gesungenes „Pfiff"
+- [x] **Selbst-Reim entfernt**: V2 „zeigt/gezeigt" → „weiß/heiß"
+- [x] **Guardrail**: Distress-Spektakel & Dritte-Person-Symptome entfernt; Wortsalat in Ich-Form
+
 <!-- /SERVICE: suno -->
 
 ## Generation Log
