@@ -83,7 +83,7 @@ Der Titel arbeitet doppelt: die Redewendung („jetzt haben wir die Bescherung")
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-German party rap, Ballermann banger, 108 BPM, sweaty euphoric, deadpan-comedic German rap verses, massive crowd sing-along chant hook, call-and-response shouts, four-on-the-floor party kick, heavy 808 bass, air horn, referee whistle, synth stabs, hand-clap breakdown drop, all German, Deutschrap edge
+party rap, Ballermann banger, 108 BPM, sweaty euphoric, deadpan-comedic German rap verses, huge crowd sing-along hook, call-and-response shouts, four-on-the-floor party kick, heavy 808 bass, air horn, referee whistle, synth stabs, hand-clap breakdown drop, all German lyrics, Deutschrap edge
 ```
 
 ### Exclude Styles
@@ -116,7 +116,7 @@ Wer hat das verbockt? Keiner. Aber jeder hat 'ne Aussage.
 Rohkost-Depression, Regression, Aggression,
 der Stuhlkreis schwitzt im Kreis, keine Konzession.
 Frau Berger schwingt 'ne Rede, Herr Kunz wird hochrot,
-heisse Luft im Saal, und es ist erst halb acht.
+die Stimmung kocht, und es ist erst halb drei.
 
 [Chorus]
 Da haben wir den Salat! Salat!
@@ -131,9 +131,9 @@ zehn Finger in die Hoehe, null Inhalt, viel Geschrei.
 Wir stimmen ab, ob wir abstimmen, Abstimmung gleich vertagt,
 der Salat wird welk, wir auch, der Schweiss laeuft, keiner fragt.
 Es ist noch Salat da, sagt das Protokoll, drei Blatt!
-Salatgate, vierter Stock, die Bude brennt, Tag drei.
+Salatgate auf Station, die Bude brennt, Tag drei.
 Es geht laengst nicht um Gruen, es geht ums letzte Wort,
-heisse Luft, heisse Luft, und keiner macht das Fenster auf.
+die Luft ist Wortsalat, und keiner macht das Fenster auf.
 
 [Chorus]
 Da haben wir den Salat! Salat!
@@ -186,7 +186,7 @@ Wer hat das verbockt? Keiner. Aber jeder hat 'ne Aussage
 Rohkost-Depression, Regression, Aggression
 Der Stuhlkreis schwitzt im Kreis, keine Konzession
 Frau Berger schwingt 'ne Rede, Herr Kunz wird hochrot
-Heiße Luft im Saal, und es ist erst halb acht
+Die Stimmung kocht, und es ist erst halb drei
 
 Da haben wir den Salat
 Heiße Luft, vierter Stock, und kein Mensch, der's war
@@ -199,9 +199,9 @@ Zehn Finger in die Höhe, null Inhalt, viel Geschrei
 Wir stimmen ab, ob wir abstimmen, Abstimmung gleich vertagt
 Der Salat wird welk, wir auch, der Schweiß läuft, keiner fragt
 Es ist noch Salat da, sagt das Protokoll, drei Blatt
-Salatgate, vierter Stock, die Bude brennt, Tag drei
+Salatgate auf Station, die Bude brennt, Tag drei
 Es geht längst nicht um Grün, es geht ums letzte Wort
-Heiße Luft, heiße Luft, und keiner macht das Fenster auf
+Die Luft ist Wortsalat, und keiner macht das Fenster auf
 
 Da haben wir den Salat
 Heiße Luft, vierter Stock, und kein Mensch, der's war
@@ -233,6 +233,16 @@ Da haben wir den Salat
 
 **Artist-Name** unten rechts; Schreibweise „Children of Agatha" beibehalten.
 
+## Refinement Log (lyric-writer Pass nach lyric-reviewer)
+
+| Stelle | Vorher | Nachher | Grund |
+|--------|--------|---------|-------|
+| V1 L8 | „heisse Luft im Saal, und es ist erst halb acht." | „die Stimmung kocht, und es ist erst halb drei." | Verse-Chorus-Echo (#13) entfernt; Hitze als Verb statt Hook-Vorwegnahme |
+| V2 L6 | „Salatgate, vierter Stock, die Bude brennt, Tag drei." | „Salatgate auf Station, die Bude brennt, Tag drei." | „vierter Stock"-Sättigung reduziert; Tagline „auf Station" reaktiviert |
+| V2 L8 | „heisse Luft, heisse Luft, und keiner macht das Fenster auf." | „die Luft ist Wortsalat, und keiner macht das Fenster auf." | Echo entfernt; Punchline geschärft — „Wortsalat" (Schizophasie-Symptom) verbindet leeres Gerede mit Salat-Thema |
+
+Hook „Da haben wir den Salat", Ballermann-Genre, Prozession-Finale, Pfiff-Signatur und -ession-Kaskade unangetastet. „Heiße Luft" bleibt als Hook-Motiv im Chorus erhalten, nur Verse-Sättigung entschärft.
+
 ## Production Notes
 
 - Strophen = Deutschrap-Flow (deadpan-comedic, schnell, Punchlines); Hook = Ballermann-Mitgröl-Chant mit Call-Response („Salat!", „Hände hoch!")
@@ -249,6 +259,7 @@ Da haben wir den Salat
 | Word/Phrase | Pronunciation (Suno) | Reason |
 |-------------|----------------------|--------|
 | Salatgate | Sa-LAHT-gayt | Hybrid (Salat + -gate); „gate" wie in Watergate |
+| Wortsalat | VORT-sah-laht | „W" = /v/; Pun auf Wortsalat (Schizophasie) + Salat-Thema |
 | Rohkost-Depression | ROH-kost de-pres-SYOHN | Pun; deutsche Endung -sion, nicht englisch |
 | Regression | re-gres-SYOHN | Klinischer Begriff; deutsche Endung -sion |
 | Aggression | a-gres-SYOHN | Deutsche Endung -sion, hartes Doppel-g |
