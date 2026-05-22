@@ -66,23 +66,99 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-[Lyrics here...]
+Die Roehre flackert — wir tanzen drunter.
+Gruenes Licht in Stoessen, Schatten zucken hoch.
+Ein Becher faellt, keiner hebt ihn auf.
+Klinker aus neunzehnhundertfuenf, Hohlraum im Dach.
+Bombe rein, nicht gezuendet.
+Das Gebaude weiss, wie man uebersteht.
+Wir stehen auch noch.
 
 [Chorus]
-[Lyrics here...]
+Flackerlicht ueber Klinkerstein.
+Wir tanzen unter Neonlicht.
+Das Feuer bricht uns nicht.
+Agatha hat auch gebrannt.
 
 [Verse 2]
-[Lyrics here...]
+Der Medikamentenwagen steht quer im Gang.
+Jemand lacht. Keiner fragt warum.
+Die Roehre summt auf neunzig Hertz —
+das war schon immer ihr Lied.
+Wir drehen uns, bis das Licht steht still.
+Wessen Koerper das ist, weiss niemand mehr.
+Wir kennen das Gebaude.
+Das Gebaude kennt uns.
+
+[Bridge]
+Sie rollten sie ueber gluehende Kohlen.
+Das Feuer machte sie nicht kleiner.
+Wir essen ihr gebissenes Brot,
+halten die Agathenkerze in der Hand,
+tanzen in ihrem alten Haus.
+Das Licht bricht uns nicht.
+
+[Chorus]
+Flackerlicht ueber Klinkerstein.
+Wir tanzen unter Neonlicht.
+Das Feuer bricht uns nicht.
+Agatha hat auch gebrannt.
 
 [Outro]
-[Lyrics here...]
+Die Roehre flackert.
+Wir tanzen drunter.
+Die Roehre flackert.
+Wir tanzen drunter.
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[Plain lyrics here]
+[Verse 1]
+Die Röhre flackert — wir tanzen drunter.
+Grünes Licht in Stößen, Schatten zucken hoch.
+Ein Becher fällt, keiner hebt ihn auf.
+Klinker aus neunzehnhundertfünf, Hohlraum im Dach.
+Bombe rein, nicht gezündet.
+Das Gebäude weiß, wie man übersteht.
+Wir stehen auch noch.
+
+[Chorus]
+Flackerlicht über Klinkerstein.
+Wir tanzen unter Neonlicht.
+Das Feuer bricht uns nicht.
+Agatha hat auch gebrannt.
+
+[Verse 2]
+Der Medikamentenwagen steht quer im Gang.
+Jemand lacht. Keiner fragt warum.
+Die Röhre summt auf neunzig Hertz —
+das war schon immer ihr Lied.
+Wir drehen uns, bis das Licht steht still.
+Wessen Körper das ist, weiß niemand mehr.
+Wir kennen das Gebäude.
+Das Gebäude kennt uns.
+
+[Bridge]
+Sie rollten sie über glühende Kohlen.
+Das Feuer machte sie nicht kleiner.
+Wir essen ihr gebissenes Brot,
+halten die Agathenkerze in der Hand,
+tanzen in ihrem alten Haus.
+Das Licht bricht uns nicht.
+
+[Chorus]
+Flackerlicht über Klinkerstein.
+Wir tanzen unter Neonlicht.
+Das Feuer bricht uns nicht.
+Agatha hat auch gebrannt.
+
+[Outro]
+Die Röhre flackert.
+Wir tanzen drunter.
+Die Röhre flackert.
+Wir tanzen drunter.
 ```
 
 ## Production Notes
@@ -95,7 +171,14 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Flackerlicht | FLAH-ker-licht | Title word; stress on first syllable; "ch" = voiceless palatal fricative, not English "k" |
+| Klinkerstein | KLIN-ker-shtine | Stress on first syllable; German "st" = /ʃt/ |
+| Agathenkerze | ah-GAH-ten-KEHR-tse | Proper noun (blessed candles of St. Agatha tradition); stress on second syllable of Agatha component |
+| neunzehnhundertfünf | noyn-TSAYN-hoon-dert-fuenf | Year 1905; spoken as a single compound; Suno form: neunzehnhundertfuenf |
+| gebissenes | geh-BIS-eh-nes | "bitten/blessed bread" (Agathenbrot); stress on second syllable; three syllables, not four |
+| Hohlraum | HOHL-rowm | "hollow space / cavity"; stress on first syllable; "au" = /aʊ/ |
+| übersteht | UE-ber-shtayt | Stress on first syllable (separable prefix); Suno form: uebersteht |
+| glühende | GLUE-en-deh | "glowing/burning" (coals); Suno form: gluehende; stress on first syllable |
 
 ## Generation Log
 

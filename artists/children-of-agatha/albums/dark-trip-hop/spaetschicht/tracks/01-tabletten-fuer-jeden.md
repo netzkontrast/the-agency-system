@@ -67,16 +67,34 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-[Lyrics here...]
+Vier Uhr dreissig. Ein Rad quietscht im Flur.
+Der Wagen haelt. Weisse Becher. Die Schlange waechst.
+Schwester dreht sich weg.
+Wir stehen. Wir warten. Das Blech klappert kurz.
 
 [Chorus]
-[Lyrics here...]
+Tabletten fuer jeden — die Runde beginnt.
+Im Neonlicht brummt es, der Flur wird eng.
+Wir strecken die Haende. Ein Becher. Ein Ruck.
+Tabletten fuer jeden — wir sind genug.
 
 [Verse 2]
-[Lyrics here...]
+Linoleum kalt. Ruecken an Klinkerstein.
+Neunzehn-null-fuenf — St. Agatha haelt den Bau.
+Fuenf Stationen, eine Nacht, eine Wacht.
+Hinter der Lueftung: Orgel-Drone, gedaempft.
+Der Fernseher flimmert. Niemand schaut rein.
+
+[Bridge]
+Jemand schlueckt. Jemand biegt den Becher.
+Jemand lehnt. Jemand kennt den anderen nicht.
+Wir stehen im Flur aus hundertjaehrigem Stein.
+Noch sind wir viele. Gleich sind wir eins.
 
 [Outro]
-[Lyrics here...]
+Der Wagen rollt weiter den Flur entlang.
+Das Klappern bleibt.
+Wir bleiben auch.
 ```
 <!-- /SERVICE: suno -->
 
@@ -85,7 +103,35 @@ no four-on-the-floor, no EDM drop, no bright pop production
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here]
+Vier Uhr dreißig. Ein Rad quietscht im Flur.
+Der Wagen hält. Weiße Becher. Die Schlange wächst.
+Schwester dreht sich weg.
+Wir stehen. Wir warten. Das Blech klappert kurz.
+
+Tabletten für jeden — die Runde beginnt.
+Im Neonlicht brummt es, der Flur wird eng.
+Wir strecken die Hände. Ein Becher. Ein Ruck.
+Tabletten für jeden — wir sind genug.
+
+Linoleum kalt. Rücken an Klinkerstein.
+Neunzehn-null-fünf — St. Agatha hält den Bau.
+Fünf Stationen, eine Nacht, eine Wacht.
+Hinter der Lüftung: Orgel-Drone, gedämpft.
+Der Fernseher flimmert. Niemand schaut rein.
+
+Jemand schluckt. Jemand biegt den Becher.
+Jemand lehnt. Jemand kennt den anderen nicht.
+Wir stehen im Flur aus hundertjährigem Stein.
+Noch sind wir viele. Gleich sind wir eins.
+
+Tabletten für jeden — die Runde beginnt.
+Im Neonlicht brummt es, der Flur wird eng.
+Wir strecken die Hände. Ein Becher. Ein Ruck.
+Tabletten für jeden — wir sind genug.
+
+Der Wagen rollt weiter den Flur entlang.
+Das Klappern bleibt.
+Wir bleiben auch.
 ```
 
 ## Production Notes
@@ -98,7 +144,13 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Klinkerstein | KLING-ker-shtyne | Compound noun; Suno may split or anglicise the second syllable |
+| Neonlicht | NAY-on-lischt | German vowel in "Neon"; not NEE-on as in English |
+| Neunzehn-null-fünf | NOYN-tsehn-nool-fuenf | Year read as digit string; hyphens guide phrasing |
+| Agatha | AH-gah-tah | 3 syllables, stress on first; Greek origin name |
+| Linoleum | lee-NOH-lee-um | 4 syllables; stress on second; Suno may compress to 3 |
+| Tabletten | tah-BLET-ten | Standard German; stress on second syllable |
+| Orgel-Drone | OR-gel-drohn | Compound; second element is English loanword, spoken German-flat |
 
 ## Generation Log
 

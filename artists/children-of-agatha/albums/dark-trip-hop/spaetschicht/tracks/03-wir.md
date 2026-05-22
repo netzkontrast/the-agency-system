@@ -66,23 +66,70 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-[Lyrics here...]
+Jemand atmet, ich spuer es in der Brust.
+Nicht meine Lunge, egal.
+Zweiundsiebzig Betten, ein Puls.
+Die Spritze war sauber, der Rest war Wir.
+Unter dem Boden WOOM-ert es gleichmaessig —
+einmal pro Sekunde, einmal fuer alle.
 
 [Chorus]
-[Lyrics here...]
+Wir.
+Ein Atemzug, ein Koerper, ein Gewicht.
+Agathas Kinder tragen keine Namen mehr.
+Wir.
 
 [Verse 2]
-[Lyrics here...]
+Das Bett drueben KNARRT — jemand dreht sich.
+Der Klang landet in mir wie meiner.
+Saemtliche Grenzen sind Papier.
+Was nahe ist, gehoert uns.
+Kein Wort dafuer, kein Wort dagegen.
+Der Boden haelt uns alle.
+
+[Bridge]
+Nicht Verlust.
+Nicht Schmerz.
+Einfach: kein Rand mehr.
+Einfach: Puls.
 
 [Outro]
-[Lyrics here...]
+Wir.
+Wir.
+Wir.
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[Plain lyrics here]
+Jemand atmet, ich spür es in der Brust.
+Nicht meine Lunge, egal.
+Zweiundsiebzig Betten, ein Puls.
+Die Spritze war sauber, der Rest war Wir.
+Unter dem Boden wummert es gleichmäßig —
+einmal pro Sekunde, einmal für alle.
+
+Wir.
+Ein Atemzug, ein Körper, ein Gewicht.
+Agathas Kinder tragen keine Namen mehr.
+Wir.
+
+Das Bett drüben knarrt — jemand dreht sich.
+Der Klang landet in mir wie meiner.
+Sämtliche Grenzen sind Papier.
+Was nahe ist, gehört uns.
+Kein Wort dafür, kein Wort dagegen.
+Der Boden hält uns alle.
+
+Nicht Verlust.
+Nicht Schmerz.
+Einfach: kein Rand mehr.
+Einfach: Puls.
+
+Wir.
+Wir.
+Wir.
 ```
 
 ## Production Notes
@@ -95,7 +142,12 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| wummert | WOOM-ert | German verb: to rumble/throb. Suno may attempt "wum-MERT" or garble the 'w' as English 'w'. Applied as WOOM-ert in Suno lyrics. |
+| knarrt | KNARRT | German verb: to creak. Hard 'kn' onset may confuse Suno; written in caps to signal deliberate consonant cluster. Applied as KNARRT in Suno lyrics. |
+| gleichmäßig | gleichmaessig | Umlaut substitution standard (ä→ae). No special phonetic risk beyond the substitution; Suno should read "gleichmaessig" acceptably as a long compound. |
+| Zweiundsiebzig | tsvay-oont-ZEEP-tsikh | German: seventy-two. Suno may read as English sounds. Phonetic note for reference; word is left in standard German spelling in Suno box — flag for re-test at generation. |
+| Sämtliche | saemtliche | Umlaut substitution (ä→ae). Suno-box: "Saemtliche". |
+| Agathas | AH-gah-tahs | Proper name, genitive. Stress on first syllable. Suno may stress second. Appears in chorus. |
 
 ## Generation Log
 

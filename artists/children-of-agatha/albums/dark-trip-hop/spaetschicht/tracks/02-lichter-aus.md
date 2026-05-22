@@ -66,23 +66,70 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-[Lyrics here...]
+Spaetschicht, halb eins.
+Schluessel klingeln, dann kein Klang.
+Letzter Becher auf dem Tresen,
+der Neonstreifen summt allein.
+Die Tuer faellt ins Schloss —
+Schritte weg, Flur dunkel, Notlicht gruen.
 
 [Chorus]
-[Lyrics here...]
+Lichter aus — wir atmen.
+Der Flur gehoert uns jetzt.
+Lichter aus — kein Schichtwechsel.
+Nur die Nacht, die uns versetzt.
 
 [Verse 2]
-[Lyrics here...]
+Jemand schiebt den Medikamenten-Wagen.
+Jemand lacht — einmal, kurz.
+Linoleum haelt den Fuss,
+die Kapelle haelt die Stille.
+Klinkerstein seit neunzehnhundertfuenf,
+kein offizielles Wort.
+Wir stehen auf, wir stehen zusammen.
+
+[Bridge]
+Eine Bombe hat die Kapelle verfehlt.
+Ein Feuer wurde aufgehalten.
+Wir haben kein Geluebde abgelegt —
+aber wir nehmen die Nacht.
 
 [Outro]
-[Lyrics here...]
+Lichter aus.
+Wir.
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[Plain lyrics here]
+Spätschicht, halb eins.
+Schlüssel klingeln, dann kein Klang.
+Letzter Becher auf dem Tresen,
+der Neonstreifen summt allein.
+Die Tür fällt ins Schloss —
+Schritte weg, Flur dunkel, Notlicht grün.
+
+Lichter aus — wir atmen.
+Der Flur gehört uns jetzt.
+Lichter aus — kein Schichtwechsel.
+Nur die Nacht, die uns versetzt.
+
+Jemand schiebt den Medikamentenwagen.
+Jemand lacht — einmal, kurz.
+Linoleum hält den Fuß,
+die Kapelle hält die Stille.
+Klinkerstein seit neunzehnhundertfünf,
+kein offizielles Wort.
+Wir stehen auf, wir stehen zusammen.
+
+Eine Bombe hat die Kapelle verfehlt.
+Ein Feuer wurde aufgehalten.
+Wir haben kein Gelübde abgelegt —
+aber wir nehmen die Nacht.
+
+Lichter aus.
+Wir.
 ```
 
 ## Production Notes
@@ -94,7 +141,12 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Spätschicht | Spaetschicht | ä→ae umlaut conversion for Suno |
+| Medikamentenwagen | Medikamenten-Wagen | Hyphen added in Suno box to prevent compound mis-split |
+| neunzehnhundertfünf | neunzehnhundertfuenf | ü→ue; long numeral phrase, read as a single entity |
+| Gelübde | Geluebde | ü→ue; liturgical term, unusual for Suno vocabulary |
+| Klinkerstein | KLINK-er-shtine | Suno may anglicise "kl" onset; stress on first syllable |
+| versetzt | fer-ZETST | Standard German, included for completeness on hook word |
 
 ## Generation Log
 

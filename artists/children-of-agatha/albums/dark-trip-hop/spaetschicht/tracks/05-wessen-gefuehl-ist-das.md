@@ -66,23 +66,79 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-[Lyrics here...]
+Ein Zittern laeuft durch den Raum — von wem.
+Kein Boden drunter, kein Name drauf.
+Wir sitzen auf Plastik. Einer lacht.
+Aber keiner weiss, wer angefangen hat.
+Die Tablette hat keine Adresse.
+Sie loest sich auf — wir loesen uns auf.
+Der Medikamentenwagen rollt zurueck in den Flur.
 
 [Chorus]
-[Lyrics here...]
+Wessen Gefuehl ist das.
+Wessen Gefuehl ist das.
+Wir tragen es weiter — wohin.
+Wessen Gefuehl ist das.
 
 [Verse 2]
-[Lyrics here...]
+Ein Heulkrampf macht die Runde.
+Kommt von links, geht nach rechts.
+Kein Gesicht haengt lange dran.
+Der Hunger, der nicht weiss wen er meint.
+Die Brust hebt sich — gehoert sie dir.
+Freude wie Rauch: wir atmen ein, wir atmen aus.
+Wessen Koerper haelt das jetzt.
+
+[Bridge]
+Agatha fragte Quintianus:
+Hast du vergessen, wessen Brust dich ernaehrt hat.
+Hier fragt niemand.
+Hier kommt keine Antwort.
+Nur der Bass — unter allen gleichzeitig — weiss, wo er herkommt.
 
 [Outro]
-[Lyrics here...]
+Wessen Gefuehl ist das.
+Wessen Gefuehl ist das.
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[Plain lyrics here]
+Verse 1
+Ein Zittern läuft durch den Raum — von wem.
+Kein Boden drunter, kein Name drauf.
+Wir sitzen auf Plastik. Einer lacht.
+Aber keiner weiß, wer angefangen hat.
+Die Tablette hat keine Adresse.
+Sie löst sich auf, wir lösen uns auf.
+Der Medikamentenwagen rollt zurück in den Flur.
+
+Chorus
+Wessen Gefühl ist das.
+Wessen Gefühl ist das.
+Wir tragen es weiter, wohin.
+Wessen Gefühl ist das.
+
+Verse 2
+Ein Heulkrampf macht die Runde.
+Kommt von links, geht nach rechts.
+Kein Gesicht hängt lange dran.
+Der Hunger, der nicht weiß wen er meint.
+Die Brust hebt sich, gehört sie dir.
+Freude wie Rauch: wir atmen ein, wir atmen aus.
+Wessen Körper hält das jetzt.
+
+Bridge
+Agatha fragte Quintianus:
+Hast du vergessen, wessen Brust dich genährt hat.
+Hier fragt niemand.
+Hier kommt keine Antwort.
+Nur der Bass unter allen gleichzeitig weiß, wo er herkommt.
+
+Outro
+Wessen Gefühl ist das.
+Wessen Gefühl ist das.
 ```
 
 ## Production Notes
@@ -95,7 +151,10 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Quintianus | kwin-tsi-AH-nus | Latin name; Suno may garble the Q and the -tianus cluster without guidance |
+| Medikamentenwagen | meh-dee-kah-MEN-ten-VAH-gen | Long compound; accent on MEN; Suno tends to flatten German compound stress |
+| Heulkrampf | HOYL-krampf | "Heul" (howl/cry) + "Krampf" (cramp/spasm); compound is unfamiliar to model; HOYL must stay distinct from "Heil" |
+| ernaehrt | ehr-NAIRT | Past participle of ernähren (to nourish); umlaut ä→ae in Suno input; stress on second syllable |
 
 ## Generation Log
 

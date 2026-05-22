@@ -66,23 +66,59 @@ no four-on-the-floor, no EDM drop, no bright pop production, no busy percussion
 
 ```
 [Verse 1]
-[Lyrics here...]
+Der Boden trifft den Fuss nicht mehr
+Wir stehen, aber stehen heisst jetzt etwas anderes
+Linoleum wird Meeresgrund
+Atem zieht sich aus, kehrt irgendwann zurueck
 
 [Chorus]
-[Lyrics here...]
+Wir treiben
+Der Bass traegt uns wie Wasser
+Kein Zug nach unten
+Schwerelos
+Schwerelos
+Wir sind hier
 
 [Verse 2]
-[Lyrics here...]
+Der Hafen schlaeft hinter der Scheibe
+Die Reliquien kamen per Schiff — auch sie getragen
+Was kaputt war, wurde aufgehoben
+Nicht geheilt, nur gehalten — fuer jetzt
 
 [Outro]
-[Lyrics here...]
+Der Bass haelt uns
+Wir treiben
+Schwerelos
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[Plain lyrics here]
+[Vers 1]
+Der Boden trifft den Fuß nicht mehr
+Wir stehen, aber stehen heißt jetzt etwas anderes
+Linoleum wird Meeresgrund
+Atem zieht sich aus, kehrt irgendwann zurück
+
+[Chorus]
+Wir treiben
+Der Bass trägt uns wie Wasser
+Kein Zug nach unten
+Schwerelos
+Schwerelos
+Wir sind hier
+
+[Vers 2]
+Der Hafen schläft hinter der Scheibe
+Die Reliquien kamen per Schiff — auch sie getragen
+Was kaputt war, wurde aufgehoben
+Nicht geheilt, nur gehalten — für jetzt
+
+[Outro]
+Der Bass hält uns
+Wir treiben
+Schwerelos
 ```
 
 ## Production Notes
@@ -95,7 +131,10 @@ no four-on-the-floor, no EDM drop, no bright pop production, no busy percussion
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Schwerelos | SHVAY-reh-lohs | "schw" is /ʃv/, "-elos" unstressed — Suno may use English "w" or stress wrong syllable |
+| Reliquien | reh-LEE-kvee-en | 5 syllables; Suno may collapse or mispronounce "qu" as /kw/ instead of /kv/ |
+| Linoleum | lee-NOH-leh-oom | 4 syllables; loanword, easy mispronunciation on first and last syllable |
+| Meeresgrund | MAY-res-groont | Compound noun; Suno may split stress or soften the terminal "d" to /t/ incorrectly |
 
 ## Generation Log
 

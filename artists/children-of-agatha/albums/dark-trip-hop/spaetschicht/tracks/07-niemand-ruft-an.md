@@ -66,23 +66,84 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-[Lyrics here...]
+Das Telefon an der Station klingelt.
+Schwester Monika nimmt ab, senkt die Stimme, legt auf.
+Nicht fuer uns.
+Das Besucherbuch liegt aufgeschlagen —
+dritte Seite, zweite Woche, kein neuer Name.
+Das Datum auf dem Whiteboard stimmt nicht mehr.
+Niemand hat's geaendert.
+Wir haben's nicht geaendert.
 
 [Chorus]
-[Lyrics here...]
+Niemand ruft an.
+Niemand kommt durch die Tuer.
+Wir tanzen trotzdem.
+Wir tanzen fuer uns.
+Niemand ruft an.
 
 [Verse 2]
-[Lyrics here...]
+Der Stuhl im Besucherzimmer ist leer.
+Man sieht, wann er zuletzt gerueckt wurde —
+die Kerbe im Linoleum zeigt es.
+Draussen faehrt jemand ein Kind zur Schule,
+kauft Brot, macht Feierabend.
+Hier steht der Wagen noch,
+hier blinkt das Neon noch,
+hier klingelt das Telefon.
+Nicht fuer uns.
+
+[Bridge]
+Agathe hat einen Monat gewartet.
+Kein Arzt, kein Brot, niemand.
+Man kann warten, bis jemand kommt.
+Man kann auch tanzen.
 
 [Outro]
-[Lyrics here...]
+Niemand ruft an.
+Das Telefon schweigt.
+Wir tanzen trotzdem.
+Wir tanzen fuer uns.
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[Plain lyrics here]
+Das Telefon an der Station klingelt.
+Schwester Monika nimmt ab, senkt die Stimme, legt auf.
+Nicht für uns.
+Das Besucherbuch liegt aufgeschlagen —
+dritte Seite, zweite Woche, kein neuer Name.
+Das Datum auf dem Whiteboard stimmt nicht mehr.
+Niemand hat's geändert.
+Wir haben's nicht geändert.
+
+Niemand ruft an.
+Niemand kommt durch die Tür.
+Wir tanzen trotzdem.
+Wir tanzen für uns.
+Niemand ruft an.
+
+Der Stuhl im Besucherzimmer ist leer.
+Man sieht, wann er zuletzt gerückt wurde —
+die Kerbe im Linoleum zeigt es.
+Draußen fährt jemand ein Kind zur Schule,
+kauft Brot, macht Feierabend.
+Hier steht der Wagen noch,
+hier blinkt das Neon noch,
+hier klingelt das Telefon.
+Nicht für uns.
+
+Agathe hat einen Monat gewartet.
+Kein Arzt, kein Brot, niemand.
+Man kann warten, bis jemand kommt.
+Man kann auch tanzen.
+
+Niemand ruft an.
+Das Telefon schweigt.
+Wir tanzen trotzdem.
+Wir tanzen für uns.
 ```
 
 ## Production Notes
@@ -95,7 +156,14 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Monika | MO-ni-ka | Three syllables, stress on first; common German name, Suno may compress to two syllables |
+| aufgeschlagen | owf-ge-SHLA-gen | Four syllables; "au" = "ow"; Suno sometimes drops unstressed "ge" prefix |
+| Besucherbuch | be-ZOO-cher-buch | "Besucher" = visitor; "buch" = book; compound — stress on second syllable of each root |
+| Linoleum | li-NO-le-um | Four syllables; stress on second; Suno may mispronounce as English "lih-NO-lee-um" |
+| gerueckt | ge-RUECKT | "ue" = ü (high front rounded); past participle of "rücken" (to move/shift) |
+| Feierabend | FY-er-ah-bent | Five syllables; "Feier" = celebration/end-of-day; "Abend" = evening; compound noun, stress on first syllable |
+| Agathe | a-GA-te | Three syllables; stress on second; "th" = hard T in German, not English "th" |
+| geaendert | ge-EN-dert | "ae" = ä; three syllables; Suno may accent wrong syllable |
 
 ## Generation Log
 
