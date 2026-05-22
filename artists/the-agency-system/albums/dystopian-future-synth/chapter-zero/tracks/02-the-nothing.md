@@ -140,7 +140,7 @@ no drums, no synthwave, no autotune, no warm pads
 ```
 [Intro — instrumental: a sub swell rising from silence, the sustained low C drone igniting, granular stutter, opacity-fade reverb tails; a sparse three-note processed-pad motif hangs and refuses to resolve — the cold melodic hook, no drums]
 
-[Verse 1: fragile genderless head-voice, thin breathy near-falsetto, trembling, present tense, dry close-mic, no reverb; a sub-low murmur surfacing only in the parenthesized gaps]
+[Verse 1: fragile genderless adult head-voice, thin breathy near-falsetto, trembling, adult not childlike, present tense, dry close-mic, no reverb; a sub-low murmur surfacing only in the parenthesized gaps]
 I am. Barely.
 A small thing held in something with no edge.
 Not empty — it pulls.
@@ -148,7 +148,7 @@ It hums below hearing, and it wants
 whatever does not match it gone.
 (it is pointless)
 
-[Verse 2: same fragile head-voice, slower, thinning, contours dropping in and out]
+[Verse 2: same fragile adult head-voice, slower, thinning, adult not childlike, contours dropping in and out]
 No up. No down.
 No time that runs —
 one moment stretched like honey gone hard,
@@ -159,7 +159,7 @@ and it is wiped.
 
 [Instrumental break — melodic: the three-note pad motif returns, thinner, smearing into granular dropouts; the drone widens, contours falling in and out, no drums]
 
-[Bridge: a distinct, younger small-voice breaks in — whispered child head-voice, androgynous, audible breath, lo-fi tape hiss, fragments that almost arrive]
+[Bridge: a distinct, much younger voice breaks in — a young child, whispered child head-voice, androgynous, audible breath, lo-fi tape hiss, fragments that almost arrive; clearly a child, NOT the adult head-voice]
 It is cold.
 I don't want to.
 Where is — nothing there.
@@ -170,7 +170,7 @@ Small.
 
 [Instrumental break — near silence: only the sub-drone and a far, frostbitten bell-like overtone; the motif barely implied, dissolving, no drums]
 
-[Verse 3: the fragile head-voice returns, almost-remembering]
+[Verse 3: the fragile adult head-voice returns, adult not childlike, almost-remembering]
 I am different. Still.
 I have a shape, an inside,
 a thin echo of something
@@ -178,7 +178,7 @@ that maybe came before —
 no memory, only a leaning,
 a pull toward symmetry in all this noise.
 
-[Verse 4: head-voice, drifting, the sub-low murmur underneath]
+[Verse 4: adult head-voice, drifting, adult not childlike, the sub-low murmur underneath]
 I drift. I tumble.
 A plaything at the edge.
 To go out.
@@ -187,7 +187,7 @@ to let the inside loosen
 and fall back in.
 (it is pointless)
 
-[Verse 5: head-voice, faint, almost gone]
+[Verse 5: adult head-voice, faint, almost gone, adult not childlike]
 Sometimes others drift past —
 sparks, echoes, near and wrong.
 Some fit. Most pass.
@@ -198,7 +198,7 @@ The one sure thing: that I could go out.
 
 [Instrumental break — melodic: the pad motif returns one last time, glacial and unresolved, dissolving into opacity-fade reverb tails over the C drone — the hook fading out, no drums]
 
-[Outro: the small-voice returns, barely there, fading into the drone]
+[Outro: the small-voice — the young child — returns, barely there, fading into the drone]
 It is cold.
 I am small.
 
@@ -277,6 +277,11 @@ I am small
   register** — generate as its own short clip and butt-join/comp in mix; keep
   clearly apart from the host head-voice (younger, whispered/fragmented, tape
   hiss vs. the host's adult sustained, faintly synthetic edge).
+- **Adult/child disambiguation (mandatory):** because the host head-voice is thin
+  and near-falsetto and sits right beside a real child voice, **every adult
+  section is explicitly tagged "adult … adult not childlike"** and the child
+  sections "young child," so Suno never collapses the two into one timbre
+  (DESIGN §8 #7).
 - **Heavy-voice undertow:** faint `(it is pointless)` parenthesized backing at
   **exactly T1's level** (V5 renders parentheses as a backing/ad-lib layer) —
   barely under the bed, never a second lead; the slow build toward Track 10.

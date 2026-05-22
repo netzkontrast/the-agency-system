@@ -700,6 +700,23 @@ owns these assets; here they are pointed at the long-form problem:
    instrumental/atmospheric expanse — the §8 word-count ceilings (140–220 words
    ambient/electroacoustic; ~200–350 words rock/industrial) hold regardless of a
    track's minutes. Do not pad word-counts to "fill" a 7-minute track.
+6. **Instrumental breaks + a recurring motif hook are the per-track default**
+   (user decision, set at T4). Every track carries an instrumental `[Intro]` and
+   one or more `[Instrumental break]` sections (descriptive instrumental tags
+   only — no parentheses, so V5 reads them as directions, never sings them), plus
+   a **recurring motif that serves as the track's hook** (e.g. T2's three-note
+   tonic-refusing pad figure; T4's self-reinforcing cold-sequencer loop). Treat
+   the motif as a **comped/owned element** so it recalls cleanly across the
+   long-form passes rather than being re-gambled per generation. The tight tracks
+   (**T5 kinetic, T8 the hush, T13 the coda**) may use a single restrained motif
+   statement and minimal breaks rather than multiple — they must not be padded.
+7. **Where a child voice appears (T2, T10), the adult voices must be explicitly
+   tagged "adult"** in their inline metatags (user decision) — the fragile
+   genderless head-voice is thin/near-falsetto and Suno can otherwise blur it into
+   the child small-voice. Use "adult androgynous head-voice … adult not childlike"
+   for the proto-host/host and a clear "young child" for the small-voice, so the
+   two never collapse into one timbre. (Good practice album-wide, since the
+   head-voice is near-falsetto throughout.)
 
 ### Pre-generation prerequisites (do before lyric-writing)
 

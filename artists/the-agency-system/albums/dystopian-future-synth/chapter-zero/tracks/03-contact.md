@@ -107,7 +107,10 @@ dark ambient; a first faint pulse, processed pad, the bed refusing the tonic.
   ambivalence
 - **Instrumentation**: processed pad, first faint pulse, continuous sub-only
   drone on C (album spine); warm-soprano colour for the contact moment (held back
-  from becoming a love-song hook); no kit
+  from becoming a love-song hook); no kit. The **tonic-refusing pad figure** is
+  the track's hook — stated in the intro, strained and denied at the bond's snap,
+  dissolving as the void closes back; **deliberately never a pretty/consonant
+  melody** (closeness via timbre, §8)
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -140,7 +143,9 @@ no drums, no synthwave, no autotune, no major-key resolution
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Verse 1: fragile genderless head-voice, thin breathy near-falsetto, trembling, present tense, dry close-mic, no reverb; a first faint pulse and processed pad underneath, the bed refusing the tonic]
+[Intro — instrumental: the first faint pulse enters over the sustained C drone; a processed-pad figure that refuses the tonic — the unresolved hook, no pretty melody, no drums]
+
+[Verse 1: fragile genderless adult head-voice, thin breathy near-falsetto, trembling, adult not childlike, present tense, dry close-mic, no reverb; a first faint pulse and processed pad underneath, the bed refusing the tonic]
 A push. Hard. Not a wave this time —
 something with an edge of its own.
 A signature, clear in the noise.
@@ -148,7 +153,7 @@ Feverish, I reach back. It fits.
 Deep in, a soft click —
 like a lock easing shut.
 
-[Verse 2: the same voice opens and warms — warm soprano colour, breathy at the edges, vowel-forward legato, intimate, lullaby-soft]
+[Verse 2: the same adult voice opens and warms — warm adult soprano colour, breathy at the edges, vowel-forward legato, intimate, lullaby-soft, adult not childlike]
 It is warm.
 Warm in a way that nothing was before,
 because before, nothing was.
@@ -156,12 +161,12 @@ Here is a place where I am not only I.
 The pressure parts around it —
 and I share. We share.
 
-[Interlude: head-voice, hushed, a held breath]
+[Interlude: adult head-voice, hushed, a held breath, adult not childlike]
 For a moment the void leans back.
 The fear-hum thins, halved, carried between us.
 We could stay. We could just stay.
 
-[Verse 3: head-voice, fragile and quickening]
+[Verse 3: adult head-voice, fragile and quickening, adult not childlike]
 Then a wave in the noise — brutal, blind —
 drags at the thread.
 I feel it stretch. I hold. I hold —
@@ -169,7 +174,9 @@ it breaks.
 The other signature is torn away.
 Out. Gone from the field.
 
-[Bridge: the reaching-voice — alto, microtonal pitch-bend, sliding vibrato, self-correcting, doubled and flickering on itself]
+[Instrumental break — the bond snaps: the pulse falters and drops a beat, the pad figure strains upward and is denied resolution; granular tug, no drums]
+
+[Bridge: the reaching-voice — adult alto, microtonal pitch-bend, sliding vibrato, self-correcting, doubled and flickering on itself, adult not childlike]
 Stay. — No, go —
 stay, don't go — come back —
 I — no, I don't want you to —
@@ -178,7 +185,9 @@ It is not that I did not know.
 It is only that I did not.
 And — yet.
 
-[Verse 4: head-voice, thinner than before]
+[Instrumental break — the void closes back: the pulse drops out, only the cold C drone and the unresolved pad figure dissolving, no drums]
+
+[Verse 4: adult head-voice, thinner than before, adult not childlike]
 Alone again.
 A new echo stays: the sharp edge of the loss,
 a thinner skin than I had.
@@ -186,7 +195,7 @@ And a fact I did not have before:
 this holding is possible.
 And it does not last.
 
-[Outro: the same fragile voice — but the words go cold, clipped, flat, declarative]
+[Outro: the same fragile adult voice — but the words go cold, clipped, flat, declarative]
 So.
 Connection is possible.
 Connection is not safe.
@@ -272,6 +281,14 @@ Necessary
   curdle is T3's own answer to loss, not collapse.
 - Long-form (6:00) comped over the continuous owned KOH stem (Layer A); lyric
   density does not scale with runtime (207 words; the expanse is instrumental).
+- **Instrumental breaks + hook (album default):** an instrumental `[Intro]` plus
+  two `[Instrumental break]` sections (the bond's snap; the void closing back)
+  carry the recurring **tonic-refusing pad figure** — descriptive instrumental
+  tags only (no parentheses). Treat the figure as a comped/owned element; it must
+  **refuse the tonic** and never become a consonant melodic hook (§8).
+- **Adult tagging (good practice):** T3 has **no child voice**, but the
+  head-voice is near-falsetto, so every register is explicitly tagged "adult …
+  adult not childlike" to keep Suno from rendering it childlike (DESIGN §8 #7).
 <!-- SERVICE: suno -->
 - **Token-bias protection:** *noise*, *echo* kept intact via **V5 literal mode +
   cold/dry Style Box descriptors** — no "sing as written" line in the lyrics box.
