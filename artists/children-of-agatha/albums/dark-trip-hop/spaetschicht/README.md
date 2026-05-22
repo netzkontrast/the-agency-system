@@ -1,9 +1,9 @@
 ---
-title: "[Album Title]"
+title: "Spätschicht"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: []  # e.g., ["hip-hop", "documentary"]
-tags: []  # e.g., ["tech", "linux", "true-story"]
-explicit: false  # true or false
+genres: ["dark-trip-hop"]
+tags: ["night-shift", "psychiatry", "medication", "dissociation", "cinematic-bass", "trip-hop", "collection", "dark-comic"]
+explicit: false  # true or false  # TBD — drug/psychiatric content may push some tracks explicit
 # anchor_track: null  # Optional: 1-based track number to anchor album mastering (issue #290). Empty = auto-select by composite score.
 streaming:
   soundcloud: ""    # Fill in when released
@@ -18,7 +18,7 @@ sheet_music:
 # slug: ""  # Optional - only uncomment if you need to override auto-generated slug
 ---
 
-# [Album Title]
+# Spätschicht
 
 ## Album Details
 
@@ -26,13 +26,14 @@ sheet_music:
 
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
-| **Album** | [Album Title] |
-| **Genre** | [Genre](/genres/[genre]/README.md) / [Subgenre] |
-| **Tracks** | [Number] |
+| **Artist** | [Children of Agatha](../../../README.md) |
+| **Album** | Spätschicht |
+| **Genre** | Dark Trip Hop / Cinematic Bass |
+| **Album Type** | Collection |
+| **Tracks** | TBD |
 | **Status** | Concept |
-| **Explicit** | Yes / No |
-| **Concept** | [Brief concept description] |
+| **Explicit** | No (einzelne Tracks ggf. markieren) |
+| **Concept** | Party in der Psychiatrie. Während die Spätschicht des Personals schläft, machen die Patient:innen der Agatha-Klinik nachts ihre eigene Feier — Medikamentenwagen als Bar, Neonlicht als Stroboskop, „Tabletten für jeden". Eine Collection bass-getragener, benebelter Stücke über medikamentöse Euphorie, Dissoziation und die dunkle Komik des Ausgeliefertseins. Gleicher Ort wie *The Long Corridor* (St. Agatha), entgegengesetzter Ton: sardonisch, transgressiv, hypnotisch. |
 
 ## Frontmatter Reference
 
@@ -60,17 +61,24 @@ Omit the block entirely to use the default (ADM off).
 
 ## Concept
 
-[Detailed description of the album's concept, narrative, and themes. What story does this album tell? What's the artistic vision?]
+*Spätschicht* spielt nachts auf Station der St.-Agatha-Klinik. Während die Spätschicht des Personals schläft oder wegsieht, machen die Patient:innen ihre eigene Feier — der Medikamentenwagen als Bar, das Neonlicht als Stroboskop, „Tabletten für jeden". Es ist eine echte Euphorie und gleichzeitig eine hohle: Dark Trip Hop mit Cinematic Bass als Soundtrack einer medikamentösen Nacht.
+
+Erzählt wird durchgehend aus einem **kollektiven „Wir"**. Das ist keine Stilfigur, sondern der eigentliche Stoff des Albums: Die Medikation löst auf, wer die Einzelnen sind, und das „Ich" zerfließt auf dem Dancefloor zu einem einzigen Organismus. „Children of Agatha" ist hier kein Bandname, sondern ein wörtlicher Zustand — ein Wir, das nur existiert, weil das Ich verschwunden ist. Niemand weiß mehr, welches Gefühl wem gehört, welche Fröhlichkeit echt ist und welche Nebenwirkung.
+
+Der Ton ist dokumentarisch kühl und urteilt nicht. Die Platte feiert nicht mit und mahnt nicht — sie hält die Euphorie und den Riss darunter im selben Bild. Gleicher Ort wie *The Long Corridor* (St. Agatha), entgegengesetzter Ton: dort elegisch und heilend, hier sardonisch, transgressiv, hypnotisch.
 
 ## Structure
 
-[How is the album organized? What's the narrative arc? How do tracks relate to each other?]
+Collection — eigenständige Stücke, lose verbunden über Ort (Station, nachts), Stimme (das kollektive Wir) und Sound (verschwimmender Cinematic Bass). Kein erzwungener Handlungsbogen, aber ein loser Nachtverlauf von der ersten Tablettenrunde bis zur Morgenvisite ist als Sequenzierungs-Idee verfügbar (siehe Tracklist, Phase 4).
 
 ## Themes
 
-- [Theme 1]
-- [Theme 2]
-- [Theme 3]
+- **Auflösung des Ich** — das Selbst zerfließt zu einem kollektiven Wir
+- **Medikamentöse Euphorie** — Rausch als Befreiung und Käfig zugleich
+- **Verordnete vs. echte Gefühle** — kein Weg, Chemie von Empfindung zu trennen
+- **Dokumentarische Kühle** — Beobachtung ohne Urteil, Feier und Hohlheit im selben Bild
+- **Dunkle Komik** — das Sardonische des Ausgeliefertseins
+- **Cool vs. sehnend** — blunte, unbekümmerte Strophen gegen sehnsüchtige Hooks
 
 ## Motifs & Threads
 
@@ -127,17 +135,27 @@ Omit the block entirely to use the default (ADM off).
 
 ## Sonic Palette
 
-- **Beats**: [Production style description]
-- **Samples**: [Sample sources/types if applicable]
-- **Vocals**: [Vocal style and delivery]
-- **Mood**: [Overall emotional tone]
+- **Beats**: Fragmentierter, nächtlicher Trip Hop — verschleppt, körperlos, mit Lücken (Burial-/FKA-twigs-Schule). Kein Vier-zu-Boden-Club; eher zerbrochene Breaks, die wie aus der Ferne kommen.
+- **Bass**: **Sub-Herzschlag** — tiefer, langsamer, fast körperlicher Sub-Bass, der wie ein gemeinsamer Puls wummert. Wenig Bewegung, maximale Schwere. Das „eine Wir" als hörbarer Herzschlag des kollektiven Körpers.
+- **Texturen**: Sakral-dunkle Schicht (von Hausswolff / Chelsea Wolfe) — Orgel-Drones, gotischer Hall, Klinik-Raumklang. Vinyl-/Tonband-Knistern, ferne Stations-Geräusche (Medikamentenwagen, Neonlicht-Brummen).
+- **Vocals**: Zweistimmige Architektur. **Strophen**: deadpan, blunt, lakonisch-direktes Berliner Sprechgesang-„Wir" (Ikkimel-Haltung) — cool, unbekümmert, transgressiv, aber nicht zwingend vulgär. **Hooks**: das klar gesungene, sehnsüchtige „Wir" — geschichtete Stimmen, die zu einer verschmelzen (viele werden eins). Die Spannung zwischen coolem Strophen-Ich und sehnendem Hook-Wir trägt das Album. Deutsch.
+- **Sprache**: Deutsch durchgehend.
+- **Mood**: Benebelte Euphorie mit Riss — dokumentarisch kühl, sardonisch, hypnotisch. Lakonisch-unbekümmerte Attitüde über sakral-dunklem Fundament. Würdevoll trotz Verfall.
+
+**Referenz-Anker**: Ikkimel (Strophen-Attitüde, blunter Berliner Deadpan); Burial, FKA twigs (Fragmentierung); Anna von Hausswolff, Chelsea Wolfe (sakral-dunkle Hooks); Bass-Schwere von Massive Attack (Mezzanine).
 
 ## Tracklist
 
 | # | Title | POV | Concept | Status |
 |---|-------|-----|---------|--------|
-| 01 | [Track Name](tracks/01-track-name.md) | [POV] | [Brief concept] | Not Started |
-| 02 | [Track Name](tracks/02-track-name.md) | [POV] | [Brief concept] | Not Started |
+| 01 | [Tabletten für jeden](tracks/01-tabletten-fuer-jeden.md) | Kollektives Wir | Titeltrack. Der Wagen rollt, die Nacht beginnt — die Ausgabe als Eröffnung der Bar. | Not Started |
+| 02 | [Lichter aus](tracks/02-lichter-aus.md) | Kollektives Wir | Die Spätschicht schläft ein, die Station gehört uns. Der Raum kippt. | Not Started |
+| 03 | [Wir](tracks/03-wir.md) | Kollektives Wir | Der Moment, in dem das Ich ins Wir zerfließt. Thesen-Track, Sub-Herzschlag pur. | Not Started |
+| 04 | [Flackerlicht](tracks/04-flackerlicht.md) | Kollektives Wir | Der Peak. Neonröhre als Stroboskop, die benebelte Euphorie auf Höhe. | Not Started |
+| 05 | [Wessen Gefühl ist das](tracks/05-wessen-gefuehl-ist-das.md) | Kollektives Wir | Verschwimmende Identität — keiner weiß mehr, welche Empfindung wem gehört. | Not Started |
+| 06 | [Schwerelos](tracks/06-schwerelos.md) | Kollektives Wir | Der woozy Float. Tiefster Bass, Zeit dehnt sich, Körper lösen sich auf. | Not Started |
+| 07 | [Niemand ruft an](tracks/07-niemand-ruft-an.md) | Kollektives Wir | Der Riss bricht durch: draußen kommt niemand. Euphorie als Ersatz für Zuwendung. | Not Started |
+| 08 | [Morgenvisite](tracks/08-morgenvisite.md) | Kollektives Wir | Der Comedown. Der Rausch endet, das geliehene „Wir" zerfällt wieder in Einzelne. | Not Started |
 
 ## Key Characters
 
@@ -238,6 +256,10 @@ Dialogue and internal thoughts are dramatized for artistic purposes."]
 ### AI Art Platform
 <!-- Set your platform: Midjourney, Leonardo.ai, DALL-E, Stable Diffusion -->
 **Platform**: [Not selected]
+
+### Concept
+
+**Tanzende Schatten** — Weitwinkel-Blick in den Stationsaufenthaltsraum bei Nacht. Im Neonlicht tanzende Schatten und Silhouetten ohne klare Körper, leere Stühle, ein rauschender Fernseher. Die Party ist nur als Nachbild/Bewegungsunschärfe sichtbar — die Körper haben sich aufgelöst (verschwimmende Identität, das kollektive Wir). Kalte Grün-/Cyantöne mit einem warmen Lichtfleck. Würdevoll, dokumentarisch, nicht reißerisch.
 
 ### Image Prompt
 *Generated by `/bitwize-music:album-art-director`. Platform-specific format.*
