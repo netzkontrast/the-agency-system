@@ -1,8 +1,8 @@
 ---
-title: "[Album Title]"
+title: "Spätschicht"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: []  # e.g., ["hip-hop", "documentary"]
-tags: []  # e.g., ["tech", "linux", "true-story"]
+genres: ["dark-trip-hop"]
+tags: ["night-shift", "city", "convalescence", "cinematic-bass", "trip-hop", "collection"]
 explicit: false  # true or false
 # anchor_track: null  # Optional: 1-based track number to anchor album mastering (issue #290). Empty = auto-select by composite score.
 streaming:
@@ -18,7 +18,7 @@ sheet_music:
 # slug: ""  # Optional - only uncomment if you need to override auto-generated slug
 ---
 
-# [Album Title]
+# Spätschicht
 
 ## Album Details
 
@@ -26,13 +26,14 @@ sheet_music:
 
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
-| **Album** | [Album Title] |
-| **Genre** | [Genre](/genres/[genre]/README.md) / [Subgenre] |
-| **Tracks** | [Number] |
+| **Artist** | [Children of Agatha](../../../README.md) |
+| **Album** | Spätschicht |
+| **Genre** | Dark Trip Hop / Cinematic Bass |
+| **Album Type** | Collection |
+| **Tracks** | TBD |
 | **Status** | Concept |
-| **Explicit** | Yes / No |
-| **Concept** | [Brief concept description] |
+| **Explicit** | TBD |
+| **Concept** | Patient:innen nach der Entlassung aus der Agatha-Klinik, nachts unterwegs in der Stadt. Spätschicht-Jobs, leere U-Bahnen, Konvaleszenz im Alltag. Eine Collection bass-getragener Stücke über das Weiterleben nach der Krise — verbunden mit *The Long Corridor* über die Figuren, nicht den Ort. |
 
 ## Frontmatter Reference
 
