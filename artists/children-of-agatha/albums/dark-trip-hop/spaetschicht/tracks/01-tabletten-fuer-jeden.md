@@ -67,28 +67,28 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-Vier Uhr dreissig. Ein Rad quietscht im Flur.
-Der Wagen haelt. Weisse Becher. Die Schlange waechst.
+Vier Uhr dreißig. Ein Rad quietscht im Flur.
+Der Wagen hält. Weiße Becher. Die Schlange wächst.
 Schwester dreht sich weg.
 Wir stehen. Wir warten. Das Blech klappert kurz.
 
 [Chorus]
-Tabletten fuer jeden — die Runde beginnt.
+Tabletten für jeden — die Runde beginnt.
 Im Neonlicht brummt es, der Flur wird eng.
-Wir strecken die Haende. Ein Becher. Ein Ruck.
-Tabletten fuer jeden — wir sind genug.
+Wir strecken die Hände. Ein Becher. Ein Ruck.
+Tabletten für jeden — wir sind genug.
 
 [Verse 2]
-Linoleum kalt. Ruecken an Klinkerstein.
-Neunzehn-null-fuenf — St. Agatha haelt den Bau.
-Fuenf Stationen, eine Nacht, eine Wacht.
-Hinter der Lueftung: Orgel-Drone, gedaempft.
+Linoleum kalt. Rücken an Klinkerstein.
+Neunzehn-null-fünf — St. Agatha hält den Bau.
+Fünf Stationen, eine Nacht, eine Wacht.
+Hinter der Lüftung: Orgel-Drone, gedämpft.
 Der Fernseher flimmert. Niemand schaut rein.
 
 [Bridge]
-Jemand schlueckt. Jemand biegt den Becher.
+Jemand schluckt. Jemand biegt den Becher.
 Jemand lehnt. Jemand kennt den anderen nicht.
-Wir stehen im Flur aus hundertjaehrigem Stein.
+Wir stehen im Flur aus hundertjährigem Stein.
 Noch sind wir viele. Gleich sind wir eins.
 
 [Outro]

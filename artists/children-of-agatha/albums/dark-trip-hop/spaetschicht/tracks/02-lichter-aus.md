@@ -66,32 +66,32 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-Spaetschicht, halb eins.
-Schluessel klingeln, dann kein Klang.
+Spätschicht, halb eins.
+Schlüssel klingeln, dann kein Klang.
 Letzter Becher auf dem Tresen,
 der Neonstreifen summt allein.
-Die Tuer faellt ins Schloss —
-Schritte weg, Flur dunkel, Notlicht gruen.
+Die Tür fällt ins Schloss —
+Schritte weg, Flur dunkel, Notlicht grün.
 
 [Chorus]
 Lichter aus — wir atmen.
-Der Flur gehoert uns jetzt.
+Der Flur gehört uns jetzt.
 Lichter aus — kein Schichtwechsel.
 Nur die Nacht, die uns versetzt.
 
 [Verse 2]
 Jemand schiebt den Medikamenten-Wagen.
 Jemand lacht — einmal, kurz.
-Linoleum haelt den Fuss,
-die Kapelle haelt die Stille.
-Klinkerstein seit neunzehnhundertfuenf,
+Linoleum hält den Fuß,
+die Kapelle hält die Stille.
+Klinkerstein seit neunzehnhundertfünf,
 kein offizielles Wort.
 Wir stehen auf, wir stehen zusammen.
 
 [Bridge]
 Eine Bombe hat die Kapelle verfehlt.
 Ein Feuer wurde aufgehalten.
-Wir haben kein Geluebde abgelegt —
+Wir haben kein Gelübde abgelegt —
 aber wir nehmen die Nacht.
 
 [Outro]

@@ -68,30 +68,30 @@ no four-on-the-floor, no EDM drop, no bright pop production
 [Verse 1]
 Das Telefon an der Station klingelt.
 Schwester Monika nimmt ab, senkt die Stimme, legt auf.
-Nicht fuer uns.
+Nicht für uns.
 Das Besucherbuch liegt aufgeschlagen —
 dritte Seite, zweite Woche, kein neuer Name.
 Das Datum auf dem Whiteboard stimmt nicht mehr.
-Niemand hat's geaendert.
-Wir haben's nicht geaendert.
+Niemand hat's geändert.
+Wir haben's nicht geändert.
 
 [Chorus]
 Niemand ruft an.
-Niemand kommt durch die Tuer.
+Niemand kommt durch die Tür.
 Wir tanzen trotzdem.
-Wir tanzen fuer uns.
+Wir tanzen für uns.
 Niemand ruft an.
 
 [Verse 2]
 Der Stuhl im Besucherzimmer ist leer.
-Man sieht, wann er zuletzt gerueckt wurde —
+Man sieht, wann er zuletzt gerückt wurde —
 die Kerbe im Linoleum zeigt es.
-Draussen faehrt jemand ein Kind zur Schule,
+Draußen fährt jemand ein Kind zur Schule,
 kauft Brot, macht Feierabend.
 Hier steht der Wagen noch,
 hier blinkt das Neon noch,
 hier klingelt das Telefon.
-Nicht fuer uns.
+Nicht für uns.
 
 [Bridge]
 Agathe hat einen Monat gewartet.
@@ -103,7 +103,7 @@ Man kann auch tanzen.
 Niemand ruft an.
 Das Telefon schweigt.
 Wir tanzen trotzdem.
-Wir tanzen fuer uns.
+Wir tanzen für uns.
 ```
 <!-- /SERVICE: suno -->
 

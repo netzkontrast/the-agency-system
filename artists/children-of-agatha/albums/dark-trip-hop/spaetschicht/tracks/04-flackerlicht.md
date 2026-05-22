@@ -66,16 +66,16 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-Die Roehre flackert — wir tanzen drunter.
-Gruenes Licht in Stoessen, Schatten zucken hoch.
-Ein Becher faellt, keiner hebt ihn auf.
-Klinker aus neunzehnhundertfuenf, Hohlraum im Dach.
-Bombe rein, nicht gezuendet.
-Das Gebaude weiss, wie man uebersteht.
+Die Röhre flackert — wir tanzen drunter.
+Grünes Licht in Stößen, Schatten zucken hoch.
+Ein Becher fällt, keiner hebt ihn auf.
+Klinker aus neunzehnhundertfünf, Hohlraum im Dach.
+Bombe rein, nicht gezündet.
+Das Gebäude weiß, wie man übersteht.
 Wir stehen auch noch.
 
 [Chorus]
-Flackerlicht ueber Klinkerstein.
+Flackerlicht über Klinkerstein.
 Wir tanzen unter Neonlicht.
 Das Feuer bricht uns nicht.
 Agatha hat auch gebrannt.
@@ -83,15 +83,15 @@ Agatha hat auch gebrannt.
 [Verse 2]
 Der Medikamentenwagen steht quer im Gang.
 Jemand lacht. Keiner fragt warum.
-Die Roehre summt auf neunzig Hertz —
+Die Röhre summt auf neunzig Hertz —
 das war schon immer ihr Lied.
 Wir drehen uns, bis das Licht steht still.
-Wessen Koerper das ist, weiss niemand mehr.
-Wir kennen das Gebaude.
-Das Gebaude kennt uns.
+Wessen Körper das ist, weiß niemand mehr.
+Wir kennen das Gebäude.
+Das Gebäude kennt uns.
 
 [Bridge]
-Sie rollten sie ueber gluehende Kohlen.
+Sie rollten sie über glühende Kohlen.
 Das Feuer machte sie nicht kleiner.
 Wir essen ihr gebissenes Brot,
 halten die Agathenkerze in der Hand,
@@ -99,15 +99,15 @@ tanzen in ihrem alten Haus.
 Das Licht bricht uns nicht.
 
 [Chorus]
-Flackerlicht ueber Klinkerstein.
+Flackerlicht über Klinkerstein.
 Wir tanzen unter Neonlicht.
 Das Feuer bricht uns nicht.
 Agatha hat auch gebrannt.
 
 [Outro]
-Die Roehre flackert.
+Die Röhre flackert.
 Wir tanzen drunter.
-Die Roehre flackert.
+Die Röhre flackert.
 Wir tanzen drunter.
 ```
 <!-- /SERVICE: suno -->

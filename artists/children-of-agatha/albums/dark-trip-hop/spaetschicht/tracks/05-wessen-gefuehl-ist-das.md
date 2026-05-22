@@ -66,39 +66,39 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-Ein Zittern laeuft durch den Raum — von wem.
+Ein Zittern läuft durch den Raum — von wem.
 Kein Boden drunter, kein Name drauf.
 Wir sitzen auf Plastik. Einer lacht.
-Aber keiner weiss, wer angefangen hat.
+Aber keiner weiß, wer angefangen hat.
 Die Tablette hat keine Adresse.
-Sie loest sich auf — wir loesen uns auf.
-Der Medikamentenwagen rollt zurueck in den Flur.
+Sie löst sich auf — wir lösen uns auf.
+Der Medikamentenwagen rollt zurück in den Flur.
 
 [Chorus]
-Wessen Gefuehl ist das.
-Wessen Gefuehl ist das.
+Wessen Gefühl ist das.
+Wessen Gefühl ist das.
 Wir tragen es weiter — wohin.
-Wessen Gefuehl ist das.
+Wessen Gefühl ist das.
 
 [Verse 2]
 Ein Heulkrampf macht die Runde.
 Kommt von links, geht nach rechts.
-Kein Gesicht haengt lange dran.
-Der Hunger, der nicht weiss wen er meint.
-Die Brust hebt sich — gehoert sie dir.
+Kein Gesicht hängt lange dran.
+Der Hunger, der nicht weiß wen er meint.
+Die Brust hebt sich — gehört sie dir.
 Freude wie Rauch: wir atmen ein, wir atmen aus.
-Wessen Koerper haelt das jetzt.
+Wessen Körper hält das jetzt.
 
 [Bridge]
 Agatha fragte Quintianus:
-Hast du vergessen, wessen Brust dich ernaehrt hat.
+Hast du vergessen, wessen Brust dich ernährt hat.
 Hier fragt niemand.
 Hier kommt keine Antwort.
-Nur der Bass — unter allen gleichzeitig — weiss, wo er herkommt.
+Nur der Bass — unter allen gleichzeitig — weiß, wo er herkommt.
 
 [Outro]
-Wessen Gefuehl ist das.
-Wessen Gefuehl ist das.
+Wessen Gefühl ist das.
+Wessen Gefühl ist das.
 ```
 <!-- /SERVICE: suno -->
 

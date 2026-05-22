@@ -66,26 +66,26 @@ no four-on-the-floor, no EDM drop, no bright pop production
 
 ```
 [Verse 1]
-Jemand atmet, ich spuer es in der Brust.
+Jemand atmet, ich spür es in der Brust.
 Nicht meine Lunge, egal.
 Zweiundsiebzig Betten, ein Puls.
 Die Spritze war sauber, der Rest war Wir.
-Unter dem Boden WOOM-ert es gleichmaessig —
-einmal pro Sekunde, einmal fuer alle.
+Unter dem Boden WOOM-ert es gleichmäßig —
+einmal pro Sekunde, einmal für alle.
 
 [Chorus]
 Wir.
-Ein Atemzug, ein Koerper, ein Gewicht.
+Ein Atemzug, ein Körper, ein Gewicht.
 Agathas Kinder tragen keine Namen mehr.
 Wir.
 
 [Verse 2]
-Das Bett drueben KNARRT — jemand dreht sich.
+Das Bett drüben KNARRT — jemand dreht sich.
 Der Klang landet in mir wie meiner.
-Saemtliche Grenzen sind Papier.
-Was nahe ist, gehoert uns.
-Kein Wort dafuer, kein Wort dagegen.
-Der Boden haelt uns alle.
+Sämtliche Grenzen sind Papier.
+Was nahe ist, gehört uns.
+Kein Wort dafür, kein Wort dagegen.
+Der Boden hält uns alle.
 
 [Bridge]
 Nicht Verlust.

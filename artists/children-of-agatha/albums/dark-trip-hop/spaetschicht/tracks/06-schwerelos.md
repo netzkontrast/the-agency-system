@@ -66,27 +66,27 @@ no four-on-the-floor, no EDM drop, no bright pop production, no busy percussion
 
 ```
 [Verse 1]
-Der Boden trifft den Fuss nicht mehr
-Wir stehen, aber stehen heisst jetzt etwas anderes
+Der Boden trifft den Fuß nicht mehr
+Wir stehen, aber stehen heißt jetzt etwas anderes
 Linoleum wird Meeresgrund
-Atem zieht sich aus, kehrt irgendwann zurueck
+Atem zieht sich aus, kehrt irgendwann zurück
 
 [Chorus]
 Wir treiben
-Der Bass traegt uns wie Wasser
+Der Bass trägt uns wie Wasser
 Kein Zug nach unten
 Schwerelos
 Schwerelos
 Wir sind hier
 
 [Verse 2]
-Der Hafen schlaeft hinter der Scheibe
+Der Hafen schläft hinter der Scheibe
 Die Reliquien kamen per Schiff — auch sie getragen
 Was kaputt war, wurde aufgehoben
-Nicht geheilt, nur gehalten — fuer jetzt
+Nicht geheilt, nur gehalten — für jetzt
 
 [Outro]
-Der Bass haelt uns
+Der Bass hält uns
 Wir treiben
 Schwerelos
 ```

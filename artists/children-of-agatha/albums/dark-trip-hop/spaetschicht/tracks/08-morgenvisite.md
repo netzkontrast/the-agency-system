@@ -68,14 +68,14 @@ no four-on-the-floor, no EDM drop, no bright pop production, no triumphant resol
 [Verse 1]
 Sieben Uhr. Schritte im Flur.
 Ein Rad quietscht — dasselbe Rad.
-Weisse Becher, weisses Licht.
-Die Schwester spricht. Wir hoeren nicht mehr hin.
-Das Linoleum glaenzt. Jemand hat geputzt.
+Weiße Becher, weißes Licht.
+Die Schwester spricht. Wir hören nicht mehr hin.
+Das Linoleum glänzt. Jemand hat geputzt.
 Die Nacht ist weg. Es gibt sie nicht mehr.
 
 [Chorus]
 Morgenvisite.
-Der Wagen rollt, die Runde schliesst sich.
+Der Wagen rollt, die Runde schließt sich.
 Die Kerze hat gedient — sie brennt nicht mehr.
 Wir waren. Jetzt sind wir wieder wer.
 Morgenvisite.
@@ -84,15 +84,15 @@ Ein Becher. Ein Name. Eine Hand.
 [Verse 2]
 Zweiundsiebzig Betten — jedes ein Gesicht.
 Agathas Kinder tragen wieder Namen.
-Jemand schlueckt. Jemand wartet.
-Hundertjaehriger Stein haelt den Morgen.
-Neunzehnhundertfuenf, St. Agatha haelt den Bau.
+Jemand schluckt. Jemand wartet.
+Hundertjähriger Stein hält den Morgen.
+Neunzehnhundertfünf, St. Agatha hält den Bau.
 Sie hat ihn immer gehalten. Allein.
 
 [Bridge]
-Kein Puls mehr, der uns alle traegt.
-Kein Atem mehr, der uns alle faerbt.
-Jeder Becher fuer eine Hand.
+Kein Puls mehr, der uns alle trägt.
+Kein Atem mehr, der uns alle färbt.
+Jeder Becher für eine Hand.
 Jede Hand allein.
 
 [Outro]
