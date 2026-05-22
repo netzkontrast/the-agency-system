@@ -20,7 +20,7 @@ sheet_music:
 | **Track #** | 02 |
 | **Title** | Lichter aus |
 | **Album** | [Spätschicht](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |

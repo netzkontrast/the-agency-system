@@ -20,7 +20,7 @@ sheet_music:
 | **Track #** | 08 |
 | **Title** | Morgenvisite |
 | **Album** | [Spätschicht](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |

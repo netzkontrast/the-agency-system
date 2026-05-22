@@ -20,7 +20,7 @@ sheet_music:
 | **Track #** | 04 |
 | **Title** | Flackerlicht |
 | **Album** | [Spätschicht](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |

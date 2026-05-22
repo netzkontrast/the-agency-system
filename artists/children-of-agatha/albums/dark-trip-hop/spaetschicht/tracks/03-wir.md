@@ -20,7 +20,7 @@ sheet_music:
 | **Track #** | 03 |
 | **Title** | Wir |
 | **Album** | [Spätschicht](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
