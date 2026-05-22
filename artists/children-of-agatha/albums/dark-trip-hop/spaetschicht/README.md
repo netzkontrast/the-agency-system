@@ -2,8 +2,8 @@
 title: "Spätschicht"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
 genres: ["dark-trip-hop"]
-tags: ["night-shift", "city", "convalescence", "cinematic-bass", "trip-hop", "collection"]
-explicit: false  # true or false
+tags: ["night-shift", "psychiatry", "medication", "dissociation", "cinematic-bass", "trip-hop", "collection", "dark-comic"]
+explicit: false  # true or false  # TBD — drug/psychiatric content may push some tracks explicit
 # anchor_track: null  # Optional: 1-based track number to anchor album mastering (issue #290). Empty = auto-select by composite score.
 streaming:
   soundcloud: ""    # Fill in when released
@@ -33,7 +33,7 @@ sheet_music:
 | **Tracks** | TBD |
 | **Status** | Concept |
 | **Explicit** | TBD |
-| **Concept** | Patient:innen nach der Entlassung aus der Agatha-Klinik, nachts unterwegs in der Stadt. Spätschicht-Jobs, leere U-Bahnen, Konvaleszenz im Alltag. Eine Collection bass-getragener Stücke über das Weiterleben nach der Krise — verbunden mit *The Long Corridor* über die Figuren, nicht den Ort. |
+| **Concept** | Party in der Psychiatrie. Während die Spätschicht des Personals schläft, machen die Patient:innen der Agatha-Klinik nachts ihre eigene Feier — Medikamentenwagen als Bar, Neonlicht als Stroboskop, „Tabletten für jeden". Eine Collection bass-getragener, benebelter Stücke über medikamentöse Euphorie, Dissoziation und die dunkle Komik des Ausgeliefertseins. Gleicher Ort wie *The Long Corridor* (St. Agatha), entgegengesetzter Ton: sardonisch, transgressiv, hypnotisch. |
 
 ## Frontmatter Reference
 
