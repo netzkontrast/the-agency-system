@@ -95,6 +95,7 @@ Da haben wir den Salat.
 Eine Schuessel, dreissig Gabeln, und kein Mensch, der's war.
 Da haben wir den Salat.
 Das macht die Pflege. Die Pflege macht das schon.
+Da haben wir den Salat.
 
 [Verse 2]
 Frau Decker plaediert auf Demut — die anderen zuerst.
@@ -111,6 +112,7 @@ Da haben wir den Salat.
 Eine Schuessel, dreissig Gabeln, und kein Mensch, der's war.
 Da haben wir den Salat.
 Das macht die Pflege. Die Pflege macht das schon.
+Da haben wir den Salat.
 
 [Verse 3]
 Ich hab da auch noch was zu sagen — und jeder so: ich auch.
@@ -152,6 +154,7 @@ Da haben wir den Salat
 Eine Schüssel, dreißig Gabeln, und kein Mensch, der's war
 Da haben wir den Salat
 Das macht die Pflege. Die Pflege macht das schon
+Da haben wir den Salat
 
 Frau Decker plädiert auf Demut, die anderen zuerst
 Applaus. Doch keine Gabel rührt sich. Keiner, der beginnt
@@ -165,6 +168,7 @@ Da haben wir den Salat
 Eine Schüssel, dreißig Gabeln, und kein Mensch, der's war
 Da haben wir den Salat
 Das macht die Pflege. Die Pflege macht das schon
+Da haben wir den Salat
 
 Ich hab da auch noch was zu sagen, und jeder so: ich auch
 Zehn Finger in die Höhe, zehn Meldungen, kein Inhalt
