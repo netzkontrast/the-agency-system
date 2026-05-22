@@ -1,0 +1,341 @@
+#!/bin/bash
+set -eo pipefail
+
+# Handle --help / -h before the auth check so the smoke test (and operators
+# without JULES_API_KEY) can discover the subcommand surface.
+case "${1:-}" in
+    --help|-h|help)
+        cat <<'USAGE'
+usage: jules-bulk <subcommand> [args...]
+
+Thin facade over the agency-system MCP server's Python tools
+(agency_mcp.handlers.jules.{lifecycle,bulk,patches,aliases}).
+
+Subcommands:
+  fanout FILE          FILE is a JSON or YAML list of {alias, title, prompt} entries; creates one session per entry
+  dashboard            Prints a compact table of all active sessions: alias | id | state | title
+  approve-awaiting     Approves every session currently in AWAITING_PLAN_APPROVAL
+  stop-all             NOT SUPPORTED — the Jules API has no cancel method
+  quota                Prints the Jules daily session quota usage
+
+Env:
+  JULES_API_KEY            (required for live subcommands)
+  JULES_DEFAULT_SOURCE     'sources/<id>' or 'owner/repo' override (auto-detected from git otherwise)
+  AGENCY_MCP_SRC           path to agency-mcp src; defaults to "$CLAUDE_PLUGIN_ROOT/servers/agency-mcp/src"
+USAGE
+        exit 0
+        ;;
+esac
+
+if [ -z "$JULES_API_KEY" ]; then
+    echo "ERROR: JULES_API_KEY is not set." >&2
+    exit 1
+fi
+
+JULES_API_BASE_URL="${JULES_API_BASE_URL:-https://jules.googleapis.com}"
+# DEFAULT_SOURCE is the source string handed to jules_create. The server
+# accepts either an opaque 'sources/<id>' or a GitHub 'owner/repo' shorthand
+# which it resolves via sources.list. We auto-detect 'owner/repo' from the
+# git remote so fan-out runs in different repos without manual config.
+detect_default_source() {
+    local url
+    url="$(git remote get-url origin 2>/dev/null || true)"
+    if [ -z "$url" ]; then
+        return 1
+    fi
+    # Strip scheme/host and any trailing .git, leaving owner/repo.
+    local path
+    path=$(echo "$url" \
+        | sed -E 's#^(git@|ssh://git@|https?://)([^:/]+)[:/]##' \
+        | sed -E 's#\.git$##')
+    if [ -z "$path" ] || [[ "$path" != */* ]]; then
+        return 1
+    fi
+    echo "$path"
+}
+DEFAULT_SOURCE="${JULES_DEFAULT_SOURCE:-$(detect_default_source || true)}"
+# git branch --show-current exits 0 with empty output in detached HEAD —
+# treat empty output as failure so the explicit fallback runs.
+_current_branch="$(git branch --show-current 2>/dev/null || true)"
+DEFAULT_BRANCH="${_current_branch:-main}"
+
+# Base directory for the script to find sessions_state.py
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
+usage() {
+    cat << 'USAGE'
+Usage: jules_bulk.sh <subcommand> [args...]
+
+This script is a thin facade over the MCP server's Python tools (jules-mcp/server.py).
+
+Subcommands:
+  fanout FILE          FILE is a JSON or YAML list of {alias, title, prompt} entries; creates one session per entry
+  dashboard            Prints a compact table of all active sessions: alias | id | state | title
+  approve-awaiting     Approves every session currently in AWAITING_PLAN_APPROVAL
+  stop-all             NOT SUPPORTED — the Jules API has no cancel method
+  quota                Prints the Jules daily session quota usage
+USAGE
+    exit 1
+}
+
+cmd_fanout() {
+    local file="$1"
+    if [ -z "$file" ] || [ ! -f "$file" ]; then
+        echo "ERROR: fanout requires a valid FILE argument." >&2
+        usage
+    fi
+
+    if [ -z "$DEFAULT_SOURCE" ]; then
+        echo "ERROR: no default source configured." >&2
+        echo "  Set JULES_DEFAULT_SOURCE to 'sources/<id>' or 'owner/repo'," >&2
+        echo "  or run this script from a git checkout with a GitHub remote." >&2
+        exit 1
+    fi
+
+    local temp_json
+    temp_json=$(mktemp)
+    trap 'rm -f "$temp_json"' EXIT
+
+    # Accept JSON directly; otherwise convert YAML to JSON via Python (always available).
+    if jq -e . "$file" >/dev/null 2>&1; then
+        cp "$file" "$temp_json"
+    elif command -v python3 >/dev/null 2>&1; then
+        python3 -c "import sys, json, yaml; json.dump(yaml.safe_load(open(sys.argv[1])), sys.stdout)" \
+            "$file" > "$temp_json" || {
+                echo "ERROR: could not parse $file as JSON or YAML." >&2; exit 1; }
+    else
+        echo "ERROR: python3 with PyYAML required for YAML input." >&2
+        exit 1
+    fi
+
+    jq -c '.[]' "$temp_json" | while read -r entry; do
+        local alias title prompt branch
+        alias=$(echo "$entry" | jq -r '.alias // empty')
+        title=$(echo "$entry" | jq -r '.title // empty')
+        prompt=$(echo "$entry" | jq -r '.prompt // empty')
+        branch=$(echo "$entry" | jq -r '.branch // empty')
+
+        if [ -z "$alias" ] || [ -z "$title" ] || [ -z "$prompt" ]; then
+            echo "WARN: Skipping entry with missing alias, title, or prompt: $entry" >&2
+            continue
+        fi
+        
+        if [ -z "$branch" ]; then
+            branch="$DEFAULT_BRANCH"
+        fi
+
+        echo "Creating session for alias: $alias ..."
+        
+        export JULES_TEMP_PROMPT="$prompt"
+        export JULES_TEMP_TITLE="$title"
+        export JULES_TEMP_BRANCH="$branch"
+        export JULES_TEMP_SOURCE="$DEFAULT_SOURCE"
+        export SCRIPT_DIR="$DIR"
+local resp
+        resp=$(PYTHONPATH="${AGENCY_MCP_SRC:-${CLAUDE_PLUGIN_ROOT}/servers/agency-mcp/src}" python3 - <<'PY'
+import json, os
+try:
+    from agency_mcp.handlers.jules import lifecycle as mod
+    res = mod.jules_create(
+        prompt=os.environ['JULES_TEMP_PROMPT'],
+        source=os.environ['JULES_TEMP_SOURCE'],
+        starting_branch=os.environ['JULES_TEMP_BRANCH'],
+        title=os.environ.get('JULES_TEMP_TITLE', ''),
+        require_plan_approval=True
+    )
+    print(json.dumps({"ok": True, "res": res}))
+except Exception as e:
+    print(json.dumps({"ok": False, "err": str(e)}))
+PY
+        )        
+        local ok=$(echo "$resp" | jq -r '.ok')
+        if [ "$ok" = "true" ]; then
+            local session_id
+            session_id=$(echo "$resp" | jq -r '.res.name // .res.id // empty' | sed 's|^sessions/||')
+            echo "Session created: $session_id"
+            
+            python3 "$DIR/../lib/sessions_state.py" register --id "$session_id" --title "$title" --alias "$alias"
+        else
+            local err=$(echo "$resp" | jq -r '.err // "Unknown error"')
+            echo "ERROR: Failed to create session. Error: $err" >&2
+        fi
+    done
+}
+
+cmd_dashboard() {
+    local registry_json
+    registry_json=$(python3 "$DIR/../lib/sessions_state.py" list --json)
+
+    if [ -z "$registry_json" ] || [ "$registry_json" = "[]" ] || [ "$registry_json" = "null" ] || [ "$registry_json" = '{"sessions": []}' ]; then
+        echo "No sessions in registry."
+        return 0
+    fi
+
+    local temp_out
+    temp_out=$(mktemp)
+    trap 'rm -f "$temp_out"' EXIT
+export SCRIPT_DIR="$DIR"
+    local all_sessions_json
+    all_sessions_json=$(PYTHONPATH="${AGENCY_MCP_SRC:-${CLAUDE_PLUGIN_ROOT}/servers/agency-mcp/src}" python3 - <<'PY'
+import json, os
+try:
+    from agency_mcp.handlers.jules import bulk as mod
+    print(json.dumps(mod.jules_status_all()))
+except Exception as e:
+    print(json.dumps({"error": str(e)}))
+PY
+    )
+    # sessions_state.py list --json emits {"sessions": [...]}; tolerate bare arrays too.
+    echo "$registry_json" | jq -c 'if type=="array" then .[] else .sessions[]? end' | while read -r item; do
+        local id alias state title
+        id=$(echo "$item" | jq -r '.id')
+        alias=$(echo "$item" | jq -r '.alias')
+        
+        # Look up session info from bulk status JSON
+        local match
+        match=$(echo "$all_sessions_json" | jq -c --arg id "$id" '.sessions[]? | select(.id == $id)')
+        
+        if [ -n "$match" ]; then
+            state=$(echo "$match" | jq -r '.state // "STATE_UNSPECIFIED"')
+            title=$(echo "$match" | jq -r '.title // "<unknown>"')
+        else
+            state="UNKNOWN"
+            title="<not found>"
+        fi
+        
+        printf "%s\t%s\t%s\t%s\n" "$alias" "$id" "$state" "$title" >> "$temp_out"
+    done
+
+    if [ -s "$temp_out" ]; then
+        {
+            printf "%s\t%s\t%s\t%s\n" "ALIAS" "ID" "STATE" "TITLE"
+            cat "$temp_out"
+        } | awk -F'\t' '
+            { for (i=1;i<=NF;i++){ if(length($i)>w[i]) w[i]=length($i); rows[NR,i]=$i; cols=NF } }
+            END {
+                for (r=1;r<=NR;r++){
+                    line=""
+                    for (i=1;i<=cols;i++){
+                        sep = (i==cols ? "" : "  ")
+                        line = line sprintf("%-*s%s", w[i], rows[r,i], sep)
+                    }
+                    print line
+                    if (r==1) {
+                        sepline=""
+                        for (i=1;i<=cols;i++){ for(j=0;j<w[i];j++) sepline=sepline"-"; if(i<cols) sepline=sepline"  " }
+                        print sepline
+                    }
+                }
+            }'
+    fi
+}
+
+cmd_approve_awaiting() {
+    echo "Checking session states and approving..."
+    export SCRIPT_DIR="$DIR"
+    local resp
+    resp=$(PYTHONPATH="${AGENCY_MCP_SRC:-${CLAUDE_PLUGIN_ROOT}/servers/agency-mcp/src}" python3 - <<'PY'
+import json, os
+try:
+    from agency_mcp.handlers.jules import bulk as mod
+    print(json.dumps(mod.jules_approve_awaiting()))
+except Exception as e:
+    print(json.dumps({"error": str(e)}))
+PY
+    )
+    local err
+    err=$(echo "$resp" | jq -r '.error // empty')
+    if [ -n "$err" ]; then
+        echo "ERROR: Failed to run approve-awaiting. Error: $err" >&2
+        return 1
+    fi
+
+    local approved_count skipped_count errors_count
+    approved_count=$(echo "$resp" | jq -r '.approved | length')
+    skipped_count=$(echo "$resp" | jq -r '.skipped | length')
+    errors_count=$(echo "$resp" | jq -r '.errors | length')
+
+    if [ "$approved_count" -eq 0 ] && [ "$errors_count" -eq 0 ]; then
+        echo "No sessions are currently AWAITING_PLAN_APPROVAL."
+        return 0
+    fi
+
+    if [ "$approved_count" -gt 0 ]; then
+        echo "Approved the following sessions:"
+        echo "$resp" | jq -r '.approved[]'
+    fi
+
+    if [ "$errors_count" -gt 0 ]; then
+        echo "Failed to approve the following sessions:" >&2
+        echo "$resp" | jq -r '.errors[] | "\(.id): \(.error)"' >&2
+    fi
+}
+
+cmd_stop_all() {
+    # The Jules v1alpha REST API does not expose a delete/cancel/stop
+    # method on sessions, so bulk stop is impossible. Report this clearly
+    # rather than emitting fake "Stopped" lines.
+    cat >&2 <<'MSG'
+ERROR: stop-all is not supported.
+
+The Jules v1alpha API does not provide a way to cancel or delete a session.
+Documented session methods are: create, get, list, approvePlan, sendMessage.
+
+Workarounds:
+  * Send a stop instruction via jules_message ("please halt and leave
+    changes uncommitted"); the agent may comply.
+  * Wait for the session(s) to reach a terminal state (COMPLETED / FAILED).
+  * Use the Jules web UI for any cancellation that the dashboard exposes.
+MSG
+    return 2
+}
+
+cmd_quota() {
+    export SCRIPT_DIR="$DIR"
+    local resp
+    resp=$(PYTHONPATH="${AGENCY_MCP_SRC:-${CLAUDE_PLUGIN_ROOT}/servers/agency-mcp/src}" python3 - <<'PY'
+import json, os
+try:
+    from agency_mcp.handlers.jules import bulk as mod
+    print(json.dumps(mod.jules_quota()))
+except Exception as e:
+    print(json.dumps({"error": str(e)}))
+PY
+    )    
+    local err
+    err=$(echo "$resp" | jq -r '.error // empty')
+    if [ -n "$err" ]; then
+        echo "ERROR: Failed to fetch quota. Error: $err" >&2
+        return 1
+    fi
+
+    local used remaining active
+    used=$(echo "$resp" | jq -r '.used_today // 0')
+    remaining=$(echo "$resp" | jq -r '.remaining_today // 0')
+    active=$(echo "$resp" | jq -r '.active_today // 0')
+
+    echo "Jules quota: $used/100 used, $remaining left, $active active"
+}
+
+case "$1" in
+    fanout)
+        shift
+        cmd_fanout "$@"
+        ;;
+    dashboard)
+        cmd_dashboard
+        ;;
+    approve-awaiting)
+        cmd_approve_awaiting
+        ;;
+    stop-all)
+        shift
+        cmd_stop_all "$@"
+        ;;
+    quota)
+        cmd_quota
+        ;;
+    *)
+        usage
+        ;;
+esac

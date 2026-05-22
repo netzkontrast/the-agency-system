@@ -24,7 +24,7 @@ sheet_music:
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
-| **POV** | The Protector (ANP) + The Fighter (EP, Fight) — duet |
+| **POV** | The Protector (EP) + The Fighter (EP, Fight) — duet |
 | **Role** | Method conflict, kinetic. Outer-critic flip enacted structurally — Protector self-blames, Fighter attacks outward. The duet IS Walker's vacillation. |
 | **Fade Out** | 5s |
 | **Target Duration** | 3:30–4:30 |

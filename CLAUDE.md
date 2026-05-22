@@ -259,6 +259,39 @@ citing a different commit / repo), audit them before using the skills
 that load them — obsolete project DNA will silently steer skills toward
 the wrong aesthetic.
 
+## Arbeit an the Agency System (Musik / Novel / Design)
+
+**the Agency System** is a single DID-system concept expressed across three
+layers — music, a novel, and a visual design language — that share one cast
+and one world. When work starts (or continues) on this artist/project, invoke
+the gate skill **`skills/theagencysystem/`** *before* the bitwize chain (or a
+novel writing phase) so the right DNA is in context.
+
+- **Gate first.** The skill asks "Artist/Projekt = the Agency System?" — on
+  *No* it exits silently and loads nothing. On *Yes* it loads only the snippets
+  the active `(function × state × layer)` needs. Do not bulk-read the snippet
+  tree.
+- **One cast, keyed by function.** Design + Music reference voices by
+  **function/role**; the Novel references them by **name**. The bidirectional
+  name↔function map lives in
+  [`skills/theagencysystem/references/resolver.yaml`](skills/theagencysystem/references/resolver.yaml).
+  Classification (CONFIRMED): ANP = {host, rationalist}; Meta = {integrator
+  (ISH), witness}; the remaining seven are EP.
+- **The 2D matrix.** `(function × state)` → 1-line essence + exact pointers:
+  [`skills/theagencysystem/references/matrix-index.yaml`](skills/theagencysystem/references/matrix-index.yaml).
+  The S0–S4 state axis is
+  [`skills/theagencysystem/references/state-axis.md`](skills/theagencysystem/references/state-axis.md).
+- **name_exposure (hard rule).** In **music** and **design** outputs use
+  function/role only — a personal name (Kael, Nyx, Selene, …) must never reach
+  a lyric, Suno metatag, promo field, or art prompt. Only the **novel** layer
+  may use names. This extends `overrides/voice-craft-principles.md`.
+- **Where DNA attaches to bitwize.**
+  [`skills/theagencysystem/references/bitwize-attachment.md`](skills/theagencysystem/references/bitwize-attachment.md)
+  routes each bitwize skill's own phase/field to the refs it should load.
+- **Source overrides** (cross-project DNA the snippets were distilled from):
+  `overrides/visual-language-guide.md`, `overrides/image-style-spec.md`,
+  `overrides/kohaerenz-protokoll-sprach-dna.md`, `overrides/the-eleven.md`.
+
 ## Workflow patterns to remember
 
 ### Session-start audit (fresh session, especially after switching projects)
@@ -299,6 +332,72 @@ For details, see the [refactor design spec](docs/superpowers/specs/2026-05-16-ju
 - **Local dev install:** `claude --plugin-dir ./jules-plugin`
 - **Marketplace install:** `/plugin install jules-orchestrator@netzkontrast`
 
+### Driving the CLI helpers outside Claude Code
+
+When you run `bin/jules-bulk` (fanout / dashboard / approve-awaiting) from a
+fresh shell — for example, from a Claude Code agent that has not yet loaded
+the plugin — `fastmcp[code-mode]` is not on the Python path and the script
+fails preflight. Bootstrap with:
+
+```bash
+./jules-plugin/bin/jules-dev-install      # idempotent: installs fastmcp[code-mode], httpx, PyYAML
+export JULES_API_KEY=…
+export CLAUDE_PLUGIN_ROOT=$(pwd)/jules-plugin
+./jules-plugin/bin/jules-bulk dashboard   # smoke
+```
+
+`bin/jules-dev-install` verifies the imports the helpers need
+(`FastMCP`, `CodeMode`, `jules_create`, `create_mcp`) and pre-creates the
+session-registry directory at `${CLAUDE_PLUGIN_DATA:-$HOME/.jules}`. Re-running
+is a no-op once the deps are present.
+
+### Jules session state semantics (silent-fail recovery)
+
+**`state=COMPLETED` does NOT mean "done, success".** It means *"session
+is idle, waiting for input"*. A `COMPLETED` session can be resumed by
+sending `jules_message(sid, ...)` — it transitions back to `IN_PROGRESS`
+and continues working. Sessions persist indefinitely in `COMPLETED`;
+only `AWAITING_PLAN_APPROVAL` has a timeout risk.
+
+**Always verify the branch on remote before trusting `COMPLETED`.**
+The state field flips even when Jules paused before pushing — the work
+sits in the patch but never lands on `origin`. Use
+`mcp__github__list_branches` and look for a branch matching the
+session's work. If none is present, the session is in a recoverable
+silent-fail state, not a terminal one.
+
+**Recovery flow (JULES_PROTOCOL §8):**
+
+1. Verify branch on remote → if missing, do NOT trust `COMPLETED`.
+2. Extract the patch:
+   `PYTHONPATH=jules-plugin/mcp-server/src python3 tools/jules-patch-extract.py <sid>`
+   (writes to `/tmp/jules-patches/<sid>-out0.patch`, emits stats only —
+   never `cat`/`head`/`grep` patches > 2 KB).
+3. **Probe Jules first** — one focused message: "your state is
+   COMPLETED but no branch on origin — please push and reply with PR
+   URL". Jules normally answers within ~5 minutes; if it pushes, you're
+   done.
+4. After 2-3 probes with still no branch, switch to a **local
+   subagent** that applies the extracted patch via
+   `mcp__github__create_branch` + `mcp__github__create_or_update_file`
+   (signed `web-flow` commits) + `mcp__github__create_pull_request`.
+   **Never re-dispatch a fresh Jules session for the same work** — the
+   patch is already in the API and a respawn wastes a slot and risks
+   divergent output.
+
+**Common silent-fail variants:**
+
+| Symptom | Cause | Action |
+|---|---|---|
+| `COMPLETED` + non-empty patch + no branch | Jules paused on the "open PR?" UI gate | Probe via `jules_message`. If still nothing, apply patch locally. |
+| `COMPLETED` + empty patch (0 files) | Jules completed without doing the work | Probe: tell Jules to actually produce the artifact. If still empty after 2 probes, dispatch a fresh session ONLY because there's no patch to recover from. |
+| `COMPLETED` + patch contains files outside the spec `affects:` allow-list | Scope creep | First check whether the extra changes are legitimate (e.g. align with a parallel spec). If yes, keep them. If no, probe Jules to drop the out-of-scope diffs before pushing. |
+
+The `tools/jules-patch-extract.py` script and `mcp__github__*` paths
+are the only context-safe routes — bash `git apply` + `git push` of
+extracted patches breaks signed commits because the local
+CODESIGN_MCP backend currently returns HTTP 400.
+
 ## Most important commands & skills
 
 Invoke as slash commands: `/bitwize-music:<name>`.
@@ -322,6 +421,15 @@ Invoke as slash commands: `/bitwize-music:<name>`.
 - **Full skill list:** `/bitwize-music:help`
 - **What a specific skill does:** `/bitwize-music:about <skill-name>` or
   `get_skill` MCP tool with the skill name.
+- **Canonical naming for the unified `agency-system` plugin** (three-layer
+  harness ladder L1/L2/L3, four-verb contract, five handler-bearing
+  domains + agentic skill-only, Path A vs. Path B disambiguation, frontmatter
+  conventions, repair-authority tiers, content tiers): see
+  [`Plan/harness/VOCABULARY.md`](Plan/harness/VOCABULARY.md). When a phase
+  document, sub-spec, ADR, or skill needs to cite a cross-cutting term,
+  link to VOCABULARY rather than re-deriving the canon.
+- **Architecture decisions (ADRs, MADR 4.0.0):**
+  [`Plan/decisions/readme.md`](Plan/decisions/readme.md).
 - **Cross-project preferences (lyric craft, Suno mappings, research
   standards, vocal registers, mastering presets, voice-craft principles):**
   `overrides/lyric-writing-guide.md`,

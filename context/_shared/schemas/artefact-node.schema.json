@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:shared/artefact-node",
+  "title": "Artefact Node Payload",
+  "description": "Payload of an `Artefact` graph node in `context/_store/ontology.db`. Ingested by the PostToolUse hook from a tool envelope's `data.artefact_metadata` field. Replaces the deprecated file-on-disk `.meta.json` sidecar (see `vision/specs/03-sidecar-metadata.md`); the `artifact_driver` / `driver_pointer` pair points to the bytes via the driver registry instead.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "content_type",
+    "sha256",
+    "size_bytes",
+    "created_at",
+    "produced_by",
+    "derived_from"
+  ],
+  "properties": {
+    "artefact_path": {
+      "type": "string",
+      "description": "OPTIONAL legacy field. Path of the artefact relative to the repository root. Prefer `driver_pointer` for new code."
+    },
+    "content_type": {
+      "type": "string",
+      "description": "MIME type of the artifact. Examples: `audio/mpeg`, `audio/wav`, `application/pdf`, `image/png`.",
+      "pattern": "^[a-z]+/[a-z0-9.+-]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "description": "Hex digest (lowercase) of the artifact bytes.",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "size_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 UTC timestamp when the artifact was written."
+    },
+    "produced_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill", "phase", "session_id"],
+      "properties": {
+        "skill":      {"type": "string", "description": "Slash-command form, e.g. `music-producer`."},
+        "phase":      {"type": "string", "description": "Workflow phase id, e.g. `04-master`."},
+        "session_id": {"type": "string", "description": "Opaque session id from the workflow runner."}
+      }
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Graph node IDs the artifact derives from. Each becomes a DERIVED_FROM edge in the ontology graph."
+    },
+    "satisfies_phase": {
+      "type": "string",
+      "description": "OPTIONAL. Workflow phase id this artifact completes. Emits a SATISFIES_PHASE edge when set."
+    },
+    "artifact_driver": {
+      "type": "string",
+      "description": "OPTIONAL until v1. Key into `context/_drivers/REGISTRY` selecting how to fetch the bytes (e.g. `fs`, `repo`, `s3`).",
+      "pattern": "^[a-z][a-z0-9-]{0,30}$"
+    },
+    "driver_pointer": {
+      "type": "string",
+      "description": "OPTIONAL until v1. Driver-specific pointer the chosen driver uses to resolve the bytes (e.g. an `fs` path, an S3 key)."
+    }
+  }
+}

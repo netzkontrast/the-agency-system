@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/skill-frontmatter.schema.json",
+  "title": "Skill Frontmatter Schema",
+  "description": "Validates the frontmatter block at the top of an agentic SKILL.md file.",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "Unique identifier for the skill, often matching the filename."
+    },
+    "type": {
+      "type": "string",
+      "const": "skill",
+      "description": "Must be 'skill' for skill definitions."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "ready", "deprecated", "proposed"],
+      "description": "The current lifecycle status of the skill."
+    },
+    "owner": {
+      "type": "string",
+      "description": "The owner or maintainer of the skill."
+    },
+    "created": {
+      "type": "string",
+      "format": "date",
+      "description": "Creation date of the skill in YYYY-MM-DD format."
+    },
+    "updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last updated date of the skill in YYYY-MM-DD format."
+    },
+    "summary": {
+      "type": "string",
+      "description": "A brief description of what the skill does."
+    },
+    "prefers_codemode": {
+      "type": "boolean",
+      "description": "If true, opt-in to Code Mode delegation during skill boot."
+    }
+  },
+  "required": [
+    "slug",
+    "type",
+    "status",
+    "summary"
+  ],
+  "additionalProperties": true
+}

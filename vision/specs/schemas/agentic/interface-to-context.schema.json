@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/interface-to-context.schema.json",
+  "title": "Interface to Context Schema",
+  "description": "Defines what agentic sends to context.query, context.upsert_node, and context.upsert_edge.",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["query", "upsert_node", "upsert_edge"],
+      "description": "The context action to execute."
+    },
+    "query_string": {
+      "type": "string",
+      "description": "The Cypher-compatible query string for 'query' actions."
+    },
+    "node": {
+      "type": "object",
+      "description": "The node data for 'upsert_node' actions.",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "properties": { "type": "object" }
+      },
+      "required": ["id", "type"]
+    },
+    "edge": {
+      "type": "object",
+      "description": "The edge data for 'upsert_edge' actions.",
+      "properties": {
+        "source_id": { "type": "string" },
+        "target_id": { "type": "string" },
+        "relation": { "type": "string" },
+        "properties": { "type": "object" }
+      },
+      "required": ["source_id", "target_id", "relation"]
+    }
+  },
+  "required": ["action"],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": { "properties": { "action": { "const": "query" } } },
+      "then": { "required": ["query_string"] }
+    },
+    {
+      "if": { "properties": { "action": { "const": "upsert_node" } } },
+      "then": { "required": ["node"] }
+    },
+    {
+      "if": { "properties": { "action": { "const": "upsert_edge" } } },
+      "then": { "required": ["edge"] }
+    }
+  ]
+}

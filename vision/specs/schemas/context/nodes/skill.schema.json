@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/skill.schema.json",
+  "title": "Skill Node",
+  "description": "Graph node representing a skill exposed by the agentic column.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier (slug) for the skill node."
+    },
+    "label": {
+      "type": "string",
+      "const": "Skill"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "row": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["proposed", "ready", "deprecated"] },
+        "prefers_codemode": { "type": "boolean" }
+      },
+      "required": ["row", "name"],
+      "additionalProperties": true
+    }
+  },
+  "required": ["id", "label", "payload"]
+}

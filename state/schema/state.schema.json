@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "music": {
+      "type": "object",
+      "properties": {
+        "_generated": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "novel": {
+      "type": "object",
+      "properties": {
+        "_generated": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "authors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "works": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "dramatica_locked": {
+                      "type": "boolean"
+                    },
+                    "force_overrides": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "at": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "caller": {
+                            "type": "string"
+                          },
+                          "blocking": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "at",
+                          "caller",
+                          "blocking"
+                        ]
+                      }
+                    },
+                    "revisions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "pass_kind": {
+                            "type": "string",
+                            "enum": [
+                              "structural",
+                              "line",
+                              "copy",
+                              "proof"
+                            ]
+                          },
+                          "marked_at": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "chapter_ids": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "pass_kind",
+                          "marked_at",
+                          "chapter_ids"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "jules": {
+      "type": "object",
+      "properties": {
+        "_generated": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "agentic": {
+      "type": "object",
+      "properties": {
+        "_generated": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "_version": {
+      "type": "string",
+      "const": "1.0.0"
+    }
+  },
+  "required": [
+    "music",
+    "novel",
+    "jules",
+    "agentic",
+    "_version"
+  ],
+  "additionalProperties": false
+}

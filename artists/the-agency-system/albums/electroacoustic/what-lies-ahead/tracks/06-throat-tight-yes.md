@@ -25,7 +25,7 @@ sheet_music:
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
-| **POV** | The Caregiver (ANP) — solo |
+| **POV** | The Caregiver (EP) — solo |
 | **Role** | Warmth interior, attachment betrayal somatically. The fawn moment lives here — throat-tight yes, body-site per verse. Seeds track 11's production callback. |
 | **Fade Out** | 5s |
 | **Target Duration** | 4:00–4:30 |

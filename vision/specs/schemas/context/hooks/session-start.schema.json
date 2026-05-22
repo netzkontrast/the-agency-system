@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/hooks/session-start.schema.json",
+  "title": "Session Start Hook Payload",
+  "description": "Payload sent when a new session begins.",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string"
+    },
+    "row": {
+      "type": "string"
+    },
+    "trigger_intent": {
+      "type": "string"
+    }
+  },
+  "required": ["session_id", "row"]
+}

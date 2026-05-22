@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:context-cell",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cell",
+    "ontology"
+  ],
+  "properties": {
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "row",
+        "column"
+      ],
+      "properties": {
+        "row": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,30}$"
+        },
+        "column": {
+          "const": "context"
+        }
+      }
+    },
+    "ontology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_types"
+      ],
+      "properties": {
+        "node_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "templates": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vault_root": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

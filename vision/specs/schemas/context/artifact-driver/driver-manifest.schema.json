@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/artifact-driver/driver-manifest.schema.json",
+  "title": "Artifact Driver Manifest",
+  "description": "How a driver registers its capabilities with the context column.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The identifier for the driver, e.g., 'fs', 's3', 'http'."
+    },
+    "capabilities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of supported capabilities, e.g., ['read', 'write', 'watch']."
+    },
+    "supported_uri_schemes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of URI schemes this driver can resolve, e.g., ['file', 's3', 'http', 'https']."
+    }
+  },
+  "required": ["name", "capabilities", "supported_uri_schemes"]
+}

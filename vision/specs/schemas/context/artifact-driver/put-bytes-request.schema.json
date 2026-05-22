@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/artifact-driver/put-bytes-request.schema.json",
+  "title": "Put Bytes Request",
+  "description": "Request to an artifact driver to store bytes for an artefact.",
+  "type": "object",
+  "properties": {
+    "node_id": { "type": "string" },
+    "driver_pointer": { "type": "string" },
+    "bytes": {
+      "type": "string",
+      "contentEncoding": "base64"
+    }
+  },
+  "required": ["node_id", "driver_pointer", "bytes"]
+}

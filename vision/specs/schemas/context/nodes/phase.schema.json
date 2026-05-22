@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/phase.schema.json",
+  "title": "Phase Node",
+  "description": "Graph node representing a workflow phase.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Phase" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "row": { "type": "string" },
+        "phase_id": { "type": "string" },
+        "name": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "active", "blocked", "completed"] },
+        "blocked_on_gate": { "type": "string" }
+      },
+      "required": ["row", "phase_id", "status"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}

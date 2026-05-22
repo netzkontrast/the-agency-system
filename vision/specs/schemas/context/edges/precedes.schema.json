@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/edges/precedes.schema.json",
+  "title": "PRECEDES Edge",
+  "description": "Indicates order dependency. Phase -> Phase, or Spec -> Spec.",
+  "type": "object",
+  "properties": {
+    "src": { "type": "string" },
+    "dst": { "type": "string" },
+    "rel_type": { "type": "string", "const": "PRECEDES" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "reason": { "type": "string" }
+      }
+    }
+  },
+  "required": ["src", "dst", "rel_type"]
+}

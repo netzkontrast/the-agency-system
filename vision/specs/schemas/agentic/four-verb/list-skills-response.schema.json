@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/agentic/four-verb/list-skills-response.schema.json",
+  "title": "List Skills Response Schema",
+  "description": "Response schema for listing available skills in the routing system.",
+  "type": "object",
+  "properties": {
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slug": { "type": "string" },
+          "summary": { "type": "string" },
+          "status": { "type": "string" }
+        },
+        "required": ["slug", "summary"]
+      }
+    }
+  },
+  "required": ["skills"],
+  "additionalProperties": false
+}

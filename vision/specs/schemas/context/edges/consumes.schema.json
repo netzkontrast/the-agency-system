@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/edges/consumes.schema.json",
+  "title": "CONSUMES Edge",
+  "description": "Indicates a Phase or Tool consuming an Artefact.",
+  "type": "object",
+  "properties": {
+    "src": { "type": "string" },
+    "dst": { "type": "string" },
+    "rel_type": { "type": "string", "const": "CONSUMES" },
+    "payload": { "type": "object" }
+  },
+  "required": ["src", "dst", "rel_type"]
+}

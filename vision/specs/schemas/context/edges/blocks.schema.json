@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/edges/blocks.schema.json",
+  "title": "BLOCKS Edge",
+  "description": "Indicates a Gate blocking a Phase.",
+  "type": "object",
+  "properties": {
+    "src": { "type": "string" },
+    "dst": { "type": "string" },
+    "rel_type": { "type": "string", "const": "BLOCKS" },
+    "payload": { "type": "object" }
+  },
+  "required": ["src", "dst", "rel_type"]
+}

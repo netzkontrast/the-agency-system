@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/nodes/artefact.schema.json",
+  "title": "Artefact Node",
+  "description": "Graph node representing an output artefact, containing fields from the deprecated sidecar schema.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string", "const": "Artefact" },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "sha256": { "type": "string" },
+        "content_type": { "type": "string" },
+        "derived_from": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "satisfies_phase": { "type": "string" },
+        "produced_by": { "type": "string" },
+        "artifact_driver": { "type": "string" },
+        "driver_pointer": { "type": "string" }
+      },
+      "required": ["sha256", "content_type", "artifact_driver", "driver_pointer"]
+    }
+  },
+  "required": ["id", "label", "payload"]
+}

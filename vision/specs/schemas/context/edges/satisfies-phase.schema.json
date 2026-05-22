@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/context/edges/satisfies-phase.schema.json",
+  "title": "SATISFIES_PHASE Edge",
+  "description": "Indicates an Artefact satisfying the requirement of a Phase.",
+  "type": "object",
+  "properties": {
+    "src": { "type": "string" },
+    "dst": { "type": "string" },
+    "rel_type": { "type": "string", "const": "SATISFIES_PHASE" },
+    "payload": { "type": "object" }
+  },
+  "required": ["src", "dst", "rel_type"]
+}
