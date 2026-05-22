@@ -61,17 +61,23 @@ Omit the block entirely to use the default (ADM off).
 
 ## Concept
 
-[Detailed description of the album's concept, narrative, and themes. What story does this album tell? What's the artistic vision?]
+*Spätschicht* spielt nachts auf Station der St.-Agatha-Klinik. Während die Spätschicht des Personals schläft oder wegsieht, machen die Patient:innen ihre eigene Feier — der Medikamentenwagen als Bar, das Neonlicht als Stroboskop, „Tabletten für jeden". Es ist eine echte Euphorie und gleichzeitig eine hohle: Dark Trip Hop mit Cinematic Bass als Soundtrack einer medikamentösen Nacht.
+
+Erzählt wird durchgehend aus einem **kollektiven „Wir"**. Das ist keine Stilfigur, sondern der eigentliche Stoff des Albums: Die Medikation löst auf, wer die Einzelnen sind, und das „Ich" zerfließt auf dem Dancefloor zu einem einzigen Organismus. „Children of Agatha" ist hier kein Bandname, sondern ein wörtlicher Zustand — ein Wir, das nur existiert, weil das Ich verschwunden ist. Niemand weiß mehr, welches Gefühl wem gehört, welche Fröhlichkeit echt ist und welche Nebenwirkung.
+
+Der Ton ist dokumentarisch kühl und urteilt nicht. Die Platte feiert nicht mit und mahnt nicht — sie hält die Euphorie und den Riss darunter im selben Bild. Gleicher Ort wie *The Long Corridor* (St. Agatha), entgegengesetzter Ton: dort elegisch und heilend, hier sardonisch, transgressiv, hypnotisch.
 
 ## Structure
 
-[How is the album organized? What's the narrative arc? How do tracks relate to each other?]
+Collection — eigenständige Stücke, lose verbunden über Ort (Station, nachts), Stimme (das kollektive Wir) und Sound (verschwimmender Cinematic Bass). Kein erzwungener Handlungsbogen, aber ein loser Nachtverlauf von der ersten Tablettenrunde bis zur Morgenvisite ist als Sequenzierungs-Idee verfügbar (siehe Tracklist, Phase 4).
 
 ## Themes
 
-- [Theme 1]
-- [Theme 2]
-- [Theme 3]
+- **Auflösung des Ich** — das Selbst zerfließt zu einem kollektiven Wir
+- **Medikamentöse Euphorie** — Rausch als Befreiung und Käfig zugleich
+- **Verordnete vs. echte Gefühle** — kein Weg, Chemie von Empfindung zu trennen
+- **Dokumentarische Kühle** — Beobachtung ohne Urteil, Feier und Hohlheit im selben Bild
+- **Dunkle Komik** — das Sardonische des Ausgeliefertseins
 
 ## Motifs & Threads
 
