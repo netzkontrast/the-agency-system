@@ -272,9 +272,11 @@ Differently
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| Tear (in "Tear left") | **Tair** (rhymes with "air") | Homograph: the rip / tear-apart sense (source "Riss"), NOT crying. Suno box uses "Tair"; **streaming keeps "tear"**. User-confirmed. |
-| sector numbers | two-eight-zero / six-nine-two | Spell digits as words (codes read clearly, not "two hundred eighty") |
-| Sixteen / Seven | sixteen / seven | Spell as words (no "16" / "7") |
+| Tear (rip sense) | Tair | Homograph: the rip / tear-apart sense (source "Riss"), NOT crying. Suno box uses "Tair" (rhymes with "air"); streaming keeps "tear". User-confirmed. |
+| 280 (sector code) | two-eight-zero | Spell digits as words (codes read clearly, not "two hundred eighty") |
+| 692 (sector code) | six-nine-two | Spell digits as words |
+| 16 (bindings) | sixteen | Spell as words (no "16") |
+| 7 (triad) | seven | Spell as words (no "7") |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist

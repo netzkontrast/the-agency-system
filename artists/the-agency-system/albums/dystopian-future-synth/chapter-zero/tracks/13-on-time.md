@@ -245,8 +245,10 @@ I am on time
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| numbers | two thousand three hundred four / twenty-one / four / six | Spelled as words (the counting coda); no digits |
-| (no homographs) | — | "shut" used (not the homograph "closed"). No read/lead/tear/object. To confirm via `check_homographs`. |
+| 2304 (tiles) | two thousand three hundred four | Spelled as words (the counting coda); no digits |
+| 21 (degrees) | twenty-one | Spelled as words |
+| 4 (breath in) | four | Spelled as words |
+| 6 (breath out) | six | Spelled as words |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist

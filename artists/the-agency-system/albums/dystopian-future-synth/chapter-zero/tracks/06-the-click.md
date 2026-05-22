@@ -350,9 +350,7 @@ Perhaps
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| Klick | "click" | Retained German hinge syllable (the only un-translated word); Suno reads it as English "click" — correct. Keep the spelling **Klick**. |
-| (row) | avoided → "ledger / mid-column" | "row" is a homograph (line /roh/ vs quarrel /rau/); reworded to avoid it. |
-| (closed) | avoided → "sealed" | "close/closed" homograph avoided. |
+| Klick | Klick | Retained German hinge syllable (the only un-translated word, by design); Suno reads "Klick" as English "click" — correct. Keep the spelling. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist

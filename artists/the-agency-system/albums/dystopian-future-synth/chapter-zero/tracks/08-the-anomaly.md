@@ -278,11 +278,13 @@ The boundary is exceeded
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| 1.0 / 0.0 | one point zero / zero point zero | Spell as words in the Suno box (streaming keeps "1.0 / 0.0") |
-| 0.67 / 0.991 / −0.007 | zero point six seven / zero point nine nine one / minus zero point zero zero seven | Spell decimals as words in the Suno box (streaming keeps digits) |
+| 1.0 | one point zero | Spell as words in the Suno box (streaming keeps "1.0") |
+| 0.0 | zero point zero | Spell as words in the Suno box (streaming keeps "0.0") |
+| 0.67 | zero point six seven | Spell decimals as words (streaming keeps digits) |
+| 0.991 | zero point nine nine one | Spell decimals as words |
+| −0.007 | minus zero point zero zero seven | Spell decimals as words |
 | 24 threads | twenty-four threads | Spell number as words (no "24") |
-| object → "mass" | mass | Homograph "object" (OB-ject noun vs ob-JECT verb) **reworded to "mass"** (user request — no respelling). "No mass" is clean, clinical, faithful (no physical substance). Applied in Suno box AND streaming. |
-| (read) | avoided → "register" | "read" is a homograph (reed/red); reworded to avoid it |
+| object → "mass" | mass | Homograph "object" reworded to "mass" (user request — no respelling). "No mass" is clean, clinical, faithful. Applied in Suno box AND streaming. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist

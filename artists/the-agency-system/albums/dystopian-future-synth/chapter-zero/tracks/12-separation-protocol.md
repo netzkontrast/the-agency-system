@@ -285,8 +285,9 @@ I fall into countless shards
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
 | KOH_1.0 | K-O-H one point zero | Acronym spelled out + decimal as words in the Suno box (streaming keeps "KOH 1.0") |
-| sectors 4/5/6 | four / five / six | Spell as words in the Suno box (streaming keeps digits) |
-| (no homographs) | — | "torn"/"severed" used (not the homograph "tear"). No read/lead/object/close. To confirm via `check_homographs`. |
+| sector 4 | four | Spell as words in the Suno box (streaming keeps digits) |
+| sector 5 | five | Spell as words |
+| sector 6 | six | Spell as words |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
