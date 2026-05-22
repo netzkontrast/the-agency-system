@@ -36,7 +36,7 @@ sheet_music:
 
 Eigenständige Single (kein Teil von *Spätschicht*) — stilistisch neben der ersten Children-of-Agatha-Single *Schilling*: Brechtischer Verfremdungseffekt, deadpan, sardonisch, im Dark-Folk-/Weimar-Kabarett-Register.
 
-**Salatgate.** Die Lieferung kam zu knapp — zu wenig Salat für die Station. Eine Stationsversammlung wird einberufen. Jede:r hat eine Meinung: Appelle an die Vernunft, Appelle an die Selbstlosigkeit, die Suche nach den Verantwortlichen. Aber verantworten will es keiner — „das macht die Pflege." Und trotzdem: kein Salat da, die Stimmung kippt, dicke Luft, Tag drei. Es geht längst nicht mehr um Grün, sondern ums Recht-Behalten. Dann kommt die Schwester, stellt die Schüssel hin, sagt nichts — und *endlich* haben wir den Salat.
+**Salatgate.** Die Lieferung kam zu knapp — drei Blätter für dreißig Leute. Offiziell heißt es trotzdem: „es ist noch Salat da." Eine Stationsversammlung wird einberufen. Jede:r hat eine Meinung: Appelle an die Vernunft, Appelle an die Selbstlosigkeit, die Suche nach den Verantwortlichen. Aber verantworten will es keiner — „das macht die Pflege." Und trotzdem: kein Salat da, die Stimmung kippt, dicke Luft, Tag drei. Es geht längst nicht mehr um Grün, sondern ums Recht-Behalten. Dann kommt die Schwester, stellt die Schüssel hin, sagt nichts — und *endlich* haben wir den Salat.
 
 Eine Satire auf kollektive Entscheidungsfindung, Verantwortungsdiffusion und Versammlungskultur — spritzig, witzig, hitzig. Zwei Comedy-Motoren tragen sie:
 
@@ -79,14 +79,16 @@ no autotune, no electric guitar, no EDM, no four-on-the-floor
 [Intro]
 
 [Verse 1]
-Die Lieferung kam Dienstag — drei Koepfe, mickrig, knapp.
-Wir sind hier dreissig Seelen, und jede will ihr Blatt.
+Die Lieferung kam Dienstag — drei Blaetter, mickrig, knapp.
+Dreissig Seelen auf Station, und jede will ihr Blatt.
+Es ist noch Salat da, sagt das Protokoll. Drei Blatt.
 Frau Berger ruft zur Ordnung, Herr Kunz schon hochrot:
 Wer hat das zu verantworten? — Stille. Salat-Not.
 
 [Pre-Chorus]
 Diagnose Eins: Salat-Trauma, akuter Blattmangel.
-Diagnose Zwei: Gaumen-Depression. Der Affekt kippt im Saal.
+Diagnose Zwei: Gaumen-Depression, der Affekt kippt im Saal.
+Dekompression in der Schale — lange Gesichter im Saale.
 
 [Chorus]
 Da haben wir den Salat.
@@ -136,13 +138,15 @@ Da haben wir den Salat.
 *Für die Distributor-Einreichung. Keine Section-Tags, alle Wiederholungen ausgeschrieben, Reintext.*
 
 ```
-Die Lieferung kam Dienstag, drei Köpfe, mickrig, knapp
-Wir sind hier dreißig Seelen, und jede will ihr Blatt
+Die Lieferung kam Dienstag, drei Blätter, mickrig, knapp
+Dreißig Seelen auf Station, und jede will ihr Blatt
+Es ist noch Salat da, sagt das Protokoll. Drei Blatt
 Frau Berger ruft zur Ordnung, Herr Kunz schon hochrot
 Wer hat das zu verantworten? Stille. Salat-Not
 
 Diagnose Eins: Salat-Trauma, akuter Blattmangel
-Diagnose Zwei: Gaumen-Depression. Der Affekt kippt im Saal
+Diagnose Zwei: Gaumen-Depression, der Affekt kippt im Saal
+Dekompression in der Schale, lange Gesichter im Saale
 
 Da haben wir den Salat
 Eine Schüssel, dreißig Gabeln, und kein Mensch, der's war
@@ -196,7 +200,11 @@ Da haben wir den Salat
 | Trauma | TROW-mah | Deutsch, nicht englisch „traw-ma"; „au" = /aʊ/ |
 | Gaumen-Depression | GOW-men de-pres-SYOHN | Kompositum; „au" = /aʊ/, deutsche Endung -sion |
 | Affekt | ah-FEKT | Klinischer Begriff; Betonung auf zweiter Silbe |
+| Dekompression | de-kom-pres-SYOHN | Klinischer Pun; deutsche Endung -sion |
 | Romana | ro-MAH-na | Salatsorte (Römersalat); nicht anglisieren |
+| Blätter | Blaetter | Umlaut ä → ae |
+| Schale / Saale | SHAH-leh / ZAH-leh | Binnenreim; deutsche Aussprache sichern |
+| Protokoll | pro-to-KOLL | Betonung auf letzter Silbe |
 | plädiert | plae-DEERT | Umlaut ä → ae; Betonung hinten |
 | Köpfe | Koepfe | Umlaut ö → oe |
 | Höhe | Hoehe | Umlaut ö → oe |
