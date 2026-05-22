@@ -52,7 +52,7 @@ Stroboskopisches Neonflackern, Schatten zucken an der Wand. Schweiß, Lachen, ei
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark trip hop, cinematic bass, 85 BPM, strobing transgressive, female deadpan blunt spoken verse with longing sung "wir" chorus, chopped vocal stabs, deep sub-bass heartbeat, dense fragmented beats, stuttering neon synth, hospital reverb, Burial, Anna von Hausswolff
+dark trip hop, cinematic bass, 85 BPM, strobing transgressive, female deadpan blunt spoken verse, longing sung "wir" chorus, chopped vocal stabs, layered close-mic vocals, sub-bass heartbeat, dense fragmented beats, stuttering neon synth, all German, Burial, Anna von Hausswolff
 ```
 
 ### Exclude Styles
