@@ -52,7 +52,7 @@ Atem im Gleichtakt, Pulsschlag im Bass. Gesichter, die ineinander verschwimmen. 
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark trip hop, cinematic bass, 68 BPM, hypnotic merging, female deadpan spoken verse with longing sung "wir" chorus, layered female vocals fusing to one, deep sub-bass heartbeat, minimal breaks, sacral organ drone, cavernous reverb, Burial, Anna von Hausswolff
+dark trip hop, cinematic bass, 68 BPM, hypnotic merging, female deadpan spoken verse, longing sung "wir" chorus, layered vocals fusing to one, sub-bass heartbeat, minimal breaks, sacral organ drone, cavernous reverb, all German, Burial, Anna von Hausswolff
 ```
 
 ### Exclude Styles
