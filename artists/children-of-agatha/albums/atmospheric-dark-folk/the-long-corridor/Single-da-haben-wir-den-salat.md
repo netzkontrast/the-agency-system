@@ -40,7 +40,7 @@ Eigenständige Single (kein Teil von *Spätschicht*) — stilistisch neben der e
 
 Eine Satire auf kollektive Entscheidungsfindung, Verantwortungsdiffusion und Versammlungskultur — spritzig, witzig, hitzig. Zwei Comedy-Motoren tragen sie:
 
-1. **Klinische Diagnose-Wortspiele** — der Salatmangel wird in Krankenakten-Deutsch verhandelt: „Salat-Trauma", „akuter Blattmangel", „Gaumen-Depression", „Rohkost-Realitätsverlust", „der Affekt kippt im Saal". Am Ende wird die Diagnose „geheilt" — durch eine Schüssel.
+1. **Klinische Diagnose-Wortspiele** — der Salatmangel wird in Krankenakten-Deutsch verhandelt, als Reim-Kaskade auf *-ession*: „Salat-Trauma", „akuter Blattmangel", „Rohkost-Depression", „Regression", „Aggression", „keine Konzession", „Dekompression in der Schale" (Reim: „lange Gesichter im Saale"), „Rohkost-Realitätsverlust". Am Ende wird die Diagnose „geheilt" — durch eine Schüssel.
 2. **„Ich hab da auch noch was zu sagen"** — alle wollen reden, jede:r meldet sich („und jeder so: ich auch"), zehn Finger in der Höhe, kein Inhalt; keiner sagt, warum. Die Versammlung als Selbstzweck.
 
 Der Titel arbeitet doppelt: die Redewendung („jetzt haben wir die Bescherung") und der wörtliche, endlich gelieferte Salat. Tagline: *Salatgate auf Station*.
@@ -87,8 +87,9 @@ Wer hat das zu verantworten? — Stille. Salat-Not.
 
 [Pre-Chorus]
 Diagnose Eins: Salat-Trauma, akuter Blattmangel.
-Diagnose Zwei: Gaumen-Depression, der Affekt kippt im Saal.
-Dekompression in der Schale — lange Gesichter im Saale.
+Diagnose Zwei: Rohkost-Depression, Regression, Aggression.
+Keine Konzession, nur Dekompression in der Schale.
+Lange Gesichter im Saale.
 
 [Chorus]
 Da haben wir den Salat.
@@ -128,7 +129,7 @@ Und der ganze Saal verstummt vor einem Kopf Romana.
 
 [Outro]
 Und endlich — endlich haben wir den Salat.
-Salat-Trauma, Gaumen-Depression — geheilt.
+Salat-Trauma, Rohkost-Depression — geheilt.
 Da haben wir den Salat.
 
 [End]
@@ -147,8 +148,9 @@ Frau Berger ruft zur Ordnung, Herr Kunz schon hochrot
 Wer hat das zu verantworten? Stille. Salat-Not
 
 Diagnose Eins: Salat-Trauma, akuter Blattmangel
-Diagnose Zwei: Gaumen-Depression, der Affekt kippt im Saal
-Dekompression in der Schale, lange Gesichter im Saale
+Diagnose Zwei: Rohkost-Depression, Regression, Aggression
+Keine Konzession, nur Dekompression in der Schale
+Lange Gesichter im Saale
 
 Da haben wir den Salat
 Eine Schüssel, dreißig Gabeln, und kein Mensch, der's war
@@ -181,7 +183,7 @@ Dann kommt die Schwester rein, stellt die Schüssel hin, sagt nichts
 Und der ganze Saal verstummt vor einem Kopf Romana
 
 Und endlich, endlich haben wir den Salat
-Salat-Trauma, Gaumen-Depression, geheilt
+Salat-Trauma, Rohkost-Depression, geheilt
 Da haben wir den Salat
 ```
 
@@ -202,8 +204,10 @@ Da haben wir den Salat
 |-------------|----------------------|--------|
 | Salatgate | Sa-LAHT-gayt | Hybrid (Salat + -gate); Betonung auf LAHT, „gate" wie in Watergate |
 | Trauma | TROW-mah | Deutsch, nicht englisch „traw-ma"; „au" = /aʊ/ |
-| Gaumen-Depression | GOW-men de-pres-SYOHN | Kompositum; „au" = /aʊ/, deutsche Endung -sion |
-| Affekt | ah-FEKT | Klinischer Begriff; Betonung auf zweiter Silbe |
+| Rohkost-Depression | ROH-kost de-pres-SYOHN | Pun; deutsche Endung -sion, nicht englisch |
+| Regression | re-gres-SYOHN | Klinischer Begriff; deutsche Endung -sion |
+| Aggression | a-gres-SYOHN | Deutsche Endung -sion, hartes Doppel-g |
+| Konzession | kon-tses-SYOHN | „z" = /ts/; deutsche Endung -sion |
 | Dekompression | de-kom-pres-SYOHN | Klinischer Pun; deutsche Endung -sion |
 | Romana | ro-MAH-na | Salatsorte (Römersalat); nicht anglisieren |
 | Blätter | Blaetter | Umlaut ä → ae |
