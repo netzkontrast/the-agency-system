@@ -134,10 +134,14 @@ Collection — eigenständige Stücke, lose verbunden über Ort (Station, nachts
 
 ## Sonic Palette
 
-- **Beats**: [Production style description]
-- **Samples**: [Sample sources/types if applicable]
-- **Vocals**: [Vocal style and delivery]
-- **Mood**: [Overall emotional tone]
+- **Beats**: Fragmentierter, nächtlicher Trip Hop — verschleppt, körperlos, mit Lücken (Burial-/FKA-twigs-Schule). Kein Vier-zu-Boden-Club; eher zerbrochene Breaks, die wie aus der Ferne kommen.
+- **Bass**: **Sub-Herzschlag** — tiefer, langsamer, fast körperlicher Sub-Bass, der wie ein gemeinsamer Puls wummert. Wenig Bewegung, maximale Schwere. Das „eine Wir" als hörbarer Herzschlag des kollektiven Körpers.
+- **Texturen**: Sakral-dunkle Schicht (von Hausswolff / Chelsea Wolfe) — Orgel-Drones, gotischer Hall, Klinik-Raumklang. Vinyl-/Tonband-Knistern, ferne Stations-Geräusche (Medikamentenwagen, Neonlicht-Brummen).
+- **Vocals**: Ein klar gesungenes, sehnsüchtiges **„Wir"** — die menschliche Konstante über dem benebelten Bass. Geschichtete/übereinandergelegte Stimmen, die zu einer verschmelzen (viele werden eins). Deutsch.
+- **Sprache**: Deutsch durchgehend.
+- **Mood**: Benebelte Euphorie mit Riss — dokumentarisch kühl, sardonisch, hypnotisch. Würdevoll trotz Verfall.
+
+**Referenz-Anker**: Burial, FKA twigs, Anna von Hausswolff, Chelsea Wolfe; Bass-Schwere von Massive Attack (Mezzanine).
 
 ## Tracklist
 
