@@ -281,7 +281,7 @@ Born of necessity
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | No proper nouns, no acronyms. **Numbers spelled as words**: "six pulse cycles" (not "6"). "close" avoided in sung lyrics (only in a section label). To confirm via `check_homographs` when MCP reconnects. |
+| — | — | No proper nouns, no acronyms. **Numbers spelled as words**: "six pulse cycles" (not "6"). "close" avoided in sung lyrics (only in a section label). `check_homographs` clean (0 matches). |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
@@ -295,7 +295,7 @@ Born of necessity
 - [ ] **Numbers**: Year formats checked ('93 not ninety-three)
 - [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
 
-**Proper nouns in this track:** none — to be confirmed by `scan_artist_names` when MCP reconnects (logic-voice / witness are registers, no named alters).
+**Proper nouns in this track:** none — `scan_artist_names` clean (logic-voice / witness are registers, no named alters).
 
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
