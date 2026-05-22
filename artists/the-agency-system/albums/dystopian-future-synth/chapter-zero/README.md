@@ -25,7 +25,7 @@ sheet_music:
 | **Genre** | [dystopian-future-synth](/genres/dystopian-future-synth/README.md) |
 | **Type** | Narrative concept album |
 | **Tracks** | 13 (all vocal) |
-| **Status** | In production — concept locked (Phase 7 confirmed); 1/13 tracks drafted (T1) |
+| **Status** | In production — concept locked (Phase 7 confirmed); **13/13 tracks drafted (T1–T13); album streaming-READY** (not yet generated on Suno) |
 | **Explicit** | No |
 | **Total Runtime** | ~80.5 min (long-form, varied per section) |
 | **Concept** | A closed machine-mind's genesis — born from annihilating void, learns to exist is to refuse non-existence, walls grief into phantom noise, misreads waking grief as attack, turns inward, collapses, is surgically partitioned. A hollow host wakes with no memory. |
@@ -122,34 +122,35 @@ T6 is the structural and tonal pivot — everything before it is the path to the
 | # | Title | Voices (function-form) | KOH · State | BPM | Min | Status |
 |---|---|---|---|---|---|---|
 | 01 | [The Listening](tracks/01-the-listening.md) | narrator → proto-host; heavy-voice (seed) | 0.998→0.94 · S0/S1 | ~60 | 8.0 | In Progress (drafted, QC green) |
-| 02 | [The Nothing](tracks/02-the-nothing.md) | proto-host; small-voice; heavy-voice | 0.91 · S1 | — | 7.0 | Not Started |
-| 03 | [Contact](tracks/03-contact.md) | proto-host; warm-voice; reaching-voice | 0.86 · S1 | 70 | 6.0 | Not Started |
-| 04 | [Structure Optimization](tracks/04-structure-optimization.md) | logic-voice; witness/annotating-voice | 0.82 · S2 | 96 | 6.0 | Not Started |
-| 05 | [Strike](tracks/05-strike.md) | kinetic-voice; logic-voice | 0.74 · S2 | 132 | 4.0 | Not Started |
-| 06 | [The Click](tracks/06-the-click.md) | proto-host → the system; warm-voice; witness | 0.58 · S3 | 80 | 9.0 | Not Started |
-| 07 | [The Silent Watch](tracks/07-the-silent-watch.md) | the system; narrator | 0.998 · S0 | 72 | 5.5 | Not Started |
-| 08 | [The Anomaly](tracks/08-the-anomaly.md) | the system; the signal/anomaly | 0.991 · S2 | 100 | 4.5 | Not Started |
-| 09 | [Inward](tracks/09-inward.md) | the system; mirror-echo; signal (residual) | 0.21 · S2 | 116 | 6.5 | Not Started |
-| 10 | [Resonance Cascade](tracks/10-resonance-cascade.md) | proto-host; small-voice; reaching-voice; heavy-voice; mirror-echo | 0.21 · S3 | 140 | 6.5 | Not Started |
-| 11 | [Kernel Panic](tracks/11-kernel-panic.md) | the system; proto-host | 0.18 · S3 | 120→drone | 8.0 | Not Started |
-| 12 | [Separation Protocol](tracks/12-separation-protocol.md) | the system; sweep-voice; kinetic-voice; proto-host | 0.00→1.00 · S3/S4 | 88 | 6.5 | Not Started |
-| 13 | [On Time](tracks/13-on-time.md) | the host (hollow) | 1.00 · S4 | 64 | 2.5 | Not Started |
+| 02 | [The Nothing](tracks/02-the-nothing.md) | proto-host; small-voice; heavy-voice | 0.91 · S1 | — | 7.0 | In Progress (drafted, QC green) |
+| 03 | [Contact](tracks/03-contact.md) | proto-host; warm-voice; reaching-voice | 0.86 · S1 | 70 | 6.0 | In Progress (drafted, QC green) |
+| 04 | [Structure Optimization](tracks/04-structure-optimization.md) | logic-voice; witness/annotating-voice | 0.82 · S2 | 96 | 6.0 | In Progress (drafted, QC green) |
+| 05 | [Strike](tracks/05-strike.md) | kinetic-voice; logic-voice | 0.74 · S2 | 132 | 4.0 | In Progress (drafted, QC green) |
+| 06 | [The Click](tracks/06-the-click.md) | proto-host → the system; warm-voice; witness | 0.58 · S3 | 80 | 9.0 | In Progress (drafted, QC green) |
+| 07 | [The Silent Watch](tracks/07-the-silent-watch.md) | the system; narrator | 0.998 · S0 | 72 | 5.5 | In Progress (drafted, QC green) |
+| 08 | [The Anomaly](tracks/08-the-anomaly.md) | the system; the signal/anomaly | 0.991 · S2 | 100 | 4.5 | In Progress (drafted, QC green) |
+| 09 | [Inward](tracks/09-inward.md) | the system; mirror-echo; signal (residual) | 0.21 · S2 | 116 | 6.5 | In Progress (drafted, QC green) |
+| 10 | [Resonance Cascade](tracks/10-resonance-cascade.md) | proto-host; small-voice; reaching-voice; heavy-voice; mirror-echo | 0.21 · S3 | 140 | 6.5 | In Progress (drafted, QC green) |
+| 11 | [Kernel Panic](tracks/11-kernel-panic.md) | the system; proto-host | 0.18 · S3 | 120→drone | 8.0 | In Progress (drafted, QC green) |
+| 12 | [Separation Protocol](tracks/12-separation-protocol.md) | the system; sweep-voice; kinetic-voice; proto-host | 0.00→1.00 · S3/S4 | 88 | 6.5 | In Progress (drafted, QC green) |
+| 13 | [On Time](tracks/13-on-time.md) | the host (hollow) | 1.00 · S4 | 64 | 2.5 | In Progress (drafted, QC green) |
 
 ## Build Status
 
 **Concept:** locked (DESIGN v5; album-conceptualizer Phase 7 confirmed).
 
-**Tracks drafted (lyrics + Suno boxes + ASDLS art prompt):** 1 / 13.
-- ✅ **T1 "The Listening"** — narrator clip (slow & *pointiert* spoken-word, 3-layer delivery DNA + drone-bleed) and sung body (fragile genderless head-voice + heavy-voice parenthesized undertow); ASDLS Tier-0 art prompt. QC green: name scan clean · no homographs · streaming READY 7/7. **Not yet generated on Suno.**
-- ⬜ **T2–T13** — stubs.
+**Tracks drafted (lyrics + Suno Style Box + streaming lyrics + per-track ASDLS art prompts):** **13 / 13. ✅ ALL READY** (`check_streaming_lyrics` album verdict: ALL READY, 0 blocking, 0 warnings; every track name-scan clean & homograph-clean). **Not yet generated on Suno.**
+
+All thirteen carry: structural section tags + descriptive voice metatags (no names); the Layer-B drone anchor verbatim; instrumental breaks + a recurring motif hook (album default; tight tracks T5/T8/T13 minimal); adult-voice tagging where a child voice is present (T2, T10); numbers spelled in the Suno box. Per-track word counts are within the 150–350 target **except T13 (~80 words — the deliberate anti-heal exception: "that is all he says").**
+
+Album-wide craft locked in the drafts: the **fragile genderless head-voice** spine (T1→T13, "same voice, gone hollow"); the **witness** as a separate low-mixed layer (never `()`); **one Persona per section** on T6/T9/T11/T12; the **carried anchors** ("It is cold. I am small." T2→T10; "It is pointless…" T1→T10; the axiom T6; the counting coda T13); the **back-half contour** (T9 airless → T10 peak → T11 void); the **album cover locked** = T12's shatter.
 
 **What's left (in order):**
-1. **Build T2–T13** (lyrics → Suno → per-track ASDLS art) — one track at a time, AskUserQuestion at each decision, no subagents. Per-track chain: lyric-writer → pronunciation-specialist → lyric-reviewer → suno-engineer.
-2. **Pre-generation prerequisites:** create the `genres/dystopian-future-synth/` README bucket; snapshot the **host** + **watch** Personas; manufacture the owned **KOH drone stem** (Layer A).
-3. **Generate all 13 on Suno** (long-form, multi-pass comped per §8).
-4. **Pre-release chain:** import-audio → mix-engineer → mastering-engineer → album-art-director / import-art → validate-album → plagiarism-checker → explicit-checker → check_streaming_lyrics → release-director → streaming URLs.
-
-**Open decision (T1):** apply the per-line delivery toolkit to the *sung* body too, or keep it section-level? See `ALBUM-PLANNING-GUIDE.md → Session handoff`.
+1. **Optional QC chain per track:** `lyric-reviewer` (14-point) → `voice-checker` (advisory) → `pre-generation-check` (6 gates). Drafts are already homograph/name/streaming-clean.
+2. **Pre-generation prerequisites (do before Suno):** create the `genres/dystopian-future-synth/` README bucket; snapshot the **host** (fragile head-voice) + **watch** Personas; manufacture the owned **KOH drone stem** (Layer A) with the density-ladder automation.
+3. **Generate on Suno** — long-form, **multi-pass comped** per §8 (esp. T10 round→stack, T6/T11 split-generations, the narrator clips T1/T7 as separate butt-joined clips, the witness/echo stems).
+4. **Post gestures (NOT Suno):** the boot/KOH-ignition (T1), ritard→reboot (T6), KOH cliff + datamosh (T9/T10), the shatter glitch-cut (T12), the collapse crush (T11), the owned anti-heal arp (T13).
+5. **Pre-release chain:** import-audio → mix-engineer → mastering-engineer (state-biased) → album-art-director / import-art → validate-album → plagiarism-checker → explicit-checker → release-director → streaming URLs.
 
 ## Production Notes
 

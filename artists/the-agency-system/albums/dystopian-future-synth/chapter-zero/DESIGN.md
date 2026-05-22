@@ -8,10 +8,14 @@
 > expanse and breathing room, NOT higher lyric density; lyric word-counts stay
 > lean per §8) ·
 > **Language:** English · **Status:** In production (v5 — album-conceptualizer
-> Phase 7 **confirmed**; T1 "The Listening" pilot **built & QC-green**; T2–T13
-> pending. v4's all-concerns spec-panel 20/20 still holds; long-form + Narrative
+> Phase 7 **confirmed**; **ALL 13 tracks drafted (T1–T13) & QC-green — album
+> `check_streaming_lyrics` verdict: ALL READY**; not yet generated on Suno.
+> v4's all-concerns spec-panel 20/20 still holds; long-form + Narrative
 > + all-vocal + title locked. **Voice spine = fragile genderless head-voice**
-> (§3–§4); narrator spoken-word delivery DNA (§8).)
+> (§3–§4); narrator spoken-word delivery DNA (§8); **album cover locked = T12
+> shatter** (§6). Remaining: pre-gen prereqs (genre README bucket, host/watch
+> Persona snapshots, owned KOH stem), Suno generation + multi-pass comp, post
+> gestures, pre-release chain.)
 > **Source:** `SOURCE/kapitel-0.md` + `SOURCE/section-meta.md` (KOH/tier
 > ground truth) — "Kapitel 0 — Kohärenz Protokoll" (Coherence Protocol,
 > Chapter 0). Standalone. Direct 1:1 musical translation.
