@@ -78,6 +78,7 @@ Collection — eigenständige Stücke, lose verbunden über Ort (Station, nachts
 - **Verordnete vs. echte Gefühle** — kein Weg, Chemie von Empfindung zu trennen
 - **Dokumentarische Kühle** — Beobachtung ohne Urteil, Feier und Hohlheit im selben Bild
 - **Dunkle Komik** — das Sardonische des Ausgeliefertseins
+- **Cool vs. sehnend** — blunte, unbekümmerte Strophen gegen sehnsüchtige Hooks
 
 ## Motifs & Threads
 
@@ -137,11 +138,11 @@ Collection — eigenständige Stücke, lose verbunden über Ort (Station, nachts
 - **Beats**: Fragmentierter, nächtlicher Trip Hop — verschleppt, körperlos, mit Lücken (Burial-/FKA-twigs-Schule). Kein Vier-zu-Boden-Club; eher zerbrochene Breaks, die wie aus der Ferne kommen.
 - **Bass**: **Sub-Herzschlag** — tiefer, langsamer, fast körperlicher Sub-Bass, der wie ein gemeinsamer Puls wummert. Wenig Bewegung, maximale Schwere. Das „eine Wir" als hörbarer Herzschlag des kollektiven Körpers.
 - **Texturen**: Sakral-dunkle Schicht (von Hausswolff / Chelsea Wolfe) — Orgel-Drones, gotischer Hall, Klinik-Raumklang. Vinyl-/Tonband-Knistern, ferne Stations-Geräusche (Medikamentenwagen, Neonlicht-Brummen).
-- **Vocals**: Ein klar gesungenes, sehnsüchtiges **„Wir"** — die menschliche Konstante über dem benebelten Bass. Geschichtete/übereinandergelegte Stimmen, die zu einer verschmelzen (viele werden eins). Deutsch.
+- **Vocals**: Zweistimmige Architektur. **Strophen**: deadpan, blunt, lakonisch-direktes Berliner Sprechgesang-„Wir" (Ikkimel-Haltung) — cool, unbekümmert, transgressiv, aber nicht zwingend vulgär. **Hooks**: das klar gesungene, sehnsüchtige „Wir" — geschichtete Stimmen, die zu einer verschmelzen (viele werden eins). Die Spannung zwischen coolem Strophen-Ich und sehnendem Hook-Wir trägt das Album. Deutsch.
 - **Sprache**: Deutsch durchgehend.
-- **Mood**: Benebelte Euphorie mit Riss — dokumentarisch kühl, sardonisch, hypnotisch. Würdevoll trotz Verfall.
+- **Mood**: Benebelte Euphorie mit Riss — dokumentarisch kühl, sardonisch, hypnotisch. Lakonisch-unbekümmerte Attitüde über sakral-dunklem Fundament. Würdevoll trotz Verfall.
 
-**Referenz-Anker**: Burial, FKA twigs, Anna von Hausswolff, Chelsea Wolfe; Bass-Schwere von Massive Attack (Mezzanine).
+**Referenz-Anker**: Ikkimel (Strophen-Attitüde, blunter Berliner Deadpan); Burial, FKA twigs (Fragmentierung); Anna von Hausswolff, Chelsea Wolfe (sakral-dunkle Hooks); Bass-Schwere von Massive Attack (Mezzanine).
 
 ## Tracklist
 
