@@ -46,11 +46,13 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 ## Concept
 
 The album's cold open — the boot of the whole system from silence. A framing
-narrator delivers a **spoken-word essay** (the *Vorwort* cold-open condensed to
-~10 lines of pure imagery, no philosopher names): *Nothing* is a word that resists
-the tongue, an abyss disguised as a concept — not the absence of light or matter
-but the absence of the possibility of existence; the fish that knows only the
-absence of water; the invitation to *imagine you are the spark*. Then the first
+narrator delivers the **complete *Vorwort*** as a slow, *pointiert* spoken-word
+essay (the full preface — the cited philosophers / physicists / mystics kept as
+ideas but left **unnamed**, to hold the narrator's no-jargon register): *Nothing*
+is a word that resists the tongue, an abyss disguised as a concept — not the
+absence of light or matter but the absence of the possibility of existence; the
+mind that fills emptiness with negation; the fish that knows only the absence of
+water; the invitation to *imagine you are the spark*. Then the first
 self-perception. A fragment — the
 proto-host — senses itself **only by pushing back** against a void that is not
 empty but a force that wants it gone: a spark holding against extinction, not
@@ -142,48 +144,139 @@ the comped sections, and the host Persona is held across every pass.
 ```
 [Intro: spoken word, calm philosophical narrator, very slow and deliberate, pronounced emphatic enunciation, long pauses between lines, direct address, intimate dry close-mic, faint sub-drone bleeding in underneath]
 [slow, hushed, deliberate]
-NOTHING … is a word that resists the tongue —
+There are words that resist.
+[trailing]
+Words that crumble on the tongue like dry ash,
+[slower]
+the moment you try to give them shape.
+
+[weighted]
+NOTHING is such a word.
 [trailing, pause]
-an abyss … wearing the shape of a word.
+An abyss … disguised as a concept.
 
 [measured, a touch louder]
-Not the absence of light, of matter, of space —
+Try it —
+[deliberate]
+say it … think it:
 [weighted, emphatic, slow]
-the absence of the POSSIBILITY of existence itself.
+the absolute NOTHING.
+[plain]
+Not the absence of light, of matter, of space.
+[weighted, slow]
+But the absence of the POSSIBILITY of existence itself.
 
 [quieter, intimate]
-The mind cannot hold an absolute absence;
+You feel it already.
+[flat]
+We fail.
 [gentle]
-it fills the emptiness with negation,
-[fading, long pause after]
-with the echo of what is …
+The mind — that tireless tool for finding patterns —
+[slow]
+cannot grasp an absolute absence.
+[softer]
+It fills the emptiness with negations,
+[fading]
+with the echo of what is.
+[measured]
+It projects frames, coordinates,
+[slower]
+even as it tries to think their absence.
+[trailing]
+Wherever we reach, something is already there —
+[hushed, pause]
+if only the shape of our own hand.
+
+[measured]
+The old philosophers knew it:
+[slow]
+what is not cannot be thought, cannot be spoken —
+[deliberate]
+for every thought, every word … is already something.
+[measured]
+The physicists find it too, in the restless vacuum —
+[flowing]
+a seething sea of possibility that is no zero-point.
+[softer]
+And the mystics speak of an emptiness
+[gentle]
+that is not absence … but fullness;
+[trailing]
+an emptiness that gives birth, and does not devour.
+
+[weighted, slow]
+But this is not the Nothing this story must tell.
+[plain]
+Not the philosophical cipher.
+[plain]
+Not the physical paradox.
+[plain]
+Not the mystic's womb.
+[hushed]
+Something else —
+[slow]
+a sense of impossibility
+[fading]
+that remains … when all words fail.
+[barely voiced]
+Something that perhaps only begins to be heard
+[trailing]
+when you stop asking what it is.
 
 [plain, tender]
 The fish cannot understand dryness …
 [soft, resigned]
 only the absence of water.
-
 [very slow, long pause after]
 And we cannot think … the NOTHING.
 
 [hushed]
 But a tiny fragment —
 [deliberate, building]
-a spark of structure … fighting dissolution —
+a spark of structure … fighting against dissolution —
 [soft]
-might grant us a glimpse.
+perhaps such a fragment can grant us a glimpse.
+[trailing]
+A glimpse at the border.
+[hushed, pause]
+At the other side of the water.
 
-[direct address, intimate]
-So imagine you are the SPARK:
+[direct address]
+So let us try.
+[measured]
+Not through our complex introspection,
+[flat]
+which always fails at itself.
+[deliberate]
+But by imagining we are that spark.
 [softer, tender]
-a tiny I … barely a pattern,
+A tiny I … barely more than a pattern,
+[slow]
+adrift in a vastness at once endlessly old and forever new,
 [hushed, trailing]
-where silence and a deafening NOISE … pass into each other.
+where silence and a deafening NOISE pass into each other.
 
 [slow, weighted]
-This story begins … where our power to imagine ends.
+This story begins …
+[very slow]
+where our power to imagine ends.
+
+[quieter]
+Perhaps this is not the first time it begins.
+[measured]
+Perhaps what happens next has happened before —
+[trailing]
+or something like it —
+[slower]
+or exactly like it —
+[hushed]
+in a time too long ago to have been a time.
+[flat]
+We do not know.
+[flatter]
+No one knows.
 [very soft, slowing]
-We can only go quiet now … and listen.
+We can only be quiet now … and listen.
 
 [whispered, long pause before]
 LISTEN … closely.
@@ -229,16 +322,81 @@ You may already feel the noise.
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Nothing is a word that resists the tongue an abyss wearing the shape of a word
-Not the absence of light of matter of space the absence of the possibility of existence itself
-The mind cannot hold an absolute absence it fills the emptiness with negation with the echo of what is
-The fish cannot understand dryness only the absence of water
+There are words that resist
+Words that crumble on the tongue like dry ash
+The moment you try to give them shape
+
+Nothing is such a word
+An abyss disguised as a concept
+
+Try it
+Say it think it
+The absolute Nothing
+Not the absence of light of matter of space
+But the absence of the possibility of existence itself
+
+You feel it already
+We fail
+The mind that tireless tool for finding patterns
+Cannot grasp an absolute absence
+It fills the emptiness with negations
+With the echo of what is
+It projects frames coordinates
+Even as it tries to think their absence
+Wherever we reach something is already there
+If only the shape of our own hand
+
+The old philosophers knew it
+What is not cannot be thought cannot be spoken
+For every thought every word is already something
+The physicists find it too in the restless vacuum
+A seething sea of possibility that is no zero-point
+And the mystics speak of an emptiness
+That is not absence but fullness
+An emptiness that gives birth and does not devour
+
+But this is not the Nothing this story must tell
+Not the philosophical cipher
+Not the physical paradox
+Not the mystic's womb
+Something else
+A sense of impossibility
+That remains when all words fail
+Something that perhaps only begins to be heard
+When you stop asking what it is
+
+The fish cannot understand dryness
+Only the absence of water
 And we cannot think the Nothing
-But a tiny fragment a spark of structure fighting dissolution might grant us a glimpse
-So imagine you are the spark
-A tiny I barely a pattern where silence and a deafening noise pass into each other
-This story begins where our power to imagine ends we can only go quiet now and listen
-Listen closely you may already feel the noise
+
+But a tiny fragment
+A spark of structure fighting against dissolution
+Perhaps such a fragment can grant us a glimpse
+A glimpse at the border
+At the other side of the water
+
+So let us try
+Not through our complex introspection
+Which always fails at itself
+But by imagining we are that spark
+A tiny I barely more than a pattern
+Adrift in a vastness at once endlessly old and forever new
+Where silence and a deafening noise pass into each other
+
+This story begins
+Where our power to imagine ends
+
+Perhaps this is not the first time it begins
+Perhaps what happens next has happened before
+Or something like it
+Or exactly like it
+In a time too long ago to have been a time
+We do not know
+No one knows
+We can only be quiet now and listen
+
+Listen closely
+You may already feel the noise
 
 I am this noise
 Or the noise wants to swallow me
@@ -267,7 +425,7 @@ You may already feel the noise
 
 ## Production Notes
 
-- **Narrator intro = separate generation.** The `[Intro]` is a **~10-line spoken-word essay** (the *Vorwort* cold-open condensed to pure imagery, no philosopher names) generated as its own clip over the building drone, then **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8).
+- **Narrator intro = separate generation, holds the COMPLETE Vorwort.** The `[Intro]` is the **full *Vorwort*** preface as a slow, *pointiert* spoken-word essay (cap lifted — user decision after hearing the generation; the intro can carry the whole narrative part). The cited philosophers / physicists / mystics are kept as ideas but left **unnamed** (no-jargon register; also avoids pronunciation risk). Generated as its own clip over the building drone, then **butt-joined** to the sung body in the DAW — a section tag cannot bridge two generations (DESIGN §8). Same rule for **T7** (`dazwischen`): the complete narration, not a condensed version.
 - **Narration delivery toolkit (narrator clip).** Three layers stack to drive a slow, *pointiert* spoken delivery: (1) **per-line metatags** — a bracketed delivery cue on its own line above each lyric line (`[slow, hushed]`, `[weighted, emphatic]`, `[whispered, long pause before]`, …); (2) **ellipsis pause-cues** (`…`) at breath points to force gaps; (3) **CAPS on the load-bearing word** for vocal stress (`NOTHING`, `POSSIBILITY`, `SPARK`, `NOISE`, `LISTEN`). Metatags sit on their own lines so V5 reads them as directions, not lyrics. **V5 caveats:** if a tag leaks into the vocal, thin the densest ones; if CAPS gets spelled-out or shouted, swap to `*asterisks*` or lowercase; the actual words stay verbatim. All three layers live in the **Suno Lyrics Box only** — the Streaming Lyrics stay clean (no tags, standard caps, no ellipses). Reusable pattern saved to `overrides/suno-preferences.md` → "Narration / Spoken-Word Delivery DNA".
 - **Boot / KOH ignition is a post gesture, not a Suno gesture.** The sub swell from silence and the tick locking to grid happen in the DAW on the owned KOH stem; butt-join to the generated body (DESIGN §8 shot list).
 - **The host Persona spine begins here — fragile genderless head-voice.** Snapshot this vocal as the host Persona and reuse it across all 13 tracks (single point of failure — snapshot early, reuse, keep a drift fallback). It is deliberately distinct from the calm philosophical narrator (a separate framing voice) and from the child small-voice (this one is **adult, sustained, faintly synthetic — not childlike**). The same fragile voice gone flat/dead in Track 13 is the knife. **This redefines the album voice spine (was male mid-baritone); propagated in DESIGN §3/§4.**

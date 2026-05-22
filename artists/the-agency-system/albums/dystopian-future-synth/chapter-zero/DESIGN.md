@@ -787,14 +787,19 @@ The "pretty/heal" risk lives in **harmony**, not adjectives. Force it:
 ### Narrator intros (CONCERN 3 — GO)
 
 Generate the two narrator intros (Tracks 1, 7) as **separate clips** (this
-protects level and the boot gesture). Use the narrator register verbatim. **Cap
-lifted for Track 1 (user decision):** T1's narrator is a **~10-line spoken-word
-essay** — the *Vorwort* cold-open condensed to pure imagery (no philosopher
-names), the drone building underneath. **Track 7's narrator stays brief (2–4
-lines)** — the hanging question, not an essay. **The sung body is its own
-separate generation beginning at `[Verse 1]`; the cut from the narrator clip to
-the body is a mix butt-join, not an in-prompt hard-cut** (a section tag can't
-bridge two generations). Watch the "echo" token-bias (below).
+protects level and the boot gesture). Use the narrator register verbatim, slow
+and *pointiert*. **Both intros carry the COMPLETE narration (user decision, after
+hearing the T1 generation — the intro can hold the whole narrative part):**
+- **Track 1** = the **complete *Vorwort*** preface (cap lifted; not condensed),
+  the drone building underneath.
+- **Track 7** = the **complete *dazwischen*** narration (not a brief 2–4-line
+  hanging question — the full in-between passage).
+In both, the cited philosophers / physicists / mystics are kept as ideas but
+left **unnamed** (the narrator's no-jargon register; also avoids Suno
+pronunciation risk). **The sung body is its own separate generation beginning at
+`[Verse 1]`; the cut from the narrator clip to the body is a mix butt-join, not
+an in-prompt hard-cut** (a section tag can't bridge two generations). Watch the
+"echo" token-bias (below).
 
 ### Post / master shot list (CONCERN 5 — these are NOT Suno gestures)
 
