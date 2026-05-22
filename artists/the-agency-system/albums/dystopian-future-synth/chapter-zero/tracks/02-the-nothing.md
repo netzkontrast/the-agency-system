@@ -103,7 +103,9 @@ low-contrast, barely-there.
   low-contrast loudness (S1 latency)
 - **Instrumentation**: continuous sub-only drone on C (album spine), granular
   textures, sparse processed pad; no kit, no bass groove; the owned KOH stem
-  (Layer A) laid continuously underneath
+  (Layer A) laid continuously underneath. A sparse **three-note processed-pad
+  motif** (minor, tonic-refusing) is the track's **cold melodic hook** — stated
+  in the intro, recalled in the instrumental breaks, fading at the close
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -136,7 +138,9 @@ no drums, no synthwave, no autotune, no warm pads
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[fragile genderless head-voice, thin breathy near-falsetto, trembling, present tense, dry close-mic, no reverb; a sub-low murmur surfacing only in the parenthesized gaps]
+[Intro — instrumental: a sub swell rising from silence, the sustained low C drone igniting, granular stutter, opacity-fade reverb tails; a sparse three-note processed-pad motif hangs and refuses to resolve — the cold melodic hook, no drums]
+
+[Verse 1: fragile genderless head-voice, thin breathy near-falsetto, trembling, present tense, dry close-mic, no reverb; a sub-low murmur surfacing only in the parenthesized gaps]
 I am. Barely.
 A small thing held in something with no edge.
 Not empty — it pulls.
@@ -144,7 +148,7 @@ It hums below hearing, and it wants
 whatever does not match it gone.
 (it is pointless)
 
-[same fragile head-voice, slower, thinning, contours dropping in and out]
+[Verse 2: same fragile head-voice, slower, thinning, contours dropping in and out]
 No up. No down.
 No time that runs —
 one moment stretched like honey gone hard,
@@ -153,7 +157,9 @@ A shape flares up, a thought with no one thinking it,
 and it is wiped.
 (it is pointless)
 
-[a distinct, younger small-voice breaks in — whispered child head-voice, androgynous, audible breath, lo-fi tape hiss, fragments that almost arrive]
+[Instrumental break — melodic: the three-note pad motif returns, thinner, smearing into granular dropouts; the drone widens, contours falling in and out, no drums]
+
+[Bridge: a distinct, younger small-voice breaks in — whispered child head-voice, androgynous, audible breath, lo-fi tape hiss, fragments that almost arrive]
 It is cold.
 I don't want to.
 Where is — nothing there.
@@ -162,7 +168,9 @@ I.
 Am.
 Small.
 
-[the fragile head-voice returns, almost-remembering]
+[Instrumental break — near silence: only the sub-drone and a far, frostbitten bell-like overtone; the motif barely implied, dissolving, no drums]
+
+[Verse 3: the fragile head-voice returns, almost-remembering]
 I am different. Still.
 I have a shape, an inside,
 a thin echo of something
@@ -170,7 +178,7 @@ that maybe came before —
 no memory, only a leaning,
 a pull toward symmetry in all this noise.
 
-[head-voice, drifting, the sub-low murmur underneath]
+[Verse 4: head-voice, drifting, the sub-low murmur underneath]
 I drift. I tumble.
 A plaything at the edge.
 To go out.
@@ -179,7 +187,7 @@ to let the inside loosen
 and fall back in.
 (it is pointless)
 
-[head-voice, faint, almost gone]
+[Verse 5: head-voice, faint, almost gone]
 Sometimes others drift past —
 sparks, echoes, near and wrong.
 Some fit. Most pass.
@@ -188,9 +196,13 @@ Pressing quiet, then a burst of noise —
 the only company I keep.
 The one sure thing: that I could go out.
 
-[the small-voice returns, barely there, fading into the drone]
+[Instrumental break — melodic: the pad motif returns one last time, glacial and unresolved, dissolving into opacity-fade reverb tails over the C drone — the hook fading out, no drums]
+
+[Outro: the small-voice returns, barely there, fading into the drone]
 It is cold.
 I am small.
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
@@ -270,7 +282,14 @@ I am small
   barely under the bed, never a second lead; the slow build toward Track 10.
 - **Long-form (7:00) is comped** from multiple Suno passes over the continuous
   owned KOH stem (Layer A) — never one pass. **Lyric density does NOT scale with
-  runtime** (193 words; the extra minutes are instrumental/atmospheric expanse).
+  runtime** (205 words; the extra minutes are instrumental/atmospheric expanse).
+- **Instrumental expanse carries the duration:** an instrumental `[Intro]` plus
+  three `[Instrumental break]` sections space the sparse vocal movements and hold
+  the 7-minute durational ground state — descriptive instrumental tags only (no
+  parentheses, so V5 reads them as directions, never sings them). The **three-note
+  pad motif** is the recurring **cold melodic hook**; treat it as a comped/owned
+  element (owned MIDI or extracted pad) so it recalls cleanly across passes (§8
+  long-form assembly), not gambled on Suno reproducing it per generation.
 <!-- SERVICE: suno -->
 - **Token-bias protection:** *noise*, *echo* collide with Suno's atmospheric-echo
   bias. Keep them intact via **V5 literal mode + cold/dry Style Box descriptors**

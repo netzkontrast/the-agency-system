@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 03 |
 | **Title** | Contact |
 | **Album** | [[Album Title]](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Explicit** | No |
+| **POV** | First-person — the fragment / proto-host (fragile head-voice), carrying a warm-voice contact colour and a reaching-voice break |
+| **Role** | Closeness, then withdrawal (S1 · KOH 0.86); the proto-host carrying a warm-voice contact + reaching-voice break, then the clinical curdle (first whiff of systemic logic) |
+| **Fade Out** | 8s |
+| **Target Duration** | 6:00 |
+| **Sources Verified** | N/A |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,7 +45,23 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Track 3 is the album's one moment of **closeness — and its theft** (`kontakte`,
+KOH 0.86, state **S1 · Latenz**; the source's *trügerische Atempause* / deceptive
+breathing-pause). After the bare existence of T1–T2, the fragment is touched by
+another signature — a soft click, like a lock easing shut. For the first time the
+**warm-voice** rises (a warm-soprano colour of the *same* head-voice): *"It is
+warm… here is a place where I am not only I."* The void's pressure parts; the
+fear-hum is halved, shared.
+
+Then a wave in the noise tears the bond — the other signature **goes out**, the
+very fate T2 feared, now witnessed in another. The **reaching-voice** flickers in
+unresolvable ambivalence (*"Stay. — No, go — come back — … And — yet."*), never
+resolving to the tonic. Alone again, the fragment files the loss not as grief but
+as data: the **proto-host's own voice turns clinical** — same fragile timbre,
+words gone cold — *"Connection is possible. Connection is not safe. Note it. Hold
+less. Cold. Necessary."* This is the **first whiff of systemic logic** (no
+separate logic-voice yet) — the seed that becomes the system. The warmth's theft
+is the point.
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -61,7 +77,12 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
+| 1 · The Listening / 2 · The Nothing | motif | "a wave in the noise" | The noise the fragment first sensed; here the wave that tears the new bond apart |
+| 2 · The Nothing | callback/payoff | "The other signature is torn away. Out." | T2's feared "going out" now witnessed happening to another — the fear realised externally |
+
+**Motif established here:** the **cold-logic seed** — *"Note it. Hold less. Cold.
+Necessary."* — the proto-host's own diction hardening; seeds the **logic-voice
+(Track 4)** and the system.
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 
@@ -69,13 +90,24 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+A soft click, like a lock easing shut. Feverish probing across a resonance field.
+Warmth that is feverish, not comforting — a place where the pressure parts. A
+thread pulled taut and breaking; a signature winking out into the field. Doubled,
+flickering contours (the reaching-voice) that never align. Then the cold: clipped,
+flat, clinical. Latency Violet `#3B3355` still the tier colour — the warm-voice's
+overheated amber is **resisted** (no warmth that reads as comfort). Electroacoustic
+dark ambient; a first faint pulse, processed pad, the bed refusing the tonic.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 70 BPM (a first faint pulse enters)
+- **Feel**: electroacoustic dark ambient; **sequenced registers, no pop hook**;
+  the bed **refuses the tonic** (modal, tonic-refusing) — closeness via timbre,
+  never a consonant pretty melody; brief self-overlap only at the reaching-voice
+  ambivalence
+- **Instrumentation**: processed pad, first faint pulse, continuous sub-only
+  drone on C (album spine); warm-soprano colour for the contact moment (held back
+  from becoming a love-song hook); no kit
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,14 +116,16 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Fragile genderless head-voice, thin and breathy, trembling near-falsetto, present-tense, adult not childlike — the lead. The same voice warms once into a warm soprano colour, breathy at the edges, vowel-forward legato, intimate and tremulous (never a pretty consonant hook); and once into an alto reaching colour with microtonal pitch-bend and sliding vibrato, doubled and flickering, never resolving to the tonic; then the same voice turns cold, clipped, flat and declarative. Electroacoustic, dark ambient; 70 BPM, C minor turning modal — the bed refuses the tonic, no resolution. Sustained low C drone underpinning, sub-bass continuo, cold, no key change. A first faint pulse, processed pad; dry close-mic, voice forward, restrained, dark, real dynamic range, low-contrast.
 ```
+
+*Suno settings: Model V5 · Instrumental Off · Weirdness ~35 · Style Influence ~75. Once the host Persona (fragile head-voice) is snapshotted, **drop the head-voice gender/register descriptors** from this box and select the Persona instead (Layer C). **Sequence the registers — do not stack** (§8); the brief reaching-voice self-overlap is a comp move in mix. Verify the **modal / tonic-refusing** shift survives each regen.*
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no synthwave, no autotune, no major-key resolution
 ```
 
 ### Lyrics Box
@@ -106,20 +140,61 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Verse 1]
-[Lyrics here...]
+[Verse 1: fragile genderless head-voice, thin breathy near-falsetto, trembling, present tense, dry close-mic, no reverb; a first faint pulse and processed pad underneath, the bed refusing the tonic]
+A push. Hard. Not a wave this time —
+something with an edge of its own.
+A signature, clear in the noise.
+Feverish, I reach back. It fits.
+Deep in, a soft click —
+like a lock easing shut.
 
-[Chorus]
-[Lyrics here...]
+[Verse 2: the same voice opens and warms — warm soprano colour, breathy at the edges, vowel-forward legato, intimate, lullaby-soft]
+It is warm.
+Warm in a way that nothing was before,
+because before, nothing was.
+Here is a place where I am not only I.
+The pressure parts around it —
+and I share. We share.
 
-[Verse 2]
-[Lyrics here...]
+[Interlude: head-voice, hushed, a held breath]
+For a moment the void leans back.
+The fear-hum thins, halved, carried between us.
+We could stay. We could just stay.
 
-[Bridge]
-[Lyrics here...]
+[Verse 3: head-voice, fragile and quickening]
+Then a wave in the noise — brutal, blind —
+drags at the thread.
+I feel it stretch. I hold. I hold —
+it breaks.
+The other signature is torn away.
+Out. Gone from the field.
 
-[Outro]
-[Lyrics here...]
+[Bridge: the reaching-voice — alto, microtonal pitch-bend, sliding vibrato, self-correcting, doubled and flickering on itself]
+Stay. — No, go —
+stay, don't go — come back —
+I — no, I don't want you to —
+come back.
+It is not that I did not know.
+It is only that I did not.
+And — yet.
+
+[Verse 4: head-voice, thinner than before]
+Alone again.
+A new echo stays: the sharp edge of the loss,
+a thinner skin than I had.
+And a fact I did not have before:
+this holding is possible.
+And it does not last.
+
+[Outro: the same fragile voice — but the words go cold, clipped, flat, declarative]
+So.
+Connection is possible.
+Connection is not safe.
+Note it. Hold less.
+Cold.
+Necessary.
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +205,78 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+A push hard not a wave this time
+Something with an edge of its own
+A signature clear in the noise
+Feverish I reach back it fits
+Deep in a soft click
+Like a lock easing shut
+
+It is warm
+Warm in a way that nothing was before
+Because before nothing was
+Here is a place where I am not only I
+The pressure parts around it
+And I share we share
+
+For a moment the void leans back
+The fear hum thins halved carried between us
+We could stay we could just stay
+
+Then a wave in the noise brutal blind
+Drags at the thread
+I feel it stretch I hold I hold
+It breaks
+The other signature is torn away
+Out gone from the field
+
+Stay no go
+Stay don't go come back
+I no I don't want you to
+Come back
+It is not that I did not know
+It is only that I did not
+And yet
+
+Alone again
+A new echo stays the sharp edge of the loss
+A thinner skin than I had
+And a fact I did not have before
+This holding is possible
+And it does not last
+
+So
+Connection is possible
+Connection is not safe
+Note it hold less
+Cold
+Necessary
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Sequence the registers, do NOT stack** (§8): warm-voice → reaching-voice →
+  clinical proto-host. All carried by the **shared host timbre** — the warm-voice
+  and reaching-voice are *colourations of the same fragile head-voice*, not
+  separate Personas; brief **self-overlap only at the "stay/go" ambivalence** (the
+  reaching-voice doubled/flickering).
+- **No consonant "pretty" hook** — closeness is conveyed by timbre (warm,
+  tremulous legato), never a melodic chorus. Verify the **modal, tonic-refusing**
+  shift survives the regen (§8).
+- **The clinical curdle is the proto-host's OWN diction hardening** — same timbre,
+  words go cold and clipped. **NOT a separate logic-voice** (the logic-voice first
+  appears in T4). Do not add formant-flattening here.
+- **No heavy-voice in T3** (locked: proto-host + warm + reaching only) — the
+  curdle is T3's own answer to loss, not collapse.
+- Long-form (6:00) comped over the continuous owned KOH stem (Layer A); lyric
+  density does not scale with runtime (207 words; the expanse is instrumental).
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **Token-bias protection:** *noise*, *echo* kept intact via **V5 literal mode +
+  cold/dry Style Box descriptors** — no "sing as written" line in the lyrics box.
+  No numbers/decimals. name_exposure: function/role only — the warm-voice and
+  reaching-voice are registers, never named alters.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -156,7 +287,7 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | No pronunciation risks: `check_homographs` clean (0 matches). "tear"/"wound" deliberately avoided ("it breaks" / "torn away"). No proper nouns, no numbers, no acronyms. *noise* / *echo* are token-bias words (Style Box, not respelled). |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
@@ -170,13 +301,54 @@ Blank lines between sections only]
 - [ ] **Numbers**: Year formats checked ('93 not ninety-three)
 - [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
 
-**Proper nouns in this track:**
+**Proper nouns in this track:** none — `scan_artist_names` clean, no names/places/brands.
+
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
-| — | — | — | — |
+| — | — | — | n/a |
 <!-- /SERVICE: suno -->
 
 <!-- END VOCAL ONLY -->
+
+## Track Art (ASDLS)
+
+> **ASDLS law (binding, all prompts below).** ≤5% state colour over ≥95%
+> **Terminal Black `#0B0D17`** / **Deep Charcoal `#1A1D24`**. **Hard edges only —
+> no gradients.** **One core symbol, one tier per image.** 100% digital/synthetic
+> materiality (interface brutalism, clinical dystopia, MRI / electron-microscope /
+> x-ray fidelity, monospace code-as-texture). **Role language only — no personal
+> names.** Track 3 = **Tier 1 · Latency/Freeze**, state colour **Latency Violet
+> `#3B3355`**; glitch typology = **packet loss** (contours break off, ghostly thin
+> wireframes, fading opacity); composition = **extreme wide angle (14mm), the
+> motif tiny and vanishing in fog.** **Resist the warm-voice's amber — no warmth
+> that reads as comfort** (the closeness is a trap). No Flame, no Kintsugi, no
+> Clean Ping, no System Blue.
+>
+> **Generation route (binding):** DALL-E primary (per
+> `overrides/album-art-preferences.md`). The `::` SPECD block is the
+> Midjourney-native form.
+
+**Core symbol:** two tiny wireframe fragments briefly joined by a single
+hair-thin filament — the second fragment fraying and dissolving (packet loss),
+the filament going slack; the bond and its breaking, in a vast foggy void.
+
+### DALL-E — Concept A · The Severed Filament *(primary)*
+
+```
+Create a 4:5 portrait image in near-total darkness. Two minuscule, fragile geometric wireframe structures float far apart in an immense, foggy, volumetric void, joined by a single hair-thin filament stretched taut between them — the only link in a crushing emptiness. The second structure is fraying and dissolving, its contours breaking off mid-stroke and fading to transparency, as if losing data packets; the filament has gone slack at that end, coming undone. Both structures, the filament, and the breaking contours are picked out in a faint, desaturated cold violet (#3B3355) covering no more than 5% of the frame; everything else is terminal black (#0B0D17) bleeding into deep charcoal (#1A1D24), milky and contrast-starved at the edges. Hard-edged linework, no gradients, no glow, no warmth. Extreme wide-angle 14mm perspective so both forms read as minuscule and isolated. Mood: a fragile bond at the instant it is torn, cold and final. Style: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, medical-imaging aesthetic. Avoid: synthwave, 1980s retro, outrun, purple-orange gradient, neon grid, daylight, sun, natural or organic elements, cute or soft lighting, watercolor, analog painting, visible paper texture, lens flare, any warm colour, amber, magenta, orange, gold, or blue.
+```
+
+### DALL-E — Concept B · After *(alternate — the loss)*
+
+```
+Create a 4:5 portrait image, almost entirely empty black. A single tiny wireframe structure floats alone in a vast foggy void, with one broken filament-end trailing from it into nothing — the place where another structure used to be, now gone. The structure's own contours have begun to fray, a thinner skin than before. The structure and the dangling broken filament are a pale cold violet (#3B3355), no more than 5% of the frame; the remaining 95%-plus is terminal black (#0B0D17) and deep charcoal (#1A1D24), foggy and pale, pressing in. Ghostly thin wireframe, packet-loss fraying, hard edges, no gradient, no glow, no warmth. Extreme wide angle, the subject tiny and isolated. Mood: alone again, a thinner skin, the cold setting in. Style: interface brutalism, clinical dystopian, medical-imaging fidelity, monospace code-as-texture. Avoid: synthwave, 1980s retro, outrun, purple-orange gradient, neon grid, daylight, sun, natural elements, cute, soft lighting, watercolor, analog painting, visible paper texture, lens flare, organic curves, warmth, amber, magenta, orange, gold, blue.
+```
+
+### Pure ASDLS — SPECD skeleton (Midjourney-native)
+
+```
+Two minuscule fragile wireframe fragments joined by a single hair-thin filament, the second fraying and dissolving, the filament going slack, lost in a vast foggy void :: Tier 1 Latency/Freeze, <=5% Latency Violet #3B3355 over >=95% Terminal Black #0B0D17 / Deep Charcoal #1A1D24, packet-loss glitch (contours break off, ghostly thin wireframes, fading opacity), one symbol / one tier, no warmth :: extreme wide-angle 14mm, both motifs tiny and vanishing in volumetric fog, crushing negative space, camera far and isolating :: interface brutalism, clinical dystopian aesthetic, high-contrast dark mode, synthetic digital materiality, medical imaging aesthetic, hard edges, no gradient, no glow :: --no synthwave, retro, outrun, purple-orange gradient, neon grid, daylight, sun, natural elements, cute, soft lighting, watercolor, analog painting, paper texture, lens flare, organic curves, warmth, amber, magenta, orange, gold, blue --style raw --ar 4:5
+```
 
 ## Generation Log
 
