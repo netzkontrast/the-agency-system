@@ -109,7 +109,7 @@ Das macht die Pflege — Haende hoch — die Pflege macht das schon!
 Da haben wir den Salat!
 
 [Verse 1]
-Vierter Stock unterm Dach, sechsunddreissig Grad,
+Mittagshitze unterm Dach, sechsunddreissig Grad,
 die Luft steht wie Beton, und der Luefter ist kaputt.
 Drei Blaetter in der Schuessel, dreissig Leute, eine Frage:
 Wer hat das verbockt? Keiner. Aber jeder hat 'ne Aussage.
@@ -179,7 +179,7 @@ Da haben wir den Salat
 Das macht die Pflege, die Pflege macht das schon
 Da haben wir den Salat
 
-Vierter Stock unterm Dach, sechsunddreißig Grad
+Mittagshitze unterm Dach, sechsunddreißig Grad
 Die Luft steht wie Beton, und der Lüfter ist kaputt
 Drei Blätter in der Schüssel, dreißig Leute, eine Frage
 Wer hat das verbockt? Keiner. Aber jeder hat 'ne Aussage
