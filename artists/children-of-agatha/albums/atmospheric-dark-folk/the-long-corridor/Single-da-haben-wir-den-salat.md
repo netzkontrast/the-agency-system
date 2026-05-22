@@ -233,6 +233,35 @@ Da haben wir den Salat
 
 **Artist-Name** unten rechts; Schreibweise „Children of Agatha" beibehalten.
 
+### AI Art Platform
+
+**Platform**: DALL·E / ChatGPT
+
+### Image Prompt (DALL·E / ChatGPT)
+*Paste into ChatGPT/DALL·E. Konversationell, kein Negative-Prompt. Text wird nicht gerendert — Artist-Name später digital unten rechts ergänzen.*
+
+```
+Create a square album cover (1:1 aspect ratio) painted like a Baroque holy-relic
+icon — except the sacred object is a cheap plastic cafeteria salad bowl. A scuffed
+white plastic bowl holding only three limp, sad lettuce leaves sits enthroned on a
+small ornate silver processional float, lifted high; beside it, a single head of
+Romaine lettuce is held aloft like a holy relic. A radiant gilded halo of golden
+rays glows behind the bowl. The light shifts from cold institutional hospital neon
+into warm flickering candlelight. In the softly blurred background: an overheated,
+stuffy attic psychiatric-ward common room — a circle of plastic chairs, sweaty
+out-of-focus figures with their hands raised in worship, visible heat shimmer in
+the air, a broken ceiling fan overhead. Color palette: cold neon-green and sickly
+heat-yellow filling the room, against a warm gold halo; the green salad is the
+single luminous, "holy" object in the scene. Mood: reverent, ceremonial, and
+deadpan-absurd — a solemn cathedral treatment of something utterly trivial; a quiet
+political satire about worshipping scarcity instead of fixing it. Painterly,
+dramatic chiaroscuro lighting, ornate gilding that is just slightly grubby and
+institutional. Leave clean empty space in the bottom-right corner for a small
+artist credit added later. Do not render any text or letters in the image.
+```
+
+**Iteration tips:** Falls die Schüssel zu „edel" wirkt → „cheap, scuffed, institutional plastic" verstärken. Falls zu albern → „solemn, reverent, museum-lit" betonen. Für mehr Politik-Bite → „a faint stamped ‚Sparmaßnahme'/budget-cut document pinned to the wall in the background" ergänzen (DALL·E rendert Text aber unzuverlässig — eher als Form andeuten). Thumbnail-Test: Halo + grüne Schüssel müssen bei 200×200 px sofort lesbar sein.
+
 ## Production Notes
 
 - Strophen = schneller, trockener Comedy-Deutschrap-Flow (zackig, politisch, viele Punchlines); Hook = großer Gang-Chant mit Mitsing-Energie
