@@ -52,7 +52,7 @@ Lichtschalter klacken, der Flur wird dunkel bis auf Notbeleuchtung. Schritte ent
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark trip hop, cinematic bass, ~72 BPM, hushed and lurking, deep sub-bass heartbeat, sparse fragmented breaks, sacral organ drone, deadpan German spoken verses with longing sung female "we" hook, hospital corridor reverb, distant footsteps
+dark trip hop, cinematic bass, 70 BPM, hushed anticipatory, female deadpan spoken verse, longing sung "wir" chorus, layered female vocals close-mic, deep sub-bass heartbeat, sparse breaks, sacral organ drone, corridor reverb, all German, Burial, Anna von Hausswolff
 ```
 
 ### Exclude Styles
