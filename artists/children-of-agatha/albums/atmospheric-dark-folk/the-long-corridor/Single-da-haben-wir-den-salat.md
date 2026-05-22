@@ -36,17 +36,33 @@ sheet_music:
 
 ## Concept
 
-Eigenständige Single (kein Teil von *Spätschicht*). Kein Weimar-Kabarett mehr — **Ballermann-Party-Rap-Banger** mit Deutschrap-Strophen und Mitgröl-Hook. Kein Schlager. Trillerpfeife als Signatur, Air-Horn, 808, vier-zu-Boden auf dem Hook.
+**Logline:** Eine überhitzte Stationsversammlung eskaliert drei Tage lang über zu wenig Salat — bis die Schwester die Schüssel wie eine Reliquie hereinträgt und der Saal sie bejubelt wie einen Ballermann-Drop. Ein Party-Rap-Banger über kollektive Hysterie um nichts.
 
-**Salatgate.** Die Lieferung kam zu knapp — drei Blätter für dreißig Leute. Offiziell heißt es trotzdem: „es ist noch Salat da." Eine Stationsversammlung wird einberufen, im 4. Stock unterm Dach: sechsunddreißig Grad, Lüfter kaputt, die Luft steht. Jede:r hat eine Meinung — Appelle, Schuldsuche, „ich auch" — aber verantworten will es keiner („das macht die Pflege"). Die Stimmung kippt, Salatgate, Tag drei. Dann kommt die Schwester, trägt die Schüssel wie eine Reliquie durch den Mittelgang herein — und *endlich* haben wir den Salat.
+**Format:** Eigenständige Single (kein Teil von *Spätschicht*, kein Weimar-Kabarett). **Ballermann-Party-Rap** — Deutschrap-Strophen, Mitgröl-Hook, Trillerpfeife, Air-Horn, 808, vier-zu-Boden. **Kein Schlager.**
 
-**„Heiße Luft" ist das Rückgrat** — doppeldeutig: die Dachgeschoss-Hitze (Sauna-Saal) *und* das leere Versammlungs-Gerede. Die Hitze ist die Party.
+**Story (Salatgate).** Die Lieferung kam zu knapp — drei Blätter für dreißig Leute. Offiziell heißt es trotzdem: „es ist noch Salat da." Versammlung im 4. Stock unterm Dach: sechsunddreißig Grad, Lüfter kaputt, die Luft steht. Jede:r hat eine Meinung — Appelle, Schuldsuche, „ich auch" — aber verantworten will es keiner („das macht die Pflege"). Die Stimmung kippt, Salatgate, Tag drei. Dann kommt die Schwester, trägt die Schüssel durch den Mittelgang herein — und *endlich* haben wir den Salat.
 
-Drei Comedy-/Hook-Motoren:
+### Warum es zündet (der Mechanismus)
 
-1. **Klinische Diagnose-Wortspiele** als Rap-Multis auf *-ession*: „Salat-Trauma", „akuter Blattmangel", „Rohkost-Depression", „Regression", „Aggression", „keine Konzession", „Dekompression in der Schale". Am Ende „geheilt" — durch eine Schüssel.
-2. **„Ich hab da auch noch was zu sagen"** — alle wollen reden, „und jeder so: ich auch", zehn Finger hoch, kein Inhalt. Versammlung als Selbstzweck.
-3. **Die Prozession (Finale)** — Research-Andockung an die St.-Agatha-Reliquienprozession in Catania (Silberschrein/*fercolo*, von weiß gekleideten Gläubigen durch die Stadt gezogen): die Salatschüssel wird wie ein Heiligtum hereingetragen, der Kopf Romana wie eine Reliquie emporgehalten — der Beat-Drop.
+Der Witz ist die **Fallhöhe**: ein banaler Salatmangel wird mit der ganzen Wucht von Klinik-Diagnostik, Parlaments-Prozedere, Religions-Liturgie und Ballermann-Ekstase behandelt. Je größer der Apparat, desto kleiner der Anlass — und genau diese Lücke ist die Komik. Die **Form spiegelt den Inhalt**: kollektive Aufregung, die sich selbst befeuert (Party-Beat), mündet in eine falsche Transzendenz (Prozession-Drop) über einem Kopf Salat.
+
+### Der Dreh (die Pointe)
+
+Nichts wird *gelöst*. Der Salat kommt einfach — nicht weil die Versammlung etwas erreicht hätte, sondern weil die Pflege ihn hinstellt. Die „Heilung" („Salat-Trauma, Rohkost-Depression — geheilt") ist hohl: gefeiert wird eine Schüssel, nicht eine Einsicht. Der Deadpan unter der Party: drei Tage heiße Luft, und am Ende rettet die einzige, die nichts gesagt hat.
+
+### Thematisches Rückgrat: „heiße Luft"
+
+Doppeldeutig und durchgängig: die Dachgeschoss-Hitze (Sauna-Saal, Lüfter kaputt) **und** das leere Versammlungs-Gerede. Die Hitze *ist* die Party — und die Party ist Verdrängung. Wahres Thema: **Verantwortungsdiffusion** — alle reden, keiner haftet, „das macht die Pflege."
+
+### Drei Hook-Motoren
+
+1. **Klinische Diagnose-Multis** auf *-ession* (Rap-Reimketten): „Salat-Trauma", „akuter Blattmangel", „Rohkost-Depression", „Regression", „Aggression", „keine Konzession", „Dekompression in der Schale". Am Ende „geheilt" — durch eine Schüssel.
+2. **„Ich hab da auch noch was zu sagen" / „und jeder so: ich auch"** — alle melden sich, zehn Finger hoch, null Inhalt. Versammlung als Selbstzweck.
+3. **Die Prozession (Finale, Beat-Drop)** — Research-Andockung an die St.-Agatha-Reliquienprozession in Catania (Silberschrein/*fercolo*, von weiß gekleideten Gläubigen gezogen, ~1 Mio. Menschen): die Salatschüssel wird wie ein Heiligtum hereingetragen, der Kopf Romana wie eine Reliquie emporgehalten.
+
+### Tonalität (Guardrail)
+
+Sardonisch, nicht albern. **Die Pointe ist der Komitee-Apparat, nie die Patient:innen.** Das „Wir" ist der wissende Chor, der die eigene Absurdität mitspielt — Galgenhumor von innen, nicht Spott von außen. Keine realen Patient:innen, keine Diagnose-Verhöhnung echter Krankheitsbilder; die Diagnose-Wortspiele zielen auf die *Bürokratie der Aufregung*, nicht auf Kranksein. Würde bleibt gewahrt (vgl. RESEARCH.md, Patient:innen-Sensibilität).
 
 Der Titel arbeitet doppelt: die Redewendung („jetzt haben wir die Bescherung") und der wörtlich, endlich gelieferte Salat. Tagline: *Salatgate auf Station*.
 
