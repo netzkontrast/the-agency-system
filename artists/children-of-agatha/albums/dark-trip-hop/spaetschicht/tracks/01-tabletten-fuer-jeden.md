@@ -52,7 +52,7 @@ Klappernde Plastikbecher, ein quietschendes Rad, Neonlicht-Brummen. Erwartung, e
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark trip hop, cinematic bass, ~75 BPM, woozy and sedated, deep sub-bass heartbeat, fragmented nocturnal breaks, sacral organ drones, deadpan German spoken verses with longing sung female "we" hook, hospital room reverb, vinyl crackle
+dark trip hop, cinematic bass, 75 BPM, ritualistic sardonic, female deadpan spoken verse, longing sung "wir" chorus, layered female vocals close-mic, deep sub-bass heartbeat, fragmented breaks, sacral organ drone, hospital reverb, all German, Burial, Anna von Hausswolff
 ```
 
 ### Exclude Styles
