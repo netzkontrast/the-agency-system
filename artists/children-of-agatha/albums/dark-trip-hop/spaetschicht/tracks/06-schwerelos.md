@@ -52,7 +52,7 @@ Körper, die nicht mehr stehen, sondern schweben. Linoleum wird Meeresgrund. Zei
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-dark ambient trip hop, cinematic bass, 60 BPM, weightless near-still, female deadpan spoken verse with longing sung "wir" chorus, layered female vocals close-mic, deep sub-bass, sparse texture, wide pads, time-stretched reverb, sacral organ drone, Burial, Chelsea Wolfe
+dark ambient trip hop, cinematic bass, 60 BPM, weightless near-still, female deadpan spoken verse, longing sung "wir" chorus, layered close-mic vocals, deep sub-bass, sparse texture, wide pads, time-stretched reverb, sacral organ drone, all German, Burial, Chelsea Wolfe
 ```
 
 ### Exclude Styles
