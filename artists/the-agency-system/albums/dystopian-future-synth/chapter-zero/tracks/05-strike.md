@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 05 |
 | **Title** | Strike |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -70,7 +70,7 @@ kinetic rock loses its bite if padded.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 12 · Separation Protocol | callback | "Knuckles — there are none. But they bleed." — the kinetic-voice returns, refusing the cut |
 
 ### References FROM This Track
 

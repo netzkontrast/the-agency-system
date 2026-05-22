@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 01 |
 | **Title** | The Listening |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -70,7 +70,15 @@ first noise); KOH 0.998 → 0.94. Maps the source's *Vorwort* + *Das Rauschen*.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 2 · The Nothing | motif | "all this noise" — the noise first sensed here returns as the void's only company |
+| 2 · The Nothing | contrast | "Not empty — it pulls" — echoes this track's active, negating void |
+| 2 · The Nothing | callback | "(it is pointless)" — the heavy-voice seed planted here, carried faintly forward |
+| 3 · Contact | motif | "a wave in the noise" — the noise first sensed here |
+| 6 · The Click | motif/inversion | "The Nothing opens its mouth." — the active void reaches crisis, then the system inverts it |
+| 7 · The Silent Watch | callback | "Listen." — the framing narrator returns, bookending the album's two narrator clips |
+| 8 · The Anomaly | motif | "It bends the noise of Nothing around it." — the void's noise warped by the anomaly |
+| 10 · Resonance Cascade | callback/payoff | "It is pointless. It was always pointless." — the heavy-voice seed pays off full-voiced |
+| 13 · On Time | callback/resolution | the counting coda — the T1 head-voice returns as the hollow host ("same voice, gone hollow") |
 
 ### References FROM This Track
 

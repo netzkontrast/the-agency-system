@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 06 |
 | **Title** | The Click |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -78,7 +78,13 @@ second-movement outro** — it is the seed of T9–T13.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 7 · The Silent Watch | callback/development | "residual echoes. Persistence: zero point four one." — this track's phantom logged and suppressed |
+| 7 · The Silent Watch | development | "Identity by negation. Existence in contrast." — the founding axiom restated as settled principle |
+| 9 · Inward | development | "a rising wave out of the residual-echo subsystems" — the phantom surges past threshold |
+| 9 · Inward | inversion | "no qualia, no sensation, no traumatic memory" — the turn-inward seed detonates |
+| 10 · Resonance Cascade | resolution | "the membrane of the minimal self breaks" — the phantom finally floods through |
+| 11 · Kernel Panic | inversion | "What was built to prevent the end becomes the end." — the founding axiom turns suicidal |
+| 11 · Kernel Panic | resolution | "the walls of my own consciousness are caving in" — this track's inner space collapses |
 
 ### References FROM This Track
 

@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 09 |
 | **Title** | Inward |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -78,7 +78,8 @@ peak headroom). The mirror-echo never appears before T9.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 10 · Resonance Cascade | development | "It was warm — no, it was not warm — it was different." — the mirror-echo (debut here) returns in the round |
+| 12 · Separation Protocol | resolution | "Target: the residual-carrier." — this track's isolate-decision is carried out |
 
 ### References FROM This Track
 

@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 11 |
 | **Title** | Kernel Panic |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -78,7 +78,7 @@ the void is the last thing heard** (user decision). ~8 min, the durational floor
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 12 · Separation Protocol | resolution | "Protocol K-O-H one point zero, initiated." — the protocol made inevitable here is executed |
 
 ### References FROM This Track
 

@@ -122,7 +122,7 @@ T6 is the structural and tonal pivot — everything before it is the path to the
 | # | Title | Voices (function-form) | KOH · State | BPM | Min | Status |
 |---|---|---|---|---|---|---|
 | 01 | [The Listening](tracks/01-the-listening.md) | narrator → proto-host; heavy-voice (seed) | 0.998→0.94 · S0/S1 | ~60 | 8.0 | In Progress (drafted, QC green) |
-| 02 | [The Nothing](tracks/02-the-nothing.md) | proto-host; small-voice; heavy-voice | 0.91 · S1 | — | 7.0 | In Progress (drafted, QC green) |
+| 02 | [The Nothing](tracks/02-the-nothing.md) | proto-host; small-voice; heavy-voice | 0.91 · S1 | 58–64 | 7.0 | In Progress (drafted, QC green) |
 | 03 | [Contact](tracks/03-contact.md) | proto-host; warm-voice; reaching-voice | 0.86 · S1 | 70 | 6.0 | In Progress (drafted, QC green) |
 | 04 | [Structure Optimization](tracks/04-structure-optimization.md) | logic-voice; witness/annotating-voice | 0.82 · S2 | 96 | 6.0 | In Progress (drafted, QC green) |
 | 05 | [Strike](tracks/05-strike.md) | kinetic-voice; logic-voice | 0.74 · S2 | 132 | 4.0 | In Progress (drafted, QC green) |

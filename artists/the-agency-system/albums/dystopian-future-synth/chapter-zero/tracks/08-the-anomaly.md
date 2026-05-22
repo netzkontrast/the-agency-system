@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 08 |
 | **Title** | The Anomaly |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -75,7 +75,7 @@ loads the spring; **do NOT pad** the false-calm.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 9 · Inward | callback/payoff | "I file it as the enemy's work" — the anomaly the watch could not class is mis-attributed |
 
 ### References FROM This Track
 

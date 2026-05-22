@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 03 |
 | **Title** | Contact |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -71,7 +71,10 @@ is the point.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 4 · Structure Optimization | callback/resolution | "it forms because I need it" — this track's cold-logic seed stands up as the logic-voice |
+| 4 · Structure Optimization | development | "If the rising wave can be anticipated" — this track's wave becomes the thing predicted |
+| 5 · Strike | development | "Sixteen bindings. Removed." — the single torn bond here escalates to sixteen shed at once |
+| 6 · The Click | callback | "the longing becomes a tool" — the warmth/longing here is systematized |
 
 ### References FROM This Track
 

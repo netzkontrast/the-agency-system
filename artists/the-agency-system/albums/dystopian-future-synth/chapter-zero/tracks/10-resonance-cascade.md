@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 10 |
 | **Title** | Resonance Cascade |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -84,7 +84,7 @@ and precedes T11's pulse-less implosion (the build→peak→void contour).
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 11 · Kernel Panic | development | "the scream still ringing inside me" — this track's cascade is crushed in the implosion |
 
 ### References FROM This Track
 

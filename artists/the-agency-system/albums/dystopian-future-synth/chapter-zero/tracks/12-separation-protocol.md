@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 12 |
 | **Title** | Separation Protocol |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -78,7 +78,7 @@ decision) — the album's thesis image (see Track Art below).
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 13 · On Time | resolution | the whole coda — the host wakes from this track's shatter; the 1.00 is hollow |
 
 ### References FROM This Track
 

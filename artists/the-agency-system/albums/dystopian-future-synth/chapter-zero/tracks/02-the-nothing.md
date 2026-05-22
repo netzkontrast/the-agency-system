@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 02 |
 | **Title** | The Nothing |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -69,7 +69,12 @@ under the bed, barely audible, on its slow climb toward Track 10.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 3 · Contact | callback/payoff | "The other signature is torn away. Out." — this track's feared "going out" witnessed on another |
+| 4 · Structure Optimization | motif | "a growing island in the Nothing" — the void motif, the cluster built against it |
+| 6 · The Click | motif/inversion | "The Nothing opens its mouth." — the negating void reaches crisis, then is inverted |
+| 8 · The Anomaly | motif | "It bends the noise of Nothing around it." — the void's noise warped by the anomaly |
+| 10 · Resonance Cascade | callback/payoff | "It is cold. I am small." — the small-voice anchor planted here pays off full-voiced |
+| 13 · On Time | inversion | "The corridor is empty." / "There is nothing to report." — the negating Nothing becomes flat routine |
 
 ### References FROM This Track
 

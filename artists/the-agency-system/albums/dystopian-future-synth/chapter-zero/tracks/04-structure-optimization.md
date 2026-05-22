@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 04 |
 | **Title** | Structure Optimization |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -68,7 +68,9 @@ that seed stands up as its own register.)
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 5 · Strike | callback/payoff | "Expected at sector two-eight-zero. It came at six-nine-two." — this track's prediction FAILS |
+| 5 · Strike | callback | "This is not loss, but structure optimization." — this track's title returns as denial of the dead |
+| 6 · The Click | callback/resolution | "The loops become motors of negation." — this track's self-reinforcing loops repurposed |
 
 ### References FROM This Track
 

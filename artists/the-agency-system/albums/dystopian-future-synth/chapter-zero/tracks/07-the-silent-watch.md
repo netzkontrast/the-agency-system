@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 07 |
 | **Title** | The Silent Watch |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -77,7 +77,9 @@ breaks, no padding.
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 8 · The Anomaly | callback/payoff | "There is no class for this. No operator." — the narrator's pivot arrives; the system reads it cold |
+| 8 · The Anomaly | development | "And coherence barely moves." — the false-calm meter holds even at full alert |
+| 9 · Inward | development | "a rising wave out of the residual-echo subsystems" — the 0.41 residual surges past the threshold |
 
 ### References FROM This Track
 

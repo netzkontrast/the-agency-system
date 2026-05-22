@@ -18,7 +18,7 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 13 |
 | **Title** | On Time |
-| **Album** | [[Album Title]](../README.md) |
+| **Album** | [Chapter Zero](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
