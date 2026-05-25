@@ -119,7 +119,7 @@ Single — one track, one self-contained arc. **Guiding idea: density = battery 
 
 | # | Title | POV | Concept | Status |
 |---|-------|-----|---------|--------|
-| 01 | [5%](tracks/01-5%.md) | First person (the teacher) | Numb depletion on 5% (the *missing* signal); a tiny failed gesture shows the real "3" (with a cost); letting go, not gripping; at the end he reaches for the mask and breathes once — not healed. | Not Started |
+| 01 | [5%](tracks/01-5%.md) | First person (the teacher) | Numb depletion on 5% (the *missing* signal); a tiny failed gesture shows the real "3" (with a cost); letting go, not gripping; at the end he reaches for the mask and breathes once — not healed. | In Progress |
 
 ## Voice / Protagonist
 
