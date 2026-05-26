@@ -3,7 +3,7 @@
 This file is for **bash-only agents** (Jules, Codex, any LLM with a shell and no
 MCP client / no Skill loader). You drive the engine with the **same contract** an
 MCP client uses — **code-mode** — over a small CLI. No MCP, no skills, no special
-integration. The isomorphism is proven in `tests/test_seed.py::test_isomorphism_mcp_equals_bash_cli`.
+integration. The isomorphism is proven in `tests/test_agency.py::test_isomorphism_mcp_equals_bash_cli`.
 
 ## Setup (once)
 
@@ -18,23 +18,23 @@ State lives in one graph file you pass as `--db <path>` (it persists across call
 
 ```bash
 # 0. bootstrap an Intent (everything you do SERVES one) — prints {"intent_id": "..."}
-python -m agency_seed.cli --db graph.db intent \
+python -m agency.cli --db graph.db intent \
   --purpose "ship green CI" --deliverable "auth test passes" --acceptance "tests green"
 
 # 1. discover what tools exist
-python -m agency_seed.cli --db graph.db search "syllables count"
+python -m agency.cli --db graph.db search "lint skill"
 
 # 2. get a tool's schema (params + returns)
-python -m agency_seed.cli --db graph.db get-schema capability_syllables_count
+python -m agency.cli --db graph.db get-schema capability_plugin_lint_skill
 
 # 3. execute: write Python that chains tools and RETURNS ONLY A DELTA
-python -m agency_seed.cli --db graph.db execute --code '
-r = await call_tool("capability_syllables_count", {"text": "fix the failing auth test", "intent_id": "intent:abc"})
-return r["result"] if isinstance(r, dict) and "result" in r else r
+python -m agency.cli --db graph.db execute --code '
+r = await call_tool("capability_plugin_lint_skill", {"name": "Bad Name", "description": "does stuff", "intent_id": "intent:abc"})
+return r["violations"] if isinstance(r, dict) and "violations" in r else r
 '
 # ...or pipe the code in on stdin:
 echo 'return await call_tool("memory_graph_provenance", {"intent_id": "intent:abc"})' \
-  | python -m agency_seed.cli --db graph.db execute
+  | python -m agency.cli --db graph.db execute
 ```
 
 Inside `execute`, `await call_tool(name, params)` is in scope and `return` yields

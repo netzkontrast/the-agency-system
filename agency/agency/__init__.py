@@ -1,9 +1,10 @@
-"""agency-seed — a running proof of the v4 core on the real substrate.
+"""agency — an installable Claude Code plugin: the v4 core on the real substrate.
 
 Four concepts (Intent, Capability, Lifecycle, Memory) + a FastMCP engine, over a
-real GraphQLite bi-temporal graph. The point is to PROVE the moat: cross-concern
-provenance as one graph traversal — and to falsify the risk that "one graph +
-the verb frame" can't carry two genuinely different capabilities.
+real GraphQLite bi-temporal graph. The moat: cross-concern provenance as one
+graph traversal. Capabilities self-register by reflection, and the engine authors
+(and validates) its own Claude Code plugin install. Code-mode IS the contract,
+exposed isomorphically over MCP · Skills · a bash CLI.
 """
 # Portability (Jules review, PR #175): GraphQLite loads a SQLite extension, but
 # many Python builds ship a `sqlite3` with extension loading disabled. If so, and

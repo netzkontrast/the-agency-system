@@ -23,6 +23,9 @@ NODE_SCHEMAS: dict[str, list[str]] = {
     "Skill":      ["name", "kind"],                 # a skill = an ordered Lifecycle of Phases
     "Phase":      ["skill", "index", "name", "produces"],   # one atomic step; `produces` = its required outputs
     "Tool":       ["name", "input", "output"],      # a typed tool (input/output schema refs)
+    # plugin-development (ported from superpowers writing-skills + plugin authoring):
+    "Plugin":     ["name", "version", "description"],       # a Claude Code plugin manifest
+    "Command":    ["name", "description"],                  # a slash command
 }
 
 # --- closed enums ----------------------------------------------------------
@@ -99,15 +102,50 @@ ALBUM_CONCEPT_SKILL = {
 ALBUM_TYPES = {"documentary", "narrative", "thematic", "character-study",
                "collection", "ost"}
 
-# A real EXECUTABLE micro-step skill: phases bound to real capability verbs that
-# the walker runs (recorded as Invocations), ending in a hard approve gate. This
-# is a real transform-chain (no toy steps) — the syllable count is real compute.
-LYRIC_PREP_SKILL = {
-    "name": "lyric-prep",
-    "kind": "transform-chain",
+# --- ported COMPLETELY from superpowers `writing-skills` (the skill creator).
+# The Iron Law — "NO SKILL WITHOUT A FAILING TEST FIRST" — is ENFORCED by the
+# phase ordering itself: the walker advances one phase at a time and validates
+# each phase's required outputs, so GREEN (authoring) is structurally
+# unreachable until RED (the baseline observation) has produced its outputs.
+# RED → GREEN → lint(CSO) → REFACTOR → deploy(hard gate). The GREEN + lint phases
+# are bound to REAL capability verbs (author_skill / lint_skill).
+SKILL_CREATION_SKILL = {
+    "name": "skill-creation",
+    "kind": "authoring",
     "phases": [
-        {"index": 1, "name": "syllables", "produces": ["count"],
-         "invoke": {"capability": "syllables", "verb": "count"}, "inputs": ["text"]},
-        {"index": 2, "name": "approve", "produces": ["user_confirmed"], "gate": "hard"},
+        {"index": 1, "name": "red-baseline",
+         "produces": ["baseline", "rationalizations"]},
+        {"index": 2, "name": "green-author", "produces": ["skill_md"],
+         "invoke": {"capability": "plugin", "verb": "author_skill"},
+         "inputs": ["name", "description", "body"]},
+        {"index": 3, "name": "lint", "produces": ["lint"],
+         "invoke": {"capability": "plugin", "verb": "lint_skill"},
+         "inputs": ["name", "description"]},
+        {"index": 4, "name": "refactor",
+         "produces": ["rationalization_table", "red_flags"]},
+        {"index": 5, "name": "deploy", "produces": ["user_confirmed"], "gate": "hard"},
+    ],
+}
+
+# --- the complete plugin-authoring chain: each phase emits a prestructured
+# document (the bitwize "resulting document of each step" pattern, made strict +
+# provenance-recorded). manifest → skill → command → marketplace entry → confirm.
+PLUGIN_DEV_SKILL = {
+    "name": "plugin-dev",
+    "kind": "authoring",
+    "phases": [
+        {"index": 1, "name": "manifest", "produces": ["manifest"],
+         "invoke": {"capability": "plugin", "verb": "scaffold"},
+         "inputs": ["name", "version", "description"]},
+        {"index": 2, "name": "skill", "produces": ["skill_md"],
+         "invoke": {"capability": "plugin", "verb": "author_skill"},
+         "inputs": ["name", "description", "body"]},
+        {"index": 3, "name": "command", "produces": ["command_md"],
+         "invoke": {"capability": "plugin", "verb": "author_command"},
+         "inputs": ["name", "description", "body"]},
+        {"index": 4, "name": "marketplace", "produces": ["entry"],
+         "invoke": {"capability": "plugin", "verb": "marketplace_entry"},
+         "inputs": ["name", "version", "description", "source"]},
+        {"index": 5, "name": "confirm", "produces": ["user_confirmed"], "gate": "hard"},
     ],
 }

@@ -74,8 +74,10 @@ jules_capability = Capability(
     name="jules",
     home="lifecycle",
     verbs={
-        "dispatch": {"role": "effect", "fn": dispatch},    # spawns a remote session (external effect)
-        "status": {"role": "transform", "fn": status},     # reads session state
+        # `inject: ["client"]` — the engine supplies its jules_client (the boundary
+        # object) so the verb stays pure and the param is hidden from the MCP schema.
+        "dispatch": {"role": "effect", "fn": dispatch, "inject": ["client"]},   # spawns a remote session
+        "status": {"role": "transform", "fn": status, "inject": ["client"]},    # reads session state
         "verify": {"role": "transform", "fn": verify},     # the COMPLETED != done guard (pure)
     },
 )

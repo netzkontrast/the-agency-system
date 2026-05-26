@@ -1,11 +1,13 @@
 """The seed's proof. Runs on the REAL substrate (graphqlite + fastmcp).
 
-Proves (10 tests): the provenance moat; one graph carries two different
-capabilities (a transform + a REAL agent); bi-temporal memory; COMPLETED != done
-(real Jules verify); code-mode IS the contract (search/get_schema/execute);
-code-mode tool-chaining; gates via elicit; bash<->MCP isomorphism; schemas &
-templates; a strictly-enforced ontology; and a micro-step skill walker with a
-hard gate.
+Proves: the provenance moat; one graph carries two genuinely different
+capabilities (the plugin-dev craft + the REAL Jules agent); bi-temporal memory;
+COMPLETED != done (real Jules verify); code-mode IS the contract
+(search/get_schema/execute); code-mode tool-chaining; gates via elicit;
+bash<->MCP isomorphism; schemas & templates; a strictly-enforced ontology; a
+micro-step skill walker with a hard gate; and the plugin-development capability —
+a complete port of the superpowers skill-creation + plugin-authoring skills,
+plus a self-hosted Claude Code install that maps macroskills -> micro-skills.
 """
 import asyncio
 import json
@@ -19,14 +21,18 @@ import pytest
 from fastmcp import Client
 from fastmcp.client.elicitation import ElicitResult
 
-from agency_seed.engine import Engine
+from agency import install, ontology, templates
+from agency.capabilities.plugin import lint_skill
+from agency.engine import Engine
+from agency.skill import SkillRun
 
 SEED_DIR = os.path.dirname(os.path.dirname(__file__))
-# code that chains one tool and returns just the int delta (handles either result shape)
-_COUNT_CODE = (
-    "r = await call_tool('capability_syllables_count', "
-    "{{'text': '{text}', 'intent_id': '{iid}'}})\n"
-    "return r['result'] if isinstance(r, dict) and 'result' in r else r"
+# code that lints a (deliberately bad) skill and returns just the violation count
+_LINT_CODE = (
+    "r = await call_tool('capability_plugin_lint_skill', "
+    "{{'name': '{name}', 'description': '{desc}', 'intent_id': '{iid}'}})\n"
+    "v = r['result'] if isinstance(r, dict) and 'result' in r else r\n"
+    "return len(v['violations'])\n"
 )
 
 NAME_RE = re.compile(r"^[a-zA-Z0-9_]{1,64}$")  # MCP / Claude-frontend strict
@@ -68,13 +74,15 @@ class FakeJulesClient:
 
 
 def run_scenario(e: Engine) -> str:
-    """capture→confirm intent, open an agent lifecycle, run two different
-    capabilities, pass a gate, complete. Returns the intent id."""
+    """capture→confirm intent, open an agent lifecycle, run two genuinely
+    different capabilities (a plugin-dev transform + the agent), pass a gate,
+    complete. Returns the intent id."""
     iid = e.intent.capture("ship green CI", "auth test passes", "tests green")
     e.intent.confirm(iid)
     lc = e.lifecycle.open(iid, agent="jules")
-    # a REAL transform capability
-    e.registry.invoke(e.memory, iid, "syllables", "count", text="fix the failing auth test")
+    # a craft capability — validate a candidate skill (the writing-skills CSO linter)
+    e.registry.invoke(e.memory, iid, "plugin", "lint_skill",
+                      name="fix-auth", description="Use when the auth test fails")
     # the agent capability — really dispatches Jules (stand-in client at the boundary)
     e.registry.invoke(e.memory, iid, "jules", "dispatch", agent_id="agent:jules",
                       source="netzkontrast/the-agency-system", starting_branch="main",
@@ -90,7 +98,7 @@ def test_provenance_moat():
     prov = e.memory.provenance(iid)
 
     verbs = sorted(n["verb"] for n in prov["serves"] if "verb" in n)
-    assert verbs == ["count", "dispatch"]                   # two different crafts, one graph
+    assert verbs == ["dispatch", "lint_skill"]              # two different crafts, one graph
     assert {n["role"] for n in prov["serves"] if "role" in n} == {"transform", "effect"}
     assert any(a["id"] == "agent:jules" for a in prov["agents"])     # the agent that ran it
     assert any(p["kind"] == "jules-session" for p in prov["artefacts"])  # what it produced
@@ -141,25 +149,25 @@ def test_codemode_is_the_contract():
         names = {t.name for t in await mcp.list_tools()}
         assert names == {"search", "get_schema", "execute"}  # the whole contract
         assert all(NAME_RE.match(n) for n in names)
-        hits = str(_sc(await mcp.call_tool("search", {"query": "syllables count"})))
-        assert "capability_syllables_count" in hits          # discovery via search
+        hits = str(_sc(await mcp.call_tool("search", {"query": "lint skill"})))
+        assert "capability_plugin_lint_skill" in hits        # discovery via search
         out = _sc(await mcp.call_tool("execute", {
-            "code": _COUNT_CODE.format(text="hello brave world", iid=iid)}))
+            "code": _LINT_CODE.format(name="Bad Name", desc="does stuff", iid=iid)}))
         return int(out)
 
-    assert asyncio.run(main()) == 4                           # called from inside execute
-    assert any(x["verb"] == "count" for x in e.memory.provenance(iid)["serves"])
+    assert asyncio.run(main()) == 2                           # bad name + missing "Use when"
+    assert any(x["verb"] == "lint_skill" for x in e.memory.provenance(iid)["serves"])
     e.memory.close()
 
 
 def test_codemode_chaining_is_an_executable_graph():
     """Code-mode chains different tools in plain Python — the code IS an
-    executable dataflow graph. Token efficiency: 4 tool calls run in-sandbox,
-    only ONE small delta crosses into context. And because every call_tool
-    records an Invocation, that executable graph is MIRRORED into the durable
-    provenance graph (transform → agent, both edged to the intent)."""
+    executable dataflow graph. Token efficiency: many tool calls run in-sandbox,
+    only ONE small delta crosses into context. And because every call_tool records
+    an Invocation, that executable graph is MIRRORED into the durable provenance
+    graph (the transform's pick feeds the agent, both edged to the intent)."""
     e = Engine(tempfile.mktemp(suffix=".db"), jules_client=FakeJulesClient())  # boundary stand-in
-    iid = e.intent.capture("ship green CI", "auth test passes", "tests green")
+    iid = e.intent.capture("ship a clean skill", "skill authored + dispatched", "lint clean")
     e.intent.confirm(iid)
     e.lifecycle.open(iid, agent="jules")                      # so agent:jules exists
     mcp = e.build_mcp(codemode=True)
@@ -170,29 +178,29 @@ def test_codemode_chaining_is_an_executable_graph():
         code = (
             "def val(x):\n"
             "    return x['result'] if isinstance(x, dict) and 'result' in x else x\n"
-            "lines = ['fix the failing auth test', 'add retry', 'ship']\n"
+            "cands = [('alpha skill', 'does things'), ('good-skill', 'Use when you ship code'), ('ok-skill', 'manage things')]\n"
             "scored = []\n"
-            "for ln in lines:\n"
-            f"    r = await call_tool('capability_syllables_count', {{'text': ln, 'intent_id': '{iid}'}})\n"
-            "    scored.append((int(val(r)), ln))\n"
-            "scored.sort(reverse=True)\n"
-            "best_n, best_line = scored[0]\n"
-            "# chain: the transform's output feeds the agent capability\n"
-            f"p = val(await call_tool('capability_jules_dispatch', {{'source': 'o/r', 'starting_branch': 'main', 'prompt': best_line, 'intent_id': '{iid}', 'agent_id': 'agent:jules'}}))\n"
-            "return {'max_syllables': best_n, 'patched_line': best_line, 'status': p['status']}\n"
+            "for nm, desc in cands:\n"
+            f"    r = val(await call_tool('capability_plugin_lint_skill', {{'name': nm, 'description': desc, 'intent_id': '{iid}'}}))\n"
+            "    scored.append((len(r['violations']), nm))\n"
+            "scored.sort()\n"
+            "best_v, best_name = scored[0]\n"
+            "# chain: the linter's pick feeds the agent capability\n"
+            f"p = val(await call_tool('capability_jules_dispatch', {{'source': 'o/r', 'starting_branch': 'main', 'prompt': best_name, 'intent_id': '{iid}', 'agent_id': 'agent:jules'}}))\n"
+            "return {'min_violations': best_v, 'chosen': best_name, 'status': p['status']}\n"
         )
         return _sc(await mcp.call_tool("execute", {"code": code}))
 
     delta = asyncio.run(main())
     # the single small delta returned from many in-sandbox calls (token-efficient)
-    assert delta["max_syllables"] == 6
-    assert delta["patched_line"] == "fix the failing auth test"
+    assert delta["min_violations"] == 0
+    assert delta["chosen"] == "good-skill"
     assert delta["status"] == "completed"
 
     # the executable chain is now a connected provenance subgraph
     prov = e.memory.provenance(iid)
     verbs = sorted(n["verb"] for n in prov["serves"] if "verb" in n)
-    assert verbs == ["count", "count", "count", "dispatch"]   # 3 transforms + 1 effect, chained
+    assert verbs == ["dispatch", "lint_skill", "lint_skill", "lint_skill"]  # 3 transforms + 1 effect, chained
     assert any(a["id"] == "agent:jules" for a in prov["agents"])
     assert any(p["kind"] == "jules-session" for p in prov["artefacts"])
     e.memory.close()
@@ -233,33 +241,33 @@ def test_schemas_and_templates_typed_generative():
     one graph; the artefact is DERIVED_FROM the template and VALIDATES_AGAINST the
     schema. The schema also bites: a missing field fails validation."""
     e = fresh()
-    iid = e.intent.capture("make a track sheet", "sheet for T1", "valid sheet")
+    iid = e.intent.capture("make a doc", "doc for X", "valid doc")
     e.intent.confirm(iid)
-    schema = e.memory.record("Schema", {"name": "track-sheet", "required": "title,lyrics"})
-    template = e.memory.record("Template", {"name": "track-sheet", "body": "# {title}\n\n{lyrics}"})
+    schema = e.memory.record("Schema", {"name": "doc-sheet", "required": "title,body"})
+    template = e.memory.record("Template", {"name": "doc-sheet", "body": "# {title}\n\n{body}"})
 
     # generate the artefact from the template
-    data = {"title": "Test Track", "lyrics": "la la la"}
+    data = {"title": "Test Doc", "body": "the content"}
     body = e.memory.recall(template)["body"].format(**data)
-    art = e.memory.record("Artefact", {"kind": "track-sheet", **data, "body": body})
+    art = e.memory.record("Artefact", {"kind": "doc-sheet", **data})
     e.memory.link(art, template, "DERIVED_FROM")
     e.memory.link(art, iid, "SERVES")
 
     # validate against the schema (the typed layer)
     assert e.memory.validate_schema(art, schema) is True
     e.memory.link(art, schema, "VALIDATES_AGAINST")
-    assert "# Test Track" in body and "la la la" in body
+    assert "# Test Doc" in body and "the content" in body
 
     # the schema bites: an artefact missing a required field fails
-    bad = e.memory.record("Artefact", {"kind": "track-sheet", "title": "x"})
+    bad = e.memory.record("Artefact", {"kind": "doc-sheet", "title": "x"})
     assert e.memory.validate_schema(bad, schema) is False
 
     # the typed/generative edges live in the one graph
     rows = e.memory.g.query(
         "MATCH (a:Artefact)-[:VALIDATES_AGAINST]->(s:Schema) RETURN s")
-    assert any(r["s"]["properties"].get("name") == "track-sheet" for r in rows)
+    assert any(r["s"]["properties"].get("name") == "doc-sheet" for r in rows)
     drv = e.memory.g.query("MATCH (a:Artefact)-[:DERIVED_FROM]->(t:Template) RETURN t")
-    assert any(r["t"]["properties"].get("name") == "track-sheet" for r in drv)
+    assert any(r["t"]["properties"].get("name") == "doc-sheet" for r in drv)
     e.memory.close()
 
 
@@ -272,7 +280,7 @@ def test_isomorphism_mcp_equals_bash_cli():
     e = Engine(db)
     iid = e.intent.capture("ship green CI", "auth test passes", "tests green")
     e.intent.confirm(iid)
-    code = _COUNT_CODE.format(text="fix the failing auth test", iid=iid)
+    code = _LINT_CODE.format(name="Bad Name", desc="does stuff", iid=iid)
 
     # (1) MCP path — code-mode contract in-process
     mcp_out = _sc(asyncio.run(e.build_mcp(codemode=True).call_tool("execute", {"code": code})))
@@ -280,18 +288,18 @@ def test_isomorphism_mcp_equals_bash_cli():
 
     # (2) bash path — the same contract via a shell-only invocation
     proc = subprocess.run(
-        [sys.executable, "-m", "agency_seed.cli", "--db", db, "execute", "--code", code],
+        [sys.executable, "-m", "agency.cli", "--db", db, "execute", "--code", code],
         cwd=SEED_DIR, capture_output=True, text=True,
         env={**os.environ, "PYTHONPATH": SEED_DIR},
     )
     assert proc.returncode == 0, proc.stderr
     cli_out = json.loads(proc.stdout)
 
-    assert int(mcp_out) == int(cli_out) == 6                  # identical across harnesses
+    assert int(mcp_out) == int(cli_out) == 2                  # identical across harnesses
     # shared durable graph: both runs recorded into the one graph
     e2 = Engine(db)
-    counts = [n for n in e2.memory.provenance(iid)["serves"] if n.get("verb") == "count"]
-    assert len(counts) == 2                                   # one via MCP, one via bash CLI
+    lints = [n for n in e2.memory.provenance(iid)["serves"] if n.get("verb") == "lint_skill"]
+    assert len(lints) == 2                                    # one via MCP, one via bash CLI
     e2.memory.close()
 
 
@@ -300,7 +308,6 @@ def test_ontology_is_strictly_enforced():
     and an unknown edge both raise — the ontology cannot silently drift. And the
     real bitwize conceptualizer ports as a strict 7-phase skill with a hard final
     gate (the micro-step-skill template)."""
-    from agency_seed import ontology
     e = fresh()
     with pytest.raises(ValueError):                          # missing required Intent fields
         e.memory.record("Intent", {"purpose": "x"})
@@ -319,8 +326,6 @@ def test_skill_walker_micro_steps_with_hard_gate():
     """A skill walks ONE phase at a time (progressive disclosure), validates each
     phase's required outputs before advancing, and the hard-gate final phase
     blocks until explicitly confirmed. The run records itself as provenance."""
-    from agency_seed import ontology
-    from agency_seed.skill import SkillRun
     e = fresh()
     iid = e.intent.capture("plan an album", "album concept", "user confirms")
     run = SkillRun(e.memory, iid, ontology.ALBUM_CONCEPT_SKILL)
@@ -355,20 +360,31 @@ def test_skill_walker_micro_steps_with_hard_gate():
 
 
 def test_real_skill_executes_tools():
-    """A skill phase bound to a REAL capability verb: the walker EXECUTES it
-    (recording an Invocation in provenance) and uses its real output to satisfy
-    the phase schema. lyric-prep = real syllable count -> hard approve gate."""
-    from agency_seed import ontology
-    from agency_seed.skill import SkillRun
+    """The COMPLETE port of writing-skills as an executable micro-step skill: the
+    Iron Law ("no skill without a failing test first") is enforced by ordering —
+    the walker cannot reach GREEN (author_skill) until RED produced its baseline.
+    The GREEN + lint phases run REAL capability verbs (recorded as Invocations)."""
     e = fresh()
-    iid = e.intent.capture("prep a lyric line", "reviewed line", "human approves")
-    run = SkillRun(e.memory, iid, ontology.LYRIC_PREP_SKILL, registry=e.registry)
+    iid = e.intent.capture("write a skill", "deployed skill", "human approves")
+    run = SkillRun(e.memory, iid, ontology.SKILL_CREATION_SKILL, registry=e.registry)
 
-    assert run.current()["name"] == "syllables" and run.current()["inputs"] == ["text"]
-    assert run.submit({"text": "fix the failing auth test"})["status"] == "working"
-    # the REAL tool ran and is now in the provenance graph
-    assert any(n.get("verb") == "count" for n in e.memory.provenance(iid)["serves"])
-
+    # RED: baseline first (the Iron Law, enforced by phase ordering)
+    assert run.current()["name"] == "red-baseline"
+    assert run.submit({"baseline": "agent skips the failing test",
+                       "rationalizations": "'too simple to test'"})["status"] == "working"
+    # GREEN: author the skill (a REAL act verb runs)
+    assert run.current()["name"] == "green-author"
+    assert run.submit({"name": "my-skill", "description": "Use when you need X",
+                       "body": "# My Skill\nbody"})["status"] == "working"
+    assert any(n.get("verb") == "author_skill" for n in e.memory.provenance(iid)["serves"])
+    # lint against the CSO rules (a REAL transform verb runs)
+    assert run.current()["name"] == "lint"
+    assert run.submit({"name": "my-skill", "description": "Use when you need X"})["status"] == "working"
+    assert any(n.get("verb") == "lint_skill" for n in e.memory.provenance(iid)["serves"])
+    # REFACTOR
+    assert run.submit({"rationalization_table": "| excuse | reality |",
+                       "red_flags": "code before test"})["status"] == "working"
+    # deploy hard gate (STOP before next skill)
     assert run.current()["gate"] == "hard"
     assert run.submit({"user_confirmed": "yes"}, confirmed=False)["status"] == "input-required"
     assert run.submit({"user_confirmed": "yes"}, confirmed=True)["status"] == "completed"
@@ -389,3 +405,114 @@ def test_strict_enums_enforced_on_both_write_paths():
     with pytest.raises(ValueError):                          # update path is guarded too
         e.memory.update(lc, {"state": "bogus"})
     e.memory.close()
+
+
+def test_plugin_capability_generates_valid_artefacts():
+    """The plugin-development capability (ported from superpowers writing-skills +
+    plugin authoring): every `act` verb renders a REAL artefact from a strict
+    template, recorded as provenance and validating against its strict Schema."""
+    e = fresh()
+    iid = e.intent.capture("author a plugin", "plugin files", "valid")
+    e.intent.confirm(iid)
+    reg, mem = e.registry, e.memory
+
+    res, _ = reg.invoke(mem, iid, "plugin", "scaffold",
+                        name="demo", version="0.1.0", description="A demo plugin")
+    manifest = json.loads(res["result"])                     # a real, valid JSON manifest
+    assert manifest["name"] == "demo" and manifest["version"] == "0.1.0"
+
+    # the artefact is provenance and validates against a strict Schema
+    art_id = next(a["id"] for a in mem.provenance(iid)["artefacts"] if a["kind"] == "plugin-manifest")
+    schema = mem.record("Schema", {"name": "plugin-manifest",
+                                   "required": ",".join(templates.REQUIRED["plugin-manifest"])})
+    assert mem.validate_schema(art_id, schema) is True
+    # the schema bites: a manifest missing `version` fails
+    bad = mem.record("Artefact", {"kind": "plugin-manifest", "name": "x"})
+    assert mem.validate_schema(bad, schema) is False
+
+    sk, _ = reg.invoke(mem, iid, "plugin", "author_skill",
+                       name="my-skill", description="Use when you need X", body="# My Skill\nbody")
+    assert sk["result"].startswith("---\nname: my-skill")    # the skill creator emits frontmatter
+    reg.invoke(mem, iid, "plugin", "author_command", name="go", description="Use when go", body="do it")
+    me, _ = reg.invoke(mem, iid, "plugin", "marketplace_entry",
+                       name="demo", version="0.1.0", description="d", source="netzkontrast/agency")
+    src = json.loads(me["result"])["source"]                 # owner/name -> github object (spec)
+    assert src == {"source": "github", "repo": "netzkontrast/agency"}
+    reg.invoke(mem, iid, "plugin", "step_doc", step="manifest", output="written")
+
+    kinds = {a["kind"] for a in mem.provenance(iid)["artefacts"]}
+    assert {"plugin-manifest", "skill-md", "command-md", "marketplace-entry", "step-doc"} <= kinds
+    e.memory.close()
+
+
+def test_lint_skill_ports_cso_rules():
+    """The writing-skills CSO rules ported as ENFORCEABLE compute (judgment as
+    code): a clean skill passes; bad name, missing 'Use when…', first person, and
+    over-length descriptions are each flagged."""
+    assert lint_skill("good-name", "Use when you ship code")["ok"] is True
+    bad = lint_skill("Bad Name", "does stuff")
+    assert bad["ok"] is False
+    assert any("letters, numbers, hyphens" in v for v in bad["violations"])
+    assert any("Use when" in v for v in bad["violations"])
+    assert any("third person" in v for v in lint_skill("ok-name", "Use when I help you")["violations"])
+    assert any("500" in v for v in lint_skill("ok-name", "Use when " + "x" * 600)["violations"])
+
+
+def test_plugin_dev_skill_each_step_yields_a_document():
+    """The plugin-dev chain walks one phase at a time and EACH step yields a
+    prestructured document (the bitwize 'resulting document of each step' pattern,
+    made strict + provenance-recorded): manifest → skill → command → marketplace
+    entry → hard confirm gate."""
+    e = fresh()
+    iid = e.intent.capture("develop a plugin", "a Claude Code plugin", "user confirms")
+    run = SkillRun(e.memory, iid, ontology.PLUGIN_DEV_SKILL, registry=e.registry)
+
+    assert run.current()["name"] == "manifest"
+    assert run.submit({"name": "demo", "version": "0.1.0", "description": "A demo"})["status"] == "working"
+    assert run.submit({"name": "demo-skill", "description": "Use when you demo", "body": "# Demo"})["status"] == "working"
+    assert run.submit({"name": "go", "description": "Use when go", "body": "do it"})["status"] == "working"
+    assert run.submit({"name": "demo", "version": "0.1.0", "description": "A demo",
+                       "source": "netzkontrast/agency"})["status"] == "working"
+    assert run.current()["gate"] == "hard"
+    assert run.submit({"user_confirmed": "yes"}, confirmed=False)["status"] == "input-required"
+    assert run.submit({"user_confirmed": "yes"}, confirmed=True)["status"] == "completed"
+
+    kinds = {a["kind"] for a in e.memory.provenance(iid)["artefacts"]}
+    assert {"plugin-manifest", "skill-md", "command-md", "marketplace-entry"} <= kinds
+    e.memory.close()
+
+
+def test_help_maps_macroskills_to_microskills():
+    """The `help` discovery surface maps the engine's capabilities (macroskills)
+    to their verbs (the harness-in-harness micro-skills) over the LIVE registry —
+    and syllables is gone (it belongs to a future Music capability)."""
+    e = fresh()
+    iid = e.intent.capture("discover", "the capability map", "ok")
+    mcp = e.build_mcp(codemode=False)
+
+    async def main():
+        return _sc(await mcp.call_tool("capability_plugin_help", {"intent_id": iid}))
+
+    out = asyncio.run(main())
+    m = out["map"]
+    assert "plugin" in m and "jules" in m
+    assert "syllables" not in m
+    assert {"scaffold", "author_skill", "lint_skill", "help"} <= set(m["plugin"])
+    assert {"dispatch", "verify"} <= set(m["jules"])
+    e.memory.close()
+
+
+def test_agency_plugin_install_is_self_hosted():
+    """The Agency Plugin for Claude Code install is SELF-HOSTED: the committed
+    manifest, `help` macroskill, and command are exactly what the plugin-dev
+    capability regenerates from the live registry — and the help skill passes its
+    own CSO linter (the engine authors, and validates, its own plugin)."""
+    e = fresh()
+    files = install.generate(e)
+    e.memory.close()
+    for rel, content in files.items():                       # committed == regenerated (dogfood)
+        with open(os.path.join(SEED_DIR, rel)) as f:
+            assert f.read() == content, rel
+    manifest = json.loads(files[".claude-plugin/plugin.json"])
+    assert {"name", "version", "description"} <= set(manifest)
+    assert lint_skill("help", install.HELP_DESC)["ok"] is True

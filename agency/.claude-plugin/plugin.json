@@ -1,0 +1,15 @@
+{
+  "name": "agency",
+  "version": "0.1.0",
+  "description": "Harness-in-harness agency engine: code-mode capabilities (macroskills) over one provenance graph.",
+  "author": {
+    "name": "agency"
+  },
+  "keywords": [
+    "agency",
+    "code-mode",
+    "capabilities"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/"
+}

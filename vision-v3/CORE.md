@@ -14,7 +14,7 @@ that chains tools (`await call_tool(...)`); intermediate results stay in-sandbox
 only deltas cross into context. Tools are discovered via `search`. This one
 contract is exposed **three isomorphic ways — MCP · Skills · a bash CLI** (the
 harness-in-harness ladder) so a bash-only agent (Jules, no MCP/Skill) is a
-first-class participant; proven in `seed/` (`AGENTS.md` + a bash↔MCP isomorphism
+first-class participant; proven in `../agency/` (`AGENTS.md` + a bash↔MCP isomorphism
 test). Cross-cutting guards (quality-score, loop-detection, compaction,
 `Slot`/quota) are engine middleware, **not** concepts.
 
@@ -60,7 +60,7 @@ typed answer), `ctx.sample(...)` (ask the caller's LLM), or `ctx.report_progress
 (stream). A gate that needs a human is just an `elicit` → the Lifecycle pauses at
 `input-required`, the answer resumes it, the outcome is recorded as a `Gate`.
 "askuser" is therefore not a special case — it is one node in the chain. All of
-this is proven runnable in `../agency-seed/` (real `ctx.elicit` round-trip).
+this is proven runnable in `../agency/` (real `ctx.elicit` round-trip).
 
 ## Schemas & templates (the typed/generative layer)
 
@@ -76,7 +76,7 @@ Both are ordinary nodes in **Memory**, forming a generate/validate pair:
   produces an Artefact `DERIVED_FROM` the Template, which `VALIDATES_AGAINST` its
   Schema.
 
-Proven runnable in `seed/` (a Template renders an Artefact that a Schema
+Proven runnable in `../agency/` (a Template renders an Artefact that a Schema
 validates; a missing field fails). This is how a real capability ports: its verbs
 (Capability) + its schemas/templates (Memory) + its pipeline (Lifecycle).
 
@@ -102,13 +102,15 @@ Structure-first. Concepts: `intent`, `capability`, `lifecycle`, `memory`. Tool
 names `<concept>_<capability>_<verb>` (underscores, ≤64, no dots; the client
 injects `mcp__`).
 
-## Status: the seed proves it (12/12 green, `seed/`)
+## Status: the installable `agency` plugin proves it (17/17 green, `../agency/`)
 
+The seed has **graduated into an installable Claude Code plugin** (`../agency/`).
 Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
 
 - the **provenance moat** (one traversal);
-- **two genuinely different capabilities** — a stateless `transform` and the
-  **REAL Jules agent** wired to the actual orchestrator (`jules_create`/`get`);
+- **two genuinely different capabilities** — a synchronous craft/compute
+  (`plugin`) and the **REAL Jules agent** wired to the actual orchestrator
+  (`jules_create`/`get`);
 - **bi-temporal memory** (`as_of`); **`COMPLETED != done`** (real Jules `verify`:
   state completed AND a branch on origin);
 - **code-mode is the contract** (`search`/`get_schema`/`execute`) — exposed
@@ -116,11 +118,23 @@ Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
 - **code-mode tool-chaining**; **gates via `elicit`**;
 - **schemas & templates** (typed/generative layer);
 - a **strictly enforced ontology** (`ontology.py`: per-node required-field schemas
-  + an enumerated edge set + closed enums; `record`/`link` reject drift);
-- a **micro-step skill walker** (`skill.py`): walks `ALBUM_CONCEPT_SKILL` — the
-  real bitwize conceptualizer schematized — one phase at a time (progressive
-  disclosure, token-efficient) through its Phase-7 **hard gate**, recording each
-  phase as provenance.
+  + an enumerated edge set + closed enums; `record`/`link`/`update` reject drift);
+- a **micro-step skill walker** (`skill.py`): one phase at a time (progressive
+  disclosure) through a **hard gate**, recording each phase as provenance;
+- **capabilities self-register by reflection** — the engine `discover()`s every
+  `Capability` in `capabilities/` and auto-wires one MCP tool per verb from the
+  verb signature (`inspect.signature`): adding a capability is adding a file;
+- the **plugin-development capability** — a complete port of the superpowers
+  skill-creation (`writing-skills`, Iron Law enforced by phase ordering) + plugin
+  authoring (manifest · SKILL.md · command · marketplace entry · CSO linter);
+- a **self-hosted install** — the engine authors and validates its own
+  `.claude-plugin/plugin.json` + `help` macroskill (mapping macroskills → verbs).
 
-Next: grow the capability set (port more bitwize crafts as strict schemas) and
-graduate the seed into the shipped engine.
+The whole capability landscape of every installed plugin was surveyed, clustered,
+and spec-paneled — see `CAPABILITY-CLUSTERS.md`. Verdict: the four concepts + the
+engine absorb it all; the only net-new specs worth carrying forward are
+**`delegate`** (agent fan-out + quota + join) and **`reflect`** (durable
+cross-session memory).
+
+Next: build the `delegate` + `reflect` specs; grow the capability set by dropping
+files into `capabilities/` (no wiring).
