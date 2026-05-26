@@ -7,12 +7,16 @@
 
 ## Four concepts + one substrate
 
-**Substrate — the Engine.** One FastMCP server + one bi-temporal graph. Public
-surface = the four-verb contract (`list_tools`, `call_tool`, `list_skills`,
-`dispatch_skill`) + one `execute(code)` code-mode tool (results stay in-sandbox;
-only deltas + `elided_ref` handles reach context). Cross-cutting guards
-(quality-score, loop-detection, compaction, `Slot`/quota) are engine middleware,
-**not** concepts.
+**Substrate — the Engine.** One FastMCP server + one bi-temporal graph.
+**Code-mode IS the contract** (lean — no four-verb surface): the public surface is
+exactly `search` · `get_schema` · `execute`. The agent writes code in `execute`
+that chains tools (`await call_tool(...)`); intermediate results stay in-sandbox,
+only deltas cross into context. Tools are discovered via `search`. This one
+contract is exposed **three isomorphic ways — MCP · Skills · a bash CLI** (the
+harness-in-harness ladder) so a bash-only agent (Jules, no MCP/Skill) is a
+first-class participant; proven in `seed/` (`AGENTS.md` + a bash↔MCP isomorphism
+test). Cross-cutting guards (quality-score, loop-detection, compaction,
+`Slot`/quota) are engine middleware, **not** concepts.
 
 **1. Intent** *(human-owned).* A supersedable node carrying **purpose +
 acceptance**, with the **deliverable as an attribute** (why/what merged).
@@ -71,8 +75,8 @@ this is proven runnable in `../agency-seed/` (real `ctx.elicit` round-trip).
 ## Kept (panel-endorsed)
 
 The **isomorphic verb frame**; the **one bi-temporal provenance graph +
-`SERVES`**; the **four-verb contract + code-mode**; the **`COMPLETED ≠ done`**
-lesson.
+`SERVES`**; **code-mode as the one lean contract** (exposed isomorphically over
+MCP / Skills / bash); the **`COMPLETED ≠ done`** lesson.
 
 ## Naming
 

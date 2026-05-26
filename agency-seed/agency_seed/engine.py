@@ -1,11 +1,11 @@
-"""Engine — one FastMCP server + one graph. The four-verb contract (list_tools /
-call_tool are MCP-native; list_skills / dispatch_skill are surfaced as tools,
-since MCP has no skill RPC). Optional code-mode transform hides the raw tools
-behind search / get_schema / execute (the −98%-token pattern), exactly as the
-local jules-plugin does.
+"""Engine — one FastMCP server + one graph.
 
-Tool names are MCP-conformant `<concept>_<capability>_<verb>` (underscores, no
-dots, ≤64) — the client injects the `mcp__` prefix.
+**Code-mode IS the contract** (lean: no separate four-verb surface). The engine
+exposes exactly `search` / `get_schema` / `execute`; the underlying tools
+(capabilities, gate, provenance) are discovered via `search` and called from
+inside `execute` (`await call_tool(name, params)`). This is the same surface a
+bash agent drives via `agency_seed/cli.py` — so MCP and bash are isomorphic by
+construction. Tool names are MCP-conformant `<concept>_<capability>_<verb>`.
 """
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ class Engine:
         self.registry.register(syllables_capability)
         self.registry.register(jules_capability)
 
-    def build_mcp(self, codemode: bool = False) -> FastMCP:
+    def build_mcp(self, codemode: bool = True) -> FastMCP:
         transforms = [CodeMode()] if (codemode and HAVE_CODEMODE) else []
         mcp = FastMCP("agency-seed", transforms=transforms)
         reg, mem = self.registry, self.memory
@@ -66,16 +66,5 @@ class Engine:
         def memory_graph_provenance(intent_id: str) -> dict:
             "Cross-concern provenance for an intent — one graph traversal."
             return mem.provenance(intent_id)
-
-        @mcp.tool
-        def agency_list_skills() -> list:
-            "Four-verb contract: list capabilities (skills)."
-            return reg.names()
-
-        @mcp.tool
-        def agency_dispatch_skill(name: str) -> dict:
-            "Four-verb contract: dispatch a skill (capability) by name."
-            cap = reg.get(name)
-            return {"name": cap.name, "home": cap.home, "verbs": list(cap.verbs)}
 
         return mcp

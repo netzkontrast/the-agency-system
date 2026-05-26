@@ -11,13 +11,25 @@ Proves:
      execute() block filters in-sandbox and returns only a delta.
 """
 import asyncio
+import json
+import os
 import re
+import subprocess
+import sys
 import tempfile
 
 from fastmcp import Client
 from fastmcp.client.elicitation import ElicitResult
 
 from agency_seed.engine import Engine
+
+SEED_DIR = os.path.dirname(os.path.dirname(__file__))
+# code that chains one tool and returns just the int delta (handles either result shape)
+_COUNT_CODE = (
+    "r = await call_tool('capability_syllables_count', "
+    "{{'text': '{text}', 'intent_id': '{iid}'}})\n"
+    "return r['result'] if isinstance(r, dict) and 'result' in r else r"
+)
 
 NAME_RE = re.compile(r"^[a-zA-Z0-9_]{1,64}$")  # MCP / Claude-frontend strict
 
@@ -28,7 +40,18 @@ def fresh() -> Engine:
 
 def _sc(result):
     sc = result.structured_content
-    return sc.get("result", sc) if isinstance(sc, dict) else sc
+    if isinstance(sc, dict):
+        return sc.get("result", sc)
+    if sc is not None:
+        return sc
+    # scalar returns (e.g. execute returning an int) arrive as text content
+    if result.content:
+        txt = result.content[0].text
+        try:
+            return json.loads(txt)
+        except (ValueError, TypeError):
+            return txt
+    return None
 
 
 def run_scenario(e: Engine) -> str:
@@ -87,26 +110,24 @@ def test_completed_not_done():
     e.memory.close()
 
 
-def test_four_verb_engine_real_fastmcp():
+def test_codemode_is_the_contract():
+    """No four-verb surface. The engine exposes exactly search/get_schema/execute;
+    tools are discovered via search and called from inside execute. Lean."""
     e = fresh()
     iid = e.intent.capture("a", "b", "c")
-    mcp = e.build_mcp(codemode=False)
+    mcp = e.build_mcp()                                       # default: code-mode IS the contract
 
     async def main():
-        tools = await mcp.list_tools()
-        names = {t.name for t in tools}
-        assert {"capability_syllables_count", "memory_graph_provenance",
-                "agency_list_skills", "agency_dispatch_skill"} <= names
-        assert all(NAME_RE.match(n) for n in names)          # MCP-conformant names
-        skills = _sc(await mcp.call_tool("agency_list_skills", {}))
-        assert "jules" in skills and "syllables" in skills
-        n = _sc(await mcp.call_tool("capability_syllables_count",
-                                    {"text": "hello brave world", "intent_id": iid}))
-        return int(n)
+        names = {t.name for t in await mcp.list_tools()}
+        assert names == {"search", "get_schema", "execute"}  # the whole contract
+        assert all(NAME_RE.match(n) for n in names)
+        hits = str(_sc(await mcp.call_tool("search", {"query": "syllables count"})))
+        assert "capability_syllables_count" in hits          # discovery via search
+        out = _sc(await mcp.call_tool("execute", {
+            "code": _COUNT_CODE.format(text="hello brave world", iid=iid)}))
+        return int(out)
 
-    count = asyncio.run(main())
-    assert count == 4                                        # hel-lo brave wor-ld
-    # the tool call recorded an Invocation that SERVES the intent
+    assert asyncio.run(main()) == 4                           # called from inside execute
     assert any(x["verb"] == "count" for x in e.memory.provenance(iid)["serves"])
     e.memory.close()
 
@@ -184,3 +205,35 @@ def test_gate_elicits_human_in_flow():
     prov = e.memory.provenance(iid)
     assert any(g["name"] == "human-confirm" and g["passed"] for g in prov["gates"])
     e.memory.close()
+
+
+def test_isomorphism_mcp_equals_bash_cli():
+    """Harness-in-harness: the SAME code-mode contract, driven via MCP in-process
+    AND via a bash-only subprocess (no MCP client, no Skill loader — what Jules
+    has), over the SAME persisted graph, yields identical results — and both
+    invocations land in one graph. MCP ≡ bash, proven."""
+    db = tempfile.mktemp(suffix=".db")
+    e = Engine(db)
+    iid = e.intent.capture("ship green CI", "auth test passes", "tests green")
+    e.intent.confirm(iid)
+    code = _COUNT_CODE.format(text="fix the failing auth test", iid=iid)
+
+    # (1) MCP path — code-mode contract in-process
+    mcp_out = _sc(asyncio.run(e.build_mcp(codemode=True).call_tool("execute", {"code": code})))
+    e.memory.close()                                          # release the lock for the subprocess
+
+    # (2) bash path — the same contract via a shell-only invocation
+    proc = subprocess.run(
+        [sys.executable, "-m", "agency_seed.cli", "--db", db, "execute", "--code", code],
+        cwd=SEED_DIR, capture_output=True, text=True,
+        env={**os.environ, "PYTHONPATH": SEED_DIR},
+    )
+    assert proc.returncode == 0, proc.stderr
+    cli_out = json.loads(proc.stdout)
+
+    assert int(mcp_out) == int(cli_out) == 6                  # identical across harnesses
+    # shared durable graph: both runs recorded into the one graph
+    e2 = Engine(db)
+    counts = [n for n in e2.memory.provenance(iid)["serves"] if n.get("verb") == "count"]
+    assert len(counts) == 2                                   # one via MCP, one via bash CLI
+    e2.memory.close()
