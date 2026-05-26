@@ -12,11 +12,15 @@ python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt   # graphqlite + fastmcp
 ```
 
-## The contract: code-mode (three commands)
+## The contract: code-mode
 
 State lives in one graph file you pass as `--db <path>` (it persists across calls).
 
 ```bash
+# 0. bootstrap an Intent (everything you do SERVES one) — prints {"intent_id": "..."}
+python -m agency_seed.cli --db graph.db intent \
+  --purpose "ship green CI" --deliverable "auth test passes" --acceptance "tests green"
+
 # 1. discover what tools exist
 python -m agency_seed.cli --db graph.db search "syllables count"
 
