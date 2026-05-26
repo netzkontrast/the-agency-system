@@ -1,13 +1,13 @@
 """jules — the agent capability. An agent IS a Lifecycle parameterization that
 dispatches a remote async session and inserts a `verify` step, because
 `COMPLETED != done`: the Jules session state flips to COMPLETED even when it
-paused before pushing a branch. `verify` checks the branch on REMOTE — the real
+paused before pushing a branch. `verify` checks the branch on REMOTE — the
 silent-fail guard (CLAUDE.md, JULES_PROTOCOL §8).
 
-This is a COMPLETE implementation: `RealJulesClient` calls the actual Jules
-orchestrator (`jules_create` / `jules_get`). It is injected at the boundary, so
-the engine really dispatches Jules in production while deterministic tests pass a
-stand-in for the external API.
+The capability's boundary is a `JulesBackend` (a Protocol). The default backend,
+`JulesClient`, talks to the real Jules REST API via the vendored `_jules_api`
+client. The backend is injected, so the engine really dispatches Jules in
+production while deterministic tests inject a stand-in.
 """
 from __future__ import annotations
 
@@ -16,38 +16,31 @@ from typing import Optional, Protocol
 from ..capability import Capability
 
 
-class JulesClient(Protocol):
+class JulesBackend(Protocol):
+    """The external boundary the `jules` capability talks to."""
     def create(self, prompt: str, source: str, starting_branch: str) -> dict: ...
     def get(self, session: str) -> dict: ...
 
 
-class RealJulesClient:
-    """Wraps the real Jules orchestrator (jules-plugin). Lazily imported so the
-    seed has no hard dependency until you actually dispatch."""
-
-    def _lifecycle(self):
-        try:
-            from jules_mcp.tools import lifecycle  # type: ignore
-        except ImportError as e:  # pragma: no cover - environment-specific
-            raise RuntimeError(
-                "RealJulesClient needs the jules-plugin on PYTHONPATH "
-                "(jules-plugin/mcp-server/src) and JULES_API_KEY set."
-            ) from e
-        return lifecycle
+class JulesClient:
+    """The default `jules` backend — the real Jules REST API via the vendored
+    `_jules_api` client. Needs `JULES_API_KEY` (checked at call time)."""
 
     def create(self, prompt: str, source: str, starting_branch: str) -> dict:
-        return self._lifecycle().jules_create(
+        from . import _jules_api
+        return _jules_api.jules_create(
             prompt=prompt, source=source, starting_branch=starting_branch,
             require_plan_approval=False)
 
     def get(self, session: str) -> dict:
-        return self._lifecycle().jules_get(session)
+        from . import _jules_api
+        return _jules_api.jules_get(session)
 
 
 def dispatch(source: str, starting_branch: str, prompt: str,
-             client: Optional[JulesClient] = None) -> dict:
+             client: Optional[JulesBackend] = None) -> dict:
     "Spawn a remote Jules session (external effect). Returns its id/url/state."
-    s = (client or RealJulesClient()).create(
+    s = (client or JulesClient()).create(
         prompt=prompt, source=source, starting_branch=starting_branch)
     sid = s.get("id") or s.get("name")
     return {
@@ -58,9 +51,9 @@ def dispatch(source: str, starting_branch: str, prompt: str,
     }
 
 
-def status(session: str, client: Optional[JulesClient] = None) -> dict:
-    "Read a session's current state from the orchestrator."
-    s = (client or RealJulesClient()).get(session)
+def status(session: str, client: Optional[JulesBackend] = None) -> dict:
+    "Read a session's current state from the backend."
+    s = (client or JulesClient()).get(session)
     return {"state": s.get("state"), "url": s.get("url")}
 
 
@@ -74,7 +67,7 @@ jules_capability = Capability(
     name="jules",
     home="lifecycle",
     verbs={
-        # `inject: ["client"]` — the engine supplies its jules_client (the boundary
+        # `inject: ["client"]` — the engine supplies its jules backend (the boundary
         # object) so the verb stays pure and the param is hidden from the MCP schema.
         "dispatch": {"role": "effect", "fn": dispatch, "inject": ["client"]},   # spawns a remote session
         "status": {"role": "transform", "fn": status, "inject": ["client"]},    # reads session state

@@ -58,10 +58,10 @@ def _sc(result):
     return None
 
 
-class FakeJulesClient:
+class StubJulesClient:
     """Boundary stand-in for the external Jules API (deterministic tests). The
-    REAL client (RealJulesClient -> jules_create/jules_get) is the default in the
-    engine and is proven live (PR #175)."""
+    default backend (`JulesClient` -> the vendored `_jules_api`) is what the
+    engine uses in production."""
     def __init__(self, state: str = "completed"):
         self._state = state
 
@@ -86,7 +86,7 @@ def run_scenario(e: Engine) -> str:
     # the agent capability — really dispatches Jules (stand-in client at the boundary)
     e.registry.invoke(e.memory, iid, "jules", "dispatch", agent_id="agent:jules",
                       source="netzkontrast/the-agency-system", starting_branch="main",
-                      prompt="fix auth", client=FakeJulesClient())
+                      prompt="fix auth", client=StubJulesClient())
     assert e.lifecycle.move(lc, "tests-green", ok=True) == "working"
     assert e.lifecycle.complete(lc) == "completed"
     return iid
@@ -127,7 +127,7 @@ def test_completed_not_done():
     iid = e.intent.capture("x", "y", "z")
     disp, _ = e.registry.invoke(e.memory, iid, "jules", "dispatch", agent_id="agent:j",
                                 source="o/r", starting_branch="main", prompt="do x",
-                                client=FakeJulesClient(state="completed"))
+                                client=StubJulesClient(state="completed"))
     assert disp["status"] == "completed"
     # state says completed, but no branch on remote -> NOT done (the silent-fail)
     assert e.registry.invoke(e.memory, iid, "jules", "verify",
@@ -166,7 +166,7 @@ def test_codemode_chaining_is_an_executable_graph():
     only ONE small delta crosses into context. And because every call_tool records
     an Invocation, that executable graph is MIRRORED into the durable provenance
     graph (the transform's pick feeds the agent, both edged to the intent)."""
-    e = Engine(tempfile.mktemp(suffix=".db"), jules_client=FakeJulesClient())  # boundary stand-in
+    e = Engine(tempfile.mktemp(suffix=".db"), jules_client=StubJulesClient())  # boundary stand-in
     iid = e.intent.capture("ship a clean skill", "skill authored + dispatched", "lint clean")
     e.intent.confirm(iid)
     e.lifecycle.open(iid, agent="jules")                      # so agent:jules exists

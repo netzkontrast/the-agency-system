@@ -27,7 +27,7 @@ except ImportError:  # pragma: no cover
     HAVE_CODEMODE = False
 
 from .capabilities import discover
-from .capabilities.jules import RealJulesClient
+from .capabilities.jules import JulesClient
 from .capability import Registry
 from .intent import Intent
 from .lifecycle import Lifecycle
@@ -37,7 +37,7 @@ from .ontology import Ontology
 
 class Engine:
     def __init__(self, path: str, jules_client=None):
-        self.jules_client = jules_client or RealJulesClient()   # boundary: real orchestrator by default
+        self.jules_client = jules_client or JulesClient()       # boundary: the real Jules backend by default
         self.registry = Registry()
         self.ontology = Ontology.core()                         # the base, then each capability extends it
         for cap in discover():                                  # reflection: register + merge ontology
