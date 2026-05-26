@@ -22,11 +22,12 @@ from .memory import Memory
 
 
 class SkillRun:
-    def __init__(self, memory: Memory, intent_id: str, schema: dict):
+    def __init__(self, memory: Memory, intent_id: str, schema: dict, registry=None):
         self.memory = memory
         self.intent_id = intent_id
         self.schema = schema
         self.phases = schema["phases"]
+        self.registry = registry            # required if any phase is executable (has `invoke`)
         self.i = 0
         self.skill_id = memory.record("Skill", {"name": schema["name"], "kind": schema["kind"]})
         memory.link(self.skill_id, intent_id, "SERVES")
@@ -41,15 +42,28 @@ class SkillRun:
         if self.done:
             return None
         p = self.phases[self.i]
-        return {"index": p["index"], "name": p["name"],
-                "produces": list(p["produces"]), "gate": p.get("gate")}
+        return {"index": p["index"], "name": p["name"], "produces": list(p["produces"]),
+                "inputs": list(p.get("inputs", [])), "gate": p.get("gate")}
 
-    def submit(self, outputs: dict, confirmed: bool = False) -> dict:
-        """Advance one phase. Rejects missing required outputs; a hard gate needs
-        an explicit confirmation (it pauses at `input-required` otherwise)."""
+    def submit(self, outputs: Optional[dict] = None, confirmed: bool = False) -> dict:
+        """Advance one phase. An executable phase (`invoke`) runs a REAL capability
+        verb (recorded as an Invocation) and uses its output to satisfy the schema;
+        a plain phase consumes the submitted `outputs`. Missing required outputs
+        raise; a hard gate pauses at `input-required` until confirmed."""
         if self.done:
             raise RuntimeError("skill run already complete")
         p = self.phases[self.i]
+        outputs = dict(outputs or {})
+        inv_id = None
+        if "invoke" in p:
+            if self.registry is None:
+                raise RuntimeError(f"phase {p['name']!r} is executable but no registry was given")
+            spec = p["invoke"]
+            args = {k: outputs[k] for k in p.get("inputs", []) if k in outputs}
+            result, inv_id = self.registry.invoke(
+                self.memory, self.intent_id, spec["capability"], spec["verb"], **args)
+            val = result.get("result", result) if isinstance(result, dict) else result
+            outputs[p["produces"][0]] = val                  # real tool output satisfies the schema
         missing = [f for f in p["produces"] if outputs.get(f) in (None, "")]
         if missing:
             raise ValueError(f"phase {p['name']!r} missing required outputs: {missing}")
@@ -63,6 +77,9 @@ class SkillRun:
         self.memory.link(phase_id, self.intent_id, "SERVES")
         if self._prev_phase:
             self.memory.link(self._prev_phase, phase_id, "PRECEDES")
+        if inv_id:
+            self.memory.link(phase_id, inv_id, "PRECEDES")   # the phase owns its real invocation
         self._prev_phase = phase_id
         self.i += 1
         return {"status": "completed" if self.done else "working", "phase": p["name"]}
+

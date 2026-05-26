@@ -352,3 +352,25 @@ def test_skill_walker_micro_steps_with_hard_gate():
     rows = e.memory.g.query("MATCH (s:Skill)-[:HAS_PHASE]->(p:Phase) RETURN p")
     assert len(rows) == 7                                     # the whole run is provenance
     e.memory.close()
+
+
+def test_real_skill_executes_tools():
+    """A skill phase bound to a REAL capability verb: the walker EXECUTES it
+    (recording an Invocation in provenance) and uses its real output to satisfy
+    the phase schema. lyric-prep = real syllable count -> hard approve gate."""
+    from agency_seed import ontology
+    from agency_seed.skill import SkillRun
+    e = fresh()
+    iid = e.intent.capture("prep a lyric line", "reviewed line", "human approves")
+    run = SkillRun(e.memory, iid, ontology.LYRIC_PREP_SKILL, registry=e.registry)
+
+    assert run.current()["name"] == "syllables" and run.current()["inputs"] == ["text"]
+    assert run.submit({"text": "fix the failing auth test"})["status"] == "working"
+    # the REAL tool ran and is now in the provenance graph
+    assert any(n.get("verb") == "count" for n in e.memory.provenance(iid)["serves"])
+
+    assert run.current()["gate"] == "hard"
+    assert run.submit({"user_confirmed": "yes"}, confirmed=False)["status"] == "input-required"
+    assert run.submit({"user_confirmed": "yes"}, confirmed=True)["status"] == "completed"
+    assert run.done
+    e.memory.close()

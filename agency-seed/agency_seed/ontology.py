@@ -81,3 +81,16 @@ ALBUM_CONCEPT_SKILL = {
 # album types as a closed enum (the conceptualizer's type choice)
 ALBUM_TYPES = {"documentary", "narrative", "thematic", "character-study",
                "collection", "ost"}
+
+# A real EXECUTABLE micro-step skill: phases bound to real capability verbs that
+# the walker runs (recorded as Invocations), ending in a hard approve gate. This
+# is a real transform-chain (no toy steps) — the syllable count is real compute.
+LYRIC_PREP_SKILL = {
+    "name": "lyric-prep",
+    "kind": "transform-chain",
+    "phases": [
+        {"index": 1, "name": "syllables", "produces": ["count"],
+         "invoke": {"capability": "syllables", "verb": "count"}, "inputs": ["text"]},
+        {"index": 2, "name": "approve", "produces": ["user_confirmed"], "gate": "hard"},
+    ],
+}
