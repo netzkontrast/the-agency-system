@@ -6,7 +6,7 @@ code-mode transform). Built after the adversarial spec panel's unanimous verdict
 *stop spec'ing, build the smallest thing that proves the moat and falsifies the
 risks.*
 
-## What it proves (`tests/test_seed.py`, 7/7 green)
+## What it proves (`tests/test_seed.py`, 8/8 green)
 
 1. **The moat — cross-concern provenance is one graph traversal.**
    `Memory.provenance(intent)` returns, in one Cypher walk, every action that
@@ -35,6 +35,9 @@ risks.*
    via a bash-only subprocess, over the same graph, yields identical results.
    This is what lets Jules run the engine with no MCP/Skill integration — see
    `AGENTS.md`.
+9. **Schemas & templates (typed/generative layer)** — a Template generates an
+   Artefact (`DERIVED_FROM`) that a Schema validates (`VALIDATES_AGAINST`); a
+   missing required field fails validation. Both are nodes in the one graph.
 
 ## Run
 

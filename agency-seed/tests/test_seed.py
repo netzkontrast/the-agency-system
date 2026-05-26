@@ -207,6 +207,42 @@ def test_gate_elicits_human_in_flow():
     e.memory.close()
 
 
+def test_schemas_and_templates_typed_generative():
+    """The typed/generative layer. A Template GENERATES an Artefact (the `act`),
+    a Schema VALIDATES it (the typed contract) — both are ordinary nodes in the
+    one graph; the artefact is DERIVED_FROM the template and VALIDATES_AGAINST the
+    schema. The schema also bites: a missing field fails validation."""
+    e = fresh()
+    iid = e.intent.capture("make a track sheet", "sheet for T1", "valid sheet")
+    e.intent.confirm(iid)
+    schema = e.memory.record("Schema", {"name": "track-sheet", "required": "title,lyrics"})
+    template = e.memory.record("Template", {"name": "track-sheet", "body": "# {title}\n\n{lyrics}"})
+
+    # generate the artefact from the template
+    data = {"title": "Test Track", "lyrics": "la la la"}
+    body = e.memory.recall(template)["body"].format(**data)
+    art = e.memory.record("Artefact", {"kind": "track-sheet", **data, "body": body})
+    e.memory.link(art, template, "DERIVED_FROM")
+    e.memory.link(art, iid, "SERVES")
+
+    # validate against the schema (the typed layer)
+    assert e.memory.validate_schema(art, schema) is True
+    e.memory.link(art, schema, "VALIDATES_AGAINST")
+    assert "# Test Track" in body and "la la la" in body
+
+    # the schema bites: an artefact missing a required field fails
+    bad = e.memory.record("Artefact", {"kind": "track-sheet", "title": "x"})
+    assert e.memory.validate_schema(bad, schema) is False
+
+    # the typed/generative edges live in the one graph
+    rows = e.memory.g.query(
+        "MATCH (a:Artefact)-[:VALIDATES_AGAINST]->(s:Schema) RETURN s")
+    assert any(r["s"]["properties"].get("name") == "track-sheet" for r in rows)
+    drv = e.memory.g.query("MATCH (a:Artefact)-[:DERIVED_FROM]->(t:Template) RETURN t")
+    assert any(r["t"]["properties"].get("name") == "track-sheet" for r in drv)
+    e.memory.close()
+
+
 def test_isomorphism_mcp_equals_bash_cli():
     """Harness-in-harness: the SAME code-mode contract, driven via MCP in-process
     AND via a bash-only subprocess (no MCP client, no Skill loader — what Jules

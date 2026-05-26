@@ -62,6 +62,21 @@ typed answer), `ctx.sample(...)` (ask the caller's LLM), or `ctx.report_progress
 "askuser" is therefore not a special case — it is one node in the chain. All of
 this is proven runnable in `../agency-seed/` (real `ctx.elicit` round-trip).
 
+## Schemas & templates (the typed/generative layer)
+
+Both are ordinary nodes in **Memory**, forming a generate/validate pair:
+- A **Schema** is the typed contract for a node / artefact / verb-params. It powers
+  `validate` / `check` — and it is the **isomorphism glue**: one schema per verb
+  renders three ways (MCP `inputSchema`, the Skill's frontmatter, the bash CLI's
+  arg parser), which is *why* MCP / Skill / bash stay in lockstep.
+- A **Template** is a parameterized generator. It powers `act`: a Capability
+  produces an Artefact `DERIVED_FROM` the Template, which `VALIDATES_AGAINST` its
+  Schema.
+
+Proven runnable in `seed/` (a Template renders an Artefact that a Schema
+validates; a missing field fails). This is how a real capability ports: its verbs
+(Capability) + its schemas/templates (Memory) + its pipeline (Lifecycle).
+
 ## Dropped (and why)
 
 - **Six-domain 5W1H** → a lens, not structure (journalistic checklist, not an

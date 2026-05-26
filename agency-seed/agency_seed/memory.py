@@ -92,6 +92,17 @@ class Memory:
         props = self.recall(node_id)
         return bool(props) and bool(predicate(props))
 
+    def validate_schema(self, node_id: str, schema_id: str) -> bool:
+        """Check a node against a Schema node's `required` fields (comma-joined).
+        The typed layer: a Schema powers `validate`; pairs with a Template that
+        powers `act` (generate). Both are ordinary nodes in the one graph."""
+        node = self.recall(node_id)
+        schema = self.recall(schema_id)
+        if not node or not schema:
+            return False
+        required = [f for f in str(schema.get("required", "")).split(",") if f]
+        return all(node.get(f) not in (None, "") for f in required)
+
     def project(self, label: str, budget: int, as_of: Optional[int] = None) -> list[dict]:
         """Ranked, budget-capped deltas — never raw history. Recency rank here."""
         rows = self.find(label, as_of=as_of)
