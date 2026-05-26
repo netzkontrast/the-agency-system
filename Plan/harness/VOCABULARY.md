@@ -1,6 +1,7 @@
 ---
 slug: harness-vocabulary
-status: ready
+status: superseded
+superseded_by: [vision/specs/12-vocabulary.md]
 owner: claude
 depends_on: [harness/design]
 related: [000-overview, harness/restructure]

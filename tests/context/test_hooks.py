@@ -64,18 +64,22 @@ def test_post_tool_use_artefact_metadata(monkeypatch, tmp_path):
     post_tool_use.ingest("some_tool", envelope)
 
     store = Store(db_path=db_path)
+    store.boot()
     res = store.query("MATCH (n:Artefact) RETURN n")
     assert len(res) == 1
 
-    # Check edges
-    edges = store.query("MATCH (a:Artefact)-[:DERIVED_FROM]->(b) RETURN a, b")
-    # For basic mock test, just verify the edges exist via simple SQL
-    import sqlite3
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.execute("SELECT * FROM edges WHERE type = 'DERIVED_FROM'")
-    edges_sql = cursor.fetchall()
-    assert len(edges_sql) == 2
+    # GraphQLite is the canonical store; query DERIVED_FROM edges via
+    # Cypher rather than the legacy raw-SQLite `edges` table (whose
+    # `from_node`/`to_node` columns are an artefact of the deleted
+    # fallback per spec 08-v1 §FR1).
+    edges = list(store.query("MATCH (a:Artefact)-[:DERIVED_FROM]->(b) RETURN a, b"))
+    assert len(edges) == 2, edges
+    targets = sorted(e["b"]["properties"]["id"] for e in edges)
+    assert targets == [
+        "music/LyricSheet/whispers",
+        "music/SunoPrompt/whispers-v3",
+    ]
+
 
 def test_satisfies_phase_edge_from_gate_emission(monkeypatch, tmp_path):
     db_path = str(tmp_path / "ontology.db")
@@ -85,11 +89,8 @@ def test_satisfies_phase_edge_from_gate_emission(monkeypatch, tmp_path):
     post_tool_use.ingest("some_tool", envelope)
 
     store = Store(db_path=db_path)
-    import sqlite3
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.execute("SELECT type, from_node, to_node FROM edges WHERE type = 'SATISFIES_PHASE'")
-    rows = cursor.fetchall()
+    store.boot()
+    rows = list(store.query("MATCH (a)-[:SATISFIES_PHASE]->(b) RETURN a, b"))
     assert len(rows) == 1
-    assert rows[0]["from_node"] == "music/Artefact/abc"
-    assert rows[0]["to_node"] == "phase:music/02"
+    assert rows[0]["a"]["properties"]["id"] == "music/Artefact/abc"
+    assert rows[0]["b"]["properties"]["id"] == "phase:music/02"

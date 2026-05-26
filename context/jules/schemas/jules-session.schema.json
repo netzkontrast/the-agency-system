@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tag:agency-system.local,2026:schema:jules/jules-session",
+  "title": "JulesSession",
+  "description": "Ontology node tracking a Jules-orchestrator session through its lifecycle. The `state` field is the canonical state-machine label written by the row's six orchestration handlers (dispatch, await_plan, monitor, verify, recover, integrate).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["session_id", "state", "owner", "repo", "branch", "prompt", "created_at"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Opaque Jules session identifier (numeric, as returned by the v1alpha API). Stored without the `sessions/` prefix."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "DISPATCHED",
+        "IN_PROGRESS",
+        "AWAITING_PLAN_APPROVAL",
+        "COMPLETED",
+        "VERIFIED",
+        "SILENT_FAIL",
+        "PATCH_EXTRACTED",
+        "APPLIED",
+        "FAILED"
+      ],
+      "description": "Local lifecycle label. Distinct from Jules's own state field (which only tracks the API session); the local label additionally records verify / recover / integrate phase outcomes."
+    },
+    "jules_state": {
+      "type": ["string", "null"],
+      "description": "Last observed value of the Jules API's `state` field — `IN_PROGRESS`, `AWAITING_PLAN_APPROVAL`, `COMPLETED`, `FAILED`, etc. Distinct from the `state` field above which carries local lifecycle labels."
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable session title (echoed back from the dispatch prompt or set explicitly)."
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "GitHub owner (org / user) the session targets."
+    },
+    "repo": {
+      "type": "string",
+      "minLength": 1,
+      "description": "GitHub repository name the session targets."
+    },
+    "branch": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Starting branch the session was based on."
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The natural-language task brief sent to Jules."
+    },
+    "url": {
+      "type": "string",
+      "description": "Jules web UI URL for the session."
+    },
+    "created_at": {
+      "type": "integer",
+      "description": "Unix epoch seconds when the JulesSession node was first written (i.e. when phase 03 dispatch succeeded)."
+    },
+    "plan_approved_at": {
+      "type": ["integer", "null"],
+      "description": "Unix epoch when phase 04 await_plan called jules_approve. Null until then."
+    },
+    "completed_at": {
+      "type": ["integer", "null"],
+      "description": "Unix epoch when monitor first observed jules_state=COMPLETED."
+    },
+    "verified_at": {
+      "type": ["integer", "null"],
+      "description": "Unix epoch when verify confirmed the work landed (state=VERIFIED) or flagged silent-fail (state=SILENT_FAIL)."
+    },
+    "branch_on_remote": {
+      "type": ["boolean", "null"],
+      "description": "Verify-phase result of the JULES_PROTOCOL §8 check — does origin carry the session's expected work branch? Null until verify runs."
+    },
+    "pr_url": {
+      "type": ["string", "null"],
+      "description": "Pull-request URL once integrate phase has surfaced one (either auto-created by Jules or opened by recover)."
+    },
+    "patch_bytes": {
+      "type": ["integer", "null"],
+      "description": "Size of the patch body extracted by recover, when the session went through silent-fail."
+    },
+    "patch_files": {
+      "type": ["integer", "null"],
+      "description": "Count of files touched by the patch, when the session went through silent-fail."
+    },
+    "last_error": {
+      "type": ["string", "null"],
+      "description": "Most-recent error message stamped onto the session by any orchestration handler. Cleared on the next successful transition."
+    }
+  }
+}

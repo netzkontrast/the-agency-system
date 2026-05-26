@@ -1,0 +1,16 @@
+id: session-completed
+type: hard-blocking
+blocks_phase: "06"
+description: "Block verify (phase 06) until the JulesSession has reached local state COMPLETED."
+evaluator:
+  kind: callable
+  module: workflow.jules.gates.session_completed
+  callable: evaluate
+on_success:
+  emit_edge:
+    type: SATISFIES_PHASE
+    from: "${session_id}"
+    to: "phase:jules/05"
+on_failure:
+  message: "session has not reached COMPLETED yet — keep polling phase 05 (monitor) until jules_state=COMPLETED."
+  fix_hint_tools: ["mcp__jules_monitor"]

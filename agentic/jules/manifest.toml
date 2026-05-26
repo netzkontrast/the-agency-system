@@ -1,15 +1,27 @@
 # Agentic cell manifest for the `jules` row.
 #
 # Conforms to context/_shared/schemas/agentic-cell.schema.json (spec 01).
-# Exports the `research` skill and the `query` tool. The harness derives
-# the row prefix, so exports remain bare (no `jules-` / `jules_` prefix).
+# The name-deriver expands each export against the row prefix: a tool
+# `dispatch` becomes `mcp__jules_dispatch`, and a skill `orchestrate`
+# becomes `/jules-orchestrate`.
+#
+# Phase mapping (workflow column drives the choice via phase frontmatter
+# `entry_verb`):
+#   query        → phase 01 (research)        — placeholder retrieval
+#   query        → phase 02 (synthesize)      — placeholder synthesis (same handler, different phase)
+#   dispatch     → phase 03 (dispatch)        — creates a Jules session
+#   await_plan   → phase 04 (await-plan)      — polls for AWAITING_PLAN_APPROVAL
+#   monitor      → phase 05 (monitor)         — polls until COMPLETED
+#   verify       → phase 06 (verify)          — JULES_PROTOCOL §8 silent-fail check
+#   recover      → phase 07 (recover)         — extract patch metadata
+#   integrate    → phase 08 (integrate)       — terminal; optionally git-apply
 
 [cell]
 row = "jules"
 column = "agentic"
 
 [skills]
-exports = ["research"]
+exports = ["research", "orchestrate", "recover"]
 
 [tools]
-exports = ["query"]
+exports = ["query", "dispatch", "await_plan", "monitor", "verify", "recover", "integrate"]

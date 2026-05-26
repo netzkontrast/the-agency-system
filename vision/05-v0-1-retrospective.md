@@ -113,25 +113,27 @@ These are concrete items each known to have at least one downstream
 consequence on the current code. Track as issues; not blockers for
 shipping v0.1.
 
-1. **Bootstrap path for hand-rolled rows.** A fresh ontology has zero
-   `phase/<row>/<phase_id>` nodes for any row not introduced via the
-   meta scaffold. V7 only passes when something seeds the Phase node
-   manually. Need either a `pipeline.boot()` step that walks
-   `workflow/<row>/phases/*.md` and upserts the corresponding `Phase`
-   nodes, or a one-shot `bin/agency-seed-phases` script.
+1. ~~**Bootstrap path for hand-rolled rows.**~~ **Closed before merge** —
+   `pipeline.boot()` now walks `workflow/<row>/phases/*.md` for non-meta
+   rows and upserts the corresponding `Phase` nodes (commit `f8bf5dd`).
+   V7 reaches `status="completed"` on a fresh ontology with no manual
+   seeding.
 
-2. **`research_complete` gate is a placeholder.** Returns `ok=True`
-   unconditionally. Real check depends on the spec 08-v1 driver
-   REGISTRY plus spec 09 cross-row dispatch. Until then, the phase-02
-   prose in `workflow/jules/phases/02-synthesize.md` overstates current
-   behavior.
+2. ~~**`research_complete` gate is a placeholder.**~~ **Closed in
+   the v0.3 jules-orchestration milestone** — the evaluator now
+   counts `Finding` nodes in the ontology (filtered by the input
+   topic) and returns ok=False with a precise message when none
+   exist. Spec 09 cross-row dispatch can still upgrade this later
+   to go through the driver REGISTRY, but the gate is no longer a
+   bypass.
 
-3. **Centralise the error-code catalogue.** `HANDLER_NOT_FOUND`,
-   `PHASE_BODY_MISSING`, `RESUME_EXPIRED`, `RESUME_TERMINAL`,
-   `RESUME_PHASE_GONE`, `ENVELOPE_INVALID`, `TOOL_ERROR`,
-   `SKILL_ERROR`, `HANDLER_MISSING_METHOD` — all defined inline.
-   Move to a shared module / spec section so the next contributor finds
-   them, before more codes accrete.
+3. ~~**Centralise the error-code catalogue.**~~ **Closed before merge**
+   (commit `b676f48`) — eleven codes live in
+   `context/_shared/error_codes.py`. All producer call sites
+   (`agentic/_harness/{cell_loader,fastmcp_boot}.py`,
+   `workflow/_runner/pipeline.py`) import from there. A regression test
+   (`tests/context/test_error_codes.py`) rejects any future inline
+   `"code": "<UPPER_SNAKE>"` literal.
 
 4. **Raw-SQLite payload tolerance is technical debt.** `_phase_node`
    and `hydrate` in `workflow/_runner/pipeline.py` accept both
@@ -140,22 +142,24 @@ shipping v0.1.
    will also let us drop the two pre-existing `tests/context/test_hooks.py`
    failures.
 
-5. **`context._STORE` singleton is not thread-safe.** Bare check-and-set
-   in `get_store()`. Documented as "single-threaded process; intentional"
-   but should grow a comment one level deeper, since FastMCP's task model
-   may eventually surface a second consumer.
+5. ~~**`context._STORE` singleton is not thread-safe.**~~ **Closed before
+   merge** (commit `b676f48`) — `get_store()` docstring now names the
+   upgrade path (`threading.Lock` around the lazy init if worker threads
+   ever wrap tools).
 
-6. **`_walk_phase` body-before-handler ordering.** Spec 07-v1 §FR3 lists
-   handler resolution first, but the implementation reads the prose body
-   first to support frontmatter `entry_verb` override. For a phase with
-   *both* body and handler missing, the error code is `PHASE_BODY_MISSING`
-   instead of the spec's `HANDLER_NOT_FOUND`. Defensible (frontmatter
-   drives the verb) but worth either an inline comment or a spec amendment.
+6. ~~**`_walk_phase` body-before-handler ordering.**~~ **Not a follow-up
+   after all** — the implementation already carries an inline comment
+   ("Body presence determines the entry_verb (frontmatter override) so
+   we read it before resolving the handler") explaining the deliberate
+   spec deviation. Documented in place; no further action needed.
 
-7. **Bulk-CLI's `jules_create` lookup is broken.** `bin/jules-bulk`
-   imports `jules_create` from `jules_mcp.server`, but the function
-   lives in `jules_mcp.tools.lifecycle`. Workaround during N4 was a
-   one-shot Python dispatcher. Fix or document the dispatcher pattern.
+7. ~~**Bulk-CLI's `jules_create` lookup is broken.**~~ **Closed before
+   merge** — `jules_mcp.server` re-exports `jules_create`,
+   `jules_status_all`, `jules_approve_awaiting`, `jules_quota`, and the
+   other lifecycle helpers, so the CLI's `from jules_mcp import server
+   as mod; mod.jules_*(...)` pattern works without touching the four
+   heredocs. Verified by `fanout`, `dashboard`, `approve-awaiting`, and
+   `quota` smoke runs.
 
 ## What v0.1 means for downstream work
 
@@ -167,16 +171,50 @@ With V2–V11 green:
 - **Spec 08-v1 driver REGISTRY** can land any time — the
   `artefact-node.schema.json` already declares the `artifact_driver` +
   `driver_pointer` slots; current behaviour is fs-by-default.
-- **The jules row itself** is intentionally minimal (one tool + one
-  skill + two phases + one placeholder gate). It exists primarily as
-  a vehicle to prove the three columns interconnect; expanding it to
-  a real autonomous coding agent is a separate milestone (v0.3?).
+- ~~**The jules row itself** is intentionally minimal (one tool + one
+  skill + two phases + one placeholder gate).~~ **Filled out in the
+  v0.3 jules-orchestration milestone below.**
+
+## v0.3 — jules-orchestration state machine (in this branch)
+
+The retrospective above describes the v0.1 vehicle. The same branch
+carries the v0.3 completion: the jules row now drives a real Jules
+session through its full lifecycle.
+
+**New ontology nodes** (context/jules/schemas/):
+- `JulesSession` — state machine with the nine labels
+  `DISPATCHED, IN_PROGRESS, AWAITING_PLAN_APPROVAL, COMPLETED,
+  VERIFIED, SILENT_FAIL, PATCH_EXTRACTED, APPLIED, FAILED`.
+- `SessionPatch` — patch metadata derived from
+  `jules_patch_summary`; linked to the session via `DERIVED_FROM`.
+
+**New handlers** (agentic/jules/handlers/): `dispatch`, `await_plan`,
+`monitor`, `verify`, `recover`, `integrate`. Each one is one-shot;
+the pipeline drives outer polling. Network calls go through
+`jules_mcp.server` (re-exports added in commit `2d8d6ca`).
+
+**New gates** (workflow/jules/gates/): `plan-approved` (blocks 05),
+`session-completed` (blocks 06), `patch-applied` (blocks 08). All
+three evaluate by reading the session's `state` field from the graph
+— so a caller cannot skip a phase by bypassing the orchestrate skill.
+
+**Two skills** (agentic/jules/skills/): `orchestrate` (full lifecycle
+composer) and `recover` (silent-fail recovery only).
+
+**State machine guarantees** (per `_session_state.assert_can_transition`):
+illegal jumps return `SESSION_STATE_INVALID` rather than corrupting
+the node. The transition table is unit-tested for parity with the
+schema enum.
+
+**Tests landed**: state-machine (9), gates (14), pipeline integration
+(6), schema round-trips (4). Plus the updated cell discovery
+assertions (3). 38 new tests; 90 passing in `tests/{agentic,workflow,context}`.
 
 ## Numbers
 
-- 7 commits ahead of `Master` at merge time
-- ~2200 lines net additions across 35 files
-- 52 passing tests, 2 known-failing pre-existing context-hook tests
+- 7 commits ahead of `Master` at v0.1 merge time
+- v0.3 work adds ~1500 lines net across ~25 files
+- 90 passing tests, 2 known-failing pre-existing context-hook tests
 - ~340 lines `pipeline.py` (target: split `_run_meta_scaffold` into its
   own module before adding row-type-specific logic)
 - Cold-boot payload: well under 500 tokens (test threshold)
