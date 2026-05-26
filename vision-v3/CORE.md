@@ -102,7 +102,7 @@ Structure-first. Concepts: `intent`, `capability`, `lifecycle`, `memory`. Tool
 names `<concept>_<capability>_<verb>` (underscores, ≤64, no dots; the client
 injects `mcp__`).
 
-## Status: the installable `agency` plugin proves it (18/18 green, `../agency/`)
+## Status: the installable `agency` plugin proves it (19/19 green, `../agency/`)
 
 The seed has **graduated into an installable Claude Code plugin** (`../agency/`).
 Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
@@ -131,13 +131,15 @@ Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
   `.claude-plugin/plugin.json` + `help` macroskill (mapping macroskills → verbs);
 - an **extensible, capability-owned ontology** — the core defines a base; each
   capability contributes its own node types / skills / template-schemas
-  (`Capability.ontology`), merged strictly onto the core and enforced in Memory.
+  (`Capability.ontology`), merged strictly onto the core and enforced in Memory;
+- the **`reflect` capability** — durable, scope-tagged cross-session memory
+  (`note`/`recall`/`search` over `Reflection` nodes the capability owns).
 
 The whole capability landscape of every installed plugin was surveyed, clustered,
 and spec-paneled — see `CAPABILITY-CLUSTERS.md`. Verdict: the four concepts + the
-engine absorb it all; the only net-new specs worth carrying forward are
-**`delegate`** (agent fan-out + quota + join) and **`reflect`** (durable
-cross-session memory).
+engine absorb it all; the only net-new specs were **`delegate`** (agent fan-out +
+quota + join) and **`reflect`** (durable cross-session memory) — `reflect` is now
+built.
 
-Next: build the `delegate` + `reflect` specs; grow the capability set by dropping
-files into `capabilities/` (no wiring).
+Next: build the `delegate` spec; grow the capability set by dropping files into
+`capabilities/` (no wiring).

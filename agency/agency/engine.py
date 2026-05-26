@@ -43,21 +43,20 @@ class Engine:
         for cap in discover():                                  # reflection: register + merge ontology
             self.registry.register(cap)
             self.ontology.extend(cap.ontology, cap.name)
+        # engine-supplied verb-param providers (the `inject` convention); `memory`
+        # and `intent_id` are injected per-call by the Registry itself.
+        self.registry.injectors = {
+            "client": lambda: self.jules_client,
+            "caps": lambda: {n: list(self.registry.get(n).verbs) for n in self.registry.names()},
+        }
         self.memory = Memory(path, ont=self.ontology)           # enforce the EFFECTIVE ontology
         self.intent = Intent(self.memory)
         self.lifecycle = Lifecycle(self.memory)
 
-    def _injectors(self) -> dict:
-        """Engine-supplied verb params (the `inject` convention): the boundary
-        objects/live state a pure verb shouldn't have to construct itself."""
-        reg = self.registry
-        return {
-            "client": lambda: self.jules_client,
-            "caps": lambda: {n: list(reg.get(n).verbs) for n in reg.names()},
-        }
-
-    def _wire(self, mcp: FastMCP, cap_name: str, verb: str, spec: dict, injectors: dict) -> None:
-        """Auto-wire ONE MCP tool for a capability verb from its fn signature."""
+    def _wire(self, mcp: FastMCP, cap_name: str, verb: str, spec: dict) -> None:
+        """Auto-wire ONE MCP tool for a capability verb from its fn signature.
+        Injected params (`inject`) are resolved by the Registry, so they are not
+        exposed in the tool's schema."""
         reg, mem = self.registry, self.memory
         fn, inject = spec["fn"], list(spec.get("inject", []))
         user_params = [p for n, p in inspect.signature(fn).parameters.items() if n not in inject]
@@ -65,8 +64,6 @@ class Engine:
         def impl(**kwargs):
             intent_id = kwargs.pop("intent_id")
             agent_id = kwargs.pop("agent_id", "") or None
-            for name in inject:
-                kwargs[name] = injectors[name]()
             result, _ = reg.invoke(mem, intent_id, cap_name, verb, agent_id=agent_id, **kwargs)
             out = result["result"] if isinstance(result, dict) and "result" in result else result
             return out if isinstance(out, dict) else {"result": out}
@@ -88,15 +85,14 @@ class Engine:
 
     def build_mcp(self, codemode: bool = True) -> FastMCP:
         transforms = [CodeMode()] if (codemode and HAVE_CODEMODE) else []
-        mcp = FastMCP("agency-seed", transforms=transforms)
+        mcp = FastMCP("agency", transforms=transforms)
         mem = self.memory
-        injectors = self._injectors()
 
         # every capability verb -> one MCP tool, by reflection (no hand-wiring)
         for cap_name in self.registry.names():
             cap = self.registry.get(cap_name)
             for verb, spec in cap.verbs.items():
-                self._wire(mcp, cap_name, verb, spec, injectors)
+                self._wire(mcp, cap_name, verb, spec)
 
         # engine-substrate tools (not capabilities): a human-in-the-loop gate that
         # needs `ctx.elicit`, and the provenance traversal over the graph.

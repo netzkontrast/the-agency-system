@@ -13,4 +13,5 @@ allowed-tools:
 
 - **jules** — dispatch, status, verify
 - **plugin** — author_command, author_skill, help, lint_skill, marketplace_entry, scaffold, step_doc
+- **reflect** — note, recall, search
 

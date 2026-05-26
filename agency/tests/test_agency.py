@@ -495,7 +495,7 @@ def test_help_maps_macroskills_to_microskills():
 
     out = asyncio.run(main())
     m = out["map"]
-    assert "plugin" in m and "jules" in m
+    assert {"plugin", "jules", "reflect"} <= set(m)
     assert "syllables" not in m
     assert {"scaffold", "author_skill", "lint_skill", "help"} <= set(m["plugin"])
     assert {"dispatch", "verify"} <= set(m["jules"])
@@ -538,4 +538,32 @@ def test_ontology_extends_strictly_from_capabilities():
     # strict: an extension may not redefine a core node with different fields
     with pytest.raises(ValueError):
         core.extend(ontology.OntologyExtension(nodes={"Intent": ["only_purpose"]}), owner="bad")
+    e.memory.close()
+
+
+def test_reflect_capability_writes_and_recalls():
+    """The `reflect` capability — the panel's net-new Memory spec, ported from the
+    private-journal plugin and added by DROPPING A FILE in capabilities/. It owns
+    its ontology (a Reflection node + scope enum), the engine injects `memory`, and
+    its writes are provenance (OBSERVED_DURING the intent)."""
+    e = fresh()
+    iid = e.intent.capture("learn from the run", "durable notes", "ok")
+    e.intent.confirm(iid)
+    reg, mem = e.registry, e.memory
+    reg.invoke(mem, iid, "reflect", "note", scope="technical",
+               text="graphqlite autocommits across connections")
+    reg.invoke(mem, iid, "reflect", "note", scope="user", text="prefers terse updates")
+
+    alln = reg.invoke(mem, iid, "reflect", "recall")[0]["result"]
+    assert {n["scope"] for n in alln} == {"technical", "user"}            # newest-first list
+    tech = reg.invoke(mem, iid, "reflect", "recall", scope="technical")[0]["result"]
+    assert len(tech) == 1 and "graphqlite" in tech[0]["text"]
+    hits = reg.invoke(mem, iid, "reflect", "search", query="terse")[0]["result"]
+    assert len(hits) == 1 and hits[0]["scope"] == "user"
+
+    with pytest.raises(ValueError):                                       # scope enum (owned) bites
+        reg.invoke(mem, iid, "reflect", "note", scope="bogus", text="x")
+    rows = mem.g.query("MATCH (r:Reflection)-[:OBSERVED_DURING]->(i:Intent) "
+                       "WHERE i.id = $iid RETURN r", {"iid": iid})
+    assert len(rows) == 2                                                 # reflections are provenance
     e.memory.close()

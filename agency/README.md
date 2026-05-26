@@ -30,7 +30,7 @@ points here), or regenerate the install after adding capabilities:
 python -m agency.install            # rewrites the three files from the live registry
 ```
 
-## What it proves (`tests/test_agency.py`, 18/18 green)
+## What it proves (`tests/test_agency.py`, 19/19 green)
 
 1. **The moat — cross-concern provenance is one graph traversal.**
    `Memory.provenance(intent)` returns, in one Cypher walk, every action that
@@ -84,6 +84,10 @@ python -m agency.install            # rewrites the three files from the live reg
     skill schemas, and template-schemas (`Capability.ontology`), merged STRICTLY
     onto the core (an extension may not redefine a core node) and enforced live in
     Memory. Schemata live with the capability that owns them, not hard-wired in core.
+19. **The `reflect` capability** — durable, scope-tagged cross-session memory
+    (ported as a concept from the private-journal plugin): `note` / `recall` /
+    `search` over `Reflection` nodes the capability owns, with the engine injecting
+    `memory`. Proof that adding a capability is adding a file.
 
 ## Run
 
