@@ -55,7 +55,7 @@ def main(argv: list[str] | None = None) -> int:
     i = sub.add_parser("intent", help="capture + confirm an Intent; prints its id")
     i.add_argument("--purpose", required=True)
     i.add_argument("--deliverable", required=True)
-    i.add_argument("--acceptance", default="")
+    i.add_argument("--acceptance", required=True)   # ontology requires it (non-empty)
     args = p.parse_args(argv)
 
     # `intent` is the one verb that bootstraps state without an existing intent,

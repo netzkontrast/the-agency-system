@@ -8,6 +8,7 @@ cannot answer in one hop.
 """
 from __future__ import annotations
 
+import threading
 import uuid
 from typing import Any, Optional
 
@@ -26,14 +27,33 @@ class Memory:
         self.g = Graph.__new__(Graph)
         self.g._conn = connect(str(path), check_same_thread=False)
         self.g.namespace = "default"
-        self._tick = 0
         # the EFFECTIVE ontology (core + capability extensions), injected by the
         # engine. A standalone Memory falls back to the bare core.
         self.ont = ont if ont is not None else ontology.Ontology.core()
+        # the logical clock is shared across worker threads (check_same_thread=False);
+        # serialize it, and seed it from persisted state so ticks stay monotonic
+        # across reopens (the bash CLI opens a fresh Engine per call).
+        self._lock = threading.Lock()
+        self._tick = self._max_persisted_tick()
+
+    def _max_persisted_tick(self) -> int:
+        try:
+            rows = self.g.query("MATCH (n) RETURN n")
+        except Exception:
+            return 0
+        mx = 0
+        for r in rows:
+            p = r.get("n", {}).get("properties", {})
+            for k in ("vfrom", "vto"):
+                v = p.get(k, 0)
+                if isinstance(v, int) and v != OPEN and v > mx:
+                    mx = v
+        return mx
 
     def _now(self) -> int:
-        self._tick += 1
-        return self._tick
+        with self._lock:
+            self._tick += 1
+            return self._tick
 
     # --- write axis: record · link · supersede -------------------------------
     def record(self, label: str, props: dict[str, Any], node_id: Optional[str] = None) -> str:
@@ -76,6 +96,9 @@ class Memory:
         new_id = f"{node_id}#{now}"
         new_props = {k: v for k, v in old.items() if k not in ("vfrom", "vto", "id")}
         new_props.update(changes)
+        bad = self.ont.violations(label, new_props)            # supersede stays strict too
+        if bad:
+            raise ValueError(f"{label} supersede violates ontology: {bad}")
         new_props.update({"vfrom": now, "vto": OPEN})
         self.g.upsert_node(new_id, new_props, label=label)
         self.link(node_id, new_id, "SUPERSEDED_BY")
@@ -115,7 +138,7 @@ class Memory:
         schema = self.recall(schema_id)
         if not node or not schema:
             return False
-        required = [f for f in str(schema.get("required", "")).split(",") if f]
+        required = [f.strip() for f in str(schema.get("required", "")).split(",") if f.strip()]
         return all(node.get(f) not in (None, "") for f in required)
 
     def project(self, label: str, budget: int, as_of: Optional[int] = None) -> list[dict]:
