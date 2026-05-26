@@ -1,14 +1,11 @@
 """The seed's proof. Runs on the REAL substrate (graphqlite + fastmcp).
 
-Proves:
-  1. THE MOAT — cross-concern provenance is one graph traversal.
-  2. The verb frame + one graph carry TWO genuinely different capabilities
-     (a stateless `transform` and an `agent`) — the panel's falsifier.
-  3. Bi-temporal memory: the *what* changes while the *why* holds (as-of).
-  4. COMPLETED != done (the jules silent-fail lesson) as a first-class step.
-  5. The four-verb engine over real FastMCP, with MCP-conformant names.
-  6. Real code-mode: raw tools hidden behind search/get_schema/execute; an
-     execute() block filters in-sandbox and returns only a delta.
+Proves (10 tests): the provenance moat; one graph carries two different
+capabilities (a transform + a REAL agent); bi-temporal memory; COMPLETED != done
+(real Jules verify); code-mode IS the contract (search/get_schema/execute);
+code-mode tool-chaining; gates via elicit; bash<->MCP isomorphism; schemas &
+templates; a strictly-enforced ontology; and a micro-step skill walker with a
+hard gate.
 """
 import asyncio
 import json
@@ -315,4 +312,43 @@ def test_ontology_is_strictly_enforced():
     assert len(sk["phases"]) == 7
     assert sk["phases"][-1].get("gate") == "hard"            # Phase 7 = hard gate
     assert all(p["produces"] for p in sk["phases"])          # every phase declares its required outputs
+    e.memory.close()
+
+
+def test_skill_walker_micro_steps_with_hard_gate():
+    """A skill walks ONE phase at a time (progressive disclosure), validates each
+    phase's required outputs before advancing, and the hard-gate final phase
+    blocks until explicitly confirmed. The run records itself as provenance."""
+    from agency_seed import ontology
+    from agency_seed.skill import SkillRun
+    e = fresh()
+    iid = e.intent.capture("plan an album", "album concept", "user confirms")
+    run = SkillRun(e.memory, iid, ontology.ALBUM_CONCEPT_SKILL)
+
+    assert run.current()["index"] == 1 and "artist" in run.current()["produces"]
+    with pytest.raises(ValueError):                          # missing required outputs
+        run.submit({"artist": "x"})
+
+    fills = {
+        "foundation": {"artist": "a", "genre": "g", "type": "thematic",
+                       "scale": "ep", "theme": "t", "true_story": "no"},
+        "concept": {"key_subjects": "k", "emotional_core": "e", "why": "w"},
+        "sonic": {"references": "r", "production_style": "p", "vocal_approach": "v",
+                  "instrumentation": "i", "mood": "m", "target_duration": "4:00"},
+        "structure": {"tracklist": "t", "sequencing": "s", "energy_map": "e"},
+        "art": {"visual_concept": "v", "palette": "p", "symbols": "s"},
+        "practical": {"album_title": "t", "track_titles": "t", "research_needs": "n",
+                      "explicit": "no", "distributor_genres": "g"},
+    }
+    for name, out in fills.items():
+        assert run.current()["name"] == name                 # disclosed one at a time
+        assert run.submit(out)["status"] == "working"
+
+    assert run.current()["gate"] == "hard"                   # Phase 7 = hard gate
+    assert run.submit({"user_confirmed": "yes"}, confirmed=False)["status"] == "input-required"
+    assert run.submit({"user_confirmed": "yes"}, confirmed=True)["status"] == "completed"
+    assert run.done
+
+    rows = e.memory.g.query("MATCH (s:Skill)-[:HAS_PHASE]->(p:Phase) RETURN p")
+    assert len(rows) == 7                                     # the whole run is provenance
     e.memory.close()
