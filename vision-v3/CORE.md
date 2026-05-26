@@ -1,0 +1,72 @@
+# agency — Core (v4, radically cut)
+
+> Supersedes the v3 `VISION.md` / `DESIGN.md` drafts (kept alongside as the
+> critiqued artifact). The adversarial panel (4/4) cut the 5W1H / six-domain
+> model to its irreducible core. **5W1H is now a lens, not the architecture.**
+> Names follow structure. The projection is an *observation*, not a mechanism.
+
+## Four concepts + one substrate
+
+**Substrate — the Engine.** One FastMCP server + one bi-temporal graph. Public
+surface = the four-verb contract (`list_tools`, `call_tool`, `list_skills`,
+`dispatch_skill`) + one `execute(code)` code-mode tool (results stay in-sandbox;
+only deltas + `elided_ref` handles reach context). Cross-cutting guards
+(quality-score, loop-detection, compaction, `Slot`/quota) are engine middleware,
+**not** concepts.
+
+**1. Intent** *(human-owned).* A supersedable node carrying **purpose +
+acceptance**, with the **deliverable as an attribute** (why/what merged).
+`capture → confirm`, revised via `supersede`. **Everything edges back to it via
+`SERVES`.**
+
+**2. Capability** *(the craft — open set).* An invokable action. Verbs are
+capability-defined and **role-tagged**: `act` (craft write) · `transform`
+(stateless compute) · `effect` (external side-effect). Discover via
+`<capability>.help` (progressive disclosure ↔ `SKILL.md`).
+
+**3. Lifecycle** *(state + gates).* The task/agent state-machine. Verb frame:
+**`open · move · close`** (write) + **`read · find · check · watch`** (observe).
+States align with A2A tasks (`submitted · working · input-required · completed ·
+failed · canceled`). **An agent (the old "who") is a Lifecycle parameterization**
+— an agent-session is a lifecycle whose transitions/observers differ (a remote
+async agent inserts `verify`; `COMPLETED ≠ done`). Gates = `input-required` →
+Intent re-entry.
+
+**4. Memory** *(the moat).* One bi-temporal, append-only graph holding **every**
+node — Intent, Capability invocations, Lifecycle states, artefacts — and their
+edges (`SERVES`, `PRODUCES`, `DISPATCHED_TO`, `PRECEDES`, `SUPERSEDES`). Verbs:
+`record · link · supersede` + `recall · find · validate`. `project(query,
+budget)` → ranked, token-budgeted, supersession-aware (`as_of`) deltas. **The one
+thing the SDK-native rival cannot match:** cross-concern provenance is a *single
+traversal* — "every action that `SERVES` intent Q1, the agent that ran it, the
+gate it passed."
+
+## Dropped (and why)
+
+- **Six-domain 5W1H** → a lens, not structure (journalistic checklist, not an
+  execution theorem).
+- **why/what as two domains** → merged into Intent (no workflow needs them split).
+- **`(home,target)` projection as a total function** → demoted to an optional
+  observation (Cyc/RDF/Ranganathan: total decomposition always leaks). No
+  generating function; the AOP escape hatch is therefore unnecessary.
+- **Three name renderers** → a serializer detail, not a top-level concern.
+
+## Kept (panel-endorsed)
+
+The **isomorphic verb frame**; the **one bi-temporal provenance graph +
+`SERVES`**; the **four-verb contract + code-mode**; the **`COMPLETED ≠ done`**
+lesson.
+
+## Naming
+
+Structure-first. Concepts: `intent`, `capability`, `lifecycle`, `memory`. Tool
+names `<concept>_<capability>_<verb>` (underscores, ≤64, no dots; the client
+injects `mcp__`).
+
+## Next (panel-unanimous): BUILD A SEED — do not spec further.
+
+The smallest running thing that **proves the moat** (the provenance traversal)
+and **falsifies the risks** (does the verb frame + one graph actually carry two
+different capabilities?). Target: a passing test that records an Intent, runs
+two capabilities through a gated Lifecycle, and answers the provenance query
+end-to-end.
