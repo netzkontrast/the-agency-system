@@ -55,6 +55,21 @@ def _sc(result):
     return None
 
 
+class FakeJulesClient:
+    """Boundary stand-in for the external Jules API (deterministic tests). The
+    REAL client (RealJulesClient -> jules_create/jules_get) is the default in the
+    engine and is proven live (PR #175)."""
+    def __init__(self, state: str = "completed"):
+        self._state = state
+
+    def create(self, prompt: str, source: str, starting_branch: str) -> dict:
+        return {"id": "sessions/123", "state": self._state,
+                "url": "https://jules.google.com/session/123"}
+
+    def get(self, session: str) -> dict:
+        return {"state": self._state, "url": "https://jules.google.com/session/123"}
+
+
 def run_scenario(e: Engine) -> str:
     """capture→confirm intent, open an agent lifecycle, run two different
     capabilities, pass a gate, complete. Returns the intent id."""
@@ -63,9 +78,10 @@ def run_scenario(e: Engine) -> str:
     lc = e.lifecycle.open(iid, agent="jules")
     # a REAL transform capability
     e.registry.invoke(e.memory, iid, "syllables", "count", text="fix the failing auth test")
-    # an agent capability (produces an artefact, BY the agent)
-    e.registry.invoke(e.memory, iid, "jules", "patch",
-                      agent_id="agent:jules", spec="fix auth", pushed=True)
+    # the agent capability — really dispatches Jules (stand-in client at the boundary)
+    e.registry.invoke(e.memory, iid, "jules", "dispatch", agent_id="agent:jules",
+                      source="netzkontrast/the-agency-system", starting_branch="main",
+                      prompt="fix auth", client=FakeJulesClient())
     assert e.lifecycle.move(lc, "tests-green", ok=True) == "working"
     assert e.lifecycle.complete(lc) == "completed"
     return iid
@@ -77,10 +93,10 @@ def test_provenance_moat():
     prov = e.memory.provenance(iid)
 
     verbs = sorted(n["verb"] for n in prov["serves"] if "verb" in n)
-    assert verbs == ["count", "patch"]                      # two different crafts, one graph
-    assert {n["role"] for n in prov["serves"] if "role" in n} == {"transform", "act"}
+    assert verbs == ["count", "dispatch"]                   # two different crafts, one graph
+    assert {n["role"] for n in prov["serves"] if "role" in n} == {"transform", "effect"}
     assert any(a["id"] == "agent:jules" for a in prov["agents"])     # the agent that ran it
-    assert any(p["kind"] == "patch" for p in prov["artefacts"])      # what it produced
+    assert any(p["kind"] == "jules-session" for p in prov["artefacts"])  # what it produced
     assert any(g["name"] == "tests-green" for g in prov["gates"])    # the gate it passed
     e.memory.close()
 
@@ -99,15 +115,21 @@ def test_bitemporal_what_changes_why_holds():
 
 
 def test_completed_not_done():
+    """COMPLETED != done: a Jules session reports state=completed even when it
+    paused before pushing. `verify` returns done only when a branch is actually
+    on remote — the real silent-fail guard (CLAUDE.md JULES_PROTOCOL §8)."""
     e = fresh()
     iid = e.intent.capture("x", "y", "z")
-    paused, _ = e.registry.invoke(e.memory, iid, "jules", "patch",
-                                  agent_id="agent:jules", spec="s", pushed=False)
-    assert paused["status"] == "COMPLETED"
+    disp, _ = e.registry.invoke(e.memory, iid, "jules", "dispatch", agent_id="agent:j",
+                                source="o/r", starting_branch="main", prompt="do x",
+                                client=FakeJulesClient(state="completed"))
+    assert disp["status"] == "completed"
+    # state says completed, but no branch on remote -> NOT done (the silent-fail)
     assert e.registry.invoke(e.memory, iid, "jules", "verify",
-                             branch_pushed=paused["branch_pushed"])[0]["done"] is False
+                             state=disp["status"], branch_on_remote=False)[0]["done"] is False
+    # branch actually on origin -> done
     assert e.registry.invoke(e.memory, iid, "jules", "verify",
-                             branch_pushed=True)[0]["done"] is True
+                             state=disp["status"], branch_on_remote=True)[0]["done"] is True
     e.memory.close()
 
 
@@ -139,7 +161,7 @@ def test_codemode_chaining_is_an_executable_graph():
     only ONE small delta crosses into context. And because every call_tool
     records an Invocation, that executable graph is MIRRORED into the durable
     provenance graph (transform → agent, both edged to the intent)."""
-    e = fresh()
+    e = Engine(tempfile.mktemp(suffix=".db"), jules_client=FakeJulesClient())  # boundary stand-in
     iid = e.intent.capture("ship green CI", "auth test passes", "tests green")
     e.intent.confirm(iid)
     e.lifecycle.open(iid, agent="jules")                      # so agent:jules exists
@@ -159,7 +181,7 @@ def test_codemode_chaining_is_an_executable_graph():
             "scored.sort(reverse=True)\n"
             "best_n, best_line = scored[0]\n"
             "# chain: the transform's output feeds the agent capability\n"
-            f"p = val(await call_tool('capability_jules_patch', {{'spec': best_line, 'intent_id': '{iid}', 'agent_id': 'agent:jules', 'pushed': True}}))\n"
+            f"p = val(await call_tool('capability_jules_dispatch', {{'source': 'o/r', 'starting_branch': 'main', 'prompt': best_line, 'intent_id': '{iid}', 'agent_id': 'agent:jules'}}))\n"
             "return {'max_syllables': best_n, 'patched_line': best_line, 'status': p['status']}\n"
         )
         return _sc(await mcp.call_tool("execute", {"code": code}))
@@ -168,14 +190,14 @@ def test_codemode_chaining_is_an_executable_graph():
     # the single small delta returned from many in-sandbox calls (token-efficient)
     assert delta["max_syllables"] == 6
     assert delta["patched_line"] == "fix the failing auth test"
-    assert delta["status"] == "COMPLETED"
+    assert delta["status"] == "completed"
 
     # the executable chain is now a connected provenance subgraph
     prov = e.memory.provenance(iid)
     verbs = sorted(n["verb"] for n in prov["serves"] if "verb" in n)
-    assert verbs == ["count", "count", "count", "patch"]      # 3 transforms + 1 act, chained
+    assert verbs == ["count", "count", "count", "dispatch"]   # 3 transforms + 1 effect, chained
     assert any(a["id"] == "agent:jules" for a in prov["agents"])
-    assert any(p["kind"] == "patch" for p in prov["artefacts"])
+    assert any(p["kind"] == "jules-session" for p in prov["artefacts"])
     e.memory.close()
 
 

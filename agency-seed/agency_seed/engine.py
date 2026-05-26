@@ -19,16 +19,18 @@ except ImportError:  # pragma: no cover
 
 from .capability import Registry
 from .capabilities import jules_capability, syllables_capability
+from .capabilities.jules import RealJulesClient
 from .intent import Intent
 from .lifecycle import Lifecycle
 from .memory import Memory
 
 
 class Engine:
-    def __init__(self, path: str):
+    def __init__(self, path: str, jules_client=None):
         self.memory = Memory(path)
         self.intent = Intent(self.memory)
         self.lifecycle = Lifecycle(self.memory)
+        self.jules_client = jules_client or RealJulesClient()   # boundary: real orchestrator by default
         self.registry = Registry()
         self.registry.register(syllables_capability)
         self.registry.register(jules_capability)
@@ -44,11 +46,15 @@ class Engine:
             result, _ = reg.invoke(mem, intent_id, "syllables", "count", text=text)
             return result
 
+        jc = self.jules_client
+
         @mcp.tool
-        def capability_jules_patch(spec: str, intent_id: str, agent_id: str, pushed: bool = False) -> dict:
-            "jules patch (act); records Invocation BY agent + PRODUCES artefact."
-            result, _ = reg.invoke(mem, intent_id, "jules", "patch",
-                                   agent_id=agent_id, spec=spec, pushed=pushed)
+        def capability_jules_dispatch(source: str, starting_branch: str, prompt: str,
+                                      intent_id: str, agent_id: str) -> dict:
+            "Dispatch a REAL Jules remote session (effect); records a jules-session artefact BY the agent."
+            result, _ = reg.invoke(mem, intent_id, "jules", "dispatch", agent_id=agent_id,
+                                   source=source, starting_branch=starting_branch,
+                                   prompt=prompt, client=jc)
             return result
 
         @mcp.tool
