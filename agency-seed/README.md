@@ -6,7 +6,7 @@ code-mode transform). Built after the adversarial spec panel's unanimous verdict
 *stop spec'ing, build the smallest thing that proves the moat and falsifies the
 risks.*
 
-## What it proves (`tests/test_seed.py`, 8/8 green)
+## What it proves (`tests/test_seed.py`, 11/11 green)
 
 1. **The moat — cross-concern provenance is one graph traversal.**
    `Memory.provenance(intent)` returns, in one Cypher walk, every action that
@@ -38,6 +38,13 @@ risks.*
 9. **Schemas & templates (typed/generative layer)** — a Template generates an
    Artefact (`DERIVED_FROM`) that a Schema validates (`VALIDATES_AGAINST`); a
    missing required field fails validation. Both are nodes in the one graph.
+10. **A strictly-enforced ontology** (`ontology.py`) — per-node required-field
+    schemas + an enumerated edge set + closed enums; `Memory.record`/`link`
+    reject out-of-schema nodes and unknown edges, so the graph cannot drift.
+11. **A micro-step skill walker** (`skill.py`) — walks a skill schema one phase
+    at a time (progressive disclosure), executes phases bound to REAL capability
+    verbs, and blocks at a hard gate until confirmed; every phase is provenance.
+    The real bitwize conceptualizer is captured as `ALBUM_CONCEPT_SKILL`.
 
 ## Run
 
