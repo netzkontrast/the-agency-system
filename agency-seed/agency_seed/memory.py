@@ -13,6 +13,8 @@ from typing import Any, Optional
 
 from graphqlite import Graph, connect
 
+from . import ontology
+
 OPEN = 10 ** 12  # sentinel valid_to for the currently-valid version
 
 
@@ -32,12 +34,17 @@ class Memory:
 
     # --- write axis: record · link · supersede -------------------------------
     def record(self, label: str, props: dict[str, Any], node_id: Optional[str] = None) -> str:
+        missing = ontology.missing_required(label, props)
+        if missing:
+            raise ValueError(f"{label} record missing required fields: {missing}")
         nid = node_id or f"{label.lower()}:{uuid.uuid4().hex[:8]}"
         data = {**props, "vfrom": self._now(), "vto": OPEN}
         self.g.upsert_node(nid, data, label=label)
         return nid
 
     def link(self, src: str, dst: str, rel: str, props: Optional[dict] = None) -> None:
+        if not ontology.is_known_edge(rel):
+            raise ValueError(f"unknown edge type {rel!r}; add it to ontology.EDGE_TYPES")
         self.g.upsert_edge(src, dst, {**(props or {}), "vfrom": self._now()}, rel_type=rel)
 
     def update(self, node_id: str, changes: dict[str, Any]) -> None:

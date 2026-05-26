@@ -18,6 +18,7 @@ import subprocess
 import sys
 import tempfile
 
+import pytest
 from fastmcp import Client
 from fastmcp.client.elicitation import ElicitResult
 
@@ -273,3 +274,23 @@ def test_isomorphism_mcp_equals_bash_cli():
     counts = [n for n in e2.memory.provenance(iid)["serves"] if n.get("verb") == "count"]
     assert len(counts) == 2                                   # one via MCP, one via bash CLI
     e2.memory.close()
+
+
+def test_ontology_is_strictly_enforced():
+    """The strict schemata are enforced on the real graph: an out-of-schema node
+    and an unknown edge both raise — the ontology cannot silently drift. And the
+    real bitwize conceptualizer ports as a strict 7-phase skill with a hard final
+    gate (the micro-step-skill template)."""
+    from agency_seed import ontology
+    e = fresh()
+    with pytest.raises(ValueError):                          # missing required Intent fields
+        e.memory.record("Intent", {"purpose": "x"})
+    iid = e.intent.capture("a", "b", "c")
+    agent = e.memory.record("Agent", {"runtime": "local"}, node_id="agent:x")
+    with pytest.raises(ValueError):                          # unknown edge type
+        e.memory.link(agent, iid, "FROBNICATES")
+    sk = ontology.ALBUM_CONCEPT_SKILL                        # the conceptualizer, schematized
+    assert len(sk["phases"]) == 7
+    assert sk["phases"][-1].get("gate") == "hard"            # Phase 7 = hard gate
+    assert all(p["produces"] for p in sk["phases"])          # every phase declares its required outputs
+    e.memory.close()
