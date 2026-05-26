@@ -102,7 +102,7 @@ Structure-first. Concepts: `intent`, `capability`, `lifecycle`, `memory`. Tool
 names `<concept>_<capability>_<verb>` (underscores, ≤64, no dots; the client
 injects `mcp__`).
 
-## Status: the installable `agency` plugin proves it (17/17 green, `../agency/`)
+## Status: the installable `agency` plugin proves it (18/18 green, `../agency/`)
 
 The seed has **graduated into an installable Claude Code plugin** (`../agency/`).
 Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
@@ -128,7 +128,10 @@ Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
   skill-creation (`writing-skills`, Iron Law enforced by phase ordering) + plugin
   authoring (manifest · SKILL.md · command · marketplace entry · CSO linter);
 - a **self-hosted install** — the engine authors and validates its own
-  `.claude-plugin/plugin.json` + `help` macroskill (mapping macroskills → verbs).
+  `.claude-plugin/plugin.json` + `help` macroskill (mapping macroskills → verbs);
+- an **extensible, capability-owned ontology** — the core defines a base; each
+  capability contributes its own node types / skills / template-schemas
+  (`Capability.ontology`), merged strictly onto the core and enforced in Memory.
 
 The whole capability landscape of every installed plugin was surveyed, clustered,
 and spec-paneled — see `CAPABILITY-CLUSTERS.md`. Verdict: the four concepts + the

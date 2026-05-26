@@ -21,7 +21,7 @@ import pytest
 from fastmcp import Client
 from fastmcp.client.elicitation import ElicitResult
 
-from agency import install, ontology, templates
+from agency import install, ontology
 from agency.capabilities.plugin import lint_skill
 from agency.engine import Engine
 from agency.skill import SkillRun
@@ -366,7 +366,7 @@ def test_real_skill_executes_tools():
     The GREEN + lint phases run REAL capability verbs (recorded as Invocations)."""
     e = fresh()
     iid = e.intent.capture("write a skill", "deployed skill", "human approves")
-    run = SkillRun(e.memory, iid, ontology.SKILL_CREATION_SKILL, registry=e.registry)
+    run = SkillRun(e.memory, iid, e.ontology.skill("skill-creation"), registry=e.registry)
 
     # RED: baseline first (the Iron Law, enforced by phase ordering)
     assert run.current()["name"] == "red-baseline"
@@ -423,8 +423,8 @@ def test_plugin_capability_generates_valid_artefacts():
 
     # the artefact is provenance and validates against a strict Schema
     art_id = next(a["id"] for a in mem.provenance(iid)["artefacts"] if a["kind"] == "plugin-manifest")
-    schema = mem.record("Schema", {"name": "plugin-manifest",
-                                   "required": ",".join(templates.REQUIRED["plugin-manifest"])})
+    schema = mem.record("Schema", {"name": "plugin-manifest",                # schema OWNED by the capability
+                                   "required": ",".join(e.ontology.schemas["plugin-manifest"])})
     assert mem.validate_schema(art_id, schema) is True
     # the schema bites: a manifest missing `version` fails
     bad = mem.record("Artefact", {"kind": "plugin-manifest", "name": "x"})
@@ -465,7 +465,7 @@ def test_plugin_dev_skill_each_step_yields_a_document():
     entry → hard confirm gate."""
     e = fresh()
     iid = e.intent.capture("develop a plugin", "a Claude Code plugin", "user confirms")
-    run = SkillRun(e.memory, iid, ontology.PLUGIN_DEV_SKILL, registry=e.registry)
+    run = SkillRun(e.memory, iid, e.ontology.skill("plugin-dev"), registry=e.registry)
 
     assert run.current()["name"] == "manifest"
     assert run.submit({"name": "demo", "version": "0.1.0", "description": "A demo"})["status"] == "working"
@@ -516,3 +516,26 @@ def test_agency_plugin_install_is_self_hosted():
     manifest = json.loads(files[".claude-plugin/plugin.json"])
     assert {"name", "version", "description"} <= set(manifest)
     assert lint_skill("help", install.HELP_DESC)["ok"] is True
+
+
+def test_ontology_extends_strictly_from_capabilities():
+    """The ontology is EXTENSIBLE: the core defines a base, and each capability
+    contributes its own node types/skills/schemas, merged strictly onto the core.
+    A bare core lacks `Plugin`; the engine's effective ontology has it (from the
+    plugin capability) and enforces it in Memory; redefining a core node raises."""
+    core = ontology.Ontology.core()
+    assert "Intent" in core.nodes and "Plugin" not in core.nodes      # Plugin is NOT core
+    assert "skill-creation" not in core.skills                        # nor is the skill-creation skill
+
+    e = fresh()
+    assert "Plugin" in e.ontology.nodes                               # contributed by the plugin capability
+    assert {"skill-creation", "plugin-dev", "album-concept"} <= set(e.ontology.skills)
+    # the extension is LIVE in Memory: the contributed node type is enforced
+    with pytest.raises(ValueError):
+        e.memory.record("Plugin", {"name": "x"})                      # missing version + description
+    assert e.memory.record("Plugin", {"name": "x", "version": "0.1.0", "description": "d"})
+
+    # strict: an extension may not redefine a core node with different fields
+    with pytest.raises(ValueError):
+        core.extend(ontology.OntologyExtension(nodes={"Intent": ["only_purpose"]}), owner="bad")
+    e.memory.close()

@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
 from .memory import Memory
+from .ontology import OntologyExtension
 
 
 @dataclass
@@ -16,6 +17,9 @@ class Capability:
     name: str
     home: str                       # which concept it primarily is
     verbs: dict[str, dict]          # verb -> {"role": str, "fn": callable}
+    # the capability's OWN ontology fragment (node types, edges, enums, skills,
+    # template-schemas) — merged onto the core by the engine. Empty = core only.
+    ontology: OntologyExtension = field(default_factory=OntologyExtension)
 
     def role(self, verb: str) -> str:
         return self.verbs[verb]["role"]

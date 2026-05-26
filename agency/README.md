@@ -30,7 +30,7 @@ points here), or regenerate the install after adding capabilities:
 python -m agency.install            # rewrites the three files from the live registry
 ```
 
-## What it proves (`tests/test_agency.py`, 17/17 green)
+## What it proves (`tests/test_agency.py`, 18/18 green)
 
 1. **The moat — cross-concern provenance is one graph traversal.**
    `Memory.provenance(intent)` returns, in one Cypher walk, every action that
@@ -79,6 +79,11 @@ python -m agency.install            # rewrites the three files from the live reg
 17. **The install is self-hosted** — the committed manifest, help skill, and
     command are exactly what the capability regenerates from the live registry,
     and the help skill passes its own CSO linter.
+18. **The ontology is extensible, and capability-owned** — the core defines a base
+    (node schemas, edges, enums); each capability contributes its own node types,
+    skill schemas, and template-schemas (`Capability.ontology`), merged STRICTLY
+    onto the core (an extension may not redefine a core node) and enforced live in
+    Memory. Schemata live with the capability that owns them, not hard-wired in core.
 
 ## Run
 

@@ -27,6 +27,7 @@ import json
 import re
 
 from ..capability import Capability
+from ..ontology import OntologyExtension
 from .. import templates
 
 DEFAULT_TOOLS = "  - Read\n  - Write\n  - Edit"
@@ -107,6 +108,62 @@ def help_map(caps: dict) -> dict:
     return {"result": {"doc": "\n".join(lines) + "\n", "map": ordered}}
 
 
+# --- this capability's OWN ontology fragment (merged onto the core by the engine).
+# The plugin-dev node types, its template-schemas, and its two skills live HERE,
+# with the capability that owns them — not hard-wired into the core ontology.
+
+# ported COMPLETELY from superpowers `writing-skills`. The Iron Law — "NO SKILL
+# WITHOUT A FAILING TEST FIRST" — is ENFORCED by phase ordering: GREEN (authoring)
+# is unreachable until RED produced its baseline. RED → GREEN → lint → REFACTOR →
+# deploy(hard gate); GREEN + lint are bound to REAL verbs.
+SKILL_CREATION_SKILL = {
+    "name": "skill-creation",
+    "kind": "authoring",
+    "phases": [
+        {"index": 1, "name": "red-baseline",
+         "produces": ["baseline", "rationalizations"]},
+        {"index": 2, "name": "green-author", "produces": ["skill_md"],
+         "invoke": {"capability": "plugin", "verb": "author_skill"},
+         "inputs": ["name", "description", "body"]},
+        {"index": 3, "name": "lint", "produces": ["lint"],
+         "invoke": {"capability": "plugin", "verb": "lint_skill"},
+         "inputs": ["name", "description"]},
+        {"index": 4, "name": "refactor",
+         "produces": ["rationalization_table", "red_flags"]},
+        {"index": 5, "name": "deploy", "produces": ["user_confirmed"], "gate": "hard"},
+    ],
+}
+
+# the complete plugin-authoring chain: each phase emits a prestructured document.
+PLUGIN_DEV_SKILL = {
+    "name": "plugin-dev",
+    "kind": "authoring",
+    "phases": [
+        {"index": 1, "name": "manifest", "produces": ["manifest"],
+         "invoke": {"capability": "plugin", "verb": "scaffold"},
+         "inputs": ["name", "version", "description"]},
+        {"index": 2, "name": "skill", "produces": ["skill_md"],
+         "invoke": {"capability": "plugin", "verb": "author_skill"},
+         "inputs": ["name", "description", "body"]},
+        {"index": 3, "name": "command", "produces": ["command_md"],
+         "invoke": {"capability": "plugin", "verb": "author_command"},
+         "inputs": ["name", "description", "body"]},
+        {"index": 4, "name": "marketplace", "produces": ["entry"],
+         "invoke": {"capability": "plugin", "verb": "marketplace_entry"},
+         "inputs": ["name", "version", "description", "source"]},
+        {"index": 5, "name": "confirm", "produces": ["user_confirmed"], "gate": "hard"},
+    ],
+}
+
+plugin_ontology = OntologyExtension(
+    nodes={
+        "Plugin":  ["name", "version", "description"],   # a Claude Code plugin manifest
+        "Command": ["name", "description"],              # a slash command
+    },
+    skills={"skill-creation": SKILL_CREATION_SKILL, "plugin-dev": PLUGIN_DEV_SKILL},
+    schemas=dict(templates.REQUIRED),                    # the strict artefact schemas this capability generates
+)
+
 plugin_capability = Capability(
     name="plugin",
     home="capability",
@@ -119,4 +176,5 @@ plugin_capability = Capability(
         "lint_skill": {"role": "transform", "fn": lint_skill},
         "help": {"role": "transform", "fn": help_map, "inject": ["caps"]},
     },
+    ontology=plugin_ontology,
 )

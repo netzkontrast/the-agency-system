@@ -19,7 +19,7 @@ OPEN = 10 ** 12  # sentinel valid_to for the currently-valid version
 
 
 class Memory:
-    def __init__(self, path: str):
+    def __init__(self, path: str, ont: Optional["ontology.Ontology"] = None):
         # Build the Graph with a thread-safe SQLite connection: FastMCP and the
         # code-mode (Monty) sandbox run tools in worker threads, and the seed is
         # logically single-threaded, so check_same_thread=False is safe here.
@@ -27,6 +27,9 @@ class Memory:
         self.g._conn = connect(str(path), check_same_thread=False)
         self.g.namespace = "default"
         self._tick = 0
+        # the EFFECTIVE ontology (core + capability extensions), injected by the
+        # engine. A standalone Memory falls back to the bare core.
+        self.ont = ont if ont is not None else ontology.Ontology.core()
 
     def _now(self) -> int:
         self._tick += 1
@@ -34,7 +37,7 @@ class Memory:
 
     # --- write axis: record · link · supersede -------------------------------
     def record(self, label: str, props: dict[str, Any], node_id: Optional[str] = None) -> str:
-        bad = ontology.violations(label, props)
+        bad = self.ont.violations(label, props)
         if bad:
             raise ValueError(f"{label} record violates ontology: {bad}")
         nid = node_id or f"{label.lower()}:{uuid.uuid4().hex[:8]}"
@@ -43,8 +46,8 @@ class Memory:
         return nid
 
     def link(self, src: str, dst: str, rel: str, props: Optional[dict] = None) -> None:
-        if not ontology.is_known_edge(rel):
-            raise ValueError(f"unknown edge type {rel!r}; add it to ontology.EDGE_TYPES")
+        if not self.ont.is_known_edge(rel):
+            raise ValueError(f"unknown edge type {rel!r}; not in the effective ontology's edge set")
         self.g.upsert_edge(src, dst, {**(props or {}), "vfrom": self._now()}, rel_type=rel)
 
     def update(self, node_id: str, changes: dict[str, Any]) -> None:
@@ -55,7 +58,7 @@ class Memory:
             raise KeyError(node_id)
         label = node["labels"][0] if node.get("labels") else "Entity"
         merged = {**node["properties"], **changes}
-        bad = ontology.violations(label, {k: v for k, v in merged.items()
+        bad = self.ont.violations(label, {k: v for k, v in merged.items()
                                           if k not in ("vfrom", "vto", "id")})
         if bad:
             raise ValueError(f"{label} update violates ontology: {bad}")

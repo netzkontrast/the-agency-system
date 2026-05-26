@@ -1,15 +1,20 @@
-"""Strict ontology + schemata for the agency graph.
+"""Strict, EXTENSIBLE ontology for the agency graph.
 
-The typed backbone that lets skills/tools be real, atomic, micro-steps. Every
-node type has a STRICT required-field schema; every edge type is enumerated.
-`Memory.record`/`Memory.link` enforce these — an out-of-schema node or an unknown
-edge raises, so the graph cannot drift. Token-efficient: schemas list only the
-*required* fields (extra fields are allowed but not mandated), and a skill
-discloses one phase's schema at a time.
+The **core** defines the irreducible base: every node type's required-field
+schema, the enumerated edge set, and the closed enums. But the core is not
+closed — **each capability extends it** with its own node types, edges, enums,
+skill schemas, and template-schemas (`Capability.ontology`, an
+`OntologyExtension`). The engine merges every discovered extension onto the core
+into one effective `Ontology` (strictly: an extension may not redefine a core
+node with different fields), and injects it into `Memory`, which enforces it on
+`record`/`link`/`update` — so the graph cannot drift and capability schemata are
+owned by the capability, not hard-wired centrally.
 """
 from __future__ import annotations
 
-# --- node types: label -> strict required fields ---------------------------
+from dataclasses import dataclass, field
+
+# --- the CORE: base node types (label -> strict required fields) ------------
 NODE_SCHEMAS: dict[str, list[str]] = {
     "Intent":     ["purpose", "deliverable", "acceptance", "status"],
     "Invocation": ["capability", "verb", "role"],
@@ -19,62 +24,35 @@ NODE_SCHEMAS: dict[str, list[str]] = {
     "Artefact":   ["kind"],
     "Schema":     ["name", "required"],
     "Template":   ["name", "body"],
-    # micro-step skills & tools:
+    # micro-step skills & tools (generic):
     "Skill":      ["name", "kind"],                 # a skill = an ordered Lifecycle of Phases
-    "Phase":      ["skill", "index", "name", "produces"],   # one atomic step; `produces` = its required outputs
+    "Phase":      ["skill", "index", "name", "produces"],   # one atomic step
     "Tool":       ["name", "input", "output"],      # a typed tool (input/output schema refs)
-    # plugin-development (ported from superpowers writing-skills + plugin authoring):
-    "Plugin":     ["name", "version", "description"],       # a Claude Code plugin manifest
-    "Command":    ["name", "description"],                  # a slash command
 }
 
-# --- closed enums ----------------------------------------------------------
+# --- core closed enums ------------------------------------------------------
 ROLES = {"act", "transform", "effect"}              # how-verb roles
 LIFECYCLE_STATES = {                                # A2A-aligned task states
     "submitted", "working", "input-required", "auth-required",
     "completed", "failed", "canceled",
 }
 
-# --- edge types (enumerated; link() rejects anything else) -----------------
+# --- core edge types (enumerated; link() rejects anything else) -------------
 EDGE_TYPES = {
     "SERVES", "PERFORMED_BY", "PRODUCES", "PASSED", "BLOCKED_ON",
     "DERIVED_FROM", "VALIDATES_AGAINST", "SUPERSEDED_BY",
     "DISPATCHED_TO", "DRIVES", "PRECEDES", "NEXT", "HAS_PHASE",
 }
 
-
-# closed-enum constraints on specific (label, field) pairs — ENFORCED, not decorative
-FIELD_ENUMS = {
+# closed-enum constraints on specific (label, field) pairs — ENFORCED
+FIELD_ENUMS: dict[tuple[str, str], set] = {
     ("Invocation", "role"): ROLES,
     ("Lifecycle", "state"): LIFECYCLE_STATES,
 }
 
-
-def missing_required(label: str, props: dict) -> list[str]:
-    """Required fields absent (None/empty) for a known label; [] if label unknown
-    (unknown labels are permitted — the ontology is strict, not closed-world)."""
-    return [f for f in NODE_SCHEMAS.get(label, []) if props.get(f) in (None, "")]
-
-
-def violations(label: str, props: dict) -> list[str]:
-    """All ontology violations for a node: missing required fields AND values that
-    break a closed enum. This is what makes the schemata genuinely *strict*."""
-    out = [f"missing required {f!r}" for f in missing_required(label, props)]
-    for (lbl, field), allowed in FIELD_ENUMS.items():
-        if lbl == label and field in props and props[field] not in allowed:
-            out.append(f"{field}={props[field]!r} not in {sorted(allowed)}")
-    return out
-
-
-def is_known_edge(rel: str) -> bool:
-    return rel in EDGE_TYPES
-
-
-# --- a strict skill schema, ported from the REAL bitwize album-conceptualizer
-# (its 7-phase gated workflow). This is the template for a micro-step skill:
-# a Lifecycle of ordered Phases, each declaring only its required outputs, ending
-# in a hard gate (Phase 7) that `elicit`s the human. The engine walks one phase at
-# a time (progressive disclosure) — never the whole skill at once.
+# --- a strict skill schema kept in the CORE as the canonical micro-step shape:
+# the bitwize album-conceptualizer (7 gated phases, progressive disclosure, a
+# Phase-7 hard gate). Capabilities contribute their OWN skills the same way.
 ALBUM_CONCEPT_SKILL = {
     "name": "album-concept",
     "kind": "conceptualizer",
@@ -98,54 +76,76 @@ ALBUM_CONCEPT_SKILL = {
     ],
 }
 
-# album types as a closed enum (the conceptualizer's type choice)
 ALBUM_TYPES = {"documentary", "narrative", "thematic", "character-study",
                "collection", "ost"}
 
-# --- ported COMPLETELY from superpowers `writing-skills` (the skill creator).
-# The Iron Law — "NO SKILL WITHOUT A FAILING TEST FIRST" — is ENFORCED by the
-# phase ordering itself: the walker advances one phase at a time and validates
-# each phase's required outputs, so GREEN (authoring) is structurally
-# unreachable until RED (the baseline observation) has produced its outputs.
-# RED → GREEN → lint(CSO) → REFACTOR → deploy(hard gate). The GREEN + lint phases
-# are bound to REAL capability verbs (author_skill / lint_skill).
-SKILL_CREATION_SKILL = {
-    "name": "skill-creation",
-    "kind": "authoring",
-    "phases": [
-        {"index": 1, "name": "red-baseline",
-         "produces": ["baseline", "rationalizations"]},
-        {"index": 2, "name": "green-author", "produces": ["skill_md"],
-         "invoke": {"capability": "plugin", "verb": "author_skill"},
-         "inputs": ["name", "description", "body"]},
-        {"index": 3, "name": "lint", "produces": ["lint"],
-         "invoke": {"capability": "plugin", "verb": "lint_skill"},
-         "inputs": ["name", "description"]},
-        {"index": 4, "name": "refactor",
-         "produces": ["rationalization_table", "red_flags"]},
-        {"index": 5, "name": "deploy", "produces": ["user_confirmed"], "gate": "hard"},
-    ],
-}
+CORE_SKILLS = {"album-concept": ALBUM_CONCEPT_SKILL}
 
-# --- the complete plugin-authoring chain: each phase emits a prestructured
-# document (the bitwize "resulting document of each step" pattern, made strict +
-# provenance-recorded). manifest → skill → command → marketplace entry → confirm.
-PLUGIN_DEV_SKILL = {
-    "name": "plugin-dev",
-    "kind": "authoring",
-    "phases": [
-        {"index": 1, "name": "manifest", "produces": ["manifest"],
-         "invoke": {"capability": "plugin", "verb": "scaffold"},
-         "inputs": ["name", "version", "description"]},
-        {"index": 2, "name": "skill", "produces": ["skill_md"],
-         "invoke": {"capability": "plugin", "verb": "author_skill"},
-         "inputs": ["name", "description", "body"]},
-        {"index": 3, "name": "command", "produces": ["command_md"],
-         "invoke": {"capability": "plugin", "verb": "author_command"},
-         "inputs": ["name", "description", "body"]},
-        {"index": 4, "name": "marketplace", "produces": ["entry"],
-         "invoke": {"capability": "plugin", "verb": "marketplace_entry"},
-         "inputs": ["name", "version", "description", "source"]},
-        {"index": 5, "name": "confirm", "produces": ["user_confirmed"], "gate": "hard"},
-    ],
-}
+
+@dataclass
+class OntologyExtension:
+    """What a capability contributes to the ontology. All optional — a capability
+    that uses only core types contributes nothing. Merged onto the core strictly."""
+    nodes: dict[str, list[str]] = field(default_factory=dict)        # label -> required fields
+    edges: set = field(default_factory=set)                         # additional edge types
+    enums: dict = field(default_factory=dict)                       # (label, field) -> allowed set
+    skills: dict = field(default_factory=dict)                      # skill-name -> skill schema
+    schemas: dict = field(default_factory=dict)                     # artefact/template name -> required fields
+    templates: dict = field(default_factory=dict)                   # template name -> body
+
+
+class Ontology:
+    """The effective ontology: the core, plus every capability's extension."""
+
+    def __init__(self) -> None:
+        self.nodes = {k: list(v) for k, v in NODE_SCHEMAS.items()}
+        self.edges = set(EDGE_TYPES)
+        self.enums = {k: set(v) for k, v in FIELD_ENUMS.items()}
+        self.skills = dict(CORE_SKILLS)
+        self.schemas: dict[str, list[str]] = {}
+        self.templates: dict[str, str] = {}
+
+    @classmethod
+    def core(cls) -> "Ontology":
+        return cls()
+
+    def extend(self, ext: OntologyExtension, owner: str = "?") -> "Ontology":
+        for label, req in ext.nodes.items():
+            if label in self.nodes and list(self.nodes[label]) != list(req):
+                raise ValueError(
+                    f"ontology extension by {owner!r}: node {label!r} redefines an "
+                    f"existing schema {self.nodes[label]} with {list(req)}")
+            self.nodes[label] = list(req)
+        self.edges |= set(ext.edges)
+        for key, allowed in ext.enums.items():
+            self.enums.setdefault(key, set()).update(allowed)     # enums widen, never clobber
+        for name, sk in ext.skills.items():
+            if name in self.skills:
+                raise ValueError(f"{owner!r}: skill {name!r} already defined")
+            self.skills[name] = sk
+        for name, req in ext.schemas.items():
+            if name in self.schemas:
+                raise ValueError(f"{owner!r}: schema {name!r} already defined")
+            self.schemas[name] = list(req)
+        for name, body in ext.templates.items():
+            if name in self.templates:
+                raise ValueError(f"{owner!r}: template {name!r} already defined")
+            self.templates[name] = body
+        return self
+
+    # --- enforcement (used by Memory) --------------------------------------
+    def missing_required(self, label: str, props: dict) -> list[str]:
+        return [f for f in self.nodes.get(label, []) if props.get(f) in (None, "")]
+
+    def violations(self, label: str, props: dict) -> list[str]:
+        out = [f"missing required {f!r}" for f in self.missing_required(label, props)]
+        for (lbl, fld), allowed in self.enums.items():
+            if lbl == label and fld in props and props[fld] not in allowed:
+                out.append(f"{fld}={props[fld]!r} not in {sorted(allowed)}")
+        return out
+
+    def is_known_edge(self, rel: str) -> bool:
+        return rel in self.edges
+
+    def skill(self, name: str) -> dict:
+        return self.skills[name]

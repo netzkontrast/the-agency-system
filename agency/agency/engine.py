@@ -32,17 +32,20 @@ from .capability import Registry
 from .intent import Intent
 from .lifecycle import Lifecycle
 from .memory import Memory
+from .ontology import Ontology
 
 
 class Engine:
     def __init__(self, path: str, jules_client=None):
-        self.memory = Memory(path)
-        self.intent = Intent(self.memory)
-        self.lifecycle = Lifecycle(self.memory)
         self.jules_client = jules_client or RealJulesClient()   # boundary: real orchestrator by default
         self.registry = Registry()
-        for cap in discover():                                  # reflection: register by discovery
+        self.ontology = Ontology.core()                         # the base, then each capability extends it
+        for cap in discover():                                  # reflection: register + merge ontology
             self.registry.register(cap)
+            self.ontology.extend(cap.ontology, cap.name)
+        self.memory = Memory(path, ont=self.ontology)           # enforce the EFFECTIVE ontology
+        self.intent = Intent(self.memory)
+        self.lifecycle = Lifecycle(self.memory)
 
     def _injectors(self) -> dict:
         """Engine-supplied verb params (the `inject` convention): the boundary
