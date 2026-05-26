@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agency-system.dev/schemas/workflow/phase-node.schema.json",
+  "title": "Phase Node",
+  "description": "Graph node representing a workflow phase",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "row", "cell", "phase_id", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the graph node"
+    },
+    "row": {
+      "type": "string",
+      "description": "The row this phase belongs to"
+    },
+    "cell": {
+      "type": "string",
+      "enum": ["workflow"],
+      "description": "The column cell this node belongs to"
+    },
+    "phase_id": {
+      "type": "string",
+      "description": "The identifier of the phase within the workflow"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "blocked", "completed", "failed"],
+      "description": "The execution status of the phase"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of phase IDs or gate IDs that must be satisfied before this phase can run"
+    },
+    "body_ref": {
+      "type": "string",
+      "description": "Reference to the phase body definition (e.g., path to phase.md)"
+    },
+    "blocked_on_gate": {
+      "type": "string",
+      "description": "The ID of the gate currently blocking this phase, if status is blocked"
+    }
+  }
+}
