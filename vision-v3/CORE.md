@@ -99,10 +99,25 @@ Structure-first. Concepts: `intent`, `capability`, `lifecycle`, `memory`. Tool
 names `<concept>_<capability>_<verb>` (underscores, ≤64, no dots; the client
 injects `mcp__`).
 
-## Next (panel-unanimous): BUILD A SEED — do not spec further.
+## Status: the seed proves it (10/10 green, `seed/`)
 
-The smallest running thing that **proves the moat** (the provenance traversal)
-and **falsifies the risks** (does the verb frame + one graph actually carry two
-different capabilities?). Target: a passing test that records an Intent, runs
-two capabilities through a gated Lifecycle, and answers the provenance query
-end-to-end.
+Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
+
+- the **provenance moat** (one traversal);
+- **two genuinely different capabilities** — a stateless `transform` and the
+  **REAL Jules agent** wired to the actual orchestrator (`jules_create`/`get`);
+- **bi-temporal memory** (`as_of`); **`COMPLETED != done`** (real Jules `verify`:
+  state completed AND a branch on origin);
+- **code-mode is the contract** (`search`/`get_schema`/`execute`) — exposed
+  isomorphically over MCP and a **bash CLI** (Jules-dogfooded, PR #175);
+- **code-mode tool-chaining**; **gates via `elicit`**;
+- **schemas & templates** (typed/generative layer);
+- a **strictly enforced ontology** (`ontology.py`: per-node required-field schemas
+  + an enumerated edge set + closed enums; `record`/`link` reject drift);
+- a **micro-step skill walker** (`skill.py`): walks `ALBUM_CONCEPT_SKILL` — the
+  real bitwize conceptualizer schematized — one phase at a time (progressive
+  disclosure, token-efficient) through its Phase-7 **hard gate**, recording each
+  phase as provenance.
+
+Next: grow the capability set (port more bitwize crafts as strict schemas) and
+graduate the seed into the shipped engine.
