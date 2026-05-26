@@ -374,3 +374,18 @@ def test_real_skill_executes_tools():
     assert run.submit({"user_confirmed": "yes"}, confirmed=True)["status"] == "completed"
     assert run.done
     e.memory.close()
+
+
+def test_strict_enums_enforced_on_both_write_paths():
+    """Design-loop refinement: closed enums are ENFORCED, not decorative. A bad
+    role or lifecycle state raises — on record AND on the update mutation path."""
+    e = fresh()
+    iid = e.intent.capture("a", "b", "c")
+    with pytest.raises(ValueError):                          # role not in ROLES
+        e.memory.record("Invocation", {"capability": "x", "verb": "y", "role": "banana"})
+    with pytest.raises(ValueError):                          # state not in LIFECYCLE_STATES
+        e.memory.record("Lifecycle", {"state": "bogus", "phase": 0})
+    lc = e.lifecycle.open(iid)                                # valid state via record
+    with pytest.raises(ValueError):                          # update path is guarded too
+        e.memory.update(lc, {"state": "bogus"})
+    e.memory.close()

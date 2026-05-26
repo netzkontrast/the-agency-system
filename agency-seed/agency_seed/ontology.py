@@ -40,10 +40,27 @@ EDGE_TYPES = {
 }
 
 
+# closed-enum constraints on specific (label, field) pairs — ENFORCED, not decorative
+FIELD_ENUMS = {
+    ("Invocation", "role"): ROLES,
+    ("Lifecycle", "state"): LIFECYCLE_STATES,
+}
+
+
 def missing_required(label: str, props: dict) -> list[str]:
     """Required fields absent (None/empty) for a known label; [] if label unknown
     (unknown labels are permitted — the ontology is strict, not closed-world)."""
     return [f for f in NODE_SCHEMAS.get(label, []) if props.get(f) in (None, "")]
+
+
+def violations(label: str, props: dict) -> list[str]:
+    """All ontology violations for a node: missing required fields AND values that
+    break a closed enum. This is what makes the schemata genuinely *strict*."""
+    out = [f"missing required {f!r}" for f in missing_required(label, props)]
+    for (lbl, field), allowed in FIELD_ENUMS.items():
+        if lbl == label and field in props and props[field] not in allowed:
+            out.append(f"{field}={props[field]!r} not in {sorted(allowed)}")
+    return out
 
 
 def is_known_edge(rel: str) -> bool:

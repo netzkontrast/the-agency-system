@@ -66,9 +66,12 @@ this is proven runnable in `../agency-seed/` (real `ctx.elicit` round-trip).
 
 Both are ordinary nodes in **Memory**, forming a generate/validate pair:
 - A **Schema** is the typed contract for a node / artefact / verb-params. It powers
-  `validate` / `check` — and it is the **isomorphism glue**: one schema per verb
-  renders three ways (MCP `inputSchema`, the Skill's frontmatter, the bash CLI's
-  arg parser), which is *why* MCP / Skill / bash stay in lockstep.
+  `validate` / `check`. **Design intent:** one schema per verb renders three ways
+  (MCP `inputSchema`, the Skill's frontmatter, the bash CLI's arg parser) — the
+  *isomorphism glue*. *(Not yet wired: in the seed the MCP `inputSchema` is derived
+  by FastMCP from the verb signature; making the ontology schema the single source
+  is the next step.)* In the seed today the ontology IS enforced on the graph
+  (`record`/`link` reject missing fields, broken enums, and unknown edges).
 - A **Template** is a parameterized generator. It powers `act`: a Capability
   produces an Artefact `DERIVED_FROM` the Template, which `VALIDATES_AGAINST` its
   Schema.
@@ -99,7 +102,7 @@ Structure-first. Concepts: `intent`, `capability`, `lifecycle`, `memory`. Tool
 names `<concept>_<capability>_<verb>` (underscores, ≤64, no dots; the client
 injects `mcp__`).
 
-## Status: the seed proves it (10/10 green, `seed/`)
+## Status: the seed proves it (12/12 green, `seed/`)
 
 Built on the real substrate (graphqlite + fastmcp + Monty). Proven runnable:
 

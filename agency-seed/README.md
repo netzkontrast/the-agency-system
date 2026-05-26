@@ -6,7 +6,7 @@ code-mode transform). Built after the adversarial spec panel's unanimous verdict
 *stop spec'ing, build the smallest thing that proves the moat and falsifies the
 risks.*
 
-## What it proves (`tests/test_seed.py`, 11/11 green)
+## What it proves (`tests/test_seed.py`, 12/12 green)
 
 1. **The moat — cross-concern provenance is one graph traversal.**
    `Memory.provenance(intent)` returns, in one Cypher walk, every action that

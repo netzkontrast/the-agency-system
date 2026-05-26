@@ -34,9 +34,9 @@ class Memory:
 
     # --- write axis: record · link · supersede -------------------------------
     def record(self, label: str, props: dict[str, Any], node_id: Optional[str] = None) -> str:
-        missing = ontology.missing_required(label, props)
-        if missing:
-            raise ValueError(f"{label} record missing required fields: {missing}")
+        bad = ontology.violations(label, props)
+        if bad:
+            raise ValueError(f"{label} record violates ontology: {bad}")
         nid = node_id or f"{label.lower()}:{uuid.uuid4().hex[:8]}"
         data = {**props, "vfrom": self._now(), "vto": OPEN}
         self.g.upsert_node(nid, data, label=label)
@@ -54,7 +54,12 @@ class Memory:
         if node is None:
             raise KeyError(node_id)
         label = node["labels"][0] if node.get("labels") else "Entity"
-        self.g.upsert_node(node_id, {**node["properties"], **changes}, label=label)
+        merged = {**node["properties"], **changes}
+        bad = ontology.violations(label, {k: v for k, v in merged.items()
+                                          if k not in ("vfrom", "vto", "id")})
+        if bad:
+            raise ValueError(f"{label} update violates ontology: {bad}")
+        self.g.upsert_node(node_id, merged, label=label)
 
     def supersede(self, node_id: str, changes: dict[str, Any]) -> str:
         node = self.g.get_node(node_id)
