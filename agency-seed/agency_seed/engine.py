@@ -9,7 +9,7 @@ dots, ≤64) — the client injects the `mcp__` prefix.
 """
 from __future__ import annotations
 
-from fastmcp import FastMCP
+from fastmcp import Context, FastMCP
 
 try:
     from fastmcp.experimental.transforms.code_mode import CodeMode
@@ -50,6 +50,17 @@ class Engine:
             result, _ = reg.invoke(mem, intent_id, "jules", "patch",
                                    agent_id=agent_id, spec=spec, pushed=pushed)
             return result
+
+        @mcp.tool
+        async def lifecycle_gate(question: str, intent_id: str, lifecycle_id: str, ctx: Context) -> dict:
+            "An intent-verification gate that ELICITS a human/agent decision mid-flow "
+            "(askuser-in-the-flow): a tiny prompt streams out, the answer resumes the chain. "
+            "Records the outcome to the provenance graph."
+            res = await ctx.elicit(question, response_type=["approve", "reject"])
+            approved = getattr(res, "data", None) == "approve"
+            g = mem.record("Gate", {"name": "human-confirm", "question": question, "passed": approved})
+            mem.link(lifecycle_id, g, "PASSED" if approved else "BLOCKED_ON")
+            return {"approved": approved, "gate_id": g}
 
         @mcp.tool
         def memory_graph_provenance(intent_id: str) -> dict:

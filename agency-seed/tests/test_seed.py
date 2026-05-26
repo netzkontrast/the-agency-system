@@ -14,6 +14,9 @@ import asyncio
 import re
 import tempfile
 
+from fastmcp import Client
+from fastmcp.client.elicitation import ElicitResult
+
 from agency_seed.engine import Engine
 
 NAME_RE = re.compile(r"^[a-zA-Z0-9_]{1,64}$")  # MCP / Claude-frontend strict
@@ -151,4 +154,33 @@ def test_codemode_chaining_is_an_executable_graph():
     assert verbs == ["count", "count", "count", "patch"]      # 3 transforms + 1 act, chained
     assert any(a["id"] == "agent:jules" for a in prov["agents"])
     assert any(p["kind"] == "patch" for p in prov["artefacts"])
+    e.memory.close()
+
+
+def test_gate_elicits_human_in_flow():
+    """A gate/intent-verification step ELICITS a decision mid-flow (askuser in the
+    flow): a one-line prompt streams to the human/agent, the answer resumes the
+    chain, and the outcome is recorded as a Gate in the provenance graph. This is
+    the atomic, token-tiny human-in-the-loop step."""
+    e = fresh()
+    iid = e.intent.capture("ship the release", "v1 published", "human approves")
+    e.intent.confirm(iid)
+    lc = e.lifecycle.open(iid, agent="jules")
+    mcp = e.build_mcp(codemode=False)
+
+    async def approve(message, response_type, params, context):
+        return ElicitResult(action="accept", content="approve")   # simulate the human
+
+    async def main():
+        async with Client(mcp, elicitation_handler=approve) as client:
+            r = await client.call_tool("lifecycle_gate", {
+                "question": "Approve release?", "intent_id": iid, "lifecycle_id": lc,
+            })
+            return _sc(r)
+
+    out = asyncio.run(main())
+    assert out["approved"] is True
+    # the human-in-the-loop verification is now a gate in the provenance graph
+    prov = e.memory.provenance(iid)
+    assert any(g["name"] == "human-confirm" and g["passed"] for g in prov["gates"])
     e.memory.close()

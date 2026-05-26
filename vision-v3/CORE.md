@@ -41,6 +41,23 @@ thing the SDK-native rival cannot match:** cross-concern provenance is a *single
 traversal* — "every action that `SERVES` intent Q1, the agent that ran it, the
 gate it passed."
 
+## Skills are atomic, gated, progressively-disclosed step-graphs
+
+A "skill" is **not** a monolithic `SKILL.md` loaded wholesale. In v4 a skill is a
+**Lifecycle template: a graph of atomic Capability steps + Gates**, walked
+step-by-step via code-mode. Each step discloses only the *next* instruction
+(`search → get_schema → execute`), so tokens are paid per atomic step, not for
+the whole skill. The chain *is* an executable dataflow graph, and because every
+`call_tool` records an Invocation, it mirrors itself into the provenance graph.
+
+**Gates / intent-verification / human-in-the-loop are `elicit` steps.** A step
+can `ctx.elicit(prompt)` (ask the agent or human a one-line question and get a
+typed answer), `ctx.sample(...)` (ask the caller's LLM), or `ctx.report_progress`
+(stream). A gate that needs a human is just an `elicit` → the Lifecycle pauses at
+`input-required`, the answer resumes it, the outcome is recorded as a `Gate`.
+"askuser" is therefore not a special case — it is one node in the chain. All of
+this is proven runnable in `../agency-seed/` (real `ctx.elicit` round-trip).
+
 ## Dropped (and why)
 
 - **Six-domain 5W1H** → a lens, not structure (journalistic checklist, not an
