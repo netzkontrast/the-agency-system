@@ -12,7 +12,7 @@
 #      the next session-start will re-render from here.
 
 artist:
-  name: the-agency-system
+  name: children-of-agatha
 
 paths:
   # content_root is the repo root itself, so the plugin writes albums to
