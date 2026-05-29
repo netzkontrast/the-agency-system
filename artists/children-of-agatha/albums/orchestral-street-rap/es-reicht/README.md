@@ -41,7 +41,7 @@ sheet_music:
 
 *„Zur Not mit Gewalt"* — der Aufstand des Körpers, der ihn endlich in die Pflege bringt. Das ist die Logik, die Patient:innen überhaupt erst nach St. Agatha bringt.
 
-**Kulturkampf-Schicht:** Die Patientin ist deutsch geboren, ihre Familie aus einem türkischen Dorf — sie ist die Erste der Familien-Linie, die aus dem Sommer-Pendel ausbricht. Studium und Job in deutscher Großstadt, alleine wohnend; für eine unverheiratete Tochter ein dörflich-konservatives Tabu, vom Dorf aus betrachtet eine „Andere". Säkular, Familie traditionell-konservativ. Drei Lasten tragen den Körper: **Stolz der Familie** (sie ist DIE Erfolgs-Geschichte; ihr Erfolg muss für alle reichen, die nicht gegangen sind), **Allein-Wohn-Tabu/Schande** (kein Rückweg ins Dorf-Narrativ), und permanente **Übersetzungs-Arbeit** zwischen zwei Welten — in beiden fremd. Bewusster **Code-Switch** durchgehend (*anne, abla, kız, yeter*) als Stimme der gespaltenen Verkörperung; das Hook-Echo *yeter* schreit dasselbe „Es reicht" in der Sprache, in der es zuerst geschluckt wurde.
+**Kulturkampf-Schicht:** Die Patientin ist deutsch geboren, ihre Familie aus einem türkischen Dorf — sie ist die Erste der Familien-Linie, die aus dem Sommer-Pendel ausbricht. Studium und Job in deutscher Großstadt, alleine wohnend; für eine unverheiratete Tochter ein dörflich-konservatives Tabu, vom Dorf aus betrachtet eine „Andere". Säkular, Familie traditionell-konservativ. Drei Lasten tragen den Körper: **Stolz der Familie** (sie ist DIE Erfolgs-Geschichte; ihr Erfolg muss für alle reichen, die nicht gegangen sind), **Allein-Wohn-Tabu/Schande** (kein Rückweg ins Dorf-Narrativ), und permanente **Übersetzungs-Arbeit** zwischen zwei Welten — in beiden fremd. Bewusster **Code-Switch** durchgehend (*anne, abla, kız, yeter, ayıp*) als Stimme der gespaltenen Verkörperung; das Hook-Echo *yeter* schreit dasselbe „Es reicht" in der Sprache, in der es zuerst geschluckt wurde. *ayıp* (Schande) ist das Dorf-Urteil über die allein wohnende Tochter — kürzeste, kulturell direkte Diagnose.
 
 **Anschluss & Kontrast zu *Herz aus Seide*:** Beide leben in derselben Familie (Caretaker-Erschöpfung), aber wo Tottis Maske sich *wieder schließt* (kein Release), reißt hier wirklich etwas auf — und kommt dann doch nicht zur Ruhe. Wo Totti die Innenperspektive war, ist dies die **Außenstimme**: der Körper redet mit dem Bewohner.
 
@@ -78,6 +78,8 @@ sheet_music:
 | Viel zu früh / Ich war neun, ich war elf | Parentifizierung | Strophe 2 | — |
 | Endlich, endlich, endlich | Erleichterung im Kollaps (sehen-werden via Krankheit) | Bridge | Outro (gekippt) |
 | Brot wird Bombe, Zucker wird Gift | Klinische Somatisierung (Reizdarm, Magendruck, Gluten-/Zucker-Intoleranz) als somatisches Nein und Verweigerung der Familien-Essens-Sprache | V2 L6 | — |
+| Ich war die Erste — vier Wände, ein Bett. Im Dorf heißt das ayıp. | Trailblazer-Position + Allein-Wohn-Tabu in einer Linie; der Trade-off der ersten Auswanderin der Familie | V1 L5 | — |
+| Lass mich schwach sein — nur einmal. | Die zentrale Erlaubnis-Bitte (nicht Forderung) — die weichste Stelle des Songs, direkt vor dem Hook | PreC L4 | — |
 | Weiter Hall + hektischer Sub-Puls (Klangmotiv) | Raum vs. Tachykardie | Intro | durchgehend, allein im Fade |
 
 ### Character Threads

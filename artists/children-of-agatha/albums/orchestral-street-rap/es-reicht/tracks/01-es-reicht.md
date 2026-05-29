@@ -37,7 +37,7 @@ sheet_music:
 |-----------|-----------|
 | **Narrative Voice** | First-person — *der Körper* spricht (adressiert „du" = die Besitzerin/das Ich) |
 | **Speaking AS real person?** | Nein — rein fiktiver Patient:innen-Körper in der St.-Agatha-Welt; keine Impersonation |
-| **Sprache** | Deutsch mit bewusstem Code-Switch ins Türkische (*anne, abla, kız, yeter*) — phonetisch in Suno-Lyrics, Standard-Schreibung in Streaming-Lyrics |
+| **Sprache** | Deutsch mit bewusstem Code-Switch ins Türkische (*anne, abla, kız, yeter, ayıp*) — phonetisch in Suno-Lyrics, Standard-Schreibung in Streaming-Lyrics |
 | **Gender frame** | Weiblich-gerahmt — parentifizierter Frauen-/Mädchenkörper, türkisch-stämmig (2./3. Gen, deutsch geboren, Familie aus dörflich-konservativem Umfeld), „die starke Frau", die alles regelt |
 | **Kulturelle Verortung** | Diaspora-Tochter; Stolz-tragen-für-alle + Allein-Wohn-Tabu + Übersetzungs-Arbeit als drei Lastachsen |
 
@@ -49,7 +49,7 @@ sheet_music:
 
 **Architektur — *Ruhig → brutaler Aufbruch (Tempo-Shift) → erschöpft-unruhig*** über der Spannung **„weiter Raum ↔ hektischer Körper"** (außen Halle, innen Tachykardie). Klimax in der Bridge mit Tempo-Shift auf Double-Time und harten Drums; Outro: Drums weg, Halle wieder leer, aber der Körper redet hektisch weiter — keine Katharsis-Auflösung.
 
-**Kulturkampf-Schicht:** Die Patientin ist deutsch geboren, ihre Familie aus einem türkischen Dorf — sie ist die Erste der Familien-Linie, die aus dem Sommer-Pendel ausbricht (Studium und Job in deutscher Großstadt, alleine wohnend; für eine unverheiratete Tochter ein dörflich-konservatives Tabu, vom Dorf aus betrachtet eine „Andere"). Säkular, aber Familie traditionell-konservativ. Drei Lasten tragen den Körper: **Stolz der Familie** (sie ist DIE Erfolgs-Geschichte, ihr Erfolg muss für alle reichen, die nicht gegangen sind), **Allein-Wohn-Tabu/Schande** (kein Rückweg ins Dorf-Narrativ), und permanente **Übersetzungs-Arbeit** zwischen zwei Welten — in beiden fremd. Bewusster **Code-Switch** durchgehend (anne, abla, kız, yeter) als Stimme der gespaltenen Verkörperung; das Hook-Echo *yeter* schreit dasselbe „Es reicht" in der Sprache, in der es zuerst geschluckt wurde.
+**Kulturkampf-Schicht:** Die Patientin ist deutsch geboren, ihre Familie aus einem türkischen Dorf — sie ist die Erste der Familien-Linie, die aus dem Sommer-Pendel ausbricht (Studium und Job in deutscher Großstadt, alleine wohnend; für eine unverheiratete Tochter ein dörflich-konservatives Tabu, vom Dorf aus betrachtet eine „Andere"). Säkular, aber Familie traditionell-konservativ. Drei Lasten tragen den Körper: **Stolz der Familie** (sie ist DIE Erfolgs-Geschichte, ihr Erfolg muss für alle reichen, die nicht gegangen sind), **Allein-Wohn-Tabu/Schande** (kein Rückweg ins Dorf-Narrativ), und permanente **Übersetzungs-Arbeit** zwischen zwei Welten — in beiden fremd. Bewusster **Code-Switch** durchgehend (anne, abla, kız, yeter, ayıp) als Stimme der gespaltenen Verkörperung; das Hook-Echo *yeter* schreit dasselbe „Es reicht" in der Sprache, in der es zuerst geschluckt wurde. *ayıp* — die Schande des Dorfs über die allein wohnende Tochter — als kürzestes, kulturell direktes Urteil.
 
 **Refrain-Seeds / Kern-Motive:**
 - „Es reicht" (Forderung / Hook)
@@ -77,7 +77,7 @@ Ein leerer großer Saal mit Klinik-Echo. Ein angespannter Hals, der zu viel gesc
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-German-language female low alto rap voice with deliberate Turkish code-switching (anne, abla, kız, yeter), smoky and gritty rasp, dry close-mic in wide cathedral-hall reverb, no vibrato, no autotune, raw vocal with no pitch correction. Hectic breath-tight phrasing in verses with twisted off-kilter internal rhyme; raw scream-rap in bridge climax; exhausted ragged murmuring in outro. Orchestral street rap, cinematic hip-hop. Solo cello with rough bow, restless violins, sparse pizzicato, double bass, distant placement in the hall; sub-bass pulse throughout. No drum kit in intro, verses, or outro — only the bridge brings hard sparse snare and 808 sub-bass; then drums drop out. Tempo: half-time around 70 BPM in verses, abrupt double-time around 140 BPM in bridge, then around 66 BPM in outro with sub-pulse staying too fast for rest. Voice forward, restrained then violent, dark dynamic range. Mood: parentified body forcing its collapse to finally be heard; dignified rage; no catharsis.
+German-language female low alto rap voice with deliberate Turkish code-switching (anne, abla, kız, yeter, ayıp), smoky and gritty rasp, dry close-mic in wide cathedral-hall reverb, no vibrato, no autotune, raw vocal with no pitch correction. Hectic breath-tight phrasing in verses with twisted off-kilter internal rhyme; raw scream-rap in bridge climax; exhausted ragged murmuring in outro. Orchestral street rap, cinematic hip-hop. Solo cello with rough bow, restless violins, sparse pizzicato, double bass, distant placement in the hall; sub-bass pulse throughout. No drum kit in intro, verses, or outro — only the bridge brings hard sparse snare and 808 sub-bass; then drums drop out. Tempo: half-time around 70 BPM in verses, abrupt double-time around 140 BPM in bridge, then around 66 BPM in outro with sub-pulse staying too fast for rest. Voice forward, restrained then violent, dark dynamic range. Mood: parentified body forcing its collapse to finally be heard; dignified rage; no catharsis.
 ```
 
 ### Exclude Styles
@@ -99,11 +99,11 @@ no autotune, no trap hi-hats, no synth lead, no maximalist production
 
 [Verse 1]
 [German-Turkish code-switching female low alto, smoky gritty rasp, dry close-mic in wide hall, hectic breath-tight phrasing, halftime feel ~70 BPM]
-Ich schluck — du redest. Ich schluck — du lachst.
+Ich schluck — du redest. Ich mach — du lachst.
 Drei Meetings vor neun, drei Anrufe ins Dorf.
 Du hast meine Hand gegeben, ohne zu fragen.
-Du hast „die schafft das" gesagt — als wär das umsonst.
-Ich hab den Tisch gedeckt, bevor jemand was sah.
+Du hast „die schafft das" gesagt — und das ganze Dorf hörte mit.
+Ich war die Erste — vier Wände, ein Bett. Im Dorf heißt das ah-YIP.
 Ich hab geantwortet auf Deutsch, wo deine AH-neh nicht verstand.
 Mit elf hab ich übersetzt, was du heut nicht hörst.
 Und du sagst, ich übertreib — sag das nochmal, sag das nochmal.
@@ -113,6 +113,7 @@ Und du sagst, ich übertreib — sag das nochmal, sag das nochmal.
 Ich war Mutter, bevor ich Tochter war.
 Ich war AB-la, ich war kız.
 Ich häng am Rand — und ich vermiss mich schon.
+Lass mich schwach sein — nur einmal.
 
 [Chorus]
 [hook lands — half-sung gritty, voice slightly raised; cello tremolo; still no drums; Turkish ad-libs in parentheses sung as backing vocal]
@@ -170,11 +171,11 @@ ich red in beiden Sprachen — und keine kommt an.
 *For distributor submission. No section tags, repeats written out, plain text, keine Phonetik.*
 
 ```
-Ich schluck du redest Ich schluck du lachst
+Ich schluck du redest Ich mach du lachst
 Drei Meetings vor neun drei Anrufe ins Dorf
 Du hast meine Hand gegeben ohne zu fragen
-Du hast die schafft das gesagt als wär das umsonst
-Ich hab den Tisch gedeckt bevor jemand was sah
+Du hast die schafft das gesagt und das ganze Dorf hörte mit
+Ich war die Erste vier Wände ein Bett Im Dorf heißt das ayıp
 Ich hab geantwortet auf Deutsch wo deine anne nicht verstand
 Mit elf hab ich übersetzt was du heut nicht hörst
 Und du sagst ich übertreib sag das nochmal sag das nochmal
@@ -182,6 +183,7 @@ Und du sagst ich übertreib sag das nochmal sag das nochmal
 Ich war Mutter bevor ich Tochter war
 Ich war abla ich war kız
 Ich häng am Rand und ich vermiss mich schon
+Lass mich schwach sein nur einmal
 
 Es reicht hörst du Es reicht
 Ich sags nicht zweimal ich sags bis zur Wand
@@ -236,6 +238,7 @@ Ich red in beiden Sprachen und keine kommt an
 | abla | AB-la | Türkisch: ältere Schwester / weibliche Caretaker-Rolle; phonetisch in Suno-Lyrics |
 | kız | kız (Suno spricht „kiz" — akzeptabel) | Türkisch: Mädchen/Tochter; dotless ı bleibt im Schriftbild |
 | yeter | YEH-tehr | Türkisch für „es reicht" — Hook-Ad-lib in Klammern; phonetisch sichert Türkisch-Betonung gegen englisch-aspirierte Lesart |
+| ayıp | ah-YIP | Türkisch: Schande / soziale Verfehlung (das Urteil des Dorfs über die allein wohnende Tochter); phonetisch in Suno-Lyrics gegen englische Fehl-Lesart |
 
 ## Generation Log
 
