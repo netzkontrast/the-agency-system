@@ -61,7 +61,7 @@ sheet_music:
 
 - **Parentifizierung** — viel zu früh erwachsen, die starke Tochter, „die kann das"
 - **Schlucken als Arbeit** — der Körper als Caretaker-Werkzeug, das unsichtbar funktioniert
-- **Psychosomatische Sprache** — der Körper spricht, indem er erkrankt; der Kollaps als die einzige Botschaft, die ankommt
+- **Psychosomatische Sprache (Reizdarm, Magendruck, Gluten-/Zucker-Intoleranz, paradoxe Atmung)** — der Körper spricht, indem er erkrankt; das Brot- und Zucker-Verbot ist klinische Realität *und* die Verweigerung der Familien-Essens-Sprache; der Kollaps als die einzige Botschaft, die ankommt
 - **Geforderte Pflege** — der Körper fordert, was ihm verweigert wurde; *zur Not mit Gewalt*
 - **Restless Erschöpfung** — kein Frieden, nur Zusammenbruch + zwanghaftes Weiter-Reden in der Leere
 - **Würde im Verfall** — dokumentarisch, nie Trauma-Porn (CoA-Signatur)
@@ -77,6 +77,7 @@ sheet_music:
 | Zur Not mit Gewalt | Die Methode / der Aufstand des Körpers | Bridge | — |
 | Viel zu früh / Ich war neun, ich war elf | Parentifizierung | Strophe 2 | — |
 | Endlich, endlich, endlich | Erleichterung im Kollaps (sehen-werden via Krankheit) | Bridge | Outro (gekippt) |
+| Brot wird Bombe, Zucker wird Gift | Klinische Somatisierung (Reizdarm, Magendruck, Gluten-/Zucker-Intoleranz) als somatisches Nein und Verweigerung der Familien-Essens-Sprache | V2 L6 | — |
 | Weiter Hall + hektischer Sub-Puls (Klangmotiv) | Raum vs. Tachykardie | Intro | durchgehend, allein im Fade |
 
 ### Character Threads

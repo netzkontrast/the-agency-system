@@ -57,10 +57,11 @@ sheet_music:
 - „Zur Not mit Gewalt" (die Methode)
 - „Viel zu früh / Ich war neun, ich war elf" (Parentifizierung)
 - „Endlich, endlich, endlich" (gesehen-werden via Kollaps; im Outro gekippt)
+- „Brot wird Bombe, Zucker wird Gift" (klinische Somatisierung: Reizdarm/Magendruck/Gluten-/Zucker-Intoleranz — das Nein des Körpers, das gleichzeitig die Liebes-via-Essen-Sprache der Familie verweigert)
 
 ## Mood & Imagery
 
-Ein leerer großer Saal mit Klinik-Echo. Ein angespannter Hals, der zu viel geschluckt hat. Drei Meetings vor neun, drei Anrufe ins Dorf. Telefonate auf zwei Sprachen, in beiden Funkstille. Hand-im-Rücken-anderer. Klinik-Armband. Bahre. Puls-Messung. Ein Körper, der zwanghaft in zwei Sprachen weiter redet, auch wenn keine ankommt. Kalte Klinik-Palette mit *einem* warmen Rot.
+Ein leerer großer Saal mit Klinik-Echo. Ein angespannter Hals, der zu viel geschluckt hat. Brot, das nicht mehr Brot sein kann. Zucker als Gift. Reizdarm-Diagnose als Stempel auf der Akte. Drei Meetings vor neun, drei Anrufe ins Dorf. Telefonate auf zwei Sprachen, in beiden Funkstille. Hand-im-Rücken-anderer. Klinik-Armband. Bahre. Puls-Messung. Ein Körper, der zwanghaft in zwei Sprachen weiter redet, auch wenn keine ankommt. Kalte Klinik-Palette mit *einem* warmen Rot.
 
 ## Musical Direction
 
@@ -126,8 +127,8 @@ Ich war neun. Ich war elf. Ich war neunzehn, schon alt.
 Ich hab nicht geheult, weil im Dorf kein kız weint.
 Du hast „stark" gesagt, hast „Pflicht" gemeint.
 Hast nie gesehen, was so eine Pflicht wiegt.
-Mein Magen rebelliert — du sagst, das ist Stress.
-Mein Schlaf ist ein Schloss, das du nicht mehr aufkriegst.
+Mein Magen rebelliert — Reizdarm, Magendruck. Du sagst, das ist Stress.
+Brot wird Bombe, Zucker wird Gift — du nennst's Diät.
 Ich kann nicht mehr atmen, wenn du atmen sagst.
 Und du fragst noch — warum schluck ich nicht mehr.
 
@@ -191,8 +192,8 @@ Ich war neun Ich war elf Ich war neunzehn schon alt
 Ich hab nicht geheult weil im Dorf kein kız weint
 Du hast stark gesagt hast Pflicht gemeint
 Hast nie gesehen was so eine Pflicht wiegt
-Mein Magen rebelliert du sagst das ist Stress
-Mein Schlaf ist ein Schloss das du nicht mehr aufkriegst
+Mein Magen rebelliert Reizdarm Magendruck Du sagst das ist Stress
+Brot wird Bombe Zucker wird Gift du nennst es Diät
 Ich kann nicht mehr atmen wenn du atmen sagst
 Und du fragst noch warum schluck ich nicht mehr
 
