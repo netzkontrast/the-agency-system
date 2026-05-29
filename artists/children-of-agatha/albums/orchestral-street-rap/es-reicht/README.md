@@ -2,7 +2,7 @@
 title: "Es reicht"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
 genres: ["orchestral-street-rap"]
-tags: ["single", "character-study", "body-voice", "psychosomatic", "parentification", "street-rap", "deutschrap", "orchestral", "köln", "st-agatha"]
+tags: ["single", "character-study", "body-voice", "psychosomatic", "parentification", "street-rap", "deutschrap", "orchestral", "türkisch-deutsch", "diaspora", "kulturkampf", "code-switch", "köln", "st-agatha"]
 explicit: false
 streaming:
   soundcloud: ""
@@ -40,6 +40,8 @@ sheet_music:
 *Es reicht* ist die Character-Study-Single, in der **der Körper selbst spricht**. Nicht das Ich, sondern der parentifizierte Körper, der seiner Besitzerin Vorhaltungen macht. Viel zu früh erwachsen sein müssen; die eigenen Empfindungen runterschlucken, damit andere bequem sein können — *„die kann das ja regeln"*, als koste das nichts. Der Körper hat geschluckt und gemacht. Jetzt fordert er. Und der einzige Weg, gehört zu werden, ist der **erzwungene Zusammenbruch**: psychosomatische Erkrankung als die Sprache, die niemand mehr überhören kann.
 
 *„Zur Not mit Gewalt"* — der Aufstand des Körpers, der ihn endlich in die Pflege bringt. Das ist die Logik, die Patient:innen überhaupt erst nach St. Agatha bringt.
+
+**Kulturkampf-Schicht:** Die Patientin ist deutsch geboren, ihre Familie aus einem türkischen Dorf — sie ist die Erste der Familien-Linie, die aus dem Sommer-Pendel ausbricht. Studium und Job in deutscher Großstadt, alleine wohnend; für eine unverheiratete Tochter ein dörflich-konservatives Tabu, vom Dorf aus betrachtet eine „Andere". Säkular, Familie traditionell-konservativ. Drei Lasten tragen den Körper: **Stolz der Familie** (sie ist DIE Erfolgs-Geschichte; ihr Erfolg muss für alle reichen, die nicht gegangen sind), **Allein-Wohn-Tabu/Schande** (kein Rückweg ins Dorf-Narrativ), und permanente **Übersetzungs-Arbeit** zwischen zwei Welten — in beiden fremd. Bewusster **Code-Switch** durchgehend (*anne, abla, kız, yeter*) als Stimme der gespaltenen Verkörperung; das Hook-Echo *yeter* schreit dasselbe „Es reicht" in der Sprache, in der es zuerst geschluckt wurde.
 
 **Anschluss & Kontrast zu *Herz aus Seide*:** Beide leben in derselben Familie (Caretaker-Erschöpfung), aber wo Tottis Maske sich *wieder schließt* (kein Release), reißt hier wirklich etwas auf — und kommt dann doch nicht zur Ruhe. Wo Totti die Innenperspektive war, ist dies die **Außenstimme**: der Körper redet mit dem Bewohner.
 
