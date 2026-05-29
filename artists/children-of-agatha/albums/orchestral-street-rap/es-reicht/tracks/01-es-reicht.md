@@ -73,7 +73,7 @@ Ein leerer großer Saal mit Klinik-Echo. Ein angespannter Hals, der zu viel gesc
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Female low alto rap voice, smoky and gritty rasp, dry close-mic standing in a wide hall, no vibrato, no autotune, hectic breath-tight phrasing in verses with twisted off-kilter internal rhyme, raw scream-rap in the bridge climax, exhausted ragged murmuring in the outro, German-language. Orchestral street rap, cinematic hip-hop. Solo cello with rough bow, restless violins, sparse pizzicato, double bass, distant placement in large hall reverb; sub-bass pulse throughout; no drum kit in intro, verses, or outro — hard boom-bap with 808 sub-bass enters only at the bridge double-time climax, then drops out. Voice forward, restrained then violent, dark dynamic range. Slow half-time around 70 BPM in verses, abrupt shift to double-time around 140 BPM in bridge, slow back to ~66 BPM in outro with sub-pulse staying too fast for rest. Mood: parentified body forcing its collapse to finally be heard, dignified rage, no catharsis at the end.
+German-language female low alto rap voice, smoky and gritty rasp, dry close-mic in wide cathedral-hall reverb, no vibrato, no autotune, raw vocal with no pitch correction. Hectic breath-tight phrasing in verses with twisted off-kilter internal rhyme; raw scream-rap in bridge climax; exhausted ragged murmuring in outro. Orchestral street rap, cinematic hip-hop. Solo cello with rough bow, restless violins, sparse pizzicato, double bass, distant placement in the hall; sub-bass pulse throughout. No drum kit in intro, verses, or outro — only the bridge brings hard sparse snare and 808 sub-bass; then drums drop out. Tempo: half-time around 70 BPM in verses, abrupt double-time around 140 BPM in bridge, then around 66 BPM in outro with sub-pulse staying too fast for rest. Voice forward, restrained then violent, dark dynamic range. Mood: parentified body forcing its collapse to finally be heard; dignified rage; no catharsis.
 ```
 
 ### Exclude Styles
@@ -106,8 +106,8 @@ Und du sagst, ich übertreib — sag das nochmal, sag das nochmal.
 
 [Pre-Chorus]
 [strings tighten, sub-bass swells, voice steadies, syllables land harder]
-Ich häng am Rand. Du merkst es nicht.
-Ich häng am Rand. Du merkst es nicht.
+Ich war Mutter, bevor ich Tochter war.
+Ich häng am Rand — und ich vermiss mich schon.
 
 [Chorus]
 [hook lands — half-sung gritty, voice slightly raised; cello tremolo; still no drums]
@@ -121,7 +121,7 @@ Sonst nehm ich, was du mir nie gegeben hast.
 Ich war neun. Ich war elf. Ich war neunzehn, schon alt.
 Ich hab nicht geheult, weil dein Tag nicht heulen darf.
 Du hast Stärke gesagt, hast Hilfe gemeint.
-Hast nie gesehen, was so eine Hilfe kost.
+Hast nie gesehen, was so eine Hilfe wiegt.
 Mein Magen rebelliert — du sagst, das ist Stress.
 Mein Schlaf ist ein Schloss, das du nicht mehr aufkriegst.
 Ich kann nicht mehr atmen, wenn du atmen sagst.
@@ -134,9 +134,10 @@ Ich sag's nicht zweimal, ich sag's bis zur Wand.
 Es reicht — sieh mich. Es reicht.
 Sonst nehm ich, was du mir nie gegeben hast.
 
-[Bridge — TEMPO SHIFT to double-time ~140 BPM]
-[drums kick — hard half-time boom-bap with 808 sub-bass; violins tremolo and Bartók pizzicato bite; cello sawing; voice raw, scream-rap]
-Jetzt geht das hier. Jetzt geht das hier.
+[Bridge]
+[Tempo: double-time ~140 BPM]
+[hard sparse snare and 808 sub-bass enter; violins tremolo and Bartók pizzicato bite; cello sawing; voice raw, scream-rap]
+Jetzt nehm ich Platz. Jetzt nehm ich Platz.
 Ich nehm mir die Pause, die du mir nie gibst.
 Knie weg, Atem weg, Kopf weg — siehst du mich jetzt?
 Du wirst mich tragen, bevor ich dich nicht mehr trag.
@@ -173,8 +174,8 @@ Ich hab gelacht wo du wolltest dass ich lach
 Mit elf hab ich getragen was du heut nicht hebst
 Und du sagst ich übertreib sag das nochmal sag das nochmal
 
-Ich häng am Rand Du merkst es nicht
-Ich häng am Rand Du merkst es nicht
+Ich war Mutter bevor ich Tochter war
+Ich häng am Rand und ich vermiss mich schon
 
 Es reicht hörst du Es reicht
 Ich sags nicht zweimal ich sags bis zur Wand
@@ -184,7 +185,7 @@ Sonst nehm ich was du mir nie gegeben hast
 Ich war neun Ich war elf Ich war neunzehn schon alt
 Ich hab nicht geheult weil dein Tag nicht heulen darf
 Du hast Stärke gesagt hast Hilfe gemeint
-Hast nie gesehen was so eine Hilfe kost
+Hast nie gesehen was so eine Hilfe wiegt
 Mein Magen rebelliert du sagst das ist Stress
 Mein Schlaf ist ein Schloss das du nicht mehr aufkriegst
 Ich kann nicht mehr atmen wenn du atmen sagst
@@ -195,7 +196,7 @@ Ich sags nicht zweimal ich sags bis zur Wand
 Es reicht sieh mich Es reicht
 Sonst nehm ich was du mir nie gegeben hast
 
-Jetzt geht das hier Jetzt geht das hier
+Jetzt nehm ich Platz Jetzt nehm ich Platz
 Ich nehm mir die Pause die du mir nie gibst
 Knie weg Atem weg Kopf weg siehst du mich jetzt
 Du wirst mich tragen bevor ich dich nicht mehr trag
@@ -219,6 +220,7 @@ Ich hör nicht auf zu reden auch wenn keiner mehr fragt
 - **Tempo-Shift in der Bridge**: explizit als Metatag markieren, damit Suno die Geschwindigkeitsänderung erkennt.
 - **Outro = restless-erschöpft**: Halle kehrt zur Leere zurück, aber Sub-Puls *bleibt* zu schnell; Stimme rasselt/murmelt, keine Beruhigung; Fade ungelöst.
 - **Keine Rock-Katharsis**: das Gewicht des Klimax kommt aus Tempo-Shift + Drum-Einstieg + Streicher-Schärfe, nicht aus „epischer" Wand.
+- **Tempo-Shift-Fallback (Suno V5 Risk)**: V5 honoriert Mid-Song-Tempo-Wechsel nicht zuverlässig und glättet oft. Falls Single-Pass-Generation den 70 → 140 → 66 BPM-Wechsel nicht sauber abbildet, **zweistufig generieren**: (a) Intro / V1 / Pre-Chorus / Chorus / V2 / Chorus 2 als ein Stück bei ~70 BPM mit `[End]` vor der Bridge, (b) Bridge + Outro als zweites Stück bei 140 → 66 BPM, im DAW stitchen. Single-Pass zuerst versuchen; bei Tempo-Glättung auf Split umsteigen.
 
 ## Pronunciation Notes
 
