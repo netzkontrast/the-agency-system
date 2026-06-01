@@ -67,7 +67,7 @@ Spätnachmittagslicht durch ein Wohnzimmerfenster. Auf dem Tisch ein Puppenhaus,
 *Copy this into Suno's "Style of Music" field. Vocals FIRST per V5 weighting:*
 
 ```
-Dual vocalists: warm male baritone in verses (intimate close-mic, soft delivery, no vibrato, conversational), warm female soprano in choruses and bridge (intimate close-mic, breathy edges, minimal vibrato, fragile in bridge). Intimate piano-and-voice, contemporary dark folk, 65 BPM. Music box leitmotif, felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar. Voice forward, restrained, contemporary, dynamic range, tender, melancholic-hopeful, all German.
+Dual vocalists: warm male baritone in verses (intimate close-mic, soft delivery, no vibrato, conversational), warm female soprano in choruses and bridge (intimate close-mic, breathy edges, minimal vibrato, fragile in bridge). Intimate piano-and-voice, contemporary dark folk, 65 BPM. Music box (glockenspiel) leitmotif throughout — wind-up dollhouse-scale, plinky, intimate. Felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar. Voice forward, restrained, contemporary, dynamic range, tender, melancholic-hopeful, all German.
 ```
 
 ### Exclude Styles
@@ -82,9 +82,11 @@ no drums, no electric guitar, no autotune, no aggressive vocals
 
 ```
 [Intro]
+[music box motif, solo, gentle, intimate, plinky, dollhouse-scale]
 
 [Verse 1]
 [male warm baritone, intimate close-mic, soft delivery, no vibrato, conversational]
+[felted piano enters sparse, music box continues quiet underneath, pizzicato strings dot the lines]
 Du schneidest die Stiele schräg —
 die Schere kennt deine Hand.
 Zwei Pfingstrosen, drei Halme Gras,
@@ -94,6 +96,7 @@ Du fragst nicht, was du brauchst.
 
 [Chorus]
 [female warm soprano, intimate close-mic, soft, minimal vibrato, breathy at edges]
+[music box leitmotif returns as second voice, warm cello sustains underneath]
 Eins zu Zwölf — ein Maß für mich,
 ein Sessel, ein Buch, ein bisschen Licht.
 Gibt es ein Haus, in das ich gehör',
@@ -101,6 +104,7 @@ in das mich keiner ruft und keiner stört?
 
 [Verse 2]
 [male warm baritone returns, intimate close-mic, soft, no vibrato, conversational]
+[felted piano sparse, music box recedes, pizzicato strings, brief fingerpicked acoustic guitar]
 Du jätest das Beet, die Knie sind wund,
 die Kinder rufen, du läufst hinein.
 Kanne im Schuppen, Spinne am Strauch,
@@ -110,6 +114,7 @@ die leere Bank am Holunder.
 
 [Chorus]
 [female warm soprano, intimate close-mic, soft, minimal vibrato, breathy at edges]
+[music box leitmotif returns, warm cello underneath]
 Eins zu Zwölf — ein Maß für mich,
 ein Sessel, ein Buch, ein bisschen Licht.
 Gibt es ein Haus, in das ich gehör',
@@ -117,6 +122,7 @@ in das mich keiner ruft und keiner stört?
 
 [Bridge]
 [female warm soprano, fragile, breath audible, almost spoken, reflective, close-mic]
+[music box pauses entirely, felted piano alone, slow, no strings]
 Ich habe immer gehalten —
 zwei Hände, ein Tag, zwei Hände, ein Jahr.
 Wenn ich jetzt sage „nicht mehr" —
@@ -126,6 +132,7 @@ darf ich es auch?
 
 [Chorus]
 [female warm soprano, intimate close-mic, soft, minimal vibrato, slight rise]
+[music box returns gently like a held breath, warm cello very quiet underneath]
 Eins zu Zwölf — ein Maß für mich,
 ein Sessel, ein Buch, ein bisschen Licht.
 Vielleicht ein Haus, in das ich gehör',
@@ -133,6 +140,7 @@ für eine Stunde — und niemand stört.
 
 [Outro]
 [female warm soprano, whispered, intimate, breath audible]
+[music box trails off, last note unresolved, piano fades to silence]
 für eine Stunde —
 ein Haus in mir.
 ```

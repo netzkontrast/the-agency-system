@@ -111,7 +111,7 @@ Single, ein Track. Die Form ist die des Songs, nicht des Albums: Intro · Vers 1
 
 **Style Prompt Base** (finalisiert):
 ```
-Dual vocalists: warm male baritone in verses (intimate close-mic, soft delivery, no vibrato, conversational), warm female soprano in choruses and bridge (intimate close-mic, breathy edges, minimal vibrato, fragile in bridge). Intimate piano-and-voice, contemporary dark folk, 65 BPM. Music box leitmotif, felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar. Voice forward, restrained, contemporary, dynamic range, tender, melancholic-hopeful, all German.
+Dual vocalists: warm male baritone in verses (intimate close-mic, soft delivery, no vibrato, conversational), warm female soprano in choruses and bridge (intimate close-mic, breathy edges, minimal vibrato, fragile in bridge). Intimate piano-and-voice, contemporary dark folk, 65 BPM. Music box (glockenspiel) leitmotif throughout — wind-up dollhouse-scale, plinky, intimate. Felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar. Voice forward, restrained, contemporary, dynamic range, tender, melancholic-hopeful, all German.
 ```
 <!-- /SERVICE: suno -->
 
