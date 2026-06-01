@@ -139,19 +139,19 @@ no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlage
 [instrumental: hypnotic minor-key arpeggio build, sub bass swells from silence, no drums yet, 120 BPM]
 [instrumental: four-on-the-floor kick enters, gentle filter open, sidechained pads]
 
-[male vocal — Maske: glossy mid-baritone, controlled, slight tape compression, bright disco gloss, voice forward, dry close-mic]
+[female vocal — Maske: glossy mid-alto, controlled, slight tape compression, bright disco gloss, voice forward, dry close-mic]
 Licht an. Ich funktionier.
 Glatt wie Glas, nichts dringt zu mir.
 Sieh mich an — ich halt das Lächeln fest.
 Keiner ahnt, was ich nach innen press.
 
 [instrumental: filtered pads rise, snare roll, pre-drop tension build]
-[male vocal continues — Maske: same baritone, dynamic lift, slightly more breath]
+[female vocal continues — Maske: same alto, dynamic lift, slightly more breath]
 Und wenn ich nach unten seh,
 wird mir mein eigner Glanz zu schwer —
 
 [instrumental: full drop, gated reverb snare, saturated reese bass, soaring synths, four-on-the-floor full]
-[female vocal — Maske hook: soaring layered female lead, upper-alto register, wide hall reverb, vowel-forward, voice forward]
+[male vocal — Maske hook: soaring layered male lead, upper-tenor register, wide hall reverb, vowel-forward, voice forward]
 Du siehst mein Licht.
 Ich seh nur Unlicht.
 Dreh dich weiter — der Boden hält nicht.
@@ -160,21 +160,21 @@ Ich seh nur Unlicht.
 Unlicht, Unlicht.
 
 [instrumental: beat half-strips to kick + sub pulse, snare drops out, room tone enters]
-[female vocal — Inneres: breathy intimate alto, numb delivery, close dry whisper mic, no reverb, very intimate, no vibrato]
+[male vocal — Inneres: breathy intimate tenor, numb delivery, close dry whisper mic, no reverb, very intimate, no vibrato]
 ich spür die Hände nicht
 ich spür den Raum nicht
 ich trag ein Licht für euch
 und ich fühl es nicht
 
 [instrumental: beat rebuilds, full kick returns, arpeggio sixteenth-notes]
-[female vocal — Maske: glossy mid-alto, composed, forward in mix, controlled disco gloss, slight tape compression]
+[male vocal — Maske: glossy mid-baritone, composed, forward in mix, controlled disco gloss, slight tape compression]
 Lauter. Schneller. Ich glänz für euch.
 Innen ist ein Zimmer — und das Zimmer ist leer.
 Ich hab den Schlüssel weggesperrt,
 damit mir keiner wehtut. Jetzt kommt keiner mehr.
 
 [instrumental: full drop again, gated reverb snare, saturated bass, all elements full]
-[male vocal — Maske hook: soaring layered male lead, baritone in upper register, wide hall reverb, voice forward]
+[female vocal — Maske hook: soaring layered female lead, alto in upper register, wide hall reverb, voice forward]
 Du siehst mein Licht.
 Ich seh nur Unlicht.
 Dreh dich weiter — der Boden hält nicht.
@@ -183,34 +183,34 @@ Ich seh nur Unlicht.
 Unlicht, Unlicht.
 
 [instrumental: drumless sub-heartbeat break, single arpeggio, room tone, beat drops out except sub pulse]
-[female vocal — Riss: thin high female half-voice, head voice only, held breath, fragile, stuttering tempo-synced delay]
+[male vocal — Riss: thin high male half-voice, head voice only, held breath, fragile, stuttering tempo-synced delay]
 die Schwelle — sie schließt nicht zu —
 ich hab sie aufgemacht —
 und jetzt —
 und jetzt —
 
 [instrumental: single high pad holds, sub continues, no drums]
-[female vocal — Das Licht: distant doubled female voice, lowercase delivery, long hall reverb, behind the beat, observing layer, lower in mix]
+[male vocal — Das Licht: distant doubled male voice, lowercase delivery, long hall reverb, behind the beat, observing layer, lower in mix]
 (die Nacht ist nicht dein Feind)
 (die Nacht trägt auch ein Licht)
 (der Boden hält — du fühlst ihn nicht)
 (du siehst es nicht)
 
 [instrumental: breakdown, beat strips to sub pulse only, single arpeggio reverbed, suspended pads]
-[male vocal — Inneres: low leaden bass murmur, sub-tempo near-spoken, gravelly, breath audible between fragments, hollow distance, mono dry]
+[female vocal — Inneres: low leaden contralto murmur, sub-tempo near-spoken, gravelly, breath audible between fragments, hollow distance, mono dry]
 leiser jetzt.
 so viel leiser jetzt.
 das Licht ist zu schwer,
 um dich frei zu lassen.
 
 [instrumental: single high pad holds, soft tom roll, sub continues]
-[male vocal — Das Licht: distant doubled male voice, lowercase, long hall reverb, behind the beat, parenthetical layer, witness register]
+[female vocal — Das Licht: distant doubled female voice, lowercase, long hall reverb, behind the beat, parenthetical layer, witness register]
 (jemand hält die Schwelle)
 (jemand sieht dein Licht)
 (noch)
 
 [instrumental: beat slams back, final drop, all hooks layered, all elements full]
-[layered duet — Maske hook: female soaring lead foreground (upper alto, wide reverb) + male low resonant murmur underneath (baritone, dry tight close-mic)]
+[layered duet — Maske hook: male soaring lead foreground (upper tenor, wide reverb) + female low resonant murmur underneath (contralto, dry tight close-mic)]
 Du siehst mein Licht.
 Ich seh nur Unlicht.
 Dreh dich weiter — der Boden hält nicht.
@@ -219,15 +219,15 @@ Ich seh nur Unlicht.
 Unlicht, Unlicht.
 
 [instrumental: long trance outro, arpeggio dissolving, kick fades by half, plate reverb tails open]
-[male vocal — Maske: glossy mid-baritone returns, softening, controlled, voice forward]
+[female vocal — Maske: glossy mid-alto returns, softening, controlled, voice forward]
 Licht an. Ich funktionier.
-[female vocal — Das Licht: distant doubled female parenthetical, witness layer, lowercase, long hall reverb]
+[male vocal — Das Licht: distant doubled male parenthetical, witness layer, lowercase, long hall reverb]
 (die Schwelle bleibt offen)
-[male vocal — Maske continues: baritone softer, plate reverb tail audible]
+[female vocal — Maske continues: alto softer, plate reverb tail audible]
 ich seh nur Unlicht —
-[female vocal — Das Licht: distant doubled female, parenthetical, witness layer]
+[male vocal — Das Licht: distant doubled male, parenthetical, witness layer]
 (noch ein Licht. noch ein Licht.)
-[male vocal — Maske coda: baritone, fading]
+[female vocal — Maske coda: alto, fading]
 Unlicht, Unlicht.
 ```
 <!-- /SERVICE: suno -->
@@ -310,6 +310,21 @@ Unlicht, Unlicht
 
 ## Refinement Log
 
+### Pass 5 — Globaler Geschlechter-Tausch der Stimmen (Klang erhalten)
+
+Auf Nutzer-Wunsch: jede Stimme, die jetzt männlich war, wird weiblich — und umgekehrt. **Charakter/Textur jeder Stimme wortgleich erhalten** (glossy/controlled, breathy/numb, leaden/hollow, thin-high-half-voice, distant-doubled, soaring, mic/processing); nur die **geschlechtsgebundene Stimmlage** folgt dem Tausch, damit die Tags Suno-kohärent bleiben:
+
+| Mapping (Lage) | m → w | w → m |
+|---|---|---|
+| Maske lead | mid-baritone → mid-alto | mid-alto → mid-baritone |
+| Maske hook | baritone (upper) → alto (upper) | upper-alto → upper-tenor |
+| Inneres | low leaden bass → low leaden contralto | breathy intimate alto → breathy intimate tenor |
+| Riss | — | thin high female → thin high male half-voice |
+| Das Licht | distant doubled male → female | distant doubled female → male |
+| Duet | female lead+male under → male lead+female under | (upper alto↔upper tenor, baritone↔contralto) |
+
+Alle 16 Vocal-Tags getauscht; Instrumental-Tags und Lyrics-Text unverändert; Streaming-Lyrics unberührt (kein Tag-Bezug). Drift-Pattern-Tabelle entsprechend gespiegelt — jede Persona erscheint weiterhin in beiden Geschlechtern. name_exposure, Würde-Linie und Callbacks (Pass 4) unangetastet.
+
 ### Pass 1 — Politur nach lyric-reviewer (vor Vertiefung)
 
 | Stelle | Vorher | Nachher | Grund |
@@ -373,21 +388,21 @@ In beiden Lyric-Blöcken (Suno + Streaming) gespiegelt. 13-Punkt-Check nach Änd
 
 ### m/w-Drift-Pattern (Identität löst sich hörbar auf)
 
-Jede Persona erscheint mindestens einmal in beiden Geschlechtern — keine Stimme ist an einen Körper gebunden:
+Jede Persona erscheint mindestens einmal in beiden Geschlechtern — keine Stimme ist an einen Körper gebunden (Geschlechter global getauscht in Pass 5; Charakter/Klang je Stimme erhalten):
 
 | Abschnitt | Persona | Geschlecht |
 |---|---|---|
-| V1 + Pre | Maske | **m** (glossy mid-baritone) |
-| Chorus 1 | Maske (hook) | **w** (soaring upper-alto) |
-| V Inneres 1 | Inneres | **w** (breathy intimate alto) |
-| V2 Maske | Maske | **w** (glossy mid-alto) — *drift* |
-| Chorus 2 | Maske (hook) | **m** (soaring baritone upper) — *drift* |
-| Riss | Riss | **w** (thin high half-voice) |
-| Witness mid | Das Licht | **w** (distant doubled female) |
-| Breakdown | Inneres | **m** (low leaden bass murmur) — *drift* |
-| Witness Tether | Das Licht | **m** (distant doubled male) — *drift* |
-| Final Chorus | Maske duet | **w lead + m underneath** (layered duet) |
-| Outro | Maske + Das Licht | **m Maske / w Witness parens** |
+| V1 + Pre | Maske | **w** (glossy mid-alto) |
+| Chorus 1 | Maske (hook) | **m** (soaring upper-tenor) |
+| V Inneres 1 | Inneres | **m** (breathy intimate tenor) |
+| V2 Maske | Maske | **m** (glossy mid-baritone) — *drift* |
+| Chorus 2 | Maske (hook) | **w** (soaring upper-alto) — *drift* |
+| Riss | Riss | **m** (thin high half-voice) |
+| Witness mid | Das Licht | **m** (distant doubled male) |
+| Breakdown | Inneres | **w** (low leaden contralto murmur) — *drift* |
+| Witness Tether | Das Licht | **w** (distant doubled female) — *drift* |
+| Final Chorus | Maske duet | **m lead + w underneath** (layered duet) |
+| Outro | Maske + Das Licht | **w Maske / m Witness parens** |
 
 Das *Wesen* trägt das Licht, nicht ein Geschlecht.
 
