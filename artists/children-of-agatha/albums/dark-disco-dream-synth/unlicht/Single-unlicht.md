@@ -34,6 +34,17 @@ sheet_music:
 
 > **Crossover-Hinweis:** Bewusster Bleed Children of Agatha × the Agency System (vom Nutzer freigegeben: „Darf ruhig bluten. Ist ein Crossover."). Die Agency-System-DNA (ANP/EP-Struktur, Zustands-Achse) liefert das Rückgrat; Children of Agatha liefert Ort und dokumentarisch-würdevollen Ton. **name_exposure bleibt hart:** in Lyrics/Metatags/Promo nur Funktion/Deskriptor — niemals ein Personenname.
 
+## Cross-References
+
+### References FROM This Track
+
+| To Track | Reference Type | Lyric Line | Detail |
+|----------|---------------|------------|--------|
+| Licht | `motif` | „(jemand sieht dein Licht)" / „(noch)" (Witness-Tether) | Der „noch"-Tether zeigt — ohne dass das Selbst es weiß — auf den Raum, in dem „Licht" möglich wird. Soft pointer, kein Wissen der leidenden Stimme. |
+| Licht | `inversion` | „(der Boden hält — du fühlst ihn nicht)" (Witness, mid-break) | **Scharnier-Zeile.** Unlichts Refrain singt „der Boden hält *nicht*"; „Licht" invertiert zu „der Abgrund ist der Boden, der mich *hält*". Der Zeuge flüstert genau dazwischen — dramatische Ironie: der Boden *hält*, aber das Selbst kann es nicht fühlen. |
+
+> **Würde-Disziplin (verbindlich).** Alle Callbacks zu „Licht" leben **ausschließlich in der Witness-Stimme** („Das Licht"). Maske und Inneres — die leidenden Stimmen — wissen *nichts* von Licht. Das hält Unlichts Wahrheit (man kann den Ausweg *im* Zustand nicht sehen) und Lichts Inversions-Regel (Bejahung steht neben, nicht über der Wunde) zugleich intakt. Schwester-Track: [`../licht/Single-licht.md`](../licht/Single-licht.md).
+
 ## Concept
 
 **Logline:** Ein Lichtwesen tanzt sich durch eine glitzernde Dark-Disco-Nacht — eines, das Licht *für andere* trägt und es selbst nicht mehr fühlt. Je heller der Schein, den die Tanzenden sehen, desto schwerer wird das Licht, das es trägt. Im Zentrum die mystische Angst: zu erkennen, dass die Erlösung die wahrste Liebe sein könnte — und dass das Licht zu schwer ist, um die Seele frei zu lassen.
@@ -182,6 +193,7 @@ und jetzt —
 [female vocal — Das Licht: distant doubled female voice, lowercase delivery, long hall reverb, behind the beat, observing layer, lower in mix]
 (die Nacht ist nicht dein Feind)
 (die Nacht trägt auch ein Licht)
+(der Boden hält — du fühlst ihn nicht)
 (du siehst es nicht)
 
 [instrumental: breakdown, beat strips to sub pulse only, single arpeggio reverbed, suspended pads]
@@ -264,6 +276,7 @@ Und jetzt
 
 Die Nacht ist nicht dein Feind
 Die Nacht trägt auch ein Licht
+Der Boden hält, du fühlst ihn nicht
 Du siehst es nicht
 
 Leiser jetzt
@@ -303,6 +316,17 @@ Unlicht, Unlicht
 |--------|--------|---------|-------|
 | V1 L2 | „Glatt wie Glas, ich tanz für vier." | „Glatt wie Glas, nichts dringt zu mir." | Opaker, reim-getriebener Füller ersetzt durch Schutzmauer-Bild; Reim auf „funktionier" bleibt |
 | V1 L4 | „Keiner sieht, was ich nach innen press." | „Keiner ahnt, was ich nach innen press." | Verse→Chorus-Echo entschärft (sieht ↔ „Du siehst mein Licht"); „ahnt" schärft die Bedeutung |
+
+### Pass 4 — Subtile Callbacks zur Schwester-Single „Licht" (Witness-Layer only)
+
+Auf Nutzer-Wunsch: subtile Lyric-Andeutung Richtung „Licht" — aber **ausschließlich in der Witness-Stimme**, nie in Maske/Inneres, damit Unlichts Wahrheit (kein Ausweg sichtbar *im* Zustand) und Lichts Inversions-Regel (neben, nicht über der Wunde) intakt bleiben.
+
+| Stelle | Vorher | Nachher | Grund |
+|--------|--------|---------|-------|
+| Witness mid-break | „(die Nacht trägt auch ein Licht) / (du siehst es nicht)" | + neue Zeile dazwischen: „(der Boden hält — du fühlst ihn nicht)" | Scharnier zu Licht: Unlichts Refrain „der Boden hält *nicht*" ↔ Lichts „der Abgrund ist der Boden, der mich *hält*". Dramatische Ironie im Witness-Layer; das Selbst kann es nicht fühlen → Würde gewahrt |
+| Cross-References | (keine Sektion) | neue `## Cross-References`-Sektion mit beiden Witness-Callbacks + Würde-Disziplin-Notiz | dokumentiert das Diptychon kuratorisch; Schwester-Verweis auf `../licht/` |
+
+**Bewusster Counterpoint (kein Fehler):** Die Chorus-Zeile „der Boden hält nicht" und die Witness-Zeile „der Boden hält" widersprechen sich absichtlich — die tanzende Oberfläche verneint, der Zeuge bestätigt. In beiden Lyric-Blöcken (Suno + Streaming) gespiegelt. Würde-Gate (R4) erneut verifiziert.
 
 ### Pass 3 — Metatag-Disziplin (Vocal-Tags bei jedem Persona-Wechsel)
 

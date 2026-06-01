@@ -43,6 +43,7 @@ sheet_music:
 | Unlicht | `callback` | „ich hab das Unlicht gesehen" (witness, mid-break) | Lichts Sänger erkennt sich als der/die, der/die *aus* Unlicht kommt; macht die Inversions-Verbindung explizit, ohne die Schwere zu entwerten |
 | Unlicht | `callback` | „die Schwelle ließ mich zurück" (riss + outro) | Spiegel zu Unlichts „die Schwelle schließt nicht zu"; in Licht steht das Wesen *auf dieser Seite* der Schwelle, nicht in der Schwelle |
 | Unlicht | `inversion` | „Du sagst, du siehst kein Licht — ich seh, du *bist* es." (Haupt-Hook) | Direkte Inversion zu Unlichts „Du siehst mein Licht — ich seh nur Unlicht"; das Lichtwesen, das im ersten Lied das Licht *trug* und nicht *fühlte*, sagt jetzt zu jemand anderem: du *bist* das Licht |
+| Unlicht | `resolution` | „Dreh dich her — der Boden hält uns." (Hook) | **Reziprokes Scharnier.** Unlichts Refrain: „der Boden hält *nicht*"; Unlichts Witness flüstert (Pass 4): „der Boden hält — du fühlst ihn nicht"; Licht löst auf: „der Boden hält *uns*". Drei Stufen über beide Tracks — das Selbst kann in Unlicht nicht fühlen, was es in Licht trägt. |
 | Unlicht | `inversion` | „Der Abgrund ist der Boden, der mich hält." (Breakdown) | Spiegel zu Unlichts „Das Licht ist zu schwer, um dich frei zu lassen"; der Abgrund hält jetzt, statt zu zerbrechen — das zweite Ja |
 | Unlicht | `motif` | „noch ein Licht. noch ein Licht." (Outro) | Echo zum „noch"-Tether aus Unlicht — jetzt als Bestätigung statt als Halten der Schwelle |
 
