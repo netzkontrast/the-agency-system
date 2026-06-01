@@ -117,9 +117,9 @@ no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlage
 [hypnotic minor-key arpeggio build, sub bass swells, four-on-the-floor kick enters]
 [glossy mid-baritone, controlled, bright disco gloss]
 Licht an. Ich funktionier.
-Glatt wie Glas, ich tanz fuer vier.
+Glatt wie Glas, nichts dringt zu mir.
 Sieh mich an — ich halt das Laecheln fest.
-Keiner sieht, was ich nach innen press.
+Keiner ahnt, was ich nach innen press.
 
 [filtered pads rise, snare roll, pre-drop tension]
 Und wenn ich nach unten seh,
@@ -199,9 +199,9 @@ Unlicht, Unlicht.
 
 ```
 Licht an, ich funktionier
-Glatt wie Glas, ich tanz für vier
+Glatt wie Glas, nichts dringt zu mir
 Sieh mich an, ich halt das Lächeln fest
-Keiner sieht, was ich nach innen press
+Keiner ahnt, was ich nach innen press
 
 Und wenn ich nach unten seh
 Wird mir mein eigner Glanz zu schwer
@@ -267,6 +267,15 @@ Unlicht, Unlicht
 **Spannungshinweis:** Das Crossover lädt die Agency-System-ASDLS-Hartregeln (kein 80er-Synthwave/Neon-Grid/Blade-Runner-Pastiche; ≤5 % Zustandsfarbe über Terminal Black; harte Kanten/Glitch statt Verläufe). Eine „Dark-Disco-Glitterkugel" muss also umgedeutet werden: Spiegelkugel als zersplitterndes Schwarz, das Licht *verschluckt*, mit einem schmalen Zustandsfarb-Akzent (Flame/Corrupted für den S3-Peak) über Terminal Black. Finale Festlegung in der Art-Phase via `/bitwize-music:album-art-director`.
 
 **Artist-Name** unten rechts; Schreibweise „Children of Agatha" beibehalten.
+
+## Refinement Log (lyric-writer Pass nach lyric-reviewer)
+
+| Stelle | Vorher | Nachher | Grund |
+|--------|--------|---------|-------|
+| V1 L2 | „Glatt wie Glas, ich tanz für vier." | „Glatt wie Glas, nichts dringt zu mir." | Opaker, reim-getriebener Füller ersetzt durch Schutzmauer-Bild (nichts dringt durchs Glas); Reim auf „funktionier" bleibt (mir/-ier) |
+| V1 L4 | „Keiner sieht, was ich nach innen press." | „Keiner ahnt, was ich nach innen press." | Verse→Chorus-Echo entschärft (sieht ↔ „Du siehst mein Licht"); „ahnt" schärft die Bedeutung; Endreim „press/fest" unangetastet |
+
+In beiden Lyric-Blöcken (Suno + Streaming) gespiegelt. 13-Punkt-Check nach Änderung erneut bestanden, keine neuen Verstöße. Refrain, Hook „Unlicht", Stimm-Architektur und Subtext-Disziplin unangetastet.
 
 ## Production Notes
 
