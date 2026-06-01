@@ -56,7 +56,7 @@ Spätnachmittagslicht durch ein Wohnzimmerfenster. Auf dem Tisch ein Puppenhaus,
   - Klavier close-mic, leicht gedämpft (Filz)
   - Pizzicato-Streicher sparsam · Cello warm in den Versen
   - Akustische Gitarre fingerpicked, nur wo nötig
-- **Vocals**: weibliche Stimme, close-mic, mittlere Lage, weich, kaum Vibrato. Verse leicht doppelt (dezent, kein Chor) für das Wir. Hook **solo** — die Frage steht allein.
+- **Vocals**: zwei Stimmen mit klarem Sektions-Wechsel. **Wir (Verse)** = männlicher warmer Baritone, intim close-mic, weich, ohne Vibrato, conversational — die Stimme, die im Raum mit ihr ist. **Ich (Hook · Bridge · Outro)** = weiblicher warmer Sopran, sanft, breathy edges, minimaler Vibrato — die innere Frage, die zart und alleine steht. Bridge zusätzlich fragil, fast gesprochen, hörbarer Atem. Outro geflüstert. Kein Duett — die Stimmen wechseln an Sektionsgrenzen.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -67,7 +67,7 @@ Spätnachmittagslicht durch ein Wohnzimmerfenster. Auf dem Tisch ein Puppenhaus,
 *Copy this into Suno's "Style of Music" field. Vocals FIRST per V5 weighting:*
 
 ```
-Female alto, intimate close-mic, vowel-forward, minimal vibrato, soft delivery, lightly doubled in verses, solo in choruses. Intimate piano-and-voice, contemporary dark folk, 65 BPM. Music box leitmotif, felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar. Voice forward, restrained, contemporary, dynamic range, tender, melancholic-hopeful, all German.
+Dual vocalists: warm male baritone in verses (intimate close-mic, soft delivery, no vibrato, conversational), warm female soprano in choruses and bridge (intimate close-mic, breathy edges, minimal vibrato, fragile in bridge). Intimate piano-and-voice, contemporary dark folk, 65 BPM. Music box leitmotif, felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar. Voice forward, restrained, contemporary, dynamic range, tender, melancholic-hopeful, all German.
 ```
 
 ### Exclude Styles
@@ -84,6 +84,7 @@ no drums, no electric guitar, no autotune, no aggressive vocals
 [Intro]
 
 [Verse 1]
+[male warm baritone, intimate close-mic, soft delivery, no vibrato, conversational]
 Du schneidest die Stiele schräg —
 die Schere kennt deine Hand.
 Zwei Pfingstrosen, drei Halme Gras,
@@ -92,12 +93,14 @@ Wir sehen dich. Du siehst dich nicht.
 Du fragst nicht, was du brauchst.
 
 [Chorus]
+[female warm soprano, intimate close-mic, soft, minimal vibrato, breathy at edges]
 Eins zu Zwölf — ein Maß für mich,
 ein Sessel, ein Buch, ein bisschen Licht.
 Gibt es ein Haus, in das ich gehör',
 in das mich keiner ruft und keiner stört?
 
 [Verse 2]
+[male warm baritone returns, intimate close-mic, soft, no vibrato, conversational]
 Du jätest das Beet, die Knie sind wund,
 die Kinder rufen, du läufst hinein.
 Kanne im Schuppen, Spinne am Strauch,
@@ -106,12 +109,14 @@ Wir sehen dich. Du siehst sie nicht —
 die leere Bank am Holunder.
 
 [Chorus]
+[female warm soprano, intimate close-mic, soft, minimal vibrato, breathy at edges]
 Eins zu Zwölf — ein Maß für mich,
 ein Sessel, ein Buch, ein bisschen Licht.
 Gibt es ein Haus, in das ich gehör',
 in das mich keiner ruft und keiner stört?
 
 [Bridge]
+[female warm soprano, fragile, breath audible, almost spoken, reflective, close-mic]
 Ich habe immer gehalten —
 zwei Hände, ein Tag, zwei Hände, ein Jahr.
 Wenn ich jetzt sage „nicht mehr" —
@@ -120,12 +125,14 @@ Und wenn ich es darf —
 darf ich es auch?
 
 [Chorus]
+[female warm soprano, intimate close-mic, soft, minimal vibrato, slight rise]
 Eins zu Zwölf — ein Maß für mich,
 ein Sessel, ein Buch, ein bisschen Licht.
 Vielleicht ein Haus, in das ich gehör',
 für eine Stunde — und niemand stört.
 
 [Outro]
+[female warm soprano, whispered, intimate, breath audible]
 für eine Stunde —
 ein Haus in mir.
 ```
@@ -178,8 +185,9 @@ ein Haus in mir.
 
 ## Production Notes
 
-- **Wir-Stimme (Verse)**: zweite Spur **dezent** dazumixen — keine Chor-Wirkung, eher wie ein „Eine-zweite-Person-im-Raum"-Hauch
-- **Ich-Stimme (Hooks)**: trocken, solo, kein Doubling — die Frage darf nackt stehen
+- **Wir-Stimme (Verse 1 & 2)**: männlicher warmer Baritone — die zweite Person im Raum, die sie sieht. Intim close-mic, keine Distanz, kein Hall.
+- **Ich-Stimme (Hooks · Bridge · Outro)**: weiblicher warmer Sopran, sanft, breathy edges — die Frage steht zart und alleine. Im Bridge fragiler, fast gesprochen, mit hörbarem Atem zwischen den Zeilen. Im Outro geflüstert.
+- **Stimmen-Wechsel**: kein Duett — die Stimmen lösen sich an Sektionsgrenzen ab. Inline Suno-Metatags an jedem Wechsel (siehe Lyrics Box).
 - **Bridge**: Spieldose pausiert kurz, Klavier nur · letzter Hook bringt Spieldose zurück als „leiser Atemzug"
 - **Outro**: Spieldose verklingt offen — der letzte Ton wird nicht aufgelöst (Sept oder Sexte als finaler Klang)
 - **Foley**: Kein Klinik-Sound. Erlaubt wenn dezent: leises Knarzen (Holzboden), entferntes Blätterrauschen oder ein Vogel — als „Garten draußen"-Andeutung, ganz im Hintergrund

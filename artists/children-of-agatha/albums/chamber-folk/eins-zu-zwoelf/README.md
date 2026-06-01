@@ -83,7 +83,7 @@ Single, ein Track. Die Form ist die des Songs, nicht des Albums: Intro · Vers 1
 - **Klavier**: close-mic, leicht gedämpft (Filz), emotionales Rückgrat.
 - **Streicher**: Pizzicato sparsam (wie Miniatur-Schritte) · Cello warm als Wir-Halt in den Versen.
 - **Akustische Gitarre**: fingerpicked, nur wo nötig — Brückenfunktion.
-- **Vocals**: weibliche Stimme, close-mic, mittlere Lage, weich, kaum Vibrato. Verse leicht doppelt für das Wir (dezent, kein Chor). Hook **solo** — die Frage steht allein.
+- **Vocals**: zwei Stimmen mit klarem Sektions-Wechsel. **Wir (Verse)** = männlicher warmer Baritone, intim close-mic, weich, ohne Vibrato — die zweite Person im Raum, die sie sieht. **Ich (Hook · Bridge · Outro)** = weiblicher warmer Sopran, sanft, breathy edges, minimaler Vibrato — die innere Frage, zart und alleine. Bridge zusätzlich fragil, fast gesprochen. Kein Duett — Wechsel an Sektionsgrenzen. Inline Suno-Metatags markieren jeden Wechsel.
 - **Tempo / Tonart-Charakter**: ~65 BPM. Dur mit Trübung — Hoffnung neben dem Riss, nicht über ihm.
 - **Mood**: zart, liebevoll, ehrlich. Nicht heroisch, nicht didaktisch, nicht therapeutisch.
 - **Sprache**: Deutsch. Alltäglich, konkret. Kein Therapie-Vokabular, keine Diagnose-Wörter.
@@ -109,9 +109,9 @@ Single, ein Track. Die Form ist die des Songs, nicht des Albums: Intro · Vers 1
 - **Target Duration**: 3:30–4:30
 - Per-track overrides in track file
 
-**Style Prompt Base** (Entwurf — finalisiert durch `/bitwize-music:suno-engineer`):
+**Style Prompt Base** (finalisiert):
 ```
-chamber folk, slow, 65 BPM, music box leitmotif, intimate close-mic female vocal, felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar, tender, melancholic-hopeful, all German
+Dual vocalists: warm male baritone in verses (intimate close-mic, soft delivery, no vibrato, conversational), warm female soprano in choruses and bridge (intimate close-mic, breathy edges, minimal vibrato, fragile in bridge). Intimate piano-and-voice, contemporary dark folk, 65 BPM. Music box leitmotif, felted piano, pizzicato strings, warm cello, sparse fingerpicked acoustic guitar. Voice forward, restrained, contemporary, dynamic range, tender, melancholic-hopeful, all German.
 ```
 <!-- /SERVICE: suno -->
 
