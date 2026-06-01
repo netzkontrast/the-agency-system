@@ -78,10 +78,57 @@ Spätnachmittagslicht durch ein Wohnzimmerfenster. Auf dem Tisch ein Puppenhaus,
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
+*Copy this into Suno's "Lyrics" field. Umlaute beibehalten — Suno bekommt die deutsche Sprache über den Style Box.*
 
 ```
-[TBD — written by lyric-writer, formatted by suno-engineer. Umlaute beibehalten.]
+[Intro]
+(music box, ca. 12s)
+
+[Verse 1]
+Du schneidest die Stiele schräg —
+die Schere kennt deine Hand.
+Zwei Pfingstrosen, drei Halme Gras,
+ein Strauß für die Frau am Empfang.
+Wir sehen dich. Du siehst dich nicht.
+Du fragst nicht, was du brauchst.
+
+[Chorus]
+Eins zu Zwölf — ein Maß für mich,
+ein Sessel, ein Buch, ein bisschen Licht.
+Gibt es ein Haus, in das ich gehör',
+in das mich keiner ruft und keiner stört?
+
+[Verse 2]
+Du jätest das Beet, die Knie sind wund,
+die Kinder rufen, du läufst hinein.
+Kanne im Schuppen, Spinne am Strauch,
+die Sonne fällt schräg auf den letzten Stein.
+Wir sehen dich. Du siehst sie nicht —
+die leere Bank am Holunder.
+
+[Chorus]
+Eins zu Zwölf — ein Maß für mich,
+ein Sessel, ein Buch, ein bisschen Licht.
+Gibt es ein Haus, in das ich gehör',
+in das mich keiner ruft und keiner stört?
+
+[Bridge]
+Ich habe immer gehalten —
+zwei Hände, ein Tag, zwei Hände, ein Jahr.
+Wenn ich jetzt sage „nicht mehr" —
+wer hält dann das, was ich war?
+Und wenn ich es darf —
+darf ich es auch?
+
+[Chorus]
+Eins zu Zwölf — ein Maß für mich,
+ein Sessel, ein Buch, ein bisschen Licht.
+Vielleicht ein Haus, in das ich gehör',
+für eine Stunde — und niemand stört.
+
+[Outro]
+für eine Stunde —
+ein Haus in mir.
 ```
 <!-- /SERVICE: suno -->
 
@@ -90,7 +137,44 @@ Spätnachmittagslicht durch ein Wohnzimmerfenster. Auf dem Tisch ein Puppenhaus,
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text. Umlaute beibehalten.*
 
 ```
-[TBD — finalized after lyric-writer pass]
+Du schneidest die Stiele schräg,
+die Schere kennt deine Hand.
+Zwei Pfingstrosen, drei Halme Gras,
+ein Strauß für die Frau am Empfang.
+Wir sehen dich. Du siehst dich nicht.
+Du fragst nicht, was du brauchst.
+
+Eins zu Zwölf, ein Maß für mich,
+ein Sessel, ein Buch, ein bisschen Licht.
+Gibt es ein Haus, in das ich gehöre,
+in das mich keiner ruft und keiner stört?
+
+Du jätest das Beet, die Knie sind wund,
+die Kinder rufen, du läufst hinein.
+Kanne im Schuppen, Spinne am Strauch,
+die Sonne fällt schräg auf den letzten Stein.
+Wir sehen dich. Du siehst sie nicht.
+Die leere Bank am Holunder.
+
+Eins zu Zwölf, ein Maß für mich,
+ein Sessel, ein Buch, ein bisschen Licht.
+Gibt es ein Haus, in das ich gehöre,
+in das mich keiner ruft und keiner stört?
+
+Ich habe immer gehalten.
+Zwei Hände, ein Tag, zwei Hände, ein Jahr.
+Wenn ich jetzt sage "nicht mehr",
+wer hält dann das, was ich war?
+Und wenn ich es darf,
+darf ich es auch?
+
+Eins zu Zwölf, ein Maß für mich,
+ein Sessel, ein Buch, ein bisschen Licht.
+Vielleicht ein Haus, in das ich gehöre,
+für eine Stunde, und niemand stört.
+
+Für eine Stunde,
+ein Haus in mir.
 ```
 
 ## Production Notes
@@ -103,9 +187,16 @@ Spätnachmittagslicht durch ein Wohnzimmerfenster. Auf dem Tisch ein Puppenhaus,
 
 ## Pronunciation Notes
 
+*Projekt-Konvention für CoA chamber-folk: Lyrics behalten deutsche Umlaute. Aussprache wird über `all German` im Suno Style Box gesichert; diese Tabelle dokumentiert Risiko-Wörter, ohne sie in den Lyrics phonetisch zu ersetzen.*
+
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| (wird nach lyric-writer-Pass gefüllt) | — | Aussprache wird über diese Tabelle gesichert, nicht über ASCII-Ersatz in den Lyrics |
+| Zwölf | tsvölf (German short ö) | Titel-Wort; mit deutscher Sprache im Style Box korrekt — als ASCII gesetzt würde Suno englisch lesen |
+| Pfingstrosen | PFINGST-ro-sen | „pf"-Cluster am Wortanfang; Suno V5 mit `all German` handhabt es, aber Risiko-Wort |
+| Holunder | ho-LUN-der | Standard, dokumentiert für den Fall einer Fehl-Aussprache |
+| gehör' | ge-HÖR (apostrophierte Elision von „gehöre") | Standard-deutsche Lyrik-Elision; Suno V5 versteht sie. Streaming-Version nutzt die Voll-Form |
+| Schuppen | SCHUP-pen | Compound-Risiko, standard |
+| jätest | JÄ-test | Selten verwendetes Verb, Aussprache standard |
 
 ## Generation Log
 
