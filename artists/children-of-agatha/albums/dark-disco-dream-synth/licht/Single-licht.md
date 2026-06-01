@@ -20,7 +20,7 @@ sheet_music:
 | **Track #** | Single |
 | **Title** | Licht |
 | **Album** | Standalone Single — Children of Agatha × the Agency System (Crossover) — Schwester zu „Unlicht" |
-| **Genre** | Dark Disco Dream Synth / Dystopian Future Synth |
+| **Genre** | Bright Disco Dream Synth / Apophatic Future Synth (Genre-Inversion zu Unlicht: `dark`→`bright`, `dystopian`→`apophatic`/via negativa) |
 | **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
@@ -107,9 +107,9 @@ Konkrete Bilder aus dem Bild-Lexikon (`RESEARCH.md`): der Abgrund als Boden, der
 
 ## Musical Direction
 
-- **Tempo**: ~118–122 BPM, Vier-zu-Boden Dark Disco (gleich wie Unlicht).
-- **Feel**: tanzbar, hypnotisch, trance-versetzend — aber **Wendungs-Drops** statt Euphorie-Drops. Beginn aus dem Sub heraus (statt aus arpeggierter Build); allmähliches Hochkommen; Mehrere drumlose Sub-Herzschlag-Breaks, in denen der Affekt *zurückkommt*, statt zu kollabieren. 5–7 Min.
-- **Instrumentation**: gesättigter Reese/FM-Sub (analog Unlicht), Sechzehntel-Moll-Arpeggio mit gelegentlichen Dur-Modal-Lifts in der zweiten Hälfte, schimmernde Juno/Prophet-Dream-Pads (wärmer abgemischt als in Unlicht), gated-reverb Snare, Tape-Sättigung. Outro: Arpeggio öffnet in höhere Oktave, Dur-Mode-Tendenz — Integration ohne Auflösung.
+- **Tempo**: ~118–122 BPM, Vier-zu-Boden **Bright Disco Dream Synth** (Tempo gleich wie Unlicht, ästhetische Achse invertiert).
+- **Feel**: tanzbar, hypnotisch, trance-versetzend — aber **Wendungs-Drops** statt Euphorie-/Down-Drops. Beginn aus dem Sub heraus (statt aus arpeggierter Build); allmähliches Hochkommen; mehrere drumlose Sub-Herzschlag-Breaks, in denen der Affekt *zurückkommt*, statt zu kollabieren. 5–7 Min.
+- **Instrumentation (Genre-Inversion)**: gesättigter Reese/FM-Sub bleibt (analog Unlicht), aber der Synth-Palette ist **wärmer und apophatisch heller** — Sechzehntel-Arpeggio in Moll, das **in der zweiten Hälfte modale Lifts** und gegen Outro einen Oktav-Sprung nach oben öffnet; **Juno/Prophet-Dream-Pads warm abgemischt** (statt kühl glitzernd wie in Unlicht); Snare mit kürzerem Gate-Reverb (mehr Trocken-Anteil, mehr „im Raum"); Tape-Sättigung. Outro: Arpeggio öffnet in höhere Oktave, modal-aufgehellt — Integration ohne triumphale Auflösung.
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -118,7 +118,7 @@ Konkrete Bilder aus dem Bild-Lexikon (`RESEARCH.md`): der Abgrund als Boden, der
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Alternating male and female German vocals — warm grounded leads trading with a low resonant murmur, a fragile high half-voice, and a distant doubled witnessing voice; voice forward, real German umlauts (ä/ö/ü/ß) pronounced cleanly. Dark disco, darkwave. ~120 BPM four-on-the-floor, hypnotic and danceable, beginning from sub-bass quiet and opening into shimmering Juno dream pads, Prophet poly, sixteenth-note minor-key arpeggio with modal lifts in the second half, gated reverb snare, tape saturation, long plate reverb, brightening arpeggio in the outro (no chord-change fanfare). Danceable affirmation from inside the abyss — mystical staying, not euphoria; warm, integrated, dynamic range.
+Alternating male and female German vocals — warm grounded leads trading with a low resonant murmur, a fragile high half-voice, and a distant doubled witnessing voice; voice forward, real German umlauts (ä/ö/ü/ß) pronounced cleanly. Bright disco, dreamwave, dream-pop synth. ~120 BPM four-on-the-floor, hypnotic and danceable, beginning from sub-bass quiet and opening into warmly mixed Juno dream pads, Prophet poly, sixteenth-note minor-key arpeggio with apophatic modal lifts in the second half, short-gate reverb snare (drier than dark disco), tape saturation, long plate reverb, brightening arpeggio one octave up in the outro (no triumphant chord-change fanfare). Danceable affirmation from inside the abyss — mystical staying, not euphoria; warm, integrated, present-in-the-room, dynamic range.
 ```
 
 ### Exclude Styles
@@ -134,25 +134,27 @@ no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlage
 - **Creative Sliders**: Weirdness ~35, Style Influence ~75
 - **Target Duration**: 5:00–7:00 (extended) — Suno V5 max ~8 min; Struktur über die deskriptiven Metatags (Wendungs-Drops, drumlose Sub-Break-Passagen) statt über [Section]-Tags. 2–3 Generierungen einplanen.
 - **Echte Umlaute**: V5.5 rendert ä/ö/ü/ß meist sauber. Bei Fehlartikulation → A/B gegen ae/oe/ue/ss-Variante.
-- **Distributor-Surface-Tags**: darkwave / nu-disco / dark synth-pop / italo-disco — **nicht** „dark-disco-dream-synth".
+- **Distributor-Surface-Tags** (Genre-Inversion): **nu-disco / dreamwave / dream-pop / italo-disco** — **nicht** „bright-disco-dream-synth" (keine indexierbare Tag). Bewusst KEIN „darkwave" mehr (das ist Unlichts Surface-Tag); Inversion liegt im aktiven Aufnahme der Dream-/Affirmations-Seite.
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
 
 ```
-[atmosphere, sub bass swells from silence, slow filter sweep — opening from below, no drums yet]
-[low resonant male murmur, supported breath, anchored]
+[instrumental: atmosphere, sub bass swells from silence, slow filter sweep, no drums yet, 120 BPM, opening from below]
+
+[male vocal — Inneres: low resonant bass, anchored, supported breath, present-in-the-room, intimate close mic]
 Hier unten ist es still.
 Hier unten hör ich mich.
 Der Boden hält.
 Ich wusst nicht, dass er hält.
 
-[strings rise, gentle gated reverb, four-on-the-floor pulse comes in slowly, sub continues]
-[warm mid-baritone, deliberate, ungloss, present-in-the-room]
+[instrumental: strings rise gently, soft pad bloom, four-on-the-floor kick comes in slowly, sub continues]
+[male vocal — Maske: warm mid-baritone, deliberate, ungloss, present-in-the-room, slight tape compression]
 Und etwas in dem Raum hier sieht mich an —
 ein Stein, ein Tag, ein altes Tor.
 
-[turning drop, gated reverb snare, saturated bass, soaring layered female lead, wide reverb, modal lift]
+[instrumental: turning drop, short-gate reverb snare, saturated bass, full kick, modal lift in arpeggio]
+[female vocal — Maske hook: soaring grounded upper-alto, wide hall reverb, vowel-forward, voice forward, open chest]
 Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Dreh dich her — der Boden hält uns.
@@ -160,19 +162,22 @@ Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Licht, Licht.
 
-[low warm alto, intimate, close mic with room, slow vibrato, beat half-strips]
+[instrumental: beat half-strips to kick + sub pulse, snare drops out, room tone enters, warm pad sustains]
+[female vocal — Inneres: low warm alto, intimate, close mic with room, slow vibrato, supported breath]
 ich trag kein Licht für euch.
 ich bin ein Licht, weil ich bin.
 der Abgrund ist der Boden,
 der mich hält.
 
-[beat rebuilds, grounded female lead, full chest, open vowels]
+[instrumental: beat rebuilds, full kick returns, arpeggio sixteenth-notes, warm pad full]
+[female vocal — Maske: grounded mid-alto, full chest, open vowels, present-in-the-room, no gloss]
 Haus. Brücke. Brunnen. Tor.
 Ich sag das Hier, ich sag es laut.
 Nicht weil es leicht ist.
 Weil ich noch da bin, wo ich war.
 
-[soaring layered male lead, wide reverb, turning drop]
+[instrumental: turning drop again, short-gate snare, saturated bass, all elements full]
+[male vocal — Maske hook: soaring grounded baritone in upper register, wide hall reverb, voice forward, open delivery]
 Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Dreh dich her — der Boden hält uns.
@@ -180,30 +185,34 @@ Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Licht, Licht.
 
-[drumless sub-heartbeat break, single arpeggio, room tone]
-[thin high androgynous half-voice, held breath, fragile, settling]
+[instrumental: drumless sub-heartbeat break, single arpeggio, room tone, beat drops out except sub pulse]
+[female vocal — Riss: thin high female half-voice, head voice only, held breath, fragile, settling, soft tail]
 die Schwelle — sie ließ mich zurück —
 ich bin geblieben —
 zurück —
 zurück —
 
-[distant doubled voice, lowercase, long hall reverb, behind the beat, witnessing]
+[instrumental: single high pad holds, sub continues, no drums, warm hall opens]
+[female vocal — Das Licht: distant doubled female voice, lowercase delivery, long hall reverb, behind the beat, witnessing layer, lower in mix]
 (ich weiß was du weißt)
 (ich hab das Unlicht gesehen)
 (und ich wende mich her)
 
-[breakdown, beat strips to sub pulse, low resonant male murmur, anchored]
+[instrumental: breakdown, beat strips to sub pulse only, single arpeggio reverbed, suspended warm pads, no snare]
+[male vocal — Inneres: low resonant bass murmur, anchored, supported breath, intimate close mic, no whisper, no gravel]
 in der Tiefe des Winters
 fand ich einen Sommer.
 der Abgrund ist der Boden,
 der mich hält.
 
-[single high pad holds, distant doubled voice, parenthetical, witnessing]
+[instrumental: single high pad holds, soft tom roll, sub continues, warm hall]
+[male vocal — Das Licht: distant doubled male voice, lowercase, long hall reverb, behind the beat, witnessing parenthetical layer]
 (ich seh dein Unlicht)
 (ich seh dich darin)
 (du bist es)
 
-[beat returns, final turning drop, all hooks layered, female lead over male murmur, modal brightening]
+[instrumental: beat returns, final turning drop, all hooks layered, modal brightening, arpeggio opens]
+[layered duet — Maske hook: female soaring grounded upper-alto foreground (wide reverb, full chest) + male low resonant baritone underneath (anchored, dry close-mic)]
 Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Dreh dich her — der Boden hält uns.
@@ -211,11 +220,16 @@ Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Licht, Licht.
 
-[long trance outro, arpeggio brightening one octave up, male and female leads blend]
+[instrumental: long trance outro, arpeggio brightening one octave up, kick fades by half, warm plate reverb tails open, no triumphant cadence]
+[male vocal — Inneres: low resonant bass returns, softening, anchored, present-in-the-room]
 Hier unten ist es still.
+[female vocal — Das Licht: distant doubled female parenthetical, witnessing, lowercase, long hall reverb]
 (die Schwelle ließ mich zurück)
+[male vocal — Maske: warm mid-baritone returns, deliberate, ungloss, plate reverb tail]
 ich seh dich — du bist es —
+[female vocal — Das Licht: distant doubled female, parenthetical, witnessing]
 (noch ein Licht. noch ein Licht.)
+[male vocal — Maske coda: warm baritone, fading]
 Licht, Licht.
 ```
 <!-- /SERVICE: suno -->
@@ -297,12 +311,38 @@ Licht, Licht
 
 ## Production Notes
 
-- **Affekt-Differenz zu Unlicht über Drop-Funktion, nicht über Tempo/Energie.** Drops sind Wendungs-Drops (das *Ankommen*), keine Down-Drops, keine Euphorie-Drops.
+- **Affekt-Differenz zu Unlicht über Drop-Funktion + Genre-Färbung, nicht über Tempo/Energie.** Drops sind Wendungs-Drops (das *Ankommen*), keine Down-Drops, keine Euphorie-Drops. Genre-Inversion: `dark→bright`, `dystopian→apophatic`.
 - **Beginn aus der Stille** (Sub-Bass-Swells), nicht aus dem Arpeggio-Build wie in Unlicht. Inverse Einleitung markiert die Inversion sofort hörbar.
 - **Maske-Profile sind ungloss**: warm, geerdet, „present-in-the-room" — die Maske in Licht *ist* nicht Schutzwall, sie *ist* Anwesenheit. Bewusste Differenz zu Unlichts „polished gloss".
-- **Outro öffnet** das Arpeggio eine Oktave nach oben, mit Dur-Mode-Tendenz — Integration ohne Auflösung; kein triumphales Chord-Change-Fanfare (das wäre Optimismus-Kitsch und entwertet Unlicht).
+- **Outro öffnet** das Arpeggio eine Oktave nach oben, mit modalem Aufhellen — Integration ohne Auflösung; **kein triumphales Chord-Change-Fanfare** (das wäre Optimismus-Kitsch und entwertet Unlicht).
 - **Cross-Reference-Disziplin**: Unlicht-Anspielungen („ich hab das Unlicht gesehen", „die Schwelle ließ mich zurück", „noch ein Licht") sind Pflicht — Licht steht *neben*, nicht *über*.
-- Metatags rein deskriptiv (Instrumental + Stimmprofil). Stimmprofile m/w frei alternierend.
+
+### Metatag-Disziplin (verbindlich, analog Unlicht)
+
+**Jeder Persona-Wechsel** in der Suno-Lyrics-Box ist durch einen expliziten **Vocal-Metatag** markiert, der **Geschlecht UND Stimmklang** enthält. Format: `[<male|female|layered duet> vocal — <Persona>: <Lage/Timbre/Mikro/Verarbeitung>]`. Persona-Bezeichner („Maske", „Inneres", „Riss", „Das Licht") sind erlaubt, weil sie *Funktionen* sind, keine Personennamen (name_exposure gewahrt).
+
+**Instrumental-Instruktionen** sind als eigene `[instrumental: ...]`-Metatags geschrieben, immer separat vor dem Vocal-Tag — niemals mit Vocal-Tags vermischt. So sieht Suno die Arrangement-Anweisung klar.
+
+**V5-Konformität:** Tags folgen dem V5-Top-Anchor-Prinzip (Geschlecht/Vocal-Description vorne) und bleiben pro Tag bei 4–7 Descriptoren (kein Prompt-Fatigue).
+
+### m/w-Drift-Pattern (Identität löst sich hörbar auf)
+
+Jede Persona erscheint mindestens einmal in beiden Geschlechtern — keine Stimme an einen Körper gebunden; *Wesen* trägt das Licht, nicht ein Geschlecht. Im Vergleich zu Unlichts Drift-Pattern beginnt Licht mit **Inneres male** (statt Maske male) — die Inversion zeigt sich sofort hörbar:
+
+| Abschnitt | Persona | Geschlecht |
+|---|---|---|
+| Intro | Inneres | **m** (low resonant bass, anchored) — *Inversions-Anker: Beginn aus dem Boden, nicht aus dem Schein* |
+| V1 Maske | Maske | **m** (warm mid-baritone, ungloss) |
+| Hook 1 | Maske hook | **w** (soaring grounded upper-alto) |
+| V Inneres 1 | Inneres | **w** (low warm alto, intimate) |
+| V2 Maske | Maske | **w** (grounded mid-alto, full chest) — *drift* |
+| Hook 2 | Maske hook | **m** (soaring grounded baritone upper) — *drift* |
+| Riss | Riss | **w** (thin high half-voice, settling) |
+| Witness mid | Das Licht | **w** (distant doubled female) |
+| Breakdown | Inneres | **m** (low resonant bass murmur, anchored) — *drift* |
+| Witness Tether | Das Licht | **m** (distant doubled male) — *drift* |
+| Final Hook | Maske duet | **w lead + m underneath** (layered duet) |
+| Outro | Inneres + Maske + Das Licht | **m Inneres / m Maske / w Witness parens** |
 
 ## Pronunciation Notes
 
@@ -329,6 +369,8 @@ Licht, Licht
 - [x] Metatags rein deskriptiv — Instrumental-/Produktions-Instruktionen + Stimmprofile, **kein** [Section]/Charakter-Tag
 - [x] Voice-Switch nie im Text markiert (nur Syntax/Stimmprofil); 4 Profile, m/w frei alternierend
 - [x] **Würde-Linie / Inversions-Regel gewahrt** — Lichts Bejahung steht neben Unlichts Wunde, niemals darüber; das *zweite* Ja, niemals naiv; Cross-Reference zu Unlicht vorhanden
+- [x] **Vocal-Metatags bei jedem Persona-Wechsel** — Geschlecht + Stimmklang explizit (V5 Top-Anchor); Instrumental-Tags klar getrennt als `[instrumental: ...]`; m/w-Drift-Pattern dokumentiert
+- [x] **Genre-Inversion** zu Unlicht — Bright Disco Dream Synth / Apophatic Future Synth; Suno-Style-Tags und Distributor-Surface-Tags entsprechend angepasst (nu-disco / dreamwave / dream-pop / italo-disco)
 <!-- /SERVICE: suno -->
 
 ## Generation Log
