@@ -117,6 +117,13 @@ Konkrete Bilder aus dem Bild-Lexikon (`RESEARCH.md`): den Schein für andere hal
 Alternating male and female German vocals — glossy controlled lead trading with a breathy numb whisper, a fragile high half-voice, and a distant doubled backing voice; soaring sung hooks, voice forward, real German umlauts (ä/ö/ü/ß) pronounced cleanly. Dark disco, darkwave. ~120 BPM four-on-the-floor, hypnotic and danceable, saturated reese sub bass, sixteenth-note minor-key synth arpeggio, shimmering Juno dream pads, Prophet poly, gated reverb snare, tape saturation, long plate reverb. Danceable melancholy of a light-bearer too heavy for their own light; mystical-night register beneath neon, dynamic range.
 ```
 
+### Style Box — Inhaltsabgeleitet (genrefrei)
+*Alternatives Stil-Feld: **rein aus dem Inhalt** abgeleitet — keine Genre-, Instrument- oder BPM-Vorgabe. Suno erschließt den Klang aus der Bedeutung. Als Experiment ins „Style of Music"-Feld einsetzen (statt der genrebasierten Box oben).*
+
+```
+A composed surface holding a numbness underneath; warmth performed outward while the inside stays sealed behind a wall that once protected and now imprisons; a glow only other people can see; a door left open that will not close again; tenderness shadowed by a quiet pull toward stillness, always caught at the edge by someone who still sees the light; intimate breath against a vast hollow; a steady pulse you can move to carrying an ache that has no name; male and female voices dissolving into one until no single self remains.
+```
+
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno:*
 

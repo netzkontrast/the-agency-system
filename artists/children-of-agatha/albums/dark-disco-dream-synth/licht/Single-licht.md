@@ -122,6 +122,13 @@ Konkrete Bilder aus dem Bild-Lexikon (`RESEARCH.md`): der Abgrund als Boden, der
 Alternating male and female German vocals — warm grounded leads trading with a low resonant murmur, a fragile high half-voice, and a distant doubled witnessing voice; voice forward, real German umlauts (ä/ö/ü/ß) pronounced cleanly. Bright disco, dreamwave, dream-pop synth. ~120 BPM four-on-the-floor, hypnotic and danceable, beginning from sub-bass quiet and opening into warmly mixed Juno dream pads, Prophet poly, sixteenth-note minor-key arpeggio with apophatic modal lifts in the second half, short-gate reverb snare (drier than dark disco), tape saturation, long plate reverb, brightening arpeggio one octave up in the outro (no triumphant chord-change fanfare). Danceable affirmation from inside the abyss — mystical staying, not euphoria; warm, integrated, present-in-the-room, dynamic range.
 ```
 
+### Style Box — Inhaltsabgeleitet (genrefrei)
+*Alternatives Stil-Feld: **rein aus dem Inhalt** abgeleitet — keine Genre-, Instrument- oder BPM-Vorgabe. Suno erschließt den Klang aus der Bedeutung. Als Experiment ins „Style of Music"-Feld einsetzen (statt der genrebasierten Box oben).*
+
+```
+A voice rising from the bottom instead of descending from above; a hand that spent years holding others now letting itself be held; inside and outside drawing closer until they speak as one; a wound kept open as a doorway the light returns through; staying chosen rather than endured, the harder and truer love; darkness felt as home and not as enemy; warmth that opens gently upward at the end with no triumph and no fanfare; a steady pulse you can move to that feels like arrival, not falling; male and female voices meeting and becoming one.
+```
+
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno:*
 
