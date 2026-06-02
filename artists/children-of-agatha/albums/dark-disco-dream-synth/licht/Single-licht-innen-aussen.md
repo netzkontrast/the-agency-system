@@ -97,6 +97,13 @@ Dieselbe Klinik, derselbe Aufenthaltsraum — aber das Licht kommt jetzt **aus d
 Alternating male and female German vocals — a warm grounded healer-voice (outside) drawing close to a low warm wound-voice (inside) until they meet, a fragile high half-voice, and a distant doubled witness; voice forward, real German umlauts (ä/ö/ü/ß). Bright disco, dreamwave, dream-pop synth. ~120 BPM four-on-the-floor, hypnotic and danceable, beginning from sub-bass quiet, warmly mixed Juno dream pads, Prophet poly, sixteenth-note minor-key arpeggio with apophatic modal lifts, short-gate reverb snare, tape saturation, brightening arpeggio one octave up in the outro (no triumphant chord-change fanfare). A wounded healer who finally lets himself be held — staying as a love-act, not euphoria.
 ```
 
+### Style Box — Inhaltsabgeleitet (genrefrei)
+*Alternatives Stil-Feld: **rein aus dem Inhalt** abgeleitet — keine Genre-, Instrument- oder BPM-Vorgabe. Konkretere, invertierte Fassung des genrefreien Tags der Original-Version (Wounded Healer, der sich halten lässt; Innen/Außen versöhnt). Ins „Style of Music"-Feld einsetzen.*
+
+```
+A wounded healer who finally lets the hand he always offered be turned back toward him; outside and inside, long kept in separate rooms, drawing closer until they speak as one; a wound held open not as a lack but as the doorway the light returns through; the hand once given now given back; staying chosen rather than endured, the harder and truer love; the way down recognized as the way up; a darkness that did not swallow but held; warmth rising from below and opening gently upward at the end without triumph; a steady pulse you can move to that feels like arrival, not falling; male and female voices, outside and inside, meeting and becoming one.
+```
+
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno:*
 

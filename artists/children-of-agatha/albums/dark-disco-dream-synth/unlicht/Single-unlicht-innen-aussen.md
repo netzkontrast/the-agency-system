@@ -96,6 +96,13 @@ Klinik bei Nacht, Tanzfläche im Aufenthaltsraum. Eine Hand, die eine andere am 
 Alternating male and female German vocals — a composed warm healer-voice (outside) trading with a numb breathy wound-voice (inside), a fragile high half-voice, and a distant doubled witness; voice forward, real German umlauts (ä/ö/ü/ß). Dark disco, darkwave. ~120 BPM four-on-the-floor, hypnotic and danceable, saturated reese sub bass, sixteenth-note minor-key arpeggio, shimmering Juno dream pads, Prophet poly, gated reverb snare, tape saturation; outside sections glossier, inside sections drier and closer. The danceable ache of a wounded healer who heals others but not himself.
 ```
 
+### Style Box — Inhaltsabgeleitet (genrefrei)
+*Alternatives Stil-Feld: **rein aus dem Inhalt** abgeleitet — keine Genre-, Instrument- oder BPM-Vorgabe. Konkretere Fassung des genrefreien Tags der Original-Version (Wounded Healer benannt, Innen/Außen als Gerüst). Ins „Style of Music"-Feld einsetzen.*
+
+```
+A wounded healer's voice: outside steady and warm, holding another's hand at the edge; inside numb behind a wall built once to protect and now to imprison; an open wound the glow leaks from, a wound that will not close; healing others while reaching nothing of one's own; knowing a light is there and being unable to believe it; asking whether one is real or only the image others need; a quiet pull toward stillness, named plainly and caught at the edge by someone who still sees; a steady pulse you can move to over a hollow that finally has a name; male and female voices, outside and inside, never the same body twice.
+```
+
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno:*
 
