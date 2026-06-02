@@ -80,7 +80,7 @@ Siehe `RESEARCH.md` für die belegten Ton-Anker (R1–R5) und das Bild-Lexikon, 
 2. **Klinische Erdung (R1).** Trauma und Hochsensibilität als Ätiologie, nicht als Spektakel — geerdet gezeichnet (Taubheit, geteiltes Selbst), nie romantisierter Wahnsinn, nie esoterische Übersinnlichkeit. Aron grenzt „Empath" ausdrücklich vom Esoterischen ab; die Figur ist *zu viel fühlen*, nicht „Kräfte haben".
 3. **name_exposure** — keine Personennamen in Lyric/Metatag/Promo; nur Funktion/Deskriptor.
 4. **Kein Voice-Switch-Label im Text** — Identitätswechsel ausschließlich über Stil + (in Suno) deskriptive Stimmprofil-Metatags.
-5. **Metatags = reine Instrumental-/Produktions-Instruktionen + deskriptive Stimmprofile.** Keine `[Strophe]`/`[Refrain]`-Struktur-Tags, keine Charakter-Tags.
+5. **Metatags = nur deskriptive Stimmprofile** (Instrumental-Tags auf Nutzer-Wunsch entfernt). Keine `[Strophe]`/`[Refrain]`-Struktur-Tags, keine Charakter-Tags.
 
 ## Stimm-Architektur (4 Profile, frei alternierende m/w-Besetzung)
 
@@ -143,21 +143,16 @@ no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlage
 *Copy this into Suno's "Lyrics" field:*
 
 ```
-[instrumental: hypnotic minor-key arpeggio build, sub bass swells from silence, no drums yet, 120 BPM]
-[instrumental: four-on-the-floor kick enters, gentle filter open, sidechained pads]
-
 [female vocal — Maske: glossy mid-alto, controlled, slight tape compression, bright disco gloss, voice forward, dry close-mic]
 Licht an. Ich funktionier.
 Glatt wie Glas, nichts dringt zu mir.
 Sieh mich an — ich halt das Lächeln fest.
 Keiner ahnt, was ich nach innen press.
 
-[instrumental: filtered pads rise, snare roll, pre-drop tension build]
 [female vocal continues — Maske: same alto, dynamic lift, slightly more breath]
 Und wenn ich nach unten seh,
 wird mir mein eigner Glanz zu schwer —
 
-[instrumental: full drop, gated reverb snare, saturated reese bass, soaring synths, four-on-the-floor full]
 [male vocal — Maske hook: soaring layered male lead, upper-tenor register, wide hall reverb, vowel-forward, voice forward]
 Du siehst mein Licht.
 Ich seh nur Unlicht.
@@ -166,21 +161,18 @@ Du siehst mein Licht.
 Ich seh nur Unlicht.
 Unlicht, Unlicht.
 
-[instrumental: beat half-strips to kick + sub pulse, snare drops out, room tone enters]
 [male vocal — Inneres: breathy intimate tenor, numb delivery, close dry whisper mic, no reverb, very intimate, no vibrato]
 ich spür die Hände nicht
 ich spür den Raum nicht
 ich trag ein Licht für euch
 und ich fühl es nicht
 
-[instrumental: beat rebuilds, full kick returns, arpeggio sixteenth-notes]
 [male vocal — Maske: glossy mid-baritone, composed, forward in mix, controlled disco gloss, slight tape compression]
 Lauter. Schneller. Ich glänz für euch.
 Innen ist ein Zimmer — und das Zimmer ist leer.
 Ich hab den Schlüssel weggesperrt,
 damit mir keiner wehtut. Jetzt kommt keiner mehr.
 
-[instrumental: full drop again, gated reverb snare, saturated bass, all elements full]
 [female vocal — Maske hook: soaring layered female lead, alto in upper register, wide hall reverb, voice forward]
 Du siehst mein Licht.
 Ich seh nur Unlicht.
@@ -189,34 +181,29 @@ Du siehst mein Licht.
 Ich seh nur Unlicht.
 Unlicht, Unlicht.
 
-[instrumental: drumless sub-heartbeat break, single arpeggio, room tone, beat drops out except sub pulse]
 [male vocal — Riss: thin high male half-voice, head voice only, held breath, fragile, stuttering tempo-synced delay]
 die Schwelle — sie schließt nicht zu —
 ich hab sie aufgemacht —
 und jetzt —
 und jetzt —
 
-[instrumental: single high pad holds, sub continues, no drums]
 [male vocal — Das Licht: distant doubled male voice, lowercase delivery, long hall reverb, behind the beat, observing layer, lower in mix]
 (die Nacht ist nicht dein Feind)
 (die Nacht trägt auch ein Licht)
 (der Boden hält — du fühlst ihn nicht)
 (du siehst es nicht)
 
-[instrumental: breakdown, beat strips to sub pulse only, single arpeggio reverbed, suspended pads]
 [female vocal — Inneres: low leaden contralto murmur, sub-tempo near-spoken, gravelly, breath audible between fragments, hollow distance, mono dry]
 leiser jetzt.
 so viel leiser jetzt.
 das Licht ist zu schwer,
 um dich frei zu lassen.
 
-[instrumental: single high pad holds, soft tom roll, sub continues]
 [female vocal — Das Licht: distant doubled female voice, lowercase, long hall reverb, behind the beat, parenthetical layer, witness register]
 (jemand hält die Schwelle)
 (jemand sieht dein Licht)
 (noch)
 
-[instrumental: beat slams back, final drop, all hooks layered, all elements full]
 [layered duet — Maske hook: male soaring lead foreground (upper tenor, wide reverb) + female low resonant murmur underneath (contralto, dry tight close-mic)]
 Du siehst mein Licht.
 Ich seh nur Unlicht.
@@ -225,7 +212,6 @@ Du siehst mein Licht.
 Ich seh nur Unlicht.
 Unlicht, Unlicht.
 
-[instrumental: long trance outro, arpeggio dissolving, kick fades by half, plate reverb tails open]
 [female vocal — Maske: glossy mid-alto returns, softening, controlled, voice forward]
 Licht an. Ich funktionier.
 [male vocal — Das Licht: distant doubled male parenthetical, witness layer, lowercase, long hall reverb]
@@ -317,6 +303,10 @@ Unlicht, Unlicht
 
 ## Refinement Log
 
+### Pass 6 — Lyrics-Box auf nur Stimm-Metatags reduziert
+
+Auf Nutzer-Wunsch: alle `[instrumental: …]`-Tags aus der Lyrics-Box entfernt. Es bleiben **nur die Stimm-Metatags** (Geschlecht + Stimmklang bei jedem Persona-Wechsel) und der gesungene Text. Vocal-Tags, Lyrics-Text, Streaming-Lyrics, name_exposure, Würde-Linie und Callbacks unverändert. Arrangement-/Produktions-Hinweise leben weiter in „Musical Direction" und „Production Notes" (nicht in der Lyrics-Box).
+
 ### Pass 5 — Globaler Geschlechter-Tausch der Stimmen (Klang erhalten)
 
 Auf Nutzer-Wunsch: jede Stimme, die jetzt männlich war, wird weiblich — und umgekehrt. **Charakter/Textur jeder Stimme wortgleich erhalten** (glossy/controlled, breathy/numb, leaden/hollow, thin-high-half-voice, distant-doubled, soaring, mic/processing); nur die **geschlechtsgebundene Stimmlage** folgt dem Tausch, damit die Tags Suno-kohärent bleiben:
@@ -391,7 +381,7 @@ In beiden Lyric-Blöcken (Suno + Streaming) gespiegelt. 13-Punkt-Check nach Änd
 
 **Jeder Persona-Wechsel** in der Suno-Lyrics-Box wird durch einen expliziten **Vocal-Metatag** markiert, der **Geschlecht UND Stimmklang** enthält. Format: `[<male|female|layered duet> vocal — <Persona>: <Lage/Timbre/Mikro/Verarbeitung>]`. Persona-Bezeichner („Maske", „Inneres", „Riss", „Das Licht") sind erlaubt, weil sie *Funktionen* sind, keine Personennamen (name_exposure gewahrt).
 
-**Instrumental-Instruktionen** werden als eigene `[instrumental: ...]`-Metatags geschrieben, immer separat vor dem Vocal-Tag — niemals mit Vocal-Tags vermischt. So sieht Suno die Arrangement-Anweisung klar.
+**Instrumental-Instruktionen wurden auf Nutzer-Wunsch entfernt** — die Lyrics-Box enthält **nur noch Stimm-Metatags** (Geschlecht + Stimmklang) und den gesungenen Text. Das Arrangement gestaltet Suno frei; Produktions-Hinweise stehen weiterhin in „Musical Direction"/„Production Notes", nicht in der Lyrics-Box.
 
 ### m/w-Drift-Pattern (Identität löst sich hörbar auf)
 
@@ -433,7 +423,7 @@ Das *Wesen* trägt das Licht, nicht ein Geschlecht.
 - [x] Fremdwörter / Anglizismen geprüft (keine)
 - [x] Homographe geprüft (rein deutscher Text, keine englischen Homographe)
 - [x] **Echte Umlaute überall** (ä/ö/ü/ß) — auch in der Suno-Box; V5.5-konform; Fallback ae/oe/ue/ss nur bei Suno-Fehlartikulation
-- [x] Metatags rein deskriptiv — Instrumental-/Produktions-Instruktionen + Stimmprofile, **kein** [Section]/Charakter-Tag
+- [x] Metatags = **nur Stimm-Profile** (Geschlecht + Stimmklang); Instrumental-Tags entfernt; **kein** [Section]/Charakter-Tag
 - [x] Voice-Switch nie im Text markiert (nur Syntax/Stimmprofil); 4 Profile, m/w frei alternierend
 - [x] **Würde-Linie (R4) gewahrt** — Tod-als-Liebe nur als mystisches Paradox; „noch"-Tether vorhanden; keine instruktive Lesart
 <!-- /SERVICE: suno -->

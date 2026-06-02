@@ -63,7 +63,7 @@ sheet_music:
 1. **Würde-Linie (R4).** Der Tod wird als Sehnsucht *benannt* (konkreter als das Original), aber nie als Methode/Lösung; „obwohl ich's besser weiß" hält die Ambivalenz, der **„noch"-Tether** ist Pflicht.
 2. **Klinische Erdung (R1).** Wounded Healer als *zu viel tragen*, nicht „Kräfte haben"; kein romantisierter Wahnsinn.
 3. **name_exposure** — keine Personennamen; nur Funktion/Deskriptor.
-4. **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags getrennt; keine [Section]-Tags.
+4. **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags entfernt (nur Stimm-Metatags); keine [Section]-Tags.
 
 ## Stimm-Architektur (4 Profile, m/w driftend)
 
@@ -122,81 +122,68 @@ no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlage
 *Copy this into Suno's "Lyrics" field:*
 
 ```
-[instrumental: hypnotic minor-key arpeggio build, sub bass swells, four-on-the-floor kick enters, 120 BPM]
-
 [female vocal — Außen: glossy mid-alto, controlled, warm but composed, bright disco gloss, voice forward, dry close-mic]
 Außen bin ich ganz. Außen halt ich dich.
 Ich kenn den Weg nach unten — ich war da.
 Ich leg die Hand auf deine Wunde, und sie heilt.
 Nur meine bleibt seit Jahren offen.
 
-[instrumental: filtered pads rise, snare roll, pre-drop tension]
 [female vocal continues — Außen: same alto, dynamic lift, more breath]
 Und keiner fragt, wer mich am Rand noch hält.
 Außen Licht — und innen?
 
-[instrumental: full drop, gated reverb snare, saturated bass, soaring layered male lead, wide reverb]
 [male vocal — Außen hook: soaring layered tenor, upper register, wide hall reverb, voice forward]
 Ich heil dich. Mich heil ich nicht.
 Du siehst mein Licht — ich seh nur Unlicht.
 Die Wunde, aus der ich leuchte,
 ist die, die nie verschließt.
 
-[instrumental: beat half-strips to kick + sub pulse, snare drops out, room tone]
 [male vocal — Innen: low breathy tenor, numb delivery, close dry whisper mic, no reverb, very intimate]
 Innen ist die Tür, die offen blieb.
 Innen wohnt das Unlicht, es kennt meinen Namen.
 Ich weiß, da ist ein Licht — ich kann's nur nicht glauben.
 Ich fühl mich selbst nicht. Bin ich echt, oder nur dein Bild?
 
-[instrumental: beat rebuilds, full kick, glossy lead returns]
 [female vocal — Außen: glossy mid-alto, composed, forward in mix, controlled disco gloss]
 Mein Kopf sperrt meine Seele ein,
 um sie zu schützen — die Mauer rettet mich und frisst mich.
 Der Schutz von damals ist mein Fluch.
 Außen halt ich, innen halt ich's nicht mehr aus.
 
-[instrumental: full drop, gated reverb snare, all elements full]
 [female vocal — Außen hook: soaring layered alto, upper register, wide hall reverb, voice forward]
 Ich heil dich. Mich heil ich nicht.
 Du siehst mein Licht — ich seh nur Unlicht.
 Die Wunde, aus der ich leuchte,
 ist die, die nie verschließt.
 
-[instrumental: drumless sub-heartbeat break, single arpeggio, room tone]
 [female vocal — Riss: thin high female half-voice, head voice only, held breath, fragile, stuttering delay]
 die Tür — sie schließt nicht zu —
 ich hab sie aufgemacht —
 und jetzt —
 und jetzt —
 
-[instrumental: single high pad holds, sub continues, no drums]
 [male vocal — Das Licht: distant doubled male, lowercase, long hall reverb, behind the beat, observing layer]
 (ich seh deine Wunde)
 (sie ist kein Loch — sie ist die Tür)
 (der Boden hält — du fühlst ihn nicht)
 
-[instrumental: breakdown, beat strips to sub pulse, leaden vocal, hollow]
 [male vocal — Innen: low leaden tenor murmur, sub-tempo near-spoken, gravelly, breath between fragments, hollow]
 und manchmal, wenn es leiser wird,
 scheint das Ende heller als der Tag —
 obwohl ich's besser weiß.
 obwohl ich's besser weiß.
 
-[instrumental: single high pad holds, soft tom roll]
 [female vocal — Das Licht: distant doubled female, lowercase, long hall reverb, parenthetical layer]
 (jemand sieht dein Licht)
 (jemand hält dich)
 (noch)
 
-[instrumental: beat slams back, final drop, all hooks layered]
 [layered duet — male healer-lead foreground (soaring tenor, wide reverb) + female wound-voice underneath (low contralto, dry close-mic)]
 Ich heil dich. Mich heil ich nicht.
 Du siehst mein Licht — ich seh nur Unlicht.
 Die Wunde, aus der ich leuchte,
 ist die, die nie verschließt.
 
-[instrumental: long trance outro, arpeggio dissolving, plate reverb tails open]
 [female vocal — Außen: glossy mid-alto, softening, controlled, voice forward]
 Außen bin ich ganz.
 [male vocal — Das Licht: distant doubled male, parenthetical, witness layer]
@@ -284,7 +271,7 @@ Spiegel der Original-Fassung, konkreter: ein Körper, zwei Räume — **außen**
 - **Wounded-Healer-Hook** „Ich heil dich, mich heil ich nicht" ist der neue Haupt-Hook neben „Unlicht".
 - **m/w-Drift**: Außen startet w, Außen-Hook w/m wechselnd, Innen m (Whisper) und w (leaden), Riss w, Das Licht m/w. Jede Persona in beiden Geschlechtern.
 - **Würde-Linie**: „das Ende heller als der Tag, obwohl ich's besser weiß" — benannt, aber sofort getethert; nie Methode.
-- **Vocal-Metatags** bei jedem Wechsel mit Geschlecht + Stimmklang; Instrumental-Tags getrennt.
+- **Vocal-Metatags** bei jedem Wechsel mit Geschlecht + Stimmklang; Instrumental-Tags auf Nutzer-Wunsch entfernt (nur Stimm-Metatags in der Lyrics-Box).
 
 ## Pronunciation Notes
 
@@ -304,7 +291,7 @@ Spiegel der Original-Fassung, konkreter: ein Körper, zwei Räume — **außen**
 - [x] Fremdwörter/Anglizismen geprüft (keine)
 - [x] Homographe geprüft (rein deutsch)
 - [x] **Echte Umlaute überall** (ä/ö/ü/ß), auch Suno-Box
-- [x] **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags getrennt; keine [Section]-Tags
+- [x] **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags entfernt (nur Stimm-Metatags); keine [Section]-Tags
 - [x] **Würde-Linie (R4)** — Tod nur als Sehnsucht benannt, „noch"-Tether vorhanden, keine instruktive Lesart
 <!-- /SERVICE: suno -->
 

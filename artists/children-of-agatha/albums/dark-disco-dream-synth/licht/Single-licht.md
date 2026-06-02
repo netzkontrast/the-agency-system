@@ -84,7 +84,7 @@ Siehe `RESEARCH.md` für die belegten Anker (P1–P5) und das Bild-Lexikon.
 2. **Cross-Reference verbindlich.** Mindestens eine Zeile, die Unlichts Wissen explizit honoriert („ich hab das Unlicht gesehen", „die Schwelle ließ mich zurück") — damit Licht nicht losgelöst von der Schwester gelesen wird.
 3. **name_exposure** — keine Personennamen in Lyric/Metatag/Promo; nur Funktion/Deskriptor.
 4. **Kein Voice-Switch-Label im Text** — Identitätswechsel nur über Stil + (in Suno) deskriptive Stimmprofil-Metatags.
-5. **Metatags = reine Instrumental-/Produktions-Instruktionen + deskriptive Stimmprofile.** Keine `[Strophe]`/`[Refrain]`-Struktur-Tags, keine Charakter-Tags.
+5. **Metatags = nur deskriptive Stimmprofile** (Instrumental-Tags auf Nutzer-Wunsch entfernt). Keine `[Strophe]`/`[Refrain]`-Struktur-Tags, keine Charakter-Tags.
 6. **Klinische Erdung gewahrt** (gleich wie Unlicht): kein romantisierter Wahnsinn, keine esoterische Übersinnlichkeit; HSP/Empath als *zu viel fühlen*, nicht „Kräfte haben" (R1 Aron).
 
 ## Stimm-Architektur (4 Profile, frei alternierende m/w-Besetzung — gespiegelte Mythos-Spalte)
@@ -148,20 +148,16 @@ no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlage
 *Copy this into Suno's "Lyrics" field:*
 
 ```
-[instrumental: atmosphere, sub bass swells from silence, slow filter sweep, no drums yet, 120 BPM, opening from below]
-
 [male vocal — Inneres: low resonant bass, anchored, supported breath, present-in-the-room, intimate close mic]
 Hier unten ist es still.
 Hier unten hör ich mich.
 Der Boden hält.
 Ich wusst nicht, dass er hält.
 
-[instrumental: strings rise gently, soft pad bloom, four-on-the-floor kick comes in slowly, sub continues]
 [male vocal — Maske: warm mid-baritone, deliberate, ungloss, present-in-the-room, slight tape compression]
 Und etwas in dem Raum hier sieht mich an —
 ein Stein, ein Tag, ein altes Tor.
 
-[instrumental: turning drop, short-gate reverb snare, saturated bass, full kick, modal lift in arpeggio]
 [female vocal — Maske hook: soaring grounded upper-alto, wide hall reverb, vowel-forward, voice forward, open chest]
 Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
@@ -170,21 +166,18 @@ Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Licht, Licht.
 
-[instrumental: beat half-strips to kick + sub pulse, snare drops out, room tone enters, warm pad sustains]
 [female vocal — Inneres: low warm alto, intimate, close mic with room, slow vibrato, supported breath]
 ich trag kein Licht für euch.
 ich bin ein Licht, weil ich bin.
 der Abgrund ist der Boden,
 der mich hält.
 
-[instrumental: beat rebuilds, full kick returns, arpeggio sixteenth-notes, warm pad full]
 [female vocal — Maske: grounded mid-alto, full chest, open vowels, present-in-the-room, no gloss]
 Haus. Brücke. Brunnen. Tor.
 Ich sag das Hier, ich sag es laut.
 Nicht weil es leicht ist.
 Weil ich noch da bin, wo ich war.
 
-[instrumental: turning drop again, short-gate snare, saturated bass, all elements full]
 [male vocal — Maske hook: soaring grounded baritone in upper register, wide hall reverb, voice forward, open delivery]
 Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
@@ -193,33 +186,28 @@ Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Licht, Licht.
 
-[instrumental: drumless sub-heartbeat break, single arpeggio, room tone, beat drops out except sub pulse]
 [female vocal — Riss: thin high female half-voice, head voice only, held breath, fragile, settling, soft tail]
 die Schwelle — sie ließ mich zurück —
 ich bin geblieben —
 zurück —
 zurück —
 
-[instrumental: single high pad holds, sub continues, no drums, warm hall opens]
 [female vocal — Das Licht: distant doubled female voice, lowercase delivery, long hall reverb, behind the beat, witnessing layer, lower in mix]
 (ich weiß was du weißt)
 (ich hab das Unlicht gesehen)
 (und ich wende mich her)
 
-[instrumental: breakdown, beat strips to sub pulse only, single arpeggio reverbed, suspended warm pads, no snare]
 [male vocal — Inneres: low resonant bass murmur, anchored, supported breath, intimate close mic, no whisper, no gravel]
 in der Tiefe des Winters
 fand ich einen Sommer.
 der Abgrund ist der Boden,
 der mich hält.
 
-[instrumental: single high pad holds, soft tom roll, sub continues, warm hall]
 [male vocal — Das Licht: distant doubled male voice, lowercase, long hall reverb, behind the beat, witnessing parenthetical layer]
 (ich seh dein Unlicht)
 (ich seh dich darin)
 (du bist es)
 
-[instrumental: beat returns, final turning drop, all hooks layered, modal brightening, arpeggio opens]
 [layered duet — Maske hook: female soaring grounded upper-alto foreground (wide reverb, full chest) + male low resonant baritone underneath (anchored, dry close-mic)]
 Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
@@ -228,7 +216,6 @@ Du sagst, du siehst kein Licht.
 Ich seh, du bist es.
 Licht, Licht.
 
-[instrumental: long trance outro, arpeggio brightening one octave up, kick fades by half, warm plate reverb tails open, no triumphant cadence]
 [male vocal — Inneres: low resonant bass returns, softening, anchored, present-in-the-room]
 Hier unten ist es still.
 [female vocal — Das Licht: distant doubled female parenthetical, witnessing, lowercase, long hall reverb]
@@ -329,7 +316,7 @@ Licht, Licht
 
 **Jeder Persona-Wechsel** in der Suno-Lyrics-Box ist durch einen expliziten **Vocal-Metatag** markiert, der **Geschlecht UND Stimmklang** enthält. Format: `[<male|female|layered duet> vocal — <Persona>: <Lage/Timbre/Mikro/Verarbeitung>]`. Persona-Bezeichner („Maske", „Inneres", „Riss", „Das Licht") sind erlaubt, weil sie *Funktionen* sind, keine Personennamen (name_exposure gewahrt).
 
-**Instrumental-Instruktionen** sind als eigene `[instrumental: ...]`-Metatags geschrieben, immer separat vor dem Vocal-Tag — niemals mit Vocal-Tags vermischt. So sieht Suno die Arrangement-Anweisung klar.
+**Instrumental-Instruktionen wurden auf Nutzer-Wunsch entfernt** — die Lyrics-Box enthält **nur noch Stimm-Metatags** (Geschlecht + Stimmklang) und den gesungenen Text. Das Arrangement gestaltet Suno frei; Produktions-Hinweise stehen weiterhin in „Musical Direction"/„Production Notes".
 
 **V5-Konformität:** Tags folgen dem V5-Top-Anchor-Prinzip (Geschlecht/Vocal-Description vorne) und bleiben pro Tag bei 4–7 Descriptoren (kein Prompt-Fatigue).
 
@@ -374,10 +361,10 @@ Jede Persona erscheint mindestens einmal in beiden Geschlechtern — keine Stimm
 - [x] Fremdwörter / Anglizismen geprüft (keine)
 - [x] Homographe geprüft (rein deutscher Text, keine englischen Homographe)
 - [x] **Echte Umlaute überall** (ä/ö/ü/ß) — auch in der Suno-Box; V5.5-konform; Fallback ae/oe/ue/ss nur bei Suno-Fehlartikulation
-- [x] Metatags rein deskriptiv — Instrumental-/Produktions-Instruktionen + Stimmprofile, **kein** [Section]/Charakter-Tag
+- [x] Metatags = **nur Stimm-Profile** (Geschlecht + Stimmklang); Instrumental-Tags entfernt; **kein** [Section]/Charakter-Tag
 - [x] Voice-Switch nie im Text markiert (nur Syntax/Stimmprofil); 4 Profile, m/w frei alternierend
 - [x] **Würde-Linie / Inversions-Regel gewahrt** — Lichts Bejahung steht neben Unlichts Wunde, niemals darüber; das *zweite* Ja, niemals naiv; Cross-Reference zu Unlicht vorhanden
-- [x] **Vocal-Metatags bei jedem Persona-Wechsel** — Geschlecht + Stimmklang explizit (V5 Top-Anchor); Instrumental-Tags klar getrennt als `[instrumental: ...]`; m/w-Drift-Pattern dokumentiert
+- [x] **Vocal-Metatags bei jedem Persona-Wechsel** — Geschlecht + Stimmklang explizit (V5 Top-Anchor); Instrumental-Tags entfernt (nur Stimm-Metatags); m/w-Drift-Pattern dokumentiert
 - [x] **Genre-Inversion** zu Unlicht — Bright Disco Dream Synth / Apophatic Future Synth; Suno-Style-Tags und Distributor-Surface-Tags entsprechend angepasst (nu-disco / dreamwave / dream-pop / italo-disco)
 <!-- /SERVICE: suno -->
 

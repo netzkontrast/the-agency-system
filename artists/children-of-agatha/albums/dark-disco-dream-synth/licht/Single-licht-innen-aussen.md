@@ -64,7 +64,7 @@ sheet_music:
 1. **Inversions-Regel / Würde-Linie.** Die Bejahung steht *neben* der Wunde, nie darüber; das *zweite* Ja, niemals naiv, niemals „Sei dankbar". Unlichts Schwere bleibt sichtbar (Cross-Reference Pflicht).
 2. **Klinische Erdung (P3/P4 + R1).** Bleiben als Wahl, nicht als Pflicht; kein Optimismus-Kitsch.
 3. **name_exposure** — keine Personennamen; nur Funktion/Deskriptor.
-4. **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags getrennt; keine [Section]-Tags.
+4. **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags entfernt (nur Stimm-Metatags); keine [Section]-Tags.
 
 ## Stimm-Architektur (4 Profile, m/w driftend)
 
@@ -123,81 +123,68 @@ no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlage
 *Copy this into Suno's "Lyrics" field:*
 
 ```
-[instrumental: atmosphere, sub bass swells from silence, slow filter sweep, no drums yet, 120 BPM, opening from below]
-
 [male vocal — Außen: warm mid-baritone, deliberate, ungloss, present-in-the-room, intimate close mic]
 Jahre hab ich Hände gehalten.
 Jahre kannt ich jeden Weg nach unten.
 Heut sitzt mir einer gegenüber
 und hält die meine. Und ich lass es zu.
 
-[instrumental: strings rise gently, warm pad bloom, four-on-the-floor kick comes in slowly]
 [male vocal continues — Außen: same baritone, dynamic lift, more breath]
 Die Mauer kriegt zum ersten Mal
 einen Spalt — und niemand stürzt.
 
-[instrumental: turning drop, short-gate reverb snare, saturated bass, soaring layered female lead, wide reverb, modal lift]
 [female vocal — Außen hook: soaring grounded upper-alto, wide hall reverb, vowel-forward, open chest]
 Ich heil dich — und jetzt lass ich mich heilen.
 Du sagst, du siehst kein Licht. Ich seh, du bist es.
 Die Wunde ist die Tür,
 durch die das Licht zurückkommt.
 
-[instrumental: beat half-strips to kick + sub pulse, room tone, warm pad sustains]
 [female vocal — Innen: low warm alto, intimate, close mic with room, slow vibrato]
 Innen war nicht leer. Innen war zu hell.
 Das Dunkle hat mich nicht verschluckt — es hat mich gehalten.
 Der Weg hinunter war der Weg herauf.
 Ich war nie das Bild. Ich bin der, der bleibt.
 
-[instrumental: beat rebuilds, full kick, warm grounded lead]
 [male vocal — Außen: grounded mid-baritone, full chest, present-in-the-room, no gloss]
 In der Tiefe des Winters
 fand ich einen Sommer, der nicht laut ist.
 Nicht weil es leicht ist.
 Weil ich noch da bin, wo ich war.
 
-[instrumental: turning drop, short-gate snare, all elements full]
 [male vocal — Außen hook: soaring grounded baritone, upper register, wide hall reverb, open]
 Ich heil dich — und jetzt lass ich mich heilen.
 Du sagst, du siehst kein Licht. Ich seh, du bist es.
 Die Wunde ist die Tür,
 durch die das Licht zurückkommt.
 
-[instrumental: drumless sub-heartbeat break, single arpeggio, room tone]
 [male vocal — Riss: thin high male half-voice, head voice only, held breath, fragile, settling]
 die Schwelle — sie ließ mich zurück —
 ich bin geblieben —
 zurück —
 zurück —
 
-[instrumental: single high pad holds, sub continues, warm hall opens]
 [female vocal — Das Licht: distant doubled female, lowercase, long hall reverb, behind the beat, witnessing]
 (ich weiß was du weißt)
 (ich hab das Unlicht gesehen)
 (und ich wende mich her)
 
-[instrumental: breakdown, beat strips to sub pulse, warm low voice, anchored]
 [female vocal — Innen: low resonant contralto, anchored, supported breath, intimate, no whisper]
 der Boden hält uns.
 außen und innen — ein Licht.
 die Hand, die ich gab,
 gibt jetzt jemand zurück.
 
-[instrumental: single high pad holds, soft tom roll, warm hall]
 [male vocal — Das Licht: distant doubled male, lowercase, long hall reverb, witnessing parenthetical]
 (ich seh dein Unlicht)
 (ich seh dich darin)
 (du bist es)
 
-[instrumental: beat returns, final turning drop, all hooks layered, modal brightening]
 [layered duet — female healer-lead foreground (soaring upper-alto, wide reverb) + male wound-voice underneath (warm baritone, dry close-mic) — outside and inside, one voice]
 Ich heil dich — und jetzt lass ich mich heilen.
 Du sagst, du siehst kein Licht. Ich seh, du bist es.
 Die Wunde ist die Tür,
 durch die das Licht zurückkommt.
 
-[instrumental: long trance outro, arpeggio brightening one octave up, warm plate reverb tails open, no triumphant cadence]
 [male vocal — Außen: warm mid-baritone, softening, present-in-the-room]
 Außen und innen.
 [female vocal — Das Licht: distant doubled female, parenthetical, witnessing]
@@ -285,7 +272,7 @@ Inversion der Unlicht-Parallel-Version: zwei Räume, deren Wand einen Spalt beko
 - **Geschlechter-Tausch der Kernrollen** gegenüber „Unlicht (Innen/Außen)": Außen jetzt m, Innen jetzt w — markiert die Inversion auch in der Besetzung.
 - **Wendungs-Drops** (Ankommen), kein Sturz; Outro hellt das Arpeggio auf, kein Triumph-Fanfare (würde Unlicht entwerten).
 - **Inversions-Regel**: Bejahung neben, nicht über der Wunde; „nicht weil es leicht ist".
-- **Vocal-Metatags** bei jedem Wechsel mit Geschlecht + Stimmklang; Instrumental-Tags getrennt.
+- **Vocal-Metatags** bei jedem Wechsel mit Geschlecht + Stimmklang; Instrumental-Tags auf Nutzer-Wunsch entfernt (nur Stimm-Metatags in der Lyrics-Box).
 
 ## Pronunciation Notes
 
@@ -307,7 +294,7 @@ Inversion der Unlicht-Parallel-Version: zwei Räume, deren Wand einen Spalt beko
 - [x] Fremdwörter/Anglizismen geprüft (keine)
 - [x] Homographe geprüft (rein deutsch)
 - [x] **Echte Umlaute überall** (ä/ö/ü/ß), auch Suno-Box
-- [x] **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags getrennt; keine [Section]-Tags
+- [x] **Vocal-Metatags bei jedem Persona-Wechsel** (Geschlecht + Stimmklang); Instrumental-Tags entfernt (nur Stimm-Metatags); keine [Section]-Tags
 - [x] **Inversions-Regel / Würde-Linie** — Bejahung neben der Wunde, „noch"-Tether, Cross-Reference zu Unlicht
 <!-- /SERVICE: suno -->
 
