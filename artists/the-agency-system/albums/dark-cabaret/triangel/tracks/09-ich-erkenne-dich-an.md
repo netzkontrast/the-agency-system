@@ -120,7 +120,7 @@ Stationsfenster oder draußen — Sprecher und du gemeinsam. Die Partnerin ist n
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. At Bridge: voice steadies briefly for the wagen-litany. Near-tonic resolution permitted at the very end, even then ambiguously. Dark chanson, art song. Acoustic upright piano (chord clusters at Bridge), sustained warm low strings, sub-bass underneath, field recording. 76 BPM, slow, slight ritardando into end.
+Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Near-tonic resolution permitted at the very end, even then ambiguously. Experimental art-pop, dark chanson. Acoustic upright piano (chord clusters at Bridge), sustained warm low strings, sustained synth pad drone-ground throughout (intensifying at Bridge), sub-bass underneath throughout, modular electroacoustic ambient textures rising into Bridge, field recording layer. 76 BPM, slow, slight ritardando into end.
 ```
 
 ### Exclude Styles
@@ -164,22 +164,28 @@ ich verstehe was ich kann
 ich verstehe was ich nicht kann
 
 [Bridge]
-[Alto, the very end approaches — near-tonic permitted, even then ambiguously]
+[Alto, the very end approaches — near-tonic permitted, even then ambiguously; plus Wir-Stimme polyphonic enters durchgängig ab hier as album-endpoint: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 ich wage etwas
+(ich wage etwas)
 anders als früher
 ich wage zu bleiben
+(ich wage zu bleiben)
 ohne zu fliehen
 ich wage zu lieben
+(ich wage zu lieben)
 ohne zu eskalieren
 ich wage zu trauern
+(ich wage zu trauern)
 ohne zu verzweifeln
 ich wage zu wählen
+(ich wage zu wählen)
 und ich wähle euch beide
 auf verschiedene Weisen
 das ist neu
 das ist neu für mich
 
 [Outro]
+[Alto continues, Wir-Stimme voll polyphonic — final album moment: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith — near-tonic permitted at very last note, even then ambiguously]
 das ist neu
 (das ist neu)
 das ist neu

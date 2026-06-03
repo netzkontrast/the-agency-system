@@ -98,7 +98,7 @@ Klinik-Aufenthaltsraum, Spätnachmittag. Zwei Patient*innen nahe, nicht zu nahe.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Low contralto, controlled, deliberate, restrained vibrato held as a weapon, mid-distance polished mic, cabaret styling. Confident performative lines that should land as seduction but read as warning. Performs its surface. Dark chanson, art song. Mid-range piano (sparse notes), sustained mineral strings (drone-passages), light synth pad. 80 BPM, restrained.
+Low contralto, controlled, deliberate, restrained vibrato held as a weapon, mid-distance polished mic. Confident performative lines that should land as seduction but read as warning. Performs its surface. Experimental art-pop, dark chanson. Mid-range piano (sparse notes), sustained mineral strings (drone-passages), sustained synth pad throughout (drone-ground), modular electroacoustic ambient layer, sub-bass underneath, field recording (breath-room, distant). 80 BPM, restrained.
 ```
 
 ### Exclude Styles
@@ -148,6 +148,7 @@ das ist mein erstes Mal
 es so zu tun
 
 [Outro]
+[Low contralto lead continues, Wir-Stimme enters audibly: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 du bist da
 (du bist da)
 du bist da

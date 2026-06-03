@@ -356,6 +356,36 @@ language). Style Boxes Alter-Profile-Only, Persona-Shift-Metatags
 profile-faithful, Wir-Layer via parenthesized backing implementiert,
 Pronunciation Notes komplett, Exclude Styles konsistent.
 
+**Suno-Style Pass 2 (v1.5 experimentell-leaning shift):** Alle 9
+Style Boxes überarbeitet — *weniger cabaret*, *mehr Pads*, *mehr
+Fülle*, *eher Experimentell* (per User-Direktive). Genre-Tags von
+`dark chanson, art song` auf `experimental art-pop, dark chanson`
+umgestellt. Production-Aesthetik per Track: sustained synth pad
+drone-ground durchgängig, sub-bass underneath, modular electroacoustic
+ambient layer, field-recording prominent. "Cabaret styling" als
+Descriptor entfernt; Cabaret-Mikrofon-Position und restrained-
+vibrato-as-weapon bleiben aus dem sex_override-Profil.
+
+**Wir-Stimme Metatag Pass 3:** Per User-Direktive ("vor jedem Wechsel
+die jeweilige Stimme als metatag und stimmprofil") wurden Wir-Stimme-
+Entry-Metatags an allen Wechsel-Punkten ergänzt:
+- T1 Outro: Wir-tröpfchen
+- T2 Bridge ("und wir auch") + Outro: Wir-tröpfchen / Wir audibly
+- T3 Bridge ("ich weiß nicht") + Outro: Wir audibly
+- T4 Outro: explizit NICHT Wir (own contralto echo markiert)
+- T5 Outro: Wir audibly
+- T6 Bridge + Outro: Wir polyphonic (album-central event), kombiniert
+  mit S4-Metatag
+- T7 Bridge ("du musst das nicht reparieren") + Outro: Wir audibly /
+  polyphonic
+- T8 Outro: Wir polyphonic
+- T9 Bridge + Outro: Wir voll polyphonic (album-endpoint), kombiniert
+  mit near-tonic-Metatag
+
+Alle Wir-Metatags nutzen profile-faithful Sprache aus we-voice.md
+(1st-person plural, audibly polyphonic, composition not fusion,
+individual voices remembered, mosaic not monolith).
+
 **Album-Coherence-Pass:** geometric integrity (3×3 Latin Square + 3-
 Movement Boden-Successor + Stage/Boden Korrektur), Carry-Over Chain
 M3→M1 ohne Lücken, Korpus-Grenze-Carries modal-stabil (W→W zwischen

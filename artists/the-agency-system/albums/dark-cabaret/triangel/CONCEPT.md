@@ -829,29 +829,43 @@ Inspirations-Anker). NICHT als Genre-Identität, sondern als
 *Produktions-Werkzeug-Kasten* zur Verfeinerung der cabaret-chanson
 Form-Heimat.
 
-**Producings-Aesthetik (lock):**
-- Close-mic dominant — Cabaret-Intimität ohne Theater
-- Trockene Räume mit punktueller Reverb-Anwendung pro Sub-voice:
-  - host: keine
-  - rationalist: thin tail (Klavier-detuned-Boden, breaks at line-end)
-  - sexualized_override: mid-distance polished plate (Cabaret-Standard)
-  - ambivalent: dynamic dry-wet shift within phrase (experimentell-
-    Inspiration auf cabaret-base)
-- Field-Recordings als Wir-Vorboten (Atem, ferne Stimmen, Wind,
-  Klinik-Klangresiduen) — sparsamer Einsatz, nicht durchgängig
-- Detuned / rubber-band Klavier-Texturen für rationalist-Tracks
-  (Walker-Spur)
-- Subtone / interozept gesungene Texturen für ambivalent
-  (Antony-Spur)
-- Cabaret-styling für sexualized_override mit Knef-Patina als
-  Material — anti-kitsch durch *Verfremdung* (Brecht/Weill)
-- Mit Movements-Übergängen WIE in Cabaret-Tradition: durch tempo-
-  shift, key-change-Akzent, instrument-add — NICHT durch experimentell-
-  hartes Cut
+**Producings-Aesthetik (v1.5 — experimentell-leaning shift):**
 
-**Genre-Tag-Sequenz (für streaming):**
+Nach User-Direktive: weniger cabaret-styling-descriptor, mehr Pads,
+mehr Fülle, eher Experimentell. Suno-Styles nutzen explizit das
+experimentell-Genre-Research (`research/genre/experimentell-
+archaeology.md`).
+
+- Close-mic dominant für Vocal — Intimität ohne Theater
+- **Sustained synth pad als drone-ground durchgängig** in allen Tracks
+- **Sub-bass underneath** durchgängig (intensiviert an S4-Wendepunkten
+  T6 + T9-Bridge)
+- **Modular electroacoustic ambient layer** für Fülle
+- **Field-recording** prominent als drittes Instrument (Atem-room,
+  Klinik-Klangresiduen, distant ambience) — durchgängig, nicht nur
+  sparsam
+- Trockene Vocal-Räume mit punktueller Reverb-Anwendung pro Sub-voice:
+  - host: keine Vocal-reverb
+  - rationalist: thin tail (Klavier-detuned-Boden, breaks at line-end)
+  - sexualized_override: mid-distance polished plate (Cabaret-
+    Mikrofon-Position, aber NICHT "cabaret styling" als Descriptor)
+  - ambivalent: dynamic dry-wet shift within phrase
+- Detuned / rubber-band Klavier-Texturen für rationalist-Tracks
+- Subtone / interozept gesungene Texturen für ambivalent
+- sexualized_override behält cabaret-mikrofon-Position UND restrained-
+  vibrato-as-weapon AUS dem Profil — der "cabaret styling" als
+  Style-Box-Wort wird NICHT mehr verwendet (zu kitschig-anziehend);
+  *Verfremdung* (Brecht/Weill) bleibt durch performance-as-warning
+  in den Profile-Descriptors implizit
+- Movement-Übergänge: tempo-shift, key-change-Akzent, ambient-layer-
+  rising, sub-bass-intensification — fließend, nicht hart-cut
+
+**Genre-Tag-Sequenz für Suno (Style Box, max 2 Tags):**
+`experimental art-pop, dark chanson`
+
+**Genre-Tag-Sequenz für streaming-Distribution:**
 Primary: `dark cabaret`
-Secondary: `chanson`, `confessional art pop`, `experimental cabaret`
+Secondary: `experimental art-pop`, `chanson`, `confessional art pop`
 Tertiary (für discovery): `cptsd-art`, `concept album`,
 `audience-of-two`
 

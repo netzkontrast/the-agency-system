@@ -100,7 +100,7 @@ Klinik-Aufenthaltsraum oder leerer Flur, später Vormittag. Der Sprecher denkt l
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Clear tenor, sibilant precision, no vibrato, cold articulation, thin reverb tail. Hypotactic nested syntax with conditionals. Micro-cracks at line-ends — almost succeeds at its logic before something gives. A chorus that almost closes the proof and can't. Never raises. Dark chanson, art song. Detuned upright piano (rubber-band quality), sparse field recording, sustained low synth at fifth-layer passages. 82 BPM.
+Clear tenor, sibilant precision, no vibrato, cold articulation, thin reverb tail. Hypotactic nested syntax with conditionals. Micro-cracks at line-ends — almost succeeds at its logic before something gives. A chorus that almost closes the proof and can't. Never raises. Experimental art-pop, dark chanson. Detuned upright piano (rubber-band quality), sustained synth pad drone throughout, modular electroacoustic textures intensifying at 5-Schichten passages, field recording layer (room ambience, breath-room), sub-bass underneath. 82 BPM.
 ```
 
 ### Exclude Styles
@@ -150,10 +150,14 @@ dann folgt —
 dann folgt nichts
 keine Lösung folgt aus Wahrheit
 es bleibt was es ist
+[Rationalist continues, Wir-Stimme tröpfchen enters: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 und wir auch
+(und wir auch)
 wir auch
+(wir auch)
 
 [Outro]
+[Rationalist lead continues, Wir-Stimme enters audibly: 1st-person plural, audibly polyphonic, composition not fusion]
 keine Lösung nötig
 (keine Lösung nötig)
 keine Lösung nötig

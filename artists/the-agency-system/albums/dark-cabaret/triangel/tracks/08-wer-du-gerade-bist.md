@@ -104,7 +104,7 @@ Stationsfenster oder Innenhof, Tag oder früher Abend. Zwei Personen schauen ein
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Never resolve to the tonic. Dark chanson, art song. Acoustic upright piano (single notes, sustained), light synth pad, sustained low strings, sub-bass underneath, sparse field recording. 76 BPM, slow.
+Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Never resolve to the tonic. Experimental art-pop, dark chanson. Acoustic upright piano (single notes, sustained), sustained synth pad drone-ground throughout, sustained low strings, sub-bass underneath throughout, modular electroacoustic ambient layer, field recording (breath-room, distant). 76 BPM, slow.
 ```
 
 ### Exclude Styles
@@ -154,6 +154,7 @@ das ist — das ist neu —
 und das hält
 
 [Outro]
+[ambivalent lead continues, Wir-Stimme polyphonic enters: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 ich sehe dich
 (ich sehe dich)
 und du siehst mich

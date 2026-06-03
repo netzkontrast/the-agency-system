@@ -101,7 +101,7 @@ Klinik-Korridor, weiter weg vom Eingang als Track 1. Sprecher steht und denkt zu
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Mid-baritone, weary, present-tense, slightly under-articulated, dry close-mic, no reverb. Trailing sentences that don't punctuate. Not resolving the trailing lines, not sounding certain. Dark chanson, art song. Acoustic upright piano (single notes, slightly sustained), expanded field recording (wind, distant voices, far footsteps), sub-rhythmic counting tic. 76 BPM, slow, longer rests between phrases.
+Mid-baritone, weary, present-tense, slightly under-articulated, dry close-mic, no reverb. Trailing sentences that don't punctuate. Not resolving the trailing lines, not sounding certain. Experimental art-pop, dark chanson. Acoustic upright piano (single notes, sustained held trailing notes), sustained synth pad drone-ground throughout, expanded field recording (wind, distant voices, far footsteps, room ambience), sub-bass underneath, modular electroacoustic ambient layer, sub-rhythmic counting tic carries. 76 BPM, slow, longer rests, voice forward over experimental ambient bed.
 ```
 
 ### Exclude Styles
@@ -148,13 +148,17 @@ auch das darf da sein
 [Bridge]
 ich weiß nicht wie wir aussehen
 ohne das alte Wissen
+[host continues, Wir-Stimme enters audibly: 1st-person plural, composition not fusion, individual voices remembered]
 ich weiß nicht
+(ich weiß nicht)
 ich weiß nicht muss
+(ich weiß nicht muss)
 nicht heute
 hörst du
 nicht heute
 
 [Outro]
+[host lead continues, Wir-Stimme enters audibly: 1st-person plural, audibly polyphonic, composition not fusion]
 sie ist da
 (sie ist da)
 sie ist da

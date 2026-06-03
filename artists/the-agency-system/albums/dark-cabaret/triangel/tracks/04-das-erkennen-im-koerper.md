@@ -104,7 +104,7 @@ Klinik-Bad oder Spiegelraum am Vormittag. Sprecher steht still, körperlich wach
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Low contralto, controlled, deliberate, restrained vibrato held as a weapon, mid-distance polished mic, cabaret styling. Confident performative lines that should land as seduction but read as warning. Performs its surface. Dark chanson, art song. Mid-range piano with light chord clusters, sparse mineral strings, subtle synth pad. 80 BPM.
+Low contralto, controlled, deliberate, restrained vibrato held as a weapon, mid-distance polished mic. Confident performative lines that should land as seduction but read as warning. Performs its surface. Experimental art-pop, dark chanson. Mid-range piano (light chord clusters), sustained synth pad layer throughout (drone-ground), sustained mineral strings (drone-passages), sub-bass underneath, modular electroacoustic textures, field recording layer (room ambience, breath-room). 80 BPM.
 ```
 
 ### Exclude Styles
@@ -155,6 +155,7 @@ dass er hier ist
 und dass er heute nicht entscheidet
 
 [Outro]
+[Low contralto continues alone — parenthesized lines are own quieter echo at same register, NOT Wir-Stimme entry (body speaks alone in this track)]
 er muss heute nichts tun
 (er muss heute nichts tun)
 er muss heute nichts tun

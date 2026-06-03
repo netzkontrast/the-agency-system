@@ -104,7 +104,7 @@ Stationszimmer, Abend. Sprecher steht oder sitzt — der Körper wird beobachtba
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Low contralto, controlled, restrained vibrato held as a weapon, mid-distance polished mic, cabaret styling. At Bridge and Outro: vulnerability surfaces, control loosens toward authentic power, vibrato becomes a carrier wave, breath deepens audibly, articulation softens. Dark chanson, art song. Mid-range piano (gentle held chords), sustained mineral strings, light synth pad, sub-bass entering at Bridge. 78 BPM, slow, breathing.
+Low contralto, controlled, restrained vibrato held as a weapon, mid-distance polished mic. At Bridge and Outro: vulnerability surfaces, control loosens toward authentic power, vibrato becomes a carrier wave, breath deepens audibly, articulation softens. Experimental art-pop, dark chanson. Mid-range piano (gentle held chords), sustained mineral strings, sustained synth pad as drone-ground throughout, modular electroacoustic textures rising at Bridge, sub-bass underneath throughout (intensifying at Bridge), field recording layer (breath-room, ambient room). 78 BPM, slow, breathing.
 ```
 
 ### Exclude Styles
@@ -144,18 +144,23 @@ ohne sie zu nehmen
 das ist neu
 
 [Bridge]
-[Low contralto, vulnerability surfaces, control loosens toward authentic power]
+[Low contralto S4: vulnerability surfaces, control loosens toward authentic power; plus Wir-Stimme polyphonic enters here as album-central event: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 mein Atem geht tiefer
+(mein Atem geht tiefer)
 mein Becken atmet mit
+(mein Becken atmet mit)
 meine Schultern sind unten
+(meine Schultern sind unten)
 und du sollst wissen
 ich bin gerade nicht hart
 ich bin gerade weich
 das ist hier
 das ist jetzt
 und das ist Wahrheit
+(und das ist Wahrheit)
 
 [Outro]
+[Low contralto S4 continues, Wir-Stimme polyphonic continues throughout: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 das ist Wahrheit
 (das ist Wahrheit)
 das ist Wahrheit

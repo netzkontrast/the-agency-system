@@ -101,7 +101,7 @@ Stationszimmer, Nacht. Sprecher liegt oder sitzt im Halbdunkel. Stimme hörbar v
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Never resolve to the tonic. Dark chanson, art song. Acoustic upright piano (single notes, sustained held trailing notes), sustained low strings, sub-bass underneath, subtle breath-room field recording. 76 BPM, slow.
+Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Never resolve to the tonic. Experimental art-pop, dark chanson. Acoustic upright piano (sustained held trailing notes), sustained synth pad drone-ground throughout, sustained low strings, sub-bass underneath throughout, modular electroacoustic ambient layer, field recording (breath-room, night-room ambience). 76 BPM, slow.
 ```
 
 ### Exclude Styles
@@ -151,11 +151,15 @@ ich war
 ich bin
 ich bleibe
 und du
+[ambivalent lead continues, Wir-Stimme enters audibly: 1st-person plural, composition not fusion, individual voices remembered]
 du musst das nicht reparieren
+(du musst das nicht reparieren)
 ich bin hier
+(ich bin hier)
 ohne Reparatur
 
 [Outro]
+[ambivalent lead continues, Wir-Stimme polyphonic: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 ich bin da
 (ich bin da)
 ich bin da

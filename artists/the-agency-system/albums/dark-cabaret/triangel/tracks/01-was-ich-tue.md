@@ -139,7 +139,7 @@ da ist. Keine Erklärung, kein Bild.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Mid-baritone, weary, present-tense, slightly under-articulated, dry close-mic, no reverb. Trailing sentences that don't punctuate. Not resolving the trailing lines, not sounding certain. Dark chanson, art song. Acoustic upright piano (single notes only), sparse field recording (distant heating click, gentle room ambience), sub-rhythmic counting tic in background. 76 BPM, slow.
+Mid-baritone, weary, present-tense, slightly under-articulated, dry close-mic, no reverb. Trailing sentences that don't punctuate. Not resolving the trailing lines, not sounding certain. Experimental art-pop, dark chanson. Acoustic upright piano (single notes), sustained low-register synth pad as drone-ground throughout, expanded field recording layer (distant heating click, gentle room ambience, breath-room), sub-rhythmic counting tic, sub-bass underneath, modular electroacoustic ambient textures rising in Outro. 76 BPM, slow, voice forward over rich experimental ambient bed.
 ```
 
 ### Exclude Styles
@@ -193,6 +193,7 @@ und für mich
 das ist es schon
 
 [Outro]
+[host lead continues, Wir-Stimme tröpfchen enters: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 das ist es schon
 (das ist es schon)
 das ist es schon
