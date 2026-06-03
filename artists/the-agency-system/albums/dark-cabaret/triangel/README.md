@@ -1,8 +1,8 @@
 ---
 title: "Triangel"
 release_date: ""
-genres: ["experimentell"]
-tags: ["concept-album", "cptsd", "did-system", "navigation", "the-agency-system", "mini-album"]
+genres: ["dark-cabaret", "chanson", "confessional-art-pop"]
+tags: ["concept-album", "cptsd", "did-system", "navigation", "the-agency-system", "mini-album", "audience-of-two", "ich-miriam-auseinandersetzung"]
 explicit: true
 streaming:
   soundcloud: ""
@@ -22,11 +22,11 @@ sheet_music:
 |-----------|--------|
 | **Artist** | the Agency System |
 | **Album** | Triangel |
-| **Genre** | experimentell (Phase 3 verfeinert Sub-Tags) |
+| **Genre** | dark-cabaret / chanson / confessional-art-pop (Phase 3 verfeinert Sub-Tags und Suno-Aesthetik) |
 | **Tracks** | 9 (Mini-Album) |
-| **Status** | Concept — Phase 2 (Cast + Struktur gelockt; T3 provisional; Research-Matrix wird auf 3×3 erweitert) |
+| **Status** | Concept — Phase 2 (Cast + Struktur + T3 gelockt; 3×3×3 Latin Cube + Stage/Gravity 4D-Achse gelockt; Research-Matrix nahezu vollständig) |
 | **Explicit** | Yes (klinisch-konfessional, körperlich) |
-| **Concept** | Navigations-EP für eine reale Affekt-Konstellation — Triangel-in-Triangel-in-Triangel als 3×3-Grid, Wir-Polyphon. *Soll das Ich-System UND Miriam beraten können.* |
+| **Concept** | 9-Track-Mini-EP als **Auseinandersetzung im Zwischen Ich/Miriam** — verteilt über 9 Zell-Konfigurationen, mit Partnerin als Gravity-Boden. Triangel-in-Triangel-in-Triangel als 3×3-Grid plus 3-Movement-pro-Song plus Stage/Gravity-Position. Wir-Polyphon. |
 
 ## Concept
 

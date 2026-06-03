@@ -1,37 +1,50 @@
 ---
 title: "Triangel — Konzept"
-version: "v1.2-draft"
+version: "v1.3-draft"
 status: "concept-development — review-loop active"
 artist: "the Agency System"
 album: "Triangel"
-genres: ["experimentell"]
+genres: ["dark-cabaret", "chanson", "confessional-art-pop"]
 tracks: 9
 explicit: true
 layer: "music"
 produced_date: "2026-06-03"
 review_target: "no critical or medium weaknesses surface"
 inner_movements_per_song: 3
-geometry: "3×3×3 Latin Cube (spherical closure)"
+geometry: "4D — 3×3 Cell-Grid × 3-Movement Latin Cube × Stage/Gravity Latin rotation"
+core_framing: "Auseinandersetzung im Zwischen Ich/Miriam, verteilt über 9 Zell-Konfigurationen"
+genre_inspiration_supplementary: "experimentell-archaeology bleibt als Suno-Engineering-Inspiration im Album"
 ---
 
-# Triangel — Konzept v1
+# Triangel — Konzept v1.3
 
-> *Ein 9-Track-Mini-Album als Navigations-Instrument für eine reale Affekt-
-> Konstellation. Nicht als Bewältigung. Als Beratung für zwei Menschen.*
+> *Ein 9-Track-Mini-Album als **Auseinandersetzung im Zwischen Ich/Miriam**,
+> verteilt über 9 Zell-Konfigurationen, mit der Partnerin als
+> Gravitations-Boden. Cabaret-Chanson-Tradition als Form-Heimat. Nicht
+> Bewältigung — Beratung für zwei.*
 
 ---
 
 ## 1. Synopsis (1 Absatz)
 
-**Triangel** ist ein experimentelles Mini-Album in 9 Tracks. Drei Triangeln
-greifen kreisförmig ineinander: T1 *Innen* (Kopf / Körper / Herz), T2 *Außen*
-(Du / Miriam / Partnerin), T3 *Akt* (Wahrnehmen / Anerkennen / Loslassen).
-Eine polyphone *Wir*-Stimme schillert je Schnittpunkt. Das Album navigiert
-eine konkrete klinisch-relationale Konstellation — neue Affekt-Begegnung im
-stationären Setting bei beidseitiger cPTBS+ADHS, parallel langjährige offene
-Primär-Beziehung mit einer durch die Erkrankung sekundär traumatisierten
-Partnerin. Endpunkt: *wagen, anders als früher*. Adressiert sind zwei: das
-Ich-System des Künstlers und Miriam. Die Partnerin ist Boden, nie Bühne.
+**Triangel** ist ein dark-cabaret / chanson / confessional-art-pop
+Mini-Album in 9 Tracks. **Die ganze EP ist eine Auseinandersetzung im
+Zwischen Ich-System ↔ Miriam.** Diese eine Auseinandersetzung wird in
+9 Zell-Konfigurationen zerlegt: drei Korpora (Kopf / Körper / Herz),
+drei Verortungen (Selbst-Adresse Du / Miriam-Adresse / Partnerin-
+Schwerkraft), drei Akte (Wahrnehmen / Anerkennen / Loslassen) — plus
+3 innere Movements pro Song (3×3×3 Latin Cube) plus Stage/Gravity-
+Position als vierte balancierte Achse. Eine polyphone *Wir*-Stimme
+schillert je Schnittpunkt. Konkrete reale Konstellation: neue
+Affekt-Begegnung im stationären Klinik-Setting bei beidseitiger
+cPTBS+ADHS, parallel langjährige offene Primär-Beziehung mit einer
+durch die Erkrankung sekundär traumatisierten Partnerin. Endpunkt:
+*wagen, anders als früher*. Audience-of-two: das Ich-System und
+Miriam. Die Partnerin ist Boden, nie Bühne. Cabaret-Chanson-
+Tradition (Dietrich, Lenya, Knef, Element of Crime, Scott Walker)
+als Form-Heimat; experimentelle Elemente (field recording, dynamic
+dry-wet, microtonal pitch-bending) als Inspirations-Vokabular für
+Suno-Engineering.
 
 ## 2. Kern-Thesis
 
@@ -86,18 +99,25 @@ Gegen genau diesen Pop arbeitet das Album.
 - **kein collapsed** → das Album ist *post*-Kollaps, nicht *im* Kollaps
 - **integrator + witness nur indirekt** → die Wir-Stimme übernimmt teilweise integrator's S4-Brückenfunktion ohne zu nennen; witness'sches Annotieren passiert nicht (würde EP meta-kommentieren statt bewohnen)
 
-### T2 — AUSSEN (die drei Adressat-Gravitationen)
+### T2 — AUSSEN (die drei Verortungen DERSELBEN Auseinandersetzung)
 
-Drei Adressat-Positionen. Wichtig: T2 markiert **Gravitations-Quelle des
-Tracks**, nicht zwingend die Sing-Adresse. Die Partnerin-Spalte ist
-*still* — die drei Partnerin-Tracks haben sie als Schwerkraft, aber sprechen
-nicht *zu* ihr direkt.
+**Wichtig — Framing-Präzisierung (v1.3):** T2 markiert NICHT drei
+separate Dialoge. Die EP ist DURCHGÄNGIG eine *Auseinandersetzung im
+Zwischen Ich-System ↔ Miriam* — T2 markiert WO innerhalb dieses
+Zwischen-Raums sich die jeweilige Zelle verortet. Alle 9 Zellen sind
+Konkretisierungen DERSELBEN Ich-Miriam-Spannung in unterschiedlichen
+Beziehungs-Konfigurationen.
 
-| Position | Funktion |
+| Position | Verortung in der Ich-Miriam-Auseinandersetzung |
 |---|---|
-| **Du** | Ich-System (das System spricht zu sich selbst — Auto-Adresse) |
-| **Miriam** | Code-Name für die Klinik-Begegnung (Sing-Adresse möglich) |
-| **Partnerin** | Boden des Ganzen (Schwerkraft, nie Sing-Adresse — die Worte gehen ZU ihr ohne sie zu rufen) |
+| **Du** | Auseinandersetzung in der *Selbst-Reflexion* — das System spricht zu sich SELBST darüber. Miriam ist implizit, gravitationsbild ist das Ich-System. |
+| **Miriam** | Auseinandersetzung in der *direkten Adresse* — das System spricht zu Miriam (oder die Stimme richtet sich an sie). Die Partnerin ist Boden. |
+| **Partnerin** | Auseinandersetzung in der *Schwerkraft-Triangulation* — das System spricht in *Anwesenheit* der Partnerin, ohne sie direkt zu adressieren. Sie ist Boden ALLER Tracks, aber hier explizit Gravitations-Schwerpunkt. |
+
+Die Partnerin-Spalte ist *still* — die drei Partnerin-Tracks haben sie
+als Schwerkraft, sprechen nicht *zu* ihr. Die Auseinandersetzung
+bleibt das Ich-Miriam-Zwischen; die Partnerin trägt es mit ihrer
+Anwesenheit, ohne im Text adressiert zu werden.
 
 ### T3 — AKT (die drei Stand-Modi) — GELOCKT
 
@@ -274,6 +294,107 @@ Suno-relevante Hinweise:
   tragen; Movement 1 und 3 dürfen leichter sein, evtl. teilweise von
   Wir-Stimme begleitet.
 
+### Vierte Dimension — *Stage / Gravity-Position* (v1.3 Erweiterung)
+
+Innerhalb der drei Movements jeder Zelle hat genau EIN Movement den
+Status **Gravity-not-Stage**: sein T3-Akt ist im Song GRAVITATIONAL
+präsent (als unausgesprochene Schwerkraft), wird aber NICHT direkt
+musikalisch-textlich enacted. Die anderen zwei Movements sind
+**Stage** — direkt enacted.
+
+Das schenkt jedem Song einen klaren Focus, indem es markiert wo das
+*Gesagte* aufhört und das *Getragene* beginnt. Die Gravity-Position
+rotiert über die 9 Zellen in einem eigenen Latin-Square (vierte
+balancierte Achse).
+
+#### Gravity-Position-Latin-Square (über die 9 Zellen)
+
+|  | **Du** | **Miriam** | **Partnerin** |
+|---|---|---|---|
+| **Kopf** | M1 | M2 | M3 |
+| **Körper** | M2 | M3 | M1 |
+| **Herz** | M3 | M1 | M2 |
+
+Jede T1-Zeile und jede T2-Spalte enthält M1, M2, M3 genau einmal. ✓
+
+#### Gravity-T3-Akt pro Zelle (Auflösung)
+
+Welcher T3-Akt steht in welcher Zelle als Gravity?
+
+| Cell | Movements (Pattern) | Gravity-Position | **Gravity-T3-Akt** |
+|---|---|---|---|
+| Kopf × Du | L → W → A | M1 | **L** (Loslassen als Schwerkraft) |
+| Kopf × Miriam | W → A → L | M2 | **A** (Anerkennen als Schwerkraft, ⇄ primary) |
+| Kopf × Partnerin | A → L → W | M3 | **W** (Wahrnehmen als Schwerkraft) |
+| Körper × Du | W → A → L | M2 | **A** (Anerkennen als Schwerkraft, ⇄ primary) |
+| Körper × Miriam | A → L → W | M3 | **W** (Wahrnehmen als Schwerkraft) |
+| Körper × Partnerin | L → W → A | M1 | **L** (Loslassen als Schwerkraft) |
+| Herz × Du | A → L → W | M3 | **W** (Wahrnehmen als Schwerkraft) |
+| Herz × Miriam | L → W → A | M1 | **L** (Loslassen als Schwerkraft) |
+| Herz × Partnerin | W → A → L | M2 | **A** (Anerkennen als Schwerkraft, ⇄ primary) |
+
+#### Diagonale of Self-Gravity (emergente 4-D Eigenschaft)
+
+In 3 der 9 Zellen fällt **Gravity-T3 = Primary-T3** zusammen:
+
+- **Kopf × Miriam** — *Anerkennen* ist sowohl primärer Akt als
+  auch Gravity. Die Mitte des Songs ist die Anerkennung der
+  Mischung — felt, nicht ausgesagt.
+- **Körper × Du** — *Anerkennen* (der eigenen Pop-Funktion) als
+  Gravity. Körperlich anerkannt, nicht verbal benannt.
+- **Herz × Partnerin** — *Anerkennen* der Partnerin als Gravity.
+  Das deepest "ich erkenne dich an" ist in der Mitte des
+  Endpunkt-Tracks FELT, nicht ausgesagt. *Wagen, anders als früher*
+  wird in der Gravity vollzogen, nicht auf der Stage.
+
+Diese drei *Self-Gravity*-Zellen bilden eine geometrische Diagonale
+(Kopf-Miriam, Körper-Du, Herz-Partnerin) — drei Zellen wo der
+Album-zentrale Akt (Anerkennen) durch alle drei Korpora wandert,
+jeweils in Gravity-Modus. Sie sind die *unsichtbaren Anker* des
+Albums.
+
+#### Was *Gravity-not-Stage* musikalisch heißt
+
+Für ein Movement im Gravity-Modus:
+
+- **Text:** keine direkte Enactment-Lyrik. Stattdessen Geste,
+  Beschreibung, Negativ-Raum, Vergangenheits-Form, indirekte Bilder.
+  Wenn überhaupt Worte: sehr sparsam, *de-fokussiert*.
+- **Stimme:** sub-vocal humming, breath-only-singing, Konsonanten
+  ohne Vokale, geflüsterte Subtone, oder ganz instrumentell. Die
+  Korpus-Lead-Voice ist eventuell ABWESEND in diesem Movement.
+- **Instrumentation:** kann field-recording-dominiert sein, oder
+  sustained synth-pad, oder leise Akustik (Klavier-Hall ohne
+  Anschlag).
+- **Tempo:** möglicherweise leicht verlangsamt, breathing-room.
+- **Reverb:** mehr Raum, weniger close-mic, mehr Atmosphäre.
+- **Mixing:** Wir-Schicht darf hier prominenter sein; die
+  Gravity-Movement ist oft DAS Wir-Eintritts-Fenster.
+
+Für ein Movement im Stage-Modus:
+
+- **Text:** direkt enactete Lyrik, das T3-Verb wird *getan*.
+- **Stimme:** Korpus-Lead-Voice voll, klar, direkt.
+- **Instrumentation:** definitiv, präsent.
+- **Reverb:** wie pro Korpus-Lead spezifiziert (host: keine;
+  rationalist: thin tail; etc.).
+
+#### Tesseract / 4-D Closure
+
+Das ist die vierte balancierte Achse — Stage/Gravity als
+Latin-quadrierte Verteilung über die 9 Zellen, plus die innere
+Gravity-Position als Latin-balanciert. Geometrisch:
+
+- 2D: T1 × T2 Latin-Square (§5)
+- 3D: + T3-Movements als kubische Erweiterung (§5.5 ursprünglich)
+- 4D: + Stage/Gravity-Position als vierte Latin-balancierte Achse
+
+Die *Ambivalenz mit Öffnung in 3 Dimensionen* (Spec) wird in 4
+Dimensionen vollendet: jeder Song hat seinen primären T3-Akt
+(2D-Identität), seinen Bewegungs-Arc (3D-Kreisbogen), und seinen
+Gravity-Punkt (4D-Anker). Die *Self-Gravity-Diagonale* ist die
+körperlich-spürbare 4-D-Linie durch das Album.
+
 ---
 
 ## 6. Cast & Voice (Detail)
@@ -360,6 +481,37 @@ Korpus-Row durchläuft alle 3 T2 *und* alle 3 T3 (Latin-Square-Garantie).
 T2-Partnerin landet jeweils am Ende der Row — Boden, auf dem die Row
 ruht. Letzter Track gesamt: Herz × Partnerin × Anerkennen — der
 Endpunkt *wagen, anders als früher* als Anerkennung der Verletzten.
+
+### 4D-Schnellübersicht (alle 9 Tracks)
+
+| # | Korpus × Adressat | Primary T3 | M1 → M2 → M3 (Pattern) | Gravity-Position | Self-Gravity? |
+|---|---|---|---|---|---|
+| 1 | Kopf × Du | W | L → **W** → A | M1 = L | nein |
+| 2 | Kopf × Miriam | A | W → **A** → L | M2 = A | **JA** ⇄ |
+| 3 | Kopf × Partnerin | L | A → **L** → W | M3 = W | nein |
+| 4 | Körper × Du | A | W → **A** → L | M2 = A | **JA** ⇄ |
+| 5 | Körper × Miriam | L | A → **L** → W | M3 = W | nein |
+| 6 | Körper × Partnerin | W | L → **W** → A | M1 = L | nein |
+| 7 | Herz × Du | L | A → **L** → W | M3 = W | nein |
+| 8 | Herz × Miriam | W | L → **W** → A | M1 = L | nein |
+| 9 | Herz × Partnerin | A | W → **A** → L | M2 = A | **JA** ⇄ |
+
+**Legende:** Movement in **fett** = Primary T3 (Latin-Square §5). "Self-Gravity" = Gravity-T3 = Primary-T3 (das Zentrum des Songs ist die unausgesprochene Schwerkraft selbst). Diese drei Zellen (Tracks 2, 4, 9) sind die *Self-Gravity-Diagonale* — körperliche Anker durchs Album. Track 9 (Endpunkt) liegt auf dieser Diagonale.
+
+### Movement-3 → Movement-1 Carry-Over (Strom-Verkettung zwischen Tracks)
+
+| Track-Übergang | M3 des Tracks → M1 des nächsten | Carry-Over-T3-Akt |
+|---|---|---|
+| 1 → 2 | A → W | Übergang Anerkennen-zu-Wahrnehmen |
+| 2 → 3 | L → A | Loslassen-zu-Anerkennen |
+| 3 → 4 | W → W | **Wahrnehmen → Wahrnehmen** (direkter Carry) |
+| 4 → 5 | L → A | Loslassen-zu-Anerkennen |
+| 5 → 6 | W → L | Wahrnehmen-zu-Loslassen |
+| 6 → 7 | A → A | **Anerkennen → Anerkennen** (direkter Carry) |
+| 7 → 8 | W → L | Wahrnehmen-zu-Loslassen |
+| 8 → 9 | A → W | Anerkennen-zu-Wahrnehmen |
+
+Zwei direkte Carries (W→W zwischen 3→4 und A→A zwischen 6→7) markieren die Korpus-Grenzen (Kopf→Körper und Körper→Herz) als *kontinuierliche* Übergänge, nicht harte Brüche. Diese T3-Carry-overs sind musikalisch zu materialisieren — geteilter Klang-Layer, gleicher Harmoniegrund, oder direktes Atem-Echo.
 
 ### Track 1 — Kopf × Du × Wahrnehmen
 **Arbeitstitel:** *"Was ich tue"*
@@ -585,9 +737,9 @@ Spannung erzeugt.
 |---|---|---|
 | Concept-Album-Architektur | `architecture/concept-album-architecture.md` | ✓ 3198 W |
 | Confessional-Art-Ethik | `ethics/confessional-art-ethics.md` | ✓ 3852 W |
-| Experimentell-Genre-Archäologie | `genre/experimentell-archaeology.md` | wird intern verfasst (Subagent-Filter) |
+| **Dark-Cabaret/Chanson-Genre-Archäologie** *(primary genre)* | `genre/cabaret-chanson-archaeology.md` | ✓ 4017 W |
+| Experimentell-Genre-Archäologie *(Suno-Engineering-Inspiration, supplementary)* | `genre/experimentell-archaeology.md` | ✓ in-session verfasst — Suno-Vokabular-Pool für textur/dry-wet/microtonal Elemente, eingebettet in cabaret-chanson Form-Heimat |
 | Craft-Atlas pro Korpus | `craft/{kopf,herz,koerper}-*.md` | ✓ je 1150-1255 W (initial) |
-| Dark-Cabaret-Archäologie (alt) | `genre/cabaret-chanson-archaeology.md` | ✓ 4017 W — als Referenz erhalten, nicht mehr Genre-Lead |
 
 **Strategie:** Die Clinical-Row bildet die wissenschaftliche Foundation,
 auf der Concept v1 steht. Die Emotional/Somatic-Unified-Overviews sind
@@ -598,32 +750,58 @@ ist die v1.1-Synthese bereits valide.
 
 ## 12. Sonic Direction (Phase-3-Stub, research-informed)
 
-*Vollständiger Lock erfolgt mit Experimentell-Genre-Archäologie (läuft).
-Bis dahin folgende research-validierte Grobrichtung:*
+**Genre-Identität (v1.3 lock):** **Dark-Cabaret / Chanson /
+Confessional-Art-Pop**. Form-Heimat: die zerrissene Kunst-Tradition von
+Marlene Dietrich, Lotte Lenya, Hildegard Knef im Cabaret-Strang;
+Brel/Brecht/Weill in der Chanson-Strömung; Scott Walker *Climate of
+Hunter* als dunklere baritone-Cabaret-Brücke; Element of Crime
+*Mittelpunkt der Welt* als deutsche Vor-Anker. Plus
+*confessional-art-pop* Schicht: Joni Mitchell *Blue*, Phoebe Bridgers
+*Punisher*, Adrianne Lenker *songs*, Mitski *Be the Cowboy*. Genre-
+Forschung primary: `research/genre/cabaret-chanson-archaeology.md`.
 
-**Genre-Identität:** experimentell mit Verankerung in konfessioneller
-Songform. Nicht Avantgarde-Geste, sondern bewohnbare experimentelle Form.
-Nähe zu: Anohni *Hopelessness*, Mount Eerie *A Crow Looked at Me*,
-FKA Twigs *Magdalene*, Anne Clark *The Sitting Room*, Element of Crime
-experimentell-leans.
+**Experimentelle Inspirations-Schicht (supplementary):** Field
+recording, dynamic dry-wet shift, microtonal pitch-bending, Wir-
+Polyphon-Layering als Suno-Engineering-Vokabular ziehen wir aus
+`research/genre/experimentell-archaeology.md` (Anohni *Hopelessness*,
+Mount Eerie *A Crow Looked at Me*, FKA Twigs *Magdalene* als
+Inspirations-Anker). NICHT als Genre-Identität, sondern als
+*Produktions-Werkzeug-Kasten* zur Verfeinerung der cabaret-chanson
+Form-Heimat.
 
-**Producings-Aesthetik (Vor-Annahme):**
-- Close-mic dominant — Intimität ohne Theater
-- Trockene Räume mit punktueller Reverb-Anwendung (host: keine; rationalist:
-  thin tail; sexualized_override: mid-distance plate; ambivalent: dynamic
-  dry-wet shift)
-- Field-Recordings als Wir-Vorboten (Atem, ferne Stimmen, Wind, Klinik-
-  Klangresiduen)
+**Producings-Aesthetik (lock-relevant, v1.3):**
+- Close-mic dominant — Cabaret-Intimität ohne Theater
+- Trockene Räume mit punktueller Reverb-Anwendung pro Sub-voice:
+  - host: keine
+  - rationalist: thin tail (Klavier-detuned-Boden, breaks at line-end)
+  - sexualized_override: mid-distance polished plate (Cabaret-Standard)
+  - ambivalent: dynamic dry-wet shift within phrase (experimentell-
+    Inspiration auf cabaret-base)
+- Field-Recordings als Wir-Vorboten (Atem, ferne Stimmen, Wind,
+  Klinik-Klangresiduen) — sparsamer Einsatz, nicht durchgängig
 - Detuned / rubber-band Klavier-Texturen für rationalist-Tracks
-- Subtone / interocept gesungene Texturen für ambivalent
-- Cabaret-Styling für sexualized_override OHNE Kitsch-Tendenzen
+  (Walker-Spur)
+- Subtone / interozept gesungene Texturen für ambivalent
+  (Antony-Spur)
+- Cabaret-styling für sexualized_override mit Knef-Patina als
+  Material — anti-kitsch durch *Verfremdung* (Brecht/Weill)
+- Mit Movements-Übergängen WIE in Cabaret-Tradition: durch tempo-
+  shift, key-change-Akzent, instrument-add — NICHT durch experimentell-
+  hartes Cut
+
+**Genre-Tag-Sequenz (für streaming):**
+Primary: `dark cabaret`
+Secondary: `chanson`, `confessional art pop`, `experimental cabaret`
+Tertiary (für discovery): `cptsd-art`, `concept album`,
+`audience-of-two`
 
 **Verboten:**
 - Gospel-Wir oder Chor-Wir (Wir muss *innere* Vielstimmigkeit bleiben)
-- Tonika-Auflösung außerhalb Track-9 Schluss-Note (und auch dort
-  ambivalent)
-- Direkte Studium-Reverb-Halls die theatralisieren
-- Cabaret-Pastiche
+- Tonika-Auflösung außerhalb Track-9 Schluss-Note (und auch dort ambig)
+- Direkte Studio-Reverb-Halls die theatralisieren
+- Cabaret-Pastiche (Liza-Minnelli-touristisch)
+- "Spotify-Cabaret" Generizität — Suno-Prompts müssen die Walker/
+  Knef/Lenya-Spur halten
 
 ## 13. Visual Direction (Phase-5-Stub)
 
@@ -653,6 +831,9 @@ oder in promotional materials.
 - T3-Lock auf *Anerkennen* ist research-getrieben, nicht stilistisch
 - Wir-Polyphon-Karte ist klar (nicht ornamental)
 - *v1.2 Erweiterung:* Spherical-Closure-Geometrie (§5.5) macht jeden Song zum 3-Bewegungs-Strom, schließt das 2D-Grid zur 3D-Latin-Kugel, schafft kontinuierlichen Übergang zwischen Tracks via Movement 3 → Movement 1 carry-over.
+- *v1.3 Erweiterung (Stage/Gravity):* Stage/Gravity-Latin (§5.5 Tesseract-Sektion) gibt jedem Song klaren Focus — eine 4. Latin-Achse über die 9 Zellen. Self-Gravity-Diagonale (3 Zellen: Kopf×Miriam, Körper×Du, Herz×Partnerin) bildet körperlichen Anker durchs Album.
+- *v1.3 Framing-Präzision:* Album ist *Auseinandersetzung im Zwischen Ich-System ↔ Miriam* in 9 Zell-Konfigurationen — nicht 3 separate Dialoge. Schärft die Fokus-Kontinuität.
+- *v1.3 Genre-Rollback:* Zurück zu **dark-cabaret / chanson / confessional-art-pop**. Experimentell-Archäologie bleibt als Suno-Engineering-Inspirations-Vokabular. Cabaret-chanson-archaeology (4017 W) ist Genre-Foundation.
 
 **Bekannte Schwächen / Risiko-Punkte:**
 
