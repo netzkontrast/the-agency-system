@@ -105,39 +105,39 @@ da ist. Keine Erklärung, kein Bild.
 
 ### Style Box
 
-*To be populated by `/bitwize-music:suno-engineer` — Hand-off targets:*
-- Genre: dark cabaret / experimental chanson / confessional art pop
-- Tempo: 76 BPM, slow
-- Vocal: close-mic mid-baritone, weary, dry, no reverb, audible breath
-- Instruments: solo upright piano (single notes, no chord clusters),
-  field recording layer, sub-rhythmic counting tic
-- Production: tape hiss permitted, no compression smoothing on
-  vocal micro-events
-- No chorus that closes (phrase-endings drop without resolution)
+*Copy this into Suno's "Style of Music" field:*
+
+```
+Male mid-baritone, weary, present-tense, slightly under-articulated, dry close-mic, no vibrato, audible breath onsets, trailing phrase endings that don't resolve. Dark chanson, art song. Acoustic upright piano (single notes only), sparse field recording (distant heating click, gentle room ambience), sub-rhythmic counting tic in background. 76 BPM, slow, restrained, voice forward, dark production, contemporary, dynamic range, tape hiss permitted, no tonic resolution.
+```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no chorus, no gospel choir, no
-autotune, no reverb tail, no synth pads, no soaring vocals
+no drums, no electric guitar, no autotune, no soaring vocals
 ```
 
 ### Lyrics Box
 
+*Copy this into Suno's "Lyrics" field:*
+
 ```
+[Intro]
+[male mid-baritone, weary, slightly under-articulated, dry close-mic, audible breath, no vibrato]
+
 [Verse 1]
 Ich muss — nein
-Ich muss nichts erklären
+ich muss nichts erklären
 nicht heute
-ich lasse die Antwort
-sie ist nicht meine Aufgabe
-sie war es lange
-sie ist es heute nicht
+ich brauche keine Antwort
+ich habe lange gebraucht
+heute nicht
+heute nicht
 
 [Verse 2]
-zweitausenddreihundertvier Fliesen
+zwei-TAU-send DREI-hun-dert VIER Fliesen
 weiß und hellgrau
-einundzwanzig Grad steht an der Wand
+einundzwanzig Grad an der Wand
 vier Sekunden ein
 vier Sekunden aus
 das Schloss klickt zweimal
@@ -147,18 +147,23 @@ das ist meine Hand
 
 [Verse 3]
 durch das Fenster der Flur
-hinter dem Flur der Garten
-ich gehe nicht raus
+hinter dem Flur ein Garten
+ich gehe noch nicht raus
 ich stehe und ich zähle
 nicht um zu beweisen
 nur damit ich da bin
-das tue ich gerade
 das tue ich
+das ist es schon
 
 [Outro]
-das ist es
-das ist es
-das ist es
+[male mid-baritone continues, plus close-harmony second voice doubling lead at second or fourth interval, second voice lower in mix, inner multiplicity not background choir]
+das ist es schon
+(das ist es schon)
+das ist es schon
+(das ist es schon)
+das ist es schon
+
+[End]
 ```
 
 ## Streaming Lyrics
@@ -167,14 +172,14 @@ das ist es
 Ich muss nein
 Ich muss nichts erklären
 Nicht heute
-Ich lasse die Antwort
-Sie ist nicht meine Aufgabe
-Sie war es lange
-Sie ist es heute nicht
+Ich brauche keine Antwort
+Ich habe lange gebraucht
+Heute nicht
+Heute nicht
 
 Zweitausenddreihundertvier Fliesen
 Weiß und hellgrau
-Einundzwanzig Grad steht an der Wand
+Einundzwanzig Grad an der Wand
 Vier Sekunden ein
 Vier Sekunden aus
 Das Schloss klickt zweimal
@@ -183,17 +188,17 @@ Meine Hand ist darauf
 Das ist meine Hand
 
 Durch das Fenster der Flur
-Hinter dem Flur der Garten
-Ich gehe nicht raus
+Hinter dem Flur ein Garten
+Ich gehe noch nicht raus
 Ich stehe und ich zähle
 Nicht um zu beweisen
 Nur damit ich da bin
-Das tue ich gerade
 Das tue ich
+Das ist es schon
 
-Das ist es
-Das ist es
-Das ist es
+Das ist es schon
+Das ist es schon
+Das ist es schon
 ```
 
 ## Production Notes
