@@ -81,10 +81,11 @@ overdubbing, NICHT als separater "Background-Chor".
 
 ## Mood & Imagery
 
-Klinik-Korridor, früh, nach dem ersten Atem-Aufwachen. Weißgraue
-Bodenfliesen. Heizkörper klickt im Hintergrund. Geländer kalt. Hand
-auf Geländer. Fenster zum Innenhof — dahinter ein Garten den der
-Sprecher nicht betritt.
+Klinik-Korridor, früh, nach dem ersten Atem-Aufwachen. Acht Schritte
+bis zur Tür. Zwei Lampen über dem Sprecher. Wand mit
+Temperatur-Anzeige (21°C). Heizkörper klickt im Hintergrund.
+Geländer kalt. Hand auf Geländer. Fenster zum Innenhof — dahinter
+ein Garten den der Sprecher nicht betritt.
 
 **Kein Pathos.** Mount-Eerie-Direktheit: das ist da, ich sage was
 da ist. Keine Erklärung, kein Bild.
@@ -135,8 +136,8 @@ heute nicht
 heute nicht
 
 [Verse 2]
-zwei-TAU-send DREI-hun-dert VIER Fliesen
-weiß und hellgrau
+acht Schritte bis zur Tür
+zwei Lampen über mir
 einundzwanzig Grad an der Wand
 vier Sekunden ein
 vier Sekunden aus
@@ -177,8 +178,8 @@ Ich habe lange gebraucht
 Heute nicht
 Heute nicht
 
-Zweitausenddreihundertvier Fliesen
-Weiß und hellgrau
+Acht Schritte bis zur Tür
+Zwei Lampen über mir
 Einundzwanzig Grad an der Wand
 Vier Sekunden ein
 Vier Sekunden aus
@@ -226,11 +227,7 @@ Das ist es schon
 
 | Word | Standard Spelling | Phonetic for Suno | Reason |
 |------|-------------------|-------------------|--------|
-| zweitausenddreihundertvier | zweitausenddreihundertvier | zwei-TAU-send DREI-hun-dert VIER | Lange deutsche Kompositum-Zahl; sicherstellen dass Suno als zusammenhängend gesungen wird, nicht aufgebrochen oder als Ziffern interpretiert |
-
-**Decision tracking:**
-- `zweitausenddreihundertvier`: User-Authority required if Suno
-  fehlrendert — vorgesehen als deutsche Kompositum-Zahl ausgesprochen.
+| einundzwanzig | einundzwanzig | EIN-und-TSVAN-tsig | Korrekte deutsche Akzentuierung |
 
 ## Phonetic Review Checklist
 
@@ -238,8 +235,8 @@ Das ist es schon
   tear, wind, etc.) — sind keine im Text
 - ✅ Keine erfundenen Kontraktionen (signal'd, TV'd, etc.) — keine
   vorhanden
-- ⚠️ `zweitausenddreihundertvier` — Pronunciation Notes flagging
-  applied; phonetic version eingetragen
+- ✅ Deutsche Zahlen geprüft; "einundzwanzig" und "vier Sekunden"
+  sind unkompliziert für deutsche Suno-Stimme
 
 ## Generation Log
 
