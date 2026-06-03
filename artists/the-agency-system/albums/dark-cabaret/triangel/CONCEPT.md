@@ -1,6 +1,6 @@
 ---
 title: "Triangel — Konzept"
-version: "v1.3-draft"
+version: "v1.4-final-draft"
 status: "concept-development — review-loop active"
 artist: "the Agency System"
 album: "Triangel"
@@ -11,7 +11,7 @@ layer: "music"
 produced_date: "2026-06-03"
 review_target: "no critical or medium weaknesses surface"
 inner_movements_per_song: 3
-geometry: "4D — 3×3 Cell-Grid × 3-Movement Latin Cube × Stage/Gravity Latin rotation"
+geometry: "3D — 3×3 Cell-Grid × 3-Movement Pattern (M1 Stage-Pred / M2 Primary Stage / M3 Boden-Successor)"
 core_framing: "Auseinandersetzung im Zwischen Ich/Miriam, verteilt über 9 Zell-Konfigurationen"
 genre_inspiration_supplementary: "experimentell-archaeology bleibt als Suno-Engineering-Inspiration im Album"
 ---
@@ -294,106 +294,81 @@ Suno-relevante Hinweise:
   tragen; Movement 1 und 3 dürfen leichter sein, evtl. teilweise von
   Wir-Stimme begleitet.
 
-### Vierte Dimension — *Stage / Gravity-Position* (v1.3 Erweiterung)
+### Boden statt Bühne — pro Song eines der 3 Movements (v1.3-Korrektur)
 
-Innerhalb der drei Movements jeder Zelle hat genau EIN Movement den
-Status **Gravity-not-Stage**: sein T3-Akt ist im Song GRAVITATIONAL
-präsent (als unausgesprochene Schwerkraft), wird aber NICHT direkt
-musikalisch-textlich enacted. Die anderen zwei Movements sind
-**Stage** — direkt enacted.
+**Regel (simpel — Korrektur des v1.3-Tesseract-Ansatzes):**
+Innerhalb jeder Zelle hat genau EIN Movement den Status **Boden**
+(Schwerkraft, nicht Bühne) — sein T3-Akt wird im Song gravitations-
+mäßig getragen, aber NICHT direkt enacted. Die anderen zwei
+Movements sind **Bühne** — der Primary-T3-Akt wird auf Bühne enacted,
+und ein weiterer T3-Akt wird sekundär auf Bühne gespielt. Boden ist
+NIE das Primary.
 
-Das schenkt jedem Song einen klaren Focus, indem es markiert wo das
-*Gesagte* aufhört und das *Getragene* beginnt. Die Gravity-Position
-rotiert über die 9 Zellen in einem eigenen Latin-Square (vierte
-balancierte Achse).
+**Welcher T3-Akt wird Boden?**
+Der **Successor-T3-Akt** im Zyklus `W → A → L → W` (= der T3-Akt
+*nach* dem Primary). Das ergibt eine balancierte Verteilung über
+die 9 Zellen — jeder T3-Akt erscheint genau 3-mal als Boden.
 
-#### Gravity-Position-Latin-Square (über die 9 Zellen)
+**Movement-Position des Bodens:**
+Der Boden ist immer **Movement 3 (M3)** — die schließende Position.
+Das Song-Pattern ist:
 
-|  | **Du** | **Miriam** | **Partnerin** |
-|---|---|---|---|
-| **Kopf** | M1 | M2 | M3 |
-| **Körper** | M2 | M3 | M1 |
-| **Herz** | M3 | M1 | M2 |
+- **M1 = Stage Secondary** = der Predecessor-T3-Akt (auf Bühne, sekundär)
+- **M2 = Primary Stage** = der Primary-T3-Akt (auf Bühne, dominant)
+- **M3 = Boden** = der Successor-T3-Akt (als Schwerkraft, nicht enacted)
 
-Jede T1-Zeile und jede T2-Spalte enthält M1, M2, M3 genau einmal. ✓
+#### Boden-Auflösung pro Zelle (9 Tracks)
 
-#### Gravity-T3-Akt pro Zelle (Auflösung)
+| # | Cell | Primary | M1 (Stage Pred.) | **M2 (Primary)** | M3 (Boden Succ.) |
+|---|---|---|---|---|---|
+| 1 | Kopf × Du | W | L | **W** | A (Anerkennen als Boden) |
+| 2 | Kopf × Miriam | A | W | **A** | L (Loslassen als Boden) |
+| 3 | Kopf × Partnerin | L | A | **L** | W (Wahrnehmen als Boden) |
+| 4 | Körper × Du | A | W | **A** | L (Loslassen als Boden) |
+| 5 | Körper × Miriam | L | A | **L** | W (Wahrnehmen als Boden) |
+| 6 | Körper × Partnerin | W | L | **W** | A (Anerkennen als Boden) |
+| 7 | Herz × Du | L | A | **L** | W (Wahrnehmen als Boden) |
+| 8 | Herz × Miriam | W | L | **W** | A (Anerkennen als Boden) |
+| 9 | Herz × Partnerin | A | W | **A** | L (Loslassen als Boden) |
 
-Welcher T3-Akt steht in welcher Zelle als Gravity?
+**Endpunkt-Bedeutung:** Track 9 schließt das Album mit **Loslassen
+als Boden** — *wagen, anders als früher* wird durch die Schwerkraft
+des Loslassens *getragen*, während Anerkennen primär auf Bühne enacted
+wird. Die letzte Note des Albums ist der Boden, nicht die Bühne.
 
-| Cell | Movements (Pattern) | Gravity-Position | **Gravity-T3-Akt** |
-|---|---|---|---|
-| Kopf × Du | L → W → A | M1 | **L** (Loslassen als Schwerkraft) |
-| Kopf × Miriam | W → A → L | M2 | **A** (Anerkennen als Schwerkraft, ⇄ primary) |
-| Kopf × Partnerin | A → L → W | M3 | **W** (Wahrnehmen als Schwerkraft) |
-| Körper × Du | W → A → L | M2 | **A** (Anerkennen als Schwerkraft, ⇄ primary) |
-| Körper × Miriam | A → L → W | M3 | **W** (Wahrnehmen als Schwerkraft) |
-| Körper × Partnerin | L → W → A | M1 | **L** (Loslassen als Schwerkraft) |
-| Herz × Du | A → L → W | M3 | **W** (Wahrnehmen als Schwerkraft) |
-| Herz × Miriam | L → W → A | M1 | **L** (Loslassen als Schwerkraft) |
-| Herz × Partnerin | W → A → L | M2 | **A** (Anerkennen als Schwerkraft, ⇄ primary) |
+#### Was *Boden* musikalisch heißt
 
-#### Diagonale of Self-Gravity (emergente 4-D Eigenschaft)
+Für ein Movement im Boden-Modus (M3 jedes Songs):
 
-In 3 der 9 Zellen fällt **Gravity-T3 = Primary-T3** zusammen:
-
-- **Kopf × Miriam** — *Anerkennen* ist sowohl primärer Akt als
-  auch Gravity. Die Mitte des Songs ist die Anerkennung der
-  Mischung — felt, nicht ausgesagt.
-- **Körper × Du** — *Anerkennen* (der eigenen Pop-Funktion) als
-  Gravity. Körperlich anerkannt, nicht verbal benannt.
-- **Herz × Partnerin** — *Anerkennen* der Partnerin als Gravity.
-  Das deepest "ich erkenne dich an" ist in der Mitte des
-  Endpunkt-Tracks FELT, nicht ausgesagt. *Wagen, anders als früher*
-  wird in der Gravity vollzogen, nicht auf der Stage.
-
-Diese drei *Self-Gravity*-Zellen bilden eine geometrische Diagonale
-(Kopf-Miriam, Körper-Du, Herz-Partnerin) — drei Zellen wo der
-Album-zentrale Akt (Anerkennen) durch alle drei Korpora wandert,
-jeweils in Gravity-Modus. Sie sind die *unsichtbaren Anker* des
-Albums.
-
-#### Was *Gravity-not-Stage* musikalisch heißt
-
-Für ein Movement im Gravity-Modus:
-
-- **Text:** keine direkte Enactment-Lyrik. Stattdessen Geste,
-  Beschreibung, Negativ-Raum, Vergangenheits-Form, indirekte Bilder.
-  Wenn überhaupt Worte: sehr sparsam, *de-fokussiert*.
+- **Text:** keine direkte Enactment-Lyrik des T3-Aktes. Stattdessen
+  Geste, Beschreibung, Negativ-Raum, Vergangenheits-Form, indirekte
+  Bilder. Wenn überhaupt Worte: sehr sparsam, *de-fokussiert*.
 - **Stimme:** sub-vocal humming, breath-only-singing, Konsonanten
   ohne Vokale, geflüsterte Subtone, oder ganz instrumentell. Die
-  Korpus-Lead-Voice ist eventuell ABWESEND in diesem Movement.
+  Korpus-Lead-Voice darf ABWESEND oder reduziert sein.
 - **Instrumentation:** kann field-recording-dominiert sein, oder
-  sustained synth-pad, oder leise Akustik (Klavier-Hall ohne
-  Anschlag).
+  sustained Layer, oder leise Akustik (Klavier-Hall ohne Anschlag).
 - **Tempo:** möglicherweise leicht verlangsamt, breathing-room.
 - **Reverb:** mehr Raum, weniger close-mic, mehr Atmosphäre.
-- **Mixing:** Wir-Schicht darf hier prominenter sein; die
-  Gravity-Movement ist oft DAS Wir-Eintritts-Fenster.
+- **Mixing:** Wir-Schicht darf hier prominenter sein; die Boden-
+  Movement ist oft DAS Wir-Eintritts-Fenster.
 
-Für ein Movement im Stage-Modus:
+Für ein Movement im Bühne-Modus (M1 + M2):
 
 - **Text:** direkt enactete Lyrik, das T3-Verb wird *getan*.
 - **Stimme:** Korpus-Lead-Voice voll, klar, direkt.
 - **Instrumentation:** definitiv, präsent.
-- **Reverb:** wie pro Korpus-Lead spezifiziert (host: keine;
-  rationalist: thin tail; etc.).
+- **Reverb:** wie pro Korpus-Lead spezifiziert.
 
-#### Tesseract / 4-D Closure
+#### Konsequenz: Movement-3 → Movement-1 Carry-Over neu gedacht
 
-Das ist die vierte balancierte Achse — Stage/Gravity als
-Latin-quadrierte Verteilung über die 9 Zellen, plus die innere
-Gravity-Position als Latin-balanciert. Geometrisch:
-
-- 2D: T1 × T2 Latin-Square (§5)
-- 3D: + T3-Movements als kubische Erweiterung (§5.5 ursprünglich)
-- 4D: + Stage/Gravity-Position als vierte Latin-balancierte Achse
-
-Die *Ambivalenz mit Öffnung in 3 Dimensionen* (Spec) wird in 4
-Dimensionen vollendet: jeder Song hat seinen primären T3-Akt
-(2D-Identität), seinen Bewegungs-Arc (3D-Kreisbogen), und seinen
-Gravity-Punkt (4D-Anker). Die *Self-Gravity-Diagonale* ist die
-körperlich-spürbare 4-D-Linie durch das Album.
+Da M3 immer Boden ist (Successor T3-Akt), und M1 des nächsten Songs
+immer Stage Secondary (Predecessor T3-Akt der nächsten Zelle), trägt
+der Übergang vom Boden eines Songs in die Stage des nächsten Songs
+einen *modalen* Wechsel: aus Schwerkraft wird Bühne, ohne dass der
+T3-Akt sich notwendigerweise ändert. Das ist eine andere
+Strom-Logik als das ursprüngliche Spherical-Closure-Modell — feiner,
+weniger geometrisch, intimer.
 
 ---
 
@@ -474,6 +449,72 @@ Wir tritt vorrangig an S4-Momenten ein. Die Forschung (HERZ: AEDP
 geteilte semiotische Welt) liefert das Vokabular. Die Wir-Stimme ist
 die akustische Markierung des S4-Übergangs.
 
+## 6.5 Lyric-Constraints — Hardcore Rule
+
+**Keine Metaphern in den Songtexten.** Klarheit, Emotion, Spüren.
+
+Was das heißt im Detail:
+
+| Erlaubt | Verboten |
+|---|---|
+| Direkte Beschreibung des Gespürten | Symbolische Substitution |
+| Konkrete Beobachtung von Räumen, Körpern, Atem, Gesten | Personifizierung von Konzepten |
+| Direkte Affekt-Nennung (Scham, Sehnsucht, Müdigkeit) | Vergleiche ("wie ein …", "wie wenn …") |
+| Negativ-Aussagen ("ich kann nicht …") | Bilder als Stellvertreter |
+| Vergangenheits-Form als Trauer-Markierung | Naturmetaphern für Beziehungs-Zustände |
+| Aufgaben-/Fakten-Lyrik ("ich gehe in die Stationsküche") | Substantivierte Abstrakta als Hauptaussagen |
+| Körper-Sensation, sinnlich, präzise | "Mein Herz ist …", "Die Liebe ist …" |
+
+**Vorbilder dieser Direktheit** (anti-metaphorisch, präzise):
+Mount Eerie *Real Death*; Adrianne Lenker *anything*; Mitski *Nobody*
+(analytische Direktheit); Phoebe Bridgers *Motion Sickness*
+(Detail-Konkretheit); Element of Crime *Delmenhorst* (deutsche
+literarisch-präzise Trailing-Form ohne Bildsprache).
+
+**Was diese Regel TUT:**
+- Erzwingt phänomenologische Genauigkeit statt poetischer Glättung
+- Hält das *Spüren* in der Lyrik (Damasio's *somatic markers* als
+  ausgesagte Wahrnehmung, nicht als Bild übersetzt)
+- Respektiert die Anti-Pathologisierungs-Haltung der Research:
+  was im Körper passiert wird *benannt*, nicht *verschoben*
+- Schützt vor Cabaret-Pastiche (die Cabaret-Tradition ist oft
+  metaphern-lastig — Triangel arbeitet in der Form, nicht im
+  ornamentalen Vokabular)
+- Audience-of-two: für Ich-System und Miriam ist Direktheit das
+  Beratungs-Werkzeug; Metaphern wären Verstellung
+
+**Anwendung pro Korpus:**
+
+- **host (weary baritone):** trailing direkt, Counting-Tic als
+  konkrete Zahl, Klinik-Detail-Aufzählung. Keine "Schwere" als Bild —
+  nur das, was sich gerade tut/nicht-tut.
+- **rationalist (cold tenor):** hypotaktische Konditional-Form mit
+  Fakten und Selbst-Beobachtungen, keine analogen Begriffe. *"Wenn
+  das Limerenz ist, dann …"* — nicht *"Es ist wie ein Sog"*.
+- **sexualized_override (low contralto):** Cabaret-styling im Sound,
+  aber Text direkt körperlich: *Haut, Atem, Geruch, Wärme, Spannung
+  im Beckenboden*. Keine *"Lust wie Feuer"*.
+- **ambivalent (alto):** em-dash-Syntax mit direkten Bewegungs-Verben
+  *näher / weg / halten / lassen / wollen / nicht-wollen*. Keine
+  *"meine Gefühle wie Wellen"*.
+- **Wir-Polyphon:** direkte Aussagen aus Mehrstimmigkeit. *"Wir
+  sehen das"*, nicht *"Wie ein Chor in uns"*.
+
+**Test im Lyric-Review:**
+Wenn eine Zeile sich mit *"wie"* oder *"als wäre"* fortsetzen ließe,
+ist sie metaphorisch verdächtig — neu schreiben. Wenn ein Substantiv
+für eine andere Wirklichkeit steht (*Garten* als Beziehung, *Sturm*
+als Affekt), ist es ein Bild — neu schreiben.
+
+**Eine Ausnahme** — Anker-Vokabular (siehe Energetik §10):
+*Atem, Hand, Stille, Resonanz, Garten, halten, tragen, Haut, Stoff,
+Wärme* dürfen verwendet werden, **wenn sie konkret sind** — nicht
+als Stellvertreter für Abstraktes. *"Deine Hand auf dem Geländer"*
+ist konkret; *"Meine Hand reicht ins Leere"* (= als Bild für Verlust)
+ist Metapher.
+
+---
+
 ## 7. Tracklist (gelockt — Sequenzlogik: Latin-Square per Korpus-Row)
 
 Reihenfolge: 3 Kopf-Tracks → 3 Körper-Tracks → 3 Herz-Tracks. Jede
@@ -482,36 +523,47 @@ T2-Partnerin landet jeweils am Ende der Row — Boden, auf dem die Row
 ruht. Letzter Track gesamt: Herz × Partnerin × Anerkennen — der
 Endpunkt *wagen, anders als früher* als Anerkennung der Verletzten.
 
-### 4D-Schnellübersicht (alle 9 Tracks)
+### Schnellübersicht — alle 9 Tracks mit Movement-Modes
 
-| # | Korpus × Adressat | Primary T3 | M1 → M2 → M3 (Pattern) | Gravity-Position | Self-Gravity? |
+| # | Korpus × Adressat | Primary T3 | M1 *(Stage 2)* | **M2 *(Primary Stage)*** | M3 *(Boden)* |
 |---|---|---|---|---|---|
-| 1 | Kopf × Du | W | L → **W** → A | M1 = L | nein |
-| 2 | Kopf × Miriam | A | W → **A** → L | M2 = A | **JA** ⇄ |
-| 3 | Kopf × Partnerin | L | A → **L** → W | M3 = W | nein |
-| 4 | Körper × Du | A | W → **A** → L | M2 = A | **JA** ⇄ |
-| 5 | Körper × Miriam | L | A → **L** → W | M3 = W | nein |
-| 6 | Körper × Partnerin | W | L → **W** → A | M1 = L | nein |
-| 7 | Herz × Du | L | A → **L** → W | M3 = W | nein |
-| 8 | Herz × Miriam | W | L → **W** → A | M1 = L | nein |
-| 9 | Herz × Partnerin | A | W → **A** → L | M2 = A | **JA** ⇄ |
+| 1 | Kopf × Du | W | L (stage) | **W (primary stage)** | A (Boden) |
+| 2 | Kopf × Miriam | A | W (stage) | **A (primary stage)** | L (Boden) |
+| 3 | Kopf × Partnerin | L | A (stage) | **L (primary stage)** | W (Boden) |
+| 4 | Körper × Du | A | W (stage) | **A (primary stage)** | L (Boden) |
+| 5 | Körper × Miriam | L | A (stage) | **L (primary stage)** | W (Boden) |
+| 6 | Körper × Partnerin | W | L (stage) | **W (primary stage)** | A (Boden) |
+| 7 | Herz × Du | L | A (stage) | **L (primary stage)** | W (Boden) |
+| 8 | Herz × Miriam | W | L (stage) | **W (primary stage)** | A (Boden) |
+| 9 | Herz × Partnerin | A | W (stage) | **A (primary stage)** | L (Boden) |
 
-**Legende:** Movement in **fett** = Primary T3 (Latin-Square §5). "Self-Gravity" = Gravity-T3 = Primary-T3 (das Zentrum des Songs ist die unausgesprochene Schwerkraft selbst). Diese drei Zellen (Tracks 2, 4, 9) sind die *Self-Gravity-Diagonale* — körperliche Anker durchs Album. Track 9 (Endpunkt) liegt auf dieser Diagonale.
+**Legende:** Primary T3 (aus §5 Latin-Square) ist immer Movement 2.
+M1 = Predecessor-T3 auf Bühne. M3 = Successor-T3 als Boden
+(gravitations-getragen, nicht direkt enacted).
+**Endpunkt:** Track 9 schließt mit L als Boden — *wagen, anders als
+früher* wird durch die Schwerkraft des Loslassens getragen.
 
-### Movement-3 → Movement-1 Carry-Over (Strom-Verkettung zwischen Tracks)
+### Movement-3 (Boden) → Movement-1 (Stage) Übergänge zwischen Tracks
 
-| Track-Übergang | M3 des Tracks → M1 des nächsten | Carry-Over-T3-Akt |
+| Track-Übergang | M3 Boden → M1 Stage | Modaler Wechsel |
 |---|---|---|
-| 1 → 2 | A → W | Übergang Anerkennen-zu-Wahrnehmen |
-| 2 → 3 | L → A | Loslassen-zu-Anerkennen |
-| 3 → 4 | W → W | **Wahrnehmen → Wahrnehmen** (direkter Carry) |
-| 4 → 5 | L → A | Loslassen-zu-Anerkennen |
-| 5 → 6 | W → L | Wahrnehmen-zu-Loslassen |
-| 6 → 7 | A → A | **Anerkennen → Anerkennen** (direkter Carry) |
-| 7 → 8 | W → L | Wahrnehmen-zu-Loslassen |
-| 8 → 9 | A → W | Anerkennen-zu-Wahrnehmen |
+| 1 → 2 | A (Boden) → W (Stage) | Boden-Anerkennen → Bühne-Wahrnehmen |
+| 2 → 3 | L (Boden) → A (Stage) | Boden-Loslassen → Bühne-Anerkennen |
+| 3 → 4 | W (Boden) → W (Stage) | **gleicher T3: Wahrnehmen wechselt von Boden zur Bühne** (Korpus-Grenze Kopf→Körper) |
+| 4 → 5 | L (Boden) → A (Stage) | Boden-Loslassen → Bühne-Anerkennen |
+| 5 → 6 | W (Boden) → L (Stage) | Boden-Wahrnehmen → Bühne-Loslassen |
+| 6 → 7 | A (Boden) → A (Stage) | **gleicher T3: Anerkennen wechselt von Boden zur Bühne** (Korpus-Grenze Körper→Herz) |
+| 7 → 8 | W (Boden) → L (Stage) | Boden-Wahrnehmen → Bühne-Loslassen |
+| 8 → 9 | A (Boden) → W (Stage) | Boden-Anerkennen → Bühne-Wahrnehmen |
 
-Zwei direkte Carries (W→W zwischen 3→4 und A→A zwischen 6→7) markieren die Korpus-Grenzen (Kopf→Körper und Körper→Herz) als *kontinuierliche* Übergänge, nicht harte Brüche. Diese T3-Carry-overs sind musikalisch zu materialisieren — geteilter Klang-Layer, gleicher Harmoniegrund, oder direktes Atem-Echo.
+Die zwei **modal-stabilen** Übergänge (3→4 W→W; 6→7 A→A) liegen
+genau an den Korpus-Grenzen. Hier wechselt der T3-Akt NICHT — er
+wechselt nur seinen *Modus* (von Boden zu Bühne). Das macht die
+Korpus-Grenzen **kontinuierlich** statt hart: derselbe T3-Akt, der
+am Ende eines Korpus als Schwerkraft trug, wird am Anfang des
+nächsten Korpus auf der Bühne enacted. Musikalisch ist das durch
+direkten Atem-Echo, geteilten Klang-Layer, oder gleichen
+Harmoniegrund zu materialisieren.
 
 ### Track 1 — Kopf × Du × Wahrnehmen
 **Arbeitstitel:** *"Was ich tue"*
@@ -719,8 +771,8 @@ als Querschnitts-Synthese.
 | Lens ⇣ \\ Corpus ➡ | **Kopf** *(cognitive)* | **Herz** *(relational)* | **Körper** *(somatic)* | Row-Overview |
 |---|---|---|---|---|
 | **Clinical** *(Kopf-style lens — diagnostisch-taxonomisch, peer-reviewed)* | ✓ `clinical/kopf-cognitive.md` (4276 W) | ✓ `clinical/herz-relational.md` (4605 W) | ✓ `clinical/koerper-somatic.md` (5692 W) | — |
-| **Emotional** *(Herz-style lens — phänomenologisch-affektiv, Damasio/Ahmed/Berlant/Fosha)* | (deepening läuft) `emotional/kopf-cognitive.md` | (deepening läuft) `emotional/herz-relational.md` | (deepening läuft) `emotional/koerper-somatic.md` | ✓ `emotional/lens-emotional.md` (5183 W) |
-| **Somatic** *(Körper-style lens — leiblich-physiologisch, Porges/BMC/Levine/Ogden, Suno-relevant)* | (deepening läuft) `somatic/kopf-cognitive.md` | (deepening läuft) `somatic/herz-relational.md` | (deepening läuft) `somatic/koerper-somatic.md` | ✓ `somatic/lens-somatic.md` (6078 W) |
+| **Emotional** *(Herz-style lens — phänomenologisch-affektiv, Damasio/Ahmed/Berlant/Fosha)* | ✓ `emotional/kopf-cognitive.md` (2823 W) | ✓ `emotional/herz-relational.md` (4118 W) | ✓ `emotional/koerper-somatic.md` (4095 W) | ✓ `emotional/lens-emotional.md` (5183 W) |
+| **Somatic** *(Körper-style lens — leiblich-physiologisch, Porges/BMC/Levine/Ogden, Suno-relevant)* | ✓ `somatic/kopf-cognitive.md` (3140 W) | ✓ `somatic/herz-relational.md` (4011 W) | ✓ `somatic/koerper-somatic.md` (2924 W) | ✓ `somatic/lens-somatic.md` (6078 W) |
 
 **Isomorphie-Logik:** Jede Lens entspricht stilistisch einem Korpus —
 *Clinical* arbeitet wie der KOPF (analytisch, taxonomisch); *Emotional*
@@ -803,22 +855,53 @@ Tertiary (für discovery): `cptsd-art`, `concept album`,
 - "Spotify-Cabaret" Generizität — Suno-Prompts müssen die Walker/
   Knef/Lenya-Spur halten
 
-## 13. Visual Direction (Phase-5-Stub)
+## 13. Visual Direction
 
-Lock später (Phase 5). Vor-Annahme aus Visual Grammar pro Korpus
-(Entity-Profile):
+Aus den Visual-Grammar-Profilen der vier Lead-Stimmen plus Wir-Layer.
+`name_exposure: role-only` — keine Alter-Namen im Cover oder in
+promotional materials.
 
-- **Kopf:** Extra-hard graphite + Algorithmic Cyan/Slate Gray + isometric
-  observation-dome perspective (host + rationalist)
-- **Körper:** High-gloss black India ink + Toxic Orchid + scalpel-curves
-  unter Spannung (sexualized_override)
-- **Herz:** Garish gel pens (Phase-Shift Magenta + Glitch Green) + ruler
-  for grid + doubled contours never aligned (ambivalent)
-- **Wir (Cover-Direction):** triadische Überlagerung der drei Visual-
-  Sprachen, geometrisches Triangel-Motiv als Komposition
+**Korpus-Visualität (für Track-Cards / Booklet):**
 
-`name_exposure: role-only` gilt auch hier — keine Alter-Namen im Cover
-oder in promotional materials.
+| Korpus | Linie | Farbe | Komposition | Stress-Marker |
+|---|---|---|---|---|
+| Kopf — host | extra-hard graphite (6H–9H), Bristol, razor-sharp continuous vectors | Clinical White / Void Black, absolute Desaturation | strenge orthographische Symmetrie, "perfect windowless cube" | micro-breaks, edge jittering |
+| Kopf — rationalist | 0.05mm fineliners, blueprint paper, infinite grid overlays | Algorithmic Cyan + Slate Gray über icy watercolor | isometric observation-dome, 90°-Polygone | obsessives cross-hatching bis zur Illegibilität |
+| Körper — sexualized_override | high-gloss black India ink, sable brushes, scalpel | Toxic Orchid + Vantablack + Neon Crimson | scalpel-sharp cuts, latex/obsidian-Kurven, Frosch-Perspektive | rigid black chiaroscuro net |
+| Herz — ambivalent | garish gel pens (magenta, neon green), ruler for grid, finger-smudge ghost-trails | Phase-Shift Magenta + Glitch Green (simultaner Kontrast) | restless off-center, doppelte Konturen nie aligned, CRT-scanlines | stroboscopic streaks |
+
+**Cover-Konzept (Vorschlag):** triadische Überlagerung der drei
+T1-Visualitäten (Kopf-Graphit + Körper-Tinte + Herz-Gel) auf einem
+Triangel-Form-Grundriss. Drei Triangeln verschränkt (T1 × T2 × T3),
+in der Mitte das Album-Wort *Triangel* in einer der drei
+Schrift-Sprachen.
+
+**Triangel-Form als zentrales Motiv:** das Instrument selbst
+(geometrisches Triangel als Linien-Skizze in graphite), nicht
+ornamentalisiert. Konsistent mit der Lyric-Constraint *keine
+Metaphern* — das Triangel ist sichtbar, was es ist.
+
+**Per-Track-Cards (Phase-5-Output):** je Track eine eigene
+Karte, die die Korpus-Visualität der Lead-Stimme verwendet, mit
+einem T2-Adress-Anker (Du / Miriam / Partnerin) als Position auf
+der Karte, plus einer Markierung des Boden-T3-Aktes als
+Schatten-Element am unteren Rand.
+
+**Promo-Material (Phase 5):**
+- Vertikale 15-sec Track-Promo-Videos: nutzen Korpus-Visualität
+  als Hintergrund, Suno-Audio im Vordergrund.
+- Lyric-Cards: Direkt-Lyrik (keine Metaphern), nur die Stage-
+  Movements (M1 + M2), Boden bleibt visuell als Negativraum.
+- Streaming-Cover-Art: Triangel-Form + tonal Layer der drei
+  Korpora.
+
+**Verboten:**
+- Foto-realistische Personendarstellung (verletzt name_exposure
+  und audience-of-two)
+- Klinik-direkte Symbole (Schwester-Tracht, Pillenflasche,
+  Kreuz) — wäre kitschig-direkt, nicht Mount-Eerie-direkt
+- Romantik-Symbole (Herzen, Blumen) — verletzt Lyric-Constraint
+  visuell
 
 ## 14. Risks & Known Weaknesses (v1-Selbstreflexion)
 
@@ -831,7 +914,7 @@ oder in promotional materials.
 - T3-Lock auf *Anerkennen* ist research-getrieben, nicht stilistisch
 - Wir-Polyphon-Karte ist klar (nicht ornamental)
 - *v1.2 Erweiterung:* Spherical-Closure-Geometrie (§5.5) macht jeden Song zum 3-Bewegungs-Strom, schließt das 2D-Grid zur 3D-Latin-Kugel, schafft kontinuierlichen Übergang zwischen Tracks via Movement 3 → Movement 1 carry-over.
-- *v1.3 Erweiterung (Stage/Gravity):* Stage/Gravity-Latin (§5.5 Tesseract-Sektion) gibt jedem Song klaren Focus — eine 4. Latin-Achse über die 9 Zellen. Self-Gravity-Diagonale (3 Zellen: Kopf×Miriam, Körper×Du, Herz×Partnerin) bildet körperlichen Anker durchs Album.
+- *v1.3 Boden statt Bühne (Korrektur des ursprünglichen Tesseract):* Pro Song ist EIN Movement (immer M3) als **Boden** (Successor-T3-Akt, gravitations-getragen). Die anderen zwei Movements (M1 + M2) sind auf Bühne. Self-Gravity-Diagonale entfällt — Boden ist nie das Primary. Track 9 schließt mit **L als Boden** (Loslassen als getragene Schwerkraft des Albums-Endpunkts).
 - *v1.3 Framing-Präzision:* Album ist *Auseinandersetzung im Zwischen Ich-System ↔ Miriam* in 9 Zell-Konfigurationen — nicht 3 separate Dialoge. Schärft die Fokus-Kontinuität.
 - *v1.3 Genre-Rollback:* Zurück zu **dark-cabaret / chanson / confessional-art-pop**. Experimentell-Archäologie bleibt als Suno-Engineering-Inspirations-Vokabular. Cabaret-chanson-archaeology (4017 W) ist Genre-Foundation.
 
@@ -864,6 +947,25 @@ herausfordern, wird Concept v2 die Anpassung tragen.
 Archäologie. Dann Concept v2 mit Integration. Dann nochmaliger Self-
 Review-Pass. Iteration bis kein kritisches und kein medium Issue mehr
 surfaced.
+
+---
+
+## 16. Album-Conceptualizer Phasen-Status
+
+| Phase | Status |
+|---|---|
+| Phase 1 — Premise | ✓ Real-Konstellation + Briefing + Mini-Album-Skala |
+| Phase 2 — Cast + Struktur | ✓ Cast / T1 / T2 / T3 / 3-Movement Pattern mit Boden / Wir-Polyphon — alles gelockt; Research-Matrix 9/9 vollständig |
+| Phase 3 — Sonic Direction | ✓ Dark-Cabaret/Chanson/Confessional-Art-Pop Genre-Identität gelockt; Production-Aesthetik pro Korpus gelockt; Experimentell-Vokabular als Supplementary |
+| Phase 4 — Tracklist-Sequenz | ✓ 9 Tracks gelockt; Movement-Patterns + Boden + Carry-Overs definiert |
+| Phase 5 — Visual Direction | ✓ Per-Korpus Visualität + Cover-Konzept + Promo-Direktiven |
+| Phase 6 — Title-Lock + Practical | ✓ Titel "Triangel" gelockt; Lyric-Constraint *keine Metaphern* gelockt; Layer-Regel `name_exposure: role-only` gelockt; Explicit-Flag *yes* |
+| Phase 7 — Confirmation | ⏳ pending — *User-Konfirmation öffnet den Übergang zu Phase 3 lyric-writer-Workflow* |
+
+**Bereit für Phase 7 Confirmation.** Bei expliziter Konfirmation
+geht das Konzept in den lyric-writer-Workflow (Track 1 zuerst,
+Bewegungs-Pattern M1 → M2 (Stage) → M3 (Boden), Lyric-Constraint
+*keine Metaphern* aktiv).
 
 ---
 
