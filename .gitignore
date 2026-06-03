@@ -22,3 +22,6 @@ jules-plugin/tools/researcher/cache/*
 # Runtime ontology store — produced by tests and live tools; never committed.
 context/_store/ontology.db
 context/_store/*.db
+
+# Personal feedback transcripts — local only, never committed.
+artists/**/MIRIAM-FEEDBACK-*.md
