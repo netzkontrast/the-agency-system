@@ -98,7 +98,7 @@ Klinik-Aufenthaltsraum, Spätnachmittag. Zwei Patient*innen nahe, nicht zu nahe.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Low contralto, controlled, deliberate, restrained vibrato held as a weapon, mid-distance polished mic. Confident performative lines that should land as seduction but read as warning. Performs its surface. Experimental art-pop, dark chanson. Mid-range piano (sparse notes), sustained mineral strings (drone-passages), sustained synth pad throughout (drone-ground), modular electroacoustic ambient layer, sub-bass underneath, field recording (breath-room, distant). 80 BPM, restrained.
+Three voices in dialogue: low contralto controlled body voice (lead, mid-distance polished mic, restrained vibrato held as weapon, performative lines), mid-baritone weary host (dry close-mic, trailing sentences), alto microtonal heart voice (em-dash phrasing, sliding vibrato, dynamic dry-wet). At Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion. Experimental art-pop, dark chanson. Mid-range piano (sparse notes), sustained mineral strings drone-passages, sustained synth pad drone-ground, sub-bass underneath, modular electroacoustic ambient, field recording. 80 BPM, restrained.
 ```
 
 ### Exclude Styles
@@ -113,7 +113,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Low contralto, controlled, deliberate, restrained vibrato, mid-distance polished mic, cabaret styling]
+[Low contralto, controlled, deliberate, restrained vibrato held as weapon, mid-distance polished mic — body lead voice]
 
 [Verse 1]
 ich weiß was das ist
@@ -127,6 +127,14 @@ und ich will dich anschauen
 ohne zu nehmen
 
 [Verse 2]
+[Mid-baritone weary host enters, dry close-mic, no reverb]
+und der Kopf bleibt da
+er rennt nicht weg
+er hält mich
+er ist heute auch hier
+
+[Verse 3]
+[Low contralto body voice returns, controlled, restrained vibrato]
 ich tue es nicht
 ich nehme deine Hand nicht
 ich gehe nicht näher
@@ -138,17 +146,26 @@ ich tue es nicht heute
 und ich bin trotzdem ganz da
 ganz hier bei dir
 
+[Verse 4]
+[Alto with microtonal pitch-bending, sliding vibrato, em-dash phrasing — heart voice enters]
+und ich will — ich will —
+ich will dich — anschauen —
+nicht haben —
+das ist neu — das ist neu —
+
 [Bridge]
+[Low contralto body voice continues, plus Wir-Stimme enters audibly: 1st-person plural, audibly polyphonic, composition not fusion]
 das ist nicht Verzicht
 das ist nicht Strafe
 das ist eine andere Wahl
 heute eine andere
+(heute eine andere)
 und das ist neu für mich
 das ist mein erstes Mal
 es so zu tun
 
 [Outro]
-[Low contralto lead continues, Wir-Stimme enters audibly: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
+[All three voices polyphonic as Wir-Stimme — low contralto body plus mid-baritone host plus alto microtonal — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 du bist da
 (du bist da)
 du bist da
@@ -171,6 +188,11 @@ Ohne es zu tun
 Und ich will dich anschauen
 Ohne zu nehmen
 
+Und der Kopf bleibt da
+Er rennt nicht weg
+Er hält mich
+Er ist heute auch hier
+
 Ich tue es nicht
 Ich nehme deine Hand nicht
 Ich gehe nicht näher
@@ -181,6 +203,11 @@ Ich höre auf
 Ich tue es nicht heute
 Und ich bin trotzdem ganz da
 Ganz hier bei dir
+
+Und ich will ich will
+Ich will dich anschauen
+Nicht haben
+Das ist neu das ist neu
 
 Das ist nicht Verzicht
 Das ist nicht Strafe

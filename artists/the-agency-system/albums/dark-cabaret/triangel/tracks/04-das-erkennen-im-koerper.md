@@ -104,7 +104,7 @@ Klinik-Bad oder Spiegelraum am Vormittag. Sprecher steht still, körperlich wach
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Low contralto, controlled, deliberate, restrained vibrato held as a weapon, mid-distance polished mic. Confident performative lines that should land as seduction but read as warning. Performs its surface. Experimental art-pop, dark chanson. Mid-range piano (light chord clusters), sustained synth pad layer throughout (drone-ground), sustained mineral strings (drone-passages), sub-bass underneath, modular electroacoustic textures, field recording layer (room ambience, breath-room). 80 BPM.
+Three voices in dialogue: low contralto controlled body voice (lead, mid-distance polished mic, restrained vibrato held as weapon, performative lines that should land as seduction but read as warning), mid-baritone weary host (dry close-mic, no reverb, trailing sentences), alto microtonal heart voice (em-dash phrasing, sliding vibrato, dynamic dry-wet). At Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion. Experimental art-pop, dark chanson. Mid-range piano (light chord clusters), sustained synth pad drone-ground, sustained mineral strings, sub-bass underneath, modular electroacoustic textures, field recording. 80 BPM.
 ```
 
 ### Exclude Styles
@@ -119,7 +119,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Low contralto, controlled, deliberate, restrained vibrato, mid-distance polished mic, cabaret styling]
+[Low contralto, controlled, deliberate, restrained vibrato held as weapon, mid-distance polished mic — body lead voice]
 
 [Verse 1]
 hör zu — ich erkenne den Pop
@@ -128,10 +128,18 @@ an der Geschwindigkeit der Atmung
 an dem Bild das gleich folgt
 ich erkenne ihn früh
 ich erkenne ihn ohne Strafe
-und ich erschrecke nicht mehr so vor ihm
-das ist neu
 
 [Verse 2]
+[Mid-baritone weary host enters, dry close-mic, no reverb, trailing sentences]
+und der Kopf hört das
+zum ersten Mal so klar
+es ist nicht mehr Angst
+es ist Wissen
+
+[Verse 3]
+[Low contralto body voice returns, controlled, restrained vibrato]
+und ich erschrecke nicht mehr so vor ihm
+das ist neu
 es ist ein Anteil
 er hat eine Funktion
 er hat sie früh übernommen
@@ -144,7 +152,15 @@ ich war jung
 ich war allein
 das verstehe ich heute
 
+[Verse 4]
+[Alto with microtonal pitch-bending, sliding vibrato, em-dash phrasing — heart voice enters]
+und du — du hörst das —
+du hörst das mit mir —
+ich war — ich war —
+nicht mehr allein damit —
+
 [Bridge]
+[Low contralto body voice returns]
 ich nenne ihn beim Funktionsnamen
 nicht beim Pathologie-Namen
 ich danke ihm
@@ -155,7 +171,7 @@ dass er hier ist
 und dass er heute nicht entscheidet
 
 [Outro]
-[Low contralto continues alone — parenthesized lines are own quieter echo at same register, NOT Wir-Stimme entry (body speaks alone in this track)]
+[All three voices polyphonic as Wir-Stimme — low contralto body plus mid-baritone host plus alto microtonal — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 er muss heute nichts tun
 (er muss heute nichts tun)
 er muss heute nichts tun
@@ -174,9 +190,14 @@ An der Geschwindigkeit der Atmung
 An dem Bild das gleich folgt
 Ich erkenne ihn früh
 Ich erkenne ihn ohne Strafe
+
+Und der Kopf hört das
+Zum ersten Mal so klar
+Es ist nicht mehr Angst
+Es ist Wissen
+
 Und ich erschrecke nicht mehr so vor ihm
 Das ist neu
-
 Es ist ein Anteil
 Er hat eine Funktion
 Er hat sie früh übernommen
@@ -188,6 +209,11 @@ Die einmal die einzige war
 Ich war jung
 Ich war allein
 Das verstehe ich heute
+
+Und du du hörst das
+Du hörst das mit mir
+Ich war ich war
+Nicht mehr allein damit
 
 Ich nenne ihn beim Funktionsnamen
 Nicht beim Pathologie-Namen

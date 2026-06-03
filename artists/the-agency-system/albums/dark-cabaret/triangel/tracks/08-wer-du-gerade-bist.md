@@ -104,7 +104,7 @@ Stationsfenster oder Innenhof, Tag oder früher Abend. Zwei Personen schauen ein
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Never resolve to the tonic. Experimental art-pop, dark chanson. Acoustic upright piano (single notes, sustained), sustained synth pad drone-ground throughout, sustained low strings, sub-bass underneath throughout, modular electroacoustic ambient layer, field recording (breath-room, distant). 76 BPM, slow.
+Three voices in dialogue: alto microtonal heart voice (lead, sliding vibrato, dynamics oscillating within phrases, em-dash phrasing, mixed dry/wet, ambiguous tonic, self-correcting reach-and-retract), mid-baritone weary host (dry close-mic, no reverb, trailing sentences), low contralto controlled body voice (mid-distance polished mic, restrained vibrato). At Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith. Experimental art-pop, dark chanson. Acoustic upright piano (single notes, sustained), sustained synth pad drone-ground throughout, sustained low strings, sub-bass underneath, modular electroacoustic ambient layer, field recording. 76 BPM, slow.
 ```
 
 ### Exclude Styles
@@ -119,7 +119,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Alto, microtonal pitch-bending, em-dash phrasing, dynamics oscillating within phrases, ambiguous tonic]
+[Alto, microtonal pitch-bending, sliding vibrato, em-dash phrasing, dynamics oscillating within phrases, ambiguous tonic — heart lead voice]
 
 [Verse 1]
 ich lasse das was ich von dir erfinde
@@ -131,6 +131,21 @@ und —
 ich sehe was bleibt
 
 [Verse 2]
+[Mid-baritone weary host enters, dry close-mic, no reverb, trailing sentences]
+und der Kopf bleibt nüchtern
+ich sehe was da ist
+nicht was ich hoffe
+heute geht das
+
+[Verse 3]
+[Low contralto, controlled, restrained vibrato, mid-distance polished mic — body voice enters]
+und der Körper ist heute leise
+heute schaut er
+heute will er nicht haben
+er sieht dich auch
+
+[Verse 4]
+[Alto microtonal heart voice returns, em-dash phrasing]
 ich sehe dich
 nicht wie ich dich wollte
 nicht wie ich dich brauche
@@ -144,9 +159,11 @@ wie du gerade bist
 und das ist genug
 
 [Bridge]
+[Alto microtonal continues, plus Wir-Stimme enters audibly: 1st-person plural, composition not fusion, individual voices remembered]
 du musst nicht — die Antwort — sein
 und ich muss nicht — die Antwort — sein
 wir können —
+(wir können —)
 hier sein
 gemeinsam wahrnehmen
 gemeinsam alleine
@@ -154,7 +171,7 @@ das ist — das ist neu —
 und das hält
 
 [Outro]
-[ambivalent lead continues, Wir-Stimme polyphonic enters: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
+[All three voices polyphonic as Wir-Stimme — alto microtonal heart lead plus mid-baritone host plus low contralto — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 ich sehe dich
 (ich sehe dich)
 und du siehst mich
@@ -174,6 +191,16 @@ In der Begegnung
 Ich lasse die Idee von dir
 Und
 Ich sehe was bleibt
+
+Und der Kopf bleibt nüchtern
+Ich sehe was da ist
+Nicht was ich hoffe
+Heute geht das
+
+Und der Körper ist heute leise
+Heute schaut er
+Heute will er nicht haben
+Er sieht dich auch
 
 Ich sehe dich
 Nicht wie ich dich wollte

@@ -100,7 +100,7 @@ Klinik-Aufenthaltsraum oder leerer Flur, später Vormittag. Der Sprecher denkt l
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Clear tenor, sibilant precision, no vibrato, cold articulation, thin reverb tail. Hypotactic nested syntax with conditionals. Micro-cracks at line-ends — almost succeeds at its logic before something gives. A chorus that almost closes the proof and can't. Never raises. Experimental art-pop, dark chanson. Detuned upright piano (rubber-band quality), sustained synth pad drone throughout, modular electroacoustic textures intensifying at 5-Schichten passages, field recording layer (room ambience, breath-room), sub-bass underneath. 82 BPM.
+Three voices in dialogue: clear cold tenor rationalist (lead, sibilant precision, no vibrato, thin reverb tail, hypotactic syntax, micro-cracks at line-ends — chorus that almost closes the proof and can't), low contralto controlled body voice (mid-distance polished mic, restrained vibrato), alto microtonal heart voice (em-dash phrasing, sliding vibrato, dynamic dry-wet). At Bridge and Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion. Experimental art-pop, dark chanson. Detuned upright piano (rubber-band quality), sustained synth pad drone throughout, modular electroacoustic textures, field recording layer, sub-bass underneath. 82 BPM.
 ```
 
 ### Exclude Styles
@@ -115,7 +115,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Clear tenor, sibilant precision, no vibrato, cold articulation, thin reverb tail]
+[Clear tenor, sibilant precision, no vibrato, cold articulation, thin reverb tail — rationalist lead voice]
 
 [Verse 1]
 Sei zugestanden
@@ -126,9 +126,16 @@ ich sehe dich
 du siehst mich
 das was zwischen uns ist
 hat fünf Schichten
-und es tut gut sie zu sehen
 
 [Verse 2]
+[Low contralto, controlled, restrained vibrato, mid-distance polished mic — body voice enters]
+und ich spüre alle fünf
+im Körper
+sie sitzen verschieden
+keine täuscht mich
+
+[Verse 3]
+[Clear tenor rationalist returns, sibilant precision, no vibrato]
 es ist Limerenz
 und Hyperfokus
 und Übertragung
@@ -137,6 +144,18 @@ und echte Nähe
 fünf Schichten gleichzeitig
 keine ist die ganze
 keine ist falsch
+und es tut gut sie zu sehen
+
+[Verse 4]
+[Alto with microtonal pitch-bending, em-dash phrasing, sliding vibrato — heart voice enters]
+und ich — ich erkenne dich —
+ich erkenne dich an —
+das tut weh und das tut gut —
+gleichzeitig —
+gleichzeitig —
+
+[Verse 5]
+[Clear tenor rationalist returns]
 ich erkenne das an
 ich erkenne dich an
 ich erkenne mich an
@@ -145,19 +164,19 @@ und ich bin froh
 dass wir das können
 
 [Bridge]
+[Clear tenor continues, plus Wir-Stimme tröpfchen enters: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 wenn alle fünf zugleich wahr sind
 dann folgt —
 dann folgt nichts
 keine Lösung folgt aus Wahrheit
 es bleibt was es ist
-[Rationalist continues, Wir-Stimme tröpfchen enters: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 und wir auch
 (und wir auch)
 wir auch
 (wir auch)
 
 [Outro]
-[Rationalist lead continues, Wir-Stimme enters audibly: 1st-person plural, audibly polyphonic, composition not fusion]
+[All three voices polyphonic as Wir-Stimme — clear tenor rationalist plus low contralto plus alto microtonal — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 keine Lösung nötig
 (keine Lösung nötig)
 keine Lösung nötig
@@ -178,7 +197,11 @@ Ich sehe dich
 Du siehst mich
 Das was zwischen uns ist
 Hat fünf Schichten
-Und es tut gut sie zu sehen
+
+Und ich spüre alle fünf
+Im Körper
+Sie sitzen verschieden
+Keine täuscht mich
 
 Es ist Limerenz
 Und Hyperfokus
@@ -188,6 +211,14 @@ Und echte Nähe
 Fünf Schichten gleichzeitig
 Keine ist die ganze
 Keine ist falsch
+Und es tut gut sie zu sehen
+
+Und ich ich erkenne dich
+Ich erkenne dich an
+Das tut weh und das tut gut
+Gleichzeitig
+Gleichzeitig
+
 Ich erkenne das an
 Ich erkenne dich an
 Ich erkenne mich an

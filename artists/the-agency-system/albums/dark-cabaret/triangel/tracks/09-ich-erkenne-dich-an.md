@@ -120,7 +120,7 @@ Stationsfenster oder draußen — Sprecher und du gemeinsam. Die Partnerin ist n
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Near-tonic resolution permitted at the very end, even then ambiguously. Experimental art-pop, dark chanson. Acoustic upright piano (chord clusters at Bridge), sustained warm low strings, sustained synth pad drone-ground throughout (intensifying at Bridge), sub-bass underneath throughout, modular electroacoustic ambient textures rising into Bridge, field recording layer. 76 BPM, slow, slight ritardando into end.
+Three voices in dialogue: alto microtonal heart voice (lead, sliding vibrato, dynamics oscillating within phrases, em-dash phrasing, mixed dry/wet, ambiguous tonic, self-correcting reach-and-retract — near-tonic resolution permitted at the very end, even then ambiguously), mid-baritone weary host (dry close-mic, no reverb, trailing sentences), low contralto controlled body voice (mid-distance polished mic, restrained vibrato — softer than usual, toward S4). At Bridge and Outro: Wir-Stimme voll polyphonic as album-endpoint — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith. Experimental art-pop, dark chanson. Acoustic upright piano (chord clusters at Bridge), sustained warm low strings, sustained synth pad drone-ground throughout (intensifying at Bridge), sub-bass underneath throughout, modular electroacoustic ambient rising into Bridge, field recording. 76 BPM, slow, slight ritardando into end.
 ```
 
 ### Exclude Styles
@@ -135,7 +135,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Alto, microtonal pitch-bending, em-dash phrasing, dynamics oscillating within phrases, ambiguous tonic]
+[Alto, microtonal pitch-bending, sliding vibrato, em-dash phrasing, dynamics oscillating within phrases, ambiguous tonic — heart lead voice]
 
 [Verse 1]
 ich nehme sie wahr
@@ -151,6 +151,21 @@ dich sehend
 ich sehe sie ganz
 
 [Verse 2]
+[Mid-baritone weary host enters, dry close-mic, no reverb, trailing sentences]
+und der Kopf sagt es klar
+ich habe sie verletzt
+ich will sie nicht mehr verletzen
+ich kann das wählen
+
+[Verse 3]
+[Low contralto, controlled, restrained vibrato softer than usual toward S4, mid-distance polished mic — body voice enters]
+und der Körper bleibt
+der Körper geht nicht weg
+ich bin bei beiden
+auf verschiedene Weisen
+
+[Verse 4]
+[Alto microtonal heart voice returns, em-dash phrasing]
 ich erkenne sie an
 ich erkenne ihre Verletzung an
 ich erkenne ihr Recht an
@@ -164,7 +179,7 @@ ich verstehe was ich kann
 ich verstehe was ich nicht kann
 
 [Bridge]
-[Alto, the very end approaches — near-tonic permitted, even then ambiguously; plus Wir-Stimme polyphonic enters durchgängig ab hier as album-endpoint: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
+[Alto, the very end approaches — near-tonic permitted, even then ambiguously; plus Wir-Stimme voll polyphonic enters durchgängig ab hier as album-endpoint — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 ich wage etwas
 (ich wage etwas)
 anders als früher
@@ -185,7 +200,7 @@ das ist neu
 das ist neu für mich
 
 [Outro]
-[Alto continues, Wir-Stimme voll polyphonic — final album moment: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith — near-tonic permitted at very last note, even then ambiguously]
+[All three voices voll polyphonic as Wir-Stimme — alto microtonal heart lead with near-tonic ambig at very last note plus mid-baritone host plus low contralto S4 — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith — final album moment]
 das ist neu
 (das ist neu)
 das ist neu
@@ -211,6 +226,16 @@ Aus Krankheit
 Ich nehme sie ganz wahr
 Dich sehend
 Ich sehe sie ganz
+
+Und der Kopf sagt es klar
+Ich habe sie verletzt
+Ich will sie nicht mehr verletzen
+Ich kann das wählen
+
+Und der Körper bleibt
+Der Körper geht nicht weg
+Ich bin bei beiden
+Auf verschiedene Weisen
 
 Ich erkenne sie an
 Ich erkenne ihre Verletzung an

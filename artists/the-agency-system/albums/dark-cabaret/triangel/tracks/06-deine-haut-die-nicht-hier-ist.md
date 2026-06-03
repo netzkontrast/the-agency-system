@@ -104,7 +104,7 @@ Stationszimmer, Abend. Sprecher steht oder sitzt — der Körper wird beobachtba
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Low contralto, controlled, restrained vibrato held as a weapon, mid-distance polished mic. At Bridge and Outro: vulnerability surfaces, control loosens toward authentic power, vibrato becomes a carrier wave, breath deepens audibly, articulation softens. Experimental art-pop, dark chanson. Mid-range piano (gentle held chords), sustained mineral strings, sustained synth pad as drone-ground throughout, modular electroacoustic textures rising at Bridge, sub-bass underneath throughout (intensifying at Bridge), field recording layer (breath-room, ambient room). 78 BPM, slow, breathing.
+Three voices in dialogue: low contralto controlled body voice (lead, mid-distance polished mic, restrained vibrato held as weapon — at Bridge and Outro: vulnerability surfaces, control loosens toward authentic power, vibrato becomes carrier wave, breath deepens, articulation softens), mid-baritone weary host (dry close-mic, no reverb, trailing sentences), alto microtonal heart voice (em-dash phrasing, sliding vibrato, dynamic dry-wet). At Bridge and Outro: Wir-Stimme polyphonic album-central — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith. Experimental art-pop, dark chanson. Mid-range piano (gentle held chords), sustained mineral strings, sustained synth pad drone-ground, modular electroacoustic textures rising at Bridge, sub-bass underneath throughout (intensifying at Bridge), field recording layer. 78 BPM, slow, breathing.
 ```
 
 ### Exclude Styles
@@ -119,7 +119,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Low contralto, controlled, restrained vibrato, mid-distance polished mic, cabaret styling]
+[Low contralto, controlled, restrained vibrato held as weapon, mid-distance polished mic — body lead voice]
 
 [Verse 1]
 ich lasse die Maske heute
@@ -132,6 +132,15 @@ es kollabiert nicht
 es wird nur weicher
 
 [Verse 2]
+[Mid-baritone weary host enters, dry close-mic, no reverb]
+und der Kopf erkennt
+ich liebe sie noch
+auf eine andere Weise
+das ist wahr
+das ist heute wahr
+
+[Verse 3]
+[Low contralto body voice returns, controlled, restrained vibrato]
 ich nehme sie wahr
 ihren Körper der nicht hier ist
 die Wärme die sie war
@@ -143,8 +152,15 @@ und ich nehme sie wahr
 ohne sie zu nehmen
 das ist neu
 
+[Verse 4]
+[Alto with microtonal pitch-bending, sliding vibrato, em-dash phrasing — heart voice enters]
+und ich — ich halte das —
+ich halte beides — sie und dich —
+ich halte das — ohne zu zerreißen —
+das ist neu —
+
 [Bridge]
-[Low contralto S4: vulnerability surfaces, control loosens toward authentic power; plus Wir-Stimme polyphonic enters here as album-central event: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
+[Low contralto S4: vulnerability surfaces, control loosens toward authentic power, vibrato becomes carrier wave, breath deepens audibly, articulation softens; plus Wir-Stimme polyphonic enters here as album-central event — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 mein Atem geht tiefer
 (mein Atem geht tiefer)
 mein Becken atmet mit
@@ -160,7 +176,7 @@ und das ist Wahrheit
 (und das ist Wahrheit)
 
 [Outro]
-[Low contralto S4 continues, Wir-Stimme polyphonic continues throughout: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
+[All three voices polyphonic as Wir-Stimme album-central — low contralto S4 lead plus mid-baritone host plus alto microtonal — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 das ist Wahrheit
 (das ist Wahrheit)
 das ist Wahrheit
@@ -184,6 +200,12 @@ Was darunter ist
 Es kollabiert nicht
 Es wird nur weicher
 
+Und der Kopf erkennt
+Ich liebe sie noch
+Auf eine andere Weise
+Das ist wahr
+Das ist heute wahr
+
 Ich nehme sie wahr
 Ihren Körper der nicht hier ist
 Die Wärme die sie war
@@ -193,6 +215,11 @@ Sie ist da auch wenn sie nicht hier ist
 Sie ist da
 Und ich nehme sie wahr
 Ohne sie zu nehmen
+Das ist neu
+
+Und ich ich halte das
+Ich halte beides sie und dich
+Ich halte das ohne zu zerreißen
 Das ist neu
 
 Mein Atem geht tiefer

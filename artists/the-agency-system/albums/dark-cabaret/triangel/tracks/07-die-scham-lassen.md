@@ -101,7 +101,7 @@ Stationszimmer, Nacht. Sprecher liegt oder sitzt im Halbdunkel. Stimme hörbar v
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Alto with microtonal pitch-bending, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic. Self-correcting lines that reach and retract. The em-dash is the natural punctuation. Never resolve to the tonic. Experimental art-pop, dark chanson. Acoustic upright piano (sustained held trailing notes), sustained synth pad drone-ground throughout, sustained low strings, sub-bass underneath throughout, modular electroacoustic ambient layer, field recording (breath-room, night-room ambience). 76 BPM, slow.
+Three voices in dialogue: alto microtonal heart voice (lead, sliding vibrato, dynamics oscillating within phrases, em-dash phrasing, mixed dry/wet, ambiguous tonic, self-correcting reach-and-retract), mid-baritone weary host (dry close-mic, no reverb, trailing sentences), low contralto controlled body voice (mid-distance polished mic, restrained vibrato). At Bridge and Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered. Experimental art-pop, dark chanson. Acoustic upright piano (sustained held notes), sustained synth pad drone-ground throughout, sustained low strings, sub-bass underneath, modular electroacoustic ambient layer, field recording. 76 BPM, slow.
 ```
 
 ### Exclude Styles
@@ -116,7 +116,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Alto, microtonal pitch-bending, em-dash phrasing, dynamics oscillating within phrases, ambiguous tonic]
+[Alto, microtonal pitch-bending, sliding vibrato, em-dash phrasing, dynamics oscillating within phrases, ambiguous tonic — heart lead voice]
 
 [Verse 1]
 du hast es gesehen
@@ -131,6 +131,21 @@ für was ich bin
 für was ich war
 
 [Verse 2]
+[Mid-baritone weary host enters, dry close-mic, no reverb, trailing sentences]
+und der Kopf weiß
+Scham ist nicht Wahrheit
+Scham ist eine Geschichte
+die mir lange beigebracht wurde
+
+[Verse 3]
+[Low contralto, controlled, restrained vibrato, mid-distance polished mic — body voice enters]
+und der Körper trägt sie auch
+im Brustkorb
+im Hals
+heute darf der Körper aufatmen
+
+[Verse 4]
+[Alto microtonal heart voice returns, em-dash phrasing]
 ich lasse die Scham — nicht weg —
 nicht weg —
 aber ich lasse sie
@@ -144,6 +159,7 @@ ich lasse sie sein
 ohne sie zu sein
 
 [Bridge]
+[Alto microtonal continues, plus Wir-Stimme enters audibly: 1st-person plural, composition not fusion, individual voices remembered]
 ich bin nicht falsch
 ich war nie falsch
 ich war jung
@@ -151,7 +167,6 @@ ich war
 ich bin
 ich bleibe
 und du
-[ambivalent lead continues, Wir-Stimme enters audibly: 1st-person plural, composition not fusion, individual voices remembered]
 du musst das nicht reparieren
 (du musst das nicht reparieren)
 ich bin hier
@@ -159,7 +174,7 @@ ich bin hier
 ohne Reparatur
 
 [Outro]
-[ambivalent lead continues, Wir-Stimme polyphonic: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
+[All three voices polyphonic as Wir-Stimme — alto microtonal heart lead plus mid-baritone host plus low contralto — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
 ich bin da
 (ich bin da)
 ich bin da
@@ -182,6 +197,16 @@ Dass ich Scham hatte
 Dass ich Scham habe
 Für was ich bin
 Für was ich war
+
+Und der Kopf weiß
+Scham ist nicht Wahrheit
+Scham ist eine Geschichte
+Die mir lange beigebracht wurde
+
+Und der Körper trägt sie auch
+Im Brustkorb
+Im Hals
+Heute darf der Körper aufatmen
 
 Ich lasse die Scham nicht weg
 Nicht weg

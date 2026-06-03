@@ -139,7 +139,7 @@ da ist. Keine Erklärung, kein Bild.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Mid-baritone, weary, present-tense, slightly under-articulated, dry close-mic, no reverb. Trailing sentences that don't punctuate. Not resolving the trailing lines, not sounding certain. Experimental art-pop, dark chanson. Acoustic upright piano (single notes), sustained low-register synth pad as drone-ground throughout, expanded field recording layer (distant heating click, gentle room ambience, breath-room), sub-rhythmic counting tic, sub-bass underneath, modular electroacoustic ambient textures rising in Outro. 76 BPM, slow, voice forward over rich experimental ambient bed.
+Three voices in dialogue: mid-baritone weary host (lead, dry close-mic, no reverb, trailing sentences), low contralto controlled body voice (mid-distance polished mic, restrained vibrato), alto microtonal heart voice (em-dash phrasing, sliding vibrato, ambiguous tonic, dynamic dry-wet). At Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered. Experimental art-pop, dark chanson. Acoustic upright piano (single notes), sustained synth pad drone-ground, expanded field recording layer, sub-bass underneath, modular electroacoustic ambient. 76 BPM, slow, voice forward over rich ambient bed.
 ```
 
 ### Exclude Styles
@@ -154,19 +154,31 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb]
+[Mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb — host lead voice]
 
 [Verse 1]
 Ich muss — nein
 ich muss dir nichts erklären
 nicht heute
 ich brauche keine Antwort
+
+[Verse 2]
+[Low contralto, controlled, restrained vibrato, mid-distance polished mic — body voice enters]
+ich bin heute leise
+heute ohne Druck
+die Spannung steht nicht auf
+ich höre zu
+
+[Verse 3]
+[Mid-baritone weary host returns, dry close-mic, no reverb]
+ich höre dich
 ich habe lange gebraucht
 heute nicht
 ich bin müde
 und ich bin trotzdem hier
 
-[Verse 2]
+[Verse 4]
+[Mid-baritone weary host continues]
 hör zu
 acht Schritte bis zur Tür
 zwei Lampen über mir
@@ -177,10 +189,18 @@ das Schloss klickt zweimal
 das Geländer ist kalt
 meine Hand ist darauf
 das ist meine Hand
-ich denke an dich
-während ich zähle
 
-[Verse 3]
+[Verse 5]
+[Alto with microtonal pitch-bending, sliding vibrato, em-dash phrasing, mixed dry/wet — heart voice enters]
+und ich — ich denke an dich —
+ich denke — an dich —
+während er zählt —
+das ist neu —
+
+[Verse 6]
+[Mid-baritone weary host returns, dry close-mic, no reverb]
+ich höre euch
+ich höre euch beide
 durch das Fenster der Flur
 hinter dem Flur ein Garten
 ich gehe noch nicht raus
@@ -193,7 +213,7 @@ und für mich
 das ist es schon
 
 [Outro]
-[host lead continues, Wir-Stimme tröpfchen enters: 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered]
+[All three voices polyphonic as Wir-Stimme — mid-baritone weary host plus low contralto controlled plus alto microtonal — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
 das ist es schon
 (das ist es schon)
 das ist es schon
@@ -210,6 +230,13 @@ Ich muss nein
 Ich muss dir nichts erklären
 Nicht heute
 Ich brauche keine Antwort
+
+Ich bin heute leise
+Heute ohne Druck
+Die Spannung steht nicht auf
+Ich höre zu
+
+Ich höre dich
 Ich habe lange gebraucht
 Heute nicht
 Ich bin müde
@@ -225,9 +252,14 @@ Das Schloss klickt zweimal
 Das Geländer ist kalt
 Meine Hand ist darauf
 Das ist meine Hand
-Ich denke an dich
-Während ich zähle
 
+Und ich ich denke an dich
+Ich denke an dich
+Während er zählt
+Das ist neu
+
+Ich höre euch
+Ich höre euch beide
 Durch das Fenster der Flur
 Hinter dem Flur ein Garten
 Ich gehe noch nicht raus

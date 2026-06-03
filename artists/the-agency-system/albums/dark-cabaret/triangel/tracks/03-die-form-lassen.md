@@ -101,7 +101,7 @@ Klinik-Korridor, weiter weg vom Eingang als Track 1. Sprecher steht und denkt zu
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Mid-baritone, weary, present-tense, slightly under-articulated, dry close-mic, no reverb. Trailing sentences that don't punctuate. Not resolving the trailing lines, not sounding certain. Experimental art-pop, dark chanson. Acoustic upright piano (single notes, sustained held trailing notes), sustained synth pad drone-ground throughout, expanded field recording (wind, distant voices, far footsteps, room ambience), sub-bass underneath, modular electroacoustic ambient layer, sub-rhythmic counting tic carries. 76 BPM, slow, longer rests, voice forward over experimental ambient bed.
+Three voices in dialogue: mid-baritone weary host (lead, dry close-mic, no reverb, trailing sentences), low contralto controlled body voice (mid-distance polished mic, restrained vibrato), alto microtonal heart voice (em-dash phrasing, sliding vibrato, dynamic dry-wet). At Bridge and Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion. Experimental art-pop, dark chanson. Acoustic upright piano (sustained held trailing notes), sustained synth pad drone-ground throughout, expanded field recording (wind, distant voices, room ambience), sub-bass underneath, modular electroacoustic ambient. 76 BPM, slow, longer rests.
 ```
 
 ### Exclude Styles
@@ -116,7 +116,7 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb]
+[Mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb — host lead voice]
 
 [Verse 1]
 hör zu — sie hat
@@ -126,14 +126,32 @@ sie hat das Konto getragen
 sie hat die Frage gestellt
 ich erkenne das an
 es war so
-und es war schwer
-für sie und für mich
 
 [Verse 2]
+[Low contralto, controlled, restrained vibrato, mid-distance polished mic — body voice enters]
+und ihr Körper schläft heute woanders
+ihre Wärme war
+ich vermisse sie körperlich
+und ich darf das sagen
+
+[Verse 3]
+[Mid-baritone weary host returns, dry close-mic, no reverb]
+und es war schwer
+für sie und für mich
 wie wir abends saßen
 wie ich nach hause kam
 wie wir das letzte Wort gaben
 schon lange nicht mehr
+
+[Verse 4]
+[Alto with microtonal pitch-bending, sliding vibrato, em-dash phrasing — heart voice enters]
+ich vermisse uns — wie wir waren —
+ich vermisse — und — ich lasse —
+auch das darf da sein —
+auch das —
+
+[Verse 5]
+[Mid-baritone weary host returns]
 ich lasse die Annahmen
 die ich von uns hatte
 ich lasse die Sätze
@@ -141,14 +159,11 @@ die ich von uns wusste
 nicht sie
 nicht das was sie tut
 ich lasse das alte Wissen
-und ich vermisse uns
-wie wir waren
-auch das darf da sein
 
 [Bridge]
+[Mid-baritone host continues, plus Wir-Stimme enters audibly: 1st-person plural, composition not fusion, individual voices remembered]
 ich weiß nicht wie wir aussehen
 ohne das alte Wissen
-[host continues, Wir-Stimme enters audibly: 1st-person plural, composition not fusion, individual voices remembered]
 ich weiß nicht
 (ich weiß nicht)
 ich weiß nicht muss
@@ -158,7 +173,7 @@ hörst du
 nicht heute
 
 [Outro]
-[host lead continues, Wir-Stimme enters audibly: 1st-person plural, audibly polyphonic, composition not fusion]
+[All three voices polyphonic as Wir-Stimme — mid-baritone host plus low contralto plus alto microtonal — 1st-person plural, audibly polyphonic, composition not fusion]
 sie ist da
 (sie ist da)
 sie ist da
@@ -178,13 +193,24 @@ Sie hat das Konto getragen
 Sie hat die Frage gestellt
 Ich erkenne das an
 Es war so
+
+Und ihr Körper schläft heute woanders
+Ihre Wärme war
+Ich vermisse sie körperlich
+Und ich darf das sagen
+
 Und es war schwer
 Für sie und für mich
-
 Wie wir abends saßen
 Wie ich nach hause kam
 Wie wir das letzte Wort gaben
 Schon lange nicht mehr
+
+Ich vermisse uns wie wir waren
+Ich vermisse und ich lasse
+Auch das darf da sein
+Auch das
+
 Ich lasse die Annahmen
 Die ich von uns hatte
 Ich lasse die Sätze
@@ -192,9 +218,6 @@ Die ich von uns wusste
 Nicht sie
 Nicht das was sie tut
 Ich lasse das alte Wissen
-Und ich vermisse uns
-Wie wir waren
-Auch das darf da sein
 
 Ich weiß nicht wie wir aussehen
 Ohne das alte Wissen
