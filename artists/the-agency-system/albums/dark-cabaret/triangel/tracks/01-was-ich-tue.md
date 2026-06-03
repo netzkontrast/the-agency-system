@@ -63,6 +63,36 @@ Tröpfchen.
 beginnt, sich gemeinsam zu sehen. Close-harmony second voice
 overdubbing, NICHT als separater "Background-Chor".
 
+## Research Grounding
+
+Direkt aus den Per-Cell-Research-Reports verwendet:
+
+- **host Counting-Tic als somatischer Anker** (somatic/kopf-cognitive
+  §1; van der Kolk *autonomic anchors*, Janina Fisher
+  *ANP-stabilizing*): "acht Schritte / zwei Lampen / vier Sekunden ein /
+  vier Sekunden aus / das Schloss klickt zweimal" — Zählung als
+  Auto-Regulation, ohne Beweis-Funktion.
+- **Anteilsdenken statt Ausschluss-Diagnostik** (clinical/kopf-cognitive
+  Frame 1): "ich brauche keine Antwort / ich habe lange gebraucht /
+  heute nicht" — die Antwort wird nicht erzwungen, das Aushalten der
+  Unklarheit ist die Praxis.
+- **Window vor Willen** (clinical/koerper-somatic Frame 3): "ich gehe
+  noch nicht raus / nur damit ich da bin" — keine Verhaltens-Vorsätze
+  außerhalb des Window of Tolerance; *da sein* ohne *raus müssen*.
+- **Funktion vor Bewertung** (clinical/koerper-somatic Frame 1; Schwartz
+  *no bad parts*): "das tue ich / das ist es schon" — die Funktion
+  *gerade da sein* genügt, keine Bewertung.
+- **AEDP Sprache der Anerkennung** (clinical/herz-relational Frame V;
+  Fosha *recognition*): das Outro "das ist es schon" als gravitations-
+  getragene Anerkennung — Recognition als Akt, nicht als Diagnose.
+- **Weary trailing als Phänomenologie verschlossenen Wissens**
+  (emotional/kopf-cognitive §3; Bachmann *Malina*, Adorno
+  *Eingedenken*): host's "Ich muss — / ich muss dir nichts erklären"
+  — das Wissen wird im Trailing gehalten, nicht ausgesprochen.
+
+Forschungs-Lücken werden in Track 1 *nicht* überdeckt — die
+Konstellation wird benannt, nicht gelöst.
+
 ## Cross-References
 
 ### References TO This Track
@@ -127,16 +157,17 @@ no drums, no electric guitar, no autotune, no soaring vocals
 [Mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb]
 
 [Verse 1]
-Miriam —
+Ich muss — nein
 ich muss dir nichts erklären
 nicht heute
 ich brauche keine Antwort
 ich habe lange gebraucht
 heute nicht
-heute nicht
+ich bin müde
+und ich bin trotzdem hier
 
 [Verse 2]
-hör zu Miriam
+hör zu
 acht Schritte bis zur Tür
 zwei Lampen über mir
 einundzwanzig Grad an der Wand
@@ -146,6 +177,8 @@ das Schloss klickt zweimal
 das Geländer ist kalt
 meine Hand ist darauf
 das ist meine Hand
+ich denke an dich
+während ich zähle
 
 [Verse 3]
 durch das Fenster der Flur
@@ -156,6 +189,7 @@ nicht um zu beweisen
 nur damit ich da bin
 das tue ich
 für dich auch
+und für mich
 das ist es schon
 
 [Outro]
@@ -163,7 +197,7 @@ das ist es schon
 (das ist es schon)
 das ist es schon
 (das ist es schon)
-das ist es schon
+es ist gut
 
 [End]
 ```
@@ -171,15 +205,16 @@ das ist es schon
 ## Streaming Lyrics
 
 ```
-Miriam
+Ich muss nein
 Ich muss dir nichts erklären
 Nicht heute
 Ich brauche keine Antwort
 Ich habe lange gebraucht
 Heute nicht
-Heute nicht
+Ich bin müde
+Und ich bin trotzdem hier
 
-Hör zu Miriam
+Hör zu
 Acht Schritte bis zur Tür
 Zwei Lampen über mir
 Einundzwanzig Grad an der Wand
@@ -189,6 +224,8 @@ Das Schloss klickt zweimal
 Das Geländer ist kalt
 Meine Hand ist darauf
 Das ist meine Hand
+Ich denke an dich
+Während ich zähle
 
 Durch das Fenster der Flur
 Hinter dem Flur ein Garten
@@ -198,11 +235,13 @@ Nicht um zu beweisen
 Nur damit ich da bin
 Das tue ich
 Für dich auch
+Und für mich
 Das ist es schon
 
 Das ist es schon
 Das ist es schon
 Das ist es schon
+Es ist gut
 ```
 
 ## Production Notes
