@@ -23,5 +23,6 @@ jules-plugin/tools/researcher/cache/*
 context/_store/ontology.db
 context/_store/*.db
 
-# Personal feedback transcripts — local only, never committed.
+# Personal feedback transcripts and derived analyses — local only, never committed.
 artists/**/MIRIAM-FEEDBACK-*.md
+artists/**/ANALYSIS-RESPONSE-*.md
