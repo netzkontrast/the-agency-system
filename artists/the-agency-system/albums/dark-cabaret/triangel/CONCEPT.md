@@ -99,25 +99,25 @@ Gegen genau diesen Pop arbeitet das Album.
 - **kein collapsed** → das Album ist *post*-Kollaps, nicht *im* Kollaps
 - **integrator + witness nur indirekt** → die Wir-Stimme übernimmt teilweise integrator's S4-Brückenfunktion ohne zu nennen; witness'sches Annotieren passiert nicht (würde EP meta-kommentieren statt bewohnen)
 
-### T2 — AUSSEN (die drei Verortungen DERSELBEN Auseinandersetzung)
+### T2 — AUSSEN (alle Songs SPRECHEN ZU MIRIAM; T2 markiert den Inhalt)
 
-**Wichtig — Framing-Präzisierung (v1.3):** T2 markiert NICHT drei
-separate Dialoge. Die EP ist DURCHGÄNGIG eine *Auseinandersetzung im
-Zwischen Ich-System ↔ Miriam* — T2 markiert WO innerhalb dieses
-Zwischen-Raums sich die jeweilige Zelle verortet. Alle 9 Zellen sind
-Konkretisierungen DERSELBEN Ich-Miriam-Spannung in unterschiedlichen
-Beziehungs-Konfigurationen.
+**Wichtige Klarstellung (v1.4):** **Alle 9 Tracks sind direkt an
+Miriam adressiert.** Sie wird in jedem Song *angesprochen* — als Du,
+als Hörerin, manchmal beim Namen genannt, durchgängig als die
+adressierte Person des gesamten Albums. T2 markiert NICHT, *wer
+adressiert wird* (das ist immer Miriam), sondern WORÜBER innerhalb
+der Adresse gesprochen wird.
 
-| Position | Verortung in der Ich-Miriam-Auseinandersetzung |
+| Position | Inhalt des Tracks (gesprochen zu Miriam) |
 |---|---|
-| **Du** | Auseinandersetzung in der *Selbst-Reflexion* — das System spricht zu sich SELBST darüber. Miriam ist implizit, gravitationsbild ist das Ich-System. |
-| **Miriam** | Auseinandersetzung in der *direkten Adresse* — das System spricht zu Miriam (oder die Stimme richtet sich an sie). Die Partnerin ist Boden. |
-| **Partnerin** | Auseinandersetzung in der *Schwerkraft-Triangulation* — das System spricht in *Anwesenheit* der Partnerin, ohne sie direkt zu adressieren. Sie ist Boden ALLER Tracks, aber hier explizit Gravitations-Schwerpunkt. |
+| **Du** | Über das eigene System, die eigene Wahrnehmung, das eigene Tun — zu Miriam. Das *Selbst* ist Inhalt, Miriam bleibt Adressatin. |
+| **Miriam** | Über Miriam selbst und das Zwischen — zu Miriam. Sie wird über das Zwischen-Erleben angesprochen. |
+| **Partnerin** | Über die Partnerin und ihre Schwerkraft — zu Miriam. Miriam erfährt die Partnerin durch die Worte, aber Miriam bleibt Adressatin. |
 
-Die Partnerin-Spalte ist *still* — die drei Partnerin-Tracks haben sie
-als Schwerkraft, sprechen nicht *zu* ihr. Die Auseinandersetzung
-bleibt das Ich-Miriam-Zwischen; die Partnerin trägt es mit ihrer
-Anwesenheit, ohne im Text adressiert zu werden.
+Die Partnerin-Spalte ist *still* in dem Sinne, dass die Partnerin
+nicht direkt adressiert wird — der Sprecher spricht ÜBER sie ZU
+Miriam. Die Partnerin trägt das Album mit ihrer Anwesenheit, aber
+die Adresse bleibt durchgängig Miriam.
 
 ### T3 — AKT (die drei Stand-Modi) — GELOCKT
 
