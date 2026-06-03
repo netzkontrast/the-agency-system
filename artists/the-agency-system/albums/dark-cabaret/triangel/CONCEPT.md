@@ -471,6 +471,14 @@ Mount Eerie *Real Death*; Adrianne Lenker *anything*; Mitski *Nobody*
 (Detail-Konkretheit); Element of Crime *Delmenhorst* (deutsche
 literarisch-präzise Trailing-Form ohne Bildsprache).
 
+**Eine Hardcore-Ausnahme — KEINE Cross-Album-Referenzen innerhalb
+the Agency System.** In Lyrik, Konzept-Texten oder Production Notes
+werden *keine anderen Alben der the-Agency-System-Diskographie*
+genannt oder als Anker zitiert. Externe Referenzen (Mount Eerie,
+Lenya, Walker, Element of Crime und alle anderen Diskographie-
+Vorbilder) sind ausdrücklich erwünscht und tragen die Form-Heimat.
+Die Verbots-Linie liegt nur auf agency-internen Cross-Album-Bezügen.
+
 **Was diese Regel TUT:**
 - Erzwingt phänomenologische Genauigkeit statt poetischer Glättung
 - Hält das *Spüren* in der Lyrik (Damasio's *somatic markers* als
@@ -800,17 +808,17 @@ werden in v2 integriert. Wo die per-Cell-Reports Detail liefern das die
 Unified-Overviews nicht trafen, fließt es ein; wo sie übereinstimmen,
 ist die v1.1-Synthese bereits valide.
 
-## 12. Sonic Direction (Phase-3-Stub, research-informed)
+## 12. Sonic Direction (Phase-3, research-informed, lock)
 
-**Genre-Identität (v1.3 lock):** **Dark-Cabaret / Chanson /
-Confessional-Art-Pop**. Form-Heimat: die zerrissene Kunst-Tradition von
-Marlene Dietrich, Lotte Lenya, Hildegard Knef im Cabaret-Strang;
-Brel/Brecht/Weill in der Chanson-Strömung; Scott Walker *Climate of
-Hunter* als dunklere baritone-Cabaret-Brücke; Element of Crime
-*Mittelpunkt der Welt* als deutsche Vor-Anker. Plus
-*confessional-art-pop* Schicht: Joni Mitchell *Blue*, Phoebe Bridgers
-*Punisher*, Adrianne Lenker *songs*, Mitski *Be the Cowboy*. Genre-
-Forschung primary: `research/genre/cabaret-chanson-archaeology.md`.
+**Genre-Identität:** **Dark-Cabaret / Chanson / Confessional-Art-Pop**.
+Form-Heimat: die zerrissene Kunst-Tradition von Marlene Dietrich,
+Lotte Lenya, Hildegard Knef im Cabaret-Strang; Brel/Brecht/Weill in
+der Chanson-Strömung; Scott Walker *Climate of Hunter* als dunklere
+baritone-Cabaret-Brücke; Element of Crime *Mittelpunkt der Welt*
+als deutsche Vor-Anker. Plus *confessional-art-pop* Schicht: Joni
+Mitchell *Blue*, Phoebe Bridgers *Punisher*, Adrianne Lenker
+*songs*, Mitski *Be the Cowboy*. Genre-Forschung primary:
+`research/genre/cabaret-chanson-archaeology.md`.
 
 **Experimentelle Inspirations-Schicht (supplementary):** Field
 recording, dynamic dry-wet shift, microtonal pitch-bending, Wir-
@@ -821,7 +829,7 @@ Inspirations-Anker). NICHT als Genre-Identität, sondern als
 *Produktions-Werkzeug-Kasten* zur Verfeinerung der cabaret-chanson
 Form-Heimat.
 
-**Producings-Aesthetik (lock-relevant, v1.3):**
+**Producings-Aesthetik (lock):**
 - Close-mic dominant — Cabaret-Intimität ohne Theater
 - Trockene Räume mit punktueller Reverb-Anwendung pro Sub-voice:
   - host: keine
@@ -854,6 +862,7 @@ Tertiary (für discovery): `cptsd-art`, `concept album`,
 - Cabaret-Pastiche (Liza-Minnelli-touristisch)
 - "Spotify-Cabaret" Generizität — Suno-Prompts müssen die Walker/
   Knef/Lenya-Spur halten
+- Cross-Referenzen zu anderen the-Agency-System-Alben (§6.5 narrow rule)
 
 ## 13. Visual Direction
 
