@@ -164,7 +164,7 @@ ich verstehe was ich kann
 ich verstehe was ich nicht kann
 
 [Bridge]
-[Alto steadies briefly, less microtonal bending, the wagen-litany]
+[Alto, the very end approaches — near-tonic permitted, even then ambiguously]
 ich wage etwas
 anders als früher
 ich wage zu bleiben

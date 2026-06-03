@@ -157,37 +157,46 @@ zitiert. Forschungs-Lücken werden nicht überdeckt.
 
 ---
 
-## IV. Suno-Engineering Confirmation
+## IV. Suno-Engineering Loop — Per-Track Audit
 
-### IV.1 Style Box Constraints (alle 9 Tracks)
+Pro Track ein Audit-Pass gegen die Suno-V5-Constraints und die User-
+Direktiven (Alter-Profile-Only Vocal-Descriptors, Max 2 Genre Tags,
+Vocals FIRST, Persona-Shift-Metatags an jeder Stelle wo Persona
+wechselt, Wir-Layer via parenthesized backing).
 
-| Track | Style Box uses only Alter-Profile + Album-§12 | Vocals First | Max 2 Genre |
-|---|---|---|---|
-| 1 (host) | ✓ | ✓ | dark chanson, art song |
-| 2 (rationalist) | ✓ | ✓ | dark chanson, art song |
-| 3 (host) | ✓ | ✓ | dark chanson, art song |
-| 4 (sex_override) | ✓ | ✓ | dark chanson, art song |
-| 5 (sex_override) | ✓ | ✓ | dark chanson, art song |
-| 6 (sex_override + S4) | ✓ (S4 from profile) | ✓ | dark chanson, art song |
-| 7 (ambivalent) | ✓ | ✓ | dark chanson, art song |
-| 8 (ambivalent) | ✓ | ✓ | dark chanson, art song |
-| 9 (ambivalent + near-tonic) | ✓ (from profile) | ✓ | dark chanson, art song |
+### IV.1 Per-Track Loop Pass Results
 
-### IV.2 Persona-Shift Metatags
+| Track | Sub-voice | Persona-Shifts | Metatag-Verifikation | Audit-Result |
+|---|---|---|---|---|
+| 01 | host | keine (Wir via paren) | Intro: host descriptors ✓ | **PASS Pass 1** |
+| 02 | rationalist | keine | Intro: rationalist descriptors ✓ | **PASS Pass 1** |
+| 03 | host | keine | Intro: host descriptors ✓ | **PASS Pass 1** |
+| 04 | sex_override (S0/S2) | keine | Intro: sex_override descriptors ✓ | **PASS Pass 1** |
+| 05 | sex_override (S0/S2 stricter) | keine | Intro: sex_override descriptors ✓ | **PASS Pass 1** |
+| 06 | sex_override S0/S2 → S4 | **Bridge** | Intro: S0/S2 ✓; Bridge: "vulnerability surfaces, control loosens toward authentic power" — direkt aus `entities/sexualized-override.md` S4-Notiz ✓ | **PASS Pass 1** |
+| 07 | ambivalent | keine | Intro: ambivalent descriptors ✓ | **PASS Pass 1** |
+| 08 | ambivalent | keine | Intro: ambivalent descriptors ✓ | **PASS Pass 1** |
+| 09 | ambivalent → near-tonic ambig | **Bridge** | Intro: ambivalent ✓; Bridge initially "[steadies briefly, less microtonal bending]" — **FAIL Pass 1: invented language, not profile-faithful**. Corrected Pass 2: "[Alto, the very end approaches — near-tonic permitted, even then ambiguously]" — direkt aus `entities/ambivalent.md` profile language ✓ | **PASS Pass 2 (1 fix)** |
 
-Inline metatags markieren Persona-Shifts wo sie geschehen:
-- **Track 6 Bridge:** "vulnerability surfaces, control loosens toward
-  authentic power" (direkt aus sexualized_override.md S4-Notiz)
-- **Track 9 Bridge:** "voice steadies briefly, less microtonal bending"
-  (innerhalb ambivalent-Profil — die Steadiness für die wagen-Litanei)
-- Andere Tracks: kein within-track Persona-Shift; Intro-Metatag setzt
-  Voice
+### IV.2 Per-Track Style Box Verifikation
 
-### IV.3 Wir-Layer Suno-Handling
+Alle 9 Style Boxes wurden gegen die Constraint-Liste verifiziert:
 
-Per Constraint "nur Alter Stimm-Knowledge" — Wir-Layer kann nicht
-eigene Vocal-Descriptors erfinden. Lösung über parenthesized backing
-lines:
+| Constraint | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 |
+|---|---|---|---|---|---|---|---|---|---|
+| Vocals FIRST | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Max 2 Genre Tags | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Alter-Profile-Only Descriptors | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Album §12 Genre/Instrumentation | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Exclude Styles 2-4 items | ✓ (4) | ✓ (4) | ✓ (4) | ✓ (4) | ✓ (4) | ✓ (4) | ✓ (4) | ✓ (4) | ✓ (4) |
+| Pronunciation Notes for critical terms | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+### IV.3 Wir-Layer Suno-V5 Handling
+
+Per User-Constraint "nur Alter Stimm-Knowledge — sonst nichts":
+Wir-mode-Profil ist novel-layer-only, hat KEINE music-layer Vocal-
+Descriptors. Lösung über parenthesized backing lines, die V5
+automatisch als backing-layer rendert:
 
 ```
 das ist Wahrheit
@@ -197,23 +206,26 @@ das ist Wahrheit
 und du bist dabei
 ```
 
-V5 rendert "(...)" Zeilen als backing-layer automatisch. Inner
-multiplicity ohne invented voice-tag.
+Konvention bei jedem Wir-Eintritts-Punkt angewandt. Inner
+Vielstimmigkeit OHNE invented voice-tag.
 
-### IV.4 Exclude Styles
+Wir-Eintritts-Stellen pro Track (alle implementiert via paren-backing):
+- T1: Outro Tröpfchen
+- T2: Bridge bei Mikro-Riss; Outro Doppelung
+- T3: Bridge breit; Outro Doppelung
+- T4: NICHT (Körper allein)
+- T5: Outro Doppelung
+- T6: **Album-zentral**, Bridge full polyphonic + Outro polyphonic
+- T7: Bridge bei "du musst das nicht reparieren"; Outro Doppelung
+- T8: Outro polyphonic
+- T9: **Album-Endpoint**, Bridge polyphonic + Outro voll polyphonic
 
-Alle Tracks: `no drums, no electric guitar, no autotune, no soaring
-vocals` — konsistent über das Album.
+### IV.4 Loop Exit Condition
 
-### IV.5 Pronunciation Notes
+Alle 9 Tracks bestehen Audit nach 1-2 Passes (Track 9 needed 1 fix).
+Zweiter Audit-Pass: 0 Improvements flagged.
 
-Alle Tracks haben Pronunciation Notes für kritische deutsche
-Aussprache-Marker (Limerenz, Übertragung, Bindungshunger, einundzwanzig,
-Verletzung, etc.). Suno deutsche Stimme bekommt klare phonetische
-Anweisungen.
-
-**Suno-Engineering-Verdict:** Alle 9 Tracks sind generation-ready.
-Style Boxes constraint-compliant. Persona-Shifts klar metatagged.
+**Suno-Engineering Loop: COMPLETE.** Album bereit für Suno-Generation.
 
 ---
 
@@ -325,20 +337,47 @@ Bei finaler Bearbeitung: Album in einem Sitzen anhören. Prüfen:
 
 ---
 
-## VII. Final Verdict
+## VII. Final Verdict (nach Lyric-Review-Loop + Suno-Engineering-Loop)
 
 **Album-Konzept:** vollständig (Phasen 1-6 ✓, Phase 7 user-Confirmation pending).
-**Lyrics:** 9/9 drafted, anti-metaphor-compliant, du-addressed, emotion-landing.
-**Research-Grounding:** explicit in jedem Track-File, alle 9 Matrix-Zellen verwendet.
-**Suno-Engineering:** Style Boxes Alter-profile-only, Persona-Metatags klar.
-**Album-Coherence:** narrative Arc von Closed-Observer zu Öffnung gesichert, Carry-Overs klar, Wir-Polyphon-Bogen stimmig.
 
-**Empfehlung:** Album ist bereit für Suno-Generation. User-
-Konfirmation der Konzept-Closure (Phase 7) als nächster Schritt. Bei
-positiver Konfirmation: Suno-Generation in empfohlener Reihenfolge
-beginnen.
+**Lyric-Review-Loop:** 9/9 PASS on Pass 1, anti-metaphor-compliant,
+du-addressed durchgängig, emotion-landing layered, alles-darf-sein
+honoriert.
+
+**Content + Research-Grounding-Review:** narrative Arc geschlossen
+(Closed-Observer → Öffnung-Endpoint), Wir-Polyphon-Bogen stimmig,
+alle 9 Research-Matrix-Zellen explicit verwendet, Anti-Pathologisierung
+gewahrt, Forschungs-Lücken benannt.
+
+**Suno-Engineering-Loop:** 9/9 audit complete; 8 PASS on Pass 1,
+1 PASS on Pass 2 (Track 9 Bridge metatag fix to profile-faithful
+language). Style Boxes Alter-Profile-Only, Persona-Shift-Metatags
+profile-faithful, Wir-Layer via parenthesized backing implementiert,
+Pronunciation Notes komplett, Exclude Styles konsistent.
+
+**Album-Coherence-Pass:** geometric integrity (3×3 Latin Square + 3-
+Movement Boden-Successor + Stage/Boden Korrektur), Carry-Over Chain
+M3→M1 ohne Lücken, Korpus-Grenze-Carries modal-stabil (W→W zwischen
+T3-T4, A→A zwischen T6-T7), Audience-of-Two Adresse durchgängig
+gehalten.
+
+**Verdict:** Album ist generation-ready. Alle Pflicht-Loops abgeschlossen,
+keine Flags mehr offen.
+
+**Empfohlener nächster Schritt (User-driven):**
+1. Phase 7 user-Confirmation der Konzept-Closure
+2. Suno-Generation in der empfohlenen Reihenfolge (T1+T3 host → T2
+   rationalist → T4+T5 sex_override → T6 Wendepunkt → T7+T8 ambivalent
+   → T9 Endpunkt)
+3. Per-Track-Iterations bei Generation (typically 2-3 versions per
+   track, A/B comparison, final selection)
+4. Bei Suno-Output: Mix/Master-Phase (siehe VI.2 Mastering-Hinweise),
+   dann Visual Direction (Phase 5 Output: cover, track cards, promo)
+5. Release-Phase via release-director
 
 ---
 
-*Final Album Review verfasst nach Lyric-Review-Loop ohne Flags.*
-*Nächster Schritt: User-Confirmation, dann Suno-Generation.*
+*Final Album Review verfasst nach kompletten Lyric- und Suno-
+Engineering-Review-Loops. Alle Bedingungen der Konzept-Closure
+erfüllt. Album bereit für Generation-Phase.*
