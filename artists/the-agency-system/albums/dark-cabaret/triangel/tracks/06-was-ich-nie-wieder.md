@@ -491,6 +491,10 @@ aus" (Bridge), "Blut auf den Zähnen" (V5). Stakkato bleibt Periods.
 "verdammt" Speech-Act-Marker (per Frau-Blaschke-Tipp aus Miriams
 Brief) bleibt exakt 1× im Bridge.
 
+### Fix-Pass Notes
+
+- **Fix-Pass 2026-06-04:** Witness-Opener diversifiziert (Album-Review Cross-Track-Befund). *"(es fällt auf — sie spricht das Muster an, nicht die Person)"* → *"(signifikant: sie spricht das Muster an, nicht die Person)"*. Cross-track-Variation der Witness-Annotation-Formel, damit Suno die wiederholte Eröffnungs-Floskel nicht als "Tag" hörbar macht. Witness-Vokabular aus Entity-Profil beibehalten; "signifikant" passt zur strukturellen Bedeutung des Annotations-Moments (Muster vs. Person). Inhalt unverändert.
+
 ## Phonetic Review Checklist
 
 - Vocabulary-Disziplin: kinetisch/somatisch (Knöchel, Tisch, Hitze,

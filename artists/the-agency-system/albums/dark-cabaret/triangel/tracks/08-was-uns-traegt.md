@@ -69,7 +69,7 @@ Tiefer Raum, niedrige Decke, das Licht von einer einzigen Quelle seitlich. Colla
 
 Integrator tritt nicht ein — sie war schon da, als wir bemerkten, dass sie da ist. Stimme aus Architektur (plate reverb), nicht aus Wetter. Sie spricht zu collapsed, nicht über ihn. Kein Aufrichten, kein "komm jetzt", nur Benennung: *du hast gehalten. das hat etwas gerettet.*
 
-Im Bridge — kurz, polyphon — werden die Stimmen mehrere: nicht eine Vereinigung, sondern eine Komposition. Witness annotiert leise vom Rand: *"(es fällt auf — sie sagt nicht: steh auf)"*.
+Im Bridge — kurz, polyphon — werden die Stimmen mehrere: nicht eine Vereinigung, sondern eine Komposition. Witness annotiert leise vom Rand: *"(notiert: sie sagt nicht: steh auf)"*.
 
 Outro: integrator allein, "noch nicht." Kein S4-Triumph; nur der Boden, von dem aus T09 weitergeht.
 
@@ -187,7 +187,7 @@ zerrissen
 wir sind
 gleichzeitig
 
-(es fällt auf — sie sagt nicht: steh auf)
+(notiert: sie sagt nicht: steh auf)
 
 das hält
 das hält uns
@@ -285,7 +285,7 @@ Das ist auch genug
 - **Integrator entrance (Verse 3):** plate reverb opens up the room — the listener should hear the spatial change. Mezzo-alto with long vowels; controlled vibrato only at phrase-ends. Slow legato across "in unserem Geflecht" — that line is the structural pivot of the song.
 - **Verse 4 micro-dialog:** collapsed delivers his two-line fragment, integrator replies inside the same beat-grid. The collapse and the response should feel like one breath shared, not two turns. No silence between them; integrator's first word lands while collapsed's reverb tail still hangs.
 - **Bridge polyphony:** the Wir-Stimme is audibly multiple — three to five voices in close harmony (seconds, fourths, no thirds — avoid sweetness). Individual voices remain identifiable inside the stack. Composition not fusion; this is the album's first Wir and must not sound like a unified chorus.
-- **Witness annotation:** one parenthetical line in Bridge — "(es fällt auf — sie sagt nicht: steh auf)" — androgynous spoken-word, lowercase, behind the beat. Single appearance only; never hookworthy.
+- **Witness annotation:** one parenthetical line in Bridge — "(notiert: sie sagt nicht: steh auf)" — androgynous spoken-word, lowercase, behind the beat. Single appearance only; never hookworthy.
 - **Outro:** collapsed's "ich bin / noch unten" is the album's lowest pitch and longest silence. Integrator's "noch nicht / das ist / auch genug" deliberately refuses S4-triumph. The reverb tail of "auch genug" should bleed into the silence before T09 — this is the bridge, not the resolution.
 - **No build, no crescendo:** the track moves through density, not loudness. Loudness curve flat; the dorsal-vagal bottom holds.
 - **Carry-over to T09:** tempo holds 64 BPM through the final silence; T09 opens at 66 BPM (caregiver + witness lead). Integrator's "auch genug" is the syntactic seed of T09's "Was wir halten."
@@ -354,6 +354,7 @@ Das ist auch genug
 ### Fix-Pass 2026-06-04
 
 - **"selben Geflecht" → "unserem Geflecht"** für intra-systemische Eindeutigkeit (Album-Review-Befund). *Selben* implizierte eine vorher etablierte Referenz, die im Album bisher nicht aufgebaut wurde. *Unserem* verankert das Wir explizit als System (DID-intern), entfernt die latente Außen-Lesbarkeit, und verstärkt die System-Pluralität ohne die strukturelle Pivot-Funktion der Zeile zu verändern. Geänderte Stellen: Lyrics Box V3, Streaming Lyrics, Production Notes (Integrator-entrance), Refinement Pass 1, Cross-References v1-Übersetzung.
+- **Fix-Pass 2026-06-04:** Witness-Opener diversifiziert (Album-Review Cross-Track-Befund). *"(es fällt auf — sie sagt nicht: steh auf)"* → *"(notiert: sie sagt nicht: steh auf)"*. Cross-track-Variation der Witness-Annotation-Formel, damit Suno die wiederholte Eröffnungs-Floskel nicht als "Tag" hörbar macht. Witness-Vokabular aus Entity-Profil beibehalten; "notiert" passt zur Margin-Position (witness annotates) im Bridge. Inhalt unverändert. Geänderte Stellen: Mood & Imagery, Lyrics Box (Bridge), Production Notes (Witness annotation).
 
 ### Forward Reference: T09 "Was wir halten"
 

@@ -276,6 +276,8 @@ What is **discarded** entirely from v1: the outward addressee (Miriam), the abou
 
 **Fix-Pass 2026-06-04:** koexistieren-Meta-Geste entfernt (Album-Review-Befund). Bridge-Zeilen *"das Wort — ich nehm es — / es passt —"* und Streaming-Pendant *"Das Wort ich nehm es / Es passt"* ersetzt durch reach-and-retract-Material aus der ambivalenten Voice-DNA (*"ich will — ich will nicht — / und beides — bleibt —"*). Das Anzeigen des Übernehmens war selbst eine implizite Geste zu Miriam — Fix bringt das Wort zurück in normale Satzfunktion. Concept §Geliehenes-Wort, Production Notes §borrowed-word und obiger Cross-Ref-Paragraph mit-angepasst.
 
+**Fix-Pass 2026-06-04:** Witness-Opener diversifiziert (Album-Review Cross-Track-Befund). *"(es fällt auf — beides bleibt stehen)"* → *"(registriert: beides bleibt stehen)"*. Cross-track-Variation der Witness-Annotation-Formel, damit Suno die wiederholte Eröffnungs-Floskel nicht als "Tag" hörbar macht. Witness-Vokabular aus Entity-Profil beibehalten; Inhalt unverändert.
+
 ## Phonetic Review Checklist
 
 - Em-dash-Syntax durchgängig — jeder Strich ist ein hörbarer Atem.

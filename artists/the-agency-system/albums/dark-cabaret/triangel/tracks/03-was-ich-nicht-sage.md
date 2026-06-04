@@ -286,6 +286,10 @@ v2 keeps **none** of that addressing. What translates:
 
 What is **discarded** entirely from v1: the outward addressee (Miriam), the about-figure (Partnerin), the host-baritone register, the three-voice movement, the Wir-Stimme entry, the closure-imagery ("sie ist da"). v2's S1 track refuses closure — that is its truth.
 
+### Fix-Pass Notes
+
+- **Fix-Pass 2026-06-04:** Witness-Opener diversifiziert (Album-Review Cross-Track-Befund). *"(es fällt auf — sie ist sehr klein)"* → *"(beobachte: sie ist sehr klein)"*. Cross-track-Variation der Witness-Annotation-Formel, damit Suno die wiederholte Eröffnungs-Floskel nicht als "Tag" hörbar macht. Witness-Vokabular aus Entity-Profil beibehalten; Inhalt unverändert.
+
 ## Phonetic Review Checklist
 
 - Vokabular-Disziplin: nur Wörter aus dem child-freeze-Vokabular (kalt, dunkel, weh, wo, wer, weg) plus minimale Bindungs-Worte. Keine Erwachsen-Worte.

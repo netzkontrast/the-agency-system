@@ -284,6 +284,10 @@ What is **discarded** entirely from v1: the outward addressee (Miriam), the body
 
 The conceptual move: v1's body-voice said "I will not do this to you." v2's protector says "Nothing passes this line." The first was a promise to an outside person; the second is the structure of inner defense.
 
+### Fix-Pass Notes
+
+- **Fix-Pass 2026-06-04:** Witness-Opener diversifiziert (Album-Review Cross-Track-Befund). *"(es faellt auf — er steht.)"* → *"(im aktuellen Modus: er steht.)"*. Cross-track-Variation der Witness-Annotation-Formel, damit Suno die wiederholte Eröffnungs-Floskel nicht als "Tag" hörbar macht. Witness-Vokabular aus Entity-Profil beibehalten; Inhalt (er steht, dritte Person als Role-Stance-Marker) unverändert.
+
 ## Phonetic Review Checklist
 
 - Vokabular-Disziplin: nur Protector-Vokabel (Position, Deckung, Sichtlinie, Ausgang, Eingang, Linie, Risiko, Hand, Atem, Kopf, Augen) plus minimale Funktionsworte. Keine Liebe-Vokabel. Keine Körper-Eskalations-Vokabel.
