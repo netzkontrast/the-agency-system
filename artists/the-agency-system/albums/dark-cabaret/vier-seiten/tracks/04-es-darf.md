@@ -86,11 +86,12 @@ B→C-Übergang. v2 blieb komplett intra-systemisch (B).
 
 ```
 [Intro]
-[Female alto microtonal, sliding vibrato, dynamics oscillating within phrases, breath mid-line, mixed dry/wet, ambiguous tonic, em-dash as natural punctuation. Room tone from previous track carries. Breath enters before first word.]
+[witness: androgynous spoken-word, parenthetical, lowercase, low in mix, mid-distance dry mic, behind the beat. Room tone from previous track carries.]
 
 (registriert: beides bleibt stehen)
 
 [Verse 1]
+[ambivalent: female alto microtonal, em-dash phrasing extreme, ambiguous tonic, sliding microtonal vibrato, breath-as-punctuation. Breath enters before first word. Dynamics oscillate within phrases, mixed dry/wet, never landing on clean pitch.]
 ich will sehen — ich will nicht sehen —
 ich will halb —
 
@@ -99,6 +100,7 @@ ich heb ihn — halb —
 und der Raum — der entscheidet nicht —
 
 [Verse 2]
+[ambivalent continues: same alto microtonal, sliding vibrato within syllables, breath mid-line]
 näher — weg —
 näher —
 ich greif nach dem Wort — ich zieh es zurück —
@@ -108,7 +110,7 @@ und das ist — das ist die Bewegung —
 das ist die ganze Bewegung —
 
 [Pre-Chorus]
-[Same voice, slightly lower in dynamic, breath audible between fragments]
+[ambivalent: same alto, slightly lower in dynamic, breath audible between fragments, em-dash punctuation extreme]
 es ist nicht falsch — es ist nicht ganz —
 es ist halb — und halb —
 
@@ -116,18 +118,20 @@ zwei Bewegungen — gleichzeitig —
 und keine — wird zur anderen —
 
 [Chorus]
-[Lead voice continues; a second whispered/slower vocal layer enters in parentheses, with breath, klar abgesetzt — Miriam's words as quote, not assertion]
+[ambivalent lead: alto microtonal, sliding vibrato, ambiguous tonic continues]
 ich nenn das nicht — Konflikt —
 ich nenn das — was es ist —
 
+[ambivalent quote-mode: same alto, whispered, with breath, klar abgesetzt — mic closer, less reverb, lower in mix. Miriam's words as quote, not assertion.]
 *(es darf koexistieren —)*
 
+[ambivalent returns: lead alto microtonal, opening dynamic restored]
 es darf — bleiben —
 es darf — gehen —
 und ich — ich entscheide — nicht —
 
 [Verse 3]
-[Lead returns alone, em-dash breath audible]
+[ambivalent: lead alone, alto microtonal, em-dash breath audible, sliding vibrato within syllables]
 ich seh hin — ich seh weg —
 ich seh halb —
 ich heb die Hand — ich zieh sie zurück —
@@ -138,7 +142,7 @@ des Satzes — atme —
 dort wo der Strich — steht —
 
 [Bridge]
-[Same voice, slightly more focused, still microtonal; breath stays mid-line]
+[ambivalent: same alto, slightly more focused, still microtonal, breath stays mid-line]
 ich greif nach — etwas —
 ich weiß nicht — wonach —
 ich greif — und greif daneben —
@@ -147,16 +151,18 @@ und das daneben — ist auch — ein Ort —
 und beides — bleibt —
 und beides — darf —
 
+[ambivalent quote-mode: same alto, whispered, with breath, klar abgesetzt — mic closer, less reverb, tucked under lead. Miriam's words as quote, not assertion.]
 *(es darf koexistieren —)*
 
 [Outro — direct address opens, 3 lines only]
-[Voice shifts: softer, breathier, slower than the rest of the track. Mic moves a hair closer. The em-dashes remain but lengthen. After these three lines, voice retracts immediately into the closing fragments — back to em-dash withdrawal.]
+[ambivalent direct-mode: same alto microtonal, softer, breathier, slower. Mic moves a hair closer. The em-dashes remain but lengthen. After these three lines, voice retracts immediately into the closing fragments.]
 
 es darf — bei dir —
 es darf — bei mir —
 und das ist — genug —
 
-[Retract — same voice, returning to opening dynamic, slightly distant again]
+[Retract]
+[ambivalent returns: same alto microtonal, opening dynamic restored, slightly distant again, em-dashes shorten back to opening length, sliding vibrato within syllables]
 halb — und halb —
 halb — und halb —
 
@@ -250,9 +256,20 @@ Ich bleib im Strich
     behandelt wie eine Silbe
   - reach-and-retract: jede Bewegung *zu* wird im selben Atem
     *zurück*. Beide bleiben stehen.
-- **Suno-Direktive (descriptive form, NICHT character-form):** alle
-  vocal-cues in den `[…]`-Klammern sind deskriptiv ("Female alto
-  microtonal, sliding vibrato…"); kein "ambivalent" als character-tag.
+- **Function-Name-Metatag-Exception (album-spezifisch für Vier
+  Seiten):** dieser Track verwendet function-name-Prefixes in
+  `[…]`-Metatags — `[ambivalent: …]`, `[witness: …]`, plus
+  Mode-Switch-Marker `[ambivalent quote-mode: …]`,
+  `[ambivalent direct-mode: …]`, `[ambivalent returns: …]`.
+  Format bleibt `[function-name: gender + register + texture +
+  processing]`. Dies ist eine **album-spezifische Exception** zu
+  `voice-craft-principles.md` — die function-names (ambivalent,
+  witness, host, protector, …) sind *Rollen-Bezeichnungen*, KEINE
+  Personennamen (keine Kael / Nyx / Selene). Die Hard-Rule "no
+  character-name in metatags" bleibt für Personennamen voll
+  bindend; function/role-Prefixes sind erlaubt, weil sie Suno die
+  voice-identity-continuity über Sektionen hinweg signalisieren,
+  ohne den name_exposure-Schutz zu verletzen.
 - **Mixed dry/wet:** alternate Phrasen in dry close-mic und
   short-decay plate reverb, manchmal innerhalb derselben Zeile. Der
   wet/dry-Switch passiert auf em-dashes. Listeners hören die *room
@@ -318,7 +335,7 @@ Ich bleib im Strich
 ### Style Box (max 200 chars)
 
 ```
-Female alto, microtonal pitch-bending within syllables, sliding vibrato, em-dash breath punctuation, ambiguous tonic. Experimental art-pop, dark chanson. Pad drone, sub-bass, modular. 74 BPM
+ambivalent vocal: female alto microtonal pitch-bending within syllables, sliding vibrato, em-dash breath, ambiguous tonic. Experimental art-pop, dark chanson. Pad drone, sub-bass, modular. 74 BPM
 ```
 
 ### Exclude Styles

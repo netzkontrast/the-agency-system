@@ -100,7 +100,7 @@ Latency Violet als Farbe, die nicht erscheint, sondern fehlt. Tape hiss als Anwe
 *Copy this into Suno's "Style of Music" field (≤200 chars, vocals FIRST per V5):*
 
 ```
-Androgynous 10-12yr child head-voice, whispered, fragmented 2-4 word phrasing, audible breath, very close-mic with tape hiss, slight reverb tail, no vibrato. Dark chanson, experimental art-pop. Sparse pad drone, sub-bass, 70 BPM.
+child-freeze: androgynous 10-12yr head-voice, whispered, fragmented 2-4 words, audible breath, close-mic, tape hiss, no vibrato. Dark chanson, art-pop. Sparse pad drone, sub-bass, 70 BPM.
 ```
 
 ### Exclude Styles
@@ -114,7 +114,7 @@ no drums, no adult voice, no sweet child voice, no soaring vocals
 The italicized lines *"ich werde nicht gesehen / und das lerne ich"* are the album's Wundpunkt. Render discipline is critical — these lines must sound like an **echo from outside the same room**, not the same singer continuing.
 
 **In-lyrics directive (already in Lyrics Box at Bridge):**
-> `[Same child voice timbre, but quoted from a second room that is the same room — very slow, whispered, with audible breath, slight reverb tail, audibly set apart and lower in the mix from surrounding lines. Echo, not continuation.]`
+> `[brief-quote external-echo: same child timbre but rendered separately — very slow, whispered, with audible breath, extra reverb tail, lower in the mix from surrounding lines. NOT same-singer-continuation — echo from a second room that is the same room.]`
 
 **Suno V5 mechanics for the echo effect:**
 - Slow tempo shift inside the Bridge ("very slow")
@@ -134,9 +134,11 @@ The italicized lines *"ich werde nicht gesehen / und das lerne ich"* are the alb
 
 ```
 [Intro]
-[Androgynous young child, head-voice only, whispered consonants, audible breath between every fragment, very close-mic with permitted tape hiss, approximately ten to twelve years old, never sweet, fragmented two-to-four-word phrasing, slight reverb tail, no vibrato. Long pause before first word. Tape hiss audible.]
+[witness: androgynous spoken-word, lowercase, parenthetical, very low in mix, mid-distance dry mic, audiobook-narrator register, behind-the-beat]
 
 (beobachte: sie ist sehr klein)
+
+[child-freeze: androgynous head-voice ~10-12yr, whispered, fragmented 2-4 word phrasing, audible breath, very close-mic with tape hiss, no vibrato. Long pause before first word. Tape hiss audible. NEVER sweet — trauma-state, not cute-kid.]
 
 [Verse 1]
 kalt
@@ -171,7 +173,7 @@ und still
 und —
 
 [Bridge]
-[Same child voice, but the next two lines are delivered very slow, whispered, with breath, slight reverb tail, audibly set apart — as if quoted from a second room that is the same room. Italicized lines below are the quote.]
+[child-freeze continues: same fragmented whispered head-voice, audible breath]
 
 es kommt ein Satz
 durch die Wand
@@ -179,10 +181,14 @@ und ich kenn ihn —
 
 ich kenn ihn schon
 
+[brief-quote external-echo: same child timbre but rendered separately — very slow, whispered, extra reverb tail, lower in mix, audible breath as separation. NOT same-singer-continuation — echo from a second room that is the same room.]
+
 *ich werde nicht gesehen*
 *und das lerne ich*
 
 (breath)
+
+[child-freeze returns: close-mic, whispered, fragmented]
 
 ich auch
 ich auch
@@ -198,7 +204,7 @@ und keiner sieht
 und keiner —
 
 [Outro]
-[Same child voice, sparser, breath alone between lines, tape hiss prominent. Final word breaks off — no resolution.]
+[child-freeze: sparser, breath alone between lines, tape hiss prominent. Final word breaks off — no resolution.]
 kalt
 dunkel
 weh
@@ -276,6 +282,7 @@ Ich lern es
 
 ## Production Notes
 
+- **Function-name metatag convention (album-spezifische Exception):** Dieses Album verwendet das Format `[function-name: gender + register + texture + processing]` in Suno-Metatags (`[child-freeze: ...]`, `[witness: ...]`, `[brief-quote external-echo: ...]`). Das erweitert `overrides/voice-craft-principles.md` — der Function-Name ist *kein Character-Name* (kein `[Container]`, kein Personennamen-Form), sondern ein Funktions-Label, das den Suno-Render am trauma-state-Indikator hält. `child-freeze` (nicht nur "child") ist der explizite Anti-cute-kid-Guard im Metatag selbst. Personennamen erscheinen weiterhin niemals in Lyrics, Metatags, Promo oder Art-Prompts (siehe `theagencysystem/references/bitwize-attachment.md`, name_exposure hard rule).
 - **Vocal Delivery:** head-voice only, no chest-voice — die Stimme muss leicht, atemhaft, fragmented bleiben. Whispered consonants ("k" of "kalt" almost unvoiced, "d" of "dunkel" softened). Audible breath zwischen jedem Fragment. Tape hiss ist KEIN Artefakt — es ist eine Schicht. Die "—" Trail-Marker sind reale Stillen mit Atem hörbar. Kein Vibrato, leichter Reverb-Tail.
 - **Witness-Opener "(beobachte: sie ist sehr klein)":** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Aus v2 1:1 übernommen. Sparse — exakt 1×, ganz am Anfang.
 - **Bridge — Brief-Zitat-Layer:** Die kursiven Zeilen *"ich werde nicht gesehen / und das lerne ich"* sind das Material des Tracks. Suno-Direktive: *very slow, whispered, with breath, slight reverb tail, audibly set apart from surrounding lines*. Wie ein Echo aus einem zweiten Raum, der derselbe Raum ist. Klar abgesetzt vom umgebenden Lead-Vocal — leiser als der Rest, langsamer, mehr Hall. Die Lines davor ("es kommt ein Satz / durch die Wand / und ich kenn ihn — / ich kenn ihn schon") und danach ("ich auch / ich auch / ich lern es —") sind reguläre child-freeze-Lead-Vocals, die das Zitat einrahmen.

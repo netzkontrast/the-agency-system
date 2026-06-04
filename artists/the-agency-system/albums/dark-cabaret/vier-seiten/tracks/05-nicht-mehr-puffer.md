@@ -97,7 +97,7 @@ Keine Wärme. Keine Distanz. Klarheit als Schutz, der nicht erklärt.
 *Copy this into Suno's "Style of Music" field (≤200 chars, vocals-FIRST per V5 weighting):*
 
 ```
-Male chest low baritone, clipped 3-word lines, dry close-mic, no vibrato, restrained, full stops, period as audible silence. Female whispered quote-layer 2x. Dark chanson, art-pop. 80 BPM.
+protector vocal + female whisper quote-layer 2x. Male chest low baritone, clipped 3-word lines, dry close-mic, no vibrato, restrained, full stops as audible silence. Dark chanson, art-pop. 80 BPM.
 ```
 
 ### Stakkato Directive (CRITICAL — paste into Style Box if Suno renders flow)
@@ -131,11 +131,13 @@ no drums, no electric guitar, no autotune, no shouting, no soaring vocals, no ch
 
 ```
 [Intro]
-[Male chest-weighted low baritone, clipped three-word lines, forward-mic, dry room, restrained intensity, no vibrato, declarative full stops, breath held between lines — protector lead voice. Long rest before first line. Sub-bass braced. Sustained pad drone-ground.]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry. Long rest before first line. Sub-bass braced. Sustained pad drone-ground.]
 
+[witness: androgynous spoken-word, parenthetical, lowercase, low in mix]
 (im aktuellen Modus: er steht.)
 
 [Verse 1]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Wir stehen hier.
 Wir sehen das.
 Wir machen das nicht mehr.
@@ -145,17 +147,21 @@ Keine Funktion.
 Keine Auffangschicht.
 
 [Verse 2]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Sie hat geschrieben.
 Wir haben gelesen.
 Wir haben gehoert.
 
+[miriam-quote: female whispered alto, low volume, breathy, clearly distinct from protector's male baritone, with breath]
 *nie wieder Puffer*
 
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Wir nehmen das auf.
 Wir nehmen das an.
 Wir tragen das mit.
 
 [Pre-Chorus]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Wir sind nicht.
 Stossdaempfer.
 Nicht Auffangschicht.
@@ -165,6 +171,7 @@ Vermittlerin.
 Nicht Form fuer andere.
 
 [Chorus]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Nicht mehr Puffer.
 Das gilt fuer sie.
 Das gilt fuer uns.
@@ -174,6 +181,7 @@ Wir auch nicht mehr.
 Wir auch nicht mehr.
 
 [Verse 3]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Keine Brille fremder Augen.
 Keine Stimme fremder Mund.
 Keine Hand in unserem Namen.
@@ -183,10 +191,10 @@ Keine Last auf unserer Schicht.
 Keine Rolle fuer das andere Bild.
 
 [Bridge]
-[Same lead voice, no softening, no pitch rise. Brief-quote layer enters whispered, slightly slower, with breath — clearly offset, second occurrence.]
-
+[miriam-quote: female whispered alto, low volume, breathy, clearly distinct from protector's male baritone, with breath]
 *nie wieder Puffer*
 
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Das war ihr Wort.
 Das ist jetzt unser Wort.
 Wir haben es uebernommen.
@@ -196,6 +204,7 @@ Wir sind nicht Korridor.
 Wir sind nicht der Gang dazwischen.
 
 [Pre-Chorus repeat]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Wir sind nicht.
 Stossdaempfer.
 Nicht Auffangschicht.
@@ -205,6 +214,7 @@ Vermittlerin.
 Nicht Form fuer andere.
 
 [Chorus]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry]
 Nicht mehr Puffer.
 Das gilt fuer sie.
 Das gilt fuer uns.
@@ -214,7 +224,7 @@ Wir auch nicht mehr.
 Wir auch nicht mehr.
 
 [Outro]
-[Same voice, sparser, longer rests, sub-bass slow pulse, modular clicks thinning. No fade, no resolution. Period.]
+[protector: male chest-weighted low baritone, clipped 3-word lines, Stakkato periods, no em-dashes, no vibrato, restrained intensity, forward-mic dry. Sparser, longer rests, sub-bass slow pulse, modular clicks thinning. No fade, no resolution. Period.]
 
 Position gehalten.
 Wort genommen.
@@ -309,6 +319,7 @@ Nicht mehr Puffer
 
 ## Production Notes
 
+- **Function-name metatag exception (Suno-internal labeling):** Section metatags use the form `[function-name: gender + register + texture + processing]` — e.g. `[protector: ...]`, `[witness: ...]`, `[miriam-quote: ...]`. The function-name prefix is a *Suno engine routing label only* (helps V5 hold a stable voice across sections and clearly separate the female whisper layer from the protector baritone). It is NOT a character name in the lyric — the lyrics themselves remain unlabeled per `overrides/voice-craft-principles.md`. The protector label reinforces RESTRAINED, Stakkato delivery — never aggressive, never declamatory. The `miriam-quote` label exists solely to force Suno to render the italicized brief-quote as a clearly distinct second female whispered voice, not as the protector reading italics softly.
 - **Vocal Delivery (Lead):** chest-weighted low baritone, dry close-mic, NO reverb, NO vibrato. Jede Drei-Wort-Zeile ist a complete clause that lands on a period — the period must be audible as silence, not as fade. Breath gehalten *zwischen* Zeilen, niemals mitten in einer Zeile. Wenn der Singer eine Drei-Wort-Zeile nicht in einem Atem ohne Anstrengung sagen kann, ist die Take falsch.
 - **Brief-Zitat *"nie wieder Puffer"* (V2 + Bridge):** eigenes Vocal-Layer. *Whispered, slightly slower, with breath*, klar abgesetzt vom Lead. Mid-distance dry mic. Soll *hörbar* als Zitat sein — als ob jemand anders es spricht, als ob es aus ihrem Brief direkt durchkommt. Beide Vorkommen identisch in Timbre und Tempo. KEINE Verzierung, KEINE Echo-Effekte. Nur die Stimme, der Atem, die Verlangsamung.
 - **Witness-Annotation *"(im aktuellen Modus: er steht.)"*:** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Exakt 1× am Track-Beginn nach Intro. Markiert Role-Stance ("er steht" — dritte Person), nicht erste-Person-Interiorität. Übernommen aus v2 T05 als cross-track-konsistenter Witness-Marker.

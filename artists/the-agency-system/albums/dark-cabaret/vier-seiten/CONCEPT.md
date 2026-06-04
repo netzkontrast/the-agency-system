@@ -115,9 +115,35 @@ Das Pre-Publication-Gate ist *nicht verhandelbar.* Es ist die Form, in der die M
 
 ---
 
-## Voice-Rule
+## Voice-Rule (album-spezifische Exception zur voice-craft-principles.md)
 
-Keine Personennamen. Function-name-Metatags: ja, in Production Notes & Suno-Prompts. Lyrics-Body: descriptive form (z.B. `[Female alto microtonal, weary, dry close-mic]`).
+**Keine Personennamen.** Personennamen (Kael, Lex, Nyx, Selene, …) bleiben weiterhin dem Novel-Layer vorbehalten — nicht im Lyric, nicht in Suno-Metatags, nicht in Promo. Die `name_exposure: role-only` Hard-Rule gilt absolut.
+
+**Function-name-Metatags: erlaubt UND empfohlen** (album-spezifische Exception zur `overrides/voice-craft-principles.md` "no voice tags" Regel, basierend auf der Praxis im Bonus-Song "Wir sehen dich"). Format:
+
+```
+[function-name: gender + register + texture + processing markers]
+```
+
+Beispiele:
+- `[host: male mid-baritone, weary, trailing em-dash, dry close-mic, no vibrato]`
+- `[child-freeze: androgynous head-voice ~10-12yr, whispered, fragmented, audible breath, tape hiss, NEVER sweet]`
+- `[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion]`
+- `[witness: androgynous spoken-word, narrator monotone-but-warm, audiobook register]`
+- `[ensemble: all 11 voices layered soft, slightly varied tempi, no autotune, no build]`
+
+**Wann Function-Name-Metatag setzen:**
+- Am Anfang jeder Section (`[Intro]`, `[Verse 1]`, etc.) zur klaren Persona-Identifikation
+- IMMER bei Persona-Wechsel innerhalb einer Section (z.B. Witness tritt in die Mitte, Brief-Quote-Mode, Duet-Wechsel)
+- Bei Mode-Switches derselben Persona (z.B. `[ambivalent quote-mode: ...]`, `[ambivalent direct-mode: ...]`)
+- Bei Special Effects (z.B. `[brief-quote external-echo: ...]` für Brief-Zitate die als externe Spiegelung gerendert werden)
+
+**Was bleibt verboten:**
+- Personennamen (Kael, Container, Nyx, etc.) — absolut tabu
+- Generische `[Container]`/`[Witness]` ohne Voice-Description — nutze immer das ausführliche Format mit gender+register+texture+processing
+- Function-name in Lyric-Body-Text (z.B. `host: ich zähl`) — Function-Name gehört in den Metatag-Block, nicht in den gesungenen Text
+
+Lyrics-Body bleibt prosaisch, ohne Labels innerhalb der gesungenen Zeilen.
 
 Brief-Zitate werden **kursiv** oder in *Quotation* gesetzt, sind als Zitate hörbar (Suno-Direktive: *whispered, slower, with breath*).
 

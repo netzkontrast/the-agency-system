@@ -170,7 +170,7 @@ schon im Raum, bevor der Sprecher anfängt.
 ## Suno Style Prompt (engineered)
 
 **Style Prompt (max 200 chars):**
-`Male clear tenor, no vibrato, sibilant, micro-cracks at line-ends. Experimental art-pop, dark chanson. Typewriter-glitch intro, sustained pad, sub-bass, modular electroacoustic. 78 BPM.`
+`rationalist vocal: male clear tenor, no vibrato, sibilant, micro-cracks at line-ends. Experimental art-pop, dark chanson. Typewriter-glitch intro, sustained pad, sub-bass, modular. 78 BPM.`
 
 **Exclude Styles:**
 `no drums, no electric guitar, no autotune, no soaring vocals, no major-key resolution`
@@ -225,7 +225,7 @@ The whisper-layer is handled **in the Lyrics Box, not the Style Box**, via two c
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Solo male clear tenor, sibilant precision, no vibrato, cold articulation, thin reverb tail that breaks before line-ends, hypotactic conditional syntax with Latinisms, micro-cracks at line-ends — a voice that almost closes a proof and can't. Present-tense first person, intra-systemic, no direct addressee. One single word ("Ambiguität") appears as a quoted layer — same speaker, whispered slower with breath, clearly set apart from the clean tenor delivery, mixed slightly back as if borrowed from another page. Experimental art-pop, dark chanson, dark cabaret. Typewriter-glitch insert at intro (stop-start, mechanical, broken). Detuned upright piano single notes in enumeration pauses (rubber-band quality, no chords), sustained synth pad drone-ground throughout, sub-bass underneath held, sparse modular electroacoustic with high glassy resonances at naming moments, field recording layer (paper rustle, distant footsteps — no voices), tape hiss permitted. 78 BPM, slow, voice forward over a thin ambient bed. Surface beginning to thin, no swell, no climax, no resolution.
+rationalist vocal — solo male clear tenor, sibilant precision, no vibrato, cold articulation, thin reverb tail that breaks before line-ends, hypotactic conditional syntax with Latinisms, micro-cracks at line-ends — a voice that almost closes a proof and can't. Present-tense first person, intra-systemic, no direct addressee. One single word ("Ambiguität") appears as a quoted layer — same speaker, whispered slower with breath, clearly set apart from the clean tenor delivery, mixed slightly back as if borrowed from another page. Experimental art-pop, dark chanson, dark cabaret. Typewriter-glitch insert at intro (stop-start, mechanical, broken). Detuned upright piano single notes in enumeration pauses (rubber-band quality, no chords), sustained synth pad drone-ground throughout, sub-bass underneath held, sparse modular electroacoustic with high glassy resonances at naming moments, field recording layer (paper rustle, distant footsteps — no voices), tape hiss permitted. 78 BPM, slow, voice forward over a thin ambient bed. Surface beginning to thin, no swell, no climax, no resolution.
 ```
 
 ### Exclude Styles
@@ -240,9 +240,11 @@ no drums, no electric guitar, no autotune, no soaring vocals, no choir, no harmo
 
 ```
 [Intro]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 [Typewriter glitch, stop-start, mechanical — breaks. Sparse piano note. Short pause. Male clear tenor enters: sibilant precision, no vibrato, cold articulation, thin reverb tail breaking before line-ends, hypotactic conditional syntax with Latinisms, micro-cracks at line-ends. Solo.]
 
 [Verse 1]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 ich habe gelernt —
 zu nennen
 was ohne Namen
@@ -258,6 +260,7 @@ das letzte Verfahren ist
 das mir geblieben—
 
 [Pre-Chorus]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 gegeben dass jedes Phänomen
 einen Posten verlangt
 und jeder Posten
@@ -268,6 +271,7 @@ folgt die Liste vor mir
 nicht hinter mir—
 
 [Chorus]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 was ich gelernt habe zu nennen
 hält nicht
 die Liste ist lang—
@@ -276,6 +280,7 @@ hält nicht
 und die Liste ist lang—
 
 [Verse 2]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 ich versuche es nochmal —
 Proposition eins
 intrusiv getaktet
@@ -295,6 +300,7 @@ ordnungsgemäß—
 vermeidlich—
 
 [Pre-Chorus]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 gegeben dass alle drei
 zugleich gelten
 und keine
@@ -305,6 +311,7 @@ folgt eine vierte
 die ich nicht benannt—
 
 [Bridge]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 [Same tenor, same close-mic — then a single word enters as a quoted layer: whispered, slower, with breath, mixed slightly back, clearly set apart from the clean delivery. The word is borrowed.]
 es gibt ein Wort dafür
 ich habe es gelesen
@@ -312,11 +319,13 @@ es stand nicht in meiner Tinte
 es stand
 auf einem fremden Blatt
 
+[rationalist quote-mode: same tenor, whispered, slower, with breath, mixed slightly back]
 *Ambiguität*
 
 (das Wort kommt nicht aus dem System)
 (das Wort kommt aus dem Brief)
 
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 es heißt
 dass Dinge koexistieren dürfen
 ohne sich aufzuheben
@@ -326,6 +335,7 @@ weil keine
 die andere—
 
 [Verse 3]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 ich nehme das Wort
 und versuche es zu setzen
 in die Liste —
@@ -336,6 +346,7 @@ es ist nicht von mir—
 und es bleibt—
 
 [Outro]
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 [Solo tenor, last lines drop without resolution, thin reverb tail breaks before final consonant, no harmony. The borrowed word returns once, whispered, behind.]
 was ich gelernt habe zu nennen
 hält nicht—
@@ -344,8 +355,10 @@ das nicht meins ist
 hält
 besser—
 
+[rationalist quote-mode: same tenor, whispered, slower, with breath, mixed slightly back]
 *Ambiguität*
 
+[rationalist: male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks at line-ends]
 das ist —
 das ist der Stand—
 
@@ -457,6 +470,20 @@ das ist der Stand
 
 ## Production Notes
 
+- **Album-spezifische Metatag-Exception (Function-Name-Form):** *Vier
+  Seiten* verwendet ausnahmsweise die kombinierte Form
+  `[function-name: gender + register + texture + processing]` in den
+  Suno-Section-Tags (z. B. `[rationalist: male clear tenor, ...]`,
+  `[rationalist quote-mode: same tenor, whispered, ...]`,
+  `[witness: androgynous spoken-word, lowercase, parenthetical]`).
+  Das ist eine **album-spezifische Ausnahme** zu
+  `overrides/voice-craft-principles.md` (sonst: nur descriptive form,
+  niemals Character-Form). Begründung: bei reinem Solo-Track mit nur
+  einer Funktion + Same-Singer-Self-Echo-Layer hilft das
+  Function-Name-Prefix Suno, Coloring-Shifts (Bridge/Outro
+  Brief-Quote) klar von Voice-Wechseln zu trennen. **Personennamen
+  (Kael, Nyx, Selene, …) bleiben weiterhin verboten** — nur
+  Funktionen/Rollen sind erlaubt.
 - **Vocal Delivery (rationalist):** clear cold tenor, sibilant
   precision, no vibrato, cold articulation. Jeder em-dash am
   Zeilen-Ende ist ein Mikro-Riss — thin reverb tail bricht vor dem
@@ -559,7 +586,7 @@ das ist der Stand
 - [x] Kein "Liebe"/"lieben"/"Herzchen"
 - [x] Keine Adressierung an Miriam, Julia oder Beziehung
 - [x] Brief-Zitat *Ambiguität* kursiv im Lyric-Body, Suno-Direktive für whisper-Layer in Production Notes
-- [x] Function-Name-only in allen Suno-Metatags (keine "[Rationalist]" Tags — descriptive form verwendet)
+- [x] Function-Name-Form `[rationalist: …]` / `[rationalist quote-mode: …]` in Suno-Section-Tags (album-spezifische Exception zu voice-craft-principles, dokumentiert in Production Notes). Keine Personennamen.
 - [x] Julia nicht erwähnt
 - [x] Keine Personennamen im Lyric
 

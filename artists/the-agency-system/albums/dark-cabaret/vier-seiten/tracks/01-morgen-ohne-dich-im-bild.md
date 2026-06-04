@@ -56,15 +56,17 @@ das ist da, ich sage was da ist.
 
 ```
 [Intro]
-[Male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, trailing sentences — solo lead, no other voices]
+[host: male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, trailing sentences, solo lead, no other voices]
 
 [Verse 1]
+[host: male mid-baritone, weary, trailing em-dash phrasing, dry close-mic, no vibrato]
 sieben Schritte bis zur Küche
 zwei Tassen auf dem Brett
 eine bleibt im Schrank
 das Brett ist kalt
 
 [Verse 2]
+[host: male mid-baritone, weary, counting-tic anchor, dry close-mic, no vibrato]
 das Wasser läuft
 ich zähle die Sekunden
 einundzwanzig, zweiundzwanzig
@@ -72,13 +74,14 @@ bis es heiß ist
 ich höre das
 
 [Pre-Chorus]
+[host: male mid-baritone, weary, declarative trailing, dry close-mic, no vibrato]
 ich stehe noch nicht raus
 ich stehe nur am Brett
 das ist die Übung
 das tue ich
 
 [Chorus]
-[Same voice, no swell, no harmony, trailing]
+[host: male mid-baritone, same voice, no swell, no harmony, trailing, dry close-mic, no vibrato]
 der Morgen hält
 das Licht steht
 grau am Fenster
@@ -86,9 +89,9 @@ und das Bild ist klein
 und das Bild ist klein
 
 [Verse 3]
-[Witness annotation enters briefly, parenthetical, lowercase, audiobook-narrator behind the beat, very quiet]
+[witness: androgynous spoken-word, lowercase, parenthetical, audiobook-narrator behind the beat, very quiet]
 (auffällig: die Hand zittert nicht)
-[Host returns, dry close-mic]
+[host: male mid-baritone returns, weary, dry close-mic, no vibrato]
 die Bürste, die Paste
 zwei Minuten
 ich zähl bis hundertzwanzig
@@ -96,6 +99,7 @@ ich höre das Wasser
 ich höre das nicht
 
 [Verse 4]
+[host: male mid-baritone, weary, counting-tic anchor, dry close-mic, no vibrato]
 es gibt noch zehn
 die sind heute leise
 einer atmet mit
@@ -103,7 +107,7 @@ keiner sagt was
 das ist heute genug
 
 [Bridge]
-[Host, slightly slower, more trailing, em-dash audible as breath-pause]
+[host: male mid-baritone, slightly slower, more trailing, em-dash audible as breath-pause, dry close-mic, no vibrato]
 und das Bild ist klein —
 und das Bild ist klein —
 und der Tag ist da
@@ -112,7 +116,7 @@ und das ist —
 das tue ich
 
 [Outro]
-[Host alone, last lines drop without resolution, no harmony, no second voice]
+[host: male mid-baritone alone, last lines drop without resolution, no harmony, no second voice, dry close-mic, no vibrato]
 sieben Schritte
 zwei Tassen
 einundzwanzig
@@ -180,9 +184,14 @@ Das tue ich
   - counting-tic durchgängig (Schritte, Tassen, Sekunden, Minuten —
     Anker, kein Beweis)
   - phrase-endings fallen ohne Auflösung
-- **Suno-Direktive (descriptive form, NICHT character-form):** alle
-  vocal-cues in den `[…]`-Klammern sind deskriptiv ("Male mid-baritone,
-  weary…"); kein "Container", kein "host" als character-tag.
+- **Suno-Direktive (function-name-Metatag-Konvention — album-spezifische
+  Exception zu `overrides/voice-craft-principles.md`):** alle vocal-cues
+  verwenden das Format `[function-name: descriptive]` (lowercase
+  function-name + Doppelpunkt + deskriptive Vocal-Beschreibung).
+  Function-names (host, witness, rationalist, …) sind ROLLEN, KEINE
+  Charakter- oder Personennamen — Personennamen (Kael, Container, …)
+  bleiben verboten. Diese Konvention gilt nur für *Vier Seiten*, um
+  klare Stimmprofile bei Persona-Wechseln zu garantieren.
 - **No second voice.** Wie v2-Slot-01: kein Background-Chor, keine
   Wir-Stimme, keine Body- oder Heart-Voice. Wenn Suno trotzdem einen
   Background-Chor einfügt: Re-Roll mit verschärftem Exclude.
@@ -221,7 +230,7 @@ Das tue ich
 ## Suno Style Prompt (engineered)
 
 **Style Prompt (max 200 chars):**
-`Male mid-baritone, weary, trailing phrasing, dry close-mic, no vibrato. Dark chanson, experimental art-pop. Sustained pad drone, sub-bass, modular electroacoustic, breath field-recording. 78 bpm`
+`host vocal, male mid-baritone, weary, trailing, dry close-mic, no vibrato. Dark chanson, experimental art-pop. Sustained pad drone, sub-bass, modular electroacoustic, breath field-rec. 78 bpm`
 
 **Exclude Styles:**
 `no drums, no electric guitar, no autotune, no choir`
