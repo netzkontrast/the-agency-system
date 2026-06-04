@@ -112,10 +112,10 @@ Am Ende: zwei Stimmen kurz nebeneinander hörbar, dann pad fade in silence. Kein
 **Concise Style Prompt (≤200 chars — paste as primary Style of Music):**
 
 ```
-duet: female warm soprano + androgynous spoken-word narrator (no melody), intimate close-mic, dark chanson, sustained pad, piano sparse, 66 BPM, fade to silence, no tonic, no closing chord
+duet: caregiver + witness, fade to silence, female warm soprano + androgynous spoken-word narrator (no melody), intimate close-mic, dark chanson, sustained pad, 66 BPM, no tonic, no closing chord
 ```
 
-**Reasoning:** vocals FIRST per V5.5 weighting. "spoken-word narrator (no melody)" is the explicit anti-sung tag — Suno's default tendency is to convert spoken-word into half-sung; the negation is mandatory. "fade to silence, no tonic, no closing chord" placed at the tail so the model carries it through the outro — this is the Album-Closure-critical directive.
+**Reasoning:** "duet: caregiver + witness, fade to silence" leads per V5.5 weighting — function-role naming first (function-name-metatag exception per the-agency-system DNA), then fade-to-silence as the Album-Closure-critical signal. "spoken-word narrator (no melody)" is the explicit anti-sung tag — Suno's default tendency is to convert spoken-word into half-sung; the negation is mandatory. "no tonic, no closing chord" placed at the tail so the model carries it through the outro.
 
 ### Style Box (extended — paste into Suno's "Style of Music" field for V5.5)
 
@@ -135,14 +135,16 @@ no drums, no electric guitar, no autotune, no choir, no climax, no closing chord
 
 | Section | Directive |
 |---|---|
-| Intro | witness-narrator alone, spoken-word, NOT sung, full center-mic volume, pad ground only |
-| Verse 1 | soprano enters, statement-form direct address, NO rising intonation on "dich" |
-| Pre-Chorus / Chorus | both voices side-by-side, NO harmony stack, NO unison, audibly separate |
-| Verse 2 | soprano alone, holding-vocabulary, intimate close-mic |
-| **Bridge (KRITISCH)** | **soprano alone, flat-emotional, declarative, NO crescendo, NO rising intonation on "gewünscht", NO emotion-add, breath audible; witness silent** |
-| Verse 3 | witness LEADS in full center-mic spoken-word, NOT parenthetical, NOT behind the beat, NOT marginal |
-| Pre-Outro | both voices briefly side-by-side, NO fusion, NO unison, two voices clearly separable |
-| **Outro (KRITISCH)** | **soprano alone very quiet, then pad fade-out 12-15s into silence, NO tonic, NO closing chord, ends unresolved on "weiter"** |
+| Intro | `[witness: walks margin to center, narrator declarative, center-mic NOT parenthetical]` — spoken-word, NOT sung, full volume, pad ground only |
+| Verse 1 | `[caregiver: female warm soprano, intimate close-mic, holding-vocabulary]` — statement-form direct address, NO rising intonation on "dich" |
+| Pre-Chorus | `[witness joins: spoken-word + caregiver soprano duet]` — two voices side-by-side, NO harmony stack, audibly separate |
+| Chorus | `[duet: caregiver + witness, soft, intimate]` — caregiver leads + witness one step behind, NO swell, NO unison |
+| Verse 2 | `[caregiver: no-reaction-clause delivery, flat-emotional, KEIN crescendo]` — soprano alone, holding-vocabulary, intimate close-mic |
+| **Bridge (KRITISCH)** | `[caregiver alone: flat-emotional, declarative, NO crescendo, NO rising intonation auf "gewuenscht", breath audible, witness silent]` — apology-form-without-asking-forgiveness |
+| Chorus 2 | `[duet: caregiver + witness return]` — caregiver leads + witness behind, sparser instrumentation, NO harmony stack |
+| Verse 3 | `[witness LEADS: spoken-word in CENTER-MIC, full voice, NOT parenthetical, NOT behind the beat]` — caregiver silent here |
+| Pre-Outro | `[duet: caregiver + witness side by side]` — NO harmony stack, NO fusion, NO unison, two voices clearly separable |
+| **Outro (KRITISCH)** | `[duet fade: caregiver + witness soft, slower, breath, pad fade-out 12-15s into silence, NO tonic, NO closing chord, ends unresolved auf "weiter"]` |
 
 ### Lyrics Box
 
@@ -150,7 +152,7 @@ no drums, no electric guitar, no autotune, no choir, no climax, no closing chord
 
 ```
 [Intro]
-[Sustained pad ground, no drums. Androgynous spoken-word voice, monotone but warm, audiobook-narrator register, dry, slightly behind the beat, lowercase delivery — declarative, NOT parenthetical, NOT marginal, full voice in center mix.]
+[witness: androgynous spoken-word, narrator monotone-but-warm, audiobook register, walks margin to center, center-mic NOT parenthetical, full voice, dry, slightly behind the beat, lowercase delivery, declarative — pad ground only, no drums, no other vocal]
 
 ich war am rand
 der ganzen schicht
@@ -158,7 +160,7 @@ jetzt nicht
 jetzt hier
 
 [Verse 1]
-[Female warm soprano enters, breathy at the edges, vowel-forward legato, intimate close-mic, soft room reverb, lullaby phrasing — S4 holding, no smothering, no possession vocabulary. Direct address, but statement form, not request.]
+[caregiver: female warm soprano, intimate close-mic, weighted breath, vowel-forward legato, soft room reverb, holding-vocabulary only, no rising intonation on "dich", statement-form direct address, no possession diction]
 
 wir sehen dich
 und das war
@@ -171,7 +173,7 @@ und du entscheidest
 wann
 
 [Pre-Chorus]
-[Witness joins soprano — two voices side by side, no harmony stack, audibly separate. Both quiet, both declarative.]
+[witness joins: spoken-word + caregiver soprano duet, two voices side by side, NO harmony stack, audibly separate, both quiet, both declarative]
 
 du hast vier seiten
 geschrieben
@@ -180,7 +182,7 @@ mehrmals gelesen
 langsam
 
 [Chorus]
-[Soprano leads, witness one step behind in spoken-word — both direct, both quiet. No swell.]
+[duet: caregiver + witness, soft, intimate, caregiver leads legato + witness one step behind in spoken-word, both direct, both quiet, NO swell, NO unison]
 
 wir sehen dich
 und du waehlst
@@ -189,7 +191,7 @@ und du
 waehlst
 
 [Verse 2]
-[Soprano alone, same intimate close-mic, holding-vocabulary only — breath, shoulder, hand, here.]
+[caregiver: no-reaction-clause delivery, female warm soprano alone, intimate close-mic, holding-vocabulary only — breath shoulder hand here, flat-emotional, KEIN crescendo, statement form]
 
 das hier
 hoerst du
@@ -206,7 +208,7 @@ das ist
 nur so
 
 [Bridge]
-[Soprano takes the self-questioning quietly, no rise, no break. Witness silent here — only the soprano can sing the apology-form-without-asking-forgiveness.]
+[caregiver alone: female warm soprano alone, flat-emotional, declarative, NO crescendo, NO rising intonation auf "gewuenscht", NO emotion-add, NO vibrato, NO ornamentation, breath audible, witness silent — apology-form-without-asking-forgiveness]
 
 vielleicht
 haettest du dir
@@ -224,7 +226,7 @@ auch nichts
 ist richtig
 
 [Chorus 2]
-[Both voices return — soprano leads, witness one step behind. Sparser instrumentation now, piano very thin.]
+[duet: caregiver + witness return, caregiver leads + witness one step behind, sparser instrumentation now, piano very thin, NO harmony stack, NO unison]
 
 wir sehen dich
 und du waehlst
@@ -237,7 +239,7 @@ dann nie
 beides ist richtig
 
 [Verse 3]
-[Witness now leads — declarative, in full voice, NOT parenthetical, NOT behind the beat anymore, walks fully into center.]
+[witness LEADS: androgynous spoken-word in CENTER-MIC, full voice, NOT parenthetical, NOT behind the beat, NOT marginal, declarative narrator — walks fully into center, caregiver silent here]
 
 ich war am rand
 der ganzen schicht
@@ -254,7 +256,7 @@ neben ihr
 neben dir
 
 [Pre-Outro]
-[Both voices briefly together — soprano legato above, spoken-word steady next to her, no harmony stack, no fusion, two voices side by side. This is the only pluralist closure of the album — duet, not eleven-voice polyphony.]
+[duet: caregiver + witness side by side, caregiver soprano legato above + witness spoken-word steady next to her, NO harmony stack, NO fusion, NO unison, two voices clearly separable — pluralist closure as duet, NOT eleven-voice polyphony]
 
 wir sehen dich
 und das war
@@ -264,7 +266,7 @@ ohne wieder
 zu uebergreifen
 
 [Outro]
-[Soprano alone, very quiet, witness silent. Pad begins fade-out. No tonic, no resolution. Last words trail without closure.]
+[duet fade: caregiver + witness soft, slower, breath audible, very quiet — pad begins fade-out into silence, NO tonic, NO closing chord, NO resolution, ends unresolved auf "weiter"]
 
 vier seiten
 deine
@@ -274,7 +276,7 @@ deine wahl
 weiter
 
 [Tail]
-[Pad continues fading into silence over 12 to 15 seconds. No voice returns. No tonic chord. No final cadence. Album ends open.]
+[pad fade-out 12-15s into silence, NO voice returns, NO tonic chord, NO final cadence, NO closing chord — album ends OPEN and unresolved]
 
 [End]
 ```
@@ -379,6 +381,7 @@ Weiter
 
 ## Production Notes
 
+- **Function-Name-Metatag — Album-Closure-Exception (the-agency-system DNA):** Die Lyrics-Box und die Per-Section-Direktiven verwenden **function-name metatags** (`[caregiver: ...]`, `[witness: ...]`, `[duet: ...]`) statt der voreingestellten descriptive-only-Form aus `overrides/voice-craft-principles.md`. Diese Ausnahme gilt im Suno-Renderer-Slot (Lyrics-Box, Style-Box, Per-Section-Direktive) als technische Hilfe für klare Persona-Switches — sie ist **NICHT** ein character-name-tag (kein "Kael" / "Nyx" / "Selene"), sondern eine **Funktions-Rolle**. name_exposure-Regel bleibt unverletzt: personal names erscheinen weder im Lyric noch im Metatag. Format: `[function-name: gender + register + texture + processing]`. Für Streaming-Lyrics, promo-copy, art-prompts und alle public-facing-Felder gilt weiterhin die strikte name-free-Regel.
 - **Vocal Delivery — caregiver soprano:** warm, breathy at the edges, vowel-forward legato, intimate close-mic, soft room reverb. Lullaby phrasing, ABER S4-Disziplin: keine Possession-Diktion. Wo caregiver normalerweise "Liebe" sagen würde, sagt sie hier "Atem, Schulter, Hand, hier". Direct address in C-Position muss als Tatsachen-Aussage klingen, nicht als Bitte. Der Unterschied: keine rising intonation am Zeilenende, kein Verzierungs-Vibrato, keine Crescendo-Bewegung auf "dich". Wenn Suno "dich" mit emotionaler Hebung rendert: re-roll.
 - **Vocal Delivery — witness spoken-word — KRITISCHE PRODUKTIONS-DIREKTIVE:** In allen vorhergehenden Tracks war witness parenthetisch, lowercase, hinter dem Beat, leise. **In T09 nicht mehr.** Er ist deklarativ, in Center-Mic-Lautstärke (nur leicht hinter dem Beat als delay-Signature), keine Klammern, keine Marginalie. Seine Sprache bleibt klinisch — *registriere, beobachte, am Rand* — aber sie ist nicht versteckt. Wenn Suno ihn parenthetisch oder als Background rendert: re-roll mit verschärftem Spoken-Word-Lead-Cue. Dies ist der Lead-Moment des witness im gesamten Album.
 - **Intro — witness allein, walks from margin to center:** *"ich war am rand / der ganzen schicht / jetzt nicht / jetzt hier"*. Vier Zeilen. Diese vier Zeilen sind die strukturelle Hauptbewegung des Tracks. Witness eröffnet das letzte Album-Track in voller Lautstärke — zum ersten Mal nicht hinter den anderen, sondern davor. Pad-Ground ist da, kein anderes Instrument, kein anderes Vocal.
@@ -534,20 +537,21 @@ Bonus-Song "Daneben" (host allein, Modell für B-Position) hat die no-reaction-C
 
 These are the album-closure-critical render failures. Any one of these triggers a re-roll, not a "good enough" accept.
 
-- Bridge "gewünscht" mit rising intonation → Re-Roll (caregiver-Schmeichelei-Risiko: Selbst-Infragestellung darf nicht emotional gehoben werden)
+- **Witness wird im Intro oder Verse 3 sung statt spoken-word (Melodie-Kontur, gepitcht) → Re-Roll** (function-name `[witness: ...]` muss als spoken-word-narrator rendern, NICHT als Sänger; verschärfter narrator-tag, evtl. "[Spoken]" inline)
+- **Bridge wird mit crescendo oder rising intonation auf "gewuenscht" gerendert → Re-Roll** (caregiver alone, flat-emotional Pflicht — Selbst-Infragestellung darf nicht emotional gehoben werden; function-name `[caregiver alone: ...]` enforced)
+- **Outro endet mit tonic / closing chord / final cadence → Re-Roll** (Album-Closure MUSS offen bleiben — `[duet fade: ...]` muss in silence enden; dies ist die kritischste Render-Klausel des gesamten Albums)
 - Bridge "weg" mit crescendo → Re-Roll
 - Bridge wird emotional / mit Vibrato / mit Verzierung gerendert → Re-Roll (muss flat-emotional, declarative bleiben)
-- Witness wird sung (nicht spoken-word, hat Melodie-Kontur) → Re-Roll mit verschärftem narrator-tag, evtl. "[Spoken]" inline
 - Witness bleibt parenthetisch im Verse 3 oder Outro (statt center-mic Lead) → Re-Roll mit verschärftem "spoken-word LEAD" cue
-- Witness wird im Intro hinter dem Beat / leise / als Background gerendert → Re-Roll (Intro ist witness' Eröffnungs-Statement, full voice)
-- Outro endet mit tonic / closing chord / final cadence → Re-Roll (Album-Closure MUSS offen bleiben — dies ist die kritischste Render-Klausel des gesamten Albums)
+- Witness wird im Intro hinter dem Beat / leise / als Background gerendert → Re-Roll (Intro ist witness' Eröffnungs-Statement, full voice, margin-to-center)
 - Outro fade ist kürzer als 10s oder schneidet hart ab → Re-Roll (12-15s sind das Album-Schluss-Signal)
 - Vocal performance overshadows Selbst-Infragestellung der Bridge → Re-Roll
 - Bonus-Echo-Linien zu prominent (Wiederholung von "wir sehen dich" mehr als 2-3× exponiert) → Re-Roll
-- Caregiver-witness fusionieren in Pre-Outro zu Unison / Harmonie-Stack → Re-Roll (Duett bleibt Duett, kein 11-Voice-Mosaic)
+- Caregiver-witness fusionieren in Pre-Outro zu Unison / Harmonie-Stack → Re-Roll (Duett bleibt Duett, kein 11-Voice-Mosaic; `[duet: ...]` ≠ unison)
 - "dich" am Zeilenende mit emotionaler Hebung / Vibrato → Re-Roll (statement-form, nicht Bitte)
 - Drum-Build / Swell irgendwo im Track → Re-Roll (S4 ventral safety, kein Climax)
 - Album-Final-Note schwebt nicht (clean cut statt fade) → Re-Roll
+- Suno rendert function-name als gesungenes Wort ("caregiver", "witness", "duet" hörbar im Vocal) → Re-Roll (Metatag muss als Direktive interpretiert werden, NICHT als Lyric-Inhalt)
 
 ## Generation Log
 
