@@ -593,9 +593,151 @@ So weit
 | Album | AHL-bum | German "A" — open, not flat-American |
 | verhandelbar | fehr-HAN-del-bar | "v" = "f"; four syllables; clear "r" tap at end |
 
-## Voice Profile (Suno Style)
+## Suno Style Prompt (engineered)
 
-`[duet — male very deep bass sub-tempo near-spoken lowercase fragments without periods breath audible exhausted not theatrical PLUS female mezzo-alto ageless spacious long vowels controlled vibrato plate reverb slow legato patient deferrals; at bridge eleven voices choir-layered soft slightly varied tempi composition not fusion individual voices identifiable no auto-tune; at outro eleven voices unisono-soft breath-led slightly behind the beat direct address; brief-quote whispered slower with breath; witness androgynous spoken-word behind the beat lowercase; sustained synth pad drone-ground sub-bass throughout plate-reverb piano very sparse modular electroacoustic minimal field recording with audible breath one paper rustle; 64 bpm experimental art-pop dark chanson dark cabaret S3 to S4 threshold dorsal-vagal bottom ventral-vagal bridge no drums no electric guitar no autotune no soaring no triumphant build no major resolution]`
+**Title-Track — duet rendering is render-critical. Suno V5.5 recommended (improved
+vocal separation for duet + polyphonic stack).**
+
+### Style Prompt (compact, ≤200 chars — paste into "Style of Music" if Style Box too long)
+
+```
+Duet: male very deep bass sub-spoken + female mezzo-alto legato, plate reverb. Dark chanson, art-pop. Sub-bass, pad drone, sparse piano. 64 BPM. Soft polyphonic choir bridge, no build.
+```
+
+(198 chars — vocals first, both leads named, sonic anchor, bridge directive, the
+critical "no build" carrying the loudness-flat invariant.)
+
+### Recommended Suno Settings
+
+| Setting | Value |
+|---|---|
+| Model | **V5.5** (vocal separation in duet stacking) |
+| Instrumental | Off |
+| Weirdness | ~35 |
+| Style Influence | ~80 (push duet + sonic identity hard) |
+| Audio Influence | N/A |
+
+### Duet Rendering Directive (the render-critical bit)
+
+Suno's failure mode for duets is **unison-mixing** — both voices land in the same
+register, sweetness creeps in, the distinction collapses. The track file uses
+**descriptive metatags at every section opening** to force separation. These are
+already embedded in the Lyrics Box per `voice-craft-principles.md` (descriptive
+form, never character-form). The metatags are:
+
+- Verse 1, Verse 3, "collapsed responds" insert →
+  `[male very deep bass, sub-tempo near-spoken, gravelly, breath audible
+  between fragments, sub-kick close dry mic, line-final pauses longer than
+  the lines, lowercase fragments without periods]`
+- Verse 2, Verse 4, "integrator confirms" insert →
+  `[female mezzo-alto, ageless, spacious long vowels, controlled vibrato,
+  plate reverb suggesting architecture, slow legato]`
+- Pre-Chorus + Chorus →
+  `[Both voices in slow alternation, behind the beat. The reading itself
+  is the content.]`
+
+The contrast pair **sub-bass dry close-mic ↔ mezzo-alto plate reverb** is the
+acoustic signature. Suno reads "plate reverb suggesting architecture" as a
+*spatial* directive (not a tail-time directive) — it places integrator in a
+different *room* than collapsed. That spatial split is what the duet needs.
+
+### Bridge Wir-Polyphonie Directive (no-build invariant)
+
+The Bridge metatag is intentionally **anti-climactic**:
+
+```
+[All eleven voices enter layered soft, slightly varied tempi, audibly
+polyphonic, composition not fusion, individual voices remembered, mosaic
+not monolith, no auto-tune. Choir-soft. No build. The first Wir-Polyphonie
+of the album.]
+```
+
+Two render-critical words: **"slightly varied tempi"** (forces phase against
+unison-sweetness) and **"no build"** (forces flat loudness curve against
+default-choir-crescendo behavior). Excluded styles reinforce: `no triumphant
+build`, `no unison chorus`. Second-intervals and fourths permitted; no thirds
+(per voice-craft-principles avoidance of sweetness).
+
+### Outro Wir-Stimme Directive (direct-C, still flat)
+
+The Outro tightens to unisono-soft for the *only* direct-address passage:
+
+```
+[All eleven voices in unisono-soft, slightly behind the beat, breath-led,
+direct address. This is the only direct-C passage of the track. No build,
+no swell. Plate-Hall opens slightly. Pad-drone carries beneath. No tonic
+resolution.]
+```
+
+"No tonic resolution" is the structural promise — the answer stays open
+(*so weit / so weit*). Plate-hall opens *slightly* — gain in space, not in
+volume.
+
+### Title-Anchor Repetition Discipline
+
+*"vier Seiten / wir haben gelesen / mehrmals"* appears 4× as anchor:
+
+1. **Pre-Chorus** — *"vier seiten / langsam / mehrmals / langsam // vier
+   seiten / wir haben / sie gelesen / vier seiten / mehrmals"*
+2. **Chorus** (lead) — *"vier seiten / wir haben gelesen / mehrmals / und
+   gehört"*
+3. **Bridge** (Wir-Polyphonie) — *"wir haben / gelesen / mehrmals"* and
+   *"vier seiten / und ein wir / das liest"*
+4. **Outro** (direct C) — *"wir haben gelesen / mehrmals / und gehört /
+   und das hier / ist die antwort / so weit / so weit"*
+
+The Chorus brief-quote sub-layer *"(vier Seiten — wir haben gelesen —
+mehrmals —)"* is a fifth occurrence, marked italics + em-dashes,
+whispered/slower with breath, klar abgesetzt vom Lead-Vocal. Suno reads
+italics in parens as ad-lib/backing layer — this lands automatically.
+
+### Julia Statement Clarity Directive
+
+Verse 3's *"julia ist nicht / in diesem lied / das gilt"* is the only
+external-person naming in the album. The metatag for Verse 3 is intentionally
+sparse:
+
+```
+[Collapsed alone, very low, very slow. The hardest line of the track. No
+emphasis, no defense. Said because it must be said.]
+```
+
+Pronunciation entry **Julia → YOO-lee-ah** locks the German diphthong. If
+Suno renders English *"JOOL-yah"*, that's a phonetic-fix re-roll.
+
+### Reference: Full Style Box & Exclude Styles
+
+The full 1000-char-budget Style Box and Exclude Styles for Suno's actual
+fields live above in **Suno Inputs → Style Box** and **Suno Inputs →
+Exclude Styles**. The compact 200-char prompt above is the fallback when
+the Style Box budget is tight; the full Style Box is the preferred paste
+target for V5.5 (which honors the full character budget reliably).
+
+## Re-Roll Triggers (Generation QC)
+
+- Wir-Polyphonie wird epic-choir build (climax) → Re-Roll mit verschärftem
+  "soft layered chant, no build, flat loudness, no crescendo" directive
+- Bridge wird climactic crescendo (loudness rises >3dB across bridge) →
+  Re-Roll mit "loudness curve flat across bridge"
+- collapsed/integrator nicht distinkt (Suno mischt zu unison oder beide
+  landen in derselben Register-Zone) → Re-Roll mit verschärftem duet-tag,
+  Spatial-Split betonen ("collapsed dry close-mic, integrator distant plate
+  reverb — different rooms")
+- *"vier Seiten"* Title-Anker fehlt eine der 4 Wiederholungen → Re-Roll
+- Julia-Statement undeutlich (englisch "JOOL-yah" statt YOO-lee-ah, oder
+  von Backing-Layer verschluckt) → Re-Roll mit "Julia line solo collapsed,
+  no backing, clear articulation"
+- Tonic resolution im Outro (major-key cadence, plagal Schluss) → Re-Roll
+  mit "no tonic, no cadence, plate-hall taper into silence"
+- Brief-Zitat-Layer *"(vier Seiten — wir haben gelesen — mehrmals —)"*
+  oder *"(es darf — koexistieren —)"* nicht hörbar als separate Schicht
+  (verschmilzt mit Lead-Vocal) → Re-Roll mit "whispered backing layer
+  clearly distinct from lead, lower in mix, with breath"
+- Auto-Tune-Artefakte in Wir-Polyphonie (Suno greift default zu Pitch-
+  Correction beim Layern) → Re-Roll mit verschärftem "no auto-tune, raw
+  pitch, slight intonation drift permitted"
+- Paper-Rustle fehlt oder loop-repeated (statt einmalig) → Re-Roll mit
+  "one paper rustle only, between Verse 2 and Pre-Chorus, never repeated"
 
 ## Cross-References
 
