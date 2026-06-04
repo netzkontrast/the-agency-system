@@ -49,7 +49,7 @@ album_role: "Transition — ambivalent, beides darf koexistieren"
 
 **Intra-systemische Bewegung:** Einmal — und nur einmal — spricht die ambivalente Stimme einen zweiten Teil im System an: *"du — der mich halten will — / und du — der lassen will —"*. Beide angesprochen, keiner bevorzugt. Beide bleiben. Kein Außen-Du. Es ist das Erkennen, dass das System *zwei Stimmen gleichzeitig* trägt und beide sich melden dürfen.
 
-**Geliehenes Wort:** *"koexistieren"* erscheint einmal — geborgt aus Miriams Brief vom 03.06.2026, aber nicht zu ihr zurück. Das System nimmt das Wort und benutzt es für sich. Anerkennung des Werkzeugs, nicht der Person.
+**Geliehenes Wort:** *"koexistieren"* erscheint einmal — als gewöhnliches Verb im Satz, nicht als markierte Übernahme. Das Wort steht ohne Selbst-Referenz, ohne Geste des Nehmens. Es wird benutzt, nicht ausgestellt.
 
 ## Research Grounding
 
@@ -134,7 +134,7 @@ ich nenn das — was es ist —
 zwei Stimmen — gleichzeitig —
 und keine wird zur anderen —
 
-(es fällt auf — beides bleibt stehen)
+(registriert: beides bleibt stehen)
 
 [Bridge]
 [Same voice, slightly more focused — addressing two parts inside the system at once. Still microtonal, still mid-line breath. The em-dashes stay.]
@@ -146,8 +146,8 @@ ich hör euch — halb und halb —
 und ich entscheide — nicht —
 
 ich lass euch — koexistieren —
-das Wort — ich nehm es —
-es passt —
+ich will — ich will nicht —
+und beides — bleibt —
 
 [Verse 4]
 ich greif nach — etwas —
@@ -207,8 +207,8 @@ Ich hoer euch halb und halb
 Und ich entscheide nicht
 
 Ich lass euch koexistieren
-Das Wort ich nehm es
-Es passt
+Ich will ich will nicht
+Und beides bleibt
 
 Ich greif nach etwas
 Ich weiss nicht wonach
@@ -235,8 +235,8 @@ Ich bleib im Strich
 - **Mixed dry/wet:** alternate phrases in dry close-mic and short-decay plate reverb, sometimes within the same line. The wet/dry switch happens on em-dashes. Listeners should hear the *room change* in the middle of a sentence.
 - **Ambiguous tonic:** the harmonic field oscillates between two centers (e.g., a minor sixth apart). The voice approaches each but never settles. Final line *"ich bleib — im Strich —"* lands on a pitch that belongs to neither — a hovering third.
 - **Bridge — intra-systemic address:** *"du — der mich halten will / und du — der lassen will —"* is the only moment of direct intra-system address. Both parts spoken to in the same breath, equal weight. No outward "du" anywhere. Per CONCEPT v2 §4 voice rules.
-- **The borrowed word "koexistieren":** delivered with the same micro-pitch-bend as all other words — no special emphasis, no italics-in-voice. The taking of the word is the gesture, not the announcement.
-- **Witness annotation *"es fällt auf — beides bleibt stehen"*:** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Exactly once. Sits inside Verse 3, marking the moment the ambivalence is recognized as form, not as problem.
+- **The word "koexistieren":** delivered with the same micro-pitch-bend as all other words — no special emphasis, no italics-in-voice. The word sits inside the sentence as ordinary verb. No meta-gesture marks it as taken.
+- **Witness annotation *"registriert: beides bleibt stehen"*:** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Exactly once. Sits inside Verse 3, marking the moment the ambivalence is recognized as form, not as problem.
 - **Outro *"ich bleib — im Strich —"*:** the closing image. The em-dash itself becomes the place to live. Voice trails into breath + room tone, no resolution, no fade-to-silence — the room continues breathing under the next track.
 - **Carry-over to Track 05 (protector / S2):** the unresolved hover of T04 becomes the precondition for T05. The protector enters with a hard declarative — *"ich lasse nicht durch"* — and the contrast lands precisely because T04 refused to decide. The em-dash bed gives way to the protector's full-stops.
 
@@ -272,7 +272,9 @@ v2 keeps **none** of that addressing. What translates:
 
 What is **discarded** entirely from v1: the outward addressee (Miriam), the about-figure (own override pop), the cabaret-control register, the three-voice composition, the Wir-Stimme entry, the closure-imagery (*"ich darf heute weich sein"*), the function-naming as therapeutic gesture toward an outside listener. v2's S1→S2 track refuses both closure and outward address — that is its truth. The Anerkennen survives but turns inward and onto the splitting itself.
 
-**The borrowed word *koexistieren*** is the single explicit nod to Miriam's letter (03.06.2026) — used 3× in her own writing as the principle that lets feelings stand together. v2 takes the word into the system and uses it for the system. Acknowledgement of the tool, not of the person.
+**The word *koexistieren*** appears once in the bridge as an ordinary verb — not as a marked borrowing, not as an acknowledged tool. The earlier draft made the taking explicit ("das Wort — ich nehm es — / es passt —"); that meta-gesture has been removed in the fix-pass below. The word now stands without self-reference inside the system's own sentence.
+
+**Fix-Pass 2026-06-04:** koexistieren-Meta-Geste entfernt (Album-Review-Befund). Bridge-Zeilen *"das Wort — ich nehm es — / es passt —"* und Streaming-Pendant *"Das Wort ich nehm es / Es passt"* ersetzt durch reach-and-retract-Material aus der ambivalenten Voice-DNA (*"ich will — ich will nicht — / und beides — bleibt —"*). Das Anzeigen des Übernehmens war selbst eine implizite Geste zu Miriam — Fix bringt das Wort zurück in normale Satzfunktion. Concept §Geliehenes-Wort, Production Notes §borrowed-word und obiger Cross-Ref-Paragraph mit-angepasst.
 
 ## Phonetic Review Checklist
 
@@ -283,7 +285,7 @@ What is **discarded** entirely from v1: the outward addressee (Miriam), the abou
 - Sätze widerrufen sich selbst innerhalb der Phrase ("ich will — ich will nicht —", "ich heb die Hand — ich zieh sie zurück —").
 - Repetition als Form ("halb — und halb — / halb — und halb —") in Outro.
 - Witness-Annotation in lowercase parenthetical — exakt 1×.
-- *koexistieren* erscheint genau 1× (geliehenes Wort, kein Etikett).
+- *koexistieren* erscheint genau 1× — als gewöhnliches Verb im Satz, ohne Meta-Geste der Übernahme.
 - Kein Tonic-Schluss — Outro endet auf "im Strich —" mit Atem, keine Auflösung.
 - Keine Heilung, keine Synthese, kein "und dann verstand ich" — Track endet im Schwanken.
 

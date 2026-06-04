@@ -144,6 +144,10 @@ selbst reißen. Das ist die ganze Begegnung.
 | Verletzlichkeit hörbar (alto → low contralto) | Wir-close-harmony im Bridge ("ich bin hier (ich bin hier)") — Wir gehört T08/T09 | "ich nahm bevor genommen wurde" als zitierter Performance-Satz, der zerbricht |
 | Aus-em-dash Atempausen | Heart-Korpus-Position (Herz-row) | Körper-Korpus, sex_override lead — proaktive Kontrolle als Thema |
 
+### Fix-Pass Notes
+
+- **Fix-Pass 2026-06-04**: V2 "sie"/"es" Disambiguation — *"bevor sie Nähe wurde"* zu *"bevor daraus Nähe wurde"* (Wärme grammatikalisch feminin, aber "sie" las sich personal; "daraus" entfernt jede Ambiguität, hält intra-systemisches Register). "Muster"-Seed in V6 eingebaut (*"und das Muster / hält noch"*) als Anschluss-Vorbereitung für T08 ("Was uns trägt", Geflecht/Muster-Vokabular). Album-Review-Befund.
+
 ## Mood & Imagery
 
 Stationszimmer, später Abend. Ein hoher Spiegel an der Wand —
@@ -234,7 +238,7 @@ bevor genommen wurde
 ich nahm den Stoff
 bevor er Haut wurde
 ich nahm die Wärme
-bevor sie Nähe wurde
+bevor daraus Nähe wurde
 das war die Form
 die war ich
 
@@ -278,6 +282,8 @@ und der Lack
 hält noch
 und die Hand
 hält noch
+und das Muster
+hält noch
 und die Form
 hält noch
 und das ist
@@ -312,7 +318,7 @@ Bevor genommen wurde
 Ich nahm den Stoff
 Bevor er Haut wurde
 Ich nahm die Wärme
-Bevor sie Nähe wurde
+Bevor daraus Nähe wurde
 Das war die Form
 Die war ich
 
@@ -346,6 +352,8 @@ Wahl
 Und der Lack
 Hält noch
 Und die Hand
+Hält noch
+Und das Muster
 Hält noch
 Und die Form
 Hält noch
@@ -440,7 +448,7 @@ Hielt
 - [x] Verse-end vs Chorus-start Echo-Check: kein wiederholter Reim, Vers-Enden variieren (ist / war / sage / gewählt / Wahl / zerreißt / hielt)
 - [x] Keine Außenadressierung — niemand wird angesprochen, kein "du", kein "wir"
 - [x] Kein Boundary-Akt — boundary-dissolving als Bewusstwerden ("ich höre / dass ich das sage"), nicht als performative Geste
-- [x] Voice-DNA Vocabulary verwendet: Haut, Stoff, Wärme, Glanz, Nähe (V2), Lack (V1, V4, V6), Hand (V1, V6) — alle als interne Texturen, keine als Beziehungs-Referenzen
+- [x] Voice-DNA Vocabulary verwendet: Haut, Stoff, Wärme, Glanz, Nähe (V2), Lack (V1, V4, V6), Hand (V1, V6), Muster (V6 — Seed für T08-Anschluss) — alle als interne Texturen, keine als Beziehungs-Referenzen
 - [x] Confident performative lines die als Verführung gelesen werden könnten und als Warnung landen: V1 "ich kenne die Hand / weil sie meine ist", V2 "ich nahm bevor genommen wurde" — beides wendet sich nach innen, statt Außen-Verführung zu sein
 
 ## Generation Log

@@ -154,7 +154,7 @@ zu mir
 ich seh dich
 nicht von außen
 ich bin
-im selben Geflecht
+in unserem Geflecht
 
 [Verse 4]
 [Collapsed responds]
@@ -248,7 +248,7 @@ Ich komme immer spät
 Das gehört zu mir
 
 Ich seh dich nicht von außen
-Ich bin im selben Geflecht
+Ich bin in unserem Geflecht
 
 Ich kann nicht aufstehen
 Ich frag dich auch nicht
@@ -282,7 +282,7 @@ Das ist auch genug
 ## Production Notes
 
 - **Collapsed vocal delivery:** every line-final pause is *longer* than the line itself. Words arrive heavy and stay where they fell. No periods in lyrics — Suno should render trailing silences, not declarative endings. Sub-kick close mic; breath audibly between fragments. Gravelly low register; near-spoken, not sung.
-- **Integrator entrance (Verse 3):** plate reverb opens up the room — the listener should hear the spatial change. Mezzo-alto with long vowels; controlled vibrato only at phrase-ends. Slow legato across "im selben Geflecht" — that line is the structural pivot of the song.
+- **Integrator entrance (Verse 3):** plate reverb opens up the room — the listener should hear the spatial change. Mezzo-alto with long vowels; controlled vibrato only at phrase-ends. Slow legato across "in unserem Geflecht" — that line is the structural pivot of the song.
 - **Verse 4 micro-dialog:** collapsed delivers his two-line fragment, integrator replies inside the same beat-grid. The collapse and the response should feel like one breath shared, not two turns. No silence between them; integrator's first word lands while collapsed's reverb tail still hangs.
 - **Bridge polyphony:** the Wir-Stimme is audibly multiple — three to five voices in close harmony (seconds, fourths, no thirds — avoid sweetness). Individual voices remain identifiable inside the stack. Composition not fusion; this is the album's first Wir and must not sound like a unified chorus.
 - **Witness annotation:** one parenthetical line in Bridge — "(es fällt auf — sie sagt nicht: steh auf)" — androgynous spoken-word, lowercase, behind the beat. Single appearance only; never hookworthy.
@@ -331,7 +331,7 @@ Das ist auch genug
 ## Refinement Pass 1 (Tighten)
 
 - V1 second stanza: tightened from "ich hab gehalten / was uns zerreißen wollte / ich weiß nicht ob das gut war / ich weiß nur es ist nicht gerissen" to current — removed "gut" (value judgment collapsed wouldn't make); changed to "ob das was war" (collapsed-typical self-negation per entity profile "circular shame-logic").
-- V3 integrator line: "ich seh dich / nicht von außen / ich bin / im selben Geflecht" — verified this is the song's structural pivot. "Geflecht" is integrator-signature vocabulary per entity profile. Kept as is.
+- V3 integrator line: "ich seh dich / nicht von außen / ich bin / in unserem Geflecht" — verified this is the song's structural pivot. "Geflecht" is integrator-signature vocabulary per entity profile. Kept as is.
 - Bridge: shortened the Wir-Stimme block from 6 lines to 4 — composition not fusion means *not* extending; brevity reinforces "mosaic not monolith".
 - Outro: replaced "das reicht" with "das ist / auch genug" — "auch" is integrator-signature; "reicht" sounded too conclusive for S3→S4 bridge.
 
@@ -341,7 +341,7 @@ Das ist auch genug
 
 **Was übersetzt wurde:**
 - v1 "und das hält" → v2 "das hält / das hält uns / das ist / was uns trägt" — verbatim survival of the line, but addressed *intra-systemically* (uns = system), not relationally.
-- v1 *Wahrnehmen* (seeing the other) → v2 integrator sees collapsed: "ich seh dich / nicht von außen / ich bin / im selben Geflecht". Seeing remains; addressee shifts inward.
+- v1 *Wahrnehmen* (seeing the other) → v2 integrator sees collapsed: "ich seh dich / nicht von außen / ich bin / in unserem Geflecht". Seeing remains; addressee shifts inward.
 - v1 alto microtonal em-dash voice → v2 collapsed sub-bass fragments. Both are "self-correcting reach-and-retract" voices, but the body has dropped two octaves and the register has collapsed from heart-relational (alto) to body-relational (sub-bass).
 - v1 Wir-Outro "wir sind nicht allein" → v2 Bridge Wir-Stimme "wir sind / nicht eins / wir sind / auch nicht / zerrissen / wir sind / gleichzeitig". Translates the AEDP undoing-aloneness moment from *relational* (with another person) to *systemic* (with one's own alters). The Wir survives — its meaning has migrated.
 
@@ -350,6 +350,10 @@ Das ist auch genug
 - v1 "du musst nicht — die Antwort — sein" — addressed an external person about their burden. Replaced by integrator → collapsed "du liegst nicht falsch / du liegst genau / wo du musstest / liegen" — the same therapeutic gesture, now intra-systemic.
 - v1 alto em-dash phrasing — entire voice retired for this track. The em-dash voice belongs to ambivalent (T04) in v2's map; this track is collapsed + integrator, who have different fingerprints.
 - v1 "gemeinsam alleine" (which could imply another person) — replaced by Wir-Stimme that is unambiguously system-internal.
+
+### Fix-Pass 2026-06-04
+
+- **"selben Geflecht" → "unserem Geflecht"** für intra-systemische Eindeutigkeit (Album-Review-Befund). *Selben* implizierte eine vorher etablierte Referenz, die im Album bisher nicht aufgebaut wurde. *Unserem* verankert das Wir explizit als System (DID-intern), entfernt die latente Außen-Lesbarkeit, und verstärkt die System-Pluralität ohne die strukturelle Pivot-Funktion der Zeile zu verändern. Geänderte Stellen: Lyrics Box V3, Streaming Lyrics, Production Notes (Integrator-entrance), Refinement Pass 1, Cross-References v1-Übersetzung.
 
 ### Forward Reference: T09 "Was wir halten"
 

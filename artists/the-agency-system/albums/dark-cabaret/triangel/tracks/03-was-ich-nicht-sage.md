@@ -117,7 +117,7 @@ wo
 wer hat —
 wer
 
-(es fällt auf — sie ist sehr klein)
+(beobachte: sie ist sehr klein)
 
 [Verse 3]
 ich hab geschrieben
@@ -237,7 +237,7 @@ Ich hab nicht
 
 - **Vocal Delivery:** head-voice only, no chest-voice — the voice must stay light, breathy, mangled. Whispered consonants ("k" of "kalt" almost unvoiced, "d" of "dunkel" softened). Audible breath between every phrase. Tape hiss is NOT an artifact — it is a layer. The "—" trailing marks are real silences with breath audible.
 - **Bridge "du da oben":** the only moment of slight pitch lift, the only moment the child reaches *upward inside the system* — to host (who zählt in Track 01) and rationalist (who beweist in Track 02). NOT a question expecting answer. The fact that no answer comes is the truth of the track.
-- **Witness annotation "es fällt auf — sie ist sehr klein":** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Sparse — used exactly once. Per CONCEPT §5 (witness annotates across all 13, 1–2 per track maximum, never hookwürdig).
+- **Witness annotation "beobachte: sie ist sehr klein":** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Sparse — used exactly once. Per CONCEPT §5 (witness annotates across all 13, 1–2 per track maximum, never hookwürdig).
 - **Outro "kalt / dunkel / weh / wo / wer / weg":** the six core child-freeze vocabulary words from the Entity-Profil, delivered as a slow drop, each word a held cold note. Final "ich hab nicht —" trails off into hiss + breath, no resolution.
 - **Field-recording bed:** radiator ticking should suggest the small room without becoming melodic. Muffled indoor voices through the wall — never intelligible — suggest the rest of the system continues its work above.
 - **Carry-over to Track 04 (ambivalent / S1 → S2):** outro hiss + breath holds; Track 04 enters with the same room tone but the ambivalent voice begins reach-and-retract em-dash phrasing. The "wer hört das / wer / weg" of Track 03 is unanswered when Track 04 begins.

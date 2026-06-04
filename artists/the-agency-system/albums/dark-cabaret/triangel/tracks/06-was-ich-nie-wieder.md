@@ -193,7 +193,7 @@ das.
 das nie wieder.
 
 Form sein.
-Puffer sein.
+Stoßdämpfer sein.
 Funktion sein.
 nicht.
 
@@ -201,6 +201,7 @@ nicht.
 Knöchel weiß.
 Tisch.
 Hitze im Kiefer.
+Riss im Mund.
 ich steh.
 
 du Muster.
@@ -227,13 +228,14 @@ weg.
 [Verse 4]
 nie wieder Form.
 nie wieder Funktion.
-nie wieder Puffer.
+nie wieder Auffangschicht.
 
 ich nehm das Wort zurück.
 ich bin keine Brücke.
 ich bin kein Aushalten.
 ich bin keine Vermittlung.
 
+Stahl in der Brust.
 ich bin hier.
 das reicht.
 
@@ -244,6 +246,7 @@ du da oben.
 zähl nicht weg.
 zähl mich nicht weg.
 
+Knochen schlagen aus.
 ich red verdammt mit dir.
 du hörst.
 du zählst nicht.
@@ -251,6 +254,7 @@ du hörst.
 
 [Verse 5]
 Splitter unter der Haut.
+Blut auf den Zähnen.
 ich nehm sie raus.
 einen nach dem andern.
 
@@ -286,13 +290,14 @@ Das
 Das nie wieder
 
 Form sein
-Puffer sein
+Stossdaempfer sein
 Funktion sein
 Nicht
 
 Knoechel weiss
 Tisch
 Hitze im Kiefer
+Riss im Mund
 Ich steh
 
 Du Muster
@@ -315,13 +320,14 @@ Weg
 
 Nie wieder Form
 Nie wieder Funktion
-Nie wieder Puffer
+Nie wieder Auffangschicht
 
 Ich nehm das Wort zurueck
 Ich bin keine Bruecke
 Ich bin kein Aushalten
 Ich bin keine Vermittlung
 
+Stahl in der Brust
 Ich bin hier
 Das reicht
 
@@ -329,12 +335,14 @@ Du da oben
 Zaehl nicht weg
 Zaehl mich nicht weg
 
+Knochen schlagen aus
 Ich red verdammt mit dir
 Du hoerst
 Du zaehlst nicht
 Du hoerst
 
 Splitter unter der Haut
+Blut auf den Zaehnen
 Ich nehm sie raus
 Einen nach dem andern
 
@@ -417,9 +425,16 @@ Das war Arbeit
 | weiß | VYSS | German "ei" diphthong; sharp "ß" = "ss" |
 | Hitze | HITT-seh | German "z" = "ts" |
 | Kiefer | KEE-fer | Standard long "ie" |
+| Riss | RISS | Short German "i"; rolled "r" |
 | Muster | MOOSS-ter | German short "u" |
 | Reflex | reh-FLEX | Stress on second syllable |
+| Stoßdämpfer | SHTOHSS-demp-fer | German "st" at start = "sht"; "ß" = "ss"; umlaut "ä" |
+| Auffangschicht | OWF-fang-shikht | German "au" = "ow"; "sch" = "sh"; "ch" = "kh" |
+| Stahl | SHTAHL | German "st" at start = "sht"; long "a" |
+| Knochen | KNOKH-en | Hard German "k"; "ch" = "kh" |
 | Splitter | SHPLITT-er | German "sp" at start = "shp" |
+| Blut | BLOOT | Long German "u" |
+| Zähne | TSEH-neh | German "z" = "ts"; umlaut "ä" |
 | Kohärenz | ko-heh-RENTS | German umlaut "ä"; "z" = "ts" |
 | Vermittlung | fer-MITT-loong | German "v" = "f" |
 | zähl | TSEHL | German "z" = "ts"; long "äh" |
@@ -441,7 +456,7 @@ has no single center, only a polyvagal arc.
 
 | v1 element | v2 translation |
 |---|---|
-| "ich lasse die Maske heute / nicht weg / nur dünner" (sexualized_override loosens control toward authentic power, S4) | "nie wieder Form / nie wieder Funktion / nie wieder Puffer" (fighter renounces protective forms, S2) |
+| "ich lasse die Maske heute / nicht weg / nur dünner" (sexualized_override loosens control toward authentic power, S4) | "nie wieder Form / nie wieder Funktion / nie wieder Auffangschicht" (fighter renounces protective forms, S2) |
 | "und du sollst sehen / was darunter ist" (outward addressee Miriam) | "du Muster / hör zu / ich red mit dir / nicht mit jemandem / mit dir" (intra-systemic address to a pattern, not a person) |
 | "ich nehme sie wahr / ohne sie zu nehmen" (perceiving die Partnerin) | "ich nehm das Wort zurück / ich bin keine Brücke / ich bin kein Aushalten / ich bin keine Vermittlung" (taking back the function-words, no third party) |
 | "mein Atem geht tiefer / mein Becken atmet mit / meine Schultern sind unten" (S4 somatic softening) | "Knöchel weiß / Tisch / Hitze im Kiefer / ich steh" (S2 somatic alert) |
