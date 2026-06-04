@@ -196,21 +196,14 @@ controlled eruption into a too-musical performance.
 
 ### Suno Style Prompt (engineered)
 
-*Copy this into Suno's "Style of Music" field. Max 200 chars, vocals
-first, redirect-pause and distortion as load-bearing descriptors:*
+*Copy this into Suno's "Style of Music" field. Max 200 chars, fighter
+vocal first, redirect-pause and distortion as load-bearing descriptors:*
 
 ```
-Female belt-alto with growl, raw clipped staccato, dry mid-mic with distortion, no head voice, breath-pause mandatory between phrases. Dark cabaret, experimental art-pop. Sub-bass, sustained pad, no drums.
+fighter vocal: female belt-alto growl, clipped staccato, dry mid-mic distortion, no head-voice, breath-pause between phrases. Dark cabaret, experimental art-pop. Sub-bass, sustained pad, no drums.
 ```
 
-**Char count: 248** — over 200 cap, tightened below to a 199-char
-version that keeps the load-bearing descriptors and drops redundancy:
-
-```
-Female belt-alto with growl, clipped staccato, dry mid-mic with distortion, no head voice, breath-pause between phrases. Dark cabaret, experimental art-pop. Sub-bass, sustained pad, no drums.
-```
-
-**Char count: 199.** Vocals first (belt-alto growl + distortion +
+**Char count: 196.** Fighter vocal first (belt-alto growl + distortion +
 breath-pause), genre tags second (max 2 per override), instrumentation
 last with `no drums` doubling as exclusion signal in the style field.
 
@@ -278,9 +271,11 @@ Suno may extend past the verbraucht-ending into an unwanted coda.
 
 ```
 [Intro]
-[Female belt-alto with growl, raw clipped, dry mid-distance mic with distortion on lows, no head voice, no breath inside imperatives, staccato, periods not exclamation marks — fighter lead voice. Distant thud of hand on wood. Close audible breath, then silence inside the lines.]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice. Distant thud of hand on wood. Close audible breath, then silence inside the lines.]
 
 [Verse 1]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice]
+
 ich steh.
 Knöchel weiß am Tisch.
 Hitze im Kiefer.
@@ -292,6 +287,8 @@ in der Mitte vom Raum.
 ich seh es.
 
 [Verse 2]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice]
+
 du Reflex.
 hör zu.
 ich red mit dir.
@@ -307,24 +304,27 @@ klein werden damit jemand groß bleibt.
 weg.
 
 [Pre-Chorus]
-[Whispered female quote layer, slower, with breath, low volume, dry mid-distance mic, klar abgesetzt vom Lead — Brief-Zitat-Direktive]
+[fighter quote-mode: same belt-alto but whispered, slower, breath, low volume, dry mid-distance mic, klar abgesetzt vom Lead — Brief-Zitat-Direktive]
 
 *fluchen, aber nicht auf mich.*
 
-[Lead voice returns — belt-alto with growl, clipped, no breath inside imperatives]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice]
 
 ich nehm das an.
 ich mach das jetzt.
 
 [Chorus]
-[Mandatory breath-pause after "aber nicht" — minimum 0.4s, audible inhale. "auf dich" intonation FLAT not rising — negation marker, not address. Three periods, three breaths.]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice]
+[breath-pause ≥0.4s mandatory, flat-descending intonation on "auf dich"]
 
 ich fluche.
 aber nicht.
+[breath-pause ≥0.4s mandatory, flat-descending intonation on "auf dich"]
 auf dich.
 
 ich fluche.
 aber nicht.
+[breath-pause ≥0.4s mandatory, flat-descending intonation on "auf dich"]
 auf dich.
 
 auf das Muster.
@@ -332,6 +332,8 @@ auf den Reflex.
 auf die Form.
 
 [Verse 3]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice]
+
 nie wieder Form.
 nie wieder Funktion.
 nie wieder Auffangschicht.
@@ -347,17 +349,20 @@ ich steh hier.
 nicht im Weg.
 hier.
 
+[witness: androgynous spoken-word, parenthetical, lowercase, low in mix]
 (signifikant: sie spricht das Muster an, nicht die Person)
 
 [Chorus 2]
-[Whispered female quote layer, slower, with breath — Brief-Zitat returns]
+[fighter quote-mode: same belt-alto but whispered, slower, breath, low volume, dry mid-distance mic, klar abgesetzt vom Lead — Brief-Zitat-Direktive]
 
 *fluchen, aber nicht auf mich.*
 
-[Lead voice — belt-alto with growl. Mandatory breath-pause after "aber nicht" — minimum 0.4s, audible inhale. "auf dich" intonation FLAT not rising.]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice]
+[breath-pause ≥0.4s mandatory, flat-descending intonation on "auf dich"]
 
 ich fluche.
 aber nicht.
+[breath-pause ≥0.4s mandatory, flat-descending intonation on "auf dich"]
 auf dich.
 
 auf das Muster.
@@ -365,7 +370,7 @@ auf den Reflex.
 auf die Form.
 
 [Bridge]
-[Same lead voice, slightly inward — still clipped, still no breath inside imperatives]
+[fighter: female belt-alto with growl, raw clipped, periods stakkato, distortion on dry mid-mic, visceral body markers, no head-voice, slightly inward]
 
 Knochen schlagen aus.
 Splitter unter der Haut.
@@ -383,10 +388,12 @@ das war Auffangschicht.
 weg.
 
 [Outro]
-[Same voice, exhausted now — calm equals exhaustion not healing. Breath finally audible inside the phrases. Dry, sober, sachlich. The thud returns once, softer. Breath-pause after "aber nicht" still mandatory even at exhausted tempo — the redirect carries to the end.]
+[fighter: same female belt-alto, exhausted now — calm equals exhaustion not healing. Breath finally audible inside the phrases. Dry, sober, sachlich. The thud returns once, softer.]
+[breath-pause ≥0.4s mandatory still binding at exhausted tempo, flat-descending intonation on "auf dich"]
 
 ich fluche.
 aber nicht.
+[breath-pause ≥0.4s mandatory, flat-descending intonation on "auf dich"]
 auf dich.
 
 ich bin müde.
@@ -491,6 +498,19 @@ Das war Arbeit
 
 ## Production Notes
 
+- **Function-name metatag convention (project exception, per CLAUDE.md
+  "Arbeit an the Agency System"):** Sektions-Metatags verwenden die
+  Form `[function-name: gender + register + texture + processing]` —
+  z.B. `[fighter: female belt-alto with growl, raw clipped, ...]`,
+  `[witness: androgynous spoken-word, parenthetical, lowercase, ...]`,
+  `[fighter quote-mode: same belt-alto but whispered, ...]`. Funktion
+  ist *Rolle*, kein Personenname. Diese Form ist mit
+  `voice-craft-principles.md` kompatibel: kein Charakter-Name
+  (Kael/Nyx/Selene) erscheint im Output; die Funktion ist die
+  Rollen-Etikette, die Suno als Voice-Routing nutzt. Der same-singer-
+  quote-mode (`fighter quote-mode`) macht explizit, dass dieselbe
+  Sängerin in einen anderen Modus wechselt, statt eine zweite Stimme
+  einzuführen.
 - **Vocal Delivery:** belt-alto with growl. Chest-voice only — never
   head-voice. Distortion on the lows is part of the voice, not an
   effect on top. Periods carry the line — no exclamation marks, no
