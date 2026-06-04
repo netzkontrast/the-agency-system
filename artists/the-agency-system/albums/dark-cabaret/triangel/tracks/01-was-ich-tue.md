@@ -1,7 +1,7 @@
 ---
 title: "Was ich tue"
 track_number: 1
-status: "In Progress"
+status: "Lyrics drafted, awaiting Suno generation"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -9,15 +9,12 @@ sheet_music:
   pdf: ""
   musicxml: ""
   midi: ""
-corpus: "kopf"
-sub_voice: "host"
-addressee: "du"
-primary_t3: "wahrnehmen"
-movement_pattern: "L (stage) → W (primary stage) → A (boden)"
-boden_position: "M3"
-boden_t3: "anerkennen"
+state: "S0 — Homeostasis / Surface"
+lead_alter: "host"
+predecessor_v1: "archive/v1/tracks/01-was-ich-tue.md"
 album: "Triangel"
 artist: "the Agency System"
+album_role: "Opener — S0, Tagesoberfläche, host hält den Workday"
 ---
 
 # Was ich tue
@@ -29,69 +26,70 @@ artist: "the Agency System"
 | **Track #** | 01 |
 | **Title** | Was ich tue |
 | **Album** | [Triangel](../README.md) |
-| **Status** | Lyrics drafted, awaiting suno-engineer |
+| **State** | S0 — Homeostasis / Surface |
+| **Lead Alter** | host (mid-baritone, weary, present-tense) |
+| **Status** | Lyrics drafted, awaiting Suno generation |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | No |
-| **POV** | First person singular (Ich-System addressing Self) |
-| **Role** | Album opener — establishes host fingerprint, M1→M2→M3 movement architecture, Boden-not-Stage convention |
-| **Fade Out** | 5s |
-| **Target Duration** | 3:30 |
+| **POV** | First person singular (host notiert sein eigenes Tun) |
+| **Role** | Album opener — etabliert host-Stimme, S0-Oberfläche, intra-systemische Notation |
+| **Fade Out** | 6s |
+| **Target Duration** | 3:20 |
 | **Sources Verified** | N/A |
 
 ## Concept
 
-**Cell:** Kopf × Du × Wahrnehmen (Primary T3 = W)
-**Sub-voice:** host (weary baritone)
-**Movement pattern:** M1 = Loslassen (stage secondary) → M2 = Wahrnehmen (primary stage) → M3 = Anerkennen (Boden — gravitations-getragen, nicht direkt enacted)
+**State:** S0 — Homeostasis / Surface. Tagesoberfläche, der innere
+Workday. Klinik-Setting als somatischer Container, nicht als Bühne.
 
-**Stand:** Ich nehme wahr, was ich gerade tue, ohne es zu erklären.
+**Lead-Alter:** host. Mid-baritone, weary, present-tense, slightly
+under-articulated; dry close-mic, no reverb. Trailing sentences, die
+nicht punktieren — "Ich muss —". Hält die Oberfläche. Leidet die
+Lücken.
 
-Track 1 ist der Album-Opener. Er etabliert die host-Stimme (weary
-mid-baritone, trailing sentences, Counting-Tic als somatischer Marker),
-das M1→M2→M3 Pattern (Loslassen als Vor-Bewegung, Wahrnehmen als
-Zentrum, Anerkennen im Boden) und die Anti-Metapher-Regel der EP.
+**Stand:** Host notiert, was er tut. Niemand sonst im Raum.
+Niemand wird angesprochen. Das System ist allein mit sich. Der
+Counting-Tic ist Auto-Regulation — kein Beweis, keine Performance.
 
-Der Verstand notiert sein eigenes Tun in Klinik-Direktheit: Fliesen-
-Zahl, Raumtemperatur, Atem-Sekunden, Schloss-Klick, Geländer, Hand.
-Das Anerkennen am Ende ist Schwerkraft — kein gesagtes "ich erkenne
-das an", sondern das Drei-Mal-Echo "das ist es" über Wir-Layer-
-Tröpfchen.
+**Was v2 zu v1 verschiebt:** Der v1-Track adressierte ein "du"
+(Miriam) und endete in Wir-Polyphonie (S4-Tröpfchen vorgezogen). Beides
+ist obsolet. v2 ist S0 solo, host hält die Oberfläche, sonst nichts.
+Body-Voice und Heart-Voice gehören in spätere States. Wir-Stimme tritt
+erst T08/T09 ein. Das "du" verschwindet — wo es bleibt, ist es das
+generische Du eines Sprichworts oder das stumme Du eines Alters zum
+Selbst.
 
-**Wir-Eintritt:** spät, leise, im Outro — als S4-Tröpfchen. Das System
-beginnt, sich gemeinsam zu sehen. Close-harmony second voice
-overdubbing, NICHT als separater "Background-Chor".
+**Witness-Annotation:** Eine, vielleicht zwei parenthetische,
+lowercase, audiobook-narrator-Spuren — sparsam, nie hookwürdig.
 
 ## Research Grounding
 
-Direkt aus den Per-Cell-Research-Reports verwendet:
+Direkt verwendet aus den per-cell-Reports (kompatibel zu v1, neu
+intra-systemisch eingebettet):
 
-- **host Counting-Tic als somatischer Anker** (somatic/kopf-cognitive
-  §1; van der Kolk *autonomic anchors*, Janina Fisher
-  *ANP-stabilizing*): "acht Schritte / zwei Lampen / vier Sekunden ein /
-  vier Sekunden aus / das Schloss klickt zweimal" — Zählung als
-  Auto-Regulation, ohne Beweis-Funktion.
-- **Anteilsdenken statt Ausschluss-Diagnostik** (clinical/kopf-cognitive
-  Frame 1): "ich brauche keine Antwort / ich habe lange gebraucht /
-  heute nicht" — die Antwort wird nicht erzwungen, das Aushalten der
-  Unklarheit ist die Praxis.
-- **Window vor Willen** (clinical/koerper-somatic Frame 3): "ich gehe
-  noch nicht raus / nur damit ich da bin" — keine Verhaltens-Vorsätze
-  außerhalb des Window of Tolerance; *da sein* ohne *raus müssen*.
-- **Funktion vor Bewertung** (clinical/koerper-somatic Frame 1; Schwartz
-  *no bad parts*): "das tue ich / das ist es schon" — die Funktion
-  *gerade da sein* genügt, keine Bewertung.
-- **AEDP Sprache der Anerkennung** (clinical/herz-relational Frame V;
-  Fosha *recognition*): das Outro "das ist es schon" als gravitations-
-  getragene Anerkennung — Recognition als Akt, nicht als Diagnose.
-- **Weary trailing als Phänomenologie verschlossenen Wissens**
-  (emotional/kopf-cognitive §3; Bachmann *Malina*, Adorno
-  *Eingedenken*): host's "Ich muss — / ich muss dir nichts erklären"
-  — das Wissen wird im Trailing gehalten, nicht ausgesprochen.
-
-Forschungs-Lücken werden in Track 1 *nicht* überdeckt — die
-Konstellation wird benannt, nicht gelöst.
+- **Counting-Tic als somatischer Anker** (van der Kolk *autonomic
+  anchors*; Fisher *ANP-stabilizing*): "acht Schritte / zwei Lampen /
+  einundzwanzig Grad / vier Sekunden ein / vier Sekunden aus" —
+  Zählung als Auto-Regulation, ohne Beweis-Funktion.
+- **Window vor Willen** (clinical/koerper-somatic): "ich gehe noch
+  nicht raus / ich stehe nur" — kein Verhaltens-Vorsatz, *da sein*
+  ohne *raus müssen*.
+- **Funktion vor Bewertung** (Schwartz *no bad parts*; Fosha
+  *recognition*): "das tue ich" — die Funktion *gerade halten*
+  genügt, keine Bewertung.
+- **Phänomenologie verschlossenen Wissens** (Bachmann *Malina*;
+  Adorno *Eingedenken*): host's trailing — das Wissen wird im
+  Verschweigen gehalten, nicht ausgesprochen.
+- **Anteilsdenken statt Ausschluss-Diagnostik** (Schwartz IFS,
+  kopf-cognitive Frame 1): "es gibt noch zehn / die sind heute
+  leise" — andere Alter werden als anwesend notiert, ohne sie zu
+  erzwingen.
+- **Surface-tension als S0-Marker** (host entity profile;
+  state-axis.md S0): "die Oberfläche hält / das Licht steht /
+  blau" — System Blue status light als visuelles Pendant zur
+  Klang-Oberfläche.
 
 ## Cross-References
 
@@ -105,32 +103,51 @@ Konstellation wird benannt, nicht gelöst.
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
+| 02 | State-progression | "es gibt noch zehn / die sind heute leise" | Andeutung rationalist (T02), child_freeze (T03), die noch nicht sprechen |
 
-*Track 1 etabliert — keine Rückreferenzen.*
+### v1 ↔ v2 Translation Map
+
+| Aus v1 übersetzt | Verworfen aus v1 | Neu in v2 |
+|---|---|---|
+| Schritte-Zählen, Lampen, 21°C, Atem-Sekunden, Schloss-Klick, Geländer | "du"-Adressierung an Miriam | S0-Position explizit (Oberfläche, System Blue, "blau") |
+| Klinik-Korridor, Fenster zum Innenhof | Body-Voice (Contralto) — gehört zu S2/S3 | host-solo, kein zweiter Lead |
+| host weary mid-baritone, dry close-mic | Heart-Voice (Alto microtonal) — gehört zu Herz-Korpus | Witness als parenthetische Annotation (sparsam) |
+| trailing sentences ("Ich muss —") | Wir-Stimme im Outro — gehört zu T08/T09 | "es gibt noch zehn / die sind heute leise" — andere Alter notiert, nicht aktiviert |
+| present-tense Phänomenologie | "ich denke an dich" / "für dich auch" | BPM 78 (S0-spec v2; v1 hatte 76) |
+| — | "das ist es schon" als gravitations-getragener Outro-Akt mit Wir-Layer-Tröpfchen | "das tue ich / das tue ich heute / das tue ich" — Recognition als reine Funktion, kein dyadischer Resonanzraum |
 
 ## Mood & Imagery
 
-Klinik-Korridor, früh, nach dem ersten Atem-Aufwachen. Acht Schritte
-bis zur Tür. Zwei Lampen über dem Sprecher. Wand mit
-Temperatur-Anzeige (21°C). Heizkörper klickt im Hintergrund.
-Geländer kalt. Hand auf Geländer. Fenster zum Innenhof — dahinter
-ein Garten den der Sprecher nicht betritt.
+Klinik-Korridor, früh. Acht Schritte bis zur Tür. Zwei Deckenlampen.
+Eine Temperatur-Anzeige an der Wand — 21°C. Heizkörper, der klickt.
+Geländer, kalt. Eine Hand darauf — die eigene. Ein Fenster zum
+Innenhof, ein Garten dahinter, der nicht betreten wird. Hinter dem
+Glas hält die Stille.
 
-**Kein Pathos.** Mount-Eerie-Direktheit: das ist da, ich sage was
-da ist. Keine Erklärung, kein Bild.
+Kein Pathos. Kein Bild *für etwas*. Mount-Eerie-Direktheit: das ist
+da, ich sage was da ist. Die Oberfläche hält, weil host sie hält.
+Das Licht steht blau — System Blue status light, nicht als Symbol,
+als beobachtete Tatsache.
+
+Niemand kommt herein. Niemand wird angesprochen. Das System ist
+allein mit sich.
 
 ## Musical Direction
 
-- **Tempo:** 76 BPM (langsam, ruhig)
-- **Feel:** sparse, intim, breathing-room — keine Dramatik
-- **Instrumentation:** akustisches Klavier (Einzel-Noten, no chords),
-  field-recording (Heizklick, ferne Stimmen, gedämpfter Atem),
-  optional Sub-Rhythmus eines Counting-Tics (4-Sekunden-Atem als
-  metronomischer Anker im Hintergrund)
+- **Tempo:** 78 BPM (S0-spec v2 — minimal vom v1-Wert 76 nach oben
+  korrigiert, weil S0 in der polyvagalen Skala leicht oberhalb der
+  S1-Latenz sitzt)
+- **Feel:** sparse, intim, breathing-room — keine Dramatik. Surface
+  tension audibly held, not performed.
+- **Instrumentation:** sustained synth pad (drone-ground, sehr
+  niedrig), akustisches Klavier (Einzel-Noten, no chords, lange
+  Pausen), sub-bass unterhalb, field-recording sparse (Heizklick,
+  ferne Schritte, kein Stimmen-Schnipsel), sub-rhythmischer
+  Counting-Tic als Atem-Puls bei ~78 BPM
 - **Vocal:** close-mic mid-baritone (host fingerprint), kein Reverb,
-  audible breath-onsets, trailing phrase-endings (Phrasen-Enden
-  ohne tonikale Auflösung), tape-hiss permitted
+  audible breath-onsets, trailing phrase-endings, tape-hiss permitted
+- **No tonic resolution.** Letzte Note schwebt, fades into silence
+  statt sich aufzulösen.
 
 ## Suno Inputs
 
@@ -139,13 +156,13 @@ da ist. Keine Erklärung, kein Bild.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Three voices in dialogue: mid-baritone weary host (lead, dry close-mic, no reverb, trailing sentences), low contralto controlled body voice (mid-distance polished mic, restrained vibrato), alto microtonal heart voice (em-dash phrasing, sliding vibrato, ambiguous tonic, dynamic dry-wet). At Outro: Wir-Stimme polyphonic — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered. Experimental art-pop, dark chanson. Acoustic upright piano (single notes), sustained synth pad drone-ground, expanded field recording layer, sub-bass underneath, modular electroacoustic ambient. 76 BPM, slow, voice forward over rich ambient bed.
+Solo male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, trailing sentences that don't resolve. Present-tense first person, voice of someone holding the surface. Sparse parenthetical lowercase audiobook-narrator annotations (1-2 max, behind the beat). Experimental art-pop, dark chanson. Acoustic upright piano (single notes, long pauses, no chords), sustained synth pad drone-ground, sub-bass underneath, sparse field-recording layer (faint radiator clicks, distant footsteps), sub-rhythmic counting-tic breath pulse. 78 BPM, slow, voice forward over a thin ambient bed. Surface tension audibly held, no swell, no climax.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals
+no drums, no electric guitar, no autotune, no soaring vocals, no choir, no harmony vocals, no second lead voice, no female voice, no Wir-Stimme, no polyphonic outro
 ```
 
 ### Lyrics Box
@@ -154,164 +171,162 @@ no drums, no electric guitar, no autotune, no soaring vocals
 
 ```
 [Intro]
-[Mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb — host lead voice]
+[Male mid-baritone, weary, slightly under-articulated, dry close-mic, no reverb, trailing sentences — solo lead, no other voices]
 
 [Verse 1]
-Ich muss — nein
-ich muss dir nichts erklären
-nicht heute
-ich brauche keine Antwort
-
-[Verse 2]
-[Low contralto, controlled, restrained vibrato, mid-distance polished mic — body voice enters]
-ich bin heute leise
-heute ohne Druck
-die Spannung steht nicht auf
-ich höre zu
-
-[Verse 3]
-[Mid-baritone weary host returns, dry close-mic, no reverb]
-ich höre dich
-ich habe lange gebraucht
-heute nicht
-ich bin müde
-und ich bin trotzdem hier
-
-[Verse 4]
-[Mid-baritone weary host continues]
-hör zu
 acht Schritte bis zur Tür
 zwei Lampen über mir
-einundzwanzig Grad an der Wand
+einundzwanzig Grad
+die Wand sagt das
+
+[Verse 2]
 vier Sekunden ein
 vier Sekunden aus
 das Schloss klickt zweimal
+ich höre das
+
+[Verse 3]
 das Geländer ist kalt
 meine Hand ist darauf
 das ist meine Hand
+ich muss —
+ich muss heute nichts erklären
+
+[Verse 4]
+[Same voice, same close-mic, no reverb]
+ein Fenster
+dahinter ein Garten
+dahinter nichts
+ich gehe noch nicht raus
+ich stehe nur
+das ist die Übung
 
 [Verse 5]
-[Alto with microtonal pitch-bending, sliding vibrato, em-dash phrasing, mixed dry/wet — heart voice enters]
-und ich — ich denke an dich —
-ich denke — an dich —
-während er zählt —
-das ist neu —
+[Witness annotation enters briefly, parenthetical, lowercase, audiobook-narrator behind the beat, very quiet]
+(es fällt auf wie gleichmäßig der Atem geht)
+[Host returns, dry close-mic]
+es gibt noch zehn
+die sind heute leise
+ich höre die Stille
+und ich höre den Klick
 
 [Verse 6]
-[Mid-baritone weary host returns, dry close-mic, no reverb]
-ich höre euch
-ich höre euch beide
-durch das Fenster der Flur
-hinter dem Flur ein Garten
-ich gehe noch nicht raus
-ich stehe und ich zähle
-nicht um zu beweisen
-nur damit ich da bin
+[Host continues, slightly slower, trailing]
+die Oberfläche hält
+das Licht steht
+blau
 das tue ich
-für dich auch
-und für mich
-das ist es schon
+das tue ich heute
+das tue ich
 
 [Outro]
-[All three voices polyphonic as Wir-Stimme — mid-baritone weary host plus low contralto controlled plus alto microtonal — 1st-person plural, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith]
-das ist es schon
-(das ist es schon)
-das ist es schon
-(das ist es schon)
-es ist gut
+[Host alone, last lines drop without resolution, no harmony, no second voice]
+acht Schritte
+zwei Lampen
+einundzwanzig Grad
+das tue ich
 
 [End]
 ```
 
+### Lyrics Box — Character Count
+
+(~ wird im Generation Log verifiziert; aktueller Draft well under 5000)
+
 ## Streaming Lyrics
 
 ```
-Ich muss nein
-Ich muss dir nichts erklären
-Nicht heute
-Ich brauche keine Antwort
-
-Ich bin heute leise
-Heute ohne Druck
-Die Spannung steht nicht auf
-Ich höre zu
-
-Ich höre dich
-Ich habe lange gebraucht
-Heute nicht
-Ich bin müde
-Und ich bin trotzdem hier
-
-Hör zu
 Acht Schritte bis zur Tür
 Zwei Lampen über mir
-Einundzwanzig Grad an der Wand
+Einundzwanzig Grad
+Die Wand sagt das
+
 Vier Sekunden ein
 Vier Sekunden aus
 Das Schloss klickt zweimal
+Ich höre das
+
 Das Geländer ist kalt
 Meine Hand ist darauf
 Das ist meine Hand
+Ich muss
+Ich muss heute nichts erklären
 
-Und ich ich denke an dich
-Ich denke an dich
-Während er zählt
-Das ist neu
-
-Ich höre euch
-Ich höre euch beide
-Durch das Fenster der Flur
-Hinter dem Flur ein Garten
+Ein Fenster
+Dahinter ein Garten
+Dahinter nichts
 Ich gehe noch nicht raus
-Ich stehe und ich zähle
-Nicht um zu beweisen
-Nur damit ich da bin
-Das tue ich
-Für dich auch
-Und für mich
-Das ist es schon
+Ich stehe nur
+Das ist die Übung
 
-Das ist es schon
-Das ist es schon
-Das ist es schon
-Es ist gut
+Es fällt auf wie gleichmäßig der Atem geht
+Es gibt noch zehn
+Die sind heute leise
+Ich höre die Stille
+Und ich höre den Klick
+
+Die Oberfläche hält
+Das Licht steht
+Blau
+Das tue ich
+Das tue ich heute
+Das tue ich
+
+Acht Schritte
+Zwei Lampen
+Einundzwanzig Grad
+Das tue ich
 ```
 
 ## Production Notes
 
 - **Vocal Delivery:** weary mid-baritone, present-tense, slightly
-  under-articulated. Em-dashes are audible breath-pauses kürzer als
-  ein Beat (NOT an ellipse). Phrase-endings drop without resolution.
-  No singer-confidence — der Sprecher weiß nicht, ob das was er
-  sagt aufgeht.
-- **Wir-Layer entry:** in der Outro `[Verse 3]` letzte Zeilen
-  ("das tue ich gerade / das tue ich") und im `[Outro]` ("das ist
-  es ×3"). Eine zweite Stimme overdubbed in close-harmony (Sekund-
-  oder Quart-Intervall), leicht im Hintergrund, NICHT als
-  Background-Chor. Wir-Tröpfchen — innere Vielstimmigkeit.
-- **Counting-Tic Layer:** sub-rhythmischer Atem-Puls oder fingertipper
-  bei ~76 BPM, durchgängig sehr leise im Hintergrund. Etabliert
-  den somatischen Anker.
-- **Field Recording:** Heizklick-Loop (real recording oder synthetisch
-  ähnlich), distant footsteps (selten, sparsam), keine identifizierbaren
-  Stimmen-Fragmente.
+  under-articulated. Em-dash in "ich muss —" ist audible breath-pause
+  kürzer als ein Beat (NICHT eine Ellipse — der Atem stockt, das Wort
+  wird nicht zurückgenommen). Phrase-endings fallen ohne Auflösung.
+  Der Sprecher weiß nicht, ob das was er sagt aufgeht — aber er
+  versucht es auch nicht zu beweisen.
+- **No second voice.** Anders als v1 gibt es in v2 keine Body-Voice
+  (Contralto), keine Heart-Voice (Alto microtonal), keine Wir-Stimme
+  im Outro. host ist solo. Diese Voices treten in späteren Tracks
+  ein, T05–T09. Wenn Suno trotzdem einen Background-Chor einfügt:
+  Re-Roll mit verschärftem Exclude.
+- **Witness-Annotation:** Eine parenthetische Zeile in [Verse 5] —
+  *(es fällt auf wie gleichmäßig der Atem geht)* — als
+  audiobook-narrator-Stimme, lowercase, behind the beat, sehr leise,
+  möglichst dieselbe Person wie host aber tonal anders eingefärbt
+  (lower-mid spoken-word). NICHT als zweite Sängerstimme rendern.
+- **Counting-Tic Layer:** sub-rhythmischer Atem-Puls bei 78 BPM,
+  durchgängig sehr leise im Hintergrund. Etabliert den somatischen
+  Anker. Optional auch als fingertipper.
+- **Field Recording:** Heizklick-Loop (echt oder synthetisch ähnlich),
+  distant footsteps sparsam (1–2 Mal im Track), KEINE identifizierbaren
+  Stimmen-Fragmente. Niemand außer dem System ist im Raum.
 - **No tonic resolution.** Letzte Note bleibt schwebend, fades into
-  silence statt sich aufzulösen.
+  silence (6s) statt sich aufzulösen.
+- **System Blue framing:** wenn Suno ein "Light"-Cue verstehen kann —
+  cool blue ambient pad, no warm tones, no swell. Klanglich
+  korreliert mit dem visuellen System-Blue des host.
 
 ## Pronunciation Notes
 
 | Word | Standard Spelling | Phonetic for Suno | Reason |
 |------|-------------------|-------------------|--------|
 | einundzwanzig | einundzwanzig | EIN-und-TSVAN-tsig | Korrekte deutsche Akzentuierung |
+| gleichmäßig | gleichmäßig | GLEICH-mäh-ßig | Vermeide Schwa-Verschluckung im Mittelteil |
+| Übung | Übung | YOO-bung | Klare Umlaut-Front, nicht "Uh-bung" |
 
 ## Phonetic Review Checklist
 
-- ✅ Kein Homograph erkannt (live, read, lead, wound, close, bass,
-  tear, wind, etc.) — sind keine im Text
-- ✅ Keine erfundenen Kontraktionen (signal'd, TV'd, etc.) — keine
-  vorhanden
-- ✅ Deutsche Zahlen geprüft; "einundzwanzig" und "vier Sekunden"
-  sind unkompliziert für deutsche Suno-Stimme
+- [x] Kein Homograph (live, read, lead, wound, close, bass, tear, wind) — keine vorhanden
+- [x] Keine erfundenen Kontraktionen — keine vorhanden
+- [x] Deutsche Zahlen geprüft: "einundzwanzig", "zwei", "vier", "acht", "zwölf"/"zehn" sind alle unkompliziert
+- [x] Keine englischen Lehnwörter in der Lyrics-Box
+- [x] Em-dash nur an einer Stelle (Verse 3, "ich muss —") — klar als Atem-Pause hörbar
+- [x] Standard-Deutsch in Streaming Lyrics (keine Em-Dashes, keine Parenthesen, keine Phonetik)
+- [x] Title-Hook "Das tue ich" erscheint in Verse 6, Outro (mehrfach)
+- [x] Twin-Verse-Check: V1 (visuelle Maße) ↔ V2 (somatische Maße) ↔ V3 (taktile Maße + Bruchstelle) — jeder Vers verschiebt Achse, kein Reworded-V1
+- [x] Verse-end vs Chorus-start Echo-Check: kein wiederholter Reim, Vers-Enden variieren (Grad / das / erklären / Übung / Klick / ich)
 
 ## Generation Log
 

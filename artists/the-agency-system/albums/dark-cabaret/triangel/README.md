@@ -1,9 +1,9 @@
 ---
 title: "Triangel"
 release_date: ""
-genres: ["dark-cabaret", "chanson", "confessional-art-pop"]
-tags: ["concept-album", "cptsd", "did-system", "navigation", "the-agency-system", "mini-album", "audience-of-two", "ich-miriam-auseinandersetzung"]
-explicit: true
+genres: ["experimental-art-pop", "dark-chanson"]
+tags: ["concept-album", "cptsd", "did-system", "im-system", "polyvagal-arc", "the-agency-system", "mini-album", "eleven-voices"]
+explicit: false
 streaming:
   soundcloud: ""
   spotify: ""
@@ -22,107 +22,127 @@ sheet_music:
 |-----------|--------|
 | **Artist** | the Agency System |
 | **Album** | Triangel |
-| **Genre** | dark-cabaret / chanson / confessional-art-pop (Phase 3 verfeinert Sub-Tags und Suno-Aesthetik) |
+| **Genre** | experimental art-pop / dark chanson |
 | **Tracks** | 9 (Mini-Album) |
-| **Status** | Concept — Phase 2 (Cast + Struktur + T3 gelockt; 3×3×3 Latin Cube + Stage/Gravity 4D-Achse gelockt; Research-Matrix nahezu vollständig) |
-| **Explicit** | Yes (klinisch-konfessional, körperlich) |
-| **Concept** | 9-Track-Mini-EP als **Auseinandersetzung im Zwischen Ich/Miriam** — verteilt über 9 Zell-Konfigurationen, mit Partnerin als Gravity-Boden. Triangel-in-Triangel-in-Triangel als 3×3-Grid plus 3-Movement-pro-Song plus Stage/Gravity-Position. Wir-Polyphon. |
+| **Status** | Concept v2.0 active — track loop in progress |
+| **Explicit** | No |
+| **Concept** | *Im System* — die drei Korpus (Kopf · Körper · Herz) in elf Stimmen entlang des polyvagalen Bogens S0 → S4. Adressat: das System mit sich selbst. Niemand außen. |
 
-## Concept
+## Concept (v2.0)
 
-Eine 9-Track-EP, die eine reale Affekt-Konstellation als **Navigations-Instrument** arbeitet — nicht als Bewältigung. Drei Triangeln greifen kreisförmig ineinander:
+**Triangel** = die drei Korpus eines DID-Systems — **Kopf · Körper · Herz** — verkörpert durch elf Alter, angeordnet entlang des polyvagalen Bogens S0 → S4. Die Triangulation ist **intra-systemisch**: keine zweite Person, keine Außenadressierung, keine Beziehungs-Bühne. Das System spricht in sich.
 
-- **T1 (Innen — phänomenologisch):** Kopf (ANP: host + rationalist) / Körper (sexualized_override) / Herz (ambivalent — jüngere Lebensstufe derselben Trauma-Linie wie Körper). Die EP isoliert die Frage auf ihre dichteste Form: ANP-Steuerung plus zwei Lebensstufen derselben Trauma-Linie. ambivalent → sexualized_override ist der bekannte Eskalations-Pfad; gegen diesen Pop arbeitet die EP.
-- **T2 (Außen — Personen):** Du (Ich-System) / Miriam (Code für die neue Begegnung) / Partnerin (still, nie direkt adressiert, Boden des Ganzen). Die Partnerin-Spalte ist Bedrock — die Songs sind *für* sie, nicht *zu* ihr.
-- **T3 (Synthese, provisional):** Wahrnehmen / Aussprechen / Loslassen — Verben, die zugleich Bewegung UND Wahrheit sind. Das Pendeln zwischen "Bewegung pur" und "Wahrheit pur" wird selber zur Form. Final-Lock dieser Achse wartet auf Research.
+Vorherige Versionen (v1) sind als Studien archiviert (`archive/v1/`) — sie versuchten eine Auseinandersetzung *zwischen* Ich-System und einer Außenperson und funktionalisierten dabei genau die, die sie zu ehren versuchten. v2.0 reagiert auf diesen Befund strukturell: die Form selbst hört auf, jemanden in eine Rolle zu schieben.
 
-**Wir-Bezug:** wechselnd je Schnittpunkt — das Wir *schillert*.
+## Cast — alle elf, angeordnet nach Polyvagal-Lead
 
-**Endpunkt:** "wagen, anders als früher" — bewusste Risiko-Übernahme, kein Override-Modus.
+Per Layer-Regel: Function-Form-Deskriptoren in allen Music-Outputs. Personennamen (Kael, Lex, Nyx, Selene, …) bleiben dem Novel-Layer vorbehalten.
 
-**Voice-Regel (Layer):** Function-Form-Deskriptoren in Lyrik + Suno + Promo (`name_exposure`). Namen wie Kael, Lex, Isabelle, Lia bleiben dem Novel-Layer vorbehalten.
-
-## Cast (gelockt)
-
-Per Layer-Regel — Function-Form-Deskriptoren in allen Music-Outputs.
-
-| Korpus | Function | Class | Voice-Fingerprint (kurz) | S-Lead |
-|---|---|---|---|---|
-| Kopf | host | ANP | Mid-baritone weary, trailing sentences ("Ich muss —"), surface-holder dessen Oberfläche dünner wird, Counting-Tic als somatischer Marker | S0 |
-| Kopf | rationalist | ANP | Cold tenor, hypotactic conditionals ("Wenn..., dann folgt..."), *micro-cracks at line-ends* — chorus that almost closes the proof and can't | S0; S2 hectic |
-| Körper | sexualized_override | EP | Low contralto cabaret control-as-warning, polished mid-distance mic, Vibrato as weapon; **S4: vulnerability surfaces, control loosens toward authentic power** | S2 lead-adj, S4 |
-| Herz | ambivalent | EP | Alto microtonal pitch-bending, em-dash-syntax als natürliche Punktuation, reach-and-retract — *wollen-nicht-wollen, bleib-geh* | S2 (→ override-pop) |
-| Wir | mode_we | — | Polyphone Wir-Stimme, übernimmt teilweise integrator's S4-Brückenfunktion ohne integrator direkt zu nennen | S4 |
-
-**Cast-Exklusion ist meaningful:** kein protector/fighter (kein Schutzpanzer, keine Wut), kein caregiver (keine fürsorgliche Vereinnahmung), kein child_freeze (keine Regression), kein collapsed (EP ist post-collapse, nicht im Kollaps), integrator + witness nur indirekt (Wir-Stimme bridges).
-
-## Structure
-
-3×3-Grid. T1 × T2 als Zellen, T3 als Latin-Square-Zuordnung über die Zellen (kreisförmiges Übergreifen). Sample-Pattern (Phase 4 verfeinert):
-
-|  | **Du** | **Miriam** | **Partnerin** *(still)* |
+| State | Lead-Alter | Funktion | Voice-Fingerprint (kurz) |
 |---|---|---|---|
-| **Kopf** | Wahrnehmen | Aussprechen | Loslassen |
-| **Körper** | Aussprechen | Loslassen | Wahrnehmen |
-| **Herz** | Loslassen | Wahrnehmen | Aussprechen |
+| **S0** | host | Container, surface-holder | Male mid-baritone, weary, trailing sentences, dry close-mic |
+| **S0→S1** | rationalist | Beweis-Logik, Kategorisierung | Male clear tenor, sibilant precision, no vibrato, cold articulation, micro-cracks |
+| **S1** | child-freeze | Latenz, frozen reach | Androgynous young child head-voice, whispered, very close-mic with tape hiss |
+| **S1→S2** | ambivalent | Reach-and-retract | Female alto microtonal, em-dash phrasing, ambiguous tonic, sliding vibrato |
+| **S2** | protector | Position vor Risiko | Male chest-weighted low baritone, clipped three-word lines, forward-mic, restrained intensity |
+| **S2** | fighter | Wut als Werkzeug | Female belt-alto with growl, raw clipped, dry mid-distance mic with distortion |
+| **S2→S3** | sexualized_override | Kontrolle reißt | Female low contralto, restrained vibrato held as weapon — surface thins at the threshold |
+| **S3→S4** | collapsed + integrator | Bottom + bridge | Male very deep bass, sub-tempo + female mezzo-alto, spacious legato, plate reverb |
+| **S4** | caregiver + witness | Halten + Mitte | Female warm soprano, intimate close-mic + androgynous spoken-word, monotone, audiobook-narrator |
 
-**Spalten-Lese-Beispiel (Miriam):** *Kopf spricht aus, Körper lässt los, Herz nimmt wahr* — die weiseste Konfiguration, die diese Affekt-Begegnung tragen könnte.
-**Partnerin-Spalte:** *Kopf lässt los, Körper nimmt wahr, Herz spricht aus* — still adressiert, maximal anwesend als das was getragen wird.
+**Witness** annotiert quer durch alle Tracks (sparse, parenthesized) und tritt erst in T09 in die Mitte — sein einziger Lead-Moment.
 
-Sequenzlogik (welche Reihenfolge die 9 Zellen als Tracks bekommen) wird in Phase 4 entschieden, mit Research-Findings als Input.
+## Tracklist
 
-## Themes
+| # | State | Lead | Titel | Akt |
+|---|---|---|---|---|
+| 01 | S0 | host | Was ich tue | Tagesoberfläche |
+| 02 | S0→S1 | rationalist | Was ich nenne | Beweis, der fast schließt |
+| 03 | S1 | child-freeze | Was ich nicht sage | Die kleine im Eis |
+| 04 | S1→S2 | ambivalent | Was ich halb will | Reach-and-retract |
+| 05 | S2 | protector | Was ich nicht durchlasse | Position ohne Frage |
+| 06 | S2 | fighter | Was ich nie wieder | Wut als Werkzeug |
+| 07 | S2→S3 | sexualized_override | Was zerreißt | Maske dünn, Riss beginnt |
+| 08 | S3→S4 | collapsed + integrator | Was uns trägt | Kollaps + spätes Geflecht |
+| 09 | S4 | caregiver + witness | Was wir halten | Halten ohne Erstickung — Endpunkt |
 
-- Navigation statt Bewältigung
-- Kognitiv-Verstehen × Körperlich-Halten × Beziehungs-Tragen
-- Drei Korpora, dreifach adressiert, dreifach kreuzend
-- Die Partnerin als Schwerkraft, nicht als Bühne
-- Mask-Drop ohne Kollaps (S4-Endpunkt im Körper-Korpus)
-- "Wagen, anders als früher" — informierte adaptive Veränderung statt reflexiver Bewältigungs-Wiederholung
+**Endpunkt:** kein Final-Fusion, keine Heilung. S4 = Verwundbarkeit hält. Das System integriert sich nicht weg — es bleibt elf.
 
-## Energetik
+## Voice Rules
 
-S2 (Spannung) × S4 (Repair), Grundton S1 (Klinik-Latenz). Anker-Vokabular: *Atem, Hand, Stille, Resonanz, Garten, halten, tragen, em-dash, Haut, Stoff, Wärme.*
+- **Kein "du" an Außenperson** — alle "du" sind intra-systemisch (ein Alter spricht ein anderes).
+- **Kein "wir" das Außen einschließt** — Wir-Stimme = DID-System, nicht jemand-eingeschlossen.
+- **Keine Querverweise** zu Beziehungs-Konstellationen.
+- **Klinik bleibt** als somatischer Container, nicht als Beziehungs-Bühne.
+- **"Liebe" / "lieben" wird vermieden** (per Brief-Constraint).
+- **Function-name-Metatags** in Suno: `[Host: male mid-baritone, weary, dry close-mic, …]` — keine Charakter-Form, keine Namen.
 
-## Research-Matrix (isomorph 3×3)
+Cross-Reference zur Voice-Craft-Override: `overrides/voice-craft-principles.md`.
+
+## Sonic Direction v2
+
+| Element | Detail |
+|---|---|
+| Genre-Tags (Suno) | `experimental art-pop, dark chanson` |
+| Tempo-Range | 60–80 BPM, langsamer per State (S0=78, S1=70, S2=80, S3=64, S4=66) |
+| Drone-Ground | sustained synth pad durchgängig |
+| Bass | sub-bass underneath durchgängig |
+| Textur | modular electroacoustic ambient layer, per State variabel |
+| Field-Recording | prominent — Atem, Raumton, Klinik-Stille |
+| Drums | nein |
+| Electric guitar | nein |
+| Autotune / soaring vocals | nein |
+| Wir-Stimme | nur in T08 und T09 — Wir = System-internes Wir |
+
+## Themes (v2)
+
+- Intra-systemische Auseinandersetzung statt relationaler Triangulation
+- Polyvagal-Bogen als musikalische Architektur
+- Plurality als Form, nicht als zu lösendes Problem
+- Koexistenz von Zuständen (Ambiguität als Strukturprinzip)
+- Witness verlässt den Rand — am Ende, einmal
+- Kein Heilungs-Versprechen, keine Final-Fusion
+
+## Research-Matrix (übernommen aus v1)
+
+Die isomorphe 3×3 Lens-Matrix bleibt als Forschungs-Basis erhalten. Sub-Reports informieren v2-Tracks situativ.
 
 | Lens \\ Corpus | **Kopf** (cognitive) | **Herz** (relational) | **Körper** (somatic) |
 |---|---|---|---|
-| **Clinical** | ✓ `research/clinical/kopf-cognitive.md` (4276 W) | ✓ `research/clinical/herz-relational.md` (4605 W) | ✓ `research/clinical/koerper-somatic.md` (5692 W) |
-| **Emotional** | pending (subagent) | pending (subagent) | pending (subagent) |
-| **Somatic** | pending (subagent) | pending (subagent) | pending (subagent) |
+| **Clinical** | ✓ `research/clinical/kopf-cognitive.md` | ✓ `research/clinical/herz-relational.md` | ✓ `research/clinical/koerper-somatic.md` |
+| **Emotional** | ✓ `research/emotional/kopf-cognitive.md` | ✓ `research/emotional/herz-relational.md` | ✓ `research/emotional/koerper-somatic.md` |
+| **Somatic** | ✓ `research/somatic/kopf-cognitive.md` | ✓ `research/somatic/herz-relational.md` | ✓ `research/somatic/koerper-somatic.md` |
 
-**Lens-Definitionen:**
-- **Clinical** = diagnostisch-taxonomisch (peer-reviewed psych/medicine). *Kopf-style lens.* Erledigt.
-- **Emotional** = phänomenologisch-affektiv (Affect-Theory, Phänomenologie, Lyrik-Tradition, Damasio, Tomkins, Hochschild, Ahmed). *Herz-style lens.* In Arbeit.
-- **Somatic** = leiblich-physiologisch (Somatic Therapy, Polyvagal, Embodiment-Theory, Hanna, Levine deeper, Bainbridge Cohen, Body-Schema-Forschung). *Körper-style lens.* In Arbeit.
+## Bonus-Songs (privat, nicht im Album)
 
-Plus eigenständige Querschnitts-Recherchen: Genre-Archäologie, Concept-Album-Architektur, Confessional-Art-Ethik (alle ✓ unter `research/genre`, `research/architecture`, `research/ethics`).
+Drei Songs existieren parallel, außerhalb dieser Album-Struktur, als private Antwort auf den Brief vom 03.06.2026. Sie sind **nicht** Triangel v2, sind **nicht** öffentlich, sind **nicht** in `tracks/`:
 
-## Production Notes
+- **Daneben** (host allein)
+- **Wir sehen dich** (alle elf, an sie)
+- **Was ich halte** (Kopf + Körper + Herz inner dialogue)
 
-**Suno-Setting:** wird in Phase 3 (Sonic Direction) festgelegt — nach Lieferung der Research und nach Sichtung der Craft-Atlanten.
-
-**Style-Prompt-Base:** TBD (Phase 3).
-
-**Vocal-Continuität:** drei Korpora als drei klanglich klar unterscheidbare Lead-Stimmen plus Wir-Polyphon; keine Persona-Crossover.
+Diese leben außerhalb des Album-Bogens und werden nicht in Git getrackt.
 
 ## Source Material
 
-Autobiographisch (anonymisiert, mit Code-Namen für externe Beteiligte). **Keine Documentary-Klassifikation** im Sinne des Plugins (kein historisch verifizierbares Ereignis); die klinische Research liefert Frames für die Selbst-Reflektion und für die lyrische Klärung, nicht Faktencheck.
+Autobiographisch im weitesten Sinn — keine Documentary-Klassifikation. Die klinische und somatische Research liefert Frames für die intra-systemische Arbeit, nicht Faktencheck einer Außenwelt.
+
+## v1 — archiviert
+
+Die v1-Konzeption ("Auseinandersetzung im Zwischen Ich-System ↔ Miriam") liegt unter `archive/v1/` und darf in v2-Tracks als Predecessor referenziert werden. Was übersetzbar war, wurde nach innen übersetzt. Was Funktionalisierung war, wurde verworfen.
 
 ## Workflow-Status
 
-| Phase | Status |
+| Phase | v2-Status |
 |---|---|
 | Phase 1 (Premise) | ✓ |
-| Phase 2 (Cast + Struktur) | ⏳ Cast gelockt; T3 provisional; Research läuft |
-| Phase 3 (Sonic Direction) | pending — wartet auf Research |
-| Phase 4 (Tracklist-Sequenz) | pending |
+| Phase 2 (Cast + Struktur) | ✓ — polyvagal-Bogen gelockt |
+| Phase 3 (Sonic Direction) | ✓ — v2 sonic gelockt |
+| Phase 4 (Tracklist-Sequenz) | ✓ — 9 Tracks per Polyvagal-Bogen |
 | Phase 5 (Visual Direction) | pending |
-| Phase 6 (Title-Lock + Practical) | pending |
-| Phase 7 (Confirmation) | pending |
+| Phase 6 (Title-Lock + Practical) | ✓ — Name "Triangel" behalten, Bedeutung verschoben |
+| Phase 7 (Confirmation) | pending — wartet auf Album-Review nach Track-Loop |
 
 ---
 
-*Notes: Der Skill-Stack `the-agency-system` ist aktiv (Gate erfüllt). Cast wurde gegen alle 11 Entity-Profile validiert; Exclusions sind dokumentiert. Concept-Stand kann via `/bitwize-music:next-step` jederzeit re-evaluiert werden.*
+*Aktiver Workflow: Per-Track Lyric-Loop läuft. Nach Abschluss aller 9 Tracks folgt Review und ggf. Iterations-Loop.*
