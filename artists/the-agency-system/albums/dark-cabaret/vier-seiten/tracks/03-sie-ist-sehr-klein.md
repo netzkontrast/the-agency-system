@@ -85,19 +85,48 @@ Latency Violet als Farbe, die nicht erscheint, sondern fehlt. Tape hiss als Anwe
 
 ## Suno Inputs
 
+### Suno Style Prompt (engineered)
+
+**Recommended Suno Version:** V5 (NOT V5.5 — risk of hyperactive phrasing, denser instrument separation, and over-expressive child render. V5's literalism + restraint matches S1 freeze.)
+
+**Settings:**
+- Instrumental: Off
+- Weirdness: ~40 (slightly elevated — fragmentation needs space; not too high or modular goes rhythmic)
+- Style Influence: ~80 (push restraint hard)
+- Model: V5
+
 ### Style Box
 
-*Copy this into Suno's "Style of Music" field:*
+*Copy this into Suno's "Style of Music" field (≤200 chars, vocals FIRST per V5):*
 
 ```
-Single voice: androgynous young child, head-voice only, whispered consonants, audible breath between every fragment, very close-mic with permitted tape hiss, approximately ten to twelve years old, never sweet, fragmented phrasing in two to four word fragments, sentences broken by fear, slight reverb tail, no vibrato. Bridge contains an italicized quote from a letter, delivered very slow, whispered, with breath, slight reverb tail, audibly set apart from the surrounding lines. One sparse parenthetical witness annotation at the opening: androgynous lowercase audiobook-narrator, behind-the-beat, dry mid-distance mic. Experimental art-pop, dark chanson, dark cabaret. Sustained synth pad drone-ground throughout (Frostbite Cyan ambient), sub-bass held underneath without movement, sparse field recording (radiator ticking, room tone only), sparse modular electroacoustic with single high glassy resonances, audible tape hiss permitted. 70 BPM, very slow, long rests, much white space between phrases. S1 latency / freeze. No drums. No melody figure. No resolution.
+Androgynous 10-12yr child head-voice, whispered, fragmented 2-4 word phrasing, audible breath, very close-mic with tape hiss, slight reverb tail, no vibrato. Dark chanson, experimental art-pop. Sparse pad drone, sub-bass, 70 BPM.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no choir, no adult lead voice, no sweet child voice, no nursery melody, no lullaby, no muffled indoor voices through wall, no rhythmic figure
+no drums, no adult voice, no sweet child voice, no soaring vocals
 ```
+
+### Brief-Quote Handling (Bridge — Album Wundpunkt)
+
+The italicized lines *"ich werde nicht gesehen / und das lerne ich"* are the album's Wundpunkt. Render discipline is critical — these lines must sound like an **echo from outside the same room**, not the same singer continuing.
+
+**In-lyrics directive (already in Lyrics Box at Bridge):**
+> `[Same child voice timbre, but quoted from a second room that is the same room — very slow, whispered, with audible breath, slight reverb tail, audibly set apart and lower in the mix from surrounding lines. Echo, not continuation.]`
+
+**Suno V5 mechanics for the echo effect:**
+- Slow tempo shift inside the Bridge ("very slow")
+- Additional reverb tail vs surrounding lead vocal
+- Lower mix level (the "lower in the mix" instruction)
+- Audible breath as separation marker
+- Italics in lyric = Suno V5 typically treats as emphasis/whisper layer
+
+**Failure-Modes specifically to watch:**
+- Suno renders the quote as same-singer-continuing → reject the take
+- Quote becomes refrain-like (sweet, melodic) → reject; Bridge must stay flat-affect echo
+- Adult voice timbre leaks in on quote → reject; child head-voice timbre must hold
 
 ### Lyrics Box
 

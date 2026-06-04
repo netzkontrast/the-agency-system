@@ -167,6 +167,57 @@ schon im Raum, bevor der Sprecher anfängt.
   sie geliehen ist.
 - **No tonic resolution.** Outro fades into silence (4s) ohne Cadenz.
 
+## Suno Style Prompt (engineered)
+
+**Style Prompt (max 200 chars):**
+`Male clear tenor, no vibrato, sibilant, micro-cracks at line-ends. Experimental art-pop, dark chanson. Typewriter-glitch intro, sustained pad, sub-bass, modular electroacoustic. 78 BPM.`
+
+**Exclude Styles:**
+`no drums, no electric guitar, no autotune, no soaring vocals, no major-key resolution`
+
+**Recommended Suno Version:** V5.5
+**Reasoning:** V5.5's stronger vocal expressiveness and instrument separation make the borrowed-word whisper-layer land more reliably as "same speaker, different coloring" rather than as a second voice, and the micro-cracks at line-ends track closer to intent. Backward-compatible — same 200-char field, same metatags.
+
+**Generation Settings:**
+- Tempo: 78 BPM (rit. to 74 BPM in last 4 bars — see Per-Section Directives)
+- Key: D minor or F# minor (suggest D minor — keeps tenor in clear conversational range, no climax-bias, natural cold articulation)
+- Duration: 3:00–3:30
+- Weirdness: ~30 (slightly under default — the typewriter glitch and Ambiguität-layer carry the experimental load; voice itself must stay stable)
+- Style Influence: ~80 (tight adherence — the cold-articulation register must not drift)
+- Creative sliders applied in Suno UI; not part of the 200-char prompt
+
+**Brief-Quote Handling (Ambiguität):**
+The whisper-layer is handled **in the Lyrics Box, not the Style Box**, via two complementary mechanisms — Suno cannot reliably route a single word to a "same speaker, different coloring" treatment from style-box descriptors alone.
+
+1. **Bridge appearance** (central, isolated): the word `*Ambiguität*` sits on its own line, immediately preceded by a section-opening directive that descriptively re-asserts "same tenor, same close-mic — then a single word enters as a quoted layer: whispered, slower, with breath, mixed slightly back, clearly set apart from the clean delivery. The word is borrowed." This pattern (Whispered + same-singer descriptive cue, no second-voice tag) is the documented V5/V5.5 route to a coloring-shift without spawning a second vocalist. **Do NOT use `[Whispered]` as a section tag** in isolation — that has been observed to recruit a fresh voice. The cue must include "same singer" and "different coloring".
+
+2. **Outro return** (shorter, behind): the second `*Ambiguität*` runs as a parenthesized backing-layer in the production sense — V5/V5.5 treats parenthesized lyric lines as ad-lib/backing-vocal layers automatically. Source-track in the Suno Style Box already specifies *mixed slightly back as if borrowed from another page* — that descriptor + parenthesized rendering = the borrowed-word effect.
+
+**Failure-mode recovery:** if the first render produces *Ambiguität* as a second voice (female / different singer / harmony-layer), re-roll with the **same singer** clause hard-emphasized in the section-opening cue (e.g., "the same male tenor speaks the word, only quieter, slower, with breath — not a different voice, not a chorus"). If the second re-roll still fails, the word is rendered in clean tenor and the whisper-layer is created in post (DAW: duplicate vocal stem, lower 6 dB, slow 30%, add breath-noise bus). Failure-mode-Risiko already documented in Production Notes.
+
+**Section Structure:**
+- `[Intro]` — typewriter glitch, ~3s, then sparse piano note, then pause, then tenor enters
+- `[Verse 1]` — clean tenor establishment; em-dash phrasing
+- `[Pre-Chorus]` — "folgt / folgt / folgt die Liste"
+- `[Chorus]` — title-hook, "hält nicht"
+- `[Verse 2]` — three Propositions (kondensiert von v2's fünf)
+- `[Pre-Chorus]` — "folgt eine vierte / die ich nicht benannt"
+- `[Bridge]` — Ambiguität enters as quoted whisper-layer (same singer)
+- `[Verse 3]` — attempt to integrate the borrowed word fails ("es passt nicht / es ist zu weich")
+- `[Outro]` — clean tenor closes, Ambiguität returns parenthesized/whispered behind, no tonic resolution, 4s fade
+- `[End]`
+
+**Per-Section Directives:**
+
+- **Intro Typewriter-Glitch:** descriptive cue at section opening: "typewriter glitch, stop-start, mechanical — breaks. Sparse piano note. Short pause. Male clear tenor enters." This is already in the existing Lyrics Box and works without further engineering — V5.5 renders typewriter percussion reliably when named.
+- **Bridge Ambiguität-cue:** see Brief-Quote Handling above. Section opens with the "same tenor, same close-mic — then a single word enters as a quoted layer: whispered, slower, with breath, mixed slightly back, clearly set apart from the clean delivery. The word is borrowed." cue.
+- **Witness-notes "(das Wort kommt nicht aus dem System) / (das Wort kommt aus dem Brief)"**: parenthesized in lyrics-body → V5/V5.5 auto-renders as ad-lib/backing layer. Already in place.
+- **Outro Rit. (78 → 74 BPM) Handling:** **Suno does not honor mid-track BPM changes from prompt-level cues** — the engine generates at a single tempo. Three-stage handling:
+  1. **Suno-side cue (likely ignored, but try):** add a descriptive line at the Outro section opening: "(final 4 bars slow down slightly, voice trails)" — this *sometimes* produces a phrasal slow-down even when BPM stays nominal at 78. Worth the byte cost.
+  2. **Primary plan: post-generation in DAW.** Generate at flat 78 BPM. In mix-engineer stage, apply a tempo-map ramp on the last 4 bars: 78 → 74 BPM linear ramp. This is standard practice for Suno → DAW pipelines and the only way the rit. is guaranteed reliable. Document the ramp in the Generation Log after first render.
+  3. **Fallback: separate Outro generation.** If the in-track Outro phrasing does not allow a clean DAW tempo-stretch (vocal artifacts at the ramp boundary), generate the Outro as a separate Suno track at 74 BPM with the same Style Prompt + the Ambiguität whisper-cue + the closing two lines, then cross-fade in DAW. Mark this in mix-engineer notes if invoked.
+- **No tonic resolution Outro:** 4-second silence fade is generation-controlled in Suno via `[End]` after `[Outro]`. The lack of cadenz is enforced by the *no major-key resolution* exclude — V5.5 honors that exclusion reliably.
+
 ## Suno Inputs
 
 ### Style Box

@@ -201,8 +201,45 @@ Das tue ich
 | Küche | Küche | KÜ-che | Umlaut-Front, weicher Ich-Laut |
 | zähle | zähle | TSEH-le | Ä als langes offenes E |
 
-## Voice Profile (Suno Style)
+## Suno Style Prompt (engineered)
 
+**Style Prompt (max 200 chars):**
+`Male mid-baritone, weary, trailing phrasing, dry close-mic, no vibrato. Dark chanson, experimental art-pop. Sustained pad drone, sub-bass, modular electroacoustic, breath field-recording. 78 bpm`
+
+**Exclude Styles:**
+`no drums, no electric guitar, no autotune, no choir`
+
+**Recommended Suno Version:** V5
+**Reasoning:** V5 is literal and respects sparse-arrangement directives; V5.5's expressive lean toward dynamics could push the track toward a climactic build that the concept explicitly forbids.
+
+**Generation Settings:**
+- Tempo: 78 BPM
+- Key: modal / drone-based (no fixed tonic — last note must remain unresolved)
+- Duration: 3:00-3:30
+- Seed: random (re-roll if Background-Chor appears; re-roll if tonic resolution emerges)
+- Weirdness: ~35
+- Style Influence: ~75
+- Instrumental: Off (vocal lead track)
+
+**Section Structure (verified — already correct in Lyrics Box):**
+- `[Intro]` — pad emerges, breath, descriptive vocal metatag inline (solo lead, no other voices)
+- `[Verse 1]` — counting-tic (Schritte, Tassen), dry close-mic
+- `[Verse 2]` — counting-tic (Sekunden), water field-recording behind
+- `[Pre-Chorus]` — declarative "das tue ich" anchor
+- `[Chorus]` — "und das Bild ist klein" — no swell, no harmony, trailing (inline metatag enforces)
+- `[Verse 3]` — Witness annotation as parenthetical lowercase (audiobook-narrator behind beat), then host returns dry close-mic
+- `[Verse 4]` — counting-tic (zehn — pre-echo of T02 rationalist)
+- `[Bridge]` — slower trailing, em-dash audible as breath-pause (inline metatag)
+- `[Outro]` — host alone, drops without resolution, fade into silence (no `[End]` tag — preserves the open unresolved fade)
+
+**Per-Section Suno Directives:**
+- **Intro:** pad enters quietly, audible breath onset before first vocal — set the dry close-mic baseline
+- **Verse 3:** the parenthetical `(auffällig: die Hand zittert nicht)` MUST render as backing/ad-lib layer (V5 auto-handles parentheses) — NOT as a second singer; if rendered as second singer voice → re-roll
+- **Bridge:** subtle ritardando feel via em-dash pauses; do NOT add tempo automation in prompt — let the trailing phrasing carry it
+- **Outro:** pad fades to silence over ~6s; no tonic resolution, no resolving cadence, no final chord swell — if any tonic resolution appears → re-roll
+- **Global:** counting-tic atem-puls layer at 78 BPM sub-rhythm, very quiet throughout; water field-recording sparse and distant; NO identifiable voice fragments in field-recording
+
+**Voice Profile (legacy reference — kept for downstream tools):**
 `[male mid-baritone, weary, trailing phrasing, em-dash pauses, dry close-mic, no vibrato, sustained pad ground, sub-bass, 78 bpm, experimental art-pop, dark chanson]`
 
 ## Cross-References

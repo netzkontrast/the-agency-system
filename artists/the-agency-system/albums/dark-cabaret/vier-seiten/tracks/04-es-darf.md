@@ -294,7 +294,58 @@ Ich bleib im Strich
 | entscheide | ent-SHY-de | "ei"-Diphthong; "ch" still vor "ei" |
 | genug | geh-NOOK | Zwei Silben; Akzent auf zweiter; "g" am Ende eher "k" |
 
-## Voice Profile (Suno Style)
+## Suno Style Prompt (engineered)
+
+**Recommended Suno Version:** V5.5 — bessere Phrasierung und Dynamics-Auflösung für microtonal pitch-bending; subtilere Vocal-Direktiven landen zuverlässiger.
+
+### Style Box (max 200 chars)
+
+```
+Female alto, microtonal pitch-bending within syllables, sliding vibrato, em-dash breath punctuation, ambiguous tonic. Experimental art-pop, dark chanson. Pad drone, sub-bass, modular. 74 BPM
+```
+
+### Exclude Styles
+
+```
+no drums, no electric guitar, no autotune, no major-key resolution
+```
+
+(4 items, paste appended to Style Box. "no soaring belt" is covered by "alto microtonal pitch-bending" — adding it as 5th item would dilute.)
+
+### Suno Settings
+
+| Setting | Value |
+|---|---|
+| Model | V5.5 |
+| Instrumental | Off (vocal track with whispered self-echo layer) |
+| Weirdness | 45 (slightly elevated — microtonal latitude) |
+| Style Influence | 75 |
+| Audio Influence | N/A |
+
+### Microtonal Pitch-Bend Direktive (critical)
+
+Suno needs the **explicit hint** in Style Box: *"microtonal pitch-bending within syllables"* — this is the load-bearing phrase that opens the pitch-quantization gate. Reinforced inline at section openings: *"alto microtonal, sliding vibrato within syllables, never landing on clean pitch"*. The word "microtonal" must appear at minimum 2× (Style Box + Intro inline) so V5.5 holds the bend across the full track and not just the opening phrase.
+
+### Brief-Quote Handling (whispered self-echo, same singer)
+
+The line *"es darf koexistieren —"* is rendered as a **same-singer self-echo layer**, not a second voice:
+
+- **Typographic encoding in Lyrics Box:** the quote is wrapped in **parentheses + italics-marker** — `*(es darf koexistieren —)*`. Suno V5/V5.5 treats parenthesized lines as backing/ad-lib layer automatically, so this routes the line to a quieter, secondary delivery without invoking a second vocalist.
+- **Inline section directive** (already present at Chorus opening): *"a second whispered/slower vocal layer enters in parentheses, with breath, klar abgesetzt — Miriam's words as quote, not assertion"*. Reinforced at Bridge with: *"whispered layer returns — same singer, lower, slower, with audible breath, tucked under lead"*.
+- **Why same-singer:** a separate voice would read as duet (B→C breach). Same-singer-self-echo reads as *the lead carrying her words in her own mouth* — exactly the Brief-take-in gesture the concept demands. Mic closer, less reverb, lower in mix.
+
+### B→C-Outro Mode-Switch Direktive (per-section)
+
+The three direct-Du lines are rendered via a **per-section vocal directive** at the `[Outro]` opening. Suno V5.5 honors mid-track vocal-mode shifts when the directive is concrete enough — vague words ("softer") get ignored; specific contrasts ("mic moves a hair closer", "em-dashes lengthen") land:
+
+```
+[Outro — direct address opens, 3 lines only]
+[Voice shifts: softer, breathier, slower than the rest of the track. Mic moves a hair closer. The em-dashes remain but lengthen. After these three lines, voice retracts immediately into the closing fragments — back to em-dash withdrawal.]
+```
+
+Then immediately at the `[Retract]` section: `[Retract — same voice, returning to opening dynamic, slightly distant again]`. The two consecutive section-tags with contrasting vocal directives force V5.5 into a clean A→B→A modal arc inside the outro — exactly the open-close-open of the B→C→B move. No clean tonic at end: directive *"final phrase remains unresolved on em-dash breath, no cadential closure"* (already encoded via the existing exclusion `no major-key resolution`).
+
+### Voice Profile (legacy reference)
 
 `[female alto microtonal, sliding vibrato, dynamics oscillating within phrases, mixed dry/wet, ambiguous tonic, em-dash phrasing as breath, microtonal pitch-bending on key words, sustained pad drone-ground, sub-bass with slow volume waves, modular electroacoustic with doubled resonances, 74 bpm, experimental art-pop, dark chanson, S1 to S2 threshold]`
 

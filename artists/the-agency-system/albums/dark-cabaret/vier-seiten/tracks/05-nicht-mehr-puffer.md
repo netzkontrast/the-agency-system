@@ -89,19 +89,40 @@ Keine Wärme. Keine Distanz. Klarheit als Schutz, der nicht erklärt.
 
 ## Suno Inputs
 
-### Style Box
+### Suno Style Prompt (engineered)
 
-*Copy this into Suno's "Style of Music" field:*
+**Recommended Suno Version:** V5 (NOT V5.5 — V5.5's expressive phrasing tends to bridge over periods into flow; V5's more literal rendering preserves Stakkato).
+
+*Copy this into Suno's "Style of Music" field (≤200 chars, vocals-FIRST per V5 weighting):*
 
 ```
-Single lead voice: male chest-weighted low baritone, clipped three-word lines, forward-mic, dry room, restrained intensity, no vibrato, declarative full stops, breath held between lines never within, strategic and contained, never reactive, imperatives without explanation, stakkato periods. One sparse parenthetical witness annotation at track open: androgynous lowercase audiobook-narrator, behind-the-beat, dry mid-distance mic. Brief-quote layer (two instances): whispered, slightly slower, with breath, clearly offset from clean lead delivery — a quoted voice. Experimental art-pop, dark chanson, dark cabaret. Sustained synth pad drone-ground throughout (Signal Yellow timbre), sub-bass held underneath with slow braced pulse, dense short modular electroacoustic metallic clicks, distant corridor reverb field recording. 80 BPM, restrained, long rests between phrases, never within. S2 mobilized / position.
+Male chest low baritone, clipped 3-word lines, dry close-mic, no vibrato, restrained, full stops, period as audible silence. Female whispered quote-layer 2x. Dark chanson, art-pop. 80 BPM.
 ```
+
+### Stakkato Directive (CRITICAL — paste into Style Box if Suno renders flow)
+
+Suno V5 defaults to legato flow even with periods present. To enforce Stakkato:
+
+- **Hard guard phrase:** `period as audible silence not fade`
+- **Anti-flow phrase:** `breath between lines never within`
+- **If first generation renders flow:** prepend `staccato delivery, hard stops, gap after every line` to the style box and re-generate.
+
+### Female-Whisper-Layer Solution (Brief-Zitat *nie wieder Puffer*)
+
+The italicized *nie wieder Puffer* (V2 + Bridge) MUST be a separate, clearly-offset female whispered voice layer — NOT the protector's baritone reading italics softly. Implementation:
+
+1. **Style Box already requests it:** "Female whispered quote-layer 2x" — V5 reads this as a second voice in the mix.
+2. **In Lyrics Box, the italic markdown `*nie wieder Puffer*` triggers V5's same-track different-treatment for italicized text.** To reinforce, the existing inline metatag at Bridge already specifies: *"Brief-quote layer enters whispered, slightly slower, with breath — clearly offset, second occurrence."*
+3. **Backup mechanism if V5 reads the italics as the lead's whisper:** parenthesize the quote `(*nie wieder Puffer*)` — V5 treats parenthesized lines as backing/ad-lib layer, which is reliably rendered by a different voice when the style box names a second register (female whispered).
+4. **Critical timbre contrast:** lead is chest-weighted male baritone (low resonance, dry, forward); quote is female whispered (high resonance, breathy, mid-distance). The contrast is the audible "this is a quote, not a sung line".
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no choir, no female lead, no vibrato, no melisma, no melodic embellishment, no romantic phrasing, no exclamation, no rising intonation at line ends, no em-dash phrasing
+no drums, no electric guitar, no autotune, no shouting, no soaring vocals, no choir, no vibrato, no melisma, no em-dash flow, no climactic build, no crescendo, no rising intonation at line ends
 ```
+
+*Rationale for exclusions vs. baritone Protector:* Protector is RESTRAINED, not aggressive — `no shouting` and `no climactic build` guard against Suno reading "Protector / Position / Linie" as a power-ballad arc. `no em-dash flow` and `no rising intonation` guard the Stakkato. `no choir` and `no soaring vocals` guard against backing-vocal swells contaminating the dry close-mic Field.
 
 ### Lyrics Box
 
