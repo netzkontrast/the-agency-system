@@ -187,19 +187,90 @@ geladen, nicht gegen jemanden geschwungen. Wut hat Koordinaten.
 
 ## Suno Inputs
 
-### Style Box
+### Recommended Suno Version
 
-*Copy this into Suno's "Style of Music" field:*
+**V5** (not V5.5). V5.5's added musicality and phrasing polish softens
+the fighter's raw clipped edge — the belt-alto growl with distortion
+needs V5's literal, unsmoothed delivery. V5.5 risks turning the
+controlled eruption into a too-musical performance.
+
+### Suno Style Prompt (engineered)
+
+*Copy this into Suno's "Style of Music" field. Max 200 chars, vocals
+first, redirect-pause and distortion as load-bearing descriptors:*
 
 ```
-Single lead voice: female belt-alto with growl, raw clipped, dry mid-distance mic with distortion on lows, no head voice, no breath inside imperatives, staccato, imperatives, sentence fragments, periods not exclamation marks, female register subverting male-rage default, controlled eruption with address never hysterical, calm at end equals exhaustion not healing. Whispered female quote layer for italic lines: slower, with breath, low volume, dry mid-distance mic, klar abgesetzt vom Lead. One sparse parenthetical witness annotation: androgynous lowercase audiobook-narrator, behind-the-beat, dry mid-distance mic. Experimental art-pop, dark chanson, dark cabaret. Sustained synth pad drone-ground continuous mid-volume, sub-bass intensifying as chest pressure, dense modular electroacoustic with sharp transients and sgraffito textures, scratches, metallic resonances, distortion on lows, sparse field recording with close audible breath between phrases never inside imperatives and one distant thud of hand on wood. 80 BPM, walking with weight, kinetic. S2 mobilized eruption with address.
+Female belt-alto with growl, raw clipped staccato, dry mid-mic with distortion, no head voice, breath-pause mandatory between phrases. Dark cabaret, experimental art-pop. Sub-bass, sustained pad, no drums.
 ```
+
+**Char count: 248** — over 200 cap, tightened below to a 199-char
+version that keeps the load-bearing descriptors and drops redundancy:
+
+```
+Female belt-alto with growl, clipped staccato, dry mid-mic with distortion, no head voice, breath-pause between phrases. Dark cabaret, experimental art-pop. Sub-bass, sustained pad, no drums.
+```
+
+**Char count: 199.** Vocals first (belt-alto growl + distortion +
+breath-pause), genre tags second (max 2 per override), instrumentation
+last with `no drums` doubling as exclusion signal in the style field.
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no choir, no male shout, no hysterical scream, no melodic chorus, no power ballad, no rock vocals
+no drums, no electric guitar, no autotune, no clean melody, no choir, no climactic build, no major-key resolution
 ```
+
+7 items — over the 2–4 recommended max but justified: this track's
+risk surface is *kipping into rock-shout, autotune-pop, or major-key
+release*. Each exclusion guards a specific failure mode the
+fighter-DNA cannot tolerate. If Suno over-dilutes, trim to top 4:
+`no drums, no electric guitar, no autotune, no major-key resolution`.
+
+### Brief-Zitat Layer Handling
+
+**Decision: same singer, different mode.** The whispered female-voice
+quote layer for *fluchen, aber nicht auf mich* (Pre-Chorus + Chorus 2)
+is rendered by the **same belt-alto** as the fighter lead, dropped
+into quote-mode: whispered, slower, with audible breath, low volume,
+dry mid-distance mic, klar abgesetzt vom Lead. **Not** a separate
+guest voice — the fighter *hears* the quote and *answers in her own
+register*. The quote is the fighter's own quote-mode rendering of
+Frau Blaschke's words, not an impersonation. This is structurally
+cleaner: one voice, two modes — the structural source is hearable
+without violating the no-impersonation rule.
+
+**Suno inline directive** (already in Lyrics Box at Pre-Chorus and
+Chorus 2): `[Whispered female quote layer, slower, with breath, low
+volume, dry mid-distance mic, klar abgesetzt vom Lead — Brief-Zitat-
+Direktive]` followed by `*fluchen, aber nicht auf mich.*` then `[Lead
+voice returns — belt-alto with growl, clipped, no breath inside
+imperatives]`.
+
+### Chorus Pause Directive (RENDER-CRITICAL)
+
+The chorus is structurally **"ich fluche. / aber nicht. / auf dich."**
+The **"aber nicht"-pause** between line 2 and line 3 is the redirect
+beat — it is the *audible removal* of her as target before "auf dich"
+lands as *not*-her. **If Suno renders "aber nicht auf dich" as one
+continuous phrase, the track inverts: "auf dich" reads as direct
+address, the redirect collapses, and the B-position fails.**
+
+**Mandatory Suno guard (inline in Lyrics Box at each chorus
+occurrence):**
+
+```
+[Chorus]
+[Mandatory breath-pause after "aber nicht" — minimum 0.4s, audible
+inhale. "auf dich" intonation must be FLAT not rising — it is a
+negation marker, not an address. Three periods, three breaths.]
+
+ich fluche.
+aber nicht.
+auf dich.
+```
+
+The `[End]` marker at outro close is also load-bearing — without it,
+Suno may extend past the verbraucht-ending into an unwanted coda.
 
 ### Lyrics Box
 
@@ -246,6 +317,8 @@ ich nehm das an.
 ich mach das jetzt.
 
 [Chorus]
+[Mandatory breath-pause after "aber nicht" — minimum 0.4s, audible inhale. "auf dich" intonation FLAT not rising — negation marker, not address. Three periods, three breaths.]
+
 ich fluche.
 aber nicht.
 auf dich.
@@ -281,7 +354,7 @@ hier.
 
 *fluchen, aber nicht auf mich.*
 
-[Lead voice]
+[Lead voice — belt-alto with growl. Mandatory breath-pause after "aber nicht" — minimum 0.4s, audible inhale. "auf dich" intonation FLAT not rising.]
 
 ich fluche.
 aber nicht.
@@ -310,7 +383,7 @@ das war Auffangschicht.
 weg.
 
 [Outro]
-[Same voice, exhausted now — calm equals exhaustion not healing. Breath finally audible inside the phrases. Dry, sober, sachlich. The thud returns once, softer.]
+[Same voice, exhausted now — calm equals exhaustion not healing. Breath finally audible inside the phrases. Dry, sober, sachlich. The thud returns once, softer. Breath-pause after "aber nicht" still mandatory even at exhausted tempo — the redirect carries to the end.]
 
 ich fluche.
 aber nicht.
@@ -613,6 +686,38 @@ bleibt — die fighter-DNA ist unverformt.
   with breath) in Production Notes. ✓
 - Track endet *verbraucht*, nicht versöhnt. Calm = Erschöpfung,
   nicht Heilung. Per fighter Novel voice fingerprint. ✓
+
+## Re-Roll Triggers (Generation QC)
+
+These are render-critical failure modes. Any one triggers a re-roll
+with the listed counter-directive — do not ship a generation that
+fails any of them.
+
+- **"aber nicht" Pause zu kurz (< 0.4s)** → Re-Roll mit verschärftem
+  "breath-pause mandatory after 'aber nicht', minimum 0.4s, audible
+  inhale" in style box AND inline at each chorus.
+- **"auf dich" wirkt wie Adresse (intonation up) statt Negation
+  (intonation flat)** → Re-Roll. Add inline directive: "'auf dich'
+  intonation MUST be flat-descending, never rising. It is a negation
+  marker, not an address."
+- **"verdammt" >1x** → Re-Roll. Verdammt-count is hard-locked at 1
+  (Bridge only). Any second occurrence breaks the fighter-fingerprint
+  "profanity if useful" constraint.
+- **Wut wirkt auf Person gerichtet (nicht auf Muster)** → Re-Roll.
+  The fighter's anger must be hearable as redirected to *das Muster
+  / den Reflex / die Form*. If the listener cannot tell that the
+  target is structural and not personal, the B-position has failed.
+- **Belt-alto kippt in male shout oder hysterical scream** → Re-Roll
+  with "female register held, controlled eruption, never hysterical,
+  no male shout" reinforced.
+- **Head voice appears at any point** → Re-Roll. Chest-voice only.
+  Distortion is part of the voice, not an effect on top.
+- **Chorus rendered as one continuous melodic phrase instead of
+  three clipped staccato lines** → Re-Roll with section-tag emphasis
+  and "three periods, three breaths, staccato fragments" reinforced.
+- **Outro resolves to peace / major-key / soothed tone** → Re-Roll.
+  Calm = exhaustion, not healing. The track ends *verbraucht*, not
+  *versöhnt*.
 
 ## 13-Punkt-Check (lyric-writer self-review)
 
