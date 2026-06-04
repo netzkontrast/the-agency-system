@@ -123,7 +123,7 @@ Was als Nähe kommt.
 Hat keine Sichtlinie.
 Hier nicht durch.
 
-(es faellt auf — er steht.)
+(im aktuellen Modus: er steht.)
 
 [Verse 3]
 Hand runter.
@@ -241,7 +241,7 @@ Hier nicht durch
 - **Vocal Delivery:** chest-weighted low baritone, dry close-mic, NO reverb, NO vibrato. Each three-word line is a complete clause that lands on a period — the period must be audible as silence, not as fade. Breath is held *for* the listening between lines, never inside a line. If the singer can't say a three-word line in one breath without strain, the take is wrong.
 - **"Hand runter. Atem runter. Bleib hier." (V3):** the only verses where the protector turns intra-systemically toward another alter — most likely sex_override (the hand) and a frozen/escalating part (the breath). These are *commands*, never pleas. The pitch does not soften. The voice does not warm. The care is the structure of the command, not its tone.
 - **Bridge "Wer hier zieht / zieht ohne mich":** the door-click in the room is real Foley — a single muffled click panned slightly right, mid-bridge. The protector does not turn his head. The line continues.
-- **"(es faellt auf — er steht.)" witness annotation:** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Used exactly once, mid-Verse 2. Per CONCEPT §5 (witness annotates across all 13, 1–2 per track maximum, never hookwürdig). The witness chooses third-person here ("er steht") to mark the protector's role-stance, not first-person interiority.
+- **"(im aktuellen Modus: er steht.)" witness annotation:** lowercase, parenthetical, mid-distance dry mic, audiobook-narrator register, behind-the-beat. Used exactly once, mid-Verse 2. Per CONCEPT §5 (witness annotates across all 13, 1–2 per track maximum, never hookwürdig). The witness chooses third-person here ("er steht") to mark the protector's role-stance, not first-person interiority.
 - **Outro "Hier nicht durch" x3:** identical lines, identical delivery, slightly more rest between each repetition. NO crescendo, NO decrescendo. The position is the same at the end as at the beginning — that is the truth of the track. Sub-bass holds 80 BPM into Track 06's entry.
 - **Carry-over to Track 06 (fighter, S2 — Eruption):** Track 05's outro holds the position; Track 06 is what happens when the position cracks. The "Hier nicht durch" of 05 becomes the explosion of 06. Track 05 does *not* prefigure Track 06 — it stands *before* it. Track 06 is allowed to break what Track 05 holds.
 

@@ -223,7 +223,7 @@ du Reflex.
 mich wegschieben damit Kohärenz hält.
 weg.
 
-(es fällt auf — sie spricht das Muster an, nicht die Person)
+(signifikant: sie spricht das Muster an, nicht die Person)
 
 [Verse 4]
 nie wieder Form.
@@ -378,7 +378,7 @@ Das war Arbeit
   pattern, never a person. Vocal delivery: directly forward, mid-mic,
   flat dry. No reverb tail. The voice holds eye-contact with the
   thing it names.
-- **Witness annotation "es fällt auf — sie spricht das Muster an, nicht
+- **Witness annotation "signifikant: sie spricht das Muster an, nicht
   die Person":** the structural note of the track — the listener may
   miss otherwise that the "du" is never a person. Placed between V3
   (where pattern-naming is densest) and V4 (where renunciation
@@ -459,7 +459,7 @@ has no single center, only a polyvagal arc.
 | "ich lasse die Maske heute / nicht weg / nur dünner" (sexualized_override loosens control toward authentic power, S4) | "nie wieder Form / nie wieder Funktion / nie wieder Auffangschicht" (fighter renounces protective forms, S2) |
 | "und du sollst sehen / was darunter ist" (outward addressee Miriam) | "du Muster / hör zu / ich red mit dir / nicht mit jemandem / mit dir" (intra-systemic address to a pattern, not a person) |
 | "ich nehme sie wahr / ohne sie zu nehmen" (perceiving die Partnerin) | "ich nehm das Wort zurück / ich bin keine Brücke / ich bin kein Aushalten / ich bin keine Vermittlung" (taking back the function-words, no third party) |
-| "mein Atem geht tiefer / mein Becken atmet mit / meine Schultern sind unten" (S4 somatic softening) | "Knöchel weiß / Tisch / Hitze im Kiefer / ich steh" (S2 somatic alert) |
+| "mein Atem geht tiefer / mein Becken atmet mit / meine Schultern sind unten" (S4 somatic softening) | "Knöchel weiß / Tisch / Hitze im Kiefer / Riss im Mund / ich steh" + "Stahl in der Brust" + "Knochen schlagen aus" + "Splitter unter der Haut / Blut auf den Zähnen" (S2 somatic alert with visceral-kinetic fighter markers) |
 | "das ist Wahrheit / das ist Wahrheit / und du bist dabei" (Wir-Stimme polyphonic outro, Miriam addressed) | "ich bin müde / ich bin nicht weg / das war Arbeit" (single voice, exhausted, no Wir, no addressee) |
 | Wir-Stimme album-central polyphonic entry | Single voice throughout. Wir reserved for T08/T09 per CONCEPT §6. |
 
@@ -472,16 +472,35 @@ the album-central role itself.
 What translates structurally: the *movement of taking back* (v1 took
 the mask down; v2 takes the function-words back). The *somatic
 specificity* (v1 named breath, pelvis, shoulders for S4; v2 names
-knuckles, table, jaw-heat for S2). Both refuse melodrama. Both keep
-the body in the line.
+knuckles, table, jaw-heat, mouth-tear, chest-steel, knuckle-bones,
+skin-splinters, tooth-blood for S2). Both refuse melodrama. Both
+keep the body in the line.
+
+**Fix-Pass 2026-06-04:** Puffer-Zeile entschärft (Brief-Echo zu direkt
+— Miriams Wortlaut "ich will nie wieder Puffer sein" wurde im Lyric
+als Renunciation-Liste-Eintrag hörbar). "Puffer sein" in V1 →
+"Stoßdämpfer sein"; "nie wieder Puffer" in V4 → "nie wieder
+Auffangschicht". Funktionale fighter-Substitute aus dem
+mechanisch-kinetischen Vokabular, kein wörtliches Brief-Echo mehr.
+Fighter-DNA mit body-Markern verstärkt (Album-Review-Befund: fighter
+klang textuell fast wie protector mit härteren Verben): zusätzliche
+visceral-kinetische Marker aus dem fighter Novel voice fingerprint
+("Knöchel, bluten, Hitze, Brust, Splitter, Riss, Schlag") eingefügt
+— "Riss im Mund" (V2), "Stahl in der Brust" (V4), "Knochen schlagen
+aus" (Bridge), "Blut auf den Zähnen" (V5). Stakkato bleibt Periods.
+"verdammt" Speech-Act-Marker (per Frau-Blaschke-Tipp aus Miriams
+Brief) bleibt exakt 1× im Bridge.
 
 ## Phonetic Review Checklist
 
 - Vocabulary-Disziplin: kinetisch/somatisch (Knöchel, Tisch, Hitze,
-  Kiefer, Splitter, Haut), strukturell-systemisch (Muster, Reflex,
-  Form, Funktion, Puffer, Brücke, Aushalten, Vermittlung,
-  Kohärenz), keine emotion-naming Adjektive (kein "wütend", kein
-  "zornig", kein "verletzt").
+  Kiefer, Riss, Stahl, Brust, Knochen, Splitter, Blut, Zähne, Haut),
+  strukturell-systemisch (Muster, Reflex, Form, Funktion, Stoßdämpfer,
+  Auffangschicht, Brücke, Aushalten, Vermittlung, Kohärenz), keine
+  emotion-naming Adjektive (kein "wütend", kein "zornig", kein
+  "verletzt"). Brief-Echo entschärft: "Puffer" nicht mehr im Lyric
+  — funktionale Substitute Stoßdämpfer/Auffangschicht statt direkter
+  Miriam-Zitat-Übernahme.
 - Keine Liebes-Vokabel (kein "Liebe", kein "lieben", kein "Herz" als
   Gefühlsorgan).
 - Kein Außen-"du" — "du Muster", "du Reflex", "du da oben" sind
@@ -568,7 +587,7 @@ Pass-1 changes applied directly during draft:
 - Removed one extra "nie wieder" from V4 — three was enough; four
   would have tipped into anthem.
 - Witness annotation first cut was "sie meint kein Du das atmet" —
-  rewritten to "sie spricht das Muster an, nicht die Person" —
+  rewritten to "signifikant: sie spricht das Muster an, nicht die Person" —
   clearer structural marker for the listener-paradigm-shift.
 
 No further passes needed — draft is tight, voice consistent, no
