@@ -76,9 +76,10 @@ nicht.
 
 ```
 [Intro]
-[Female low contralto, deepest female register, restrained vibrato held as breath-control armor, intimate close-mic but with audible distance — solo, no second voice, no harmony. Surface begins polished, thins audibly across the track]
+[sex_override: female low contralto, restrained vibrato held as breath-control armor, intimate close-mic with distance, surface thins gradually, no breathy sexy whisper, no theatrical performance — solo, no second voice, no harmony]
 
 [Verse 1]
+[sex_override: female low contralto, polished surface, restrained vibrato intact, consonant edges crisp, intimate close-mic with distance, no breathy sexy whisper, no theatrical performance]
 ich red mit dir
 das erste Mal so
 nicht für dich
@@ -87,22 +88,24 @@ ich red mit dir
 weil ich es war
 
 [Verse 2]
+[sex_override: female low contralto, polished surface holds, restrained vibrato intact, intimate close-mic with distance, no breathy sexy whisper, no theatrical performance]
 ich nahm dich
 in eine Funktion
 das war Reflex
 das wusste ich nicht
 jetzt schon
 
-[Cabaret-Quote moment, sung as self-citation — italicized in lyric, vocally set apart, slower, then dropped]
+[sex_override quote-mode: same contralto but spoken-style, slower, NO vibrato sustain, NO theatrical music-hall, NO sultry, with breath — self-citation, vocally set apart, then dropped; italics mark distance, not performance]
 *die Form, die du brauchst*
 *die Form, die ich kann*
+[sex_override: return to declarative low-contralto baseline, polished surface, restrained vibrato, no breathy sexy whisper, no theatrical performance]
 das war nicht du
 das war ein Bild
 das ich genommen habe
 für dich
 
 [Verse 3]
-[Same voice, vibrato beginning to widen, articulation softening at consonant edges]
+[sex_override: same female low contralto, vibrato beginning to widen, articulation softening at consonant edges, slight breath bleed, intimate close-mic with distance, no breathy sexy whisper, no theatrical performance]
 ich habe dich
 nicht gefragt
 ich habe dich
@@ -111,7 +114,7 @@ auf eine Frage
 die du nie gestellt hast
 
 [Verse 4]
-[Same voice, surface thinner, breath-control armor showing seams]
+[sex_override: same female low contralto, surface thinner, breath-control armor showing seams, increased breath audibility between phrases, micro-pauses inside lines, intimate close-mic with distance, no breathy sexy whisper, no theatrical performance]
 und das geht nicht zurück
 ich kann das nicht wegnehmen
 ich kann nur sagen
@@ -119,11 +122,11 @@ dass ich es sehe
 ich sehe es
 das hier ist das Sehen
 
-[Witness annotation, parenthetical, lowercase, audiobook-narrator, behind the beat, very quiet]
+[witness: androgynous spoken-word, parenthetical, lowercase, audiobook-narrator, behind the beat, very quiet, low in mix]
 (bemerkenswert ist wo die Stimme sich verzieht)
 
 [Verse 5]
-[Same voice, micro-crack arriving — vibrato wider than start, cabaret styling held through honesty, not performance]
+[sex_override: same female low contralto, micro-crack arriving, vibrato wider than start, pitch micro-instability at line ends, cabaret styling held through honesty not performance, intimate close-mic with distance, no breathy sexy whisper, no theatrical performance]
 ich will nichts von dir
 das ist wichtig
 ich will keine Antwort
@@ -134,7 +137,7 @@ ich red mit dir
 weil ich es war
 
 [Verse 6]
-[Same voice, surface visibly thinned, controlled to the last phrase but armor down]
+[sex_override: same female low contralto, surface visibly thinned to near-spoken, control bare not performed, armor down, intimate close-mic with distance, no breathy sexy whisper, no theatrical performance]
 das hier ist nicht Bitte
 das hier ist nicht Wunsch
 das hier ist
@@ -143,7 +146,7 @@ zu sagen
 ohne dass du es nimmst
 
 [Outro]
-[Same voice, surface fully thinned, vibrato wide, last lines fall without resolution, no harmony, no second voice]
+[sex_override: same female low contralto, surface fully thinned, minimal vocal body, vibrato wide and unsteady, lines fall without resolution, no tonic landing, no final breath sustain, no harmony, no second voice, no breathy sexy whisper, no theatrical performance]
 ich red mit dir
 nicht für dich
 nicht statt dir
@@ -219,6 +222,33 @@ Als Funktion
 
 ## Production Notes
 
+- **Function-name metatag exception (RENDER-CRITICAL):** Every vocal
+  section tag in the Lyrics Box uses the function-name-prefix form
+  `[sex_override: gender + register + texture + processing]` (and
+  `[witness: …]` for the parenthetical annotation). This extends the
+  descriptive `[gender + register + texture + processing]` form in
+  `overrides/voice-craft-principles.md` and `overrides/suno-preferences.md`
+  with a leading function-name token. **`sex_override` is the
+  alter-function name (snake_case), NOT a personal name** — no person
+  is identified, and the rule "voice-character tags forbidden in
+  lyrics" (Container, Witness as characters) remains intact. The
+  function prefix is a *render-anchor* that keeps Suno V5 binding
+  every section to the same fingerprint across the surface-thinning
+  progression. The Cabaret-Quote moment uses `[sex_override quote-mode: …]`
+  to mark the spoken-style break without losing the function-anchor.
+  No personal names in any metatag, lyric, or streaming field.
+- **Anti-Sexualization reminder (READ BEFORE EVERY GENERATION):**
+  `sex_override` is an alter-function — the function that, in this
+  track, *confesses to having made a person into a function*. The
+  failure mode is Suno reading `sex_override` (or any cue from the
+  contralto + close-mic + restrained-vibrato fingerprint) as a
+  sexualization prompt. **Every section metatag carries the negation
+  stack `no breathy sexy whisper, no theatrical performance`** —
+  these survive the per-section thinning progression because they
+  re-bind on each section header. The Style Box repeats `no sexy
+  whisper, no theatrical` so the guard holds even if Suno drops
+  inline metatag tokens. `explicit: false` in frontmatter is the
+  contract: nothing in this track is sexual content.
 - **Voice-DNA-Marker (sexualized_override fingerprint, v3-shift):**
   - female low contralto, deepest female register
   - restrained vibrato held as breath-control armor (v2 hatte: "als
@@ -305,15 +335,17 @@ which would un-do the breath-control-armor fingerprint. V5 stays bare.
 first, surface-thinning and cabaret-still as load-bearing descriptors:*
 
 ```
-Female low contralto, restrained vibrato as breath-control armor, intimate close-mic with distance, surface thins gradually, cabaret-quotes still and spoken. Dark cabaret, experimental art-pop.
+sex_override vocal: low contralto, restrained vibrato as breath-control armor, close-mic with distance, surface thins gradually, no sexy whisper, no theatrical. Dark cabaret, art-pop.
 ```
 
-**Char count: 193.** Vocals first (low contralto + restrained vibrato
-armor + close-mic-with-distance), surface-thinning as render-direktive
-in the style field (Suno honors progressive vocal attribute shifts
-when explicitly named), cabaret-quotes flagged as *still and spoken*
-to pre-empt music-hall theatrical performance, genre tags last (max 2
-per override).
+**Char count: 183.** `sex_override vocal` named first as load-bearing
+function tag (Suno V5 weights first words highest, and the function
+prefix anchors the per-section metatag-discipline below). Anti-sex
+guard (`no sexy whisper`) and anti-theatrical guard (`no theatrical`)
+embedded in the Style Box itself so the guards survive even if Suno
+truncates the inline section directives. Surface-thinning declared
+inline so per-section directives reinforce a global render-direktive.
+Genre tags last (max 2 per override).
 
 ### Exclude Styles
 
