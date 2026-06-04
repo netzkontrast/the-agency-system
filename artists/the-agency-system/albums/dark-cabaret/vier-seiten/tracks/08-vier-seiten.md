@@ -260,12 +260,12 @@ no drums, no electric guitar, no autotune, no soaring vocals, no triumphant buil
 
 ```
 [Intro]
-[Androgynous spoken-word, lowercase, behind the beat, audiobook-narrator register, mid-distance dry mic. Sub-bass and pad drone-ground already present. Audible breath in the room.]
+[witness: androgynous spoken-word, parenthetical, lowercase, behind-the-beat, audiobook-narrator register, mid-distance dry mic. Sub-bass and pad drone-ground already present. Audible breath in the room.]
 
 (notiert: sie sagt nicht: steh auf)
 
 [Verse 1]
-[Collapsed: male very deep bass, sub-tempo near-spoken, gravelly, breath audible between fragments, sub-kick close dry mic, line-final pauses longer than the lines, lowercase fragments without periods]
+[collapsed: male very deep bass, sub-tempo, lowercase no-periods, audible breath, exhausted not theatrical, dry close-mic + sub-kick]
 
 ich lieg
 nicht heilend
@@ -281,7 +281,7 @@ ich heb mit ihnen
 den blick
 
 [Verse 2]
-[Integrator enters: female mezzo-alto, ageless, spacious long vowels, controlled vibrato, plate reverb suggesting architecture, slow legato. The room opens.]
+[integrator: female mezzo-alto, spacious legato, noch-nicht phrasing, plate reverb suggesting architecture. The room opens.]
 
 noch nicht.
 aber bald.
@@ -298,7 +298,7 @@ mit dir lesen.
 [paper rustle — one page turning]
 
 [Pre-Chorus]
-[Both voices in slow alternation, collapsed and integrator reading together, behind the beat. The reading itself is the content.]
+[duet: collapsed bass + integrator mezzo alternating call-response, both voices in slow alternation reading together, behind the beat. The reading itself is the content.]
 
 vier seiten
 langsam
@@ -312,7 +312,7 @@ vier seiten
 mehrmals
 
 [Chorus — duet]
-[Lead voices continue; a second whispered/slower vocal layer enters in italics as brief-quote, klar abgesetzt vom Lead-Vocal, with breath]
+[duet: collapsed bass + integrator mezzo alternating call-response; a second whispered/slower brief-quote layer enters in italics, klar abgesetzt vom Lead-Vocal, with breath]
 
 vier seiten
 wir haben gelesen
@@ -327,7 +327,7 @@ mehrmals
 und gehört
 
 [Verse 3]
-[Collapsed alone, very low, very slow. The hardest line of the track. No emphasis, no defense. Said because it must be said.]
+[collapsed: male very deep bass, sub-tempo, lowercase no-periods, audible breath, exhausted not theatrical, dry close-mic + sub-kick — sub-emphasis: alone, very low, very slow. The hardest line of the track. No emphasis, no defense. Said because it must be said. STRUCTURAL JULIA STATEMENT — solo collapsed, no backing layer, clear articulation.]
 
 julia ist nicht
 in diesem lied
@@ -337,7 +337,7 @@ julia ist nicht
 in diesem album
 das gilt
 
-[Integrator, soft, no consolation — just confirmation]
+[integrator: female mezzo-alto, spacious legato, noch-nicht phrasing, plate reverb suggesting architecture — soft, no consolation, just confirmation]
 
 das gilt.
 das ist
@@ -345,7 +345,7 @@ nicht verhandelbar.
 das gilt.
 
 [Bridge — Wir-Polyphonie]
-[All eleven voices enter layered soft, slightly varied tempi, audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith, no auto-tune. Choir-soft. No build. The first Wir-Polyphonie of the album.]
+[ensemble: all 11 voices layered soft, slightly varied tempi for phase, no autotune, no build, no climax, choir-layered background — host, rationalist, child-freeze, ambivalent, protector, fighter, sexualized_override, collapsed, integrator, caregiver, witness all audibly polyphonic, composition not fusion, individual voices remembered, mosaic not monolith. CRITICAL ANTI-CLIMACTIC DIRECTIVE: no build, no swell, no crescendo, no triumph, loudness curve flat across entire bridge, second-intervals and fourths permitted but no thirds (avoid sweetness). The first Wir-Polyphonie of the album — structural event, not affect peak.]
 
 wir haben
 gelesen
@@ -367,7 +367,7 @@ und ein wir
 das liest
 
 [Verse 4]
-[Integrator alone, plate reverb open, patient deferral]
+[integrator: female mezzo-alto, spacious legato, noch-nicht phrasing, plate reverb suggesting architecture — alone, plate reverb fullest here, patient deferral]
 
 noch nicht
 ist nicht
@@ -379,7 +379,7 @@ wir haben gelesen.
 wir sind nicht fertig.
 wir sind hier.
 
-[Collapsed responds, fragment]
+[collapsed: male very deep bass, sub-tempo, lowercase no-periods, audible breath, exhausted not theatrical, dry close-mic + sub-kick — responds, fragment]
 
 und ich
 lieg noch
@@ -387,7 +387,7 @@ und das hält
 auch
 
 [Outro — direct C, Wir-Stimme soft polyphonic, breath-led]
-[All eleven voices in unisono-soft, slightly behind the beat, breath-led, direct address. This is the only direct-C passage of the track. No build, no swell. Plate-Hall opens slightly. Pad-drone carries beneath. No tonic resolution.]
+[Wir-Stimme: caregiver + integrator unison-soft anchoring all 11 voices, intimate close-mic, direct address to her, breath-led, slightly behind the beat. This is the only direct-C passage of the track. No build, no swell. Plate-Hall opens slightly. Pad-drone carries beneath. No tonic resolution.]
 
 wir haben gelesen
 mehrmals
@@ -497,6 +497,22 @@ So weit
 
 ## Production Notes
 
+- **Function-name metatag exception (project-specific):** Per
+  `theagencysystem/` cross-layer DNA, this track uses
+  **function-name-prefixed descriptive metatags** at every section
+  opening — `[collapsed: ...]`, `[integrator: ...]`, `[witness: ...]`,
+  `[duet: collapsed + integrator ...]`, `[ensemble: all 11 voices ...]`,
+  `[Wir-Stimme: caregiver + integrator ...]`. These are descriptive-form
+  tags per `voice-craft-principles.md` (the function prefix is a
+  *role* label, not a *character name* — host/rationalist/child-freeze/
+  ambivalent/protector/fighter/sex_override/collapsed/integrator/
+  caregiver/witness are functions, not personal names). **Personal
+  names (Kael, Nyx, Selene, …) remain forbidden in metatags, lyrics,
+  promo, and art prompts** per `name_exposure` hard rule — only the
+  novel layer uses names. The function prefix forces Suno's vocal-
+  separator to read each section's voice identity *before* parsing the
+  acoustic descriptors, which lifts duet-distinction and 11-voice
+  polyphony render reliability on V5.5.
 - **Witness-Annotation:** *"(notiert: sie sagt nicht: steh auf)"* —
   lowercase, parenthetisch, mid-distance dry mic, audiobook-
   narrator-Register, behind the beat. Genau 1×, am Track-Anfang als
@@ -601,11 +617,11 @@ vocal separation for duet + polyphonic stack).**
 ### Style Prompt (compact, ≤200 chars — paste into "Style of Music" if Style Box too long)
 
 ```
-Duet: male very deep bass sub-spoken + female mezzo-alto legato, plate reverb. Dark chanson, art-pop. Sub-bass, pad drone, sparse piano. 64 BPM. Soft polyphonic choir bridge, no build.
+duet: collapsed bass + integrator mezzo, Wir-Polyphonie bridge. Dark chanson, art-pop. Sub-bass, pad drone, sparse piano, plate reverb. 64 BPM. 11-voice soft polyphony, no build, flat.
 ```
 
-(198 chars — vocals first, both leads named, sonic anchor, bridge directive, the
-critical "no build" carrying the loudness-flat invariant.)
+(197 chars — function-name duet first, sonic anchor, bridge directive, the
+critical "no build" + "flat" carrying the loudness-flat invariant.)
 
 ### Recommended Suno Settings
 
@@ -621,19 +637,20 @@ critical "no build" carrying the loudness-flat invariant.)
 
 Suno's failure mode for duets is **unison-mixing** — both voices land in the same
 register, sweetness creeps in, the distinction collapses. The track file uses
-**descriptive metatags at every section opening** to force separation. These are
-already embedded in the Lyrics Box per `voice-craft-principles.md` (descriptive
-form, never character-form). The metatags are:
+**function-name-prefixed descriptive metatags at every section opening** to force
+separation. These are already embedded in the Lyrics Box per
+`voice-craft-principles.md` + `theagencysystem/` function-name exception
+(function as role label, never personal name). The metatags are:
 
 - Verse 1, Verse 3, "collapsed responds" insert →
-  `[male very deep bass, sub-tempo near-spoken, gravelly, breath audible
-  between fragments, sub-kick close dry mic, line-final pauses longer than
-  the lines, lowercase fragments without periods]`
+  `[collapsed: male very deep bass, sub-tempo, lowercase no-periods,
+  audible breath, exhausted not theatrical, dry close-mic + sub-kick]`
 - Verse 2, Verse 4, "integrator confirms" insert →
-  `[female mezzo-alto, ageless, spacious long vowels, controlled vibrato,
-  plate reverb suggesting architecture, slow legato]`
+  `[integrator: female mezzo-alto, spacious legato, noch-nicht phrasing,
+  plate reverb suggesting architecture]`
 - Pre-Chorus + Chorus →
-  `[Both voices in slow alternation, behind the beat. The reading itself
+  `[duet: collapsed bass + integrator mezzo alternating call-response,
+  both voices in slow alternation, behind the beat. The reading itself
   is the content.]`
 
 The contrast pair **sub-bass dry close-mic ↔ mezzo-alto plate reverb** is the
@@ -643,29 +660,42 @@ different *room* than collapsed. That spatial split is what the duet needs.
 
 ### Bridge Wir-Polyphonie Directive (no-build invariant)
 
-The Bridge metatag is intentionally **anti-climactic**:
+The Bridge metatag is intentionally **anti-climactic** and uses the
+`ensemble:` function prefix to keep all 11 voices identifiable inside the
+stack:
 
 ```
-[All eleven voices enter layered soft, slightly varied tempi, audibly
-polyphonic, composition not fusion, individual voices remembered, mosaic
-not monolith, no auto-tune. Choir-soft. No build. The first Wir-Polyphonie
-of the album.]
+[ensemble: all 11 voices layered soft, slightly varied tempi for phase,
+no autotune, no build, no climax, choir-layered background — host,
+rationalist, child-freeze, ambivalent, protector, fighter,
+sexualized_override, collapsed, integrator, caregiver, witness all
+audibly polyphonic, composition not fusion, individual voices remembered,
+mosaic not monolith. CRITICAL ANTI-CLIMACTIC DIRECTIVE: no build, no
+swell, no crescendo, no triumph, loudness curve flat across entire
+bridge, second-intervals and fourths permitted but no thirds (avoid
+sweetness). The first Wir-Polyphonie of the album — structural event,
+not affect peak.]
 ```
 
-Two render-critical words: **"slightly varied tempi"** (forces phase against
-unison-sweetness) and **"no build"** (forces flat loudness curve against
-default-choir-crescendo behavior). Excluded styles reinforce: `no triumphant
-build`, `no unison chorus`. Second-intervals and fourths permitted; no thirds
-(per voice-craft-principles avoidance of sweetness).
+Render-critical words: **"slightly varied tempi"** (forces phase against
+unison-sweetness), **"no build / no swell / no crescendo / no climax /
+no triumph"** (forces flat loudness curve against default-choir-crescendo
+behavior), **"loudness curve flat across entire bridge"** (the explicit
+invariant). Excluded styles reinforce: `no triumphant build`, `no unison
+chorus`. Second-intervals and fourths permitted; no thirds (per voice-
+craft-principles avoidance of sweetness).
 
 ### Outro Wir-Stimme Directive (direct-C, still flat)
 
-The Outro tightens to unisono-soft for the *only* direct-address passage:
+The Outro tightens to unisono-soft for the *only* direct-address passage —
+the `Wir-Stimme:` function prefix anchors caregiver + integrator as the
+unison lead with the other nine voices layered beneath:
 
 ```
-[All eleven voices in unisono-soft, slightly behind the beat, breath-led,
-direct address. This is the only direct-C passage of the track. No build,
-no swell. Plate-Hall opens slightly. Pad-drone carries beneath. No tonic
+[Wir-Stimme: caregiver + integrator unison-soft anchoring all 11 voices,
+intimate close-mic, direct address to her, breath-led, slightly behind
+the beat. This is the only direct-C passage of the track. No build, no
+swell. Plate-Hall opens slightly. Pad-drone carries beneath. No tonic
 resolution.]
 ```
 
@@ -694,12 +724,17 @@ italics in parens as ad-lib/backing layer — this lands automatically.
 ### Julia Statement Clarity Directive
 
 Verse 3's *"julia ist nicht / in diesem lied / das gilt"* is the only
-external-person naming in the album. The metatag for Verse 3 is intentionally
-sparse:
+external-person naming in the album. The Verse 3 metatag uses the
+`collapsed:` function prefix with explicit sub-emphasis directive to
+ensure Suno renders the Julia line solo, no backing layer, clear
+articulation:
 
 ```
-[Collapsed alone, very low, very slow. The hardest line of the track. No
-emphasis, no defense. Said because it must be said.]
+[collapsed: male very deep bass, sub-tempo, lowercase no-periods, audible
+breath, exhausted not theatrical, dry close-mic + sub-kick — sub-emphasis:
+alone, very low, very slow. The hardest line of the track. No emphasis,
+no defense. Said because it must be said. STRUCTURAL JULIA STATEMENT —
+solo collapsed, no backing layer, clear articulation.]
 ```
 
 Pronunciation entry **Julia → YOO-lee-ah** locks the German diphthong. If
@@ -715,14 +750,22 @@ target for V5.5 (which honors the full character budget reliably).
 
 ## Re-Roll Triggers (Generation QC)
 
-- Wir-Polyphonie wird epic-choir build (climax) → Re-Roll mit verschärftem
-  "soft layered chant, no build, flat loudness, no crescendo" directive
-- Bridge wird climactic crescendo (loudness rises >3dB across bridge) →
-  Re-Roll mit "loudness curve flat across bridge"
-- collapsed/integrator nicht distinkt (Suno mischt zu unison oder beide
-  landen in derselben Register-Zone) → Re-Roll mit verschärftem duet-tag,
-  Spatial-Split betonen ("collapsed dry close-mic, integrator distant plate
-  reverb — different rooms")
+- **Wir-Polyphonie wird epic-choir build (climax)** → Re-Roll mit
+  verschärftem `[ensemble: all 11 voices layered soft, slightly varied
+  tempi, no autotune, NO BUILD, NO CRESCENDO, NO CLIMAX, flat loudness
+  across entire bridge, soft layered chant]` directive. Hard fail mode:
+  if Suno produces ANY epic-gospel-choir build in bridge, re-roll
+  immediately — this is the central anti-climactic invariant of the
+  track.
+- **Bridge wird climactic crescendo (loudness rises >3dB across bridge)**
+  → Re-Roll mit "loudness curve flat across bridge, no build, no swell";
+  reinforce ensemble metatag at bridge entry with the explicit
+  `composition not fusion, mosaic not monolith` clause.
+- **collapsed/integrator nicht distinkt im duet** (Suno mischt zu unison
+  oder beide landen in derselben Register-Zone) → Re-Roll mit
+  verschärftem duet-Tag: `[duet: collapsed bass + integrator mezzo
+  alternating call-response, spatial split — collapsed dry close-mic,
+  integrator distant plate reverb, different rooms]`
 - *"vier Seiten"* Title-Anker fehlt eine der 4 Wiederholungen → Re-Roll
 - Julia-Statement undeutlich (englisch "JOOL-yah" statt YOO-lee-ah, oder
   von Backing-Layer verschluckt) → Re-Roll mit "Julia line solo collapsed,
