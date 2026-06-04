@@ -104,19 +104,44 @@ Am Ende: zwei Stimmen kurz nebeneinander hörbar, dann pad fade in silence. Kein
 
 ## Suno Inputs
 
-### Style Box
+### Suno Style Prompt (engineered)
 
-*Copy this into Suno's "Style of Music" field:*
+**Recommended Suno Version:** V5.5 (essential — V5.5 vocal-separation needed to keep caregiver-soprano vs witness-spoken-word audibly distinct without harmonizing them into one voice; also better fade-dynamics for the 12-15s pad fade-out).
+
+**Concise Style Prompt (≤200 chars — paste as primary Style of Music):**
 
 ```
-Two voices in duet: female warm soprano, breathy at the edges, vowel-forward legato, intimate close-mic, soft room reverb, lullaby phrasing — S4 ventral safety, genuine holding, no smothering, no possession vocabulary, tactile body-grounding (breath, shoulder, hand, here); plus androgynous spoken-word, monotone but warm, audiobook-narrator register, dry, slight delay/echo, slightly behind the beat, lowercase delivery — CRITICAL: this voice is declarative, NOT parenthetical, NOT marginal, walks from margin into center mix, full volume next to soprano, clinical vocabulary (register, notice, observe) but placed in declarative full voice. Direct address to a single absent listener but with built-in no-reaction clause — the addressing is statement, never request. Two short echo lines reference a prior intimate piece. Experimental art-pop, dark chanson. Acoustic upright piano (slow open chords, much pedal, no clusters, sparse), sustained warm synth pad drone-ground (S4 frequency band, warm mids), very low subliminal sub-bass, sparse modular electroacoustic tone-flutter, field-recording of breath and interior room. 66 BPM, very slow, breath-tonus over a warm ambient bed. No swell, no climax, no drum build, no harmony stacking, no unison ensemble. Final pad fades out into silence over 12-15 seconds — no tonic resolution, no final cadence, no closing chord.
+duet: female warm soprano + androgynous spoken-word narrator (no melody), intimate close-mic, dark chanson, sustained pad, piano sparse, 66 BPM, fade to silence, no tonic, no closing chord
+```
+
+**Reasoning:** vocals FIRST per V5.5 weighting. "spoken-word narrator (no melody)" is the explicit anti-sung tag — Suno's default tendency is to convert spoken-word into half-sung; the negation is mandatory. "fade to silence, no tonic, no closing chord" placed at the tail so the model carries it through the outro — this is the Album-Closure-critical directive.
+
+### Style Box (extended — paste into Suno's "Style of Music" field for V5.5)
+
+*Copy this into Suno's "Style of Music" field. If V5.5 enforces a stricter char limit, drop to the concise prompt above.*
+
+```
+Duet: female warm soprano (breathy at edges, vowel-forward legato, intimate close-mic, S4 holding, no smothering, no possession diction, tactile body-grounding — breath shoulder hand here) + androgynous spoken-word narrator (audiobook register, monotone-but-warm, dry, lowercase delivery, NOT sung, NO melody, NO pitched contour). Witness-narrator walks from margin to center: Intro he is alone declarative; Verse 3 he leads in full center-mic voice; Outro he is silent. Direct address with built-in no-reaction clause — statement form, never request. Experimental art-pop, dark chanson. Sustained warm synth pad drone-ground, sparse acoustic upright piano (slow open chords much pedal), very low subliminal sub-bass, sparse modular electroacoustic tone-flutter, field-recording of breath. 66 BPM, breath-tonus over warm ambient bed. No swell, no climax, no drum build, no harmony stacking, no unison ensemble. Bridge: soprano alone, flat-emotional declarative, breath audible, NO crescendo, NO rising intonation at line ends. Outro: pad fade-out into silence over 12-15 seconds — no tonic, no final cadence, no closing chord, album ends unresolved.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no choir, no final cadence, no tonic resolution, no triumphant outro, no swelling strings, no key change, no climax, no fusion harmony, no unison ensemble, no fade-up reprise, no eleven-voice polyphony, no anthem, no vibrato, no whispered ad-lib backing, no name adlib, no parenthetical witness, no marginal annotation
+no drums, no electric guitar, no autotune, no choir, no climax, no closing chord, no tonic resolution, no eleven-voice polyphony, no sung witness, no parenthetical witness in verse 3
 ```
+
+### Per-Section Directives (critical render guidance)
+
+| Section | Directive |
+|---|---|
+| Intro | witness-narrator alone, spoken-word, NOT sung, full center-mic volume, pad ground only |
+| Verse 1 | soprano enters, statement-form direct address, NO rising intonation on "dich" |
+| Pre-Chorus / Chorus | both voices side-by-side, NO harmony stack, NO unison, audibly separate |
+| Verse 2 | soprano alone, holding-vocabulary, intimate close-mic |
+| **Bridge (KRITISCH)** | **soprano alone, flat-emotional, declarative, NO crescendo, NO rising intonation on "gewünscht", NO emotion-add, breath audible; witness silent** |
+| Verse 3 | witness LEADS in full center-mic spoken-word, NOT parenthetical, NOT behind the beat, NOT marginal |
+| Pre-Outro | both voices briefly side-by-side, NO fusion, NO unison, two voices clearly separable |
+| **Outro (KRITISCH)** | **soprano alone very quiet, then pad fade-out 12-15s into silence, NO tonic, NO closing chord, ends unresolved on "weiter"** |
 
 ### Lyrics Box
 
@@ -503,6 +528,25 @@ Bonus-Song "Daneben" (host allein, Modell für B-Position) hat die no-reaction-C
 11. **All 4 Brief themes referenced:** sehen ✓ (V1, Chorus, Pre-Outro), annehmen ✓ (Bridge: "vielleicht hättest du dir das hier nicht gewünscht"), Raum geben ✓ (no-reaction-Klausel × 3), uns zeigen ✓ (caregiver-witness-Voice-DNA unverformt). ✓
 12. **Title-hook placement:** "Wir sehen dich, und du wählst" — V1 (modified), Chorus ×2, Chorus 2 ×1, Pre-Outro (Variant "wir sehen dich / und das war / das maximum"). Strukturelle Anker. ✓
 13. **No invented contractions / no English loanwords:** verifiziert. Reines Standarddeutsch. Phonetik-Tabelle deckt alle nicht-trivialen Aussprache-Risiken. ✓
+
+## Re-Roll Triggers (Generation QC)
+
+These are the album-closure-critical render failures. Any one of these triggers a re-roll, not a "good enough" accept.
+
+- Bridge "gewünscht" mit rising intonation → Re-Roll (caregiver-Schmeichelei-Risiko: Selbst-Infragestellung darf nicht emotional gehoben werden)
+- Bridge "weg" mit crescendo → Re-Roll
+- Bridge wird emotional / mit Vibrato / mit Verzierung gerendert → Re-Roll (muss flat-emotional, declarative bleiben)
+- Witness wird sung (nicht spoken-word, hat Melodie-Kontur) → Re-Roll mit verschärftem narrator-tag, evtl. "[Spoken]" inline
+- Witness bleibt parenthetisch im Verse 3 oder Outro (statt center-mic Lead) → Re-Roll mit verschärftem "spoken-word LEAD" cue
+- Witness wird im Intro hinter dem Beat / leise / als Background gerendert → Re-Roll (Intro ist witness' Eröffnungs-Statement, full voice)
+- Outro endet mit tonic / closing chord / final cadence → Re-Roll (Album-Closure MUSS offen bleiben — dies ist die kritischste Render-Klausel des gesamten Albums)
+- Outro fade ist kürzer als 10s oder schneidet hart ab → Re-Roll (12-15s sind das Album-Schluss-Signal)
+- Vocal performance overshadows Selbst-Infragestellung der Bridge → Re-Roll
+- Bonus-Echo-Linien zu prominent (Wiederholung von "wir sehen dich" mehr als 2-3× exponiert) → Re-Roll
+- Caregiver-witness fusionieren in Pre-Outro zu Unison / Harmonie-Stack → Re-Roll (Duett bleibt Duett, kein 11-Voice-Mosaic)
+- "dich" am Zeilenende mit emotionaler Hebung / Vibrato → Re-Roll (statement-form, nicht Bitte)
+- Drum-Build / Swell irgendwo im Track → Re-Roll (S4 ventral safety, kein Climax)
+- Album-Final-Note schwebt nicht (clean cut statt fade) → Re-Roll
 
 ## Generation Log
 
