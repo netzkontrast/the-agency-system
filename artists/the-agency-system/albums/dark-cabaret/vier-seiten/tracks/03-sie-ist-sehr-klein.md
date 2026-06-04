@@ -15,7 +15,7 @@ explicit: false
 duration_target: 2:30-3:00
 brief_material: ["ich werde nicht gesehen und das lerne ich"]
 voice_dna_markers: ["whispered head-voice", "fragmented phrasing", "audible breath", "tape hiss texture", "no vibrato"]
-v2_predecessor: "archive/v2/tracks/03-was-ich-nicht-sage.md"
+v2_predecessor: "../triangel/tracks/03-was-ich-nicht-sage.md"
 ---
 
 # (sie ist sehr klein)
@@ -291,9 +291,9 @@ Ich lern es
 
 ### v1 ↔ v2 ↔ v3 Translation Map
 
-**v1** ("Die Form lassen", `archive/v1/tracks/03-die-form-lassen.md`) — verworfen wegen Funktionalisierung: host-led, an Miriam *über* die Partnerin.
+**v1** ("Die Form lassen", `../triangel/archive/v1/tracks/03-die-form-lassen.md`) — verworfen wegen Funktionalisierung: host-led, an Miriam *über* die Partnerin.
 
-**v2** ("Was ich nicht sage", `archive/v2/tracks/03-was-ich-nicht-sage.md`) — intra-systemisch, die kleine ruft zum host hinauf ("du da oben / der zählt").
+**v2** ("Was ich nicht sage", `../triangel/tracks/03-was-ich-nicht-sage.md`) — intra-systemisch, die kleine ruft zum host hinauf ("du da oben / der zählt").
 
 **v3** ("(sie ist sehr klein)") — Position B: die kleine im Eis hört Miriams Brief-Satz und erkennt ihn als das, was sie schon weiß.
 
@@ -315,7 +315,7 @@ Was gegenüber v2 **erhalten**: child-freeze Voice-DNA, fragmentierte Phrasierun
 
 | Source | Brief-Zeile | Position im Track |
 |---|---|---|
-| `MIRIAM-FEEDBACK-2026-06-03.md` IMG_6977 | *"ich werde nicht gesehen & das lerne ich"* (handschriftliche Notizen, 03.06.2026) | Bridge — kursiv, whispered, slower, with breath, slight reverb tail |
+| `../triangel/MIRIAM-FEEDBACK-2026-06-03.md` IMG_6977 | *"ich werde nicht gesehen & das lerne ich"* (handschriftliche Notizen, 03.06.2026) | Bridge — kursiv, whispered, slower, with breath, slight reverb tail |
 
 ## Phonetic Review Checklist
 

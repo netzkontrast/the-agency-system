@@ -15,8 +15,8 @@ explicit: false
 duration_target: 2:30-3:00
 brief_material: ["in einer Funktion (paraphrase from her letter)"]
 voice_dna_markers: ["low contralto", "restrained vibrato as weapon", "breath-control armor", "surface thinning", "cabaret-quote moments still & honest"]
-v1_predecessor: "archive/v1/tracks/07-die-scham-lassen.md"
-v2_predecessor: "archive/v2/tracks/07-was-zerreisst.md"
+v1_predecessor: "../triangel/archive/v1/tracks/07-die-scham-lassen.md"
+v2_predecessor: "../triangel/tracks/07-was-zerreisst.md"
 warning: "EHRLICHSTER Track — touching wound directly"
 ---
 
@@ -307,7 +307,7 @@ Als Funktion
 ## Cross-References
 
 ### v1 Predecessor
-- Slot 07 die-scham-lassen (archive/v1/tracks/07-die-scham-lassen.md)
+- Slot 07 die-scham-lassen (../triangel/archive/v1/tracks/07-die-scham-lassen.md)
 - v1 adressierte Scham-Loslassen *gegenüber* Miriam als Heilungs-Geste,
   endete in Wir-close-harmony. Beides verworfen. Übersetzt in v3:
   die Du-Adresse kehrt zurück, aber **nicht** als Heilungs-Geste,
@@ -315,7 +315,7 @@ Als Funktion
   kein Reparatur-Frame.
 
 ### v2 Predecessor
-- Slot 07 was-zerreisst (archive/v2/tracks/07-was-zerreisst.md)
+- Slot 07 was-zerreisst (../triangel/tracks/07-was-zerreisst.md)
 - Übernommen: sex_override solo lead, low contralto, restrained
   vibrato, surface thinning als Suno-Direktive, Witness-Annotation
   *(bemerkenswert ist wo die Stimme sich verzieht)*, BPM 70, no tonic

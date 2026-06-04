@@ -15,8 +15,8 @@ explicit: false
 duration_target: 2:30-3:00
 brief_material: ["fluchen, aber nicht auf mich"]
 voice_dna_markers: ["belt-alto with growl", "raw clipped", "distortion on dry mid-mic", "periods stakkato", "visceral body markers (Riss/Stahl/Knochen/Blut/Zähne)"]
-v1_predecessor: "archive/v1/tracks/06-deine-haut-die-nicht-hier-ist.md"
-v2_predecessor: "archive/v2/tracks/06-was-ich-nie-wieder.md"
+v1_predecessor: "../triangel/archive/v1/tracks/06-deine-haut-die-nicht-hier-ist.md"
+v2_predecessor: "../triangel/tracks/06-was-ich-nie-wieder.md"
 verdammt_count: 1
 album: "Vier Seiten"
 artist: "the Agency System"

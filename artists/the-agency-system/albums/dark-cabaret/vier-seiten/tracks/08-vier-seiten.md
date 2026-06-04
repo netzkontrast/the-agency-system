@@ -15,7 +15,7 @@ explicit: false
 duration_target: 3:30-4:00
 brief_material: ["vier Seiten", "mehrmals gelesen", "es darf koexistieren (echo)", "Julia ist nicht im Album (strukturell)"]
 voice_dna_markers: ["collapsed: deep bass, sub-tempo, lowercase no-periods, audible breath, exhausted not theatrical", "integrator: mezzo-alto spacious legato, noch nicht phrasing, plate reverb", "duet structure across S3→S4 threshold", "Wir-Polyphonie alle 11 Stimmen choir-layered soft in Bridge only", "Witness annotation behind the beat"]
-v2_predecessor: "archive/v2/tracks/08-was-uns-traegt.md"
+v2_predecessor: "../triangel/tracks/08-was-uns-traegt.md"
 title_track: true
 ---
 
@@ -601,7 +601,7 @@ So weit
 
 ### v2 Predecessor
 
-- Slot 08 *Was uns trägt* (`archive/v2/tracks/08-was-uns-traegt.md`)
+- Slot 08 *Was uns trägt* (`../triangel/tracks/08-was-uns-traegt.md`)
 - **Übernommen aus v2:**
   - Voice-DNA collapsed (sub-bass, lowercase no-periods, audible
     breath, sub-tempo near-spoken, exhausted not theatrical)

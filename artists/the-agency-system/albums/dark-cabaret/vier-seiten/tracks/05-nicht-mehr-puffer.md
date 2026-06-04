@@ -15,7 +15,7 @@ explicit: false
 duration_target: 2:30-3:00
 brief_material: ["nie wieder Puffer"]
 voice_dna_markers: ["chest-weighted baritone", "clipped three-word lines", "periods (stakkato)", "no em-dashes", "no vibrato", "restrained intensity"]
-v2_predecessor: "archive/v2/tracks/05-was-ich-nicht-durchlasse.md"
+v2_predecessor: "../triangel/tracks/05-was-ich-nicht-durchlasse.md"
 ---
 
 # Nicht mehr Puffer — das gilt auch für uns
@@ -322,7 +322,7 @@ Nicht mehr Puffer
 
 ## Cross-References
 
-### v2 Predecessor — `archive/v2/tracks/05-was-ich-nicht-durchlasse.md`
+### v2 Predecessor — `../triangel/tracks/05-was-ich-nicht-durchlasse.md`
 
 v2 T05 ("Was ich nicht durchlasse") war Protector intra-systemisch — Position A. Der Protector deklarierte die innere Grenze gegen sex_override und EP-Übergriffe: "Hier nicht durch."
 

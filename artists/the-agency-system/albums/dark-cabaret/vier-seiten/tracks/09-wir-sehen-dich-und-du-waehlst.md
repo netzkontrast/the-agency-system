@@ -15,7 +15,7 @@ explicit: false
 duration_target: 4:00-5:00
 brief_material: ["alle 4 Brief-Themen: sehen / annehmen / Raum geben / uns zeigen", "ich hätte mir kein Lied gewünscht (Selbst-Infragestellung)", "auch nichts (Wahl)", "vier Seiten (Echo)"]
 voice_dna_markers: ["caregiver: warm soprano, tactile body-grounding (Atem/Schulter/Hand)", "witness: spoken-word audiobook-narrator monotone-but-warm, walks margin-to-center", "pad fade-out into silence"]
-v2_predecessor: "archive/v2/tracks/09-was-wir-halten.md"
+v2_predecessor: "../triangel/tracks/09-was-wir-halten.md"
 album_closure: true
 no_tonic_resolution: true
 ---
@@ -411,7 +411,7 @@ Weiter
 
 ## Cross-References
 
-### v2 Predecessor — `archive/v2/tracks/09-was-wir-halten.md`
+### v2 Predecessor — `../triangel/tracks/09-was-wir-halten.md`
 
 v2 T09 ("Was wir halten") war S4 intra-systemisch — Position A. Das System anerkannte sich selbst. caregiver hielt die anderen Alter, witness verließ den Rand, kein Außenbezug. Album-Endpunkt als intra-systemische Recognition.
 

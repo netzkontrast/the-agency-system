@@ -15,8 +15,8 @@ explicit: false
 duration_target: 3:00-3:30
 brief_material: []
 voice_dna_markers: ["weary trailing", "em-dash phrasing", "counting-tic", "dry close-mic"]
-v1_predecessor: "archive/v1/tracks/01-was-ich-tue.md"
-v2_predecessor: "archive/v2/tracks/01-was-ich-tue.md"
+v1_predecessor: "../triangel/archive/v1/tracks/01-was-ich-tue.md"
+v2_predecessor: "../triangel/tracks/01-was-ich-tue.md"
 ---
 
 # 01 — Morgen, ohne dich im Bild
@@ -208,13 +208,13 @@ Das tue ich
 ## Cross-References
 
 ### v1 Predecessor
-- Slot 01 was-ich-tue (archive/v1/tracks/01-was-ich-tue.md)
+- Slot 01 was-ich-tue (../triangel/archive/v1/tracks/01-was-ich-tue.md)
 - v1 adressierte "du" (Miriam) und endete in Wir-Polyphonie — beides
   verworfen. Übersetzt wurde nur das deklarative *"das tue ich"* als
   Host-Recognition-Funktion.
 
 ### v2 Predecessor
-- Slot 01 was-ich-tue (archive/v2/tracks/01-was-ich-tue.md)
+- Slot 01 was-ich-tue (../triangel/tracks/01-was-ich-tue.md)
 - Übernommen: Counting-Tic (jetzt Küche statt Klinik), host weary
   fingerprint, dry close-mic, Witness-Annotation als einzelne
   parenthetische Zeile, "es gibt noch zehn / die sind heute leise"

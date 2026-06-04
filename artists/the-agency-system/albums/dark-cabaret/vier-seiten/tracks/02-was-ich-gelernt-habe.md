@@ -16,7 +16,7 @@ instrumental: false
 duration_target: 3:00-3:30
 brief_material: ["Ambiguität"]
 voice_dna_markers: ["sibilant precision", "no vibrato", "micro-cracks at line-end", "cold articulation", "Latinisms"]
-v2_predecessor: "archive/v2/tracks/02-was-ich-nenne.md"
+v2_predecessor: "../triangel/tracks/02-was-ich-nenne.md"
 album: "Vier Seiten"
 artist: "the Agency System"
 ---
@@ -43,7 +43,7 @@ artist: "the Agency System"
 | **Sources Verified** | N/A |
 | **BPM** | 78 |
 | **Brief-Material** | *"Ambiguität"* (aus IMG_6977 / IMG_6978 — wörtlich) |
-| **v2 Predecessor** | `archive/v2/tracks/02-was-ich-nenne.md` |
+| **v2 Predecessor** | `../triangel/tracks/02-was-ich-nenne.md` |
 
 ## Concept
 
@@ -422,7 +422,7 @@ das ist der Stand
   — und hörbar macht, dass das Wort geliehen ist. Das Wort erscheint
   zweimal: in der Bridge (zentral, als Quote-Layer) und im Outro
   (kürzer, fast verschwindend, hinter dem clean tenor).
-- **Cross-Reference zu v2 (`archive/v2/tracks/02-was-ich-nenne.md`):**
+- **Cross-Reference zu v2 (`../triangel/tracks/02-was-ich-nenne.md`):**
   v2 ließ den Beweis intern an sich selbst zerbrechen ("folgt — / folgt
   nichts"). v3 lässt den Beweis an einem **fremden Wort** zerbrechen
   ("folgt eine vierte / die ich nicht benannt — / *Ambiguität*"). Die
@@ -514,7 +514,7 @@ das ist der Stand
 
 ## Voice Profile (rationalist — applied)
 
-Aus `archive/v2/tracks/02-was-ich-nenne.md` übernommen, hier
+Aus `../triangel/tracks/02-was-ich-nenne.md` übernommen, hier
 explizit für v3:
 
 | Dimension | Marker | Wo im Track |

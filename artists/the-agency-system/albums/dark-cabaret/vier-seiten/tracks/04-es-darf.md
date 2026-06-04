@@ -15,7 +15,7 @@ explicit: false
 duration_target: 3:00-3:30
 brief_material: ["es darf koexistieren"]
 voice_dna_markers: ["em-dash phrasing extreme", "ambiguous tonic", "sliding microtonal vibrato", "breath as punctuation", "reach-and-retract"]
-v2_predecessor: "archive/v2/tracks/04-was-ich-halb-will.md"
+v2_predecessor: "../triangel/tracks/04-was-ich-halb-will.md"
 ---
 
 # 04 — Es darf
@@ -302,7 +302,7 @@ Ich bleib im Strich
 
 ### v2 Predecessor
 
-- Slot 04 was-ich-halb-will (archive/v2/tracks/04-was-ich-halb-will.md)
+- Slot 04 was-ich-halb-will (../triangel/tracks/04-was-ich-halb-will.md)
 - **Übernommen:** ambivalent voice DNA (alto microtonal, sliding
   vibrato, em-dash phrasing, ambiguous tonic, breath mid-line, mixed
   dry/wet), reach-and-retract als Form, 74 BPM als Schwelle, Witness-
