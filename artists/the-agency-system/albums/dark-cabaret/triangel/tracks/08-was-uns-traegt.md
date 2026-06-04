@@ -337,6 +337,13 @@ Das ist auch genug
 
 ## Cross-References
 
+### References TO This Track
+
+| From | Type | Phrase/Image | Note |
+|---|---|---|---|
+| 07 | Lexem-Brücke | "Muster / hält noch" | Muster-Seed aus sex_override Cabaret → in T08 als integrator Wiedererkennung |
+| 01 | Counting-Tic ausgeklungen | "ich zähl nicht" | Host's Counting-Ritual aus T01 löst sich in T08 in die geteilte Atemwirklichkeit auf |
+
 ### v1 Predecessor: `archive/v1/tracks/08-wer-du-gerade-bist.md`
 
 **Was übersetzt wurde:**
@@ -355,6 +362,7 @@ Das ist auch genug
 
 - **"selben Geflecht" → "unserem Geflecht"** für intra-systemische Eindeutigkeit (Album-Review-Befund). *Selben* implizierte eine vorher etablierte Referenz, die im Album bisher nicht aufgebaut wurde. *Unserem* verankert das Wir explizit als System (DID-intern), entfernt die latente Außen-Lesbarkeit, und verstärkt die System-Pluralität ohne die strukturelle Pivot-Funktion der Zeile zu verändern. Geänderte Stellen: Lyrics Box V3, Streaming Lyrics, Production Notes (Integrator-entrance), Refinement Pass 1, Cross-References v1-Übersetzung.
 - **Fix-Pass 2026-06-04:** Witness-Opener diversifiziert (Album-Review Cross-Track-Befund). *"(es fällt auf — sie sagt nicht: steh auf)"* → *"(notiert: sie sagt nicht: steh auf)"*. Cross-track-Variation der Witness-Annotation-Formel, damit Suno die wiederholte Eröffnungs-Floskel nicht als "Tag" hörbar macht. Witness-Vokabular aus Entity-Profil beibehalten; "notiert" passt zur Margin-Position (witness annotates) im Bridge. Inhalt unverändert. Geänderte Stellen: Mood & Imagery, Lyrics Box (Bridge), Production Notes (Witness annotation).
+- **Loop-2 Cleanup [2026-06-04]:** References-TO-Tabelle ergänzt mit T07-Muster-Backref (Lexem-Brücke "Muster / hält noch" → integrator Wiedererkennung) und T01-Counting-Tic-Auflösung (host's Counting-Ritual löst sich in geteilte Atemwirklichkeit auf).
 
 ### Forward Reference: T09 "Was wir halten"
 

@@ -116,6 +116,10 @@ intra-systemisch eingebettet):
 | present-tense Phänomenologie | "ich denke an dich" / "für dich auch" | BPM 78 (S0-spec v2; v1 hatte 76) |
 | — | "das ist es schon" als gravitations-getragener Outro-Akt mit Wir-Layer-Tröpfchen | "das tue ich / das tue ich heute / das tue ich" — Recognition als reine Funktion, kein dyadischer Resonanzraum |
 
+### Fix-Pass Notes
+
+- **Loop-2 Cleanup [2026-06-04]:** Witness-Opener von "es fällt auf" auf "auffällig:" verschoben (Doppel-Konflikt mit T02). Lyrics Box (Verse 5), Streaming Lyrics und Production Notes (Witness-Annotation) gleichermaßen angepasst. Inhaltliche Beobachtung (gleichmäßiger Atem) unverändert; nur Eröffnungsformel rephrasiert.
+
 ## Mood & Imagery
 
 Klinik-Korridor, früh. Acht Schritte bis zur Tür. Zwei Deckenlampen.
@@ -203,7 +207,7 @@ das ist die Übung
 
 [Verse 5]
 [Witness annotation enters briefly, parenthetical, lowercase, audiobook-narrator behind the beat, very quiet]
-(es fällt auf wie gleichmäßig der Atem geht)
+(auffällig: der Atem geht gleichmäßig)
 [Host returns, dry close-mic]
 es gibt noch zehn
 die sind heute leise
@@ -259,7 +263,7 @@ Ich gehe noch nicht raus
 Ich stehe nur
 Das ist die Übung
 
-Es fällt auf wie gleichmäßig der Atem geht
+Auffällig: Der Atem geht gleichmäßig
 Es gibt noch zehn
 Die sind heute leise
 Ich höre die Stille
@@ -292,7 +296,7 @@ Das tue ich
   ein, T05–T09. Wenn Suno trotzdem einen Background-Chor einfügt:
   Re-Roll mit verschärftem Exclude.
 - **Witness-Annotation:** Eine parenthetische Zeile in [Verse 5] —
-  *(es fällt auf wie gleichmäßig der Atem geht)* — als
+  *(auffällig: der Atem geht gleichmäßig)* — als
   audiobook-narrator-Stimme, lowercase, behind the beat, sehr leise,
   möglichst dieselbe Person wie host aber tonal anders eingefärbt
   (lower-mid spoken-word). NICHT als zweite Sängerstimme rendern.

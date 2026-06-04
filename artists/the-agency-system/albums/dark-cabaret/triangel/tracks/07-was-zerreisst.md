@@ -133,6 +133,7 @@ selbst reißen. Das ist die ganze Begegnung.
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
 | 08 | State-progression | "das war / nie / Wahl" | Übergibt an T08 (S3→S4, collapsed + integrator) — Erkenntnis, dass die Kontrolle nie Wahl war, ist der Eingang in Kollaps-Boden. |
+| 08 | Lexem-Brücke | "und das Muster / hält noch" | Seed für T08 "Muster / das uns / schon kennt" |
 
 ### v1 ↔ v2 Translation Map
 
@@ -147,6 +148,7 @@ selbst reißen. Das ist die ganze Begegnung.
 ### Fix-Pass Notes
 
 - **Fix-Pass 2026-06-04**: V2 "sie"/"es" Disambiguation — *"bevor sie Nähe wurde"* zu *"bevor daraus Nähe wurde"* (Wärme grammatikalisch feminin, aber "sie" las sich personal; "daraus" entfernt jede Ambiguität, hält intra-systemisches Register). "Muster"-Seed in V6 eingebaut (*"und das Muster / hält noch"*) als Anschluss-Vorbereitung für T08 ("Was uns trägt", Geflecht/Muster-Vokabular). Album-Review-Befund.
+- **Loop-2 Cleanup [2026-06-04]:** Muster-Seed-Brücke zu T08 in FROM-Tabelle dokumentiert (Lexem-Brücke "und das Muster / hält noch" → T08 "Muster / das uns / schon kennt").
 
 ## Mood & Imagery
 
