@@ -33,6 +33,7 @@ v2_predecessor: "../triangel/tracks/05-was-ich-nicht-durchlasse.md"
 | **Addressing Axis** | B — in ihrer Anwesenheit. Sie ist Zeugin. Protector deklariert systemisch, ihr Wort *"nie wieder Puffer"* trägt als Anker. Kein direktes "du". |
 | **Role** | Protector spiegelt ihre Grenzaussage als systemische Selbst-Verpflichtung. Doppel-Bewegung: ihr Nein wird zum System-Nein. |
 | **Target Duration** | 2:30-3:00 |
+| **Sources Verified** | N/A |
 | **BPM** | 80 |
 | **Brief-Material** | *"nie wieder Puffer"* — wörtliches Zitat aus IMG_6980 / IMG_6978 |
 

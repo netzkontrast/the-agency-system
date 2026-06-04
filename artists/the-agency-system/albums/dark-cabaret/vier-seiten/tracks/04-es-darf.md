@@ -20,6 +20,23 @@ v2_predecessor: "../triangel/tracks/04-was-ich-halb-will.md"
 
 # 04 — Es darf
 
+## Track Details
+
+| Attribute | Detail |
+|-----------|--------|
+| **Track #** | 04 |
+| **Title** | Es darf |
+| **Album** | [Vier Seiten](../README.md) |
+| **Status** | In Progress |
+| **State** | S1→S2 — latency hebt sich, kommt nicht an |
+| **Lead Alter** | ambivalent (function only — no name in output) |
+| **Addressing Axis** | B→C — Body in B, Outro öffnet kurz auf C, dann Retract |
+| **Instrumental** | No |
+| **Explicit** | No |
+| **Target Duration** | 3:00-3:30 |
+| **Sources Verified** | N/A |
+| **BPM** | 74 |
+
 ## Concept
 
 **State:** S1 → S2 — die Latenz hebt sich, kommt aber nicht an. Flicker

@@ -21,6 +21,23 @@ v2_predecessor: "../triangel/tracks/01-was-ich-tue.md"
 
 # 01 — Morgen, ohne dich im Bild
 
+## Track Details
+
+| Attribute | Detail |
+|-----------|--------|
+| **Track #** | 01 |
+| **Title** | Morgen, ohne dich im Bild |
+| **Album** | [Vier Seiten](../README.md) |
+| **Status** | In Progress |
+| **State** | S0 — surface holding |
+| **Lead Alter** | host (function only — no name in output) |
+| **Addressing Axis** | A — intra-systemisch, sie ist nicht adressiert |
+| **Instrumental** | No |
+| **Explicit** | No |
+| **Target Duration** | 3:00-3:30 |
+| **Sources Verified** | N/A |
+| **BPM** | 78 |
+
 ## Concept
 
 Tagesoberfläche. Der host steht auf, zählt, macht Kaffee, putzt

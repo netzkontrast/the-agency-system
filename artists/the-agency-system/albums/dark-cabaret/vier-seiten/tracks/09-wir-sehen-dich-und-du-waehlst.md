@@ -35,6 +35,7 @@ no_tonic_resolution: true
 | **Addressing Axis** | C — direct address. Du / dir / dich erscheint. Aber: ohne Bitte, ohne Wunsch nach Reaktion. Ihre Wahl ist das Strukturprinzip des Tracks. |
 | **Role** | **ALBUM-CLOSURE** — alle 4 Brief-Themen werden hier zusammengeführt (sehen, annehmen, Raum geben, uns zeigen). Selbst-Infragestellung des Albums. No-reaction-Klausel strukturell. Witness verlässt zum ersten Mal den Rand. Pad fade-out into silence, kein tonic. |
 | **Target Duration** | 4:00–5:00 |
+| **Sources Verified** | N/A |
 | **BPM** | 66 |
 | **Brief-Material** | *"ich hätte mir kein Lied gewünscht"* (IMG_6980), *"auch nichts ist eine Antwort"* (strukturelle Übernahme), *"vier Seiten"* (Echo aus T08) |
 | **Album-Closure** | Ja — Endpunkt, kein tonic, pad fade-out into silence |

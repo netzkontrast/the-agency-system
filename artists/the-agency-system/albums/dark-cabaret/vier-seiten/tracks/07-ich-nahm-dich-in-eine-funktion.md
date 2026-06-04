@@ -22,6 +22,23 @@ warning: "EHRLICHSTER Track — touching wound directly"
 
 # 07 — Ich nahm dich in eine Funktion
 
+## Track Details
+
+| Attribute | Detail |
+|-----------|--------|
+| **Track #** | 07 |
+| **Title** | Ich nahm dich in eine Funktion |
+| **Album** | [Vier Seiten](../README.md) |
+| **Status** | In Progress |
+| **State** | S2→S3 — surface thinning, mask coming off |
+| **Lead Alter** | sexualized_override (function only — no name in output) |
+| **Addressing Axis** | C — direct address, ownership not request |
+| **Instrumental** | No |
+| **Explicit** | No |
+| **Target Duration** | 2:30-3:00 |
+| **Sources Verified** | N/A |
+| **BPM** | 70 |
+
 ## Concept
 
 Der schwerste Track des Albums. Sex_override war in v2 intra-systemisch
