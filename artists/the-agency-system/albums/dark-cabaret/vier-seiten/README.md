@@ -1,10 +1,9 @@
 ---
 title: "Vier Seiten"
 subtitle: "was wir mit deinem Brief gemacht haben"
-project_codename: "Triangel"
 release_date: ""
 genres: ["experimental-art-pop", "dark-chanson", "dark-cabaret"]
-tags: ["concept-album", "cptsd", "did-system", "letter-as-blueprint", "polyvagal-arc", "the-agency-system", "mini-album", "eleven-voices", "addressing-axis", "pre-publication-gate"]
+tags: ["concept-album", "cptsd", "did-system", "letter-as-blueprint", "polyvagal-arc", "the-agency-system", "mini-album", "eleven-voices", "addressing-axis", "pre-publication-gate", "triangel-sibling"]
 explicit: false
 streaming:
   soundcloud: ""
@@ -26,21 +25,22 @@ sheet_music:
 |-----------|--------|
 | **Artist** | the Agency System |
 | **Album-Title** | Vier Seiten |
-| **Project-Codename** | Triangel (v3.0) |
 | **Genre** | experimental art-pop / dark chanson / dark cabaret |
 | **Tracks** | 9 (Mini-Album) |
-| **Status** | Concept v3.0 active — track loop pending |
+| **Status** | Concept v1.0 active (Vier Seiten Mini-Album) — track loop pending |
+| **Sibling-Album** | Triangel (`../triangel/`, Final v2 "Im System") |
 | **Explicit** | No |
 | **Concept** | *Vier Seiten ihres Briefs als Bauplan.* Sie ist anwesend — auf ihren Bedingungen. Maximalansprache: sie sehen, Brief annehmen, Raum geben, uns zeigen. |
 | **Publication Gate** | Pre-Publication-Gate (sie hört vor allen, Veto pro Track, Veto Album, Withdrawal-Mechanismus) |
 
 ## Album-Identität
 
-| Version | Konzeption | Status |
+| Album | Konzeption | Status |
 |---|---|---|
-| **v1 Triangel** | drei Personen (Ich-System × Miriam × Partnerin), an sie gerichtet | **verworfen** — funktionalisierend. Archiviert: `archive/v1/` |
-| **v2 Triangel** | drei Korpus (Kopf · Körper · Herz), intra-systemisch, ohne sie | **überholt** — defensiv. Archiviert: `archive/v2/` |
-| **v3 Vier Seiten** | ihr Brief als Bauplan, an sie und in ihrer Anwesenheit zugleich | **aktiv** |
+| **Triangel** (sibling) | drei Korpus (Kopf · Körper · Herz), intra-systemisch, polyvagal-Bogen, ohne sie | Final v2 "Im System" — siehe `../triangel/` (v1-Studie verworfen, `../triangel/archive/v1/`) |
+| **Vier Seiten** | ihr Brief als Bauplan, an sie und in ihrer Anwesenheit zugleich | Active v1.0 |
+
+Vier Seiten ist Sibling, kein Nachfolger: Triangel steht als eigenständiges Album mit seinem Final v2 "Im System". Vier Seiten entstand bewusst danach als andere Antwort-Modus auf Miriam's Brief — kein neuer Versuch von Triangel, sondern ein zweites Mini-Album mit eigener Architektur.
 
 Die geometrische Verschiebung Triangel (3) → Vier Seiten (4) markiert: eine vierte Seite — ihre eigene, die wir nicht besetzen — gehört dazu.
 
@@ -69,7 +69,7 @@ Per Layer-Regel: Function-Form-Deskriptoren in allen Music-Outputs. Personenname
 | **S3→S4** | collapsed + integrator | Bottom + bridge | Male very deep bass + female mezzo-alto, plate reverb |
 | **S4** | caregiver + witness | Halten + Mitte | Female warm soprano, intimate close-mic + androgynous spoken-word |
 
-## Tracklist v3.0
+## Tracklist v1.0 (Vier Seiten)
 
 | # | State | Lead | Addr-Axis | Titel | Brief-Material |
 |---|---|---|---|---|---|
@@ -97,7 +97,7 @@ S0 → S0→S1 → S1 → S1→S2 → S2 → S2 → S2→S3 → S3→S4 → S4
 **Tempi (BPM):**
 78 → 78 → 70 → 74 → 80 → 80 → 70 → 64 → 66
 
-## Voice Rules (v3.0)
+## Voice Rules (v1.0)
 
 - **Maximalansprache disambiguiert in 4 Sub-Requirements** (siehe `CONCEPT.md §Goal`).
 - **Brief-Zitate werden kursiv im Lyric-Body** dargestellt — als Suno-Direktive: *whispered or slower vocal layer, with breath*, klar abgesetzt vom Lead-Vocal.
@@ -134,7 +134,7 @@ Das Album darf *nicht* öffentlich werden, bevor Miriam es vollständig gehört 
 - **Phase 2:** Veto-Recht — Track-Level / Album-Level / Reaktions-Level.
 - **Phase 3:** Widerruf — auch nach Veröffentlichung. *Wenn sie sagt nimm es weg — es geht weg.*
 
-## Themes (v3.0)
+## Themes (v1.0)
 
 - Ihr Brief als Bauplan, nicht als Anlass-zum-Übergehen
 - Vier Seiten: was sie schrieb, was wir lasen, was wir antworten, was bleibt für sie
@@ -153,23 +153,25 @@ Drei Songs existieren parallel, außerhalb dieser Album-Struktur. Sie sind **nic
 | **Wir sehen dich** (alle elf, an sie) | direct address mit Wahl-Klausel | Position C (T07, T09) |
 | **Was ich halte** (Kopf + Körper + Herz inner dialogue) | intra-systemisch + Brief-Verarbeitung | T02, T08-intern |
 
-## v1 + v2 — archiviert, referenziert
+## Triangel als Sibling-Album
 
-| Archiv | Pfad | Status |
+Triangel ist ein eigenständiges Album in `../triangel/` — kein Vorgänger, sondern Sibling. Es teilt mit Vier Seiten den 11-Voice-Cast, den Polyvagal-Bogen und die Voice-DNA, hat aber eine eigene Identität ("Im System", intra-systemisch, ohne sie). Vier Seiten hat *keine v1* — es entstand bewusst nach Triangel v2 als anderer Antwort-Modus auf Miriam's Brief.
+
+| Sibling-Element | Pfad | Status |
 |---|---|---|
-| v1 Triangel | `archive/v1/` | Studie, verworfen wegen Funktionalisierung |
-| v2 Triangel | `archive/v2/` | Vorgänger, überholt durch v3 — strukturelle Grundlage (Polyvagal-Bogen, Voice-DNA, Witness) bleibt erhalten |
+| Triangel — Final v2 "Im System" | `../triangel/` | aktives Sibling-Album, intra-systemisch (Polyvagal-Bogen, Voice-DNA, Witness teilweise als geteiltes Erbe in Vier Seiten) |
+| Triangel — v1-Studie | `../triangel/archive/v1/` | Studie, verworfen wegen Funktionalisierung; einzelne Phrasen dürfen migrieren wenn im neuen Kontext nicht funktionalisierend |
 
 ## Workflow-Status
 
-| Phase | v3.0-Status |
+| Phase | v1.0-Status |
 |---|---|
 | Phase 1 (Premise) | ✓ — Maximalansprache disambiguiert |
 | Phase 2 (Cast + Struktur) | ✓ — Adressierungs-Achse pro Track |
 | Phase 3 (Sonic Direction) | ✓ — v1.5+ erweitert |
 | Phase 4 (Tracklist-Sequenz) | ✓ — 9 Tracks per Doppel-Bogen (polyvagal + addressing) |
 | Phase 5 (Visual Direction) | pending |
-| Phase 6 (Title-Lock + Practical) | ✓ — "Vier Seiten" als Public-Title, "Triangel" als Codename |
+| Phase 6 (Title-Lock + Practical) | ✓ — "Vier Seiten" als Public-Title |
 | Phase 7 (Confirmation) | pending — wartet auf Track-Loop + Pre-Publication-Gate |
 
 ---

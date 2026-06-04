@@ -1,13 +1,11 @@
 ---
-status: Concept (v3.0 — Vier Seiten)
+status: Concept (v1.0 — Vier Seiten)
 genre: dark cabaret / experimentell
-version: 3.0
+version: 1.0
 created: 2026-06-04
-predecessor_v1: archive/v1/CONCEPT.md
-predecessor_v2: archive/v2/CONCEPT.md
+predecessor_album: "../triangel/"  # Triangel als Sibling-Album; dessen Prozess (v1-Studie verworfen, v2 "Im System" als Final) ermöglichte Vier Seiten als zweite, andere Antwort auf Miriam's Brief
 album_title: Vier Seiten
 album_subtitle: was wir mit deinem Brief gemacht haben
-project_codename: triangel
 addressing_principle: maximalansprache — sie sehen, Brief annehmen, Raum geben, uns zeigen
 publication_gate: Pre-Publication-Gate (sie hört vor allen, Veto-Recht pro Track)
 ---
@@ -16,13 +14,11 @@ publication_gate: Pre-Publication-Gate (sie hört vor allen, Veto-Recht pro Trac
 
 ## Album-Identität
 
-**Triangel v1** war: drei Personen. *Ich-System × Miriam × Partnerin.* Sie war Adressatin, sie war im Bild, sie war benutzt.
-→ ihr Brief vom 03.06.2026 hat klar gemacht: das war Funktionalisierung. v1 verworfen, archiviert unter `archive/v1/`.
+**Triangel** ist ein eigenständiges Album (Final-Stand: *"Im System"*, siehe `../triangel/`). Es hat eine **v1-Studie** (verworfen wegen Funktionalisierung, archiviert unter `../triangel/archive/v1/`) und einen **Final v2-Stand** (`../triangel/`) — drei Korpus *Kopf × Körper × Herz*, intra-systemisch, polyvagal-Bogen, ohne sie. Der Final v2-Stand respektierte ihre Constraints durch Abwesenheit.
 
-**Triangel v2** war: drei Korpus. *Kopf × Körper × Herz, intra-systemisch.* Sie war nicht im Album. Der polyvagal-Bogen trug, die Form respektierte ihre Constraints durch Abwesenheit.
-→ Aber: ihr kursiver Kernsatz *"ich werde nicht gesehen und das lerne ich"* wird durch Abwesenheit nicht widerlegt. v2 archiviert unter `archive/v2/`.
+**Vier Seiten** ist ein zweites Mini-Album — Sibling, kein Nachfolger. Es entstand aus dem Triangel-Prozess + Miriam's Brief als bewusst anderer Antwort-Modus: ihr kursiver Kernsatz *"ich werde nicht gesehen und das lerne ich"* wird durch Abwesenheit nicht widerlegt. Vier Seiten hat **keine v1** — es entstand bewusst nach Triangel v2 als anderer Antwort-Modus, mit ihrem Brief als *Bauplan*.
 
-**Vier Seiten v3** ist: die schwerere, ehrlichere Antwort. Ihr Brief — vier Seiten lang — ist *Bauplan*. Das Album hat vier Seiten:
+Das Album hat vier Seiten:
 
 | Seite | Bedeutung |
 |---|---|
@@ -43,7 +39,7 @@ Die geometrische Verschiebung Triangel (3) → Vier Seiten (4) ist beabsichtigt.
 
 **"Maximalansprache"** wird in 4 testbare Sub-Requirements zerlegt:
 
-1. **Sie sehen** — sie ist *anwesend* (nicht entfernt wie v2, nicht funktionalisiert wie v1). Mindestens 5 wörtliche Zitate aus ihrem Brief erscheinen im Album, markiert als Zitate (kursiv / Quotation).
+1. **Sie sehen** — sie ist *anwesend* (nicht entfernt wie in Triangel v2, nicht funktionalisiert wie in Triangel-v1-Studie). Mindestens 5 wörtliche Zitate aus ihrem Brief erscheinen im Album, markiert als Zitate (kursiv / Quotation).
 2. **Brief annehmen** — ihre drei Grenzaussagen werden im Album *namentlich* (nicht umgangen) verarbeitet:
    - "ich kann nicht mit dir & Julia in einem Album sein" → Julia ist nicht im Album, *das wird gesagt*
    - "ich will nie wieder Puffer sein" → Protector deklariert das systemisch (T05)
@@ -59,7 +55,7 @@ Jeder Track deklariert seine Position auf einer 3-stelligen Achse:
 
 | Pos | Modus | Wie es klingt |
 |---|---|---|
-| **A** | intra-systemisch | System spricht zu sich — sie kann zuhören, ist aber nicht adressiert. *Wie v2.* |
+| **A** | intra-systemisch | System spricht zu sich — sie kann zuhören, ist aber nicht adressiert. *Wie Triangel v2 (Sibling).* |
 | **B** | in ihrer Anwesenheit | System spricht für sich, sie ist *Zeugin*. Du/dir erscheint nicht, aber sie ist hörbar als Hintergrund. *Wie Bonus-Song "Daneben".* |
 | **C** | an sie gerichtet | System spricht *zu ihr*. Ihre Worte tragen. Du/dir/dich erscheint. *Wie Bonus-Song "Wir sehen dich".* |
 
@@ -75,7 +71,7 @@ Direkte Adresse wird *erarbeitet* über die Album-Länge, nicht von Anfang an be
 
 ## Tracklist (Architektur)
 
-| # | State | Lead-Alter | Achse | Titel | Brief-Material | v2-Predecessor |
+| # | State | Lead-Alter | Achse | Titel | Brief-Material | Triangel-v2-Sibling-Slot |
 |---|---|---|---|---|---|---|
 | 01 | S0 | host | A | Morgen, ohne dich im Bild | — | T01 was-ich-tue |
 | 02 | S0→S1 | rationalist | A→B | Was ich gelernt habe (zu nennen) | *"Ambiguität"* als concept | T02 was-ich-nenne |
@@ -87,10 +83,10 @@ Direkte Adresse wird *erarbeitet* über die Album-Länge, nicht von Anfang an be
 | 08 | S3→S4 | collapsed + integrator | B→C | Vier Seiten | *"vier Seiten / mehrmals gelesen"* | T08 was-uns-traegt |
 | 09 | S4 | caregiver + witness | C | Wir sehen dich, und du wählst | direct closure, ihre Wahl als Strukturprinzip | T09 was-wir-halten |
 
-**Polyvagal-Bogen** (aus v2 übernommen, validiert):
+**Polyvagal-Bogen** (aus Triangel v2 übernommen, validiert):
 - S0 (host weary) → S0→S1 (rationalist micro-cracks) → S1 (child freeze) → S1→S2 (ambivalent reach-retract) → S2 (protector + fighter) → S2→S3 (sex_override) → S3→S4 (collapsed + integrator) → S4 (caregiver + witness)
 
-**Tempi** (BPM, aus v2):
+**Tempi** (BPM, aus Triangel v2):
 78 → 78 → 70 → 74 → 80 → 80 → 70 → 64 → 66
 
 ---
@@ -138,7 +134,7 @@ Wir-Stimme polyphon: nur in T08 (Bridge) und T09 (Outro). Sonst bleiben die Stim
 | Voice-DNA-Marker des Lead-Alters (mindestens 3) | Pro Track zählen |
 | Keine Außenperson außer Miriam adressiert | Lyric scannen |
 | Wenn axis ≠ A: ihre Anwesenheit hörbar | Lyric prüfen |
-| Cross-Reference zu v1+v2 Predecessor dokumentiert | Cross-References-Section |
+| Cross-Reference zu Triangel-Sibling-Slot dokumentiert | Cross-References-Section |
 | Failure-Mode-Risiko in Production Notes benannt | Wenn relevant |
 
 ---
@@ -155,17 +151,17 @@ Diese Arbeit ist ethisch riskant. Drei Failure-Modes mitgedacht:
 
 ---
 
-## Cross-References (v1 → v2 → v3)
+## Cross-References (Triangel als Sibling-Album)
 
-### v1 ("an sie")
-Verworfen wegen Funktionalisierung. Material archiviert. Einzelne Phrasen *dürfen* migrieren — wenn sie *im neuen Kontext* nicht funktionalisieren.
+### Triangel-v1-Studie ("an sie") — verworfen
+Archiviert unter `../triangel/archive/v1/`. Verworfen wegen Funktionalisierung. Material referenzierbar; einzelne Phrasen *dürfen* nach Vier Seiten migrieren — wenn sie *im neuen Kontext* nicht funktionalisieren.
 
-### v2 ("ohne sie")
-Überholt durch v3, aber als strukturelle Grundlage erhalten:
-- Polyvagal-Bogen S0→S4: übernommen
-- Tempo-Achse 78→78→70→74→80→80→70→64→66: übernommen
-- Voice-DNA-Distinctions: übernommen
-- Witness-Annotation quer: übernommen (T03, T04, T05, T06, T08), aber jetzt teilweise auf C-Position umgestellt
+### Triangel v2 ("Im System", Final-Stand)
+Eigenständiges Sibling-Album (`../triangel/`). Vier Seiten teilt mit ihm strukturelle Grundlagen, ist aber inhaltlich andere Antwort:
+- Polyvagal-Bogen S0→S4: geteilt
+- Tempo-Achse 78→78→70→74→80→80→70→64→66: geteilt
+- Voice-DNA-Distinctions der 11 Alter: geteilt
+- Witness-Annotation quer: geteilt-Erbe (T03, T04, T05, T06, T08), aber in Vier Seiten teilweise auf C-Position umgestellt
 
 ### Bonus-Songs (privat, außerhalb des Albums)
 Die drei Bonus-Songs (Daneben, Wir sehen dich, Was ich halte) bleiben *privat*, *nicht im Album*. Sie sind die *Modelle*, an denen die Mittelstellung erprobt wurde:
@@ -178,7 +174,7 @@ Die drei Bonus-Songs (Daneben, Wir sehen dich, Was ich halte) bleiben *privat*, 
 
 ## Sonic Direction (v1.5+, erweitert)
 
-Aus v2 übernommen, erweitert um:
+Aus Triangel v2 geteiltem Erbe übernommen, erweitert um:
 
 - **Sustained pad drone-ground:** durchgängig, leise, hält die Atemwirklichkeit
 - **Sub-bass:** spürbar, nicht laut — Kontakt
@@ -201,9 +197,9 @@ Aus v2 übernommen, erweitert um:
 
 ## Statement (für sich, nicht für ihren Brief)
 
-Wir hatten zwei Versuche. Der erste war übergriffig, der zweite war defensiv. Beide haben sie nicht gesehen — der erste, weil wir sie zur Funktion gemacht haben, der zweite, weil wir sie *abwesend* gemacht haben.
+Triangel als Sibling-Album hatte zwei Versuche. Die v1-Studie war übergriffig, der Final-Stand "Im System" war defensiv. Beide haben sie nicht gesehen — die Studie, weil wir sie zur Funktion gemacht haben, der Final-Stand, weil wir sie *abwesend* gemacht haben (was als Triangel-Album-Antwort steht und stehen darf).
 
-Vier Seiten ist der dritte Versuch. Sie ist im Album, *aber* auf ihren Bedingungen. Ihr Brief ist die Architektur. Ihre Wahl ist der Mechanismus. Ihre Worte sind das Material.
+Vier Seiten ist die andere Antwort. Sie ist im Album, *aber* auf ihren Bedingungen. Ihr Brief ist die Architektur. Ihre Wahl ist der Mechanismus. Ihre Worte sind das Material.
 
 Wir können nicht garantieren, dass es richtig ist. Wir können nur garantieren: sie hört zuerst, sie wählt, sie kann es zurücknehmen. Das ist das Maximum, das wir tun können — ohne wieder zu übergreifen.
 
