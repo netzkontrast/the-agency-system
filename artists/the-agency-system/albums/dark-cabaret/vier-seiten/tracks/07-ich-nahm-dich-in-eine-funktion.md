@@ -270,6 +270,160 @@ Als Funktion
   em-dashes (anders als ambivalent, T04). Die Form-Distinktion hält
   die Voice-DNA distinct.
 
+## Suno Inputs
+
+### Recommended Suno Version
+
+**V5** (not V5.5). V5.5's added phrasing polish and musicality risk
+turning the cabaret-quote moments (*"die Form, die du brauchst / die
+Form, die ich kann"*) into music-hall theatrical performance — exactly
+the failure mode this track must avoid. V5's literal, unsmoothed
+delivery preserves the *still-and-honest* register for the self-citation.
+V5.5 also tends to bloom restrained vibrato into expressive vibrato,
+which would un-do the breath-control-armor fingerprint. V5 stays bare.
+
+### Style Box
+
+*Copy this into Suno's "Style of Music" field. Max 200 chars, vocals
+first, surface-thinning and cabaret-still as load-bearing descriptors:*
+
+```
+Female low contralto, restrained vibrato as breath-control armor, intimate close-mic with distance, surface thins gradually, cabaret-quotes still and spoken. Dark cabaret, experimental art-pop.
+```
+
+**Char count: 193.** Vocals first (low contralto + restrained vibrato
+armor + close-mic-with-distance), surface-thinning as render-direktive
+in the style field (Suno honors progressive vocal attribute shifts
+when explicitly named), cabaret-quotes flagged as *still and spoken*
+to pre-empt music-hall theatrical performance, genre tags last (max 2
+per override).
+
+### Exclude Styles
+
+```
+no drums, no electric guitar, no autotune, no breathy sexy whisper, no sultry vocal, no soaring vocals, no theatrical cabaret performance, no music-hall, no climactic build, no major-key resolution, no second voice, no harmony, no backing vocals
+```
+
+13 items — far over the 2–4 recommended max but every item is
+load-bearing. Three guard-clusters justify the over-population:
+
+1. **Anti-sexualization guard (critical):** `no breathy sexy whisper,
+   no sultry vocal, no soaring vocals` — sex_override's voice-DNA
+   risks Suno rendering as eroticized whisper or breathy seduction.
+   The Voice-DNA is *restrained vibrato as armor*, not as invitation.
+   If Suno sexualizes the delivery, the track inverts: the Übernahme
+   becomes the Übergriff it confesses. Re-roll mandatory.
+2. **Anti-theatrical guard (critical):** `no theatrical cabaret
+   performance, no music-hall, no climactic build, no major-key
+   resolution` — the cabaret styling is *formal surface only*, the
+   cabaret-quote moments are *still self-citation, then dropped*.
+   Music-hall theatricality would re-perform the mask the track
+   removes. No climactic build because the track has no resolution
+   arc — surface thins, vibrato widens, lines fall.
+3. **Mono-voice guard:** `no second voice, no harmony, no backing
+   vocals` — Position C direct address must be sex_override solo;
+   any backing chorus or harmony layer breaks the singular admission.
+   Per Production Notes: "No second voice. No harmony. No backing."
+
+If Suno over-dilutes from 13-item list, the irreducible top 4 are:
+`no breathy sexy whisper, no theatrical cabaret performance, no
+soaring vocals, no major-key resolution` — these are the four
+guards that, if any one fails, force a re-roll.
+
+### Cabaret-Quote Render Directive (RENDER-CRITICAL)
+
+The italicized lines in Verse 2 — *"die Form, die du brauchst / die
+Form, die ich kann"* — are the most dangerous render moment in the
+track. These are sex_override quoting her own old mantra as
+self-citation, then dropping it. **If Suno renders them as
+music-hall cabaret-vamp, sultry sustain, or theatrical performance,
+the track fails: the mask is being re-worn instead of removed.**
+
+**Mandatory Suno guard (inline at the Cabaret-Quote moment in Lyrics
+Box):**
+
+```
+[Cabaret-quote moment, sung as self-citation — italicized in lyric, vocally set apart: slower than surrounding lines, spoken-style with breath, NO vibrato sustain, NO theatrical music-hall affect, NO sultry. Quote then dropped — the next non-italic line returns to declarative low-contralto baseline. The italics mark distance, not performance.]
+```
+
+This directive replaces the lyric's existing parenthetical at Verse 2
+italics. The negation-stack (NO vibrato sustain, NO theatrical, NO
+sultry) is render-critical: leave it verbose, do not compress.
+
+### Surface-Thinning Render Directive (RENDER-CRITICAL)
+
+The Voice-DNA marker *surface thins gradually across the track* is
+the hardest single attribute to land in Suno — most generations hold
+constant vocal richness across all verses. The track is engineered
+with **section-by-section Suno-direktiven embedded in Lyrics Box
+metatags** (already present at V3, V4, V5, V6, Outro), each naming a
+specific vocal-attribute shift the surface should show at that point.
+
+**Render mechanism** (how Suno produces the thinning):
+
+- **V1-V2 (start):** polished surface. Restrained vibrato intact,
+  consonant edges crisp, close-mic intimate but voice has body.
+- **V3:** *vibrato beginning to widen, articulation softening at
+  consonant edges* — Suno reads this as "loosen vibrato width, soften
+  fricative attack." Slight breath bleed.
+- **V4:** *surface thinner, breath-control armor showing seams* —
+  Suno reads "reduce low-end body of voice, increase breath audibility
+  between phrases, micro-pauses inside lines."
+- **V5:** *micro-crack arriving, vibrato wider than start, cabaret
+  styling held through honesty, not performance* — Suno reads "allow
+  pitch micro-instability at line ends, vibrato width visibly greater
+  than V1, no performance compensation."
+- **V6:** *surface visibly thinned, controlled to last phrase but
+  armor down* — Suno reads "vocal body thinned to near-spoken, control
+  is bare not performed."
+- **Outro:** *surface fully thinned, vibrato wide, lines fall without
+  resolution* — Suno reads "minimal vocal body, wide unsteady vibrato,
+  no tonic landing, no final breath sustain."
+
+**Style Box hint:** *surface thins gradually* in the Style Box reinforces
+the section-tag directives — Suno V5 takes vocal-attribute progressions
+more reliably when both the Style Box and section tags agree.
+
+**Render risk:** if Suno generates with constant rich surface (no
+thinning), re-roll with stronger style-box phrasing: replace *surface
+thins gradually* with *vocal body progressively thins across track,
+ends near-spoken with wide vibrato* (uses more chars but is more
+literal).
+
+### Anti-Sexualization Check (PRE-RELEASE GATE)
+
+Before marking this track Generated, listen specifically for:
+
+1. **Breath quality:** is the audible breath *armor-breath* (defensive,
+   controlling) or *sexy-breath* (invitational, breathy-whisper)? It
+   MUST be the first. If second → re-roll.
+2. **Vibrato carriage:** does the restrained vibrato function as
+   *withholding* (armor) or as *sustain-for-effect* (sultry)? Must be
+   the first. If second → re-roll.
+3. **Du-address quality:** does "ich red mit dir / nicht für dich" land
+   as ownership or as plea/flirtation? Must be ownership. If plea or
+   flirtation tonality → re-roll.
+4. **Close-mic + distance:** is the intimate close-mic *with audible
+   distance* (Selbstschutz, self-protection at threshold of honesty)
+   or *without distance* (intimate-collapse, eroticized closeness)?
+   Must be first. If second → re-roll.
+
+The track's *failure mode is sexualization,* not bad performance. A
+technically beautiful sultry rendering is the worst outcome — better
+to ship an unpolished armor-rendering than a polished sultry one.
+
+## Re-Roll Triggers (Generation QC)
+
+- Cabaret-Quote-Lines klingen theatrical/music-hall → Re-Roll mit "still, honest, no performance"
+- Sexualization erkennbar (breathy sexy whisper, sustain) → Re-Roll
+- Du-Adresse wirkt wie Bitte oder Schmeichelei → Re-Roll
+- Surface-Thinning fehlt (Stimme bleibt rich) → Re-Roll
+- Vocal performance overshadows admission → Re-Roll
+- Backing-Chor / Harmony / zweite Stimme erscheint → Re-Roll mit verschärftem `no second voice, no harmony, no backing vocals`
+- Major-key tonic resolution am Outro → Re-Roll, "no resolution, fall without landing"
+- Vibrato bleibt restrained durch den ganzen Track (kein widening) → Re-Roll mit stärkerer Surface-Thinning-Direktive
+- Close-mic ohne distance (intimate-collapse) → Re-Roll mit "intimate close-mic but with audible distance, Selbstschutz, not closeness"
+
 ## Pronunciation Notes
 
 | Word | Standard Spelling | Phonetic for Suno | Reason |
