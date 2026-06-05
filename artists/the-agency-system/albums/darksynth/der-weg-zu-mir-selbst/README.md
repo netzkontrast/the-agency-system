@@ -80,8 +80,8 @@ Position  State    Lead              Sprache  Energie  Funktion im Bogen
 | Motif | Description | First Appears (concrete line) | Recurrences |
 |-------|-------------|------------------------------|-------------|
 | Title-Line („der Weg zu mir selbst lässt mich nicht in Frieden zu") | Zentrale Setzung; der Weg + die Friedlosigkeit als Doppel | T01 Chorus L4 (vollständig, ×2); T01 Outro L5–6 (fragmentiert: „Der Weg zu mir selbst — / lässt mich nicht in Frieden zu.") | T05 (host-Echo, gefiltert/distant, geplant) |
-| Das Versprechen, das schneidet | Integration als Versprechen, das beim Halten verwundet | T02 Chorus L4 („Das Versprechen, das schneidet, lässt sich nicht entgehen") — Album-Sub-Theme erstmalig benannt; Chorus L1–L3 trägt das ganze Bild („Ich reiche dir die Hand … schneidet sie … weil halten so funktioniert") | T03 (fighter, kinetisiert: „you promised the path and the path is the blade"), T04 (collapsed, getragen) |
-| Der Weg ohne Ende | Path-Imagery, die nie ankommt; rising harmony stacks ohne Auflösung | T01 Chorus L3 („Und je näher ich komme, desto weiter ist sie weg"); T01 Bridge L4–5 („und der Weg geht ohne mich weiter. / Er führt, aber er endet —") | T03 (fighter, English: „no arrival"), T05 (host-Echo) |
+| Das Versprechen, das schneidet | Integration als Versprechen, das beim Halten verwundet | T02 Chorus L4 („Das Versprechen, das schneidet, lässt sich nicht entgehen") — Album-Sub-Theme erstmalig benannt; Chorus L1–L3 trägt das ganze Bild („Ich reiche dir die Hand … schneidet sie … weil halten so funktioniert") | T03 Chorus L1–L2 als kinetisierte Form: „You promised me the path. Now look at the blade. / You called it bridge. Now look at the grave." (Track-Title); T03 V1 L1 „Your hand has been bleeding me for years"; T04 (collapsed, getragen) |
+| Der Weg ohne Ende | Path-Imagery, die nie ankommt; rising harmony stacks ohne Auflösung | T01 Chorus L3 („Und je näher ich komme, desto weiter ist sie weg"); T01 Bridge L4–5 („und der Weg geht ohne mich weiter. / Er führt, aber er endet —") | T03 Chorus L3 als englische Hammer-Form: „No arrival, only weight. No arrival, only weight." (doubled hook with drop-out); T05 (host-Echo) |
 | Kollaps als ehrlichster Ort | S3 als der einzige Moment, in dem nicht gelogen wird | T04 (collapsed, geplant) | T05 (collapsed, restlich) |
 | Atem ohne Boden | Breath als unaufgelöster Puls / 92 BPM half-time als physiologische Konstante | T01 V2 L5 („Jemand in mir atmet anders — heute schon den ganzen Tag"); T01 V2 L2 („Geatmet. Mich nicht bewegt.") als somatischer Versuch ohne Aufgehen | T04 (collapsed), T05 (Closer-Outro) |
 | **Mirror-Nicht-Erkennung** (neu in T01-v3) | Spiegel/Glas, das das eigene Gesicht nicht zurückgibt — DID-Marker, konkret klinik-szeniert | T01 Chorus L2 („Im Glas vorhin — das war nicht ganz mein Gesicht") | Mögl. Echo in T04 (collapsed-S3 als „ehrlichster Ort" könnte die Erkennung sein), T05 (mögl. finale Reckoning); offen für lyric-writer T02–T05 |
@@ -95,7 +95,7 @@ Position  State    Lead              Sprache  Energie  Funktion im Bogen
 |-----------------|-------------|--------|
 | host | Trägt die Title-Line; setzt den Pfad als Statement (S0→S1); kehrt als ferner Echo im Closer wieder (S3↓ Geist) | 01, 05 |
 | integrator | T02: versucht den Brückenschlag (S2); ihr Buffern wird als Kontrolle missgedeutet (Bridge: „Sie sagen, ich kontrolliere"); das Versprechen schneidet zum ersten Mal; antwortet host's Frage nach Agency mit „Ich weiß nicht ganz, ob es Antwort gibt"; eignet sich als Quelle des Pfad-Versprechens an („Sie haben es gesagt — ich habe es gesagt") | 02 |
-| fighter | Kinetische Eruption (S2→S3); accusatory delivery; brennt durch das Versprechen; im Closer müde, post-burn | 03, 05 |
+| fighter | T03: Kinetische Eruption (S2→S3) — zerreißt das Integrator-Versprechen aus T02 vollständig („Your hand has been bleeding me for years"); destroys integrator's German vocab via embedded quotes („nicht weil ich will" / „Muster" / „Auch nicht ich"); konfrontiert host's „Auch nicht ich" mit „I came when she wouldn't"; Outro „I'm just — tired now" als Calm-of-Exhaustion-Übergang in T04. T05: müde post-burn neben collapsed. | 03, 05 |
 | collapsed | Trägt das Unerträgliche post-eruption (S3↓); leistet das, was im S3-Peak ehrlich ist; sitzt im Closer neben dem müden fighter | 04, 05 |
 
 ### Thematic Progression
@@ -133,7 +133,7 @@ Position  State    Lead              Sprache  Energie  Funktion im Bogen
 |---|-------|----------------|------|---------|--------|
 | 01 | [*Sechste Nacht*](tracks/01-sechste-nacht.md) | host | DE | Title-Line statement; S0→S1; "der Weg" + "Weg ohne Ende"; dry close-mic, drop-out hook foreshadows the cut | In Progress |
 | 02 | [*Brückenschlag*](tracks/02-brueckenschlag.md) | integrator | DE | S2; "Das Versprechen, das schneidet" zentral; rising harmony stacks, glassy arp flicks; the bridge attempt | In Progress |
-| 03 | [Working: *NO ARRIVAL* — fighter eruption](tracks/03-fighter-eruption.md) | fighter | EN | S2→S3 LOUD PEAK; kinetic break; accusatory delivery; "no arrival"; industrial edge; explicit | Not Started |
+| 03 | [*The Path Is the Blade*](tracks/03-the-path-is-the-blade.md) | fighter | EN (+3 DE inserts) | S2→S3 LOUD PEAK; kinetic break; accusatory delivery; "no arrival"; industrial edge; explicit | In Progress |
 | 04 | [Working: *was ich getragen habe* — collapsed weight](tracks/04-collapsed-weight.md) | collapsed | DE | S3↓; "Kollaps als ehrlichster Ort" zentral; punchy syncopated drums, drop-out hooks at the cuts | Not Started |
 | 05 | [Working: *müde Wahrheit / fading way* — closer](tracks/05-tired-closer.md) | fighter + collapsed (host-Echo) | EN+DE | S3↓ QUIET CLOSER; tired truth; Title-Line as filtered host-Echo; no S4; ends on the breath | Not Started |
 
@@ -288,6 +288,6 @@ darksynth, future-rap, darkwave, industrial, alternative, deutschrap, mini-album
 |---|-------|----------|--------|
 | 01 | *Sechste Nacht* | 0:00 | TBD |
 | 02 | *Brückenschlag* | 0:00 | TBD |
-| 03 | *NO ARRIVAL* (working) | 0:00 | TBD |
+| 03 | *The Path Is the Blade* | 0:00 | TBD |
 | 04 | *was ich getragen habe* (working) | 0:00 | TBD |
 | 05 | *müde Wahrheit / fading way* (working) | 0:00 | TBD |

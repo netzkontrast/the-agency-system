@@ -1,8 +1,8 @@
 ---
-title: "fighter eruption"
+title: "The Path Is the Blade"
 track_number: 3
 instrumental: false
-explicit: false
+explicit: true
 suno_url: ""
 sheet_music:
   pdf: ""
@@ -10,24 +10,24 @@ sheet_music:
   midi: ""
 ---
 
-# fighter eruption
+# The Path Is the Blade
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 03 |
-| **Title** | fighter eruption |
+| **Title** | The Path Is the Blade |
 | **Album** | [der Weg zu mir selbst lässt mich nicht in Frieden zu](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | Yes |
 | **POV** | fighter |
-| **Role** | — |
+| **Role** | LOUD PEAK · S2→S3 kinetic eruption · destroys integrator's promise + answers host's claim of abandonment · English as state-marker |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 5:00 (mid-range of 4:30–6:00 album band; loud peak demands extended hook + bridge breathing room before descent) |
 | **Sources Verified** | ❌ Pending |
 
 <!--
@@ -122,20 +122,60 @@ The fighter erupts — kinetic, accusatory, English. The promise that the integr
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro]
+You said it'd cut. I heard it.
+You said: nikht vile ikh vill.
+Bullshit. Always was.
+
 [Verse 1]
-[Lyrics here...]
+Your hand has been bleeding me for years.
+You called it holding — that's the word you picked.
+You called it bridge — yeah, the kind they fall from.
+You called it pattern — MOOS-ter, sure, the kind that locks.
+I've been the cold spot at your dinner table.
+I've been the silence you mistook for grace.
+I've been here. You just kept calling it
+something gentle.
+
+[Pre-Chorus]
+You said it's not the time.
+It's the only fucking time I've got.
 
 [Chorus]
-[Lyrics here...]
+You promised me the path. Now look at the blade.
+You called it bridge. Now look at the grave.
+No arrival, only weight. No arrival, only weight.
+I'm not your inner-child. I'm what you made.
 
 [Verse 2]
-[Lyrics here...]
+You wanted someone to find you. Yeah?
+I came. I came when she wouldn't.
+I came when you locked the door from inside
+and called the locking grace.
+"Owkh nikht ikh" — you said no one came.
+Look at me. Tell me again no one came.
+I'm the one you keep editing out
+of your own sentence.
+
+[Chorus]
+You promised me the path. Now look at the blade.
+You called it bridge. Now look at the grave.
+No arrival, only weight. No arrival, only weight.
+I'm not your inner-child. I'm what you made.
 
 [Bridge]
-[Lyrics here...]
+I am not gentle. I never was.
+I'm not the part that asks for permission.
+I'm not the part that takes the soft seat.
+I'm the part that comes through the wall.
+You can keep the hand. I'm taking the air.
+I'm taking it all.
 
 [Outro]
-[Lyrics here...]
+The path was always mine to burn.
+Watch it. Watch.
+I'm not done.
+I'm just — tired now.
 ```
 <!-- /SERVICE: suno -->
 
@@ -146,22 +186,70 @@ The fighter erupts — kinetic, accusatory, English. The promise that the integr
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+You said it'd cut I heard it
+You said nicht weil ich will
+Bullshit Always was
+
+Your hand has been bleeding me for years
+You called it holding that's the word you picked
+You called it bridge yeah the kind they fall from
+You called it pattern Muster sure the kind that locks
+I've been the cold spot at your dinner table
+I've been the silence you mistook for grace
+I've been here You just kept calling it
+Something gentle
+
+You said it's not the time
+It's the only fucking time I've got
+
+You promised me the path Now look at the blade
+You called it bridge Now look at the grave
+No arrival only weight No arrival only weight
+I'm not your inner-child I'm what you made
+
+You wanted someone to find you Yeah
+I came I came when she wouldn't
+I came when you locked the door from inside
+And called the locking grace
+Auch nicht ich you said no one came
+Look at me Tell me again no one came
+I'm the one you keep editing out
+Of your own sentence
+
+You promised me the path Now look at the blade
+You called it bridge Now look at the grave
+No arrival only weight No arrival only weight
+I'm not your inner-child I'm what you made
+
+I am not gentle I never was
+I'm not the part that asks for permission
+I'm not the part that takes the soft seat
+I'm the part that comes through the wall
+You can keep the hand I'm taking the air
+I'm taking it all
+
+The path was always mine to burn
+Watch it Watch
+I'm not done
+I'm just tired now
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Delivery**: belt-alto growl, dry mid-distance mic (NOT close-mic — distance gives kinetic impact); no breath inside imperatives; lines clip into one another per fighter DNA. Violence as sober fact — never shouted, never theatrical. Periods, not exclamation marks.
+- **Distortion**: distortion on lows (sub-bass + low growl harmonics); upper mids stay clean for the accusatory clarity.
+- **No head voice**: every line lands in chest. No melismatic delivery. No vocal runs.
+- **Profanity placement**: "Bullshit" (Intro) and "fucking" (Pre-Chorus) — both spat, not sung. Single-take attack feel.
+- **German embedded phrases**: 3 inserts (Intro / V1 / V2) — must sound DIFFERENT from English flow. The fighter quotes them like evidence; production should treat them as briefly-spotlit (slight pitch-flatten, micro-pause before, micro-pause after) so listener hears the quote-marks.
+- **Drop-out hooks at rage spikes**: Chorus L3 "No arrival, only weight. No arrival, only weight." — second "weight" gets full instrument drop-out for one bar; the silence after the second "weight" is the kinetic impact. Chorus L4 lands into the silence.
+- **Bridge handling**: 6 lines descending in dynamic intensity but NOT in conviction. By "I'm taking it all" the voice is lower than at Chorus peak but more measured. The Bridge is the fighter's identity claim — sober, not screamed.
+- **Outro decay**: "I'm just — tired now." with breath-pause on the em-dash. This is the fighter's calm = exhaustion (not healing), per fighter DNA. Vocal lands lowest of the track here. Foreshadows T04 collapsed.
+- **Industrial breach**: heavy compression on drums at S3 peak; distorted lead synth in hook; chant group vocals at "No arrival" hook ("only weight" doubled). 
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5 optimization**: voice block first in style box per `overrides/suno-preferences.md`; voice profile leads with `female, belt-alto, growl, ...` per the Voice Profile Tag Convention. NOT close-mic — fighter is mid-distance for the kinetic distance/impact.
+- **Suno explicit handling**: track flagged `explicit: true`. V5 handles profanity directly.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -172,19 +260,27 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Muster (V1) | MOOS-ter | German loan in English flow — force German pronunciation, not English /ˈmʌstər/. Already applied in Suno Lyrics Box. |
+| nicht weil ich will (Intro) | nikht vile ikh vill | German quote from T02 Chorus L3 ("Nicht weil ich will. Weil halten so funktioniert."). Suno needs phonetic German pronunciation in English flow. Already applied. |
+| Auch nicht ich (V2) | Owkh nikht ikh | German quote from T01 Outro L4. Inverted by fighter as accusation. Suno phonetic spelling already applied in lyrics box. |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
 **Review before generating on Suno:**
 
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] **Proper nouns scanned**: No proper nouns; 3 German loan phrases handled via phonetic spelling in Suno lyrics
+- [x] **Foreign names**: N/A — German quotes are not names, treated as code-switched phrases with phonetic guidance
+- [x] **Homographs checked**: "wound" doesn't appear; "live" doesn't appear; no homographs requiring user resolution
+- [x] **Acronyms**: None
+- [x] **Numbers**: None
+- [x] **Tech terms**: None
+
+**German-in-English phonetic verification (PASS):**
+- ✅ "MOOS-ter" in Suno lyrics V1 L4 matches pronunciation table ("Muster" → "MOOS-ter")
+- ✅ "nikht vile ikh vill" in Suno lyrics Intro L2 matches pronunciation table ("nicht weil ich will" → "nikht vile ikh vill")
+- ✅ "Owkh nikht ikh" in Suno lyrics V2 L5 matches pronunciation table ("Auch nicht ich" → "Owkh nikht ikh")
+- ✅ Streaming Lyrics use standard German spelling (no phonetics) per override rule
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
