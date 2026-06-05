@@ -164,7 +164,7 @@ du atmest noch
 das ist viel
 
 wir sitzen
-nebeneinander
+ne-ben-ein-AN-der
 
 es war ein weg
 der war
