@@ -27,7 +27,7 @@ sheet_music:
 | **POV** | host |
 | **Role** | Opener · Title-Line statement · S0→S1 host bridging to first cut |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 5:00 (atmospheric opener, mid-range of 4:30–6:00 album band) |
 | **Sources Verified** | ❌ Pending |
 
 <!--
@@ -98,14 +98,14 @@ Der host trägt die Title-Line — „der Weg zu mir selbst lässt mich nicht in
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+male, mid-baritone, weary, dry close-mic, German vocals, trailing delivery, restrained dynamic, almost-spoken sprechgesang. Dystopian darksynth, atmospheric future rap, 92 BPM half-time trap bounce. Extended atmospheric arrangement. Sparse cold ambient pad, elastic sub-bass low under the pulse, minimal drum density (kick and sparse rim), occasional digital glitch flicker, glassy arp flick on the silence drop, short delay throws on line tails, reverse swell into chorus. Voice forward, dark production, contemporary, dynamic range. Silence drop at chorus end — instruments cut out on the final line for dramatic pause.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no aggressive delivery, no autotune, no harmony stacks
 ```
 
 ### Lyrics Box
