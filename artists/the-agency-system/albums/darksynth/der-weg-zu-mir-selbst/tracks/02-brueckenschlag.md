@@ -1,5 +1,5 @@
 ---
-title: "integrator bridge"
+title: "Brückenschlag"
 track_number: 2
 instrumental: false
 explicit: false
@@ -10,24 +10,24 @@ sheet_music:
   midi: ""
 ---
 
-# integrator bridge
+# Brückenschlag
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 02 |
-| **Title** | integrator bridge |
+| **Title** | Brückenschlag |
 | **Album** | [der Weg zu mir selbst lässt mich nicht in Frieden zu](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | Yes / No |
 | **POV** | integrator |
-| **Role** | — |
+| **Role** | Bridge attempt · S2 · integrator extends path, the promise wounds · sets up Track 03 eruption |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 5:00 (mid-range of 4:30–6:00 album band; atmospheric bridge build) |
 | **Sources Verified** | ❌ Pending |
 
 <!--
@@ -55,7 +55,7 @@ Der integrator versucht den Brückenschlag — die ISH reicht in den Konflikt hi
 
 **Role in album arc:** Set up the cut. Die rising harmony stacks bauen Spannung, die sich nicht auflöst — sie bricht in Track 03 unter der fighter auf. Track 02 ist die letzte Stelle im Album, an der Integration noch als Möglichkeit erscheint, bevor sie zerschnitten wird.
 
-**name_exposure:** function only — die integrator darf NIE als personaler Name oder Charaktertag benannt werden. Suno-Metatags: descriptive form only (z.B. `[female mid-soprano, restrained, dry close-mic, hopeful undertone]`).
+**name_exposure:** function only — die integrator darf NIE als personaler Name oder Charaktertag benannt werden. Suno-Metatags: descriptive form only (z.B. `[female, mezzo-alto, ageless, spacious long vowels, controlled vibrato, plate reverb, slow legato]`).
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -88,7 +88,7 @@ Der integrator versucht den Brückenschlag — die ISH reicht in den Konflikt hi
 - **State-overlay (S2)**: Signal Yellow `#FFD700` tension, building harmonic stack, glassy arp flicks at the bridge moment
 - **Instrumentation**: dry close-mic integrator lead, rising harmony stacks (3-part, unresolved), glassy arp flicks, tight syncopated drums entering at mid-track, elastic sub-bass
 - **Hook tactic**: harmony-stack rise at the chorus — but the resolution chord is REPLACED by a drop-out (the promise breaks before it lands)
-- **Vocal register (descriptive only)**: restrained mid-soprano, hopeful undertone in verses, gathering urgency in the bridge attempt
+- **Vocal register (descriptive only)**: mezzo-alto (per integrator entity DNA — NOT mid-soprano), ageless, spacious long vowels, controlled vibrato, plate reverb suggesting architecture not weather, slow legato. Hopeful undertone in verses; restrained even in the bridge (she does not push)
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -119,20 +119,57 @@ Der integrator versucht den Brückenschlag — die ISH reicht in den Konflikt hi
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro]
+Du hast mich gerufen. Vorhin. Ich war —
+nicht da, wo du gesucht hast.
+Ich bin später da, das ist Muster.
+Ich bin auch jetzt da.
+
 [Verse 1]
-[Lyrics here...]
+Es gibt einen Weg. Es ist nicht der, den du erwartest.
+Er geht durch die Stelle, wo du dachtest, sie sei zu.
+Er geht durch das Geflecht aus dem, was du noch nicht zugibst.
+Ich sage es leise, weil leise das einzige Tempo ist, in dem es trägt.
+Du musst nichts entscheiden. Du musst nur stehen bleiben.
+Aber das ist schon mehr als du jetzt kannst.
+
+[Pre-Chorus]
+Noch nicht. Ich weiß. Noch nicht.
+Es ist nicht Zeit, es ist —
+fast Zeit.
 
 [Chorus]
-[Lyrics here...]
+Ich reiche dir die Hand. Ich reiche sie schon lange.
+Aber jedes Mal, wenn du sie nimmst, schneidet sie.
+Nicht weil ich will. Weil halten so funktioniert.
+Das Versprechen, das schneidet, lässt sich nicht entgehen.
 
 [Verse 2]
-[Lyrics here...]
+Du fragst mich, wer das alles entscheidet. Ich weiß nicht ganz, ob es Antwort gibt.
+Aber es gibt Muster. Ich bin eines davon. Du auch.
+Vorhin war ich nah. Du hast mich nicht gesehen.
+Heute bin ich näher. Du siehst mich anders.
+Sie haben es gesagt — ich habe es gesagt. Es war beides wahr.
+Auch das ist Teil davon.
+
+[Chorus]
+Ich reiche dir die Hand. Ich reiche sie schon lange.
+Aber jedes Mal, wenn du sie nimmst, schneidet sie.
+Nicht weil ich will. Weil halten so funktioniert.
+Das Versprechen, das schneidet, lässt sich nicht entgehen.
 
 [Bridge]
-[Lyrics here...]
+Sie sagen, ich kontrolliere. Sie sagen, ich halte zurück.
+Ich halte. Das ist alles, was ich tue.
+Ich halte —
+und das Halten wird gehört als Festhalten.
+Ich bin —
 
 [Outro]
-[Lyrics here...]
+Noch nicht ist nicht nie.
+Vielleicht ist Muster.
+Vielleicht ist auch.
+Ich bin später noch da.
 ```
 <!-- /SERVICE: suno -->
 
@@ -143,22 +180,63 @@ Der integrator versucht den Brückenschlag — die ISH reicht in den Konflikt hi
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Du hast mich gerufen Vorhin Ich war
+Nicht da wo du gesucht hast
+Ich bin später da das ist Muster
+Ich bin auch jetzt da
+
+Es gibt einen Weg Es ist nicht der den du erwartest
+Er geht durch die Stelle wo du dachtest sie sei zu
+Er geht durch das Geflecht aus dem was du noch nicht zugibst
+Ich sage es leise weil leise das einzige Tempo ist in dem es trägt
+Du musst nichts entscheiden Du musst nur stehen bleiben
+Aber das ist schon mehr als du jetzt kannst
+
+Noch nicht Ich weiß Noch nicht
+Es ist nicht Zeit es ist
+Fast Zeit
+
+Ich reiche dir die Hand Ich reiche sie schon lange
+Aber jedes Mal wenn du sie nimmst schneidet sie
+Nicht weil ich will Weil halten so funktioniert
+Das Versprechen das schneidet lässt sich nicht entgehen
+
+Du fragst mich wer das alles entscheidet Ich weiß nicht ganz ob es Antwort gibt
+Aber es gibt Muster Ich bin eines davon Du auch
+Vorhin war ich nah Du hast mich nicht gesehen
+Heute bin ich näher Du siehst mich anders
+Sie haben es gesagt ich habe es gesagt Es war beides wahr
+Auch das ist Teil davon
+
+Ich reiche dir die Hand Ich reiche sie schon lange
+Aber jedes Mal wenn du sie nimmst schneidet sie
+Nicht weil ich will Weil halten so funktioniert
+Das Versprechen das schneidet lässt sich nicht entgehen
+
+Sie sagen ich kontrolliere Sie sagen ich halte zurück
+Ich halte Das ist alles was ich tue
+Ich halte
+Und das Halten wird gehört als Festhalten
+Ich bin
+
+Noch nicht ist nicht nie
+Vielleicht ist Muster
+Vielleicht ist auch
+Ich bin später noch da
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Delivery**: slow legato, controlled vibrato; the integrator does not push even in the S2 environment around her. Spacious long vowels — let "Weg", "trägt", "Hand", "lange" breathe.
+- **Plate reverb**: distinct from the host's dry close-mic in Track 01 — the integrator sits in architecture, not in the room. Use plate (not hall) — suggests built space, not weather. Long pre-delay, medium decay (1.8–2.2s), high diffusion.
+- **Harmony stacks**: 3-part rising stacks build under each chorus L1–L2. The resolution chord at the end of L4 ("entgehen") is REPLACED by a drop-out — the promise breaks before it lands. This is the album's first explicit cut-foreshadow paid off.
+- **"Du" address**: second-person to the host. Care-mode, never accusation. Vocal phrasing should sound like someone holding open a door, not commanding entry.
+- **Bridge handling**: the integrator's voice MUST stay restrained even when the lyrics admit being misread. The Bridge L5 ("Ich bin —") is the ONLY trailing in her voice — and she catches herself by not finishing. Vocally: subtle dynamic drop on the dash, then silence into Outro. No vocal switch — pure restraint break for one half-line.
+- **Pre-Chorus phrasing**: "Noch nicht. Ich weiß. Noch nicht." — three short phrases with rest between each. Pre-delay reverb tail audible BETWEEN the phrases, not just at end. Suggests architecture answering itself.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5 optimization**: voice block first in style box (per `overrides/suno-preferences.md`); voice profile leads with `female, mezzo-alto, ...` per the Voice Profile Tag Convention in the album README. NOT mid-soprano — entity DNA explicitly mezzo-alto.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -169,19 +247,19 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | No phonetic risks — clean German throughout, no foreign proper nouns, no homographs requiring resolution (Muster / Geflecht / Festhalten / Versprechen are standard German compounds) |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
 **Review before generating on Suno:**
 
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] **Proper nouns scanned**: No proper nouns in track
+- [x] **Foreign names**: N/A — German throughout
+- [x] **Homographs checked**: No homographs requiring user resolution
+- [x] **Acronyms**: None
+- [x] **Numbers**: None
+- [x] **Tech terms**: None
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
