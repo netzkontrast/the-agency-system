@@ -143,7 +143,7 @@ no autotune, no upbeat tempo, no major key brightness, no growl, no projection o
 der weg zu mir selbst
 lässt mich nicht in frieden zu
 
-[Verse 1]
+[Verse 1 — Spent baritone, breathy edges, dry mid-close mic]
 [english]
 Try again. Nope.
 Try with what. Try with what.
@@ -158,7 +158,7 @@ I'm just out.
 [deutsch]
 der weg zu mir selbst
 
-[Verse 2]
+[Verse 2 — Soft pre-verbal whispered baritone, breath-led, dying voice, subkick-close intimate mic]
 [deutsch]
 du atmest noch
 das ist viel
@@ -169,7 +169,7 @@ nebeneinander
 es war ein weg
 der war
 
-[Verse 3]
+[Verse 3 — Spent baritone, breathy edges, dry mid-close mic]
 [english]
 Blade was my hand.
 Same hand.
@@ -181,7 +181,7 @@ I'm here.
 [deutsch]
 lässt mich nicht in frieden zu
 
-[Verse 4]
+[Verse 4 — Soft pre-verbal whispered baritone, breath-led, dying voice, subkick-close intimate mic]
 [deutsch]
 ich kann das tragen
 es ist nicht mehr
@@ -190,13 +190,13 @@ als gestern
 das tragen ist alt
 es ist bei mir
 
-[Bridge]
+[Bridge — Spent baritone, breathy edges, dry mid-close mic]
 [english]
 No arrival.
 Only this.
 Just this.
 
-[Outro]
+[Outro — Soft pre-verbal whispered baritone, breath-led, dying voice, subkick-close intimate mic]
 [deutsch]
 kein ankommen
 nur das hier
@@ -276,8 +276,19 @@ Lässt mich nicht in Frieden zu
 
 ## Production Notes
 
-- **Voice handling — ONE male voice, TWO REGISTERS via explicit [english]/[deutsch] metatags**: rather than two-vocalist Suno multi-voice (hit-or-miss), the same male voice rendered in two distinct registers — and every language transition is explicitly marked with `[english]` or `[deutsch]` metatag inside the Lyrics Box to force Suno's language model and delivery to switch correctly. English sections (V1, V3, Bridge): spent baritone, dry mid-close mic, breathy edges, short clipped lines — post-burn fighter, continuous with T03 male voice but with energy gone. Words STILL form. German sections (V2, V4, Outro): SOFT PRE-VERBAL WHISPERED BARITONE — breath-led, dying voice, words barely forming, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance, no growl, no leaden weight, no projection. Continuous with T04's corrected (v5) collapsed register: **vorsprachlich, sanft, tot**. The DID logic is honored: same body, two states — fighter is spent-but-still-verbal, collapsed is pre-verbal/no-longer-verbal.
-- **Language metatags — `[english]` and `[deutsch]`**: marked at every language switch inside the Lyrics Box, immediately after the section tag, before the first lyric line of that section. Suno V5 reads these as forced-language hints. The full schedule across the track: `[deutsch]` for Intro/Echo×2/V2/V4/Outro/Final Echo (7 sections); `[english]` for V1/V3/Bridge (3 sections). The Echo sections also carry the `[Whispered, Filtered, Distant]` descriptive metatag for production.
+- **Voice handling — ONE male voice, TWO REGISTERS via explicit per-section voice-profile + [english]/[deutsch] metatags**: rather than two-vocalist Suno multi-voice (hit-or-miss), the same male voice rendered in two distinct registers — and EVERY section carries a descriptive voice-profile metatag in its section header (e.g. `[Verse 1 — Spent baritone, breathy edges, dry mid-close mic]`), continuous with the host-Echo pattern (`[Echo — Whispered, Filtered, Distant]`). Every language transition is additionally marked with `[english]` or `[deutsch]` immediately after the section tag. English sections (V1, V3, Bridge): spent baritone, dry mid-close mic, breathy edges, short clipped lines — post-burn fighter, continuous with T03 male voice but with energy gone. Words STILL form. German collapsed sections (V2, V4, Outro): SOFT PRE-VERBAL WHISPERED BARITONE — breath-led, dying voice, words barely forming, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance, no growl, no leaden weight, no projection. Continuous with T04's corrected (v5) collapsed register: **vorsprachlich, sanft, tot**. The DID logic is honored: same body, two states — fighter is spent-but-still-verbal, collapsed is pre-verbal/no-longer-verbal. Per voice-craft-principles.md these are DESCRIPTIVE metatags (no character labels like `[Fighter]` or `[Collapsed]`).
+- **Voice-profile metatag schedule (per-section)**: every section carries a descriptive voice-profile in its `[Section — descriptor]` header. Schedule across all 10 lyric sections:
+  - `[Intro — Whispered, Filtered, Distant]` (host-Echo)
+  - `[Verse 1 — Spent baritone, breathy edges, dry mid-close mic]` (fighter EN)
+  - `[Echo — Whispered, Filtered, Distant]` (host-Echo)
+  - `[Verse 2 — Soft pre-verbal whispered baritone, breath-led, dying voice, subkick-close intimate mic]` (collapsed DE)
+  - `[Verse 3 — Spent baritone, breathy edges, dry mid-close mic]` (fighter EN)
+  - `[Echo — Whispered, Filtered, Distant]` (host-Echo)
+  - `[Verse 4 — Soft pre-verbal whispered baritone, breath-led, dying voice, subkick-close intimate mic]` (collapsed DE)
+  - `[Bridge — Spent baritone, breathy edges, dry mid-close mic]` (fighter EN)
+  - `[Outro — Soft pre-verbal whispered baritone, breath-led, dying voice, subkick-close intimate mic]` (collapsed DE)
+  - `[Final Echo — Whispered, Filtered, Distant]` (host-Echo)
+- **Language metatags — `[english]` and `[deutsch]`**: marked at every language switch inside the Lyrics Box, immediately after the section tag (which carries the voice profile), before the first lyric line of that section. Suno V5 reads these as forced-language hints. The full schedule across the track: `[deutsch]` for Intro/Echo×2/V2/V4/Outro/Final Echo (7 sections); `[english]` for V1/V3/Bridge (3 sections).
 - **Host-Echo as ghost**: filtered, whispered, distant — NOT a third character voice but a SOUND-EVENT. Heavy low-pass + room reverb + tape saturation makes the Title-Line returns sound like memory leaking back, not a present speaker. Use `[Whispered, Filtered, Distant]` descriptive metatag (permitted under voice-craft-principles.md — descriptive, not character-naming).
 - **Title-Line distribution — 4 placements, fragmenting then reassembling**:
   - Intro: FULL title — „der weg zu mir selbst / lässt mich nicht in frieden zu"
