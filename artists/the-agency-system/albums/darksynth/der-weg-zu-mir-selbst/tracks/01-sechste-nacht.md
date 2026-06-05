@@ -1,5 +1,5 @@
 ---
-title: "host opener"
+title: "Sechste Nacht"
 track_number: 1
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# host opener
+# Sechste Nacht
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 01 |
-| **Title** | host opener |
+| **Title** | Sechste Nacht |
 | **Album** | [der Weg zu mir selbst lässt mich nicht in Frieden zu](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |

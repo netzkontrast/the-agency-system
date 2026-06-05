@@ -120,7 +120,7 @@ Position  State    Lead              Sprache  Energie  Funktion im Bogen
 - **Vocals:** dry close-mic lead; tight doubled hooks; rising harmony stacks (unresolved); filtered ad-libs; chant group vocals at hooks; accusatory delivery (especially Track 03)
 - **FX:** short delay throws; reverse swells as bridges; glassy arp flicks that drift away; drop-out hooks (silence as resolution refused)
 - **Per-state palette:**
-  - **S0** (host opener): faint System Blue calm, dry close-mic, sparse synth bed
+  - **S0** (host, Track 01 *Sechste Nacht*): faint System Blue calm, dry close-mic, sparse synth bed
   - **S1** (host transit, collapsed sparse): Latency Violet stillness; loading-state ambience
   - **S2** (integrator, fighter pre-eruption): Signal Yellow tension; building harmonic stacks; kinetic restraint
   - **S3** (fighter peak, collapsed weight, closer): Flame/Corrupted Yellow; industrial breach; rising drum density, drop-out hooks at the cuts
@@ -131,7 +131,7 @@ Position  State    Lead              Sprache  Energie  Funktion im Bogen
 
 | # | Title | POV (function) | Lang | Concept | Status |
 |---|-------|----------------|------|---------|--------|
-| 01 | [Working: *Atmen ohne Boden* — host opener](tracks/01-host-opener.md) | host | DE | Title-Line statement; S0→S1; "der Weg" + "Weg ohne Ende"; dry close-mic, drop-out hook foreshadows the cut | Not Started |
+| 01 | [*Sechste Nacht*](tracks/01-sechste-nacht.md) | host | DE | Title-Line statement; S0→S1; "der Weg" + "Weg ohne Ende"; dry close-mic, drop-out hook foreshadows the cut | In Progress |
 | 02 | [Working: *Brückenschlag* — integrator bridge](tracks/02-integrator-bridge.md) | integrator | DE | S2; "Das Versprechen, das schneidet" zentral; rising harmony stacks, glassy arp flicks; the bridge attempt | Not Started |
 | 03 | [Working: *NO ARRIVAL* — fighter eruption](tracks/03-fighter-eruption.md) | fighter | EN | S2→S3 LOUD PEAK; kinetic break; accusatory delivery; "no arrival"; industrial edge; explicit | Not Started |
 | 04 | [Working: *was ich getragen habe* — collapsed weight](tracks/04-collapsed-weight.md) | collapsed | DE | S3↓; "Kollaps als ehrlichster Ort" zentral; punchy syncopated drums, drop-out hooks at the cuts | Not Started |
@@ -175,7 +175,7 @@ major-minor tension, accusatory delivery
 ```
 
 Per-track variations (per state):
-- **S0 (host opener)**: add `faint system blue calm, sparse synth bed`
+- **S0 (host, Track 01 *Sechste Nacht*)**: add `faint system blue calm, sparse synth bed`
 - **S1 (transit)**: add `latency violet stillness, loading-state ambience`
 - **S2 (integrator/fighter build)**: add `signal yellow tension, building harmonic stack`
 - **S3 (fighter peak/collapsed weight)**: add `flame edge, corrupted yellow density, industrial breach`
@@ -286,7 +286,7 @@ darksynth, future-rap, darkwave, industrial, alternative, deutschrap, mini-album
 
 | # | Title | Duration | Listen |
 |---|-------|----------|--------|
-| 01 | *Atmen ohne Boden* (working) | 0:00 | TBD |
+| 01 | *Sechste Nacht* | 0:00 | TBD |
 | 02 | *Brückenschlag* (working) | 0:00 | TBD |
 | 03 | *NO ARRIVAL* (working) | 0:00 | TBD |
 | 04 | *was ich getragen habe* (working) | 0:00 | TBD |
