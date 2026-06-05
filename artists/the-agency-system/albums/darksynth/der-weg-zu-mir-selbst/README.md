@@ -1,10 +1,9 @@
 ---
-title: "[Album Title]"
+title: "der Weg zu mir selbst lässt mich nicht in Frieden zu"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: []  # e.g., ["hip-hop", "documentary"]
-tags: []  # e.g., ["tech", "linux", "true-story"]
-explicit: false  # true or false
-# anchor_track: null  # Optional: 1-based track number to anchor album mastering (issue #290). Empty = auto-select by composite score.
+genres: ["alternative", "darksynth"]
+tags: ["the-agency-system", "darksynth", "future-rap", "darkwave", "industrial", "trap", "thematic", "mini-album", "did", "integration", "deutsch", "english"]
+explicit: false  # per-track flag overrides — Track 03 explicit, rest clean
 streaming:
   soundcloud: ""    # Fill in when released
   spotify: ""       # Fill in when released
@@ -13,141 +12,139 @@ streaming:
   amazon_music: ""  # Fill in when released
 sheet_music:
   songbook: ""
-# mastering:  # Optional - per-album mastering settings
-#   adm_validation_enabled: true
-# slug: ""  # Optional - only uncomment if you need to override auto-generated slug
 ---
 
-# [Album Title]
+# der Weg zu mir selbst lässt mich nicht in Frieden zu
 
 ## Album Details
 
-<!-- NOTE: When releasing, set Status: Released and fill in release_date in frontmatter. Albums stay in place. -->
-
 | Attribute | Detail |
 |-----------|--------|
-| **Artist** | [Artist Name](../../../README.md) |
-| **Album** | [Album Title] |
-| **Genre** | [Genre](/genres/[genre]/README.md) / [Subgenre] |
-| **Tracks** | [Number] |
-| **Status** | Concept |
-| **Explicit** | Yes / No |
-| **Concept** | [Brief concept description] |
-
-## Frontmatter Reference
-
-### mastering (optional)
-
-Per-album mastering settings. Currently supports:
-
-- `adm_validation_enabled: true` — opt in to Apple Digital Masters
-  inter-sample peak validation. **Defaults to OFF** even when
-  global `config.yaml::mastering.adm_validation_enabled` is `true`.
-  ADM runs the AAC encode/decode check on every mastered file and
-  can add 3-5 min/track to the pipeline. Only enable when the
-  album's source material is spectrally viable (well-balanced
-  highs) AND you're submitting the album for Apple Digital Masters
-  certification. For most Suno-generated albums, leave this off.
-
-Example (opt in for this album only):
-
-```yaml
-mastering:
-  adm_validation_enabled: true
-```
-
-Omit the block entirely to use the default (ADM off).
+| **Artist** | [the Agency System](../../../README.md) |
+| **Album** | der Weg zu mir selbst lässt mich nicht in Frieden zu |
+| **Genre** | [Darksynth](/genres/darksynth/README.md) / Alternative · Future-Rap · Industrial |
+| **Tracks** | 5 (Mini-Album) |
+| **Total runtime (target)** | ~22–30 min @ 4:30–6:00 per track |
+| **Status** | Concept (Phase 7 confirmed) |
+| **Explicit** | Mixed — Track 03 explicit, Tracks 01/02/04/05 clean |
+| **Concept** | Kosten der Integration — der Pfad zur ISH existiert, aber jede Berührung mit der Wahrheit erzeugt neue Wunden. Frieden = Stille vor dem nächsten Aufriss. |
+| **Album type** | Thematisch (kein Plot, kein S4-Repair) |
+| **Documentary** | No |
+| **Sources Verified** | N/A |
 
 ## Concept
 
-[Detailed description of the album's concept, narrative, and themes. What story does this album tell? What's the artistic vision?]
+„der Weg zu mir selbst lässt mich nicht in Frieden zu" ist ein 5-Track-Mini-Album über die **Kosten der Integration**. Der Pfad zur ISH/integrator existiert — er ist sichtbar, beschreibbar, sogar erreichbar. Aber jede Berührung mit der Wahrheit über den eigenen Zustand erzeugt eine neue Wunde. Frieden ist nicht das Ziel; Frieden ist nur die Stille zwischen zwei Aufrissen.
+
+Das Album ist die innere Sicht eines DID-Systems, das den Versuch unternimmt, sich zu sich selbst zurückzubringen, und der bei jedem Schritt zerschnitten wird vom Versprechen, das diesen Schritt überhaupt erst möglich machte.
+
+Es geht nicht um Versöhnung, nicht um Heilung als Ankunft — sondern um die **ermüdete Klarsicht**, die nach mehreren Aufbrüchen übrig bleibt: das wache Wissen, dass der Weg weitergeht und der Preis bleibt, ohne dass darin Verzweiflung läge. Eine Form von wahrer Müdigkeit, die nicht zerbrochen ist.
+
+Das Closer-Statement ist kein integration-S4. Es ist ein müder fighter, der neben dem collapsed sitzt — nach der Eruption, im Asche-Zustand, in dem das Lügen nicht mehr lohnt. Die Title-Line kehrt geisterhaft als host-Echo zurück, gefiltert, fern — als wäre der Pfad immer noch da, aber die Erschöpfung mit ihm.
 
 ## Structure
 
-[How is the album organized? What's the narrative arc? How do tracks relate to each other?]
+5-Akt-Dramaturgie, **kein S4-Repair**, **Front-laut + Back-leise** Doppel-Peak-Struktur:
+
+```
+Position  State    Lead              Sprache  Energie  Funktion im Bogen
+01 Opener S0 → S1  host              DE       ▂▂▄      Title-Line statement
+                                                       Container thinning
+02        S2       integrator        DE       ▅▅▅      Bridge attempt
+                                                       Promise begins to cut
+03 LOUD   S2 → S3  fighter           EN       ████     Kinetic eruption
+                                                       The cut breaks open
+04        S3 ↓     collapsed         DE       ▆▆▆      Post-eruption weight
+                                                       The honest place
+05 QUIET  S3 ↓     fighter+collapsed EN+DE    ▃▃▃      Tired truth
+                                                       Title-line as host-echo
+```
+
+**Title-Line-Platzierung:** „der Weg zu mir selbst lässt mich nicht in Frieden zu" erscheint im Opener als deklarativer Refrain (host, deutsch). Sie kehrt im Closer als ferner, gefilterter host-Echo zwischen den fighter/collapsed-Lines wieder — die letzte Hörbarkeit des Wegs, bevor die Müdigkeit das Album schließt.
+
+**Sprache als State-Marker:** Das deutschsprachige System (host/integrator/collapsed) fragmentiert in Englisch, wenn die EP-Wut (fighter) sich Bahn bricht. Sprache wird selbst zur Symptomatik der Dissoziation.
+
+**Kein S4:** Das Album endet bewusst auf der fighter+collapsed-Achse bei S3↓ (descending) — der Pfad zur Integration wird angedeutet (durch integrator-Tracks in der Mitte), aber NICHT vollendet. Frieden wird ausgespart.
 
 ## Themes
 
-- [Theme 1]
-- [Theme 2]
-- [Theme 3]
+- **Kosten der Integration** — die ISH reicht, aber jede Berührung wundet
+- **Friedlosigkeit als Erkenntnis** — Frieden ist nicht das Ziel, nur die Pause
+- **Ermüdete Klarsicht** — wahre Müdigkeit ohne Zerbrochenheit
+- **Sprache als Dissoziations-Marker** — DE/EN-Switching als Symptom-Topographie
 
 ## Motifs & Threads
-
-*(Remove this section if not a concept/narrative/thematic album)*
 
 ### Lyrical Motifs
 
 | Motif | Description | First Appears | Recurrences |
 |-------|-------------|---------------|-------------|
-| [phrase/image] | [what it represents] | Track XX | Track XX (context), Track XX (context) |
+| Title-Line („der Weg zu mir selbst lässt mich nicht in Frieden zu") | Zentrale Setzung; der Weg + die Friedlosigkeit als Doppel | Track 01 (host, Refrain) | Track 05 (host-Echo, gefiltert) |
+| Das Versprechen, das schneidet | Integration als Versprechen, das beim Halten verwundet | Track 02 (integrator) | Track 03 (fighter, kinetisiert), Track 04 (collapsed, getragen) |
+| Der Weg ohne Ende | Path-Imagery, die nie ankommt; rising harmony stacks ohne Auflösung | Track 01 (host) | Track 03 (fighter, „no arrival"), Track 05 (host-Echo) |
+| Kollaps als ehrlichster Ort | S3 als der einzige Moment, in dem nicht gelogen wird | Track 04 (collapsed) | Track 05 (collapsed, restlich) |
+| Atem ohne Boden | Breath als unaufgelöster Puls; 92 BPM half-time als physiologisches Korrelat | Track 01 (host) | Track 04 (collapsed), Track 05 (Closer) |
 
 ### Character Threads
 
-| Character/Voice | Arc Summary | Tracks |
+| Voice (function) | Arc Summary | Tracks |
 |-----------------|-------------|--------|
-| [name/voice] | [how they develop across the album] | XX, XX, XX |
+| host | Trägt die Title-Line; setzt den Pfad als Statement (S0→S1); kehrt als ferner Echo im Closer wieder (S3↓ Geist) | 01, 05 |
+| integrator | Versucht den Brückenschlag (S2); ihr Buffern wird als Kontrolle missgedeutet; das Versprechen schneidet zum ersten Mal | 02 |
+| fighter | Kinetische Eruption (S2→S3); accusatory delivery; brennt durch das Versprechen; im Closer müde, post-burn | 03, 05 |
+| collapsed | Trägt das Unerträgliche post-eruption (S3↓); leistet das, was im S3-Peak ehrlich ist; sitzt im Closer neben dem müden fighter | 04, 05 |
 
 ### Thematic Progression
 
 | Track | Theme Focus | Advances From | Sets Up |
 |-------|-------------|---------------|---------|
-| 01 | [theme] | — | [what it establishes for later] |
-| 02 | [theme] | Track 01's [element] | [what it sets up] |
+| 01 | Title-Line als Setzung; der Pfad und seine Unmöglichkeit, Frieden zu erlauben | — | Etabliert host als Container-ICH, das den Weg sieht und benennt |
+| 02 | Das Versprechen der Integration: die ISH reicht, das Reichen selbst wundet | Track 01's Pfad-Setzung — jetzt wird der Pfad betreten | Setzt den Schmerz auf, der in Track 03 explodiert |
+| 03 | Kinetische Eruption — die Wut, die das Versprechen nicht halten lässt; accusatory delivery; "no arrival" | Track 02's Versprechen — fighter reisst es kinetisch auf | Erzeugt die Erschöpfung, in die Track 04 sich legt |
+| 04 | Post-eruption: collapsed trägt, was übrig bleibt; "Kollaps als ehrlichster Ort" wird zentral | Track 03's Burn — der Boden danach | Bereitet den Closer vor, in dem fighter + collapsed gemeinsam ankommen |
+| 05 | Müde Wahrheit; Title-Line als gefilterter host-Echo; kein S4, nur das ehrliche Ende | Track 04's getragenes Gewicht + die Erschöpfung der fighter | Schließt das Album auf der ermüdeten Klarsicht — keine Auflösung |
 
-*Seeded by album-conceptualizer during Phase 4. Updated by lyric-writer as tracks are written.*
-
-<!-- OST: Include this section for OST albums (video game, film, TV, anime, etc.). Remove if not an OST. -->
-
-## World / Setting
-
-| Attribute | Detail |
-|-----------|--------|
-| **Media Type** | [Video Game / Film / TV Series / Anime / Theater / Podcast] |
-| **Title** | [Fictional property name] |
-| **Genre** | [Platformer / RPG / Noir / Sci-fi / Slice-of-life / etc.] |
-| **Setting** | [Fantasy / Sci-fi / Post-apocalyptic / Modern / Historical / etc.] |
-| **Era/Aesthetic** | [8-bit retro / Cinematic / Noir / Cel-shaded / etc.] |
-
-### Locations & Scenes
-
-| # | Location/Scene | Mood | Track(s) |
-|---|---------------|------|----------|
-| 1 | [Location or scene name] | [Mood description] | XX |
-
-### Leitmotif Plan
-
-| Theme | Represents | First Appears | Variations |
-|-------|-----------|---------------|------------|
-| [Main theme melody] | [What it represents] | Track XX | Track XX (minor key), Track XX (orchestral) |
-
-*Leitmotifs are tracked here AND in the Motifs & Threads section. This table focuses on musical themes; Motifs & Threads tracks lyrical/textual callbacks.*
-
-<!-- END OST -->
+*Seeded durch album-conceptualizer (Phase 4 + 7). Wird durch lyric-writer progressiv aktualisiert.*
 
 ## Sonic Palette
 
-- **Beats**: [Production style description]
-- **Samples**: [Sample sources/types if applicable]
-- **Vocals**: [Vocal style and delivery]
-- **Mood**: [Overall emotional tone]
+- **Style:** future rap × dystopian future synth × darkwave pulse × half-time trap bounce × industrial edge
+- **Tempo:** 92 BPM half-time (consistent across the album as a physiological constant — the breath that won't settle)
+- **Tonality:** major-minor tension throughout
+- **Drums:** punchy syncopated; tight kick/snare attack; minimal hi-hat sparkle (industrial restraint)
+- **Bass:** elastic sub-bass; sits low under the half-time pulse
+- **Vocals:** dry close-mic lead; tight doubled hooks; rising harmony stacks (unresolved); filtered ad-libs; chant group vocals at hooks; accusatory delivery (especially Track 03)
+- **FX:** short delay throws; reverse swells as bridges; glassy arp flicks that drift away; drop-out hooks (silence as resolution refused)
+- **Per-state palette:**
+  - **S0** (host opener): faint System Blue calm, dry close-mic, sparse synth bed
+  - **S1** (host transit, collapsed sparse): Latency Violet stillness; loading-state ambience
+  - **S2** (integrator, fighter pre-eruption): Signal Yellow tension; building harmonic stacks; kinetic restraint
+  - **S3** (fighter peak, collapsed weight, closer): Flame/Corrupted Yellow; industrial breach; rising drum density, drop-out hooks at the cuts
+- **Vocal language by function (function-bound):** host/integrator/collapsed = Deutsch; fighter = English. Closer (Track 05) is bilingual: fighter Englisch, collapsed Deutsch, host-Echo Deutsch (filtered/distant).
+- **Sonic Anchor:** Hybrid / own sound — future-rap-Vocals + EBM/darkwave-Pulse + cinematic dystopia. Keine direkten Referenzen.
 
 ## Tracklist
 
-| # | Title | POV | Concept | Status |
-|---|-------|-----|---------|--------|
-| 01 | [Track Name](tracks/01-track-name.md) | [POV] | [Brief concept] | Not Started |
-| 02 | [Track Name](tracks/02-track-name.md) | [POV] | [Brief concept] | Not Started |
+| # | Title | POV (function) | Lang | Concept | Status |
+|---|-------|----------------|------|---------|--------|
+| 01 | [Working: *Atmen ohne Boden* — host opener](tracks/01-host-opener.md) | host | DE | Title-Line statement; S0→S1; "der Weg" + "Weg ohne Ende"; dry close-mic, drop-out hook foreshadows the cut | Not Started |
+| 02 | [Working: *Brückenschlag* — integrator bridge](tracks/02-integrator-bridge.md) | integrator | DE | S2; "Das Versprechen, das schneidet" zentral; rising harmony stacks, glassy arp flicks; the bridge attempt | Not Started |
+| 03 | [Working: *NO ARRIVAL* — fighter eruption](tracks/03-fighter-eruption.md) | fighter | EN | S2→S3 LOUD PEAK; kinetic break; accusatory delivery; "no arrival"; industrial edge; explicit | Not Started |
+| 04 | [Working: *was ich getragen habe* — collapsed weight](tracks/04-collapsed-weight.md) | collapsed | DE | S3↓; "Kollaps als ehrlichster Ort" zentral; punchy syncopated drums, drop-out hooks at the cuts | Not Started |
+| 05 | [Working: *müde Wahrheit / fading way* — closer](tracks/05-tired-closer.md) | fighter + collapsed (host-Echo) | EN+DE | S3↓ QUIET CLOSER; tired truth; Title-Line as filtered host-Echo; no S4; ends on the breath | Not Started |
 
-## Key Characters
+Track titles are working placeholders. Final titles emerge during lyric-writer.
 
-*(Remove this section if not a narrative album)*
+## Cast (function-keyed, name_exposure=function)
 
-### [Character Group 1]
-- **Name** - Role and description
+**Hard rule (music + design layers):** No personal names (Kael, Lex, Alex, Rhys, Selene, Nyx, Kiko, Lia, Isabelle, Moros, Argus) in any lyric, Suno style box, Suno lyrics box, promo copy, or art prompt. Function descriptors only. Suno metatags use descriptive form (`[female mid-soprano, weary, dry close-mic]`), never character form (`[The Container]`).
 
-### [Character Group 2]
-- **Name** - Role and description
+| Function | Class | Active states this album | Voice register (descriptive only) |
+|----------|-------|--------------------------|-----------------------------------|
+| host | ANP | S0, S1, S3-Echo (Track 05) | Container-voice; reflective; carries the title-line; surface-keeping; thinning |
+| integrator | Meta (ISH) | S2 (attempt), implicit S4-non-arrival | Mediator-bridge; gatekeep being misread as control; the promise-bearer |
+| fighter | EP | S2 (build), S3 (peak/eruption), S3↓ (tired Closer) | Kinetic eruption; accusatory delivery; cold-spot rage; post-burn exhaustion |
+| collapsed | EP | S1 (sparse weight, optional), S3 (peak weight), S3↓ (closer) | The weight-bearer; carries the unbearable; the honest place; leaden post-eruption |
 
 ## Production Notes
 
@@ -155,144 +152,102 @@ Omit the block entirely to use the default (ADM off).
 **Suno Persona** (optional):
 | Attribute | Value |
 |-----------|-------|
-| **Persona Name** | [Name in Suno] |
-| **Persona Link** | [Suno persona URL] |
+| **Persona Name** | TBD (consider creating a darksynth/future-rap persona for this album) |
+| **Persona Link** | TBD |
 
 **Suno Settings**:
-- **Target Duration**: [3:30–5:00]
-- Per-track overrides noted in individual track files
-- [Vocal consistency notes]
-- [Production continuity notes]
+- **Target Duration**: 4:30–6:00 (atmospheric mini-album)
+- **Style continuity**: 92 BPM consistent; per-track state-color shifts in production
+- **Vocal consistency**: dry close-mic across all tracks; harmony stacks tighten S2→S3
+- **Per-track overrides** noted in individual track files
 
-**Style Prompt Base**:
+**Style Prompt Base** (descriptive form only — no character tags, no names):
 ```
-[Base style prompt to use across all tracks, modified per track as needed]
+future rap, dystopian future synth, darkwave pulse, 92 BPM, half-time trap bounce,
+punchy syncopated drums, elastic sub-bass, dry close-mic lead, tight doubled hooks,
+rising harmony stacks, filtered ad-libs, chant group vocals, short delay throws,
+reverse swells, glassy arp flicks, drop-out hooks, industrial edge,
+major-minor tension, accusatory delivery
 ```
+
+Per-track variations (per state):
+- **S0 (host opener)**: add `faint system blue calm, sparse synth bed`
+- **S1 (transit)**: add `latency violet stillness, loading-state ambience`
+- **S2 (integrator/fighter build)**: add `signal yellow tension, building harmonic stack`
+- **S3 (fighter peak/collapsed weight)**: add `flame edge, corrupted yellow density, industrial breach`
+- **S3↓ (Closer)**: add `tired truth, descended dynamics, distant filtered echo`
 <!-- /SERVICE: suno -->
-
-## Source Material
-
-*(Remove this section if not based on real events)*
-
-- [Source 1](URL)
-- [Source 2](URL)
-
-<!-- DOCUMENTARY/TRUE STORY ALBUMS: Include this section for albums based on real people/events. Delete if purely fictional. -->
-
-## Documentary Standards
-
-### Album Classification
-
-| Attribute | Selection |
-|-----------|-----------|
-| **Album Type** | ☐ True Crime/Documentary / ☐ Dramatized Story / ☐ Inspired By / ☐ Fictional |
-| **Real People Featured** | ☐ Yes / ☐ No |
-| **Legal Sensitivity** | ☐ High / ☐ Medium / ☐ Low |
-
-### Narrative Approach
-
-| Principle | Approach |
-|-----------|----------|
-| **Primary Voice** | [e.g., Third-person narrator throughout] |
-| **Perspective on Subjects** | [e.g., External observation, not impersonation] |
-| **Quote Handling** | [e.g., Paraphrased and attributed, or narrator describes what was said] |
-| **Artistic License** | [e.g., Dialogue smoothed for flow, timelines compressed] |
-
-### Real People Depicted
-
-| Person | Role in Album | Depicted How | Sensitivity |
-|--------|---------------|--------------|-------------|
-| [Name] | [Protagonist/Subject/etc.] | [Narrator describes / Quotes attributed / etc.] | [High/Med/Low] |
-
-### Legal Safeguards
-
-- [ ] **No defamation**: All negative claims are documented facts from public sources
-- [ ] **No fabricated statements**: Real people's words are sourced, paraphrased, or described (not invented)
-- [ ] **Fair use/commentary**: Album constitutes commentary on matters of public interest
-- [ ] **Public figures doctrine**: Subjects are public figures or involved in newsworthy events
-- [ ] **No private facts**: Private information only included if already public or newsworthy
-- [ ] **Narrator voice**: Tracks maintain storyteller perspective, not impersonation
-
-### Source Verification Status
-
-Source verification is tracked per-track in each track file's `Sources Verified` field (single source of truth). Use `/bitwize-music:resume` or `/bitwize-music:validate-album` to see verification status across all tracks.
-
-### Legal Notes
-
-[Album-level legal considerations, potential sensitivities, and mitigations]
-
-### Disclaimer Text
-
-*(Optional: Include in album description/liner notes)*
-
-```
-[e.g., "This album is a dramatic interpretation of documented events.
-All factual claims are based on publicly available sources including [source names].
-Dialogue and internal thoughts are dramatized for artistic purposes."]
-```
-
-<!-- END DOCUMENTARY SECTIONS -->
 
 ## Album Art
 
 ### AI Art Platform
-<!-- Set your platform: Midjourney, Leonardo.ai, DALL-E, Stable Diffusion -->
-**Platform**: [Not selected]
+**Platform**: [Not selected — to be determined by /bitwize-music:album-art-director]
+
+### Visual Concept
+
+- **Base palette:** 95% Terminal Black `#0B0D17` + Deep Charcoal `#1A1D24` (brutalist bunker)
+- **Dominant accent (≤5%):** Corrupted Yellow `#8B8B00` (trauma, freeze, resignation, toxic decay; infectious — desaturates neighbors)
+- **Sharp edge accent (≤1%):** Flame Orange `#FF4500` as hard-edged Riss contour line at one location only (the active cut)
+- **Core symbol:** Der Riss (Data Fissure) — geometric fractal crack through béton brut concrete; interior `#000000`; edges glow Corrupted Yellow with one Flame Orange edge segment
+- **Composition:** Pure architecture — no body, no face, no person. DID-privacy by design. The album shows the riss-system, not the person.
+- **Edge discipline:** Hard edges only — no gradients
+- **Material motifs:** béton brut (the bunker); active vacuum (negative space isolates the riss); no daylight, no analog warmth
 
 ### Image Prompt
 *Generated by `/bitwize-music:album-art-director`. Platform-specific format.*
 
 ```
-[Prompt will be generated in the format matching your selected platform.
-Run /bitwize-music:album-art-director to create a visual concept and prompt.]
+[Prompt will be generated by album-art-director using the visual concept above.]
 ```
 
 ### Negative Prompt
-<!-- Leonardo.ai / Stable Diffusion only. Remove this section if using Midjourney or DALL-E. -->
+<!-- Leonardo.ai / Stable Diffusion only -->
 ```
-[Elements to exclude — only applicable for Leonardo.ai and Stable Diffusion]
+[Generated by album-art-director — will exclude: face, body, person, daylight,
+warm color, gradient, retro-futurism, analog artifacts, decorative text]
 ```
 
-**Note**: Artist name should always appear in the bottom right. Preserve the artist's preferred casing/spelling.
+**Note**: Artist name "the Agency System" appears in the bottom right.
 
 ### File Naming Convention
 
-Save generated album art using `/bitwize-music:import-art` or manually to these locations:
-- **Audio directory**: `{audio_root}/artists/{artist}/albums/{genre}/{album}/album.png` (used by promo videos, SoundCloud)
-- **Content directory**: `{content_root}/artists/{artist}/albums/{genre}/{album}/album-art.png` (tracked in git)
+- **Audio directory**: `{audio_root}/artists/the-agency-system/albums/darksynth/der-weg-zu-mir-selbst/album.png`
+- **Content directory**: `{content_root}/artists/the-agency-system/albums/darksynth/der-weg-zu-mir-selbst/album-art.png`
 
-Format: PNG preferred, JPEG acceptable. Resolution: at least 3000x3000 for distribution, 1500x1500 minimum.
+Format: PNG preferred. Resolution: at least 3000x3000 for distribution.
 
 ## SoundCloud
 
 ### Description
-*Copy this into SoundCloud's description field:*
+*Wird vor Release befüllt — die folgende Vorlage als Ausgangspunkt:*
 
 ```
-[Album description with concept, themes, credits]
+„der Weg zu mir selbst lässt mich nicht in Frieden zu" ist ein Mini-Album über die
+Kosten der Integration — den Pfad, der existiert, und die Wunden, die das Reichen
+nach ihm erzeugt. Fünf Tracks zwischen brutalist-darksynth und half-time future-rap;
+zwischen Deutsch und Englisch, zwischen Brückenschlag und Eruption. Kein Frieden
+als Auflösung, nur müde Klarsicht als Wahrheit. — the Agency System
 ```
 
 ### Genre
 ```
-[SoundCloud genre dropdown selection]
+Alternative
 ```
 
 ### Tags
 ```
-[tag1, tag2, tag3, tag4, tag5]
+darksynth, future-rap, darkwave, industrial, alternative, deutschrap, mini-album
 ```
 
 ## Distributor Genres
 
 | Attribute | Selection |
 |-----------|-----------|
-| **Primary Genre** | [e.g., Hip-Hop/Rap, Electronic, Rock, Pop] |
-| **Secondary Genre** | [e.g., Electronic, R&B/Soul, or "None"] |
-| **Electronic Subgenre** | [Required if Primary or Secondary is Electronic] |
+| **Primary Genre** | Alternative |
+| **Secondary Genre** | Electronic |
+| **Electronic Subgenre** | Electronica/Downtempo (darksynth nicht im Distributor-Standard; downtempo trifft den half-time-pulse-Aspekt am ehesten) |
 
-*Common primary genres: Hip-Hop/Rap, Electronic, Pop, Rock, R&B/Soul, Alternative, Metal, Folk, Country, Jazz, Classical, Soundtrack, Spoken Word*
-
-*Electronic subgenres: Electronica/Downtempo, House, Deep House, Techno, Drum & Bass, Dubstep, Trance, Chill Out, Big Room, Breaks, Electro House, Glitch Hop, Minimal/Deep Tech, Progressive House, Psy-Trance, Tech House*
+*Distributor-Tags zusätzlich: experimental, future-rap, darkwave, industrial*
 
 ---
 
@@ -308,4 +263,8 @@ Format: PNG preferred, JPEG acceptable. Resolution: at least 3000x3000 for distr
 
 | # | Title | Duration | Listen |
 |---|-------|----------|--------|
-| 01 | [Track Name] | 0:00 | [SoundCloud](URL) |
+| 01 | *Atmen ohne Boden* (working) | 0:00 | TBD |
+| 02 | *Brückenschlag* (working) | 0:00 | TBD |
+| 03 | *NO ARRIVAL* (working) | 0:00 | TBD |
+| 04 | *was ich getragen habe* (working) | 0:00 | TBD |
+| 05 | *müde Wahrheit / fading way* (working) | 0:00 | TBD |
