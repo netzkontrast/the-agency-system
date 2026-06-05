@@ -55,9 +55,9 @@ The fighter erupts — kinetic, accusatory, English. The promise that the integr
 
 **Role in album arc:** The cut lands. This is the LOUD peak that the front of the album builds toward. After this track, all subsequent tracks descend — the collapsed in Track 04 carries the ash, the closer sits in the exhaustion. The fighter does not return as lead until the Closer, and then only as a tired voice next to the collapsed.
 
-**Linguistic design:** Code-switch from German (Tracks 01-02) into English is the marker of S2→S3 transition. The fighter does not just sound angry — she sounds linguistically displaced, as if the rage broke out of the system's primary language.
+**Linguistic design:** Code-switch from German (Tracks 01-02) into English is the marker of S2→S3 transition. The fighter does not just sound angry — he sounds linguistically displaced, as if the rage broke out of the system's primary language.
 
-**name_exposure:** function only — the fighter must NEVER be named with a personal name or character tag in lyrics, style box, or section tags. Suno metatags use descriptive form only (e.g. `[female belt-alto, growl, accusatory delivery, dry mid-distance mic, industrial edge]`).
+**name_exposure:** function only — the fighter must NEVER be named with a personal name or character tag in lyrics, style box, or section tags. Suno metatags use descriptive form only (e.g. `[male, baritone, growl, accusatory delivery, dry mid-distance mic, industrial edge]`).
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -90,7 +90,7 @@ The fighter erupts — kinetic, accusatory, English. The promise that the integr
 - **State-overlay (S2→S3)**: Flame Orange `#FF4500` edge + Corrupted Yellow `#8B8B00` density at the peak; industrial breach
 - **Instrumentation**: punchy syncopated drums at maximum density, elastic sub-bass at S3-peak presence, distorted lead synth in the hook, filtered ad-libs, chant group vocals at the rage spikes
 - **Hook tactic**: drop-out hooks at the cut-lines („no arrival" / „the path is the blade") — silence amplifies the strike
-- **Vocal register (descriptive only)**: belt-alto, growl, accusatory delivery, dry mid-distance mic (NOT close-mic — gives kinetic distance for impact), tight doubled hook
+- **Vocal register (descriptive only)**: baritone, growl, accusatory delivery, dry mid-distance mic (NOT close-mic — gives kinetic distance for impact), tight doubled hook, raw breathless intensity, no breath inside imperatives, no head voice
 - **Mix note**: short delay throws on the ad-libs; reverse swells as transition into the second verse; this is the album's loudest LUFS target within darksynth conventions
 
 <!-- SERVICE: suno -->
@@ -100,7 +100,7 @@ The fighter erupts — kinetic, accusatory, English. The promise that the integr
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-female, belt-alto, growl, dry mid-distance mic, accusatory delivery, English vocals with brief embedded German phonetic phrases as quoted evidence, clipped imperative lines, no breath inside hooks. Future rap, dark trap, industrial breach. Extended high-energy arrangement at 92 BPM half-time trap bounce. Punchy syncopated drums at maximum density, elastic sub-bass with distortion on lows, distorted lead synth on the hook, chant group vocals doubling the "no arrival only weight" hook, filtered ad-libs, short delay throws on line tails, reverse swell into chorus. Voice forward, dark production, contemporary, dynamic range. Silence drop on the second "no arrival only weight" for one bar then last line lands into the silence.
+male, baritone, growl, dry mid-distance mic, accusatory delivery, English vocals with brief embedded German phonetic phrases as quoted evidence, clipped imperative lines, no breath inside hooks. Future rap, dark trap, industrial breach. Extended high-energy arrangement at 92 BPM half-time trap bounce. Punchy syncopated drums at maximum density, elastic sub-bass with distortion on lows, distorted lead synth on the hook, chant group vocals doubling the "no arrival only weight" hook, filtered ad-libs, short delay throws on line tails, reverse swell into chorus. Voice forward, dark production, contemporary, dynamic range. Silence drop on the second "no arrival only weight" for one bar then last line lands into the silence.
 ```
 
 ### Exclude Styles

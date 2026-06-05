@@ -1,5 +1,5 @@
 ---
-title: "collapsed weight"
+title: "der ehrlichste Ort"
 track_number: 4
 instrumental: false
 explicit: false
@@ -10,24 +10,24 @@ sheet_music:
   midi: ""
 ---
 
-# collapsed weight
+# der ehrlichste Ort
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 04 |
-| **Title** | collapsed weight |
+| **Title** | der ehrlichste Ort |
 | **Album** | [der Weg zu mir selbst lässt mich nicht in Frieden zu](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | Yes / No |
 | **POV** | collapsed |
-| **Role** | — |
+| **Role** | Quiet valley between two peaks · S3 ↓ · collapsed picks up what fighter dropped · "Kollaps als ehrlichster Ort" central · sets up T05 closer |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 5:00 (sub-tempo near-spoken delivery + [Instrumental Break] = atmospheric duration ohne Wort-Inflation) |
 | **Sources Verified** | ❌ Pending |
 
 <!--
@@ -101,14 +101,14 @@ Sprachlich kehrt das Album in Deutsch zurück — der collapsed nimmt das System
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+male, low-baritone, leaden, gravelly, subkick-close dry mic, sub-tempo near-spoken delivery, German vocals, lowercase intimate register, line-final pauses longer than the lines, breath audible between fragments. Dark ambient darksynth, sub-tempo collapse, 92 BPM half-time trap bounce (rhythm felt as physiological constant beneath the slowed delivery). Sparse synth pad with slow decay, elastic sub-bass at full presence, restrained kick density, occasional reverse swell as breath, no melodic ornamentation. Extended atmospheric arrangement with explicit long instrumental break in the middle (sub-tempo darksynth weight only, immobile). Voice forward but quiet, dark production, contemporary, dynamic range. The track is intentionally still — words arrive heavy and stay where they fell.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no upbeat tempo, no autotune, no melismatic delivery
 ```
 
 ### Lyrics Box
@@ -123,20 +123,69 @@ Sprachlich kehrt das Album in Deutsch zurück — der collapsed nimmt das System
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro]
+ich habe es getragen
+schon lange
+mehr als ich wusste
+und immer weiter
+
 [Verse 1]
-[Lyrics here...]
+er schreit oben — er schreit
+ich höre ihn nicht weil ich
+unten bin
+hier sinkt die luft
+und unten ist hörbar nichts
+mehr
+
+[Pre-Chorus]
+manchmal denke ich
+das ist nicht ich
+dann denke ich
+doch
 
 [Chorus]
-[Lyrics here...]
+hier unten ist der ehrlichste ort
+an dem nicht gelogen wird
+ich bin schwer geworden
+ich bin ehrlich
 
 [Verse 2]
-[Lyrics here...]
+das versprechen schneidet ja
+ich habe es
+schon mit nach unten genommen
+es liegt mit mir
+bleiern
+es ist auch müde
+
+[Instrumental Break]
+
+[Chorus]
+hier unten ist der ehrlichste ort
+an dem nicht gelogen wird
+ich bin schwer geworden
+ich bin ehrlich
+
+[Verse 3]
+hier kann ich liegen
+hier muss ich nicht
+schneller atmen
+als ich kann
 
 [Bridge]
-[Lyrics here...]
+ihr habt mich nie gesehen
+das ist okay
+nicht weil es okay ist
+sondern weil sehen
+und nicht-sehen
+gleich schwer ist
+ich kenne den unterschied nicht mehr
+ich brauche ihn auch nicht
 
 [Outro]
-[Lyrics here...]
+hier ist der ehrlichste ort
+ich trage es
+auch das tragen
+trage ich
 ```
 <!-- /SERVICE: suno -->
 
@@ -147,22 +196,75 @@ Sprachlich kehrt das Album in Deutsch zurück — der collapsed nimmt das System
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Ich habe es getragen
+Schon lange
+Mehr als ich wusste
+Und immer weiter
+
+Er schreit oben er schreit
+Ich höre ihn nicht weil ich
+Unten bin
+Hier sinkt die Luft
+Und unten ist hörbar nichts
+Mehr
+
+Manchmal denke ich
+Das ist nicht ich
+Dann denke ich
+Doch
+
+Hier unten ist der ehrlichste Ort
+An dem nicht gelogen wird
+Ich bin schwer geworden
+Ich bin ehrlich
+
+Das Versprechen schneidet ja
+Ich habe es
+Schon mit nach unten genommen
+Es liegt mit mir
+Bleiern
+Es ist auch müde
+
+Hier unten ist der ehrlichste Ort
+An dem nicht gelogen wird
+Ich bin schwer geworden
+Ich bin ehrlich
+
+Hier kann ich liegen
+Hier muss ich nicht
+Schneller atmen
+Als ich kann
+
+Ihr habt mich nie gesehen
+Das ist okay
+Nicht weil es okay ist
+Sondern weil sehen
+Und nicht-sehen
+Gleich schwer ist
+Ich kenne den Unterschied nicht mehr
+Ich brauche ihn auch nicht
+
+Hier ist der ehrlichste Ort
+Ich trage es
+Auch das Tragen
+Trage ich
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Delivery**: sub-tempo near-spoken, deep bass, gravelly, breath audible between fragments per collapsed entity DNA. Subkick-close dry mic — closer than the host's close-mic in T01. "Words arrive heavy and stay where they fell."
+- **Line-final pauses**: longer than the lines themselves. Each fragment ends in silence before the next arrives.
+- **Lowercase typography in Suno**: the lowercase lyric form is a delivery signal — Suno V5 reads it as stylistic choice signaling subdued, intimate, near-spoken register. Section tags stay capitalized as structural markers.
+- **Pronoun "er"**: in V1 "er schreit oben" refers back to the fighter from Track 03 (voice changed to male). The collapsed acknowledges the fighter's eruption from below — without rage, without commentary, just acoustic distance.
+- **Title-line placement**: "hier unten ist der ehrlichste ort" appears in Chorus L1 (×2) and Outro L1 — title-line placement rule: title at start (first chorus) AND end (outro). Three placements total across track.
+- **[Instrumental Break]**: explicit Suno section tag for ~1-2 min of sub-tempo darksynth weight without vocals. Per collapsed DNA: "the track everyone skips because it doesn't move — and the one that recontextualizes the album." The instrumental break IS that immobility, made audible.
+- **Drop-out tactic**: silence between Chorus L3 ("ich bin schwer geworden") and L4 ("ich bin ehrlich") — production hint = full instrument drop for 1 bar between the lines.
+- **Bridge handling**: 8 lines descending in intensity but rising in recontextualization. The equation "sehen und nicht-sehen / gleich schwer ist" is the heart of the album seen from the floor. Vocal must NOT rise dynamically — collapse maintains its register; recontextualization happens IN the silence around the words.
+- **Outro decay**: "auch das tragen / trage ich" — the meta-loop. Each "trage" landing on the half-time downbeat with reverse swell behind. Final fade: 5s with sub-bass breath sample sustaining at -inf-2dB.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5 optimization**: voice block first in style box per `overrides/suno-preferences.md`; voice profile leads with `male, low-baritone, leaden, ...` per Voice Profile Tag Convention in album README. Subkick-close dry mic (not standard close-mic) is the collapsed-specific signature.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -173,19 +275,21 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | No phonetic risks — all standard German, no homographs, no compounds requiring guidance ("bleiern", "Apnoe"-verwandt, "immer weiter" alle Suno-standard) |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
 **Review before generating on Suno:**
 
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] **Proper nouns scanned**: No proper nouns
+- [x] **Foreign names**: N/A — German throughout, lowercase per collapsed DNA
+- [x] **Homographs checked**: No homographs requiring resolution
+- [x] **Acronyms**: None
+- [x] **Numbers**: None
+- [x] **Tech terms**: None
+
+**Typographic note for Suno:** Lyrics intentionally lowercase per collapsed entity DNA ("Sparse, lowercase, fragments that don't punctuate"). Section tags remain capitalized as structural markers. Streaming Lyrics restored to standard capitalization per distributor format rule.
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
