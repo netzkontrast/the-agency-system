@@ -51,7 +51,7 @@ fighter und collapsed sitzen nebeneinander — beide nach dem Burn, beide ohne S
 
 Kein Frieden. Keine Auflösung. Kein Wir, das sich schließt. Nur drei Stimmen, die wissen, was war, und das Album in dieses Wissen hinein verstummen lassen.
 
-Strukturell: die fighter ist hier nicht mehr accusatory — die Wut ist verbrannt. Er spricht jetzt in kurzen, müden englischen Lines (male, per T03 voice change cascade). Der collapsed antwortet in Deutsch, getragen, ohne Klage. Und dazwischen, in den Pausen, der host als gefilterter Echo: nur die Title-Line, nur eine Wiederholung, nur das Wissen, dass der Weg da war.
+Strukturell: die fighter ist hier nicht mehr accusatory — die Wut ist verbrannt. Er spricht jetzt in kurzen, müden englischen Lines (male, per T03 voice change cascade). Der collapsed antwortet in Deutsch — **vorsprachlich, sanft, tot**: nicht „getragen" (das wäre noch Kraft), sondern atem-getragen, mit Worten, die kaum zur Sprache finden. Und dazwischen, in den Pausen, der host als gefilterter Echo: nur die Title-Line, nur eine Wiederholung, nur das Wissen, dass der Weg da war.
 
 **Lyrical Motifs (active here):**
 - Title-Line als host-Echo (gefiltert, fern, geisterhaft — die letzte Aussprache)
@@ -101,8 +101,8 @@ Strukturell: die fighter ist hier nicht mehr accusatory — die Wut ist verbrann
 - **Instrumentation**: dry close-mic for fighter + collapsed (both reduced dynamic), heavily filtered/distant host-Echo for the Title-Line returns, sparse pad, elastic sub-bass at low-mid presence, minimal drum density (1/2 of Track 04's intensity)
 - **Hook tactic**: no traditional hook — the Title-Line as host-Echo functions as recurring motif between verses; drop-out at the end of each Title-Line repetition (silence absorbs the line)
 - **Vocal register (descriptive only)**:
-  - fighter: tired English; spent baritone with breathy edges, lower dynamic, short clipped lines, dry mid-close mic (post-rage register — same male voice as Track 03 but with the energy gone)
-  - collapsed: German; leaden low-baritone, restrained, audible exhale between phrases, subkick-close dry mic (continuous with Track 04's register)
+  - fighter: tired English; spent baritone with breathy edges, lower dynamic, short clipped lines, dry mid-close mic (post-rage register — same male voice as Track 03 but with the energy gone). Words still form; the fighter has not gone pre-verbal — only spent.
+  - collapsed: German; **soft pre-verbal whispered baritone, breath-led delivery, dying voice, words barely forming, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance**. No growl, no leaden weight, no projection. Continuous with Track 04's corrected (v5) register. Pre-language, not anti-language.
   - host-Echo: German; heavy filter (low-pass + room reverb + tape saturation), distant, ghostly, whispered — sounds like memory, not present voice
 - **Mix note**: lowest LUFS of the album by 1-2 dB further from Track 04; outro tail with reverse swell + breath sample as final 4-6 bars before the fade. Fade-out: 5s (standard); but the breath sample should still be audible at -inf-2dB at the end
 
@@ -113,14 +113,14 @@ Strukturell: die fighter ist hier nicht mehr accusatory — die Wut ist verbrann
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-male voice in two registers — spent baritone with breathy edges and dry mid-close mic for English tired sections (post-burn fighter); leaden low-baritone with subkick-close dry mic and audible exhale for German weighed sections (collapsed continuation). Heavily filtered whispered ghost-voice for Echo sections (low-pass + room reverb + tape saturation, distant, memory-not-presence). German and English vocals, no melismatic smoothing, no autotune. Sub-tempo dark ambient darksynth closer, exhausted post-burn, 92 BPM half-time trap bounce (slowest LUFS on the album, minimal drum density at half of previous track's intensity). Sparse synth pad with slow decay, elastic sub-bass at low-mid presence, occasional reverse swell as breath, no melodic ornamentation. Extended atmospheric closer with reverse-swell + breath sample as final 4-6 bars before the 5s fade. Voice forward but quiet, dark production, contemporary, dynamic range. The track is the album's settling — no resolution, no repair, just two voices and a filtered echo of the title sitting in the same exhaustion.
+male voice in two registers, with explicit language-switch metatags. English sections: spent baritone with breathy edges, dry mid-close mic, post-burn fighter — words still form, energy gone. German collapsed sections: soft pre-verbal whispered baritone, breath-led delivery, dying voice, words barely forming, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance, no growl, no leaden weight, no projection — vorsprachlich pre-verbal sanft tot. German host-Echo sections: heavily filtered whispered ghost-voice (low-pass + room reverb + tape saturation), distant, memory-not-presence. No melismatic smoothing, no autotune, no upbeat tempo. Sub-tempo dark ambient darksynth closer, exhausted post-burn, 92 BPM half-time trap bounce (slowest LUFS on the album, minimal drum density at half of previous track's intensity). Sparse synth pad with slow decay, elastic sub-bass at low-mid presence, occasional reverse swell as breath, no melodic ornamentation. Extended atmospheric closer with reverse-swell + breath sample as final 4-6 bars before the 5s fade. Voice forward but quiet for fighter, barely-there for collapsed; dark production, contemporary, dynamic range. The track is the album's settling — no resolution, no repair, just two registers and a filtered echo of the title sitting in the same exhaustion. Language switches are marked with [english] and [deutsch] metatags at every transition.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no autotune, no upbeat tempo, no major key brightness
+no autotune, no upbeat tempo, no major key brightness, no growl, no projection on German sections, no leaden voice
 ```
 
 ### Lyrics Box
@@ -136,10 +136,12 @@ no autotune, no upbeat tempo, no major key brightness
 
 ```
 [Intro — Whispered, Filtered, Distant]
+[deutsch]
 der weg zu mir selbst
 lässt mich nicht in frieden zu
 
 [Verse 1]
+[english]
 Try again. Nope.
 Try with what. Try with what.
 No arrival, only this.
@@ -150,19 +152,22 @@ Tired now.
 I'm just out.
 
 [Echo — Whispered, Filtered, Distant]
+[deutsch]
 der weg zu mir selbst
 
 [Verse 2]
+[deutsch]
 du atmest noch
 das ist viel
+
 wir sitzen
 nebeneinander
 
 es war ein weg
 der war
-er hat nicht aufgehört
 
 [Verse 3]
+[english]
 Blade was my hand.
 Same hand.
 Path was mine to burn.
@@ -170,29 +175,34 @@ I burned it.
 I'm here.
 
 [Echo — Whispered, Filtered, Distant]
+[deutsch]
 lässt mich nicht in frieden zu
 
 [Verse 4]
+[deutsch]
 ich kann das tragen
 es ist nicht mehr
 als gestern
 
 das tragen ist alt
 es ist bei mir
-ich bin bei ihm
 
 [Bridge]
+[english]
 No arrival.
 Only this.
 Just this.
 
 [Outro]
+[deutsch]
 kein ankommen
 nur das hier
+
 und der atem
 und der atem
 
 [Final Echo — Whispered, Filtered, Distant]
+[deutsch]
 der weg zu mir selbst
 lässt mich nicht in frieden zu
 
@@ -223,12 +233,12 @@ Der Weg zu mir selbst
 
 Du atmest noch
 Das ist viel
+
 Wir sitzen
 Nebeneinander
 
 Es war ein Weg
 Der war
-Er hat nicht aufgehört
 
 Blade was my hand
 Same hand
@@ -244,7 +254,6 @@ Als gestern
 
 Das Tragen ist alt
 Es ist bei mir
-Ich bin bei ihm
 
 No arrival
 Only this
@@ -252,6 +261,7 @@ Just this
 
 Kein Ankommen
 Nur das hier
+
 Und der Atem
 Und der Atem
 
@@ -263,7 +273,8 @@ Lässt mich nicht in Frieden zu
 
 ## Production Notes
 
-- **Voice handling — ONE male voice, two registers**: rather than two-vocalist Suno multi-voice (hit-or-miss), the same male voice rendered in two distinct registers via language + dynamic + mic-position differentiation. English sections (V1, V3, Bridge): spent baritone, dry mid-close mic, breathy edges, short clipped lines — post-burn fighter register, continuous with T03 male voice but with the energy gone. German sections (V2, V4, Outro): leaden low-baritone, subkick-close dry mic, audible exhale, longer phrases — continuous with T04 collapsed register. The DID logic is honored: same body, two states.
+- **Voice handling — ONE male voice, TWO REGISTERS via explicit [english]/[deutsch] metatags**: rather than two-vocalist Suno multi-voice (hit-or-miss), the same male voice rendered in two distinct registers — and every language transition is explicitly marked with `[english]` or `[deutsch]` metatag inside the Lyrics Box to force Suno's language model and delivery to switch correctly. English sections (V1, V3, Bridge): spent baritone, dry mid-close mic, breathy edges, short clipped lines — post-burn fighter, continuous with T03 male voice but with energy gone. Words STILL form. German sections (V2, V4, Outro): SOFT PRE-VERBAL WHISPERED BARITONE — breath-led, dying voice, words barely forming, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance, no growl, no leaden weight, no projection. Continuous with T04's corrected (v5) collapsed register: **vorsprachlich, sanft, tot**. The DID logic is honored: same body, two states — fighter is spent-but-still-verbal, collapsed is pre-verbal/no-longer-verbal.
+- **Language metatags — `[english]` and `[deutsch]`**: marked at every language switch inside the Lyrics Box, immediately after the section tag, before the first lyric line of that section. Suno V5 reads these as forced-language hints. The full schedule across the track: `[deutsch]` for Intro/Echo×2/V2/V4/Outro/Final Echo (7 sections); `[english]` for V1/V3/Bridge (3 sections). The Echo sections also carry the `[Whispered, Filtered, Distant]` descriptive metatag for production.
 - **Host-Echo as ghost**: filtered, whispered, distant — NOT a third character voice but a SOUND-EVENT. Heavy low-pass + room reverb + tape saturation makes the Title-Line returns sound like memory leaking back, not a present speaker. Use `[Whispered, Filtered, Distant]` descriptive metatag (permitted under voice-craft-principles.md — descriptive, not character-naming).
 - **Title-Line distribution — 4 placements, fragmenting then reassembling**:
   - Intro: FULL title — „der weg zu mir selbst / lässt mich nicht in frieden zu"

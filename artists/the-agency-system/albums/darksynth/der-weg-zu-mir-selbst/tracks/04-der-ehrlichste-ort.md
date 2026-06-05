@@ -58,7 +58,9 @@ Sprachlich kehrt das Album in Deutsch zurück — der collapsed nimmt das System
 
 **Role in album arc:** Tal zwischen den zwei Peaks (Track 03 loud + Track 05 quiet). Der collapsed wird HEARD, nicht repariert. Das ist die Kern-Aussage des Albums in einer einzigen Trackform: gehörte Würde im Zerfall.
 
-**name_exposure:** function only — der collapsed darf NIE als personaler Name oder Charaktertag benannt werden. Suno-Metatags: descriptive form only (z.B. `[male low-baritone, leaden, sparse delivery, dry close-mic, slow exhale between phrases]`).
+**name_exposure:** function only — der collapsed darf NIE als personaler Name oder Charaktertag benannt werden. Suno-Metatags: descriptive form only (z.B. `[male soft pre-verbal whispered baritone, breath-led, dying voice, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance]`).
+
+**Register correction (v5):** Collapsed ist NICHT „low-baritone, leaden, gravelly". Collapsed ist der **vorsprachliche Anteil** des Systems — sanft (weil keine Kraft zum Drücken), tot (erloschen, nicht müde-aber-funktional). Die Stimme ist atem-getragen, nicht stimmgetragen; Worte formen sich kaum, fallen wieder weg; Pausen länger als Sätze. Pre-language, nicht anti-language.
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -91,7 +93,7 @@ Sprachlich kehrt das Album in Deutsch zurück — der collapsed nimmt das System
 - **State-overlay (S3 ↓)**: Corrupted Yellow `#8B8B00` density (post-burn ash, infectious decay)
 - **Instrumentation**: dry close-mic collapsed lead, sparse synth pad (slow-decay), elastic sub-bass at full presence, punchy syncopated drums but with restrained kick density, occasional reverse swell as breath
 - **Hook tactic**: drop-out hooks at the S3-cuts within the verse — silence as the carrying space („was ich getragen habe ___ [silence] ___")
-- **Vocal register (descriptive only)**: low-baritone, leaden, sparse delivery, dry close-mic, audible exhale between phrases — the vocal itself carries weight
+- **Vocal register (descriptive only)**: soft pre-verbal whispered baritone, breath-led delivery, dying voice, words barely forming, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance, no growl, no leaden weight, no projection — the vorsprachliche Anteil of the system; pre-language, sanft, tot
 - **Mix note**: lower LUFS than Track 03 by ~2-3 dB; the descent must be perceptible
 
 <!-- SERVICE: suno -->
@@ -101,14 +103,14 @@ Sprachlich kehrt das Album in Deutsch zurück — der collapsed nimmt das System
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-male, low-baritone, leaden, gravelly, subkick-close dry mic, sub-tempo near-spoken delivery, tote Müdigkeit, exhausted past tiredness, German vocals, lowercase intimate register, line-final pauses longer than the lines, breath audible between fragments, no melismatic smoothing of gaps. Dark ambient darksynth, sub-tempo collapse, 92 BPM half-time trap bounce (rhythm felt as physiological constant beneath the slowed delivery). Sparse synth pad with slow decay, elastic sub-bass at full presence, restrained kick density, occasional reverse swell as breath, no melodic ornamentation. Extended atmospheric arrangement with explicit long instrumental break in the middle (sub-tempo darksynth weight only, immobile). Voice forward but quiet, dark production, contemporary, dynamic range. The track is intentionally still — words arrive heavy and stay where they fell. Vocal must not rise dynamically across the track; recontextualization happens in the silence around the words.
+male soft pre-verbal whispered baritone, breath-led delivery, dying voice, words barely forming, gentle and extinguished, exhale longer than utterance, subkick-close intimate mic, no growl, no leaden weight, no projection, vorsprachlich pre-verbal sanft tot, German vocals, lowercase intimate register, line-final pauses longer than the lines, breath audible between every fragment. Dark ambient darksynth, sub-tempo collapse, 92 BPM half-time trap bounce (rhythm felt as physiological constant beneath the barely-vocalized delivery). Sparse synth pad with slow decay, elastic sub-bass at low presence (no aggressive push), restrained kick density, occasional reverse swell as breath, no melodic ornamentation. Extended atmospheric arrangement with explicit long instrumental break in the middle (sub-tempo darksynth weight only, immobile). Voice forward but barely-there, dark production, contemporary, dynamic range. The track is intentionally still — words barely arrive and dissolve where they fell. Vocal must not rise dynamically across the track; pre-language not anti-language.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-no upbeat tempo, no autotune, no melismatic delivery
+no upbeat tempo, no autotune, no melismatic delivery, no growl, no projection, no leaden voice
 ```
 
 ### Lyrics Box
@@ -125,73 +127,70 @@ no upbeat tempo, no autotune, no melismatic delivery
 ```
 [Intro]
 ich habe es getragen
-schon lange
+lange
+
 mehr als ich wusste
-immer weiter
 
 [Verse 1]
 er schreit oben
 ich bin unten
-das ist alles
-was ich höre
 
-hier sinkt die luft
-hier wird nichts mehr
-hörbar
+das ist alles
+
+luft sinkt
+hier
 
 [Pre-Chorus]
 irgendwann
 hört man auf
+
 zu unterscheiden
-dann ist es egal
 
 [Chorus]
 hier unten ist der ehrlichste ort
-an dem nicht gelogen wird
-weil keiner mehr
-die kraft hat zu lügen
+hier lügt niemand
+keine kraft
+mehr da
 
 [Verse 2]
 das versprechen
 liegt mit mir
-es schneidet nicht mehr
-es ist zu müde
 
-was schneiden würde
-müsste sich bewegen
+es schneidet nicht
+zu müde
 
 [Instrumental Break]
 
 [Chorus]
 hier unten ist der ehrlichste ort
-an dem nicht gelogen wird
-weil keiner mehr
-die kraft hat zu lügen
+hier lügt niemand
+keine kraft
+mehr da
 
 [Verse 3]
 hier liege ich
-hier muss ich nicht
-schneller atmen
-als ich kann
+ich atme
+so wie ich kann
+das reicht
 
-hier muss ich nichts
 hier ist nur
 gewicht
 
 [Bridge]
 ihr habt mich nie gesehen
 es macht nichts
-sehen und nicht-sehen
-das ist gleich
 
-für so was
-ist keine kraft mehr da
+nichts hier
+mehr
 
 [Outro]
 hier ist der ehrlichste ort
+
 ich trage
 es trägt sich
 weiter
+
+atem
 ```
 <!-- /SERVICE: suno -->
 
@@ -203,82 +202,87 @@ weiter
 
 ```
 Ich habe es getragen
-Schon lange
+Lange
+
 Mehr als ich wusste
-Immer weiter
 
 Er schreit oben
 Ich bin unten
-Das ist alles
-Was ich höre
 
-Hier sinkt die Luft
-Hier wird nichts mehr
-Hörbar
+Das ist alles
+
+Luft sinkt
+Hier
 
 Irgendwann
 Hört man auf
+
 Zu unterscheiden
-Dann ist es egal
 
 Hier unten ist der ehrlichste Ort
-An dem nicht gelogen wird
-Weil keiner mehr
-Die Kraft hat zu lügen
+Hier lügt niemand
+Keine Kraft
+Mehr da
 
 Das Versprechen
 Liegt mit mir
-Es schneidet nicht mehr
-Es ist zu müde
 
-Was schneiden würde
-Müsste sich bewegen
+Es schneidet nicht
+Zu müde
 
 Hier unten ist der ehrlichste Ort
-An dem nicht gelogen wird
-Weil keiner mehr
-Die Kraft hat zu lügen
+Hier lügt niemand
+Keine Kraft
+Mehr da
 
 Hier liege ich
-Hier muss ich nicht
-Schneller atmen
-Als ich kann
+Ich atme
+So wie ich kann
+Das reicht
 
-Hier muss ich nichts
 Hier ist nur
 Gewicht
 
 Ihr habt mich nie gesehen
 Es macht nichts
-Sehen und nicht-sehen
-Das ist gleich
 
-Für so was
-Ist keine Kraft mehr da
+Nichts hier
+Mehr
 
 Hier ist der ehrlichste Ort
+
 Ich trage
 Es trägt sich
 Weiter
+
+Atem
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- **Delivery register — TOTE MÜDIGKEIT**: sub-tempo near-spoken, deep bass, gravelly, breath audible between fragments per collapsed entity DNA. Subkick-close dry mic — closer than the host's close-mic in T01. "Words arrive heavy and stay where they fell." The v4 revision pushes the register beyond tiredness into mechanical exhaustion — the place where lying itself has stopped being possible because lying requires energy that no longer exists.
-- **Line-final pauses**: longer than the lines themselves. Each fragment ends in silence before the next arrives. Suno should NOT smooth over the gaps with melisma or vocal sustain.
-- **Lowercase typography in Suno**: the lowercase lyric form is a delivery signal — Suno V5 reads it as stylistic choice signaling subdued, intimate, near-spoken register. Section tags stay capitalized as structural markers.
-- **Pronoun "er"**: in V1 "er schreit oben" refers back to the fighter from Track 03 (voice changed to male). The collapsed acknowledges the fighter's eruption from below — without rage, without commentary, just acoustic distance. The v4 line "er schreit oben / ich bin unten / das ist alles / was ich höre" is tighter than v3 — no causal logic ("weil ich unten bin"), just observation.
-- **Title-line placement**: "hier unten ist der ehrlichste ort" appears in Chorus L1 (×2) and Outro L1 — title at start (first chorus) AND end (outro). Three placements total across track.
-- **Chorus mechanical-honesty shift (v4)**: Chorus L3-4 reads "weil keiner mehr / die kraft hat zu lügen" — NOT virtue-honesty ("ich bin ehrlich") but exhaustion-mechanics. This is what makes the title-anchor honest: not the carrier's virtue, but the absence of energy required for dishonesty. This shift is the album's collapsed-perspective in a single line.
-- **Cut-deactivation (v4)**: V2 reads "das versprechen / liegt mit mir / es schneidet nicht mehr / es ist zu müde // was schneiden würde / müsste sich bewegen". The promise-that-cuts from T02 ("Das Versprechen, das schneidet") has finally stopped cutting — not because it was healed but because cutting requires motion and motion is gone. The wound dies with the subject.
-- **[Instrumental Break]**: explicit Suno section tag for ~60-90s of sub-tempo darksynth weight without vocals. Per collapsed DNA: "the track everyone skips because it doesn't move — and the one that recontextualizes the album." The instrumental break IS that immobility, made audible.
-- **Bridge restraint (v4)**: 6 lines split into 2 stanzas. The equation "sehen und nicht-sehen / das ist gleich / für so was / ist keine kraft mehr da" is the album's heart seen from the floor — but the v4 form removes the knower-position ("ich kenne den unterschied nicht mehr") and replaces it with mechanical absence ("ist keine kraft mehr da"). Vocal must NOT rise dynamically; recontextualization happens IN the silence around the words.
-- **Outro middle-voice (v4)**: "ich trage / es trägt sich / weiter" — the meta-loop has lost its subject. Not "I carry, and even the carrying I carry" (which is still meta-aware), but "I carry. It carries itself. Onward." The German middle voice ("es trägt sich") extracts the carrier from the carrying. Final fade: 5s with sub-bass breath sample sustaining at -inf-2dB.
-- **Drop-out tactic**: silence between Chorus L2 ("an dem nicht gelogen wird") and L3 ("weil keiner mehr") — production hint = full instrument drop for 1 bar between the lines, so the mechanical-honesty explanation lands into silence.
+- **Delivery register — VORSPRACHLICH, SANFT, TOD (v5 correction)**: collapsed is NOT a leaden low-baritone with weight pressing. Collapsed is the **vorsprachliche Anteil** of the system — the part that hasn't (or has stopped) gathering the energy to fully form words. **Sanft** because there is no force left to push. **Tot** because the energy of speech has gone out, not because it is paused. The voice is breath-led, not voice-led; words barely form and fall away; pauses are longer than utterances. Pre-language, not anti-language. Subkick-close intimate mic captures the breath BEFORE the word. Suno V5: no growl, no projection, no leaden weight, no melismatic sustain.
+- **What changed in v5 vs v4**: v4 was already trimmed for "tote Müdigkeit" but still contained explanatory clauses ("weil keiner mehr die kraft hat zu lügen", "was schneiden würde müsste sich bewegen", "sehen und nicht-sehen das ist gleich"). Vorsprachlich means the collapsed does NOT explain. v5 strips the explanations — Chorus L3-4 from "weil keiner mehr / die kraft hat zu lügen" to "keine kraft / mehr da" (no causal "weil", just absence). V2 from 6 lines to 4. Pre-Chorus from 4 lines to 3 (open clause: "irgendwann / hört man auf / zu unterscheiden" — never completes the philosophy). Bridge from 6 lines to 4 (drops the equation "sehen und nicht-sehen / das ist gleich"). Outro adds final word "atem" as single-line breath-vocalization.
+- **Line-final pauses**: longer than the lines themselves. Each fragment ends in silence before the next arrives. Suno should NOT smooth over the gaps with melisma or vocal sustain. Many fragments are single words or 2-3 word breath-units; deliver each as if it had to be gathered before voicing.
+- **Lowercase typography in Suno**: signals subdued near-whispered intimate register. Section tags stay capitalized as structural markers.
+- **Pronoun "er"**: V1 "er schreit oben / ich bin unten" refers to fighter from T03 (now male). Collapsed acknowledges the eruption from below — no commentary, just acoustic distance. No causal logic.
+- **Title-line placement**: "hier unten ist der ehrlichste ort" appears in Chorus L1 (×2) and Outro L1. Three placements total. Even in vorsprachlich register, the title-anchor is necessary structural payload.
+- **Chorus absence-form (v5)**: "hier lügt niemand / keine kraft / mehr da". Three short statements, none of them an explanation. "Niemand lügt" = observation. "Keine kraft" = absence. "Mehr da" = the absence itself becomes the noun. The collapsed reports what is gone; it doesn't argue why.
+- **Cut still-life (v5)**: V2 "das versprechen / liegt mit mir // es schneidet nicht / zu müde". The T02 motif "Das Versprechen, das schneidet" appears here as still-life — the promise is lying there with the carrier, no longer cutting. No mechanism-explanation; just "zu müde" as the final state.
+- **[Instrumental Break]**: explicit Suno section tag for ~60-90s of sub-tempo darksynth weight without vocals. Per collapsed DNA: "the track everyone skips because it doesn't move." The instrumental break IS the vorsprachlich state made audible — pre-word, just breath and weight.
+- **Bridge half-thought (v5)**: 4 lines. "ihr habt mich nie gesehen / es macht nichts // nichts hier / mehr". No equation, no philosophy. Just a gentle dismissal of being-unseen and a registering of present absence. The "nichts hier / mehr" is grammatically open — it can be read as "nichts hier (ist) mehr" (nothing here anymore) or "nichts hier — mehr [pause, no completion]". Both readings carry the same dying.
+- **Outro breath-tail (v5)**: "ich trage / es trägt sich / weiter // atem". German middle voice ("es trägt sich") extracts the carrier; final single word "atem" is a breath-vocalization. Suno V5 should treat "atem" as a near-exhale rather than a clearly sung word — Style Box already specifies "breath audible between every fragment". Final fade: 5s with sub-bass breath sample sustaining at -inf-2dB through the fade.
+- **Drop-out tactic**: silence after Chorus L2 ("hier lügt niemand") and before L3 ("keine kraft") — full instrument drop for 1 bar, so the absence-statement lands into silence.
+- **What the collapsed cannot do in vorsprachlich register**:
+  - cannot argue or explain (no "because")
+  - cannot oscillate between thoughts (no "manchmal denke ich / dann denke ich")
+  - cannot meta-observe its own state (no "ich kenne den unterschied nicht mehr")
+  - cannot project dynamic (no rise in volume, no emphatic delivery)
+  - cannot growl (no friction in the voice)
+  - can: name a present state, mention an absence, register a body-fact, let a fragment end in breath
 <!-- SERVICE: suno -->
-- **V5 optimization**: voice block first in style box per `overrides/suno-preferences.md`; voice profile leads with `male, low-baritone, leaden, ...` per Voice Profile Tag Convention in album README. Subkick-close dry mic (not standard close-mic) is the collapsed-specific signature. "tote Müdigkeit" qualifier added to the style box to push Suno's delivery further into immobility.
+- **V5 optimization**: voice block first in style box per `overrides/suno-preferences.md`; voice profile leads with `male soft pre-verbal whispered baritone` per Voice Profile Tag Convention in album README. "Vorsprachlich, sanft, tot" qualifiers explicitly included to push Suno away from the standard "sad baritone" rendering toward a near-whispered breath-led delivery. If Suno renders the voice with too much projection, add to Style Box: "voice 6 dB below normal mix presence, breath equally loud as voice".
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->

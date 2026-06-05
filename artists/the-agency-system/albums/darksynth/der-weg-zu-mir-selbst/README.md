@@ -148,7 +148,7 @@ Track titles are working placeholders. Final titles emerge during lyric-writer.
 | host | ANP | S0, S1, S3-Echo (Track 05) | Container-voice; reflective; carries the title-line; surface-keeping; thinning |
 | integrator | Meta (ISH) | S2 (attempt), implicit S4-non-arrival | Mediator-bridge; gatekeep being misread as control; the promise-bearer |
 | fighter | EP | S2 (build), S3 (peak/eruption), S3↓ (tired Closer) | Kinetic eruption; accusatory delivery; cold-spot rage; post-burn exhaustion |
-| collapsed | EP | S1 (sparse weight, optional), S3 (peak weight), S3↓ (closer) | The weight-bearer; carries the unbearable; the honest place; leaden post-eruption |
+| collapsed | EP | S1 (sparse weight, optional), S3 (peak weight), S3↓ (closer) | **Vorsprachlicher Anteil — sanft, tot.** Der Teil des Systems, der noch nicht (oder nicht mehr) zur Sprache findet. Carries the unbearable not through bearing-strength but through being-empty. The honest place is honest because nothing has the energy to lie. Pre-language, not anti-language. |
 
 ## Production Notes
 
@@ -192,7 +192,7 @@ Canonical voice profiles per function (use this exact ordering for inline switch
 | host | `[male, mid-baritone, weary, dry close-mic, trailing, almost-remembering]` |
 | integrator | `[female, mezzo-alto, ageless, spacious long vowels, controlled vibrato, plate reverb, slow legato]` (per entity DNA — NOT mid-soprano) |
 | fighter | `[male, baritone, growl, dry mid-distance mic, accusatory delivery, raw breathless intensity]` (voice changed to male after Suno take selection — entity-DNA's "female register subverts male-rage default" overridden for this album) |
-| collapsed | `[male, low-baritone, leaden, dry close-mic, slow exhale between phrases]` |
+| collapsed | `[male soft pre-verbal whispered baritone, breath-led delivery, dying voice, words barely forming, gentle and extinguished, subkick-close intimate mic, exhale longer than utterance, no growl, no projection]` (v5 correction — collapsed is vorsprachlich/sanft/tot, NOT leaden low-baritone with weight pressing) |
 | host-Echo (Closer T05) | `[male, baritone, distant filtered, low-pass + room reverb + tape saturation, ghostly]` |
 
 **Application:**
