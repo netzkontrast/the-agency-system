@@ -97,14 +97,14 @@ Der integrator versucht den Brückenschlag — die ISH reicht in den Konflikt hi
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+female, mezzo-alto, ageless, spacious long vowels, controlled vibrato, German vocals, slow legato, plate reverb suggesting architecture, restrained delivery, never pushes. Dystopian darksynth, dark electro suspense, 92 BPM half-time trap bounce. Extended atmospheric arrangement. Rising 3-part harmony stacks under chorus (unresolved — resolution chord replaced by drop-out), elastic sub-bass low under the pulse, glassy arp flicks at the bridge moment, sparse digital pad, syncopated drums entering mid-track, short delay throws on line tails, reverse swell into chorus. Voice forward, dark production, contemporary, dynamic range. Silence drop at the final line of each chorus — instruments cut out for dramatic pause.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no aggressive delivery, no rap, no autotune
 ```
 
 ### Lyrics Box
