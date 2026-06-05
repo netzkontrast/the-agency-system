@@ -77,13 +77,17 @@ Position  State    Lead              Sprache  Energie  Funktion im Bogen
 
 ### Lyrical Motifs
 
-| Motif | Description | First Appears | Recurrences |
-|-------|-------------|---------------|-------------|
-| Title-Line („der Weg zu mir selbst lässt mich nicht in Frieden zu") | Zentrale Setzung; der Weg + die Friedlosigkeit als Doppel | Track 01 (host, Refrain) | Track 05 (host-Echo, gefiltert) |
-| Das Versprechen, das schneidet | Integration als Versprechen, das beim Halten verwundet | Track 02 (integrator) | Track 03 (fighter, kinetisiert), Track 04 (collapsed, getragen) |
-| Der Weg ohne Ende | Path-Imagery, die nie ankommt; rising harmony stacks ohne Auflösung | Track 01 (host) | Track 03 (fighter, „no arrival"), Track 05 (host-Echo) |
-| Kollaps als ehrlichster Ort | S3 als der einzige Moment, in dem nicht gelogen wird | Track 04 (collapsed) | Track 05 (collapsed, restlich) |
-| Atem ohne Boden | Breath als unaufgelöster Puls; 92 BPM half-time als physiologisches Korrelat | Track 01 (host) | Track 04 (collapsed), Track 05 (Closer) |
+| Motif | Description | First Appears (concrete line) | Recurrences |
+|-------|-------------|------------------------------|-------------|
+| Title-Line („der Weg zu mir selbst lässt mich nicht in Frieden zu") | Zentrale Setzung; der Weg + die Friedlosigkeit als Doppel | T01 Chorus L4 (vollständig, ×2); T01 Outro L5–6 (fragmentiert: „Der Weg zu mir selbst — / lässt mich nicht in Frieden zu.") | T05 (host-Echo, gefiltert/distant, geplant) |
+| Das Versprechen, das schneidet | Integration als Versprechen, das beim Halten verwundet | T02 (integrator, geplant) | T03 (fighter, kinetisiert), T04 (collapsed, getragen) |
+| Der Weg ohne Ende | Path-Imagery, die nie ankommt; rising harmony stacks ohne Auflösung | T01 Chorus L3 („Und je näher ich komme, desto weiter ist sie weg"); T01 Bridge L4–5 („und der Weg geht ohne mich weiter. / Er führt, aber er endet —") | T03 (fighter, English: „no arrival"), T05 (host-Echo) |
+| Kollaps als ehrlichster Ort | S3 als der einzige Moment, in dem nicht gelogen wird | T04 (collapsed, geplant) | T05 (collapsed, restlich) |
+| Atem ohne Boden | Breath als unaufgelöster Puls / 92 BPM half-time als physiologische Konstante | T01 V2 L5 („Jemand in mir atmet anders — heute schon den ganzen Tag"); T01 V2 L2 („Geatmet. Mich nicht bewegt.") als somatischer Versuch ohne Aufgehen | T04 (collapsed), T05 (Closer-Outro) |
+| **Mirror-Nicht-Erkennung** (neu in T01-v3) | Spiegel/Glas, das das eigene Gesicht nicht zurückgibt — DID-Marker, konkret klinik-szeniert | T01 Chorus L2 („Im Glas vorhin — das war nicht ganz mein Gesicht") | Mögl. Echo in T04 (collapsed-S3 als „ehrlichster Ort" könnte die Erkennung sein), T05 (mögl. finale Reckoning); offen für lyric-writer T02–T05 |
+| **Zeit-Lücke / „Vorhin"** (neu in T01-v3) | Dissoziatives Zeitfehlen; das Dazwischen ausgespart | T01 V1 L5–6 („Vorhin war ich noch im Bad, ich glaube. Vorhin — / das Wasser lief, und dann war Stille, und ich saß hier") | Mögl. Echo in T03 (fighter-post-eruption: „wo war ich gerade?"), T04 (collapsed im Boden, wo Zeit anders fließt); offen für lyric-writer T02–T05 |
+| **Verlust der Agency / „wer entscheidet"** (neu in T01-v3) | DID-Kern: Frage nach dem entscheidenden Ich | T01 V2 L6 („Ich weiß nicht, wer das alles entscheidet"); T01 Chorus L1 („Ich frage mich, wer das ist") | Mögl. in T02 (integrator versucht zu antworten), T05 (Closer ohne Antwort); offen |
+| **„Auch nicht ich"** (neu in T01-v3) | Der Sprecher kommt nicht einmal zu sich selbst — schärfste Stelle des Albums | T01 Outro L4 (Setzung vor Title-Line-Bruch) | Mögl. finaler Echo in T05 als verstummte host-Stimme; offen |
 
 ### Character Threads
 
@@ -176,6 +180,25 @@ Per-track variations (per state):
 - **S2 (integrator/fighter build)**: add `signal yellow tension, building harmonic stack`
 - **S3 (fighter peak/collapsed weight)**: add `flame edge, corrupted yellow density, industrial breach`
 - **S3↓ (Closer)**: add `tired truth, descended dynamics, distant filtered echo`
+
+### Voice Profile Tag Convention
+
+**For voice switches and Style Box voice descriptors** — lead with **Geschlecht** (gender), then **Klang** (register/timbre), then further descriptors. Never use character tags or personal names.
+
+Canonical voice profiles per function (use this exact ordering for inline switch metatags in multi-voice tracks and for the leading words of every Style Box voice block):
+
+| Function | Voice profile tag (gender → Klang → further) |
+|----------|----------------------------------------------|
+| host | `[male, mid-baritone, weary, dry close-mic, trailing, almost-remembering]` |
+| integrator | `[female, mid-soprano, restrained, dry close-mic, hopeful undertone]` |
+| fighter | `[female, belt-alto, growl, dry mid-distance mic, accusatory delivery]` |
+| collapsed | `[male, low-baritone, leaden, dry close-mic, slow exhale between phrases]` |
+| host-Echo (Closer T05) | `[male, baritone, distant filtered, low-pass + room reverb + tape saturation, ghostly]` |
+
+**Application:**
+- **Single-voice tracks (T01–T04)**: no inline switch metatag in the Lyrics Box; the profile lives in the Style Box (suno-engineer applies the gender→Klang lead).
+- **T05 (multi-voice closer)**: every voice switch in the Lyrics Box is marked with the inline tag from the table above. The host-Echo gets its own filtered variant.
+- **Style Box (all tracks)**: suno-engineer leads the vocal block with `gender, register, …` per this table; Suno V5 weights first words highest.
 <!-- /SERVICE: suno -->
 
 ## Album Art

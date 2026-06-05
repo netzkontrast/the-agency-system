@@ -19,13 +19,13 @@ sheet_music:
 | **Track #** | 01 |
 | **Title** | host opener |
 | **Album** | [der Weg zu mir selbst lässt mich nicht in Frieden zu](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
 | **Explicit** | Yes / No |
 | **POV** | host |
-| **Role** | — |
+| **Role** | Opener · Title-Line statement · S0→S1 host bridging to first cut |
 | **Fade Out** | 5s |
 | **Target Duration** | — |
 | **Sources Verified** | ❌ Pending |
@@ -120,20 +120,59 @@ Der host trägt die Title-Line — „der Weg zu mir selbst lässt mich nicht in
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro]
+Sechste Nacht. Ich liege und ich weiß es.
+Das Licht im Gang ist immer an.
+Die Wand ist näher als gestern — ich glaube.
+Ich suche was.
+
 [Verse 1]
-[Lyrics here...]
+Ich bin hier, weil ich gehofft habe, dass mich jemand findet.
+Aber niemand kommt — und ich auch nicht zu mir.
+Ich taste an der Brust, da soll was sein.
+Da war was — vielleicht ist da was. Ich greife daneben.
+Vorhin war ich noch im Bad, ich glaube. Vorhin —
+das Wasser lief, und dann war Stille, und ich saß hier.
+
+[Pre-Chorus]
+Sie haben es gesagt: es gibt einen Weg.
+Ich weiß den Weg. Ich weiß —
+ich glaube ich —
 
 [Chorus]
-[Lyrics here...]
+Ich öffne. Ich taste. Ich frage mich, wer das ist.
+Im Glas vorhin — das war nicht ganz mein Gesicht.
+Ich suche die Stelle — wie nach Wasser unter Stein.
+Der Weg zu mir selbst lässt mich nicht in Frieden zu.
 
 [Verse 2]
-[Lyrics here...]
+Heute habe ich es nochmal versucht. Ich habe —
+die Augen zugemacht. Geatmet. Mich nicht bewegt.
+Gewartet. Auf irgendwas. Auf ein Aufgehen.
+Aber meine Stimme klang nicht ganz, als wäre sie meine.
+Jemand in mir atmet anders — heute schon den ganzen Tag.
+Ich weiß nicht, wer das alles entscheidet.
+
+[Chorus]
+Ich öffne. Ich taste. Ich frage mich, wer das ist.
+Im Glas vorhin — das war nicht ganz mein Gesicht.
+Ich suche die Stelle — wie nach Wasser unter Stein.
+Der Weg zu mir selbst lässt mich nicht in Frieden zu.
 
 [Bridge]
-[Lyrics here...]
+Vielleicht ist sie da. Vielleicht ist sie weg.
+Vielleicht suche ich nach jemandem, der nicht mehr antwortet.
+Ich war —
+ich bin — und der Weg geht ohne mich weiter.
+Er führt, aber er endet —
 
 [Outro]
-[Lyrics here...]
+Sechste Nacht. Ich liege und ich weiß es.
+Das Licht im Gang ist immer an —
+und niemand kommt.
+Auch nicht ich.
+Der Weg zu mir selbst —
+lässt mich nicht in Frieden zu.
 ```
 <!-- /SERVICE: suno -->
 
@@ -144,22 +183,66 @@ Der host trägt die Title-Line — „der Weg zu mir selbst lässt mich nicht in
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Sechste Nacht Ich liege und ich weiß es
+Das Licht im Gang ist immer an
+Die Wand ist näher als gestern ich glaube
+Ich suche was
+
+Ich bin hier weil ich gehofft habe dass mich jemand findet
+Aber niemand kommt und ich auch nicht zu mir
+Ich taste an der Brust da soll was sein
+Da war was vielleicht ist da was Ich greife daneben
+Vorhin war ich noch im Bad ich glaube Vorhin
+Das Wasser lief und dann war Stille und ich saß hier
+
+Sie haben es gesagt es gibt einen Weg
+Ich weiß den Weg Ich weiß
+Ich glaube ich
+
+Ich öffne Ich taste Ich frage mich wer das ist
+Im Glas vorhin das war nicht ganz mein Gesicht
+Ich suche die Stelle wie nach Wasser unter Stein
+Der Weg zu mir selbst lässt mich nicht in Frieden zu
+
+Heute habe ich es nochmal versucht Ich habe
+Die Augen zugemacht Geatmet Mich nicht bewegt
+Gewartet Auf irgendwas Auf ein Aufgehen
+Aber meine Stimme klang nicht ganz als wäre sie meine
+Jemand in mir atmet anders heute schon den ganzen Tag
+Ich weiß nicht wer das alles entscheidet
+
+Ich öffne Ich taste Ich frage mich wer das ist
+Im Glas vorhin das war nicht ganz mein Gesicht
+Ich suche die Stelle wie nach Wasser unter Stein
+Der Weg zu mir selbst lässt mich nicht in Frieden zu
+
+Vielleicht ist sie da Vielleicht ist sie weg
+Vielleicht suche ich nach jemandem der nicht mehr antwortet
+Ich war
+Ich bin und der Weg geht ohne mich weiter
+Er führt aber er endet
+
+Sechste Nacht Ich liege und ich weiß es
+Das Licht im Gang ist immer an
+Und niemand kommt
+Auch nicht ich
+Der Weg zu mir selbst
+Lässt mich nicht in Frieden zu
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Delivery**: sprechgesang/trailing — em-dashes signal breath-pauses; the host's voice almost-arrives, then abandons mid-line. No declarative finish on most lines.
+- **Vocal layering**: no harmony stacks in V1/V2 (those rise from Track 02 onward); Chorus uses tight doubled-hook on title-line only, restrained.
+- **Drop-out tactic**: silence at end of Chorus L4 ("Frieden zu" → pause → reverse swell → into Verse 2 or Bridge). This is the album's foundational cut-foreshadow.
+- **Dissociation rendering**: voices-by-syntax — the "jemand in mir atmet anders" stays as the host's narration of perceiving another's presence; do NOT switch vocal register or use second voice. The dissociation is INSIDE the host's voice, audible as the gaps and the question, not as a second singer.
+- **Time-gap markers**: "Vorhin war ich noch im Bad… und ich saß hier" — production hint = momentary high-pass + short reverse cut on "und ich saß hier" (the listener also misses the in-between).
+- **Mirror line**: "Im Glas vorhin — das war nicht ganz mein Gesicht" — production hint = subtle pitch-fork doubling on "mein Gesicht" (the speaker's own voice not-quite-matching itself).
+- **Outro decay**: final "lässt mich nicht in Frieden zu" decays into 5s fade with breath-sample sustained at -inf-2 dB.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5 optimization**: Vocal block first in style box (per `overrides/suno-preferences.md` — "Vocals FIRST"); voice profile leads with `male, mid-baritone, …` per the Voice Profile Tag Convention in the album README.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
@@ -170,19 +253,19 @@ Blank lines between sections only]
 
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | No phonetic risks in v3 — clean German, no foreign proper nouns, no Sci-Fi numbers, no homographs requiring resolution |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
 **Review before generating on Suno:**
 
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] **Proper nouns scanned**: No proper nouns in track (no places, names, brands)
+- [x] **Foreign names**: N/A — German throughout
+- [x] **Homographs checked**: No homographs requiring user resolution (Stein/Glas/Stelle context-clear)
+- [x] **Acronyms**: None
+- [x] **Numbers**: "Sechste Nacht" — ordinal written out, no digit risk
+- [x] **Tech terms**: None
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
