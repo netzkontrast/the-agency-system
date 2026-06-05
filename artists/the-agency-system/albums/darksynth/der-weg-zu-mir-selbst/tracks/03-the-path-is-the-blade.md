@@ -100,14 +100,14 @@ The fighter erupts — kinetic, accusatory, English. The promise that the integr
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+female, belt-alto, growl, dry mid-distance mic, accusatory delivery, English vocals with brief embedded German phonetic phrases as quoted evidence, clipped imperative lines, no breath inside hooks. Future rap, dark trap, industrial breach. Extended high-energy arrangement at 92 BPM half-time trap bounce. Punchy syncopated drums at maximum density, elastic sub-bass with distortion on lows, distorted lead synth on the hook, chant group vocals doubling the "no arrival only weight" hook, filtered ad-libs, short delay throws on line tails, reverse swell into chorus. Voice forward, dark production, contemporary, dynamic range. Silence drop on the second "no arrival only weight" for one bar then last line lands into the silence.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no autotune, no head voice, no melismatic delivery
 ```
 
 ### Lyrics Box
