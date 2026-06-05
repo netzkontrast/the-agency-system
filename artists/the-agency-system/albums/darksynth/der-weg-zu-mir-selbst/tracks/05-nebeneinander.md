@@ -1,5 +1,5 @@
 ---
-title: "tired closer"
+title: "nebeneinander"
 track_number: 5
 instrumental: false
 explicit: false
@@ -10,14 +10,14 @@ sheet_music:
   midi: ""
 ---
 
-# tired closer
+# nebeneinander
 
 ## Track Details
 
 | Attribute | Detail |
 |-----------|--------|
 | **Track #** | 05 |
-| **Title** | tired closer |
+| **Title** | nebeneinander |
 | **Album** | [der Weg zu mir selbst lässt mich nicht in Frieden zu](../README.md) |
 | **Status** | In Progress |
 | **Suno Link** | — |
@@ -71,7 +71,10 @@ Strukturell: die fighter ist hier nicht mehr accusatory — die Wut ist verbrann
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| T01 | return-as-ghost | T01 title-line returns 4× as filtered/whispered host-Echo (Intro/Echo×2/Final). Host doesn't regain present voice — only the title returns as memory. |
+| T02 | hand-recognition | T02 Chorus „Ich reiche dir die Hand … schneidet sie" arrives in T05 V3 as self-recognition: „Blade was my hand. / Same hand." The integrator-reaching-hand and the fighter-self-cutting-hand were always the same hand. |
+| T03 | post-rage settling | T03's fighter rage extinguishes here. T03 Chorus „No arrival, only weight" → T05 V1 „No arrival, only this. / This. Only this." (weight drops, presence remains). T03 Outro „I'm not done" → T05 V3 „I'm here" (finished, not resolved). |
+| T04 | collapsed continues into adjacency | T04 v5's vorsprachlich collapsed („ich trage / es trägt sich / weiter / atem") moves from solitude into adjacency in T05 V2 („du atmest noch / das ist viel / wir sitzen / nebeneinander"). The track's title-word is V2 L4. |
 
 ### References FROM This Track
 

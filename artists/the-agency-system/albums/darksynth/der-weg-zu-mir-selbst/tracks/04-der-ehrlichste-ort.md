@@ -70,13 +70,18 @@ Sprachlich kehrt das Album in Deutsch zurück — der collapsed nimmt das System
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| T01 | precursor (the unanswering one) | T01 Bridge L2 „Vielleicht suche ich nach jemandem, der nicht mehr antwortet" — the collapsed is that unanswering one; T04 is the first time the collapsed leads. T01 V2 L5 „Jemand in mir atmet anders" anticipates collapsed's breath-led register. |
+| T02 | cut-reception (transformed) | T02 Chorus L2 „schneidet sie" arrives in T04 V2 as still-life: „das versprechen / liegt mit mir / es schneidet nicht / zu müde". The cut stops cutting because cutting requires motion that no longer exists. |
+| T03 | acoustic-distance (fighter above, collapsed below) | T03 Outro „I'm just — tired now" lands lowest, foreshadowing T04. T04 V1 picks up below: „er schreit oben / ich bin unten / das ist alles". |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
+| T03 | acoustic-distance | V1 „er schreit oben / ich bin unten / das ist alles" | Collapsed registers fighter's rage from below — no commentary, no causal logic, just observation. „Er" because fighter is male per voice change. |
+| T02 | motif (cut-deactivation) | V2 „das versprechen / liegt mit mir / es schneidet nicht / zu müde" | T02's „Das Versprechen, das schneidet" arrives as still-life. The wound stops cutting because the receiver has stopped having the energy to be cut. |
+| T01 | answer (unseeing-is-okay) | Bridge „ihr habt mich nie gesehen / es macht nichts / nichts hier / mehr" | T01 host's „Auch nicht ich" arrives at the gentle dismissal of being-unseen. No knower-position, no equation — just registering present absence. |
+| T05 | setup (collapsed in adjacency) | Outro „ich trage / es trägt sich / weiter / atem" | T05 V2 picks up the collapsed in adjacency mode: „du atmest noch / das ist viel / wir sitzen / nebeneinander". The collapsed of T04 carries forward to sit next to the fighter in T05. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 

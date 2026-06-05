@@ -67,13 +67,20 @@ The fighter erupts — kinetic, accusatory, English. The promise that the integr
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| T01 | precursor (path-statement) | Host declares the path-and-impossibility (title-line); T03 ruptures it with English rage and accusation. |
+| T02 | rage-reception | Integrator's reaching hand „schneidet sie" — T03 fighter accuses: „you called it holding — that's the word you picked." |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
+| T02 | callback (rage-form) | Chorus L1 „You promised me the path. Now look at the blade." | T02's „die Hand, die heilt" becomes T03's „the blade." The Versprechen-Cut motif erupts kinetically here. |
+| T02 | callback | V1 L1 „Your hand has been bleeding me for years" | T02 Chorus L2 „schneidet sie" extended over time. |
+| T04 | acoustic-distance setup | Outro „I'm just — tired now" | Foreshadows T04 collapsed register; fighter's calm-as-exhaustion lands lowest in vocal — T04 picks up below the fighter's last breath as „er schreit oben / ich bin unten / das ist alles". |
+| T04 | motif (No arrival → weight) | Chorus L3 „No arrival, only weight. No arrival, only weight." (×2 with drop-out) | T04 v5 transforms „weight" into still-life: the cut „liegt mit mir / es schneidet nicht / zu müde". The weight stops moving. |
+| T05 | callback (transformed → presence) | Chorus L3 „No arrival, only weight." | T05 V1 transforms further: „No arrival, only this. / This. Only this." — weight drops away, presence remains. The album's actual arc. |
+| T05 | self-recognition (post-rage) | Chorus L1–2 „You promised me the path. Now look at the blade." | T05 V3 inverts: „Blade was my hand. / Same hand." The fighter recognizes the wielder was self. No S4-repair. |
+| T05 | callback (post-burn) | Outro „The path was always mine to burn. / Watch it. Watch. / I'm not done." | T05 V3: „Path was mine to burn. / I burned it. / I'm here." The fighter is now done — finished, not resolved. |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 

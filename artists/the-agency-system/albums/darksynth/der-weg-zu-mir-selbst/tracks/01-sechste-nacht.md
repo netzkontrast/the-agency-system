@@ -66,13 +66,17 @@ Der host trägt die Title-Line — „der Weg zu mir selbst lässt mich nicht in
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| T02 | call-and-response | T02 V2 L1 directly answers T01 V2 L6's „Ich weiß nicht, wer das alles entscheidet" with „Du fragst mich, wer das alles entscheidet. Ich weiß nicht ganz, ob es Antwort gibt." Integrator picks up the host's lostness. |
+| T05 | return-as-ghost | T05 Intro/Echo×2/Final Echo carry the host's title-line back as filtered/whispered ghost-voice. Host doesn't regain present voice — only the title returns as memory. |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
+| T04 | anticipation (pre-verbal collapsed surfacing) | V2 L5 „Jemand in mir atmet anders — heute schon den ganzen Tag" | Host narrates an unknown someone breathing differently — that someone is the collapsed, vorsprachlich, atem-getragen. T01 doesn't render the collapsed's voice (per Production Note dissociation-stays-in-host-voice); T04 picks up that breath as lead register: „ich habe es getragen / lange". |
+| T04, T05 | anticipation (the unanswering one) | Bridge L2 „Vielleicht suche ich nach jemandem, der nicht mehr antwortet" | The collapsed is the one who doesn't answer — vorsprachlich/tot, no longer verbal. T04 V3 „hier liege ich / ich atme / so wie ich kann" and Bridge „ihr habt mich nie gesehen / es macht nichts" continue the unanswering. T05 V2 collapsed turns the unanswering into adjacency: „du atmest noch / das ist viel / wir sitzen / nebeneinander". |
+| T03, T04, T05 | motif (title-line as path-statement) | Chorus L4 + Outro L5–6 „Der Weg zu mir selbst lässt mich nicht in Frieden zu" | Title-line declared here; T03 rage-form „no arrival, only weight"; T04 doesn't directly cite (collapsed is past path-talk); T05 returns the title 4× as filtered host-Echo (Intro/Echo×2/Final). |
+| T02 | call-and-response | V2 L6 „Ich weiß nicht, wer das alles entscheidet" | The host's lostness IS the integrator's opening. T02 V2 L1 directly answers: „Du fragst mich, wer das alles entscheidet. Ich weiß nicht ganz, ob es Antwort gibt." |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 

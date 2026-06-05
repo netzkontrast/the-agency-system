@@ -65,13 +65,20 @@ Der integrator versucht den Brückenschlag — die ISH reicht in den Konflikt hi
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| T01 | precursor | Host's V2 L6 „Ich weiß nicht, wer das alles entscheidet" — integrator picks this up directly in V2 L1 here. Also T01 Bridge „Vielleicht suche ich nach jemandem, der nicht mehr antwortet" — the integrator IS the one trying to answer (she does, partially, with „es gibt Muster"). |
+| T03 | rage-reception | Fighter rejects integrator's „die Hand, die heilt" — „you called it holding — that's the word you picked." |
+| T04 | cut-reception | Collapsed receives the cut as carried-then-dying-wound: „das versprechen / liegt mit mir / es schneidet nicht / zu müde". |
+| T05 | hand-recognition | Fighter recognizes the cut-wielding hand was self's own: „Blade was my hand. / Same hand." |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
+| T01 | call-and-response (answer) | V2 L1 „Du fragst mich, wer das alles entscheidet. Ich weiß nicht ganz, ob es Antwort gibt." | Direct answer to T01 V2 L6 „Ich weiß nicht, wer das alles entscheidet." The integrator picks up the host's lostness but does not resolve it — partial answer that still trusts pattern over agency. |
+| T03 | motif (Versprechen → cut) | Chorus L2-4 „Aber jedes Mal, wenn du sie nimmst, schneidet sie. / Nicht weil ich will. Weil halten so funktioniert. / Das Versprechen, das schneidet, lässt sich nicht entgehen." | Establishes the cut-promise; T03 fighter receives it as accusation: „you promised me the path. Now look at the blade." |
+| T04 | motif (cut lies-but-no-longer-cuts) | Chorus L2 „schneidet sie" | T04 V2 v5 transforms: „das versprechen / liegt mit mir / es schneidet nicht / zu müde". In the collapsed's vorsprachlich register the cut has stopped functioning — cutting requires energy that no longer exists. The wound dies with the receiver. |
+| T05 | motif (self-recognition of cut-wielder) | Chorus L1-3 „Ich reiche dir die Hand. ... Aber jedes Mal, wenn du sie nimmst, schneidet sie." | T05 V3 fighter recognizes the cut was wielded by self: „Blade was my hand. / Same hand." The integrator's reaching-hand and the fighter's self-cutting-hand were always the same hand. No S4-resolution — just acknowledgment. |
+| T03 | motif (Weg ohne Ende) | V1 L1 „Es gibt einen Weg. Es ist nicht der, den du erwartest." | T03 Chorus L3 hammers in English: „No arrival, only weight. No arrival, only weight." T05 V1 transforms further: „No arrival, only this. / This. Only this." |
 
 **Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
 
