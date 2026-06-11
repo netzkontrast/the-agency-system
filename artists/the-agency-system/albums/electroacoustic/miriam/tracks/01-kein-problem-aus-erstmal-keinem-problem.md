@@ -106,6 +106,7 @@ no reverb wash, no orchestral swell
 ```
 [Intro - sparse piano, room tone, breath]
 
+[Male vocal: mid-baritone, weary, slightly under-articulated, dry close-mic]
 [Verse 1]
 Es ist halb zwei. Ich zähle nicht.
 Ich sag mir nur, ich zähle nicht —
@@ -142,6 +143,7 @@ aus erstmal keinem Problem.
 Es darf hier sitzen. Es kriegt ein Glas.
 Es kriegt Zeit. Es kriegt Zeit.
 
+[Male vocal: mid-baritone, almost spoken, very quiet, breath audible, dry close-mic]
 [Bridge - quieter, almost spoken]
 Kein Versprechen. Hörst du — keiner hier verspricht.
 Eine Verpflichtung. An mich.

@@ -107,6 +107,22 @@ close-mic, breath audible, field recordings, warm analog pads, sparse piano,
 58-76 bpm, german lyrics, quiet dynamics, tender, light and clear, no drums
 ```
 
+**Suno-Lyrics-Konvention (verbindlich für alle 13 Tracks):** Vor **jedem
+Stimmwechsel** steht ein deskriptiver Metatag mit **Geschlecht + Stimmprofil**
+(und ggf. Delivery), z. B.:
+
+```
+[Male vocal: mid-baritone, weary, slightly under-articulated, dry close-mic]
+[Female vocal: warm mezzo, intimate, close-mic, breath audible]
+[Duet, male mid-baritone + female mezzo in unison, quiet]
+```
+
+Auch innerhalb eines Tracks bei Delivery-Wechsel derselben Stimme (z. B.
+„almost spoken" in einer Bridge) wird neu getaggt. **Nur deskriptive Form** —
+niemals Namen oder Charakterform (`[Container]`, `[Isabella]` o. ä. sind
+verboten, Hard Rule). Keine Klammer-Regieanweisungen in Textzeilen — Suno
+singt runde Klammern mit; Delivery gehört in Metatags oder die Style Box.
+
 ## Pre-Publication-Gate
 
 Aus PR #179 unverändert übernommen: das Album wird **nicht** öffentlich,
