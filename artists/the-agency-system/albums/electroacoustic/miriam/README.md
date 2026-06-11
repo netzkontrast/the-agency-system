@@ -2,7 +2,7 @@
 title: "Miriam"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
 genres: ["electroacoustic", "ambient-songwriter"]
-tags: ["did-system", "klinik", "begegnung", "ambiguität", "deutsch"]
+tags: ["portrait", "character-study", "begegnung", "deutsch"]
 explicit: false
 streaming:
   soundcloud: ""    # Fill in when released
@@ -16,7 +16,7 @@ sheet_music:
 
 # Miriam
 
-> *„Als Verpflichtung an mich, kein Versprechen an dich."*
+> *„Wenn Seele Seele sieht ist so treffend."* — sie
 
 ## Album Details
 
@@ -28,57 +28,63 @@ sheet_music:
 | **Tracks** | 9 |
 | **Status** | Concept |
 | **Explicit** | No |
-| **Concept** | Das neu gedachte Album: eine Klinik-Begegnung von Seele zu Seele, als Kreisbewegung durch Kopf/Körper/Herz verarbeitet — Gleichzeitigkeit aushalten, ohne dass jemand zurückbleibt. |
+| **Concept** | Ein Porträt von ihr — gebaut nur aus dem, was sie selbst sagt: wie sie sieht, wie sie hält, wie sie denkt, wie sie wirkt. Und am Ende ein wenig von dem, was ich ihr wünsche. |
 
 ## Concept
 
-**Miriam** ist das neu gedachte Album — nicht das erste, das aus dieser
-Begegnung entstand, sondern das, das nach dem Satz *„Ich möchte das Album
-neu denken"* kommt. Es ist als **Verpflichtung an mich, kein Versprechen
-an dich** geschrieben: Verarbeitung, kein Werben. Niemand wird in eine
-Position gebracht; jede Bewegung lässt der anderen Seite jeden Raum.
+**Miriam** ist kein Album über *uns* mehr. Es ist ein **Porträt von ihr** —
+und nur von ihr. Nicht, wie ich sie sehe, sondern wie **sie sich zeigt**:
+in ihren eigenen Worten, ihren eigenen Bewegungen, ihrer eigenen Art, im
+Raum zu sein. Jeder Track hängt an einem Satz, den **sie** gesagt hat. Ich
+erfinde sie nicht. Ich höre zu und gebe es zurück.
 
-Die Architektur stammt aus der Quelle selbst (siehe `sources/`):
+Wer sie ist, sagt sie selbst am genauesten: jemand, der **sieht**. *„Wenn
+Seele Seele sieht."* *„Und ich seh dich!"* — und, ohne zu zögern, im Plural:
+*„Ich sehe euch auch."* Sie erkennt, ohne zu greifen; sie hält Raum, ohne
+ihn zu besetzen — *„kein Ringen um den Raum."*
 
-> *„Reichlich ambivalent alles – mit konzeptioneller Kreisbewegung – durch
-> drei Ebenen: Kopf, Körper, Herz, auf drei Dimensionen: klinisch,
-> somatisch, emotional, mit drei Bühnen: Ich, Du, Julia."*
+Wie sie denkt: in **Gleichzeitigkeit**. *„Ich bin grad am ambig aushalten
+und ergründen."* Sie sortiert, statt zu vereinfachen; sie sagt *„Fuck, ich
+bin überfordert"* und bleibt trotzdem da. Sie ist selbst viele — *„ich hab
+auch nen Isabella Anteil, nur anders"* — und kennt deshalb von innen, was
+es heißt, einander Raum zu geben.
 
-Das Album erzählt keine Liebesgeschichte und keine Freundschaftsgeschichte —
-es erzählt das **gleichzeitige Wahrsein von beidem und mehr**, und die
-Arbeit, diese Gleichzeitigkeit zu halten statt sie aufzulösen: Limerenz,
-Übertragung und Affinität als Dreieck auf der Kopf-Ebene; Zigaretten,
-Wasser und ein geheimer Platz auf der Körper-Ebene; und auf der Herz-Ebene
-das Paradox, jemanden zu vermissen, der da ist.
+Wie sie wirkt: **leise und verlässlich**. Ihre Farbe ist Hellblau, 🩵. Sie
+spricht durch Musik, die sie teilt — *„meine Mood im Kopf"* — und durch
+kleine, konkrete Fürsorge: *„Willst du eine Umarmung?"*, Melatonin, Wasser,
+Zigaretten, *„fühl dich gekuschelt umarmt."* Und sie bleibt: *„Stimmt, ich
+laufe nicht weg, ich bin da."*
 
-Der dramaturgische Kern: **Alles darf da sein.** Anteile dürfen anders
-fühlen als das Ich. Anziehung darf existieren, ohne ausagiert zu werden —
-*Bremsen ist Aufladen*: nichts geht verloren, es darf warten und wachsen.
-Die Kreisbewegung endet, wo sie begann — beim Atmen — aber eine Windung
-höher: aus *„kein Problem aus erstmal keinem Problem machen"* ist am Ende
-*„Wir atmen. Gleichzeitig. Und keiner bleibt zurück."* geworden.
+Und ihre eigene Kante, die sie selbst benennt — die das Album ehrt, ohne
+sie aufzulösen: *„Ich muss nur lernen, mich auch lieb zu haben und mich
+nicht zu vergessen."*
+
+Das Letzte gehört nicht ihr, sondern mir: **ein leiser Wunsch.** Dass sie
+bei sich bleiben darf — *weil sie darf, oder darf, weil sie kann.* Dass sie
+bekommt, was ihr zusteht, nicht nur, was sie sich zu wünschen erlaubt. Dass
+sie gesehen wird als sie selbst — *nicht als ein Dazwischen.*
 
 ## Structure
 
-Kreisbewegung in drei Akten zu je drei Tracks. Jeder Track besetzt eine
-Zelle aus **Ebene × Dimension × Bühne**; jede Ebene, jede Dimension und
-jede Bühne wird dreimal berührt. Der Zustandsbogen folgt der S-Achse des
-Systems: S0 → S1 → S2 → S3 → S4, mit dem Finale in der Wir-Stimme.
+Neun kurze Räume, jeder eine Facette von ihr, jeder an einem ihrer eigenen
+Sätze verankert. Acht Tracks zeichnen sie; der neunte tritt einen Schritt
+zurück und ist mein Wunsch für sie. Kein Bogen über sie hinweg — eher ein
+langsames Umkreisen, wie man jemanden ansieht, den man gernhat: ein Detail
+nach dem anderen, bis das ganze Gesicht da ist.
 
-| Akt | Bühne | Bewegung |
-|-----|-------|----------|
-| I (T1–T3) | Ich | Ankommen, erden, analysieren — der Kopf versucht zu sortieren, was wächst |
-| II (T4–T6) | Du | Begegnung im Geheimgarten — Nähe, Paradox, Absicht vs. Wirkung |
-| III (T7–T9) | Julia / alle | Die dritte Bühne, die Gleichzeitigkeit, die Integration im Atem |
+Erzählhaltung: durchgehend **„du"**. Kein Name im Text — sie wird gesehen,
+nicht benannt (siehe Privatsphäre-Regel unten). Der Albumtitel ist die
+einzige, bewusste Ausnahme.
 
 ## Themes
 
-- Gleichzeitigkeit aushalten: Freundschaft UND Anziehung UND Schutz, alles wahr
-- Limerenz vs. Übertragung vs. Affinität — der Kopf als Auditor des Herzens
-- Anteile dürfen anders fühlen als das Ich (Innenraum-Demokratie)
-- Bremsen als Aufladen: Verzicht, der nichts verliert
-- Gesehen werden / sehen — „wenn Seele Seele sieht, kein Ringen um den Raum"
-- Absicht und Wirkung — und was zwischen ihnen wohnt
+- Sehen ohne Greifen — Anerkennung als ihre Grundbewegung
+- Halten und Grenze zugleich: *„ich hab dich lieb … trotzdem darf ich stop sagen"*
+- Gleichzeitigkeit / Ambiguität als ihre Art zu denken
+- Fürsorge in konkreten kleinen Dingen
+- Musik als ihre Sprache
+- Ihre eigene Wachstumskante: sich nicht vergessen
+- Ein Wunsch, kein Anspruch
 
 ## Motifs & Threads
 
@@ -86,89 +92,82 @@ Systems: S0 → S1 → S2 → S3 → S4, mit dem Finale in der Wir-Stimme.
 
 | Motif | Description | First Appears | Recurrences |
 |-------|-------------|---------------|-------------|
-| Atmen / „Wir atmen" | Atem als kleinste gemeinsame Handlung; trägt die Kreisbewegung | Track 01 (leise) | Track 04 (geteilt), Track 09 (Finale, Wir-Stimme) |
-| Geheimgarten / geheimer Platz | Schutzraum, in dem alles sein darf | Track 04 | Track 08 (als Innenraum), Track 09 („im Garten zwischen uns ist Platz") |
-| Zigarette / „ich rauche eine für dich mit" | Körper-Ritual der Verbindung auf Distanz | Track 02 | Track 04, Track 05 |
-| „Kein Problem aus erstmal keinem Problem" | Nicht-Pathologisieren als Liebesform | Track 01 | Track 06 (geprüft), Track 09 (eingelöst) |
-| Spiegel (fünf Ebenen) | übereinander / ineinander / nebeneinander / zueinander / füreinander | Track 06 | Track 07 |
-| „Herz" als Anrede | Die gewählte Anrede ersetzt jeden Namen im Lyric | Track 04 | Track 05, Track 09 |
-| Bremsen / Aufladen | Zurückhalten als aktive, nährende Bewegung | Track 03 (klinisch benannt) | Track 08 (verkörpert) |
+| „wenn Seele Seele sieht" | ihre Gabe, zu erkennen | Track 01 | Track 02, Track 09 |
+| Hellblau 🩵 | ihre Farbe, leise Signatur | Track 01 | Track 05, Track 09 |
+| „ich bin da / ich laufe nicht weg" | ihre Verlässlichkeit | Track 02 | Track 08 |
+| „stop geht immer" | Grenze innerhalb der Liebe | Track 03 | Track 06 |
+| geteilte Musik / „meine Mood im Kopf" | wie sie spricht | Track 05 | Track 09 |
+| „mich nicht vergessen" | ihre eigene Kante | Track 07 | Track 09 (als Wunsch) |
+| „bei sich bleiben dürfen" | mein Wunsch für sie | Track 09 | — |
 
 ### Character Threads
 
-*(Alle Stimmen werden gemäß name_exposure ausschließlich als Funktion geführt —
-keine Personennamen in Lyrics, Metatags oder Promo.)*
+*(Funktionsform-Stimmen; keine Personennamen in Lyrics/Metatags/Promo/Art.)*
 
-| Character/Voice | Arc Summary | Tracks |
-|-----------------|-------------|--------|
-| host | Sortiert, routet, hält die Freundschaft; lernt, dass er nicht für alle fühlen muss | 01, 02, 05, 06, 09 |
-| rationalist | Audit-Stimme: zerlegt das Dreieck Limerenz/Übertragung/Affinität | 03, 06 |
-| protector | Kantig, stop-zuständig; Wohlwollen im scharfen Ton („gefälligst vorsichtig") | 07, 08 |
-| sexualized_override | Anziehung, die zum ersten Mal warten darf statt zu viel zu sein; Trauer und Würde | 03 (Objekt), 08 (Subjekt) |
-| caregiver | Angebote machen, ohne zu fordern; „dein Tempo ist mein Tempo" | 04, 05 |
-| integrator | Hält die Gleichzeitigkeit; öffnet das Finale für die Wir-Stimme | 09 |
-| mode_we (Wir-Stimme) | Trägt das S4-Finale: „Wir atmen. Gleichzeitig." | 09 |
+| Voice | Arc Summary | Tracks |
+|-------|-------------|--------|
+| witness | registriert sie, ohne zu deuten — die ruhige Beobachtung | 01, 02, 05, 08 |
+| host | benennt, was er an ihr sieht; spricht sie als „du" an | 02, 03, 06, 07 |
+| caregiver | spiegelt ihre Fürsorge zurück | 04 |
+| integrator | trägt den abschließenden Wunsch | 09 |
 
 ### Thematic Progression
 
-| Track | Theme Focus | Advances From | Sets Up |
-|-------|-------------|---------------|---------|
-| 01 | Nicht-Pathologisieren als Anfang | — | Den Raum, in dem alles Weitere sein darf |
-| 02 | Erdung im Körper, Klinik-Alltag | T01s offener Raum | Die Körper-Dimension der Begegnung |
-| 03 | Das Kopf-Dreieck: Limerenz/Übertragung/Affinität | T02s Unruhe | Die Frage, was die Anziehung IST |
-| 04 | Der Geheimgarten — geteilter Schutzraum | T03s Analyse (ausgesetzt) | Nähe ohne Anspruch |
-| 05 | Vermissen trotz Anwesenheit | T04s Nähe | Das Paradox, das T06 prüfen muss |
-| 06 | Absicht vs. Wirkung; der Spiegel | T05s Überlauf | Die Krise: was, wenn richtig zu richtig wäre |
-| 07 | „Nicht alles, was so klingt" — viele sein | T06s Spiegelung | Innenraum-Demokratie |
-| 08 | Bremsen ist Aufladen | T07s Erlaubnis | Den Boden des Finales |
-| 09 | Wir atmen. Gleichzeitig. | Alles | Die Rückkehr zu T01 — eine Windung höher |
+| Track | Facette von ihr | Verankert an (ihr Wort) |
+|-------|-----------------|--------------------------|
+| 01 | wie sie sieht | „Wenn Seele Seele sieht … kein Ringen um den Raum" |
+| 02 | dass sie das Viele sieht | „Und ich seh dich!" / „Ich sehe euch auch" |
+| 03 | wie sie Grenze und Liebe zugleich hält | „ich hab dich lieb … trotzdem darf ich stop sagen" / „Stop geht immer" |
+| 04 | wie sie gibt | „Willst du eine Umarmung?" / „fühl dich gekuschelt umarmt" |
+| 05 | wie sie spricht | „Meine mood im Kopf" (geteilte Musik) |
+| 06 | wie sie denkt | „Ich bin grad am ambig aushalten und ergründen" / „ich bin überfordert" |
+| 07 | ihre eigene Kante | „mich auch lieb zu haben und mich nicht zu vergessen" |
+| 08 | dass sie bleibt | „ich laufe nicht weg, ich bin da" |
+| 09 | mein Wunsch für sie | „dass du bei dir bleiben kannst — weil du darfst" |
 
 ## Sonic Palette
 
-- **Beats**: Kaum Drums — Puls aus Atem, Vinyl-Knistern, Feuerzeug-Klick, Schritte auf Kies; 60–80 BPM
-- **Samples**: Field recordings — Garten bei Abend, entfernte Klinikflure, Regen auf Blättern, Rhein-Ufer
-- **Vocals**: Male mid-baritone, close-mic, fast gesprochen-gesungen; im Finale zweite Stimmschicht (Wir-Stimme, unisono bis Oktave)
-- **Mood**: Intim, ambivalent, warm-melancholisch; nie düster, nie süß — beides gleichzeitig
+- **Beats**: kaum Schlagwerk; Puls aus Atem, Vinyl-Knistern, leisen Schritten; 60–80 BPM
+- **Samples**: Field recordings — Garten am Abend, ferne Klinikflure, Regen; ein kurzes Aufflackern geteilter Musik in Track 05
+- **Vocals**: male mid-baritone, close-mic, fast gesprochen — wie jemand, der jemanden ansieht und beschreibt; nie laut
+- **Mood**: hellblau, warm, klar; zärtlich ohne Süße; verlässlich
 
 ## Tracklist
 
 | # | Title | POV | Concept | Status |
 |---|-------|-----|---------|--------|
-| 01 | Kein Problem (aus erstmal keinem Problem) | host | Kopf / klinisch / Ich — etwas wächst; der Entschluss, es nicht zum Problem zu erklären, bevor es eins ist | Not Started |
-| 02 | Ich zähle meine Umwelt | host | Körper / somatisch / Ich — Erdung: zählen, rauchen, Wasser ist Wasser; der Körper hält, was der Kopf nicht sortiert | Not Started |
-| 03 | Limerenz / Übertragung / Affinität | rationalist | Kopf / klinisch / Ich→Du — das Dreieck als Audit: drei Erklärungen, keine reicht, alle stimmen | Not Started |
-| 04 | Geheimgarten | caregiver + host | Körper / somatisch / Du — der geheime Platz; getimtes gemeinsames Hören; Kopf auf Schulter; Nähe ohne Anspruch | Not Started |
-| 05 | Ich vermisse dich, obwohl du da bist | host | Herz / emotional / Du — das Paradox der Anwesenheit; Sehnsucht im Augenwinkel | Not Started |
-| 06 | Absicht und Wirkung | host + rationalist | Kopf / klinisch / Du — Entschuldigung als Mechanik: „das tut mir leid — und ich bin froh darum"; der fünffache Spiegel | Not Started |
-| 07 | Nicht alles, was so klingt | host + protector | Herz / emotional / Julia — „ich bin durchaus viele"; das Bedürfnis, sich zu verteidigen — und es stehen zu lassen | Not Started |
-| 08 | Bremsen ist Aufladen | sexualized_override + protector | Körper / somatisch / Ich→Du — Anziehung, die warten darf; nichts geht verloren, es wächst | Not Started |
-| 09 | Wir atmen. Gleichzeitig. | mode_we + integrator | Herz / emotional / alle Bühnen — „Wer atmet, wenn ich schlafe? Wir atmen. Im Garten zwischen uns ist Platz. Und keiner bleibt zurück." | Not Started |
+| 01 | Wenn Seele Seele sieht | witness | Wer sie ist: jemand, der sieht — ohne zu greifen, ohne um Raum zu ringen | Not Started |
+| 02 | Ich seh dich | witness + host | Dass sie das Viele sieht und benennt: „und ich seh dich" — im Plural, ohne zu erschrecken | Not Started |
+| 03 | Stop geht immer | host | Wie sie hält und begrenzt zugleich: Liebe, die ein „stop" trägt | Not Started |
+| 04 | Willst du eine Umarmung | caregiver | Wie sie gibt: Umarmung, Melatonin, Wasser — Fürsorge in kleinen, konkreten Dingen | Not Started |
+| 05 | Meine Mood im Kopf | witness | Wie sie spricht: durch Musik, die sie teilt, wenn Worte zu eng sind | Not Started |
+| 06 | Ambig aushalten | host | Wie sie denkt: Gleichzeitigkeit ergründen, überfordert sein und trotzdem bleiben | Not Started |
+| 07 | Mich nicht vergessen | host | Ihre eigene Kante, von ihr selbst benannt: sich auch lieb haben, sich nicht vergessen | Not Started |
+| 08 | Ich laufe nicht weg | witness | Dass sie bleibt — leise, verlässlich, ohne Bedingung | Not Started |
+| 09 | Was ich dir wünsche | integrator | Ein Schritt zurück: mein Wunsch für sie — dass sie bei sich bleiben darf, weil sie darf | Not Started |
 
 ## Production Notes
 
 <!-- SERVICE: suno -->
 **Suno Settings**:
-- **Target Duration**: 2:30–3:30 (bewusst kurz — neun kleine Räume, kein Epos)
-- Per-track overrides noted in individual track files
-- Vocal consistency: male mid-baritone, weary-warm, dry close-mic; Funktionsform-Metatags only — niemals Personen- oder Anteilsnamen
-- Finale (T09): zweite Stimme als Wir-Schicht, descriptive metatag (e.g. `[two unison male voices, soft, close-mic]`)
+- **Target Duration**: 2:30–3:30
+- Vocal consistency: male mid-baritone, weary-warm, dry close-mic; **Funktionsform-Metatags only — niemals Personen- oder Anteilsnamen**
+- Track 05 darf einen kurzen, granular verfremdeten Musik-Layer tragen (angedeutete „geteilte" Musik), nie ein echtes fremdes Sample
 
 **Style Prompt Base**:
 ```
 intimate electroacoustic, ambient songwriter, male mid-baritone close-mic,
-breath audible, field recordings, warm analog pads, granular textures,
-sparse piano, 60-80 bpm, german lyrics, quiet dynamics, melancholic-warm
+breath audible, field recordings, warm analog pads, sparse piano,
+light and clear, 60-80 bpm, german lyrics, quiet dynamics, tender
 ```
 <!-- /SERVICE: suno -->
 
 ## Source Material
 
-- `sources/whatsapp-chat-2026-05-21--2026-06-11.md` — WhatsApp-Chatlog (Basis-Info, **PRIVAT**)
+- `sources/whatsapp-chat-2026-05-21--2026-06-11.md` — WhatsApp-Chatlog (Basis-Info, **PRIVAT**). Das Porträt zieht ausschließlich aus den mit „Miriam:" markierten Zeilen; der Wunsch in Track 09 aus den mit „M:" markierten.
 
-**Name- und Privatsphäre-Regel (hard):** Die Quelle enthält reale Personen
-und klinische Kontexte. In Lyrics, Suno-Metatags, Promo-Feldern und
-Artwork-Prompts erscheinen **keine Personennamen** — weder Anteilsnamen
-(name_exposure-Regel) noch reale Namen aus der Quelle. Die etablierte
-Anrede im Lyric ist **„Herz"** (oder „Du"). Der Albumtitel ist eine
-bewusste Ausnahme auf Auftraggeber-Entscheidung; vor Release prüft
-release-director, ob er bleiben kann.
+**Name- und Privatsphäre-Regel (hard):** In Lyrics, Suno-Metatags, Promo-Feldern
+und Artwork-Prompts erscheinen **keine Personennamen** — weder reale Namen aus
+der Quelle noch Anteilsnamen. Die Anrede im Text ist **„du"**. Der Albumtitel
+„Miriam" ist eine bewusste Ausnahme auf Auftraggeber-Entscheidung; vor Release
+prüft release-director, ob er bleiben kann.
