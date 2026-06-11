@@ -75,17 +75,16 @@ Nachricht ab. Ein Herz in Hellblau als Antwort.
 ### Style Box
 
 ```
-intimate electroacoustic chamber duet, male mid-baritone weary tense dry
-close-mic, female mezzo-alto ageless spacious plate reverb, repeating sparse
-piano figure, held pad, 74 bpm, german lyrics, suspense into quiet release,
-quiet dynamics, no drums
+Male mid-baritone weary tense dry close-mic, female mezzo-alto ageless
+spacious plate reverb. Intimate electroacoustic chamber duet, repeating
+sparse piano figure, held pad. 74 bpm, german lyrics, suspense into quiet
+release, quiet.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no triumphant ending
+no drums, no electric guitar, no autotune, no triumphant ending
 ```
 
 ### Lyrics Box
@@ -123,10 +122,10 @@ auf alles, was sich messen lässt.
 
 [Female vocal: mezzo-alto, ageless, warm, plate reverb]
 [Verse 4]
-Es kam ein Herz in Hellblau.
-Es kam: erzählt mir, wer ihr seid —
-als Frage, nicht als Liste.
-Und Zeit. Es kam vor allem Zeit.
+Es kam ein Herz in Hellblau,
+es kam: erzählt mir, wer ihr seid.
+Es kam: „bin grad am Ambig-Aushalten, am Ergründen" —
+und sie blieb. Es kam vor allem Zeit.
 
 [Duet, male mid-baritone + female mezzo-alto, quiet release]
 [Chorus]
@@ -138,7 +137,7 @@ Du schreibst: ich sehe euch. Auch.
 [Male vocal: mid-baritone, almost spoken, very quiet]
 [Bridge]
 Du bist ja selber mehr als eine —
-du kennst das Haus von innen, nur anders gebaut.
+„in mir wohnt auch so eine", sagst du. „Groß. Nur anders."
 
 [Female vocal: mezzo-alto, very quiet, long vowels]
 Und eine von uns blieb noch
@@ -178,8 +177,8 @@ Auf alles, was sich messen lässt
 
 Es kam ein Herz in Hellblau
 Es kam, erzählt mir, wer ihr seid
-Als Frage, nicht als Liste
-Und Zeit, es kam vor allem Zeit
+Es kam, bin grad am Ambig-Aushalten, am Ergründen
+Und sie blieb, es kam vor allem Zeit
 
 Ich bin durchaus viele
 Das Komma blieb stehn
@@ -187,7 +186,7 @@ Du hast nicht geblinzelt
 Du schreibst, ich sehe euch, auch
 
 Du bist ja selber mehr als eine
-Du kennst das Haus von innen, nur anders gebaut
+In mir wohnt auch so eine, sagst du, groß, nur anders
 Und eine von uns blieb noch
 Im Dunkeln stehn, ihr Lied kommt noch
 

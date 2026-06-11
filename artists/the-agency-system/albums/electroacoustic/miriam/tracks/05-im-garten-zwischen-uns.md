@@ -76,17 +76,16 @@ klingen. Hellblaue Dämmerung.
 ### Style Box
 
 ```
-intimate electroacoustic chamber duet, male mid-baritone weary dry close-mic,
-female warm soprano breathy intimate close-mic, evening garden field
-recording, sparse piano pulse, warm analog pad, vinyl crackle, 76 bpm, german
-lyrics, restless verse into warm chorus, quiet dynamics, no drums
+Male mid-baritone weary dry close-mic, female warm soprano breathy intimate
+close-mic. Intimate electroacoustic chamber duet, evening garden field
+recording, sparse piano pulse, warm analog pad. 76 bpm, german lyrics,
+restless verse into warm chorus, quiet.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no birdsong samples
+no drums, no electric guitar, no autotune, no birdsong samples
 ```
 
 ### Lyrics Box
@@ -122,7 +121,7 @@ ohne dass ihn wer entwertet.
 [Male vocal: mid-baritone, weary, calmer now, dry close-mic]
 [Verse 3]
 Du schickst mir kleine Dinge:
-ein Lied, ein Blau, ein „trink was, schlaf".
+ein Lied, Melatonin, ein „trink was. schlaf".
 Fürsorge ohne Inventur —
 nichts davon will was. Nichts davon —
 
@@ -147,8 +146,9 @@ Und keiner fällt, wenn er ihn braucht.
 
 [Duet, male + female, very quiet, fading into garden field recording]
 [Outro]
-Im Garten zwischen uns
-atmet alles, was wir sind —
+Im Garten zwischen uns ist Platz.
+Wir atmen. Gleichzeitig.
+Und keiner bleibt zurück.
 
 [End]
 ```
@@ -177,7 +177,7 @@ Hier fährt der Alarm herunter
 Ohne dass ihn wer entwertet
 
 Du schickst mir kleine Dinge
-Ein Lied, ein Blau, ein trink was, schlaf
+Ein Lied, Melatonin, ein trink was, schlaf
 Fürsorge ohne Inventur
 Nichts davon will was, nichts davon
 
@@ -194,8 +194,9 @@ Schwingt mit und wird nicht befragt
 Da steht ein Tisch, da steht ein Stop
 Und keiner fällt, wenn er ihn braucht
 
-Im Garten zwischen uns
-Atmet alles, was wir sind
+Im Garten zwischen uns ist Platz
+Wir atmen, gleichzeitig
+Und keiner bleibt zurück
 ```
 
 ## Production Notes

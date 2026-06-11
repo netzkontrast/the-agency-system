@@ -74,17 +74,16 @@ Vor und zurück auf einem Flurstück. Ein Stop-Schild, das wie eine Hand aussieh
 ### Style Box
 
 ```
-intimate electroacoustic duet, male low baritone chest-weighted clipped
-forward-mic, female alto microtonal sliding vibrato breath mid-line, pulsing
-sparse piano, deep pad, 74 bpm, german lyrics, restrained intensity, quiet
-dynamics with one tense bridge, no drums
+Male low baritone, chest-weighted, clipped, forward-mic; female alto,
+microtonal sliding vibrato, breath mid-line. Intimate electroacoustic duet,
+pulsing sparse piano, deep pad. 74 bpm, german lyrics, restrained intensity,
+quiet with one tense bridge.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no growl
+no drums, no electric guitar, no autotune, no growl
 ```
 
 ### Lyrics Box

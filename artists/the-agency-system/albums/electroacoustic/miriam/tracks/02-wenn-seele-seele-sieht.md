@@ -75,17 +75,16 @@ wird. Wasser und Ufer. Eine Stille wie ein zweiter Stuhl am Tisch.
 ### Style Box
 
 ```
-intimate electroacoustic chamber duet, male mid-baritone weary dry close-mic,
-female warm soprano breathy intimate close-mic, sparse piano, warm analog pad,
-vinyl crackle, 72 bpm, german lyrics, quiet dynamics, tender, much negative
-space, thinning arrangement at the end
+Male mid-baritone weary dry close-mic, female warm soprano breathy intimate
+close-mic, alternating duet. Intimate electroacoustic chamber duet, sparse
+piano, warm analog pad, vinyl crackle. 72 bpm, german lyrics, tender, quiet,
+thinning arrangement at the end.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no reverb wash
+no drums, no electric guitar, no autotune, no soaring vocals
 ```
 
 ### Lyrics Box
@@ -143,6 +142,8 @@ Du füllst die Pause nicht.
 [Male vocal: mid-baritone, almost spoken, very quiet, dry close-mic]
 Das ist das Neue: eine Stille,
 die nicht nach Rückzug riecht.
+Und als das Wort dann fiel, hast du
+nur „so treffend" geschrieben — als hättst du's längst gewusst.
 
 [Duet, male + female, very quiet, fading]
 [Outro]
@@ -190,6 +191,8 @@ Und wenn es still wird, bleibst du still mit
 Du füllst die Pause nicht
 Das ist das Neue, eine Stille
 Die nicht nach Rückzug riecht
+Und als das Wort dann fiel, hast du
+Nur so treffend geschrieben, als hättst du's längst gewusst
 
 Wenn Seele Seele sieht
 Bleibt sogar die Stille

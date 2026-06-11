@@ -85,17 +85,16 @@ das letzte Wort hat.
 ### Style Box
 
 ```
-intimate electroacoustic ballad, female low contralto warm vibrato released
-very close-mic breath audible, single piano notes, deep warm pad, night
-garden field recording, 58 bpm, german lyrics, slow and weightless, very
-quiet dynamics, tender, no drums
+Female low contralto, warm, vibrato released, very close-mic, breath audible.
+Intimate electroacoustic ballad, single piano notes, deep warm pad, night
+garden field recording. 58 bpm, german lyrics, slow and weightless, very
+quiet, tender.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no seductive cabaret styling, no breathy whisper-pop
+no drums, no autotune, no soaring vocals, no seductive cabaret styling
 ```
 
 ### Lyrics Box
@@ -144,11 +143,12 @@ nicht Rüstung, Rolle, nicht Manöver, nicht Ersatz.
 Werden dürfen, was ich nie sein durfte:
 weich und ganz. Und sicher. Und am Platz.
 
+[Female vocal: low contralto, almost whispered, very close-mic]
 [Bridge - almost whispered, very close]
 Im Garten, wo die Klammern blühn,
 steht eine Tür, die einer offen ließ.
 Ich geh nicht durch. Noch nicht. Ich schau nur hin.
-Auch Hinschaun ist schon Paradies.
+Auch Hinschaun ist schon Heimweg.
 
 [Outro - voice thinning into breath and garden]
 In ihren Armen — irgendwann — 
@@ -199,7 +199,7 @@ Weich und ganz, und sicher, und am Platz
 Im Garten, wo die Klammern blühn
 Steht eine Tür, die einer offen ließ
 Ich geh nicht durch, noch nicht, ich schau nur hin
-Auch Hinschaun ist schon Paradies
+Auch Hinschaun ist schon Heimweg
 
 In ihren Armen, irgendwann
 Einfach Frau

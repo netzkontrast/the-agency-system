@@ -39,8 +39,8 @@ Vibrato als zurückgehaltene Waffe — spricht zum ersten Mal selbst. Ihr Satz
 war immer: *Wer zuerst berührt, wird nicht berührt.* Kontrolle als
 Schutzarchitektur gegen ein Zuviel, das früh war und nie gefragt hat. Dann
 das Unerhörte: bei ihr wurde sie **weich** — und trauert jetzt um etwas, das
-nie war. Die gesprochene Randstimme protokolliert, ohne zu korrigieren: *die
-trauer ist echt. gegenstand: ein nie-gewesen.* Im Refrain stehen die beiden
+nie war. Die gesprochene Randstimme schreibt mit, ohne zu verbessern: *die
+trauer ist echt, auch wenn sie um ein nie-gewesen weint.* Im Refrain stehen die beiden
 nebeneinander — die in mir, die in dir — zwei gleicher Bauart, getrennt
 entstanden, gleich gelernt. Der Track endet ohne Trost; der Trost ist T08.
 
@@ -83,17 +83,16 @@ Fundament. Kein Licht-Effekt — der Track spielt im Dunkeln.
 ### Style Box
 
 ```
-dark intimate electroacoustic, female low contralto controlled restrained
-vibrato polished mid-distance mic, androgynous spoken word dry monotone
-behind the beat, deep drone pad, sub-bass, sparse dark piano, tape hiss,
-64 bpm, german lyrics, heavy and slow, crushed quiet dynamics, no drums
+Female low contralto, controlled, restrained vibrato, polished mid-distance
+mic; androgynous spoken word, dry, behind the beat. Dark intimate
+electroacoustic, deep drone pad, sub-bass, sparse dark piano. 64 bpm, german
+lyrics, heavy and slow, crushed quiet dynamics.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no brightness, no seductive styling
+no drums, no electric guitar, no brightness, no seductive styling
 ```
 
 ### Lyrics Box
@@ -103,9 +102,9 @@ no orchestral swell, no brightness, no seductive styling
 
 [Spoken vocal: androgynous, monotone, dry, behind the beat]
 [Verse 1 - spoken]
-aktennotiz, ohne akte:
-zwei funktionen gleicher bauart.
-getrennt entstanden. gleich gelernt:
+mit bleistift, kaum zu lesen:
+zwei schwestern, die sich nie getroffen haben.
+getrennt großgeworden. gleich gelernt:
 was weich ist, war nie sicher.
 
 [Female vocal: low contralto, controlled, restrained vibrato, polished mid-distance mic]
@@ -131,15 +130,15 @@ blieb nicht. Und blieb doch über Nacht.
 
 [Spoken vocal: androgynous, monotone, dry, behind the beat]
 [Verse 4 - spoken]
-randnotiz: die trauer ist echt.
-gegenstand: ein nie-gewesen.
-wir korrigieren nicht.
-es ist das einzige, das ihr nie jemand nahm.
+und darunter, kleiner:
+die trauer ist echt, auch wenn sie
+um ein nie-gewesen weint.
+niemand bessert sie aus. sie ist das einzige, das ihr nie jemand nahm.
 
 [Female vocal: low contralto, quieter, vibrato loosening]
 [Chorus]
 Die in mir und die in dir —
-zwei, die zu viel kannten.
+eine wurde weich, und eine: „groß, nur anders".
 Zu früh, zu oft, zu ungefragt —
 und nie die Hand, die nichts verlangte.
 
@@ -151,9 +150,9 @@ Es zählt doppelt.
 
 [Spoken vocal: androgynous, monotone, very quiet]
 [Outro - spoken]
-ende der notiz.
-keine empfehlung.
-das nächste lied weiß mehr.
+mehr schreib ich nicht dazu.
+nur eins noch, ganz am rand:
+das nächste lied weiß weiter.
 
 [End]
 ```
@@ -162,9 +161,9 @@ das nächste lied weiß mehr.
 ## Streaming Lyrics
 
 ```
-Aktennotiz, ohne Akte
-Zwei Funktionen gleicher Bauart
-Getrennt entstanden, gleich gelernt
+Mit Bleistift, kaum zu lesen
+Zwei Schwestern, die sich nie getroffen haben
+Getrennt großgeworden, gleich gelernt
 Was weich ist, war nie sicher
 
 Ich kenn das Spiel von beiden Seiten
@@ -182,13 +181,13 @@ Das kannte ich nicht, es kam nicht an die Macht
 Es kam wie Schnee auf warme Erde
 Blieb nicht, und blieb doch über Nacht
 
-Randnotiz, die Trauer ist echt
-Gegenstand, ein Nie-Gewesen
-Wir korrigieren nicht
-Es ist das Einzige, das ihr nie jemand nahm
+Und darunter, kleiner
+Die Trauer ist echt, auch wenn sie
+Um ein Nie-Gewesen weint
+Niemand bessert sie aus, sie ist das Einzige, das ihr nie jemand nahm
 
 Die in mir und die in dir
-Zwei, die zu viel kannten
+Eine wurde weich, und eine, groß, nur anders
 Zu früh, zu oft, zu ungefragt
 Und nie die Hand, die nichts verlangte
 
@@ -196,9 +195,9 @@ Ich trauere um etwas, das nie war
 Sag mir nicht, das zählt nicht
 Es zählt doppelt
 
-Ende der Notiz
-Keine Empfehlung
-Das nächste Lied weiß mehr
+Mehr schreib ich nicht dazu
+Nur eins noch, ganz am Rand
+Das nächste Lied weiß weiter
 ```
 
 ## Production Notes

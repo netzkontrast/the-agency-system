@@ -84,7 +84,7 @@ S0     │   warm, öffnend  S1→S2 │      S3 Tiefe → S3→S4 Heilen       
 
 | Motif | Bedeutung | Erst | Wieder |
 |-------|-----------|------|--------|
-| Atem / *„wir atmen"* | kleinste gemeinsame Handlung | 02 | 08, 12, 13 |
+| *„Wir atmen. Gleichzeitig. Und keiner bleibt zurück"* | ihr zitiertes Lied, wörtlich | 05 | 12 |
 | Hellblau 🩵 | ihre Farbe / Seele-zu-Seele | 03 | 12 |
 | Geheimgarten | Schutzraum, in dem alles sein darf | 05 | 08, 13 |
 | *„stop geht immer"* | Grenze in der Liebe | 04 | 08, 09 |

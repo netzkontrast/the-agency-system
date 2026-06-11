@@ -75,17 +75,16 @@ quer zeigt. Sehnsucht als möbliertes Zimmer, nicht als Loch im Boden.
 ### Style Box
 
 ```
-intimate electroacoustic chamber duet, male mid-baritone weary dry close-mic,
-female alto microtonal sliding vibrato breath mid-line, sparse piano, warm
-analog pad, vinyl crackle, 68 bpm, german lyrics, tender melancholy without
-heaviness, quiet dynamics, no drums
+Male mid-baritone weary dry close-mic, female alto microtonal sliding
+vibrato breath mid-line. Intimate electroacoustic chamber duet, sparse piano,
+warm analog pad, vinyl crackle. 68 bpm, german lyrics, tender melancholy
+without heaviness, quiet.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no melodrama
+no drums, no electric guitar, no autotune, no melodrama
 ```
 
 ### Lyrics Box
@@ -118,7 +117,7 @@ Und Sehnsucht wird ein Ort.
 [Verse 3]
 Ich kannte Sehnsucht nur als Vorwurf —
 an mich, an dich, an irgendwen.
-Jetzt sitzt sie hier und trinkt mit uns
+Jetzt sitzt sie hier und raucht mit uns
 und muss nicht mehr nach Hause gehn.
 
 [Female vocal: alto, microtonal, softer now, breath mid-line]
@@ -169,7 +168,7 @@ Und Sehnsucht wird ein Ort
 
 Ich kannte Sehnsucht nur als Vorwurf
 An mich, an dich, an irgendwen
-Jetzt sitzt sie hier und trinkt mit uns
+Jetzt sitzt sie hier und raucht mit uns
 Und muss nicht mehr nach Hause gehn
 
 Vielleicht ist das ihr Geheimnis

@@ -81,18 +81,16 @@ nach dem dunkelsten Track: Kintsugi, nicht Sonnenaufgang.
 ### Style Box
 
 ```
-intimate electroacoustic, female low contralto restrained opening into warmth,
-female warm soprano breathy intimate close-mic, male mid-baritone quiet entry
-at the end, drone dissolving into warm analog pads, sparse piano returning,
-62 to 66 bpm, german lyrics, dark opening into gentle clarity, quiet dynamics,
-no drums
+Female low contralto opening into warmth, female warm soprano breathy
+intimate close-mic, male mid-baritone quiet entry at the end. Intimate
+electroacoustic, drone dissolving into warm analog pads, sparse piano
+returning. 62 to 66 bpm, german lyrics, dark opening into gentle clarity.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no gospel choir, no uplifting key change
+no drums, no electric guitar, no gospel choir, no uplifting key change
 ```
 
 ### Lyrics Box
@@ -120,10 +118,8 @@ Wir heilen miteinander —
 keine heilt die andre leer.
 Bremsen ist Aufladen:
 nichts geht verloren. Nicht mehr.
-Was zu viel war, darf jetzt warten,
-und Warten heißt: es wächst.
-Zwei, die zu viel kannten, lernen —
-weich ist nicht zu viel. Weich trägt.
+Was zu viel war, darf jetzt warten —
+und weich ist nicht zu viel. Weich trägt.
 
 [Female vocal: low contralto, warmer now, vibrato free]
 [Verse 3]
@@ -134,8 +130,8 @@ Ich kann auch bleiben. Einfach nur.
 
 [Female vocal: warm soprano, breathy edges, intimate close-mic]
 [Verse 4]
-Und wenn du weich wirst, fang ich nichts —
-ich lass dich weich sein, das genügt.
+Und bremst du, um nicht auseinanderzubrechen,
+dann bremsen wir mit dir — im gleichen Takt.
 Gesehen werden ohne Scham:
 schau, niemand hier, der etwas wiegt.
 
@@ -150,8 +146,8 @@ nichts geht verloren. Nicht mehr.
 [Bridge]
 Und wir zwei drüberhalb — wir flirten wie in Klammern:
 es macht nichts kaputt, es will nichts, es lacht nur leis.
-Was zwischen uns wächst, hat keine Eile —
-es hat ja dich. Es hat ja Zeit.
+„Du bist so viel mehr als nur ein Rausch" — ich hab's dir geschrieben.
+Drum hat es keine Eile. Es hat ja dich. Es hat ja Zeit.
 
 [Trio, two female voices + male mid-baritone, very quiet, fading]
 [Outro]
@@ -180,17 +176,15 @@ Keine heilt die andre leer
 Bremsen ist Aufladen
 Nichts geht verloren, nicht mehr
 Was zu viel war, darf jetzt warten
-Und Warten heißt, es wächst
-Zwei, die zu viel kannten, lernen
-Weich ist nicht zu viel, weich trägt
+Und weich ist nicht zu viel, weich trägt
 
 Im Garten kann es warten
 Da steht ein Stop, der bleibt, kein Riegel und kein Schwur
 Ich muss nicht nehmen, eh man nimmt
 Ich kann auch bleiben, einfach nur
 
-Und wenn du weich wirst, fang ich nichts
-Ich lass dich weich sein, das genügt
+Und bremst du, um nicht auseinanderzubrechen
+Dann bremsen wir mit dir, im gleichen Takt
 Gesehen werden ohne Scham
 Schau, niemand hier, der etwas wiegt
 
@@ -201,8 +195,8 @@ Nichts geht verloren, nicht mehr
 
 Und wir zwei drüberhalb, wir flirten wie in Klammern
 Es macht nichts kaputt, es will nichts, es lacht nur leis
-Was zwischen uns wächst, hat keine Eile
-Es hat ja dich, es hat ja Zeit
+Du bist so viel mehr als nur ein Rausch, ich hab's dir geschrieben
+Drum hat es keine Eile, es hat ja dich, es hat ja Zeit
 
 Heilen, miteinander
 Und keiner geht dabei verloren

@@ -86,18 +86,16 @@ Hellblau nur als Ahnung unter der Tür — die Farbe gehört den späteren Track
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-intimate electroacoustic, ambient songwriter, male mid-baritone, weary,
-slightly under-articulated, dry close-mic, breath audible, sparse piano,
-warm analog pad, vinyl crackle, room tone, 60 bpm, german lyrics,
-quiet dynamics, much negative space, understated
+Male mid-baritone, weary, slightly under-articulated, dry close-mic, breath
+audible. Intimate electroacoustic, ambient songwriter, sparse piano, warm
+analog pad, vinyl crackle. 60 bpm, german lyrics, quiet, much negative space.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno:*
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no reverb wash, no orchestral swell
+no drums, no electric guitar, no autotune, no soaring vocals
 ```
 
 ### Lyrics Box
@@ -152,6 +150,7 @@ Dass es bleiben darf, wie es noch nicht —
 
 [Outro - piano thins out, breath, room tone]
 Es ist halb drei.
+Kein Problem.
 Ich lösch das Licht
 und lass die Tür —
 
@@ -200,6 +199,7 @@ Dass nichts weg muss, dass nichts werden muss
 Dass es bleiben darf, wie es noch nicht
 
 Es ist halb drei
+Kein Problem
 Ich lösch das Licht
 Und lass die Tür
 ```

@@ -78,17 +78,16 @@ Hellblau, unterstrichen wie ein Merksatz im eigenen Heft.
 ### Style Box
 
 ```
-intimate electroacoustic, female warm soprano breathy lullaby phrasing
-intimate close-mic soft room reverb, androgynous spoken word dry monotone
-behind the beat, sparse piano, soft pad, 64 bpm, german lyrics, tender,
-quiet dynamics, no drums
+Female warm soprano, breathy, lullaby phrasing, intimate close-mic, soft
+room reverb; androgynous spoken word, dry, behind the beat. Intimate
+electroacoustic, sparse piano, soft pad. 64 bpm, german lyrics, tender,
+quiet.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no preachy tone
+no drums, no electric guitar, no soaring vocals, no preachy tone
 ```
 
 ### Lyrics Box
@@ -105,10 +104,10 @@ in denen dich selbst keiner hält. Wo bist du drin?
 
 [Spoken vocal: androgynous, monotone, dry, behind the beat]
 [Verse 2 - spoken]
-randvermerk: sie vergisst sich
-im durchschnitt früher als andere.
-kein befund. nur ein muster.
-wir erinnern: ohne auftrag. als echo nur.
+mit bleistift, an den rand:
+sie vergisst sich meistens früher als die andern.
+das ist kein fehler in ihr —
+nur eine stelle, die noch weh tut. wir erinnern leise. als echo nur.
 
 [Female vocal: warm soprano, breathy, intimate close-mic]
 [Chorus]
@@ -118,9 +117,8 @@ Du hast es selbst gesagt —
 wir schreiben's nur noch mit.
 Hellblau, unterstrichen,
 in deiner eigenen Schrift:
+Du zählst — nicht nur, wenn jemand dich grad braucht.
 Vergiss dich nicht.
-Du zählst. Auch wenn grad keiner zählt — du zählst. Du. Nicht
-nur für wen.
 
 [Female vocal: warm soprano, breathy edges, intimate close-mic]
 [Verse 3]
@@ -131,10 +129,10 @@ die dir Wasser hinstellt, ohne dass sie fragt.
 
 [Spoken vocal: androgynous, monotone, dry, very quiet]
 [Verse 4 - spoken]
-nachtrag: niemand hier will sie reparieren.
+und noch eins, ganz unten:
+niemand hier will sie reparieren.
 sie ist nicht kaputt.
-sie ist nur dran. zur abwechslung:
-sie ist dran.
+sie ist nur dran. zur abwechslung: sie ist dran.
 
 [Female vocal: warm soprano, breathy, intimate close-mic]
 [Chorus]
@@ -160,10 +158,10 @@ Du stellst auch Fremden Wasser hin
 Du hältst die Welt zu Stunden
 In denen dich selbst keiner hält, wo bist du drin
 
-Randvermerk, sie vergisst sich
-Im Durchschnitt früher als andere
-Kein Befund, nur ein Muster
-Wir erinnern, ohne Auftrag, als Echo nur
+Mit Bleistift, an den Rand
+Sie vergisst sich meistens früher als die andern
+Das ist kein Fehler in ihr
+Nur eine Stelle, die noch weh tut, wir erinnern leise, als Echo nur
 
 Vergiss dich nicht
 Hab dich auch lieb
@@ -171,19 +169,18 @@ Du hast es selbst gesagt
 Wir schreiben's nur noch mit
 Hellblau, unterstrichen
 In deiner eigenen Schrift
+Du zählst, nicht nur, wenn jemand dich grad braucht
 Vergiss dich nicht
-Du zählst, auch wenn grad keiner zählt, du zählst, du, nicht
-Nur für wen
 
 Es gibt auch Nächte, da musst du dich retten
 Du sagst das leise, wie man Wetter sagt
 Ich wünsch dir eine Hand am Morgen
 Die dir Wasser hinstellt, ohne dass sie fragt
 
-Nachtrag, niemand hier will sie reparieren
+Und noch eins, ganz unten
+Niemand hier will sie reparieren
 Sie ist nicht kaputt
-Sie ist nur dran, zur Abwechslung
-Sie ist dran
+Sie ist nur dran, zur Abwechslung, sie ist dran
 
 Vergiss dich nicht
 Hab dich auch lieb

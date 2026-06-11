@@ -35,10 +35,10 @@ sheet_music:
 ## Concept
 
 Der leiseste Track der ersten Hälfte — S1-Latenz als Schwebezustand, nicht als
-Krise. Die beobachtende Stimme protokolliert in Fußnoten (gesprochen, hinter
-dem Beat), was zwischen den beiden Systemen technisch passiert: ein Kanal,
-kaum Rauschen, Musik als zweite Muttersprache. Die integrierende Stimme singt
-darüber das, was sich nicht protokollieren lässt: die hellblaue Stunde, das
+Krise. Die beobachtende Stimme schreibt mit Bleistift an den Rand (gesprochen,
+hinter dem Beat), was zwischen den beiden leise trägt: ein Faden, kaum
+Rauschen, Musik als zweite Muttersprache. Die integrierende Stimme singt
+darüber das, was sich nicht notieren lässt: die hellblaue Stunde, das
 Zwischen, das trägt. Keine der beiden Stimmen drängt — der Track hat kein Ziel,
 nur eine Frequenz.
 
@@ -60,7 +60,7 @@ nur eine Frequenz.
 ## Mood & Imagery
 
 Nacht, zwei Wohnungen, dieselbe Playlist versetzt um Sekunden. Hellblau als
-Lichtton, nicht als Farbe. Ein Kanal, der offen bleibt, ohne dass jemand sendet.
+Lichtton, nicht als Farbe. Ein Faden, der gespannt bleibt, ohne dass jemand zieht.
 
 ## Musical Direction
 
@@ -74,17 +74,16 @@ Lichtton, nicht als Farbe. Ein Kanal, der offen bleibt, ohne dass jemand sendet.
 ### Style Box
 
 ```
-ambient electroacoustic, female mezzo-alto ageless long vowels plate reverb,
-androgynous spoken word dry slight delay behind the beat, sparse single piano
-notes, tape hiss, distant field recording, 62 bpm, german lyrics, very quiet,
-floating, low contrast dynamics
+Female mezzo-alto, ageless, long vowels, plate reverb; androgynous spoken
+word, dry, behind the beat. Ambient electroacoustic, sparse single piano
+notes, tape hiss, distant field recording. 62 bpm, german lyrics, very quiet,
+floating.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no bright synths
+no drums, no electric guitar, no soaring vocals, no bright synths
 ```
 
 ### Lyrics Box
@@ -94,10 +93,10 @@ no orchestral swell, no bright synths
 
 [Spoken vocal: androgynous, monotone, dry, slight delay, behind the beat]
 [Verse 1 - spoken]
-zu protokoll: zwei systeme, ein kanal.
-keine anomalie. bemerkenswert ist nur,
-wie wenig rauschen bleibt,
-wenn niemand etwas will.
+mit bleistift, an den rand geschrieben:
+zwei leben, und dazwischen nur ein faden.
+er hält. und es ist still darauf —
+so still wird es nur, wenn keiner etwas will.
 
 [Female vocal: mezzo-alto, ageless, spacious long vowels, plate reverb, slow legato]
 [Chorus]
@@ -112,10 +111,10 @@ ein Licht an der Wand.
 
 [Spoken vocal: androgynous, monotone, dry, slight delay, behind the beat]
 [Verse 2 - spoken]
-randnotiz: sie schickt ein lied statt eines satzes.
-betreff: die mood im kopf.
-wir registrieren: musik
-als zweite muttersprache. übersetzung unnötig.
+und wieder, kleiner, an den rand:
+sie schickt ein lied statt eines satzes.
+„meine mood im kopf", schreibt sie dazu.
+musik ist ihre zweite muttersprache. keiner muss übersetzen.
 
 [Female vocal: mezzo-alto, ageless, spacious long vowels, plate reverb, slow legato]
 [Verse 3]
@@ -137,9 +136,10 @@ ein Licht an der Wand.
 
 [Spoken vocal: androgynous, monotone, very quiet, behind the beat]
 [Outro - spoken]
-ende des protokolls.
-der kanal bleibt offen.
-niemand muss senden.
+mehr steht da nicht.
+der faden bleibt gespannt,
+und keiner zieht daran.
+das ist alles. das ist viel.
 
 [End]
 ```
@@ -148,10 +148,10 @@ niemand muss senden.
 ## Streaming Lyrics
 
 ```
-Zu Protokoll, zwei Systeme, ein Kanal
-Keine Anomalie, bemerkenswert ist nur
-Wie wenig Rauschen bleibt
-Wenn niemand etwas will
+Mit Bleistift, an den Rand geschrieben
+Zwei Leben, und dazwischen nur ein Faden
+Er hält, und es ist still darauf
+So still wird es nur, wenn keiner etwas will
 
 Von Seele zu Seele
 So nennst du den Weg
@@ -162,10 +162,10 @@ Hellblau das Band
 Zwei Häuser im Nebel
 Ein Licht an der Wand
 
-Randnotiz, sie schickt ein Lied statt eines Satzes
-Betreff, die Mood im Kopf
-Wir registrieren, Musik
-Als zweite Muttersprache, Übersetzung unnötig
+Und wieder, kleiner, an den Rand
+Sie schickt ein Lied statt eines Satzes
+Meine Mood im Kopf, schreibt sie dazu
+Musik ist ihre zweite Muttersprache, keiner muss übersetzen
 
 Wir wohnen im Zwischen
 Und das Zwischen trägt
@@ -181,9 +181,10 @@ Hellblau das Band
 Zwei Häuser im Nebel
 Ein Licht an der Wand
 
-Ende des Protokolls
-Der Kanal bleibt offen
-Niemand muss senden
+Mehr steht da nicht
+Der Faden bleibt gespannt
+Und keiner zieht daran
+Das ist alles, das ist viel
 ```
 
 ## Production Notes

@@ -77,17 +77,16 @@ hätte nur kontrolliert. Zwei Sätze nebeneinander wie zwei Hände.
 ### Style Box
 
 ```
-intimate electroacoustic, male clear tenor precise no vibrato thin reverb,
-male low baritone clipped forward-mic, female warm soprano breathy intimate
-close-mic, precise sparse piano, restrained pad, 70 bpm, german lyrics,
-clear and calm, quiet dynamics, no drums
+Male clear tenor precise no vibrato, male low baritone clipped forward-mic,
+female warm soprano breathy intimate close-mic. Intimate electroacoustic,
+precise sparse piano, restrained pad. 70 bpm, german lyrics, clear and calm,
+quiet.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
-no orchestral swell, no aggression
+no drums, no electric guitar, no autotune, no aggression
 ```
 
 ### Lyrics Box
@@ -122,10 +121,10 @@ in beiden Händen. Ohne Stufen.
 
 [Male vocal: clear tenor, precise, micro-crack at line ends]
 [Verse 3]
-Ich ordne Spalten: wer, wem, wann,
-Variablen für Gewicht und Grund —
+Ich ordne Listen: wer, wem, wann,
+ich wieg die Gründe, wieg das Gewicht —
 und in der letzten Zeile steht
-kein Schluss. Da steht nur: gesund. Es heilt. Es —
+kein Schluss. Da steht nur: es heilt. Mehr weiß ich nicht.
 
 [Male vocal: chest-weighted low baritone, clipped, quieter]
 [Verse 4]
@@ -172,10 +171,10 @@ Keiner muss hier widerrufen
 Wir tragen, was geschehen ist
 In beiden Händen, ohne Stufen
 
-Ich ordne Spalten, wer, wem, wann
-Variablen für Gewicht und Grund
+Ich ordne Listen, wer, wem, wann
+Ich wieg die Gründe, wieg das Gewicht
 Und in der letzten Zeile steht
-Kein Schluss, da steht nur, gesund, es heilt, es
+Kein Schluss, da steht nur, es heilt, mehr weiß ich nicht
 
 Bericht von hier, kein Feind
 Kein Riss im Zaun, nur Tau
@@ -194,7 +193,7 @@ Und keiner rechnet nach
 ## Production Notes
 
 - Die drei Stimmen strikt nach Fingerprint trennen: Tenor präzise/kalt mit Mikro-Brüchen an Zeilenenden, Bariton knapp/warm-verdeckt, Sopran trägt das Paradox
-- Der Tenor darf seinen „Beweis" nie zu Ende führen — der Bruch („Der Beweis — bricht", „Es heilt. Es —") ist der Charakter
+- Der Tenor darf seinen „Beweis" nie zu Ende führen — der Bruch („Der Beweis — bricht", „Mehr weiß ich nicht") ist der Charakter
 - Chorus nicht anschwellen lassen; die Größe liegt im Nebeneinander der Sätze
 
 ## Pronunciation Notes

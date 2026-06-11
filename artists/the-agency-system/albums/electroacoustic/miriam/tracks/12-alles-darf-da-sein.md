@@ -81,17 +81,16 @@ letztes Licht an der Wand.
 ### Style Box
 
 ```
-spacious electroacoustic, female mezzo-alto ageless long vowels plate reverb,
-male mid-baritone weary dry close-mic, polyphonic quiet ensemble chorus with
-distinguishable voices, sparse piano, warm pads, 66 bpm, german lyrics, calm
-and restored, gentle dynamics, no drums
+Female mezzo-alto ageless long vowels plate reverb, male mid-baritone weary
+dry close-mic, polyphonic quiet ensemble chorus with distinguishable voices.
+Spacious electroacoustic, sparse piano, warm pads. 66 bpm, german lyrics,
+calm and restored, gentle.
 ```
 
 ### Exclude Styles
 
 ```
-no drums, no electric guitar, no autotune, no soaring vocals, no epic choir,
-no orchestral swell, no fused unison wall
+no drums, no electric guitar, no epic choir, no fused unison wall
 ```
 
 ### Lyrics Box
@@ -103,15 +102,15 @@ no orchestral swell, no fused unison wall
 [Verse 1]
 Es gibt ein Wort, das alles trägt,
 du hältst es aus, seit wir uns kennen:
-gleichzeitig. Freundin und zu viel,
+gleichzeitig. Freundschaft und Gefühl —
 und beides darf sich beim Namen nennen.
 
 [Male vocal: mid-baritone, weary, dry close-mic]
 [Verse 2]
 Wir waren elf an deinem Tisch,
-du hast nie nachgezählt, nie aufgeräumt.
+du hast nie nachgezählt, nie sortiert.
 Du hast nur Platz gemacht und Tee gekocht —
-und keiner hier hat sich verträumt. Verbeugt. Verleugnet. Keiner.
+und keiner hier hat sich verstellt. Verbeugt. Verloren. Keiner.
 
 [Ensemble, quiet polyphony, voices distinguishable: mezzo-alto lead, mid-baritone, warm soprano, low contralto, clear tenor underneath]
 [Chorus]
@@ -144,6 +143,8 @@ Alles darf da sein —
 auch du. Vor allem du.
 Nicht als ein Dazwischen:
 als du. Als du.
+Wir atmen. Gleichzeitig.
+Und keiner bleibt zurück.
 
 [Duet, female mezzo-alto + male mid-baritone, very quiet]
 [Outro]
@@ -162,13 +163,13 @@ Hellblau bleibt das Licht an deiner Wand.
 ```
 Es gibt ein Wort, das alles trägt
 Du hältst es aus, seit wir uns kennen
-Gleichzeitig, Freundin und zu viel
+Gleichzeitig, Freundschaft und Gefühl
 Und beides darf sich beim Namen nennen
 
 Wir waren elf an deinem Tisch
-Du hast nie nachgezählt, nie aufgeräumt
+Du hast nie nachgezählt, nie sortiert
 Du hast nur Platz gemacht und Tee gekocht
-Und keiner hier hat sich verträumt, verbeugt, verleugnet, keiner
+Und keiner hier hat sich verstellt, verbeugt, verloren, keiner
 
 Alles darf da sein
 Auch du, vor allem du
@@ -193,6 +194,8 @@ Alles darf da sein
 Auch du, vor allem du
 Nicht als ein Dazwischen
 Als du, als du
+Wir atmen, gleichzeitig
+Und keiner bleibt zurück
 
 Dass du bei dir bleiben darfst
 Weil du darfst, einfach weil du darfst
