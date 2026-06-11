@@ -1,0 +1,51 @@
+# agency music — production config (auto-generated default, Spec 117).
+# Bind a project by editing `artist.name` + `paths.content_root`, then run
+# any music verb. Mirrors the bitwize-music `~/.bitwize-music/config.yaml` shape.
+artist:
+  name: "the-agency-system"
+
+paths:
+  content_root: "/home/user/the-agency-system"
+  # audio_root / documents_root / overrides / ideas_file default under content_root
+
+db:
+  backend: sqlite
+  path: ".agency/music.db"
+
+generation:
+  additional_genres: []
+
+sheet_music:
+  enabled: true
+  page_size: "letter"
+
+# Hard privacy guard (album "Miriam", sources/): real-person + alter names
+# that must never reach lyrics, Suno metatags, promo fields, or art prompts.
+# The album TITLE "Miriam" is a deliberate owner exception (see album README).
+name_exposure:
+  blocklist:
+    - Miriam
+    - Julia
+    - Martin
+    - Yannik
+    - Erika
+    - Filiz
+    - Gülay
+    - Ulfat
+    - Anja
+    - Krause
+    - Michael
+    - Isabella
+    - Alexander
+    - Shadow
+    - Kael
+    - Lex
+    - Alex
+    - Rhys
+    - Selene
+    - Nyx
+    - Kiko
+    - Lia
+    - Isabelle
+    - Moros
+    - Argus
