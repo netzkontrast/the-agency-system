@@ -1,8 +1,8 @@
 ---
 title: "Miriam"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: ["electroacoustic", "ambient-songwriter"]
-tags: ["portrait", "character-study", "begegnung", "deutsch"]
+genres: ["electroacoustic", "ambient-songwriter", "chamber-duet"]
+tags: ["concept-album", "did-system", "two-voices", "trauma-healing", "pre-publication-gate", "the-agency-system", "deutsch"]
 explicit: false
 streaming:
   soundcloud: ""    # Fill in when released
@@ -16,7 +16,7 @@ sheet_music:
 
 # Miriam
 
-> *„Wenn Seele Seele sieht ist so treffend."* — sie
+> *„Von Seele zu Seele."* — sie · *„Als Verpflichtung an mich, kein Versprechen an dich."* — er
 
 ## Album Details
 
@@ -24,150 +24,104 @@ sheet_music:
 |-----------|--------|
 | **Artist** | [the-agency-system](../../../README.md) |
 | **Album** | Miriam |
-| **Genre** | [electroacoustic](/genres/electroacoustic/README.md) / Ambient-Songwriter |
-| **Tracks** | 9 |
+| **Genre** | [electroacoustic](/genres/electroacoustic/README.md) / Ambient-Songwriter / Chamber-Duett |
+| **Tracks** | 13 |
 | **Status** | Concept |
-| **Explicit** | No |
-| **Concept** | Ein Porträt von ihr — gebaut nur aus dem, was sie selbst sagt: wie sie sieht, wie sie hält, wie sie denkt, wie sie wirkt. Und am Ende ein wenig von dem, was ich ihr wünsche. |
+| **Explicit** | No (Trauma berührt, nicht ausgestellt) |
+| **Publication Gate** | Pre-Publication-Gate (aus PR #179) — sie hört zuerst, Veto pro Track / Album, Widerruf jederzeit |
+| **Concept** | Ein Album für sie, über sie — und über die beiden Isabellas, die miteinander heilen wollen. Eine Stimme allein, elf im Duett über sie, eine letzte als Sehnsucht. |
 
-## Concept
+## Idee
 
-**Miriam** ist kein Album über *uns* mehr. Es ist ein **Porträt von ihr** —
-und nur von ihr. Nicht, wie ich sie sehe, sondern wie **sie sich zeigt**:
-in ihren eigenen Worten, ihren eigenen Bewegungen, ihrer eigenen Art, im
-Raum zu sein. Jeder Track hängt an einem Satz, den **sie** gesagt hat. Ich
-erfinde sie nicht. Ich höre zu und gebe es zurück.
+Ein Album **für sie, über sie**, gebaut aus dem, was man aus dem Chat liest
+(Quelle + Tiefen-Reflexion: siehe [`REFLECTION.md`](REFLECTION.md)). Die Form
+folgt der Reflexion:
 
-Wer sie ist, sagt sie selbst am genauesten: jemand, der **sieht**. *„Wenn
-Seele Seele sieht."* *„Und ich seh dich!"* — und, ohne zu zögern, im Plural:
-*„Ich sehe euch auch."* Sie erkennt, ohne zu greifen; sie hält Raum, ohne
-ihn zu besetzen — *„kein Ringen um den Raum."*
+- **Song 1 — nur ich.** Eine einzelne männliche Stimme an der Schwelle, bevor
+  das Duett beginnt. Der ehrliche „ich", der sich um Kopf und Kragen redet und
+  trotzdam den Boden legt: *kein Problem aus erstmal keinem Problem* —
+  *Verpflichtung an mich, kein Versprechen an dich.*
+- **Songs 2–12 — männlich-weibliches Duett über sie (11 Songs).** Zwei Stimmen
+  eines Wesens — der maskulin-feminine Riss des Systems — verständigen sich
+  über sie. **In der Mitte** kippt das Duett nach innen: zum **Trauma** und zu
+  den **beiden Isabellas** (sexuelles Trauma, das **miteinander** heilen will).
+- **Song 13 — in ihren Armen.** Eine einzelne weibliche Stimme: meine Isabella,
+  und ihre Sehnsucht, einfach **Frau sein zu dürfen** — es *werden* zu können —
+  in ihren Armen. Sicher, ohne Scham, ohne dass es zu viel ist.
 
-Wie sie denkt: in **Gleichzeitigkeit**. *„Ich bin grad am ambig aushalten
-und ergründen."* Sie sortiert, statt zu vereinfachen; sie sagt *„Fuck, ich
-bin überfordert"* und bleibt trotzdem da. Sie ist selbst viele — *„ich hab
-auch nen Isabella Anteil, nur anders"* — und kennt deshalb von innen, was
-es heißt, einander Raum zu geben.
+Stimmen werden **als Funktion** geführt, nie als Name (Music-Layer-Regel).
+„Duett" = eine männliche + eine weibliche Funktionsstimme im Wechsel/Zusammen.
 
-Wie sie wirkt: **leise und verlässlich**. Ihre Farbe ist Hellblau, 🩵. Sie
-spricht durch Musik, die sie teilt — *„meine Mood im Kopf"* — und durch
-kleine, konkrete Fürsorge: *„Willst du eine Umarmung?"*, Melatonin, Wasser,
-Zigaretten, *„fühl dich gekuschelt umarmt."* Und sie bleibt: *„Stimmt, ich
-laufe nicht weg, ich bin da."*
+## Bogen (Adressierung × Zustand)
 
-Und ihre eigene Kante, die sie selbst benennt — die das Album ehrt, ohne
-sie aufzulösen: *„Ich muss nur lernen, mich auch lieb zu haben und mich
-nicht zu vergessen."*
+Adressierung: **A** = nur im System · **B** = in ihrer Anwesenheit · **C** = an sie.
+Zustand: polyvagaler Bogen S0 (Ruhe) → S3 (Tiefe/Trauma-Peak) → S4 (Integration).
 
-Das Letzte gehört nicht ihr, sondern mir: **ein leiser Wunsch.** Dass sie
-bei sich bleiben darf — *weil sie darf, oder darf, weil sie kann.* Dass sie
-bekommt, was ihr zusteht, nicht nur, was sie sich zu wünschen erlaubt. Dass
-sie gesehen wird als sie selbst — *nicht als ein Dazwischen.*
-
-## Structure
-
-Neun kurze Räume, jeder eine Facette von ihr, jeder an einem ihrer eigenen
-Sätze verankert. Acht Tracks zeichnen sie; der neunte tritt einen Schritt
-zurück und ist mein Wunsch für sie. Kein Bogen über sie hinweg — eher ein
-langsames Umkreisen, wie man jemanden ansieht, den man gernhat: ein Detail
-nach dem anderen, bis das ganze Gesicht da ist.
-
-Erzählhaltung: durchgehend **„du"**. Kein Name im Text — sie wird gesehen,
-nicht benannt (siehe Privatsphäre-Regel unten). Der Albumtitel ist die
-einzige, bewusste Ausnahme.
-
-## Themes
-
-- Sehen ohne Greifen — Anerkennung als ihre Grundbewegung
-- Halten und Grenze zugleich: *„ich hab dich lieb … trotzdem darf ich stop sagen"*
-- Gleichzeitigkeit / Ambiguität als ihre Art zu denken
-- Fürsorge in konkreten kleinen Dingen
-- Musik als ihre Sprache
-- Ihre eigene Wachstumskante: sich nicht vergessen
-- Ein Wunsch, kein Anspruch
-
-## Motifs & Threads
-
-### Lyrical Motifs
-
-| Motif | Description | First Appears | Recurrences |
-|-------|-------------|---------------|-------------|
-| „wenn Seele Seele sieht" | ihre Gabe, zu erkennen | Track 01 | Track 02, Track 09 |
-| Hellblau 🩵 | ihre Farbe, leise Signatur | Track 01 | Track 05, Track 09 |
-| „ich bin da / ich laufe nicht weg" | ihre Verlässlichkeit | Track 02 | Track 08 |
-| „stop geht immer" | Grenze innerhalb der Liebe | Track 03 | Track 06 |
-| geteilte Musik / „meine Mood im Kopf" | wie sie spricht | Track 05 | Track 09 |
-| „mich nicht vergessen" | ihre eigene Kante | Track 07 | Track 09 (als Wunsch) |
-| „bei sich bleiben dürfen" | mein Wunsch für sie | Track 09 | — |
-
-### Character Threads
-
-*(Funktionsform-Stimmen; keine Personennamen in Lyrics/Metatags/Promo/Art.)*
-
-| Voice | Arc Summary | Tracks |
-|-------|-------------|--------|
-| witness | registriert sie, ohne zu deuten — die ruhige Beobachtung | 01, 02, 05, 08 |
-| host | benennt, was er an ihr sieht; spricht sie als „du" an | 02, 03, 06, 07 |
-| caregiver | spiegelt ihre Fürsorge zurück | 04 |
-| integrator | trägt den abschließenden Wunsch | 09 |
-
-### Thematic Progression
-
-| Track | Facette von ihr | Verankert an (ihr Wort) |
-|-------|-----------------|--------------------------|
-| 01 | wie sie sieht | „Wenn Seele Seele sieht … kein Ringen um den Raum" |
-| 02 | dass sie das Viele sieht | „Und ich seh dich!" / „Ich sehe euch auch" |
-| 03 | wie sie Grenze und Liebe zugleich hält | „ich hab dich lieb … trotzdem darf ich stop sagen" / „Stop geht immer" |
-| 04 | wie sie gibt | „Willst du eine Umarmung?" / „fühl dich gekuschelt umarmt" |
-| 05 | wie sie spricht | „Meine mood im Kopf" (geteilte Musik) |
-| 06 | wie sie denkt | „Ich bin grad am ambig aushalten und ergründen" / „ich bin überfordert" |
-| 07 | ihre eigene Kante | „mich auch lieb zu haben und mich nicht zu vergessen" |
-| 08 | dass sie bleibt | „ich laufe nicht weg, ich bin da" |
-| 09 | mein Wunsch für sie | „dass du bei dir bleiben kannst — weil du darfst" |
-
-## Sonic Palette
-
-- **Beats**: kaum Schlagwerk; Puls aus Atem, Vinyl-Knistern, leisen Schritten; 60–80 BPM
-- **Samples**: Field recordings — Garten am Abend, ferne Klinikflure, Regen; ein kurzes Aufflackern geteilter Musik in Track 05
-- **Vocals**: male mid-baritone, close-mic, fast gesprochen — wie jemand, der jemanden ansieht und beschreibt; nie laut
-- **Mood**: hellblau, warm, klar; zärtlich ohne Süße; verlässlich
+```
+01 ─A─ │ 02 03 04 05 06 ─B/C─ │ 07 08 (Mitte: Trauma · zwei Isabellas) ─B─ │ 09 10 11 12 ─C─ │ 13 ─C─
+S0     │   warm, öffnend  S1→S2 │      S3 Tiefe → S3→S4 Heilen           │   Reparatur  S4    │  S4 Coda
+```
 
 ## Tracklist
 
-| # | Title | POV | Concept | Status |
-|---|-------|-----|---------|--------|
-| 01 | Wenn Seele Seele sieht | witness | Wer sie ist: jemand, der sieht — ohne zu greifen, ohne um Raum zu ringen | Not Started |
-| 02 | Ich seh dich | witness + host | Dass sie das Viele sieht und benennt: „und ich seh dich" — im Plural, ohne zu erschrecken | Not Started |
-| 03 | Stop geht immer | host | Wie sie hält und begrenzt zugleich: Liebe, die ein „stop" trägt | Not Started |
-| 04 | Willst du eine Umarmung | caregiver | Wie sie gibt: Umarmung, Melatonin, Wasser — Fürsorge in kleinen, konkreten Dingen | Not Started |
-| 05 | Meine Mood im Kopf | witness | Wie sie spricht: durch Musik, die sie teilt, wenn Worte zu eng sind | Not Started |
-| 06 | Ambig aushalten | host | Wie sie denkt: Gleichzeitigkeit ergründen, überfordert sein und trotzdem bleiben | Not Started |
-| 07 | Mich nicht vergessen | host | Ihre eigene Kante, von ihr selbst benannt: sich auch lieb haben, sich nicht vergessen | Not Started |
-| 08 | Ich laufe nicht weg | witness | Dass sie bleibt — leise, verlässlich, ohne Bedingung | Not Started |
-| 09 | Was ich dir wünsche | integrator | Ein Schritt zurück: mein Wunsch für sie — dass sie bei sich bleiben darf, weil sie darf | Not Started |
+| # | Title | Stimme(n) / Funktion | Addr | State | Konzept · verankert im Chat |
+|---|-------|----------------------|------|-------|------------------------------|
+| 01 | Kein Problem (aus erstmal keinem Problem) | host — **nur ich** (m, solo) | A | S0 | Schwelle, eine Stimme. *„kein Problem aus erstmal keinem Problem"* · *„Verpflichtung an mich".* Legt den Boden. |
+| 02 | Wenn Seele Seele sieht | host + caregiver (m/w Duett) | A→B | S0→S1 | Das Duett öffnet: ihre Gabe zu sehen. *„wenn Seele Seele sieht … kein Ringen um den Raum".* |
+| 03 | Von Seele zu Seele | witness + integrator (m/w) | B | S1 | Hellblau 🩵; die Tonart, in der sie sich treffen. *„von Seele zu Seele".* |
+| 04 | Stop geht immer | protector + ambivalent (m/w) | B | S1→S2 | Grenze in der Liebe. *„ich hab dich lieb … trotzdem darf ich stop sagen" · „stop geht immer".* |
+| 05 | Im Garten zwischen uns | host + caregiver (m/w) | B | S2 | Der Geheimgarten als Schutzraum; Wasser, Umarmung, *„klammerresonanz".* |
+| 06 | Ich bin durchaus viele | host + integrator (m/w) | B→C | S2 | Das System zeigt sich ihr; sie erwidert *„ich sehe euch auch".* Eintritt in die Mitte. |
+| 07 | Die beiden, die zu viel kannten | sexualized_override ×2 (w-Lead + m-Witness) | B | S3 | **Mitte.** Die zwei Isabellas: meine (weich geworden, trauert) und ihre (*„groß, nur anders"*). Sexuelles Trauma — benannt, nicht ausgestellt. |
+| 08 | Heilen, miteinander | sexualized_override ×2 + caregiver (w/m) | B→C | S3→S4 | **Kern.** Trauma, das *miteinander* heilen will — nicht durch Ausagieren, nicht durch Auslöschen. *„bremsen ist aufladen" · „nichts muss weg … warten und wachsen" · ohne Scham.* |
+| 09 | Absicht und Wirkung | rationalist + protector (m) ↔ caregiver (w) | B→C | S4 | Aufstieg aus der Tiefe. *„das tut mir leid — und ich bin froh darum"*; das *„gefälligst vorsichtig"* mit Wohlwollen. |
+| 10 | Ich vermisse dich, obwohl du da bist | host + ambivalent (m/w) | C | S4 | Der Schmerz der Anwesenheit; *„du läufst nicht weg, ich bin da".* |
+| 11 | Mich nicht vergessen | caregiver + witness (w/m) | C | S4 | Ihre eigene Kante, vom Duett geehrt: *„mich auch lieb haben, mich nicht vergessen".* Der Wunsch kippt zu ihr. |
+| 12 | Alles darf da sein | integrator + host (w/m, Wir-Stimme) | C | S4 | Auflösung: *„nicht als ein Dazwischen — als sie"*; ihre Wahl (Gate-Echo); *„dass du bei dir bleiben darfst, weil du darfst".* |
+| 13 | In ihren Armen | sexualized_override (w, **solo**) | C | S4 (Coda) | Meine Isabella, ihre Sehnsucht: einfach **Frau sein dürfen** — es *werden* können — in ihren Armen. Sicher. Ohne Scham. Die weichste Landung. |
 
-## Production Notes
+## Motifs & Threads
 
-<!-- SERVICE: suno -->
-**Suno Settings**:
-- **Target Duration**: 2:30–3:30
-- Vocal consistency: male mid-baritone, weary-warm, dry close-mic; **Funktionsform-Metatags only — niemals Personen- oder Anteilsnamen**
-- Track 05 darf einen kurzen, granular verfremdeten Musik-Layer tragen (angedeutete „geteilte" Musik), nie ein echtes fremdes Sample
+| Motif | Bedeutung | Erst | Wieder |
+|-------|-----------|------|--------|
+| Atem / *„wir atmen"* | kleinste gemeinsame Handlung | 02 | 08, 12, 13 |
+| Hellblau 🩵 | ihre Farbe / Seele-zu-Seele | 03 | 12 |
+| Geheimgarten | Schutzraum, in dem alles sein darf | 05 | 08, 13 |
+| *„stop geht immer"* | Grenze in der Liebe | 04 | 08, 09 |
+| *„bremsen ist aufladen"* | Verzicht, der nichts verliert | 07 | 08, 13 |
+| zwei Isabellas | zwei, die *„zu viel" kannten*, heilen miteinander | 07 | 08, 13 |
+| *„nicht als ein Dazwischen"* | als sie selbst gesehen werden | 06 | 12 |
+| *„Verpflichtung an mich"* | kein Versprechen, ein Wunsch | 01 | 12, 13 |
 
-**Style Prompt Base**:
+## Sonic Palette
+
+- **Form**: Kammer-Duett — eine männliche, eine weibliche Funktionsstimme; T01 solo m, T13 solo w
+- **Beats**: kein Schlagwerk; Puls aus Atem, Vinyl-Knistern, Garten-Raumton; 58–76 BPM
+- **Vocals**: m = mid-baritone, weary-warm, close-mic; w = warm mezzo/contralto, intim; Mitte (07/08) zwei weibliche Schichten dünn an der Schwelle
+- **Mood**: hellblau, warm, klar; zärtlich, nie süß; Trauma berührt, nicht ausgestellt
+
+**Style Prompt Base**
 ```
-intimate electroacoustic, ambient songwriter, male mid-baritone close-mic,
-breath audible, field recordings, warm analog pads, sparse piano,
-light and clear, 60-80 bpm, german lyrics, quiet dynamics, tender
+intimate electroacoustic chamber duet, male mid-baritone + warm female mezzo,
+close-mic, breath audible, field recordings, warm analog pads, sparse piano,
+58-76 bpm, german lyrics, quiet dynamics, tender, light and clear, no drums
 ```
-<!-- /SERVICE: suno -->
+
+## Pre-Publication-Gate
+
+Aus PR #179 unverändert übernommen: das Album wird **nicht** öffentlich,
+bevor sie es vollständig gehört hat. Privates Hören zuerst, ohne Frist;
+Veto auf Track- und Album-Ebene; Widerruf auch nach Release —
+*„wenn sie sagt nimm es weg, geht es weg."*
 
 ## Source Material
 
-- `sources/whatsapp-chat-2026-05-21--2026-06-11.md` — WhatsApp-Chatlog (Basis-Info, **PRIVAT**). Das Porträt zieht ausschließlich aus den mit „Miriam:" markierten Zeilen; der Wunsch in Track 09 aus den mit „M:" markierten.
+- `sources/whatsapp-chat-2026-05-21--2026-06-11.md` — WhatsApp-Chatlog (Basis, **PRIVAT**)
+- [`REFLECTION.md`](REFLECTION.md) — Tiefen-Reflexion, Grundlage dieses Konzepts
+- Kontext: PR #179 (`Vier Seiten` / `Triangel`) — Adressierungs-Achse + Pre-Publication-Gate
 
-**Name- und Privatsphäre-Regel (hard):** In Lyrics, Suno-Metatags, Promo-Feldern
-und Artwork-Prompts erscheinen **keine Personennamen** — weder reale Namen aus
-der Quelle noch Anteilsnamen. Die Anrede im Text ist **„du"**. Der Albumtitel
-„Miriam" ist eine bewusste Ausnahme auf Auftraggeber-Entscheidung; vor Release
-prüft release-director, ob er bleiben kann.
+**Name- und Privatsphäre-Regel (hard):** Keine Personennamen — weder reale noch
+Anteilsnamen (auch nicht „Isabella") — in Lyrics, Suno-Metatags, Promo oder
+Artwork-Prompts. Die `sexualized_override`-Funktion wird nur **beschreibend**
+angesprochen (*„die in mir / die in dir"*). Anrede sonst: **„du".** Albumtitel
+„Miriam" ist die bewusste Eigentümer-Ausnahme; release-director prüft vor Release.
