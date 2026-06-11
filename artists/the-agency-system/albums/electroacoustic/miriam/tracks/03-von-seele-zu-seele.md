@@ -1,7 +1,7 @@
 ---
 title: "Von Seele zu Seele"
 track_number: 3
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,28 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 3 |
 | **Title** | Von Seele zu Seele |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | witness (androgyn, spoken) + integrator (w) |
+| **Role** | Die Tonart, in der sie sich treffen: Hellblau, geteilte Musik. Adressierung B, Zustand S1. |
+| **Explicit** | No |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 2:45–3:15 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: *„von Seele zu Seele"* · Hellblau 🩵 · *„meine mood im Kopf"* (Musik als Sprache).
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
-
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Der leiseste Track der ersten Hälfte — S1-Latenz als Schwebezustand, nicht als
+Krise. Die beobachtende Stimme protokolliert in Fußnoten (gesprochen, hinter
+dem Beat), was zwischen den beiden Systemen technisch passiert: ein Kanal,
+kaum Rauschen, Musik als zweite Muttersprache. Die integrierende Stimme singt
+darüber das, was sich nicht protokollieren lässt: die hellblaue Stunde, das
+Zwischen, das trägt. Keine der beiden Stimmen drängt — der Track hat kein Ziel,
+nur eine Frequenz.
 
 ## Cross-References
 
@@ -122,161 +48,174 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 12 | motif | Hellblau kehrt im Schlussbild wieder |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 02 | callback | „die Stille, die bleibt" | T02-Bridge wird zur hellblauen Stunde |
+| 10 | motif | „zwei Häuser im Nebel" | Distanz-bei-Nähe kehrt als Vermissen wieder |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Nacht, zwei Wohnungen, dieselbe Playlist versetzt um Sekunden. Hellblau als
+Lichtton, nicht als Farbe. Ein Kanal, der offen bleibt, ohne dass jemand sendet.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 62 BPM
+- **Feel**: schwebend, dünn, latent; Stille als Träger
+- **Instrumentation**: Pad-Flächen, einzelne Klaviertöne, Bandrauschen, sehr weit hinten ein Feldton (Regen/Zimmer); kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+ambient electroacoustic, female mezzo-alto ageless long vowels plate reverb,
+androgynous spoken word dry slight delay behind the beat, sparse single piano
+notes, tape hiss, distant field recording, 62 bpm, german lyrics, very quiet,
+floating, low contrast dynamics
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
+no orchestral swell, no bright synths
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Verse 1]
-[Lyrics here...]
+[Intro - pad, tape hiss, single piano notes]
 
+[Spoken vocal: androgynous, monotone, dry, slight delay, behind the beat]
+[Verse 1 - spoken]
+zu protokoll: zwei systeme, ein kanal.
+keine anomalie. bemerkenswert ist nur,
+wie wenig rauschen bleibt,
+wenn niemand etwas will.
+
+[Female vocal: mezzo-alto, ageless, spacious long vowels, plate reverb, slow legato]
 [Chorus]
-[Lyrics here...]
+Von Seele zu Seele —
+so nennst du den Weg.
+Er braucht keine Brücke,
+er braucht keinen Steg.
+Hellblau die Stunde,
+hellblau das Band —
+zwei Häuser im Nebel,
+ein Licht an der Wand.
 
-[Verse 2]
-[Lyrics here...]
+[Spoken vocal: androgynous, monotone, dry, slight delay, behind the beat]
+[Verse 2 - spoken]
+randnotiz: sie schickt ein lied statt eines satzes.
+betreff: die mood im kopf.
+wir registrieren: musik
+als zweite muttersprache. übersetzung unnötig.
 
-[Bridge]
-[Lyrics here...]
+[Female vocal: mezzo-alto, ageless, spacious long vowels, plate reverb, slow legato]
+[Verse 3]
+Wir wohnen im Zwischen,
+und das Zwischen trägt.
+Was gleichzeitig sein darf,
+wird hier nicht gewogen, nicht gesägt.
 
-[Outro]
-[Lyrics here...]
+[Female vocal: mezzo-alto, with androgynous spoken layer underneath, quiet]
+[Chorus]
+Von Seele zu Seele —
+so nennst du den Weg.
+Er braucht keine Brücke,
+er braucht keinen Steg.
+Hellblau die Stunde,
+hellblau das Band —
+zwei Häuser im Nebel,
+ein Licht an der Wand.
+
+[Spoken vocal: androgynous, monotone, very quiet, behind the beat]
+[Outro - spoken]
+ende des protokolls.
+der kanal bleibt offen.
+niemand muss senden.
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Zu Protokoll, zwei Systeme, ein Kanal
+Keine Anomalie, bemerkenswert ist nur
+Wie wenig Rauschen bleibt
+Wenn niemand etwas will
 
-<!-- END VOCAL ONLY -->
+Von Seele zu Seele
+So nennst du den Weg
+Er braucht keine Brücke
+Er braucht keinen Steg
+Hellblau die Stunde
+Hellblau das Band
+Zwei Häuser im Nebel
+Ein Licht an der Wand
+
+Randnotiz, sie schickt ein Lied statt eines Satzes
+Betreff, die Mood im Kopf
+Wir registrieren, Musik
+Als zweite Muttersprache, Übersetzung unnötig
+
+Wir wohnen im Zwischen
+Und das Zwischen trägt
+Was gleichzeitig sein darf
+Wird hier nicht gewogen, nicht gesägt
+
+Von Seele zu Seele
+So nennst du den Weg
+Er braucht keine Brücke
+Er braucht keinen Steg
+Hellblau die Stunde
+Hellblau das Band
+Zwei Häuser im Nebel
+Ein Licht an der Wand
+
+Ende des Protokolls
+Der Kanal bleibt offen
+Niemand muss senden
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- Spoken-Word-Layer bewusst lowercase, monoton, leicht hinter dem Beat — niemals melodisch werden lassen
+- Mezzo-Alto-Vokale lang stehen lassen; Plate-Reverb als „Architektur, nicht Wetter"
+- Gesamtdynamik flach halten (S1: low contrast); der Track darf fast verschwinden, ohne abzureißen
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Mood | Muhd | Anglizismus aus der Quelle; deutsch gelesen würde „Mo-od" riskiert |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: keine
+- [x] Tech terms: „Mood" — siehe Pronunciation Notes (im Lyrics-Box-Kontext eindeutig genug, bei Fehlgenerierung „Muhd" setzen)
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
-| — | — | — | — |
+| Mood | mood | Muhd (nur bei Bedarf) | ☐ |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->

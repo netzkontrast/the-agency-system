@@ -1,7 +1,7 @@
 ---
 title: "Die beiden, die zu viel kannten"
 track_number: 7
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,35 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 7 |
 | **Title** | Die beiden, die zu viel kannten |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | sexualized_override (w, Lead) + witness (androgyn, gesprochene Randnoten) |
+| **Role** | **Mitte, Teil 1.** Die beiden Isabellas — benannt nur beschreibend: die in mir, die in dir. Sexuelles Trauma berührt, nicht ausgestellt. Adressierung B, Zustand S3 (Boden des Albums). |
+| **Explicit** | No — Trauma als Chiffre („zu viel"), keine explizite Darstellung |
+| **Fade Out** | 6s |
+| **Target Duration** | 3:15–3:45 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: die in mir wurde bei ihr **weich** (*„etwas, das sie sonst gar nicht kennt"*) und trauert (*„dich verloren zu haben", obwohl „da doch noch nichts war"*) · die in ihr ist *„groß, nur anders"* · beide kennen Anziehung als Gefahr.
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Der Boden des Albums. Die tiefe weibliche Stimme — kontrolliert, poliert,
+Vibrato als zurückgehaltene Waffe — spricht zum ersten Mal selbst. Ihr Satz
+war immer: *Wer zuerst berührt, wird nicht berührt.* Kontrolle als
+Schutzarchitektur gegen ein Zuviel, das früh war und nie gefragt hat. Dann
+das Unerhörte: bei ihr wurde sie **weich** — und trauert jetzt um etwas, das
+nie war. Die gesprochene Randstimme protokolliert, ohne zu korrigieren: *die
+trauer ist echt. gegenstand: ein nie-gewesen.* Im Refrain stehen die beiden
+nebeneinander — die in mir, die in dir — zwei gleicher Bauart, getrennt
+entstanden, gleich gelernt. Der Track endet ohne Trost; der Trost ist T08.
 
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+**Schutzregel:** kein Detail, keine Szene, keine Rekonstruktion. „Zu viel"
+bleibt die einzige Benennung des Traumas. Würde irgendeine Zeile die Schwelle
+weicher zeichnen, lügt sie (Hard Rule: *whoever softens a threshold lies
+about the trauma*) — also bleibt die Schwelle hart und unbeschrieben.
 
 ## Cross-References
 
@@ -122,120 +55,174 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 08 | resolution | T08 nimmt beide auf und dreht zur Heilung |
+| 13 | character | dieselbe Stimme, am Ende angekommen |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 06 | callback | „ihr Lied kommt noch" | T06-Bridge löst hier ein |
+| 04 | contrast | „nie die Hand, die nichts verlangte" | das Stop aus T04 als das, was fehlte |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Ein Spiegel, aufgestellt, bevor die Tür aufgeht. Schnee auf warmer Erde:
+bleibt nicht, und blieb doch über Nacht. Zwei Häuser, gleicher Riss im
+Fundament. Kein Licht-Effekt — der Track spielt im Dunkeln.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 64 BPM
+- **Feel**: schwer, tief im Körper, Sub-Tempo-Sog; S3 als Drone-Boden, nicht als Lärm
+- **Instrumentation**: tiefes Drone-Pad, Sub-Bass, einzelne dunkle Klaviertöne, Bandrauschen; kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+dark intimate electroacoustic, female low contralto controlled restrained
+vibrato polished mid-distance mic, androgynous spoken word dry monotone
+behind the beat, deep drone pad, sub-bass, sparse dark piano, tape hiss,
+64 bpm, german lyrics, heavy and slow, crushed quiet dynamics, no drums
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
+no orchestral swell, no brightness, no seductive styling
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
-[Verse 1]
-[Lyrics here...]
+[Intro - deep drone, sub-bass, single dark piano notes]
 
-[Chorus]
-[Lyrics here...]
+[Spoken vocal: androgynous, monotone, dry, behind the beat]
+[Verse 1 - spoken]
+aktennotiz, ohne akte:
+zwei funktionen gleicher bauart.
+getrennt entstanden. gleich gelernt:
+was weich ist, war nie sicher.
 
+[Female vocal: low contralto, controlled, restrained vibrato, polished mid-distance mic]
 [Verse 2]
-[Lyrics here...]
+Ich kenn das Spiel von beiden Seiten,
+ich hab es nicht erfunden — nur perfekt gemacht.
+Wer zuerst berührt, wird nicht berührt.
+So hielt ich jede Nacht in Schach.
 
+[Female vocal: low contralto, quieter, vibrato loosening slightly]
+[Chorus]
+Die in mir und die in dir —
+zwei, die zu viel kannten.
+Zu früh, zu oft, zu ungefragt —
+und nie die Hand, die nichts verlangte.
+
+[Female vocal: low contralto, controlled, polished mid-distance mic]
+[Verse 3]
+Und dann bei dir: ich wurde weich.
+Das kannte ich nicht. Es kam nicht an die Macht —
+es kam wie Schnee auf warme Erde:
+blieb nicht. Und blieb doch über Nacht.
+
+[Spoken vocal: androgynous, monotone, dry, behind the beat]
+[Verse 4 - spoken]
+randnotiz: die trauer ist echt.
+gegenstand: ein nie-gewesen.
+wir korrigieren nicht.
+es ist das einzige, das ihr nie jemand nahm.
+
+[Female vocal: low contralto, quieter, vibrato loosening]
+[Chorus]
+Die in mir und die in dir —
+zwei, die zu viel kannten.
+Zu früh, zu oft, zu ungefragt —
+und nie die Hand, die nichts verlangte.
+
+[Female vocal: low contralto, almost bare, very quiet]
 [Bridge]
-[Lyrics here...]
+Ich trauere um etwas, das nie war.
+Sag mir nicht, das zählt nicht.
+Es zählt doppelt.
 
-[Outro]
-[Lyrics here...]
+[Spoken vocal: androgynous, monotone, very quiet]
+[Outro - spoken]
+ende der notiz.
+keine empfehlung.
+das nächste lied weiß mehr.
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Aktennotiz, ohne Akte
+Zwei Funktionen gleicher Bauart
+Getrennt entstanden, gleich gelernt
+Was weich ist, war nie sicher
 
-<!-- END VOCAL ONLY -->
+Ich kenn das Spiel von beiden Seiten
+Ich hab es nicht erfunden, nur perfekt gemacht
+Wer zuerst berührt, wird nicht berührt
+So hielt ich jede Nacht in Schach
+
+Die in mir und die in dir
+Zwei, die zu viel kannten
+Zu früh, zu oft, zu ungefragt
+Und nie die Hand, die nichts verlangte
+
+Und dann bei dir, ich wurde weich
+Das kannte ich nicht, es kam nicht an die Macht
+Es kam wie Schnee auf warme Erde
+Blieb nicht, und blieb doch über Nacht
+
+Randnotiz, die Trauer ist echt
+Gegenstand, ein Nie-Gewesen
+Wir korrigieren nicht
+Es ist das Einzige, das ihr nie jemand nahm
+
+Die in mir und die in dir
+Zwei, die zu viel kannten
+Zu früh, zu oft, zu ungefragt
+Und nie die Hand, die nichts verlangte
+
+Ich trauere um etwas, das nie war
+Sag mir nicht, das zählt nicht
+Es zählt doppelt
+
+Ende der Notiz
+Keine Empfehlung
+Das nächste Lied weiß mehr
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- Contralto-Stimme bleibt durchgehend kontrolliert — die Erschütterung zeigt sich nur im langsamen Lösen des Vibratos, nie im Ausbruch
+- Keine Cabaret-/Verführungs-Färbung (Exclude beachtet das): die Performance-Oberfläche dieser Funktion ist hier abgelegt
+- Bridge fast nackt produzieren (Drone fast weg, nur Stimme + Sub) — der verletzlichste Moment der ersten Albumhälfte
+- S3 als Schwere, nicht als Lautstärke: crushed dynamics, kein Peak
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | Standarddeutsch, keine Risiken |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine (Schutzregel: keine Namen, keine Orte)
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: keine
+- [x] Tech terms: keine
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
@@ -243,40 +230,8 @@ Blank lines between sections only]
 | — | — | — | — |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->

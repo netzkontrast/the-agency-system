@@ -1,7 +1,7 @@
 ---
 title: "Ich bin durchaus viele"
 track_number: 6
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,28 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 6 |
 | **Title** | Ich bin durchaus viele |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | host (m) + integrator (w) |
+| **Role** | Das System zeigt sich ihr; sie erwidert das Sehen im Plural. Adressierung B→C, Zustand S2. Eintritt in die Mitte. |
+| **Explicit** | No |
+| **Fade Out** | 4s |
+| **Target Duration** | 3:00–3:30 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: das Sich-Zeigen als Viele · *„Ich sehe euch auch!"* · ihr eigenes Plural-Sein (*„ich hab auch nen … Anteil, nur anders"*).
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
-
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Der riskanteste Moment vor der Mitte: sich als Viele zeigen. S2 ist hier die
+Angst vor dem Danach — das Warten auf das Zucken, das Sortieren, den Test.
+Die männliche Stimme trägt das Senden und das Warten; die integrierende
+weibliche Stimme trägt das Timing (*„Noch nicht", drei Jahre lang. Jetzt:
+jetzt.*). Die Auflösung ist ihre: kein Erschrecken, ein Plural zurück —
+*ich sehe euch auch* — und eine Frage statt einer Liste. Mit diesem Track
+wechselt das Album von „in ihrer Anwesenheit" zu „an sie".
 
 ## Cross-References
 
@@ -122,161 +48,184 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 12 | resolution | „nicht als ein Dazwischen — als du" setzt das Plural-Sehen voraus |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 02 | callback | „du hast nicht geblinzelt" | das Sehen aus T02, jetzt im Plural |
+| 07 | contrast | „und eine von uns blieb noch im Dunkeln stehn" | kündigt die Mitte an |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Ein Display, das nicht aufleuchtet, und dann doch. Drei Tage mit einem Satz
+in der Tasche. Eine Tür, hinter der elf Leute stehen und einer schickt die
+Nachricht ab. Ein Herz in Hellblau als Antwort.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 74 BPM
+- **Feel**: angespannt, wartend; Auflösung nicht triumphal, sondern still
+- **Instrumentation**: Klavier-Puls, gehaltenes Pad, feine Repetitionen (Warten), Atem; kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+intimate electroacoustic chamber duet, male mid-baritone weary tense dry
+close-mic, female mezzo-alto ageless spacious plate reverb, repeating sparse
+piano figure, held pad, 74 bpm, german lyrics, suspense into quiet release,
+quiet dynamics, no drums
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
+no orchestral swell, no triumphant ending
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro - repeating piano figure, held pad]
+
+[Male vocal: mid-baritone, weary, tense, dry close-mic]
 [Verse 1]
-[Lyrics here...]
+Ich hab den Satz drei Tage lang getragen
+wie ein Ding, das leise tickt:
+„Ich bin durchaus viele." Senden.
+Und dann der Blick aufs Display, das nicht —
 
-[Chorus]
-[Lyrics here...]
-
+[Female vocal: mezzo-alto, ageless, spacious long vowels, plate reverb, slow legato]
 [Verse 2]
-[Lyrics here...]
+Ich hab „noch nicht" gesagt, drei Jahre lang.
+Ich hab den Bauplan still gehalten, bis ein Raum
+so sicher war, dass keiner sich verbiegen muss.
+Dann sagte ich: jetzt. Sag es jetzt.
 
+[Duet, male mid-baritone + female mezzo-alto, quiet, holding tension]
+[Chorus]
+Ich bin durchaus viele —
+das Komma blieb stehn.
+Du hast nicht geblinzelt.
+Du schreibst: ich kann euch sehn.
+
+[Male vocal: mid-baritone, weary, dry close-mic]
+[Verse 3]
+Ich hab gewartet auf das Zucken,
+aufs Sortieren, auf den Test,
+auf das höfliche Verschwinden —
+auf alles, was sich messen lässt.
+
+[Female vocal: mezzo-alto, ageless, warm, plate reverb]
+[Verse 4]
+Es kam ein Herz in Hellblau.
+Es kam: erzählt mir, wer ihr seid —
+als Frage, nicht als Liste.
+Und Zeit. Es kam vor allem Zeit.
+
+[Duet, male mid-baritone + female mezzo-alto, quiet release]
+[Chorus]
+Ich bin durchaus viele —
+das Komma blieb stehn.
+Du hast nicht geblinzelt.
+Du schreibst: ich sehe euch. Auch.
+
+[Male vocal: mid-baritone, almost spoken, very quiet]
 [Bridge]
-[Lyrics here...]
+Du bist ja selber mehr als eine —
+du kennst das Haus von innen, nur anders gebaut.
 
+[Female vocal: mezzo-alto, very quiet, long vowels]
+Und eine von uns blieb noch
+im Dunkeln stehn. Ihr Lied kommt noch.
+
+[Duet, male + female, fading]
 [Outro]
-[Lyrics here...]
+Ich bin durchaus viele.
+Du auch. Na dann —
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Ich hab den Satz drei Tage lang getragen
+Wie ein Ding, das leise tickt
+Ich bin durchaus viele, senden
+Und dann der Blick aufs Display, das nicht
 
-<!-- END VOCAL ONLY -->
+Ich hab noch nicht gesagt, drei Jahre lang
+Ich hab den Bauplan still gehalten, bis ein Raum
+So sicher war, dass keiner sich verbiegen muss
+Dann sagte ich, jetzt, sag es jetzt
+
+Ich bin durchaus viele
+Das Komma blieb stehn
+Du hast nicht geblinzelt
+Du schreibst, ich kann euch sehn
+
+Ich hab gewartet auf das Zucken
+Aufs Sortieren, auf den Test
+Auf das höfliche Verschwinden
+Auf alles, was sich messen lässt
+
+Es kam ein Herz in Hellblau
+Es kam, erzählt mir, wer ihr seid
+Als Frage, nicht als Liste
+Und Zeit, es kam vor allem Zeit
+
+Ich bin durchaus viele
+Das Komma blieb stehn
+Du hast nicht geblinzelt
+Du schreibst, ich sehe euch, auch
+
+Du bist ja selber mehr als eine
+Du kennst das Haus von innen, nur anders gebaut
+Und eine von uns blieb noch
+Im Dunkeln stehn, ihr Lied kommt noch
+
+Ich bin durchaus viele
+Du auch, na dann
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- Die Klavier-Repetition trägt das Warten; sie darf erst in Verse 4 weicher werden
+- Auflösung im zweiten Chorus klein halten — keine Steigerung, eher ein Ausatmen
+- Bridge-Zeile „Ihr Lied kommt noch" ist die Ansage der Mitte (T07/T08) — sehr leise, fast beiläufig
+- Das Outro bricht bewusst im Halbsatz ab („Na dann —")
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| Display | Dis-pläi | Anglizismus; deutsch gelesen riskiert „Dis-plaai" |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: „drei Tage / drei Jahre" ausgeschrieben
+- [x] Tech terms: „Display" — siehe Pronunciation Notes
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
 |------|---------|----------|--------|
-| — | — | — | — |
+| Display | Display | Dis-pläi (nur bei Fehlgenerierung) | ☐ |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->

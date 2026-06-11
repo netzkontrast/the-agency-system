@@ -1,7 +1,7 @@
 ---
 title: "Ich vermisse dich, obwohl du da bist"
 track_number: 10
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,29 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 10 |
 | **Title** | Ich vermisse dich, obwohl du da bist |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | host (m) + ambivalent (w) |
+| **Role** | Der Schmerz der Anwesenheit; Sehnsucht bekommt ein Wohnrecht. Adressierung C, Zustand S4. |
+| **Explicit** | No |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 3:00–3:30 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: *„ich vermisse dich, obwohl du da bist"* · *„Stimmt, ich laufe nicht weg, ich bin da."*
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
-
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+S4 heißt nicht, dass nichts mehr weh tut — es heißt, dass das Wehtun einen
+Platz bekommt. Die männliche Stimme benennt das Paradox direkt an sie: du
+bist zwei Tassen weit entfernt, und trotzdem fehlt mir was an dir. Die
+weibliche Stimme (vor und zurück, Mikrotönung) gibt dem Vermissen seine
+ehrliche Form: näher — nein — genau so — mehr. Ihre Antwort steht im Refrain
+als das, was sie wirklich gesagt hat: *Ich laufe nicht weg, ich bin da* —
+und damit wird Sehnsucht von einem Mangel zu einem Ort. Kein Drama, keine
+Auflösung ins Happy End: das Vermissen bleibt, aber es wohnt jetzt hier.
 
 ## Cross-References
 
@@ -122,120 +49,167 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 13 | motif | Sehnsucht als Ort kehrt als Sehnsucht nach Werden wieder |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 03 | callback | „zwei Häuser im Nebel" | Distanz-bei-Nähe-Bild aus T03 |
+| 08 | callback | „es hat ja Zeit" | die Eile-Losigkeit aus T08 trägt das Vermissen |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Zwei Tassen auf einem Tisch, eine Armlänge und ein Ozean. Ein Kompass, der
+quer zeigt. Sehnsucht als möbliertes Zimmer, nicht als Loch im Boden.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 68 BPM
+- **Feel**: warm-wehmütig, getragen; ohne Moll-Schwere
+- **Instrumentation**: Klavier, warmes Pad, feines Vinyl-Knistern, ferner Raumton; kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+intimate electroacoustic chamber duet, male mid-baritone weary dry close-mic,
+female alto microtonal sliding vibrato breath mid-line, sparse piano, warm
+analog pad, vinyl crackle, 68 bpm, german lyrics, tender melancholy without
+heaviness, quiet dynamics, no drums
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
+no orchestral swell, no melodrama
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro - piano, warm pad, vinyl crackle]
+
+[Male vocal: mid-baritone, weary, dry close-mic]
 [Verse 1]
-[Lyrics here...]
+Du bist zwei Tassen weit entfernt,
+dein Lachen liegt noch auf dem Tisch —
+und trotzdem fehlt mir was an dir,
+als wär die Nähe nur geliehen. Komisch. Ich —
 
-[Chorus]
-[Lyrics here...]
-
+[Female vocal: alto, microtonal pitch-bends, sliding vibrato, breath mid-line]
 [Verse 2]
-[Lyrics here...]
+Ich will dich näher — nein — so ist gut —
+genau so — warte — etwas mehr —
+Vermissen ist mein alter Kompass:
+er zeigt auf dich. Und zeigt zugleich woandershin. Quer.
 
+[Duet, male mid-baritone + female alto, warm, quiet]
+[Chorus]
+Ich vermisse dich, obwohl du da bist —
+und du gehst nicht mal fort.
+Du sagst: ich laufe nicht weg, ich bin da.
+Und Sehnsucht wird ein Ort.
+
+[Male vocal: mid-baritone, weary, dry close-mic]
+[Verse 3]
+Ich kannte Sehnsucht nur als Vorwurf —
+an mich, an dich, an irgendwen.
+Jetzt sitzt sie hier und trinkt mit uns
+und muss nicht mehr nach Hause gehn.
+
+[Female vocal: alto, microtonal, softer now, breath mid-line]
+[Verse 4]
+Vielleicht ist das ihr Geheimnis —
+sie misst nicht Mangel, sondern Wert:
+ich kann dich nur vermissen,
+weil da was ist. Weil's nicht — verkehrt. Weil —
+
+[Duet, male mid-baritone + female alto, warm, quiet]
+[Chorus]
+Ich vermisse dich, obwohl du da bist —
+und du gehst nicht mal fort.
+Du sagst: ich laufe nicht weg, ich bin da.
+Und Sehnsucht wird ein Ort.
+
+[Male vocal: mid-baritone, almost spoken, very quiet]
 [Bridge]
-[Lyrics here...]
+Zwei Häuser im Nebel, weißt du noch —
+das Licht an deiner Wand brennt einfach weiter.
 
+[Duet, male + female, very quiet, fading]
 [Outro]
-[Lyrics here...]
+Ich vermisse dich. Du bist ja da.
+Es widerspricht sich nicht —
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Du bist zwei Tassen weit entfernt
+Dein Lachen liegt noch auf dem Tisch
+Und trotzdem fehlt mir was an dir
+Als wär die Nähe nur geliehen, komisch, ich
 
-<!-- END VOCAL ONLY -->
+Ich will dich näher, nein, so ist gut
+Genau so, warte, etwas mehr
+Vermissen ist mein alter Kompass
+Er zeigt auf dich, und zeigt zugleich woandershin, quer
+
+Ich vermisse dich, obwohl du da bist
+Und du gehst nicht mal fort
+Du sagst, ich laufe nicht weg, ich bin da
+Und Sehnsucht wird ein Ort
+
+Ich kannte Sehnsucht nur als Vorwurf
+An mich, an dich, an irgendwen
+Jetzt sitzt sie hier und trinkt mit uns
+Und muss nicht mehr nach Hause gehn
+
+Vielleicht ist das ihr Geheimnis
+Sie misst nicht Mangel, sondern Wert
+Ich kann dich nur vermissen
+Weil da was ist, weil's nicht verkehrt, weil
+
+Ich vermisse dich, obwohl du da bist
+Und du gehst nicht mal fort
+Du sagst, ich laufe nicht weg, ich bin da
+Und Sehnsucht wird ein Ort
+
+Zwei Häuser im Nebel, weißt du noch
+Das Licht an deiner Wand brennt einfach weiter
+
+Ich vermisse dich, du bist ja da
+Es widerspricht sich nicht
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- Die weibliche Stimme behält ihre Selbstkorrekturen — sie sind hier kein Konflikt mehr, sondern ehrliche Form (S4: erinnert, nicht unterdrückt)
+- Refrain warm und klein halten; „Und Sehnsucht wird ein Ort" nicht aufblasen
+- Outro im Halbsatz enden lassen („Es widerspricht sich nicht —")
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | Standarddeutsch, keine Risiken |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: keine
+- [x] Tech terms: keine
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
@@ -243,40 +217,8 @@ Blank lines between sections only]
 | — | — | — | — |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->

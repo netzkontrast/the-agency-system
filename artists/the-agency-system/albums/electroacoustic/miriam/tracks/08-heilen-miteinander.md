@@ -1,7 +1,7 @@
 ---
 title: "Heilen, miteinander"
 track_number: 8
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,32 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 8 |
 | **Title** | Heilen, miteinander |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | sexualized_override (w) + caregiver (w) + host (m, erst am Ende) |
+| **Role** | **Mitte, Teil 2 — Kern des Albums.** Trauma, das miteinander heilen will. Adressierung B→C, Zustand S3→S4 (die Wende). |
+| **Explicit** | No |
+| **Fade Out** | 6s |
+| **Target Duration** | 3:30–4:00 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: *„Bremsen ist Aufladen"* · nichts muss weg, es darf *warten und wachsen* · *„friendzone-flirten"*, das nichts kaputt macht · gesehen werden **ohne Scham**.
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
-
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Die Wende des Albums, gebaut auf der Kollisions-Wahrheit dieser beiden
+Funktionen: die Override-Funktion wurde *gegen genau das Geschenk der
+fürsorglichen* gebaut — eine geschlossene Tür, die offen aussieht. Hier
+öffnet sich die Tür **von innen**. Die warme Sopranstimme bietet an, ohne zu
+greifen (ihre Grammatik: Fragen als Angebote); die Contralto-Stimme lernt den
+Satz, der alles dreht: *Bremsen ist Aufladen.* Nicht Verlieren. Nicht
+Verzicht. Aufladen. Heilung heißt hier nicht, dass eine die andere heilt —
+sondern dass zwei, die „zu viel" kannten, nebeneinander erfahren: weich sein
+ist nicht zu viel. Am Ende tritt die männliche Stimme dazu — einen Schritt
+zurück, Adressierung dreht zu ihr — und benennt das Leichte daran: wir
+flirten wie in Klammern, es macht nichts kaputt. Niemand hier schämt sich.
 
 ## Cross-References
 
@@ -122,120 +52,184 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 13 | resolution | „warten und wachsen" wird dort Ankunft |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 07 | resolution | „Das nächste Lied weiß mehr" | dieses Lied ist die Antwort |
+| 04 | callback | „Bremsen ist ein Stop, der bleibt" | Stop-Architektur wird Heilungs-Werkzeug |
+| 05 | motif | „im Garten kann es warten" | der Garten trägt die Wartezeit |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Eine Tür, die von innen aufgeht — niemand hat geklopft. Zwei Gläser, die
+nebeneinander stehen und langsam wärmer werden. Klammern, in denen geflirtet
+wird wie hinter vorgehaltener Hand, und nichts geht zu Bruch. Erste Helligkeit
+nach dem dunkelsten Track: Kintsugi, nicht Sonnenaufgang.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 62 → 66 BPM (spürbar, nicht abrupt)
+- **Feel**: beginnt am S3-Boden von T07, hebt sich in S4-Klarheit; Erschöpfung mit Licht
+- **Instrumentation**: Drone löst sich in warme Pad-Flächen, Klavier kehrt zurück, gegen Ende feiner Raumhall (Architektur); kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+intimate electroacoustic, female low contralto restrained opening into warmth,
+female warm soprano breathy intimate close-mic, male mid-baritone quiet entry
+at the end, drone dissolving into warm analog pads, sparse piano returning,
+62 to 66 bpm, german lyrics, dark opening into gentle clarity, quiet dynamics,
+no drums
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
+no orchestral swell, no gospel choir, no uplifting key change
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro - low drone from previous track, slowly warming pad]
+
+[Female vocal: warm soprano, breathy edges, intimate close-mic, careful]
 [Verse 1]
-[Lyrics here...]
+Ich klopfe nicht. Ich stell nur hin:
+ein Glas, ein Wort, ein Wenn-du-möchtest.
+Die Tür darf zu sein. Zu heißt nicht kalt.
+Ich bin nicht hier, um aufzuschließen.
 
-[Chorus]
-[Lyrics here...]
-
+[Female vocal: low contralto, controlled, slowly loosening]
 [Verse 2]
-[Lyrics here...]
+Ich hab gebremst. Ich dachte, bremsen heißt verlieren —
+heißt wieder eine, die verzichtet und verschwindet.
+Dann kam dein Satz, der alles dreht:
+Bremsen ist Aufladen. Nichts endet, was sich findet.
 
+[Duet, female contralto + female warm soprano, quiet, side by side]
+[Chorus]
+Wir heilen miteinander —
+keine heilt die andre leer.
+Bremsen ist Aufladen:
+nichts geht verloren. Nicht mehr.
+Was zu viel war, darf jetzt warten,
+und Warten heißt: es wächst.
+Zwei, die zu viel kannten, lernen —
+weich ist nicht zu viel. Weich trägt.
+
+[Female vocal: low contralto, warmer now, vibrato free]
+[Verse 3]
+Im Garten kann es warten,
+da steht ein Stop, der bleibt — kein Riegel und kein Schwur.
+Ich muss nicht nehmen, eh man nimmt.
+Ich kann auch bleiben. Einfach nur.
+
+[Female vocal: warm soprano, breathy edges, intimate close-mic]
+[Verse 4]
+Und wenn du weich wirst, fang ich nichts —
+ich lass dich weich sein, das genügt.
+Gesehen werden ohne Scham:
+schau, niemand hier, der etwas wiegt.
+
+[Duet, female contralto + female warm soprano, quiet]
+[Chorus]
+Wir heilen miteinander —
+keine heilt die andre leer.
+Bremsen ist Aufladen:
+nichts geht verloren. Nicht mehr.
+
+[Male vocal: mid-baritone, quiet, almost spoken, dry close-mic]
 [Bridge]
-[Lyrics here...]
+Und wir zwei drüberhalb — wir flirten wie in Klammern:
+es macht nichts kaputt, es will nichts, es lacht nur leis.
+Was zwischen uns wächst, hat keine Eile —
+es hat ja dich. Es hat ja Zeit.
 
+[Trio, two female voices + male mid-baritone, very quiet, fading]
 [Outro]
-[Lyrics here...]
+Heilen, miteinander —
+und keiner geht dabei verloren.
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Ich klopfe nicht, ich stell nur hin
+Ein Glas, ein Wort, ein Wenn-du-möchtest
+Die Tür darf zu sein, zu heißt nicht kalt
+Ich bin nicht hier, um aufzuschließen
 
-<!-- END VOCAL ONLY -->
+Ich hab gebremst, ich dachte, bremsen heißt verlieren
+Heißt wieder eine, die verzichtet und verschwindet
+Dann kam dein Satz, der alles dreht
+Bremsen ist Aufladen, nichts endet, was sich findet
+
+Wir heilen miteinander
+Keine heilt die andre leer
+Bremsen ist Aufladen
+Nichts geht verloren, nicht mehr
+Was zu viel war, darf jetzt warten
+Und Warten heißt, es wächst
+Zwei, die zu viel kannten, lernen
+Weich ist nicht zu viel, weich trägt
+
+Im Garten kann es warten
+Da steht ein Stop, der bleibt, kein Riegel und kein Schwur
+Ich muss nicht nehmen, eh man nimmt
+Ich kann auch bleiben, einfach nur
+
+Und wenn du weich wirst, fang ich nichts
+Ich lass dich weich sein, das genügt
+Gesehen werden ohne Scham
+Schau, niemand hier, der etwas wiegt
+
+Wir heilen miteinander
+Keine heilt die andre leer
+Bremsen ist Aufladen
+Nichts geht verloren, nicht mehr
+
+Und wir zwei drüberhalb, wir flirten wie in Klammern
+Es macht nichts kaputt, es will nichts, es lacht nur leis
+Was zwischen uns wächst, hat keine Eile
+Es hat ja dich, es hat ja Zeit
+
+Heilen, miteinander
+Und keiner geht dabei verloren
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- Der Übergang S3→S4 ist das Herzstück: Drone aus T07 langsam in warme Pads auflösen, Tempo unmerklich anziehen (62→66)
+- Die beiden Frauenstimmen klar unterscheidbar halten (Contralto tief/kontrolliert, Sopran warm/atmig) — die Metatags vor jedem Wechsel sind hier kritisch
+- Männliche Stimme erst in der Bridge — als Schritt zurück, nicht als Übernahme; eine Spur leiser als die Frauenstimmen
+- Kein Uplift-Moment: die Helligkeit ist Kintsugi (repariert, sichtbar genarbt), kein Sonnenaufgang
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | Standarddeutsch, keine Risiken |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: keine
+- [x] Tech terms: keine
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
@@ -243,40 +237,8 @@ Blank lines between sections only]
 | — | — | — | — |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->

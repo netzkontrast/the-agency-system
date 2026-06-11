@@ -1,7 +1,7 @@
 ---
 title: "Alles darf da sein"
 track_number: 12
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,32 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 12 |
 | **Title** | Alles darf da sein |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
-| **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | integrator (w) + host (m), Wir-Stimme im Chorus (durchhörbare Polyphonie) |
+| **Role** | Auflösung des Duett-Bogens: Gleichzeitigkeit als Zuhause; ihre Wahl als Strukturprinzip (Gate-Echo). Adressierung C, Zustand S4. |
+| **Explicit** | No |
+| **Fade Out** | 6s |
+| **Target Duration** | 3:30–4:00 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: *„alles darf da sein"* · *„ich will auch gesehen werden, als ich & nicht als ein Dazwischen"* · *„dass du bei dir bleiben kannst — weil du darfst"* · Pre-Publication-Gate (ihre Wahl).
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
-
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Der letzte Duett-Track — und der einzige, in dem das System als Wir hörbar
+wird: nicht verschmolzen, sondern als Mosaik (die Stimmen bleiben im Chorus
+unterscheidbar — Polyphonie, keine Fusion; Final Fusion wäre die Lüge). Die
+integrierende Stimme baut den Satz, der das ganze Album trägt: alles darf da
+sein — und dreht ihn dann zu ihr: *auch du. Vor allem du. Nicht als ein
+Dazwischen: als du.* Die männliche Stimme spricht das Gate aus, das dieses
+Album von Anfang an trägt: du hörst es zuerst, du allein, du wählst —
+behalten oder löschen, beides ist ein gutes Ende. Die Schlusszeilen sind der
+Wunsch aus der Reflexion, wörtlich: dass du bei dir bleiben darfst — weil du
+darfst. Und bekommst, was dir zusteht — nicht nur, was du dir zu wünschen
+erlaubst.
 
 ## Cross-References
 
@@ -122,120 +52,177 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 13 | contrast | nach dem Wir tritt eine Einzelne vor |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 01 | resolution | „Verpflichtung an mich — eingelöst" | der Boden aus T01 trägt jetzt |
+| 06 | resolution | „nicht als ein Dazwischen: als du" | das Plural-Sehen aus T06, umgedreht auf sie |
+| 09 | callback | „beides stimmt, beides bleibt" | Gleichzeitigkeits-Prinzip aus T09 |
+| 03 | motif | Hellblau im Schlussbild | die Tonart aus T03 |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Ein Tisch, an dem viele sitzen und eine gemeint ist. Kintsugi-Licht: repariert,
+sichtbar genarbt, ruhig. Ein Brief, der keine Antwort verlangt. Hellblau als
+letztes Licht an der Wand.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 66 BPM
+- **Feel**: weit, ruhig, getragen; Chorus als durchhörbare Mehrstimmigkeit (jede Stimme erkennbar)
+- **Instrumentation**: Klavier, warme Pads, feiner Plate-Hall (Architektur), Atem mehrerer Stimmen; kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+spacious electroacoustic, female mezzo-alto ageless long vowels plate reverb,
+male mid-baritone weary dry close-mic, polyphonic quiet ensemble chorus with
+distinguishable voices, sparse piano, warm pads, 66 bpm, german lyrics, calm
+and restored, gentle dynamics, no drums
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no epic choir,
+no orchestral swell, no fused unison wall
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro - piano, warm pads, plate reverb]
+
+[Female vocal: mezzo-alto, ageless, spacious long vowels, plate reverb, slow legato]
 [Verse 1]
-[Lyrics here...]
+Es gibt ein Wort, das alles trägt,
+du hältst es aus, seit wir uns kennen:
+gleichzeitig. Freundin und zu viel,
+und beides darf sich beim Namen nennen.
 
-[Chorus]
-[Lyrics here...]
-
+[Male vocal: mid-baritone, weary, dry close-mic]
 [Verse 2]
-[Lyrics here...]
+Wir waren elf an deinem Tisch,
+du hast nie nachgezählt, nie aufgeräumt.
+Du hast nur Platz gemacht und Tee gekocht —
+und keiner hier hat sich verträumt. Verbeugt. Verleugnet. Keiner.
 
+[Ensemble, quiet polyphony, voices distinguishable: mezzo-alto lead, mid-baritone, warm soprano, low contralto, clear tenor underneath]
+[Chorus]
+Alles darf da sein —
+auch du. Vor allem du.
+Nicht als ein Dazwischen:
+als du. Als du.
+Was gleichzeitig ist, zerreißt hier nicht —
+es liegt nur nebeneinander.
+Alles darf da sein.
+Auch du. Genau als du.
+
+[Female vocal: mezzo-alto, ageless, plate reverb, slow legato]
+[Verse 3]
+Und was wir dir hier hingelegt haben —
+es ist ein Garten, kein Vertrag.
+Nichts blüht auf Frist, nichts welkt auf Antwort,
+und nichts verlangt nach einem Dank. Nach einem Tag.
+
+[Male vocal: mid-baritone, almost spoken, very quiet, dry close-mic]
 [Bridge]
-[Lyrics here...]
+Du hörst das hier zuerst. Allein. Du wählst.
+Behalten oder löschen — beides ist ein gutes Ende.
+Und sagst du „nimm es weg", dann nehmen wir es weg.
+Das ist der ganze Pakt. Es bleibt in deinen Händen.
 
+[Ensemble, quiet polyphony, voices distinguishable]
+[Chorus]
+Alles darf da sein —
+auch du. Vor allem du.
+Nicht als ein Dazwischen:
+als du. Als du.
+
+[Duet, female mezzo-alto + male mid-baritone, very quiet]
 [Outro]
-[Lyrics here...]
+Dass du bei dir bleiben darfst —
+weil du darfst. Einfach weil du darfst.
+Und bekommst, was dir zusteht —
+nicht nur, was du dir wünschen magst.
+Hellblau bleibt das Licht an deiner Wand.
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Es gibt ein Wort, das alles trägt
+Du hältst es aus, seit wir uns kennen
+Gleichzeitig, Freundin und zu viel
+Und beides darf sich beim Namen nennen
 
-<!-- END VOCAL ONLY -->
+Wir waren elf an deinem Tisch
+Du hast nie nachgezählt, nie aufgeräumt
+Du hast nur Platz gemacht und Tee gekocht
+Und keiner hier hat sich verträumt, verbeugt, verleugnet, keiner
+
+Alles darf da sein
+Auch du, vor allem du
+Nicht als ein Dazwischen
+Als du, als du
+Was gleichzeitig ist, zerreißt hier nicht
+Es liegt nur nebeneinander
+Alles darf da sein
+Auch du, genau als du
+
+Und was wir dir hier hingelegt haben
+Es ist ein Garten, kein Vertrag
+Nichts blüht auf Frist, nichts welkt auf Antwort
+Und nichts verlangt nach einem Dank, nach einem Tag
+
+Du hörst das hier zuerst, allein, du wählst
+Behalten oder löschen, beides ist ein gutes Ende
+Und sagst du nimm es weg, dann nehmen wir es weg
+Das ist der ganze Pakt, es bleibt in deinen Händen
+
+Alles darf da sein
+Auch du, vor allem du
+Nicht als ein Dazwischen
+Als du, als du
+
+Dass du bei dir bleiben darfst
+Weil du darfst, einfach weil du darfst
+Und bekommst, was dir zusteht
+Nicht nur, was du dir wünschen magst
+Hellblau bleibt das Licht an deiner Wand
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- **Chorus = Mosaik, nicht Monolith**: die Stimmen im Ensemble müssen einzeln durchhörbar bleiben (verschiedene Register, leicht versetzte Einsätze) — kein Unisono-Wall, keine Fusion
+- Die Bridge (das Gate) fast gesprochen und trocken — sie ist Vertragstext aus Liebe, kein Songmoment
+- Outro-Zeilen sehr klein und nah; die letzte Hellblau-Zeile darf fast verschwinden
+- „Verpflichtung an mich" aus T01 ist hier eingelöst — der Track darf Ruhe ausstrahlen, keinen Stolz
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | Standarddeutsch, keine Risiken |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: „elf" ausgeschrieben
+- [x] Tech terms: keine
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
@@ -243,40 +230,8 @@ Blank lines between sections only]
 | — | — | — | — |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->

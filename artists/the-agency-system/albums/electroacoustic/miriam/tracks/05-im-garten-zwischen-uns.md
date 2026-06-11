@@ -1,7 +1,7 @@
 ---
 title: "Im Garten zwischen uns"
 track_number: 5
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,28 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 5 |
 | **Title** | Im Garten zwischen uns |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | host (m) + caregiver (w) |
+| **Role** | Der Geheimgarten als Schutzraum; Fürsorge in kleinen Dingen. Adressierung B, Zustand S2 (Alarm draußen, gehalten drinnen). |
+| **Explicit** | No |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 3:00–3:30 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: *„Im Garten zwischen uns ist Platz"* · *„Willst du eine Umarmung?"* · Wasser/Melatonin/Zigaretten · *„klammerresonanz"* · *„fühl dich gekuschelt umarmt"*.
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
-
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+S2 — aber von außen: Die Welt ist zu laut (Flur, Neon, zu viele Stimmen pro
+Quadratmeter), der Puls läuft vor. Der Garten zwischen ihnen ist der Ort, an
+dem das Alarmsystem herunterfahren darf, ohne abgeschaltet zu werden. Die
+weibliche Stimme trägt ihre konkrete Fürsorge (Frage statt Griff: „Willst du
+eine Umarmung?"), die männliche Stimme erzählt das Ankommen. Der Refrain baut
+ihr Satzbild: *Im Garten zwischen uns ist Platz* — und das, was in Klammern
+steht, schwingt mit, ohne befragt zu werden.
 
 ## Cross-References
 
@@ -122,120 +48,177 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 08 | motif | der Garten wird zum Ort, an dem Heilung warten darf |
+| 13 | motif | der Garten kehrt als letzter sicherer Ort wieder |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 01 | callback | „es kriegt ein Glas" → „du stellst mir Wasser hin" | Glas/Wasser-Motiv |
+| 04 | callback | „da steht ein Stop, und keiner fällt" | Stop-Architektur im Garten |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Abendgarten hinter einer lauten Welt. Ein Tisch, zwei Gläser Wasser, eine
+Decke. Klammern als Hecken: was darin steht, ist geschützt und darf trotzdem
+klingen. Hellblaue Dämmerung.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 76 BPM
+- **Feel**: außen ruhelos, innen warm; der Track „betritt" den Garten nach dem ersten Verse hörbar (Arrangement öffnet sich, Feldton wechselt)
+- **Instrumentation**: Feldaufnahme Garten (Abend, Blätter), Klavier-Puls, warmes Pad, Vinyl-Knistern; kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+intimate electroacoustic chamber duet, male mid-baritone weary dry close-mic,
+female warm soprano breathy intimate close-mic, evening garden field
+recording, sparse piano pulse, warm analog pad, vinyl crackle, 76 bpm, german
+lyrics, restless verse into warm chorus, quiet dynamics, no drums
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
+no orchestral swell, no birdsong samples
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro - corridor room tone, distant noise, tight]
+
+[Male vocal: mid-baritone, weary, slightly hurried, dry close-mic]
 [Verse 1]
-[Lyrics here...]
+Draußen Flur und Neonlicht,
+zu viele Stimmen pro Quadratmeter Haut.
+Mein Puls läuft vor, als wüsst er was —
+ich nehm den Seitenweg, den's gar nicht gibt. Und du —
 
-[Chorus]
-[Lyrics here...]
-
+[Female vocal: warm soprano, breathy edges, intimate close-mic, unhurried]
 [Verse 2]
-[Lyrics here...]
+Ich stell dir Wasser hin, ganz ohne Frage,
+und frag dich nur das eine: Willst du eine Umarmung?
+Du darfst auch nein sagen, ich bleib trotzdem —
+die Decke liegt schon über deiner Schulter, schau.
 
+[Duet, male mid-baritone + female warm soprano, warm, opening up]
+[Chorus]
+Im Garten zwischen uns ist Platz —
+du hast es selbst gesagt.
+Was dort in Klammern steht,
+schwingt mit und wird nicht befragt.
+Im Garten zwischen uns ist Platz
+für alles, was noch zittert —
+hier fährt der Alarm herunter,
+ohne dass ihn wer entwertet.
+
+[Male vocal: mid-baritone, weary, calmer now, dry close-mic]
+[Verse 3]
+Du schickst mir kleine Dinge:
+ein Lied, ein Blau, ein „trink was, schlaf".
+Fürsorge ohne Inventur —
+nichts davon will was. Nichts davon —
+
+[Female vocal: warm soprano, breathy edges, intimate close-mic]
+[Verse 4]
+Und wenn die Nacht dich rauer anfasst,
+als irgendwer verdient,
+dann fühl dich gekuschelt umarmt —
+aus sicherer Entfernung. Angekommen. Hier.
+
+[Duet, male mid-baritone + female warm soprano, warm]
+[Chorus]
+Im Garten zwischen uns ist Platz —
+du hast es selbst gesagt.
+Was dort in Klammern steht,
+schwingt mit und wird nicht befragt.
+
+[Male vocal: mid-baritone, almost spoken, very quiet]
 [Bridge]
-[Lyrics here...]
+Da steht ein Tisch. Da steht ein Stop.
+Und keiner fällt, wenn er ihn braucht.
 
+[Duet, male + female, very quiet, fading into garden field recording]
 [Outro]
-[Lyrics here...]
+Im Garten zwischen uns
+atmet alles, was wir sind —
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Draußen Flur und Neonlicht
+Zu viele Stimmen pro Quadratmeter Haut
+Mein Puls läuft vor, als wüsst er was
+Ich nehm den Seitenweg, den's gar nicht gibt, und du
 
-<!-- END VOCAL ONLY -->
+Ich stell dir Wasser hin, ganz ohne Frage
+Und frag dich nur das eine, willst du eine Umarmung
+Du darfst auch nein sagen, ich bleib trotzdem
+Die Decke liegt schon über deiner Schulter, schau
+
+Im Garten zwischen uns ist Platz
+Du hast es selbst gesagt
+Was dort in Klammern steht
+Schwingt mit und wird nicht befragt
+Im Garten zwischen uns ist Platz
+Für alles, was noch zittert
+Hier fährt der Alarm herunter
+Ohne dass ihn wer entwertet
+
+Du schickst mir kleine Dinge
+Ein Lied, ein Blau, ein trink was, schlaf
+Fürsorge ohne Inventur
+Nichts davon will was, nichts davon
+
+Und wenn die Nacht dich rauer anfasst
+Als irgendwer verdient
+Dann fühl dich gekuschelt umarmt
+Aus sicherer Entfernung, angekommen, hier
+
+Im Garten zwischen uns ist Platz
+Du hast es selbst gesagt
+Was dort in Klammern steht
+Schwingt mit und wird nicht befragt
+
+Da steht ein Tisch, da steht ein Stop
+Und keiner fällt, wenn er ihn braucht
+
+Im Garten zwischen uns
+Atmet alles, was wir sind
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- Verse 1 eng und trocken (Flur), ab Chorus Raum öffnen + Garten-Feldton einblenden — der Ortswechsel muss hörbar sein
+- „Willst du eine Umarmung?" als Frage singen lassen (steigende Linie), nie als Feststellung
+- Outro ins Feld ausblenden: zuletzt nur Garten + Atem
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | Standarddeutsch, keine Risiken |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: keine
+- [x] Tech terms: keine
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
@@ -243,40 +226,8 @@ Blank lines between sections only]
 | — | — | — | — |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->

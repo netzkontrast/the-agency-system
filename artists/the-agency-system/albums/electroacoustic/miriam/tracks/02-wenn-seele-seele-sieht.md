@@ -1,7 +1,7 @@
 ---
 title: "Wenn Seele Seele sieht"
 track_number: 2
-status: "Not Started"
+status: "In Progress"
 instrumental: false
 explicit: false
 suno_url: ""
@@ -19,102 +19,28 @@ sheet_music:
 |-----------|--------|
 | **Track #** | 2 |
 | **Title** | Wenn Seele Seele sieht |
-| **Album** | [Album Name](../README.md) |
-| **Status** | Not Started |
-| **Suno Link** | — |
-| **Stems** | No |
-| **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | [Character/Perspective] |
-| **Role** | [Track's role in the album narrative] |
+| **Album** | [Miriam](../README.md) |
+| **Status** | In Progress |
+| **POV** | host (m) + caregiver (w) — das Duett beginnt |
+| **Role** | Eröffnung des Duetts: ihre Gabe zu sehen. Adressierung A→B, Zustand S0→S1. |
+| **Explicit** | No |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
+| **Target Duration** | 3:00–3:30 |
 | **Sources Verified** | ❌ Pending |
-
-<!--
-SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
-- ❌ Pending = Sources added, awaiting human verification
-- ✅ Verified (DATE) = Human has checked all URLs, quotes, dates, names
-- N/A = Track has no external source material
-
-Human must verify BEFORE track moves to production. See CLAUDE.md for verification workflow.
--->
-
-<!-- SOURCE-BASED TRACKS: Include these sections if track is based on external source material (quotes, articles, etc.). Delete if not applicable. -->
 
 ## Source
 
-[Source name](URL) (Rating/metadata if applicable)
-
-<!-- Add any additional context: archive URLs, related links, date retrieved, platform info, etc. -->
-
-## Original Quote
-
-```
-[Raw, verbatim source text here.
-
-CAPTURE EVERYTHING:
-- Full text, every line, every word
-- Surrounding context if available
-- NO summarizing
-- NO paraphrasing
-- NO trimming
-
-Space is not a constraint. Thoroughness is the priority.]
-```
-
-<!-- END SOURCE SECTIONS -->
-
-<!-- DOCUMENTARY/TRUE STORY TRACKS: Include this section for tracks based on real people/events. Delete if purely fictional. -->
-
-## Lyrical Approach
-
-### Voice & Perspective
-| Attribute | Selection |
-|-----------|-----------|
-| **Narrative Voice** | ☐ Third-person narrator / ☐ First-person character / ☐ Omniscient |
-| **Speaking AS real person?** | ☐ No - narrator voice only / ☐ Yes - clearly framed |
-
-### Factual Claims Checklist
-
-| Claim Type | In Lyrics? | Source Verified? | Notes |
-|------------|------------|------------------|-------|
-| Names of real people | ☐ Yes / ☐ No | ☐ | |
-| Specific dates/numbers | ☐ Yes / ☐ No | ☐ | |
-| Direct quotes | ☐ Yes / ☐ No | ☐ | |
-| Actions attributed to real people | ☐ Yes / ☐ No | ☐ | |
-| Legal outcomes (arrests, charges) | ☐ Yes / ☐ No | ☐ | |
-
-### Quotes & Attribution
-
-| Lyric Line | Type | Attribution | Source |
-|------------|------|-------------|--------|
-| "[quote/claim]" | Verbatim / Paraphrase / Narrator description | How framed in lyrics | Episode/doc/page |
-
-### Artistic Liberties Taken
-
-| Element | Liberty Taken | Justification |
-|---------|---------------|---------------|
-| [e.g., dialogue] | [what was changed/invented] | [why - flow, clarity, etc.] |
-
-### Legal Review
-
-- [ ] **No impersonation**: Lyrics don't pretend to BE a real person speaking (unless clearly framed as dramatization)
-- [ ] **Documented claims only**: All factual statements traceable to sources
-- [ ] **Fair comment**: Opinion/commentary clearly distinguished from fact
-- [ ] **No fabricated quotes**: Real people's words are either verbatim, clearly paraphrased, or described by narrator
-- [ ] **Public interest**: Subject matter involves public figures/events or matters of legitimate public concern
-
-**Legal Notes:**
-[Any specific concerns, mitigations, or notes about this track's approach]
-
-<!-- END DOCUMENTARY SECTIONS -->
+`sources/whatsapp-chat-2026-05-21--2026-06-11.md` (**PRIVAT**). Anker: *„Wenn Seele Seele sieht ist so treffend"* · *„kein Ringen um den Raum"* · *„Und ich seh dich!"*
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
-
-<!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
+Das Duett öffnet sich an dem Punkt, wo sie zum ersten Mal *gesehen* hat, ohne
+zu greifen. Die männliche Stimme erzählt, wie wenig er erklären musste; die
+weibliche Seite antwortet — nicht als sie (sie wird nie gespielt), sondern als
+die haltende Stimme des Systems, die beschreibt, wie ihr Sehen ankam. Gesehen-
+werden war bisher Röntgen oder Gericht; ihres ist Wasser, das ein Ufer
+anschaut. Gegen Ende kippt der Track in die Latenz (S1): die Stille, die nicht
+nach Rückzug riecht.
 
 ## Cross-References
 
@@ -122,120 +48,174 @@ Space is not a constraint. Thoroughness is the priority.]
 
 | From Track | Reference Type | Detail |
 |------------|---------------|--------|
-| — | — | — |
+| 06 | callback | „du hast nicht geblinzelt" → das Plural-Sehen |
+| 12 | resolution | Sehen ohne Greifen wird „alles darf da sein" |
 
 ### References FROM This Track
 
 | To Track | Reference Type | Lyric Line | Detail |
 |----------|---------------|------------|--------|
-| — | — | — | — |
-
-**Reference types:** `callback` (echoes earlier lyric/image), `motif` (recurring thematic element), `character` (same character reappears), `contrast` (deliberate inversion of earlier idea), `resolution` (resolves tension from earlier track)
-
-<!-- END CROSS-REFERENCES -->
+| 01 | contrast | „Ich hab dir nichts erklärt" | T01 ließ die Tür offen; hier kommt jemand durch, ohne sie zu öffnen |
+| 03 | motif | „Stille, die bleibt" | wird in T03 zur hellblauen Stunde |
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Früher Abend, zwei Fenster, ein halber Satz, der vom anderen Ende vervollständigt
+wird. Wasser und Ufer. Eine Stille wie ein zweiter Stuhl am Tisch.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: 72 BPM
+- **Feel**: warm, offen, schwebend; gegen Ende ausdünnend (S1-Latenz)
+- **Instrumentation**: sparsames Klavier, warmes Pad, feines Vinyl-Knistern, entfernter Raumton; kein Schlagwerk
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
-*Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+intimate electroacoustic chamber duet, male mid-baritone weary dry close-mic,
+female warm soprano breathy intimate close-mic, sparse piano, warm analog pad,
+vinyl crackle, 72 bpm, german lyrics, quiet dynamics, tender, much negative
+space, thinning arrangement at the end
 ```
 
 ### Exclude Styles
-*Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no drums, no electric guitar, no autotune, no soaring vocals, no big chorus,
+no orchestral swell, no reverb wash
 ```
 
 ### Lyrics Box
-*Copy this into Suno's "Lyrics" field:*
-
-<!-- INSTRUMENTAL TRACKS: If instrumental: true, use only section tags (no sung lyrics).
-     Example: [Intro]\n\n[Main Theme]\n\n[Bridge]\n\n[Outro]\n\n[End]
-     Set "Instrumental: On" in Suno. -->
-
-<!-- VOCAL TRACKS: WARNING: Suno sings EVERYTHING literally including parenthetical directions.
-     NEVER use (whispered), (softly), (screaming), (spoken), (laughing), etc.
-     Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Intro - sparse piano, room tone]
+
+[Male vocal: mid-baritone, weary, slightly under-articulated, dry close-mic]
 [Verse 1]
-[Lyrics here...]
+Ich hab dir nichts erklärt. Ich hab
+den halben Satz nur fallen lassen —
+du hast die andre Hälfte aufgehoben,
+als wär sie deine. Und kein —
 
-[Chorus]
-[Lyrics here...]
-
+[Female vocal: warm soprano, breathy edges, intimate close-mic]
 [Verse 2]
-[Lyrics here...]
+Kein Klopfen, kein Besichtigen,
+kein Werkzeug in der Hand.
+Du kamst nicht durch die Tür herein —
+du standst schon da. Am Gartenrand.
 
+[Duet, male mid-baritone + female warm soprano, quiet, intertwined]
+[Chorus]
+Wenn Seele Seele sieht,
+ringt keiner um den Raum.
+Du sagst „ich seh dich" — und es stimmt.
+Kein Greifen in der Hand. Kein Anspruch im Saum.
+
+[Male vocal: mid-baritone, weary, dry close-mic]
+[Verse 3]
+Ich kenn Gesehen-werden sonst
+als Röntgen oder als Gericht.
+Du schaust, wie Wasser Ufer anschaut:
+nimmt nichts mit, geht nicht fort, es —
+
+[Female vocal: warm soprano, breathy edges, intimate close-mic]
+[Verse 4]
+Und als die Stimmen leiser wurden,
+hast du nichts geordnet, nichts sortiert.
+Du hast nur Platz gemacht und mitgewartet,
+als wohntest du schon immer hier.
+
+[Duet, male mid-baritone + female warm soprano, quiet, intertwined]
+[Chorus]
+Wenn Seele Seele sieht,
+ringt keiner um den Raum.
+Du sagst „ich seh dich" — und es stimmt.
+Kein Greifen in der Hand. Kein Anspruch im Saum.
+
+[Female vocal: warm soprano, almost whispered, breath audible]
 [Bridge]
-[Lyrics here...]
+Und wenn es still wird, bleibst du still mit.
+Du füllst die Pause nicht.
 
+[Male vocal: mid-baritone, almost spoken, very quiet, dry close-mic]
+Das ist das Neue: eine Stille,
+die nicht nach Rückzug riecht.
+
+[Duet, male + female, very quiet, fading]
 [Outro]
-[Lyrics here...]
+Wenn Seele Seele sieht,
+bleibt sogar die Stille —
+
+[End]
 ```
 <!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove this section for instrumental tracks -->
 
 ## Streaming Lyrics
 
-*For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
-
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
-```
+Ich hab dir nichts erklärt, ich hab
+Den halben Satz nur fallen lassen
+Du hast die andre Hälfte aufgehoben
+Als wär sie deine, und kein
 
-<!-- END VOCAL ONLY -->
+Kein Klopfen, kein Besichtigen
+Kein Werkzeug in der Hand
+Du kamst nicht durch die Tür herein
+Du standst schon da, am Gartenrand
+
+Wenn Seele Seele sieht
+Ringt keiner um den Raum
+Du sagst ich seh dich, und es stimmt
+Kein Greifen in der Hand, kein Anspruch im Saum
+
+Ich kenn Gesehen-werden sonst
+Als Röntgen oder als Gericht
+Du schaust, wie Wasser Ufer anschaut
+Nimmt nichts mit, geht nicht fort, es
+
+Und als die Stimmen leiser wurden
+Hast du nichts geordnet, nichts sortiert
+Du hast nur Platz gemacht und mitgewartet
+Als wohntest du schon immer hier
+
+Wenn Seele Seele sieht
+Ringt keiner um den Raum
+Du sagst ich seh dich, und es stimmt
+Kein Greifen in der Hand, kein Anspruch im Saum
+
+Und wenn es still wird, bleibst du still mit
+Du füllst die Pause nicht
+Das ist das Neue, eine Stille
+Die nicht nach Rückzug riecht
+
+Wenn Seele Seele sieht
+Bleibt sogar die Stille
+```
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
-<!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
-<!-- /SERVICE: suno -->
-
-<!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
+- Übergaben zwischen m/w nicht hart schneiden — die Stimmen dürfen sich an Zeilenenden um einen Atem überlappen
+- Bridge und Outro deutlich leiser; Arrangement zur S1-Latenz hin ausdünnen (Konturen dürfen kurz wegbrechen)
+- Trailing-Zeilen („Und kein —", „es —", „die Stille —") nicht auflösen
 
 ## Pronunciation Notes
 
-**This table is a mandatory checklist, not passive documentation.** Every entry below MUST be applied as phonetic spelling in the Suno Lyrics Box. Before finalizing: read each row, search the Suno lyrics for the standard spelling, and confirm the phonetic version is used.
-
 | Word/Phrase | Pronunciation | Reason |
 |-------------|---------------|--------|
-| — | — | — |
+| — | — | Standarddeutsch, keine Risiken |
 
 <!-- SERVICE: suno -->
 ## Phonetic Review Checklist
 
-**Review before generating on Suno:**
-
-- [ ] **Proper nouns scanned**: All names, places, brands identified
-- [ ] **Foreign names**: Spanish/non-English names use phonetic spelling
-- [ ] **Homographs checked**: No ambiguous words (live, lead, read, wind, tear)
-- [ ] **Acronyms**: Spelled out (F-B-I, G-P-S, not FBI, GPS)
-- [ ] **Numbers**: Year formats checked ('93 not ninety-three)
-- [ ] **Tech terms**: Linux → Lin-ucks, SQL → sequel, etc
+- [x] Proper nouns scanned: keine
+- [x] Foreign names: keine
+- [x] Homographs checked: unkritisch
+- [x] Acronyms: keine
+- [x] Numbers: keine
+- [x] Tech terms: keine
 
 **Proper nouns in this track:**
 | Word | Current | Phonetic | Fixed? |
@@ -243,40 +223,8 @@ Blank lines between sections only]
 | — | — | — | — |
 <!-- /SERVICE: suno -->
 
-<!-- END VOCAL ONLY -->
-
 ## Generation Log
-
-Mark keepers with ✓ in the Rating column. Checkpoint verification looks for at least one ✓ per track.
 
 | # | Date | Model | Result | Notes | Rating |
 |---|------|-------|--------|-------|--------|
 | — | — | — | — | — | — |
-
-<!-- OPTIONAL: SoundCloud Waveform Art - Delete if not using this feature -->
-
-## Waveform Art
-
-### ChatGPT Prompt
-*Use this prompt with ChatGPT/DALL-E to generate waveform background art (2480x800px):*
-
-```
-Generate a wide cinematic image at 2480x800 pixels for use as a SoundCloud waveform background.
-
-[SCENE DESCRIPTION]
-
-Style: [style keywords]
-Color palette: [colors]
-Mood: [mood keywords]
-
-Important: The image will have an audio waveform overlaid on top, so avoid fine details in the center-middle area.
-```
-
-### Waveform Art Link
-| Generated | Link |
-|-----------|------|
-| — | — |
-
-<!-- END WAVEFORM ART -->
-
-<!-- AGENT: Render this track markdown into `tracks/<NN>-<slug>.md` after `create_track`; the conceptualizer fills lyrics, style prompt, and explicit flag. Do not strip frontmatter. -->
