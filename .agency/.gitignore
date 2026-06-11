@@ -1,0 +1,4 @@
+# Spec 021 — ephemeral monitor SLOG (NOT graph state).
+# session.db is committed (Spec 020) — do not add it here.
+monitor.log
+monitor.log.*
