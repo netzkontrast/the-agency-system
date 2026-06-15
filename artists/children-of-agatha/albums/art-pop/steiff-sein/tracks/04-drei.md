@@ -129,8 +129,8 @@ dieses Lied heißt „Drei" — über die Liebe, die da ist, und den Wunsch, den
 [older female voice, warm-raw, tender at the edges, restrained]
 Er nimmt mir alles Schwere aus der Hand
 das ist sein Streicheln, das ich spät verstand
-zwei Stühle, nah, und doch ein Strich dazwischen
-ich rück nicht ran, ich hab es nie gelernt
+zwei Stühle, nah, getrennt durch einen Strich
+ich rück nicht ran — so kenn ich mich
 
 [Pre-Chorus]
 Und will ich mehr, als gut für uns zwei ist
@@ -177,8 +177,8 @@ Dieses Lied heißt Drei über die Liebe die da ist und den Wunsch den du nie aus
 
 Er nimmt mir alles Schwere aus der Hand
 Das ist sein Streicheln das ich spät verstand
-Zwei Stühle nah und doch ein Strich dazwischen
-Ich rück nicht ran ich hab es nie gelernt
+Zwei Stühle nah getrennt durch einen Strich
+Ich rück nicht ran so kenn ich mich
 
 Und will ich mehr als gut für uns zwei ist
 Hebt er ganz still die Hand ganz ohne Streit
