@@ -66,20 +66,112 @@ no drums kit, no bright synths, no triumphant tone
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt.*
+*Copy into Suno's "Lyrics" field.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Der Fluss ist zu
+Atemzug
+
+[Verse 1]
+Der Strom ist dicht, der Weg verbaut,
+ich lass das sichre Wasser stehn
+Mond auf dem Gras, die Erde rau —
+und trotzdem muss ich weitergehn
+
+[Pre-Chorus]
+Über Land, über Land
+wo kein Wasser mich trägt
+
+[Chorus]
+Ein Hindernis ist nur ein Umweg
+für die, die kriechen mögen
+Ich schlängle weiter, atemlos —
+dem Schlamm, der Nacht entgegen
+
+[Verse 2]
+Hier glänzt kein Öl, hier hilft kein Gleiten,
+das trockne Gras hält jeden Zoll
+Was glatt war, muss sich jetzt verbeißen —
+ich grab mich vor, halb leer, halb voll
+
+[Pre-Chorus]
+Über Land, über Land
+wo kein Wasser mich trägt
+
+[Chorus]
+Ein Hindernis ist nur ein Umweg
+für die, die kriechen mögen
+Ich schlängle weiter, atemlos —
+dem Schlamm, der Nacht entgegen
+
+[Bridge]
+Wir waren glatt, jetzt sind wir Griff,
+wir schleppen uns, wir geben nicht
+Das nächste Wasser riecht nach Schlamm —
+und Schlamm, ihr ahnt es, ist kein Nichts
+
+[Outro]
+Atemzug
+Fast da
+Amen
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Der Fluss ist zu
+Atemzug
+
+Der Strom ist dicht der Weg verbaut
+ich lass das sichre Wasser stehn
+Mond auf dem Gras die Erde rau
+und trotzdem muss ich weitergehn
+
+Über Land über Land
+wo kein Wasser mich trägt
+
+Ein Hindernis ist nur ein Umweg
+für die die kriechen mögen
+Ich schlängle weiter atemlos
+dem Schlamm der Nacht entgegen
+
+Hier glänzt kein Öl hier hilft kein Gleiten
+das trockne Gras hält jeden Zoll
+Was glatt war muss sich jetzt verbeißen
+ich grab mich vor halb leer halb voll
+
+Über Land über Land
+wo kein Wasser mich trägt
+
+Ein Hindernis ist nur ein Umweg
+für die die kriechen mögen
+Ich schlängle weiter atemlos
+dem Schlamm der Nacht entgegen
+
+Wir waren glatt jetzt sind wir Griff
+wir schleppen uns wir geben nicht
+Das nächste Wasser riecht nach Schlamm
+und Schlamm ihr ahnt es ist kein Nichts
+
+Atemzug
+Fast da
+Amen
 ```
 
 ## Production Notes
 
 - Reibungstexturen kontrastieren bewusst mit dem nassen Hall der Nachbartracks.
 - Treibt energetisch auf das Herzstück „Nacht und Schlamm" zu.
+
+## Cross-References
+
+- **Inversion (T2 → T5):** Das Öl/Gleiten, mit dem der Aal in „Geölte
+  Rückenflosse" jeder Faust entkam, wird an Land zur Last — „Hier glänzt kein Öl,
+  hier hilft kein Gleiten" / „Wir waren glatt, jetzt sind wir Griff".
+- **Strömungs-Faden (T3/T4 → T5):** „wo kein Wasser mich trägt" ← „woher der Strom
+  uns trägt" (T3); setzt T4s Wanderung fort, jetzt gegen das Hindernis.
+- **Vorausdeutung (T5 → T6/Bekenntnis):** „dem Schlamm … entgegen" und „Schlamm …
+  ist kein Nichts" zielen auf das Herzstück T6 und die Bekenntnis-Zeile „Im Schlamm
+  liegt die Kraft".
