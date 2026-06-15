@@ -295,6 +295,31 @@ weich im Innern.
 - **Tabu:** kein Name, kein Gesicht nötig; keine Diagnose-Symbolik.
 - Generierung später via `/bitwize-music:album-art-director` (Artist-Name unten rechts, ≥3000×3000).
 
+### Image Prompt
+
+**Plattform:** noch nicht gewählt — unten Midjourney **und** Leonardo/SD (mit Negative). Sag deine Plattform für Feinschliff.
+
+**Midjourney (V6/V7):**
+```
+close-up of a mature woman's strong, weathered hands gently cradling one single old worn mohair teddy bear, a small round metal button fixed in the bear's ear catching a glint of light, soft faded glass eyes, intimate fine-art still-life photograph, a pool of warm amber light on the hands and fur, deep cold charcoal-blue darkness all around, faint lilac undertone, shallow depth of field, low-key chiaroscuro, dignified and tender, nocturnal, generous negative space, no face, subtle film grain, album cover --ar 1:1 --style raw --v 6 --no glitter, sparkles, text, cute cartoon, pile of toys
+```
+
+**Leonardo.ai / Stable Diffusion:**
+```
+Prompt: An intimate, dignified fine-art still-life photograph for an album cover. A mature woman's strong, weathered hands — hard-worked yet tender — gently cradle one single old mohair teddy bear; a small round metal button is fixed in its ear and catches a glint of light, its glass eyes soft and faded. A pool of warm amber light falls on the hands and the worn fur, while the rest of the frame sinks into cold charcoal-blue darkness, with the faintest undertone of lilac. Shallow depth of field, low-key chiaroscuro lighting, generous negative space, no face visible. Quiet, nocturnal, honest — hard on the outside, soft within. Square 1:1, high resolution, subtle film grain.
+
+Negative: cute cartoon, kawaii, glitter, sparkles, rainbow, neon, many teddy bears, pile of toys, child, clown, watermark, logo, text artifacts, extra fingers, deformed hands, plastic sheen, oversaturated, HDR, busy background, clutter, lens flare
+
+Model: Leonardo Kino XL (or Phoenix) · Preset: Cinematic / Photography · Aspect 1:1
+```
+
+**Hinweis:** Der Schriftzug **„Children of Agatha"** unten rechts am besten **nachträglich** digital setzen (KI-Text ist unzuverlässig). Thumbnail-Test: bernsteinbeleuchtete Hände + Bär gegen Dunkel = starker, kleiner-lesbarer Fokus.
+
+### Negative Prompt
+```
+cute cartoon, kawaii, glitter, sparkles, rainbow, neon, many teddy bears, pile of toys, child, clown, watermark, logo, text, extra fingers, deformed hands, plastic, oversaturated, HDR, busy background, clutter, lens flare
+```
+
 ## Workflow-Stand
 
 - **Phase 1–7 ✅ abgeschlossen** (Conceptualizer). Bestätigt: Character Study; 6 Tracks; Lilifee in T06 eingewoben; „Steiff sein" = EP- & Titeltrack; Genre pro Song (Dark Disco nur T06); Schwere nie überwiegend / offene Selbst-Enden; Album-Art = „Hände & ein Steiff"; Track-Titel final; Ordner → `art-pop`.
