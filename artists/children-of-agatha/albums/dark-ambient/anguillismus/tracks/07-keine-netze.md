@@ -67,20 +67,112 @@ no drums, no aggressive distortion, no shouting, no bright synths
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt.*
+*Copy into Suno's "Lyrics" field.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Ich steige
+kalt und klar
+
+[Verse 1]
+Im Dunkel tasten feine Maschen,
+geknüpft aus Klatsch und altem Streit
+Personal, Visite, Sonntagsbesuch —
+sie weben, und sie haben Zeit
+
+[Pre-Chorus]
+Keine Netze, keine Netze
+web ich, schwimm ich nie hinein
+
+[Chorus]
+Ich reiße durch die letzte Masche,
+ich häng an keinem Faden mehr
+Bleib strömungstreu, bleib ungefangen —
+das offne Wasser ruft mich her
+
+[Verse 2]
+Da hält die letzte Reuse zu,
+sie zieht sich eng, sie kennt mich gut
+Ich dreh mich ein, ich dreh mich frei —
+ein Riss. Dann Stille. Dann die Flut
+
+[Pre-Chorus]
+Keine Netze, keine Netze
+web ich, schwimm ich nie hinein
+
+[Chorus]
+Ich reiße durch die letzte Masche,
+ich häng an keinem Faden mehr
+Bleib strömungstreu, bleib ungefangen —
+das offne Wasser ruft mich her
+
+[Bridge]
+Ihr nageltet, ihr klebtet Namen,
+ihr warft das Netz — es hält mich nicht
+Was glitschig war, ist jetzt entschieden:
+kein Garn der Welt umfasst dies Licht
+
+[Outro]
+Ein Riss
+dann offen
+Amen
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Ich steige
+kalt und klar
+
+Im Dunkel tasten feine Maschen
+geknüpft aus Klatsch und altem Streit
+Personal Visite Sonntagsbesuch
+sie weben und sie haben Zeit
+
+Keine Netze keine Netze
+web ich schwimm ich nie hinein
+
+Ich reiße durch die letzte Masche
+ich häng an keinem Faden mehr
+Bleib strömungstreu bleib ungefangen
+das offne Wasser ruft mich her
+
+Da hält die letzte Reuse zu
+sie zieht sich eng sie kennt mich gut
+Ich dreh mich ein ich dreh mich frei
+ein Riss dann Stille dann die Flut
+
+Keine Netze keine Netze
+web ich schwimm ich nie hinein
+
+Ich reiße durch die letzte Masche
+ich häng an keinem Faden mehr
+Bleib strömungstreu bleib ungefangen
+das offne Wasser ruft mich her
+
+Ihr nageltet ihr klebtet Namen
+ihr warft das Netz es hält mich nicht
+Was glitschig war ist jetzt entschieden
+kein Garn der Welt umfasst dies Licht
+
+Ein Riss
+dann offen
+Amen
 ```
 
 ## Production Notes
 
 - Reißendes Netz-Geräusch als zentrales Sonic-Ereignis (einmalig, markant).
 - Greift die Festnageln↔ungreifbar-Spannung aus Track 2 auf und löst sie endgültig.
+
+## Cross-References
+
+- **Fang-Bogen-Auflösung (T1/T2 → T7):** greifende Faust (T1) → geöltes Gleiten
+  (T2) → gewebtes Netz (T7), zerrissen. Der Bridge-Vers „Ihr nageltet, ihr klebtet
+  Namen, ihr warft das Netz" greift T2s Festnageln/Etikett auf und löst die
+  ungreifbar-Spannung endgültig: „Was glitschig war, ist jetzt entschieden".
+- **Wiederaufstieg (T6 → T7):** „Ich steige, kalt und klar" kehrt den Tauchgang
+  aus „Nacht und Schlamm" um.
+- **Ruf-Faden (T4 → T7 → T8):** „das offne Wasser ruft mich her" ← „ich folg dem
+  Ruf" (T4); leitet zur Heimkehr „Rückkehr zum Ursprung" über.
