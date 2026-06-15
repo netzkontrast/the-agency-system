@@ -161,6 +161,11 @@ seam where gift meets cost.
 - Let suppressed emotion be *suppressed on the page* too — implied, swallowed, sideways.
 - Show competence/pride **first**, so the cost lands by inversion.
 - Let images stand. No moral, no explained metaphor.
+- **Schwere überwiegt nie:** every song ends *more open*, with a feeling of
+  *Selbst-Sein* — a sliver of light / a piece of „ich darf" at the close (breath,
+  not resolution; never kitsch). Even the heaviest tracks (beast, pain, armor)
+  leave the door ajar. This sits *with* "no false resolution": an open, self-leaning
+  breath is not a cure.
 
 **AVOID** *(unified across all research)*
 - **Diagnosis / clinical words** of any kind (named or implied), incl. „chronisch krank" as a label.

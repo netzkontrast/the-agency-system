@@ -64,6 +64,13 @@ Liebe zu sich selbst — *„du darfst sein, du musst nichts."*
 Kein Bogen zur „Heilung". Das Zentrum — *darf ich einfach sein?* — bleibt **offen**;
 der Höhepunkt schenkt **Erlaubnis, keine Heilung** (der Schmerz bleibt im Raum).
 
+**Tonale Grundregel (verbindlich, jeder Song):** Die **Schwere darf nie überwiegen**.
+Jeder Song **endet offener** — mit einem **Gefühl fürs Selbst-Sein**: kein Absturz,
+kein Zuklappen, aber auch keine kitschige Auflösung. Das offene Ende kippt **sanft
+Richtung „ich darf"** — *Atem, nicht Auflösung; Glimmen, nicht Heilung.* Auch die
+schwersten Tracks (Bestie, Schmerz, Rüstung) lassen am Schluss einen Spalt Licht /
+ein Stück Selbst stehen.
+
 ## Structure *(6 Tracks bestätigt; Titel/Genres noch Entwurf bis Phase 7)*
 
 Ein Bogen von der Herkunft/Rüstung nach innen zum offenen Zentrum. **Humor** läuft
