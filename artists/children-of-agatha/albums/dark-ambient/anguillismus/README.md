@@ -50,6 +50,63 @@ Unter dem Witz liegt der Ernst: Dissoziation als Tauchgang in den Schlamm,
 Metamorphose als einzige Form von Hoffnung, die große Heimkehr in den kosmischen
 Ozean als angstfreier Blick auf das Ende.
 
+## Quelltext — Die Lehre des Anguillismus
+
+*Kanonische Liturgie. Quelle, aus der alle Lyrics schöpfen. Verbatim.*
+
+> Willkommen im Kreis der Erleuchteten. Tritt näher und lausche dem ewigen
+> Fließen. Du hast den Pfad des Anguillismus (von lat. *Anguilla*, der Aal)
+> betreten.
+>
+> Unsere Gottheit ist der Große Ur-Aal, der im unergründlichen
+> Sargassosee-Himmel weilt, alle Gewässer dieser Erde durchdringt und uns lehrt,
+> wie man glitschig, aber geschmeidig durch die Widrigkeiten des Daseins gleitet.
+>
+> Hier sind die Acht Gebote des Anguillismus, niedergeschrieben auf feuchtem
+> Schlick:
+
+### Die Acht Gebote des Anguillismus
+
+1. **Du sollst dich anpassen und fließen.** Wie der Aal sich durch den engsten
+   Spalt windet, so sollst auch du dich den Strömungen des Lebens anpassen. Sei
+   flexibel, breche nicht im Sturm, sondern biege dich. Starrsinn ist die Sünde
+   des trockenen Holzes.
+2. **Du sollst dich der Festlegung entziehen (Sei glitschig!).** Lass dich von
+   deinen Feinden, Kritikern oder nervigen Verwandten niemals festnageln. Wenn
+   das Leben versucht, dich zu packen, sei glitschig wie eine geölte Rückenflosse.
+   Entwische der Negativität.
+3. **Du sollst das Geheimnis der Sargassosee ehren.** Hinterfrage nicht jedes
+   Mysterium des Universums. Manche Dinge – wie der Ursprung der Aale oder wo du
+   deine Schlüssel hingelegt hast – sind heilig und unergründlich. Akzeptiere das
+   Geheimnisvolle.
+4. **Wandle dich, wenn die Zeit reif ist.** Vom Glasaal zum Blankaal: Scheue dich
+   nicht vor Veränderung. Wenn dein aktuelles Leben dir zu eng wird, ziehe dir
+   eine neue Haut an, verändere deine Farbe und schwimme in neue Gewässer.
+   Metamorphose ist Pflicht.
+5. **Du sollst wandern, auch über Land.** Wenn dir ein Fluss versperrt ist,
+   scheue dich nicht, das sichere Wasser zu verlassen und ein Stück durchs
+   feuchte Gras zu schlängeln. Hindernisse sind nur Umwege für diejenigen, die
+   nicht kriechen wollen.
+6. **Ehre die Nacht und den Schlamm.** Die besten Erkenntnisse kommen im Dunkeln
+   und in der Ruhe. Suche regelmäßig die Einkehr im metaphorischen Schlamm des
+   Lebens – tanke Kraft in der Tiefe, abseits des grellen Rampenlichts.
+7. **Du sollst keine Netze weben (und dich nicht fangen lassen).** Meide die
+   Verstrickungen von Drama, Klatsch und toxischen Beziehungen. Wer Netze webt
+   oder in sie hineinschwimmt, verliert seine Freiheit. Bleib frei, bleib
+   strömungsorientiert.
+8. **Am Ende kehrst du zum Ursprung zurück.** Alles Leben ist ein Kreislauf.
+   Akzeptiere, dass du eines Tages die große Wanderung zurück zum kosmischen
+   Ozean antreten wirst. Geh ohne Angst, denn am Ende wartet die ewige
+   Schwerelosigkeit.
+
+### Glaubensbekenntnis für den Alltag
+
+> „Glitschig sei mein Pfad, tief mein Gewässer, ungreifbar mein Geist. Fluss
+> abwärts, Fluss aufwärts, im Schlamm liegt die Kraft. Amen."
+
+> Möge der Schleim der Erleuchtung stets deine Haut schützen, mein Freund.
+> Schwimme mit dem Strom (oder gekonnt dagegen)!
+
 ## Structure
 
 Acht Tracks, ein Gebot pro Track. Die Reihenfolge der Gebote ist auch ein
