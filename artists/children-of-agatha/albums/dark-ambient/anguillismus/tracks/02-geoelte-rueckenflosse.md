@@ -66,20 +66,109 @@ no drums, no bright synths, no comedic instrumentation
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt.*
+*Copy into Suno's "Lyrics" field.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Greif zu
+Wenn du kannst
+
+[Verse 1]
+Die Hand kommt näher, fest entschlossen
+Sie will mich halten, will mich sehn
+Doch über meine Rückenflosse
+ist Öl gegossen — lass sie gehn
+
+[Pre-Chorus]
+Greif nur zu — ich bin schon fort
+Greif nur zu
+
+[Chorus]
+Ungreifbar mein Geist
+Greif zu, greif zu
+Du fasst mich nie
+Ich bin schon fort im Nu
+
+[Verse 2]
+Die Visite kommt mit meinem Namen
+ein Etikett, schon angeklebt
+Der Onkel petzt, die Tanten mahnen —
+ich öl mich, eh die Faust sich hebt
+
+[Pre-Chorus]
+Greif nur zu — ich bin schon fort
+Greif nur zu
+
+[Chorus]
+Ungreifbar mein Geist
+Greif zu, greif zu
+Du fasst mich nie
+Ich bin schon fort im Nu
+
+[Bridge]
+Ein Quietschen in der Dunkelheit,
+das ist mein ganzer Widerstand
+Ein Lächeln, glatt und gut geölt,
+entgleitet jeder festen Hand
+
+[Outro]
+Greif zu
+Greif zu
+Ich bin schon fort
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Greif zu
+Wenn du kannst
+
+Die Hand kommt näher fest entschlossen
+Sie will mich halten will mich sehn
+Doch über meine Rückenflosse
+ist Öl gegossen lass sie gehn
+
+Greif nur zu ich bin schon fort
+Greif nur zu
+
+Ungreifbar mein Geist
+Greif zu greif zu
+Du fasst mich nie
+Ich bin schon fort im Nu
+
+Die Visite kommt mit meinem Namen
+ein Etikett schon angeklebt
+Der Onkel petzt die Tanten mahnen
+ich öl mich eh die Faust sich hebt
+
+Greif nur zu ich bin schon fort
+Greif nur zu
+
+Ungreifbar mein Geist
+Greif zu greif zu
+Du fasst mich nie
+Ich bin schon fort im Nu
+
+Ein Quietschen in der Dunkelheit
+das ist mein ganzer Widerstand
+Ein Lächeln glatt und gut geölt
+entgleitet jeder festen Hand
+
+Greif zu
+Greif zu
+Ich bin schon fort
 ```
 
 ## Production Notes
 
 - Refrain greift das Bekenntnis-Fragment „ungreifbar mein Geist" auf.
+
+## Cross-References
+
+- **Callback (T1 → T2):** Das Faust-/Greif-Motiv aus „Biege dich" („Die Faust
+  schließt sich um nichts als Nass") kehrt transformiert wieder — die Hand
+  rutscht jetzt an der geölten Flosse ab („entgleitet jeder festen Hand").
+- **Motiv-Fragment:** „ungreifbar mein Geist" (Bekenntnis-Zeile aus T1) wird
+  zum Refrain-Anker — erstes Aufbrechen des Bekenntnisses in Einzelteile.
 - Komik bleibt trocken — nie albern; die Stimme bleibt feierlich.
