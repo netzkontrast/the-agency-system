@@ -65,20 +65,96 @@ no drums, no rhythm, no bright leads
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt.*
+*Copy into Suno's "Lyrics" field.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Pst
+Hör auf zu fragen
+
+[Verse 1]
+Ein Himmel, ganz aus Wasser, schweigt
+im Sargassohimmel treiben wir
+Kein Grund, kein Licht, das sich uns zeigt —
+und etwas Großes atmet hier
+
+[Chorus]
+Frag nicht, frag nicht
+woher die Strömung quillt
+Tief ist das Gewässer
+und es bleibt verhüllt
+
+[Verse 2]
+Wo alle Aale einst begannen,
+wo gestern noch der Schlüssel lag —
+ein selbes Dunkel hält sie beide
+und schweigt sie heilig in den Tag
+
+[Chorus]
+Frag nicht, frag nicht
+woher die Strömung quillt
+Tief ist das Gewässer
+und es bleibt verhüllt
+
+[Bridge]
+Wir greifen nicht, wir lassen schweben
+Was sich verbirgt, gehört sich selbst
+Die offne Hand hält mehr als jede,
+die sich um ein Geheimnis schließt
+
+[Outro]
+Pst
+Es trägt uns
+Amen
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Pst
+Hör auf zu fragen
+
+Ein Himmel ganz aus Wasser schweigt
+im Sargassohimmel treiben wir
+Kein Grund kein Licht das sich uns zeigt
+und etwas Großes atmet hier
+
+Frag nicht frag nicht
+woher die Strömung quillt
+Tief ist das Gewässer
+und es bleibt verhüllt
+
+Wo alle Aale einst begannen
+wo gestern noch der Schlüssel lag
+ein selbes Dunkel hält sie beide
+und schweigt sie heilig in den Tag
+
+Frag nicht frag nicht
+woher die Strömung quillt
+Tief ist das Gewässer
+und es bleibt verhüllt
+
+Wir greifen nicht wir lassen schweben
+Was sich verbirgt gehört sich selbst
+Die offne Hand hält mehr als jede
+die sich um ein Geheimnis schließt
+
+Pst
+Es trägt uns
+Amen
 ```
 
 ## Production Notes
 
 - Bewusster Energie-Tiefpunkt (Tal) nach dem süffisanten Track 2.
 - Sät das Sargasso/Ursprung-Motiv, das in Track 8 als Heimkehr-Ziel zurückkehrt.
+
+## Cross-References
+
+- **Inversion (T1/T2 → T3):** Das greifende Faust-Motiv kippt — statt der Faust,
+  die sich „um nichts als Nass" schließt (T1), hört die Gemeinde selbst auf zu
+  greifen: „Die offne Hand hält mehr als jede, die sich um ein Geheimnis schließt".
+- **Callback:** „Tief ist das Gewässer" ← Bekenntnis-Zeile „tief mein Gewässer" (T1),
+  hier kommunal und auf das Mysterium bezogen.
+- **Saat:** Sargasso/Ursprung-Motiv etabliert → kehrt in T8 als Heimkehr-Ziel zurück.
