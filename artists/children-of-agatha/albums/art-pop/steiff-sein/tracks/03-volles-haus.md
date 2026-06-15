@@ -91,7 +91,7 @@ nah — ein Atemzug.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — raw and weary, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Mature melancholic soul-pop, mid-tempo. Felt piano, brushed drums, soft upright bass, strings swelling late, warm but heavy. ~88 BPM, voice forward, wide dynamic range; quiet, breathing open end.
+Older female lead, German — raw and weary, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Mature melancholic soul-pop, mid-tempo. Felt piano, brushed drums, soft upright bass, strings swelling late, warm but heavy. ~88 BPM, voice forward, wide dynamic range; quiet, breathing open end. Only the spoken intro is the male mid-baritone narrator; every sung section is the older female voice.
 ```
 
 ### Exclude Styles
@@ -133,10 +133,12 @@ Mohair und Knopf im Ohr, ich stell sie heller
 und keiner von euch dreht den Kopf zurück
 
 [Pre-Chorus]
+[older female voice, raw, weary, worn]
 Früher war das Freude, jetzt ist es ein Plan
 ich rück euch zurecht — ich fang nichts Neues an
 
 [Chorus]
+[older female voice, raw, weary, worn]
 Volles Haus, volles Haus
 und kein Stuhl ist für Gäste gedeckt
 volles Haus, lauter Zeugen aus Glas
@@ -144,12 +146,14 @@ und ich sitz hier und keiner hat's gemerkt
 volles Haus
 
 [Verse 2]
+[older female voice, raw, weary, worn]
 Auf der letzten Saison liegt schon Staub von der Freude
 ich wisch ihn ab und stell den Tisch fürs Jahr
 das laute Außen häng ich an den Haken — heute
 bin ich leise, so wie ich drinnen war
 
 [Bridge]
+[older female voice, raw, weary, worn]
 Das stille Kind dahinter wollte die hier nie verkaufen
 für sie hab ich gesammelt, für sie steht das alles da
 ich muss die Vitrine heut nicht zumachen, nicht zulaufen

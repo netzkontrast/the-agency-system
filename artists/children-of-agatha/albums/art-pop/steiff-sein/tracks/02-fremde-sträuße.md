@@ -92,7 +92,7 @@ Hand gedreht, nicht zurückgelegt — ein Spalt Licht.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older raw weathered female lead, German, weary and close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. German chanson, acoustic singer-songwriter, melancholic 3/4 waltz lilt. Nylon guitar, brushed upright bass, a faint accordion swell, lots of space. ~84 BPM, intimate, restrained dynamics; breath over resolution.
+Older raw weathered female lead, German, weary and close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. German chanson, acoustic singer-songwriter, melancholic 3/4 waltz lilt. Nylon guitar, brushed upright bass, a faint accordion swell, lots of space. ~84 BPM, intimate, restrained dynamics; breath over resolution. Only the spoken intro is the male mid-baritone narrator; every sung section is the older female voice.
 ```
 
 ### Exclude Styles
@@ -134,22 +134,26 @@ mein Vater sagte, lern was mit den Händen
 und ich nickte, und ich blieb, und ich ging mit
 
 [Pre-Chorus]
+[older female voice, raw, weathered, weary]
 Die Zeichnung liegt noch im Einwickelpapier
 gefaltet klein, da, wo mich keiner sieht
 
 [Chorus]
+[older female voice, raw, weathered, weary]
 Ich binde fremde Sträuße, Tag für Tag
 für Hochzeiten und Namen, die ich nicht mehr frag
 der Draht hält fest, was nicht für mich gedacht
 ich reich es übern Tresen, und ich hab es gut gemacht
 
 [Verse 2]
+[older female voice, raw, weathered, weary]
 Wasser wechseln, Dornen runter, weiter
 ich kenn den Griff im Schlaf, ich brauch kein Licht
 das stille Kind, das malen wollte, wartet
 im hintersten Regal und stört mich nicht
 
 [Bridge]
+[older female voice, raw, weathered, weary]
 Nur tun, nicht spielen — so hab ich's eingeübt
 ein Handgriff nach dem andern, kühl und glatt
 doch heut, eh ich das Rollo runterzieh

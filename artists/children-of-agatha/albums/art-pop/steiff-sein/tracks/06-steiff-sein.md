@@ -93,7 +93,7 @@ Brief endlich an sie; die offenen Arme der Tochter; allein tanzen im Licht.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Softened older female lead, German — warm, intimate close-mic, a little raw underneath; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Hypnotic 80s dark disco, italo. Four-on-the-floor, cold sequenced synth bass, gated-reverb drums, glassy synth stabs, nocturnal and repetitive — a song to dance alone with yourself. Voice forward, wide dynamic range. ~112 BPM.
+Softened older female lead, German — warm, intimate close-mic, a little raw underneath; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Hypnotic 80s dark disco, italo. Four-on-the-floor, cold sequenced synth bass, gated-reverb drums, glassy synth stabs, nocturnal and repetitive — a song to dance alone with yourself. Voice forward, wide dynamic range. ~112 BPM. Only the spoken intro is the male mid-baritone narrator; every sung section is the older female voice.
 ```
 
 ### Exclude Styles
@@ -135,10 +135,12 @@ so lang war ich steif, der Knopf im Ohr
 das Mohair verfilzt, ich kannte nichts davor
 
 [Pre-Chorus]
+[older female voice, warm, softened, intimate, a little raw underneath]
 Ich leg die Rüstung ab, nur für ein Lied
 der Stuhl steht da — ich setz mich, endlich, hier
 
 [Chorus]
+[older female voice, warm, softened, intimate, a little raw underneath]
 Steiff sein, weich sein, beides darf jetzt sein
 ich tanz mit mir allein, ich bin nicht mehr allein
 du darfst sein, du musst nichts —
@@ -147,18 +149,21 @@ Steiff sein, weich sein, der Schmerz bleibt sitzen, ja
 und ich halt dich trotzdem. Trotzdem. Trotzdem da
 
 [Verse 2]
+[older female voice, warm, softened, intimate, a little raw underneath]
 Ich war außen Takt, damit keiner mich hört
 das stille Kind hat nie den Beat gestört
 jetzt heb ich es hoch, kein Wort, nur der Puls
 es muss nicht laut sein. Es ist. Das ist genug
 
 [Bridge]
+[older female voice, warm, softened, intimate, a little raw underneath]
 Bei ihr gehn die Arme längst von selber auf
 ich hab es gesehn, ich glaub dem Lauf
 wenn ich's für sie kann — dann steht es fest:
 auch für mich. Auch für mich. Auch für den Rest
 
 [Chorus]
+[older female voice, warm, softened, intimate, a little raw underneath]
 Steiff sein, weich sein, beides darf jetzt sein
 ich tanz mit mir allein, ich bin nicht mehr allein
 du darfst sein, du musst nichts —
@@ -167,6 +172,7 @@ Steiff sein, weich sein, der Schmerz bleibt sitzen, ja
 und ich halt dich trotzdem. Trotzdem. Trotzdem da
 
 [Outro]
+[older female voice, warm, softened, intimate, a little raw underneath]
 der Beat geht weiter, das Licht bleibt für mich an
 ich darf. Ich darf. So weit ich kann
 ich darf

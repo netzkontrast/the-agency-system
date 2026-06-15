@@ -94,7 +94,7 @@ ein Spalt, durch den Luft kommt.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — raw, trembling at the edges, an intimate mezzo cracking toward soft; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Dark art-pop, cinematic ballad, slow burn and brooding. Sparse piano, low pulsing sub-bass, brushed textures, strings swelling late. ~82 BPM, voice forward, wide dynamic range, breath in the mix; ends open and quiet.
+Older female lead, German — raw, trembling at the edges, an intimate mezzo cracking toward soft; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Dark art-pop, cinematic ballad, slow burn and brooding. Sparse piano, low pulsing sub-bass, brushed textures, strings swelling late. ~82 BPM, voice forward, wide dynamic range, breath in the mix; ends open and quiet. Only the spoken intro is the male mid-baritone narrator; every sung section is the older female voice.
 ```
 
 ### Exclude Styles
@@ -138,12 +138,14 @@ ich seh mein Gefühl hinter Glas, ganz nah
 greif danach, und die Hand kommt leer zurück
 
 [Pre-Chorus]
+[older female voice, raw, trembling at the edges, close]
 Die laute Rüstung, die mich getragen hat
 liegt müd auf dem Stuhl, sie steht nicht mehr auf
 die Leinwand noch nass, und ich grundier schon die nächste
 gesehen zu werden, nur damit ich da sein darf
 
 [Chorus]
+[older female voice, raw, trembling at the edges, close]
 Wie soll ich funktionieren
 wenn jeder Weg, den ich lerne
 nur mehr weh tut?
@@ -152,6 +154,7 @@ ich will nur einmal sein
 sein dürfen. Ohne Beweis
 
 [Verse 2]
+[older female voice, raw, trembling at the edges, close]
 Das stille Kind sitzt in der Ecke und hält
 die Luft an, als wär Atmen ein Lärm
 ich war so laut für alle, ich hab alle gehalten
@@ -160,6 +163,7 @@ Worte, fast da — dann nicht. Ist es — ich wollt —
 sie kommen bis hier, und dann knicken sie ein
 
 [Chorus]
+[older female voice, raw, trembling at the edges, close]
 Wie soll ich funktionieren
 wenn jeder Weg, den ich lerne
 nur mehr weh tut?
@@ -168,12 +172,14 @@ ich will nur einmal sein
 sein dürfen. Ohne Beweis
 
 [Bridge]
+[older female voice, raw, trembling at the edges, close]
 Ich hab den Satz gefaltet, ihn weggesteckt
 ihn tausendmal geübt vor dem leeren Spiegel
 nicht erlauben. Einfordern. Einmal laut:
 trag das mit mir. Nur dieses eine Stück
 
 [Outro]
+[older female voice, raw, trembling at the edges, close]
 Die Frage bleibt offen, ich lös sie nicht auf
 aber da ist ein Spalt, und durch den kommt Luft
 keiner holt mich raus. Keiner lässt mich fallen

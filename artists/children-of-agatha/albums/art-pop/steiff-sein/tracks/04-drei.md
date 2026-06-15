@@ -91,7 +91,7 @@ Mantelfutter; eine angelehnte Tür, ein Türlicht-Spalt; eine Hand, nicht weggez
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — warm-raw, tender at the edges but restrained, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Warm mature soul-pop ballad. Soft Rhodes, brushed kit, upright bass, faint string pad, spacious room. ~78 BPM, gentle dynamics, breath-space at the end.
+Older female lead, German — warm-raw, tender at the edges but restrained, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Warm mature soul-pop ballad. Soft Rhodes, brushed kit, upright bass, faint string pad, spacious room. ~78 BPM, gentle dynamics, breath-space at the end. Only the spoken intro is the male mid-baritone narrator; every sung section is the older female voice.
 ```
 
 ### Exclude Styles
@@ -133,10 +133,12 @@ zwei Stühle, nah, getrennt durch einen Strich
 ich rück nicht ran — so kenn ich mich
 
 [Pre-Chorus]
+[older female voice, warm-raw, tender at the edges, restrained]
 Und will ich mehr, als gut für uns zwei ist
 hebt er ganz still die Hand, ganz ohne Streit
 
 [Chorus]
+[older female voice, warm-raw, tender at the edges, restrained]
 Die leise Drei, drei Finger in der Luft
 kein Vorwurf drin, nur: bis hierher, halt ein
 ich zähl sie nach, ich atme, und ich bleib
@@ -145,12 +147,14 @@ er liebt mich anders, in der eignen Sprach
 und ich, ich lern sie langsam, Tag für Tag
 
 [Verse 2]
+[older female voice, warm-raw, tender at the edges, restrained]
 Im Mantelfutter steckt ein altes Bitten
 ein Wort, das nie den Weg nach draußen fand
 das kleine Kind in mir, das stillgehaltne
 es wollte nur gehalten sein — von Hand
 
 [Bridge]
+[older female voice, warm-raw, tender at the edges, restrained]
 Ich hab den Abstand selbst gewählt, ich weiß
 hab nie gesagt: ich wünsche mir das Nah
 den Griff um mich, ich lockre ihn ein Stück

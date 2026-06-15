@@ -94,7 +94,7 @@ gehobener Kopf — ein Spalt Licht.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — raw rather than tender, hard-edged and weathered, dramatic; a male mid-baritone spoken narrator opens the song (dry, observing from outside, gentle, clearly enunciated, warm like telling a friend), then she sings. Dramatic German pop, chanson noir. Grand piano, plucked upright bass, dark restrained strings, sparse drums with a sharp edge, dark room. Voice forward, wide dynamic range, tense and nocturnal; builds, then opens to a quiet, breathing end. ~96 BPM.
+Older female lead, German — raw rather than tender, hard-edged and weathered, dramatic; a male mid-baritone spoken narrator opens the song (dry, observing from outside, gentle, clearly enunciated, warm like telling a friend), then she sings. Dramatic German pop, chanson noir. Grand piano, plucked upright bass, dark restrained strings, sparse drums with a sharp edge, dark room. Voice forward, wide dynamic range, tense and nocturnal; builds, then opens to a quiet, breathing end. ~96 BPM. Only the spoken intro is the male mid-baritone narrator; every sung section is the older female voice.
 ```
 
 ### Exclude Styles
@@ -136,32 +136,38 @@ den Rücken gerade, ich schaff das schon noch
 und der Witz ist da, eh ich ihn erfind
 
 [Pre-Chorus]
+[older female voice, raw, hard-edged, weathered, dramatic]
 Alle lachen mit, keiner fragt sich, wer da lacht
 und die Stimme in mir sagt nur: reiß dich zusammen, gib acht
 
 [Chorus]
+[older female voice, raw, hard-edged, weathered, dramatic]
 Ich bin außen laut, damit mich keiner hört
 ich mach mich groß und schnell, dass keiner mich stört
 ihr seht die Frau, die alles trägt, die alles kann
 und seht das stille Kind dahinter nicht mehr an
 
 [Verse 2]
+[older female voice, raw, hard-edged, weathered, dramatic]
 Der scharfe Satz fällt raus, bevor ich ihn will
 der Kiefer bleibt fest, auch wenn niemand drückt
 im Spiegel eine Frau, beherrscht und still
 ich kenn sie kaum, und sie lächelt zurück
 
 [Pre-Chorus]
+[older female voice, raw, hard-edged, weathered, dramatic]
 Keiner fragt, wer mich trägt, wenn ich mal fall
 und die Stimme sagt nur: lauter, dann trägt's dich schon, überall
 
 [Chorus]
+[older female voice, raw, hard-edged, weathered, dramatic]
 Ich bin außen laut, damit mich keiner hört
 ich mach mich groß und schnell, dass keiner mich stört
 ihr seht die Frau, die alles trägt, die alles kann
 und seht das stille Kind dahinter nicht mehr an
 
 [Bridge]
+[older female voice, raw, hard-edged, weathered, dramatic]
 Doch einmal, ganz kurz, mach ich keinen Witz
 lass den Rücken sinken, atme einmal aus
 und das Kind in mir hebt vorsichtig den Kopf

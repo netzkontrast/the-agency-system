@@ -142,6 +142,7 @@ Die Tochter ist nicht die Lösung, sondern der Beweis, dass die Arme sich öffne
 - **Immer gegenderte Metatags** an jedem Stimmwechsel, damit Suno die Stimmen trennt:
   - Intro: `[male mid-baritone, spoken narrator, dry, observing from outside, gentle]`
   - Gesang: `[older female voice, raw, …]` (Härtegrad je nach EP-Position — T01 sehr hart → T06 weich).
+- **Jede gesungene Sektion** (Verse/Pre-Chorus/Chorus/Bridge/Outro) trägt das **female-Metatag**; **nur `[Spoken Intro]` ist männlich**. Zusätzlich steht der Hinweis in jeder Style Box, damit Suno leichter folgt.
 - **Persona-/Eigennamen NIE im Suno-Metatag** — nur deskriptiv
   (`overrides/voice-craft-principles.md`). „me, myself and i" und „Anke" sind
   Doku/Credits, nicht Tag-Inhalt.
