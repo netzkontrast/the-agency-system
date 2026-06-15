@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 02 |
 | **Title** | Fremde Sträuße |
 | **Album** | [Steiff sein](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | No |
+| **POV** | 1. Person (Ich = Anke) |
+| **Role** | Floristin / das Kind, das malen wollte |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Target Duration** | ~3:15 |
+| **Sources Verified** | N/A (Character Study, keine externen Quellen) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,7 +45,13 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Track 02 — die Herkunft der Pflicht. Sie wollte etwas Eigenes/Kreatives machen; eine
+**Lernschwäche** verschloss Türen; auf **Vaters Rat** wurde sie **Floristin** — nie
+dafür gebrannt. Tägliche Schönheit als Routine/Pflicht (Kühlhaus, Draht, fremde
+Sträuße), die eigene Zeichnung bleibt **im Einwickelpapier**. *Nur tun, nicht spielen*
+als Wurzel. Cross-Ref: das **stille Kind** (T01) ist hier das Kind, das *malen* wollte.
+Offenes Ende: einmal dreht sie eine Blüte **nur für sich** — „ich darf" implizit.
+(Blumen bleiben *literal* Arbeit, kein „Blumen=Leben"-Kitsch; keine Diagnose.)
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -69,13 +75,15 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Vier Grad im Kühlhaus, Eimer, Stiele, die Schere; der Draht; fremde Namen auf Karten;
+die klein gefaltete Zeichnung im Einwickelpapier; am Ende eine übrige Blüte, in der
+Hand gedreht, nicht zurückgelegt — ein Spalt Licht.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: ~84 BPM, 3/4-Walzer-Anklang
+- **Feel**: dt. Chanson / Akustik-Singer-Songwriter, melancholisch; ältere rohe Frauenstimme (müde), kühle Routine mit verborgener Sehnsucht; offenes, atmendes Ende
+- **Instrumentation**: Nylongitarre, gebürsteter Kontrabass, dezenter Akkordeon-Schwell, viel Raum; gesprochenes Intro (m. Mid-Bariton)
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,15 +92,20 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Older raw weathered female lead, German, weary and close-mic; opens with a dry male mid-baritone spoken-narrator intro, then she sings. German chanson, acoustic singer-songwriter, melancholic 3/4 waltz lilt. Nylon guitar, brushed upright bass, a faint accordion swell, lots of space. ~84 BPM, intimate, restrained dynamics; breath over resolution.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no dance beat, no disco, no electric guitar, no big drums
 ```
+
+### Suno Settings
+- **Model**: V5 / V5.5 · **Instrumental**: Off
+- **Weirdness**: ~20 · **Style Influence**: ~70
+- **Hinweis**: gesprochenes `[Spoken Intro]` (m. Mid-Bariton); 3/4-Walzer-Anklang; kein Tanz/Disco (nur T06).
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -106,20 +119,46 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Spoken Intro]
+[male mid-baritone, spoken narrator, dry, observing from outside, gentle]
+Dieses Lied schreibe ich für dich
+du wolltest etwas Eigenes machen
+man hat dir andere Blumen in die Hand gedrückt
+hör zu — ich hab gesehen, was du weggelegt hast
+
 [Verse 1]
-[Lyrics here...]
+[older female voice, raw, weathered, weary]
+Vier Grad im Kühlhaus, ich zähl die Eimer durch
+Stiele auf Länge, die Schere kennt den Schnitt
+mein Vater sagte, lern was mit den Händen
+und ich nickte, und ich blieb, und ich ging mit
+
+[Pre-Chorus]
+Die Zeichnung liegt noch im Einwickelpapier
+gefaltet klein, da, wo mich keiner sieht
 
 [Chorus]
-[Lyrics here...]
+Ich binde fremde Sträuße, Tag für Tag
+für Hochzeiten und Namen, die ich nicht mehr frag
+der Draht hält fest, was nicht für mich gedacht
+ich reich es übern Tresen, und ich hab es gut gemacht
 
 [Verse 2]
-[Lyrics here...]
+Wasser wechseln, Dornen runter, weiter
+ich kenn den Griff im Schlaf, ich brauch kein Licht
+das stille Kind, das malen wollte, wartet
+im hintersten Regal und stört mich nicht
 
 [Bridge]
-[Lyrics here...]
+Nur tun, nicht spielen — so hab ich's eingeübt
+ein Handgriff nach dem andern, kühl und glatt
+doch heut, eh ich das Rollo runterzieh
+bleibt eine Blüte übrig — keine Bestellung mehr
 
 [Outro]
-[Lyrics here...]
+[older female voice, raw, weathered, weary]
+Ich dreh sie in der Hand, nur einmal, nur für mich
+und atme, und ich leg sie nicht zurück
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +169,46 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Dieses Lied schreibe ich für dich
+Du wolltest etwas Eigenes machen
+Man hat dir andere Blumen in die Hand gedrückt
+Hör zu ich hab gesehen was du weggelegt hast
+
+Vier Grad im Kühlhaus ich zähl die Eimer durch
+Stiele auf Länge die Schere kennt den Schnitt
+Mein Vater sagte lern was mit den Händen
+Und ich nickte und ich blieb und ich ging mit
+
+Die Zeichnung liegt noch im Einwickelpapier
+Gefaltet klein da wo mich keiner sieht
+
+Ich binde fremde Sträuße Tag für Tag
+Für Hochzeiten und Namen die ich nicht mehr frag
+Der Draht hält fest was nicht für mich gedacht
+Ich reich es übern Tresen und ich hab es gut gemacht
+
+Wasser wechseln Dornen runter weiter
+Ich kenn den Griff im Schlaf ich brauch kein Licht
+Das stille Kind das malen wollte wartet
+Im hintersten Regal und stört mich nicht
+
+Nur tun nicht spielen so hab ichs eingeübt
+Ein Handgriff nach dem andern kühl und glatt
+Doch heut eh ich das Rollo runterzieh
+Bleibt eine Blüte übrig keine Bestellung mehr
+
+Ich dreh sie in der Hand nur einmal nur für mich
+Und atme und ich leg sie nicht zurück
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Stimmen:** Gesang = ältere rohe Frauenstimme (Anke), müde/abgearbeitet. Intro = Persona „me, myself and i", m. Mid-Bariton (Autor), sanft (von außen beobachtend).
+- **Metatags:** gegendert je Stimmwechsel (`[male mid-baritone, …]` Intro; `[older female voice, raw, …]` Gesang) — Persona/Namen nie im Suno-Tag.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5:** `[Spoken Intro]` gesprochen; 3/4-Walzer-Anklang; kein Dance/Disco (nur T06).
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->

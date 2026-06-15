@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 06 |
 | **Title** | Steiff sein |
 | **Album** | [Steiff sein](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | No |
+| **POV** | 1. Person (Ich = Anke; im Chorus an sich selbst „du") |
+| **Role** | Selbstliebe-Höhepunkt / Titeltrack |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Target Duration** | ~3:45 |
+| **Sources Verified** | N/A (Character Study, keine externen Quellen) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,7 +45,14 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Track 06 — **Titeltrack & Höhepunkt**. Selbstliebe als der **eine tanzbare** Song
+(hypnotischer 80s Dark Disco) — „allein mit sich tanzen". Wortspiel **Steiff/steif**.
+**Lilifee-Brücke**: der Weg in die Selbstliebe führt über die Tochter („bei ihr gehn
+die Arme längst von selber auf") → „auch für mich" (kein Fix, sondern **Beweis**, dass
+die Arme aufgehen *können*). **Bookend zu T01**: „außen Takt" statt „außen laut"; das
+stille Kind endlich hochgehoben; „es muss nicht laut sein. Es ist." **Erlaubnis, keine
+Heilung** — der Schmerz bleibt sitzen, sie hält sich trotzdem. Offenes, warmes Ende:
+„ich darf." (Kein „liebe dich selbst"-Poster, kein Heilungs-Schluss.)
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -69,13 +76,15 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Vier Wände, ein Beat, das Licht bleibt an; der Knopf im Ohr, verfilztes Mohair; die
+abgelegte Rüstung; der Stuhl, in den sie sich setzt; die Hand, die liegen bleibt; der
+Brief endlich an sie; die offenen Arme der Tochter; allein tanzen im Licht.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: ~112 BPM, hypnotisch, four-on-the-floor
+- **Feel**: hypnotischer 80s Dark Disco / italo; der **einzige tanzbare** Song („allein mit sich tanzen"); ältere Frauenstimme, hier **am weichsten**; Erlaubnis, keine Heilung
+- **Instrumentation**: kalter sequenzierter Synth-Bass, gated-reverb-Drums, glasige Synth-Stabs, Disco-Hats, nächtlich-repetitiv; gesprochenes Intro (m. Mid-Bariton)
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,15 +93,20 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Softened older female lead, German — warm, intimate close-mic, a little raw underneath; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Hypnotic 80s dark disco, italo. Four-on-the-floor, cold sequenced synth bass, gated-reverb drums, glassy synth stabs, nocturnal and repetitive — a song to dance alone with yourself. Voice forward, wide dynamic range. ~112 BPM.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no aggressive distortion, no EDM big-room drop, no autotune
 ```
+
+### Suno Settings
+- **Model**: V5 / V5.5 · **Instrumental**: Off
+- **Weirdness**: ~32 · **Style Influence**: ~75
+- **Hinweis**: gesprochenes `[Spoken Intro]` (m. Mid-Bariton); **der einzige Tanz-/Dark-Disco-Track**; Titel-Wortspiel „Steiff"=„steif" (homophon, kein Respelling nötig).
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -106,20 +120,56 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Spoken Intro]
+[male mid-baritone, spoken narrator, dry, observing from outside, gentle]
+Dieses Lied schreibe ich für dich
+für jede große Liebe deines Lebens hattest du ein Lied
+für jede. Nur für eine nie
+dieses ist für dich selbst
+
 [Verse 1]
-[Lyrics here...]
+[older female voice, warm, softened, intimate, a little raw underneath]
+Vier Wände, ein Beat, niemand schaut zu
+das Licht bleibt an, ich lass die Tür im Zu
+so lang war ich steif, der Knopf im Ohr
+das Mohair verfilzt, ich kannte nichts davor
+
+[Pre-Chorus]
+Ich leg die Rüstung ab, nur für ein Lied
+der Stuhl steht da — ich setz mich, endlich, hier
 
 [Chorus]
-[Lyrics here...]
+Steiff sein, weich sein, beides darf jetzt sein
+ich tanz mit mir allein, ich bin nicht mehr allein
+du darfst sein, du musst nichts —
+die Hand bleibt liegen, sie zieht sich nicht zurück
+Steiff sein, weich sein, der Schmerz bleibt sitzen, ja
+und ich halt dich trotzdem. Trotzdem. Trotzdem da
 
 [Verse 2]
-[Lyrics here...]
+Ich war außen Takt, damit keiner mich hört
+das stille Kind hat nie den Beat gestört
+jetzt heb ich es hoch, kein Wort, nur der Puls
+es muss nicht laut sein. Es ist. Das ist genug
 
 [Bridge]
-[Lyrics here...]
+Bei ihr gehn die Arme längst von selber auf
+ich hab es gesehn, ich glaub dem Lauf
+wenn ich's für sie kann — dann steht es fest:
+auch für mich. Auch für mich. Auch für den Rest
+
+[Chorus]
+Steiff sein, weich sein, beides darf jetzt sein
+ich tanz mit mir allein, ich bin nicht mehr allein
+du darfst sein, du musst nichts —
+ein Brief, endlich an mich, kein Stempel, kein Verzicht
+Steiff sein, weich sein, der Schmerz bleibt sitzen, ja
+und ich halt dich trotzdem. Trotzdem. Trotzdem da
 
 [Outro]
-[Lyrics here...]
+der Beat geht weiter, das Licht bleibt für mich an
+ich darf. Ich darf. So weit ich kann
+ich darf
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,23 +180,59 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Dieses Lied schreibe ich für dich
+Für jede große Liebe deines Lebens hattest du ein Lied
+Für jede nur für eine nie
+Dieses ist für dich selbst
+
+Vier Wände ein Beat niemand schaut zu
+Das Licht bleibt an ich lass die Tür im Zu
+So lang war ich steif der Knopf im Ohr
+Das Mohair verfilzt ich kannte nichts davor
+
+Ich leg die Rüstung ab nur für ein Lied
+Der Stuhl steht da ich setz mich endlich hier
+
+Steiff sein weich sein beides darf jetzt sein
+Ich tanz mit mir allein ich bin nicht mehr allein
+Du darfst sein du musst nichts
+Die Hand bleibt liegen sie zieht sich nicht zurück
+Steiff sein weich sein der Schmerz bleibt sitzen ja
+Und ich halt dich trotzdem trotzdem trotzdem da
+
+Ich war außen Takt damit keiner mich hört
+Das stille Kind hat nie den Beat gestört
+Jetzt heb ich es hoch kein Wort nur der Puls
+Es muss nicht laut sein es ist das ist genug
+
+Bei ihr gehn die Arme längst von selber auf
+Ich hab es gesehn ich glaub dem Lauf
+Wenn ichs für sie kann dann steht es fest
+Auch für mich auch für mich auch für den Rest
+
+Steiff sein weich sein beides darf jetzt sein
+Ich tanz mit mir allein ich bin nicht mehr allein
+Du darfst sein du musst nichts
+Ein Brief endlich an mich kein Stempel kein Verzicht
+Steiff sein weich sein der Schmerz bleibt sitzen ja
+Und ich halt dich trotzdem trotzdem trotzdem da
+
+Der Beat geht weiter das Licht bleibt für mich an
+Ich darf ich darf so weit ich kann
+Ich darf
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Stimmen:** Gesang = ältere Frauenstimme (Anke), hier **am weichsten**, warm. Intro = Persona „me, myself and i", m. Mid-Bariton (Autor), sanft (von außen).
+- **Metatags:** gegendert je Stimmwechsel; Persona/Namen nie im Suno-Tag.
+- **Haltung:** Bookend zu T01; Lilifee als Brücke; **Erlaubnis, keine Heilung** (Schmerz bleibt). Titel-Wortspiel „Steiff"=„steif" klingt identisch.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5:** `[Spoken Intro]` gesprochen; der **einzige** Tanz-/Dark-Disco-Track; hypnotisch-repetitiv.
 <!-- /SERVICE: suno -->
+
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
 

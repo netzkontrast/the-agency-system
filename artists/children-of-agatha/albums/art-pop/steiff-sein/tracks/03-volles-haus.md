@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 03 |
 | **Title** | Volles Haus |
 | **Album** | [Steiff sein](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | No |
+| **POV** | 1. Person (Ich = Anke) |
+| **Role** | Sammlerin / allein im vollen Haus |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Target Duration** | ~3:30 |
+| **Sources Verified** | N/A (Character Study, keine externen Quellen) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,7 +45,12 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Track 03 — Freude zur Pflicht. Die **Steiff-Sammlung** (Knopf im Ohr, Mohair,
+Glasaugen, Vitrine) und die **Saison-Deko**, einst Freude, sind **Pflicht** geworden
+und spiegeln, **wie allein** sie ist (volles Haus, kein Stuhl für Gäste, Zeugen aus
+Glas). Cross-Ref: das **laute Außen** (T01) hängt zuhause am Haken; das **stille Kind**,
+für das die Tiere sind. Offenes Ende: ein Tier darf raus, schief, **unverdient
+behalten** — „weil ich's darf". (Kein Kitsch/Verniedlichung, kein „Teddy=Liebe".)
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -69,13 +74,15 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Kartons aus dem Keller; Mohair, Knopf im Ohr, Glasaugen; die Vitrine; Staub auf der
+letzten Saison; ein gedeckter Tisch ohne Gäste; am Ende ein Tier, schief hingesetzt,
+nah — ein Atemzug.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: ~88 BPM, mid-tempo
+- **Feel**: reifer Melancholie-/Soul-Pop, warm aber schwer; ältere rohe Frauenstimme (müde); offenes, atmendes Ende
+- **Instrumentation**: Filz-Piano, gebürstete Drums, weicher Kontrabass, spät anschwellende Streicher; gesprochenes Intro (m. Mid-Bariton)
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,15 +91,20 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Older female lead, German — raw and weary, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Mature melancholic soul-pop, mid-tempo. Felt piano, brushed drums, soft upright bass, strings swelling late, warm but heavy. ~88 BPM, voice forward, wide dynamic range; quiet, breathing open end.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no dance beat, no disco, no aggressive drums, no synth lead
 ```
+
+### Suno Settings
+- **Model**: V5 / V5.5 · **Instrumental**: Off
+- **Weirdness**: ~22 · **Style Influence**: ~70
+- **Hinweis**: gesprochenes `[Spoken Intro]` (m. Mid-Bariton); kein Tanz/Disco (nur T06).
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -106,20 +118,48 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Spoken Intro]
+[male mid-baritone, spoken narrator, dry, observing from outside, gentle]
+Dieses Lied schreibe ich für dich
+für das Haus, das du jedes Jahr neu machst
+für die Augen aus Glas, die zurückschauen sollten
+ich hab gesehen, wie still es bei dir ist
+
 [Verse 1]
-[Lyrics here...]
+[older female voice, raw, weary, worn]
+Die Kartons kommen wieder hoch aus dem Keller
+ich räum die Jahreszeit ein, Stück für Stück
+Mohair und Knopf im Ohr, ich stell sie heller
+und keiner von euch dreht den Kopf zurück
+
+[Pre-Chorus]
+Früher war das Freude, jetzt ist es ein Plan
+ich rück euch zurecht — ich fang nichts Neues an
 
 [Chorus]
-[Lyrics here...]
+Volles Haus, volles Haus
+und kein Stuhl ist für Gäste gedeckt
+volles Haus, lauter Zeugen aus Glas
+und ich sitz hier und keiner hat's gemerkt
+volles Haus
 
 [Verse 2]
-[Lyrics here...]
+Auf der letzten Saison liegt schon Staub von der Freude
+ich wisch ihn ab und stell den Tisch fürs Jahr
+das laute Außen häng ich an den Haken — heute
+bin ich leise, so wie ich drinnen war
 
 [Bridge]
-[Lyrics here...]
+Das stille Kind dahinter wollte die hier nie verkaufen
+für sie hab ich gesammelt, für sie steht das alles da
+ich muss die Vitrine heut nicht zumachen, nicht zulaufen
+einer darf einfach sitzen, schief, und nah
 
 [Outro]
-[Lyrics here...]
+[older female voice, raw, weary, worn]
+Den einen lass ich raus, nicht richtig hingestellt
+den hab ich, weil ich's darf — nicht weil er was hält
+ein Atemzug. Volles Haus
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +170,48 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Dieses Lied schreibe ich für dich
+Für das Haus das du jedes Jahr neu machst
+Für die Augen aus Glas die zurückschauen sollten
+Ich hab gesehen wie still es bei dir ist
+
+Die Kartons kommen wieder hoch aus dem Keller
+Ich räum die Jahreszeit ein Stück für Stück
+Mohair und Knopf im Ohr ich stell sie heller
+Und keiner von euch dreht den Kopf zurück
+
+Früher war das Freude jetzt ist es ein Plan
+Ich rück euch zurecht ich fang nichts Neues an
+
+Volles Haus volles Haus
+Und kein Stuhl ist für Gäste gedeckt
+Volles Haus lauter Zeugen aus Glas
+Und ich sitz hier und keiner hat's gemerkt
+Volles Haus
+
+Auf der letzten Saison liegt schon Staub von der Freude
+Ich wisch ihn ab und stell den Tisch fürs Jahr
+Das laute Außen häng ich an den Haken heute
+Bin ich leise so wie ich drinnen war
+
+Das stille Kind dahinter wollte die hier nie verkaufen
+Für sie hab ich gesammelt für sie steht das alles da
+Ich muss die Vitrine heut nicht zumachen nicht zulaufen
+Einer darf einfach sitzen schief und nah
+
+Den einen lass ich raus nicht richtig hingestellt
+Den hab ich weil ich's darf nicht weil er was hält
+Ein Atemzug Volles Haus
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Stimmen:** Gesang = ältere rohe Frauenstimme (Anke), müde. Intro = Persona „me, myself and i", m. Mid-Bariton (Autor), sanft (von außen).
+- **Metatags:** gegendert je Stimmwechsel; Persona/Namen nie im Suno-Tag.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5:** `[Spoken Intro]` gesprochen; kein Dance/Disco (nur T06); kein „Teddy=Liebe"-Kitsch.
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->

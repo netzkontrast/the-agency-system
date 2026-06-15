@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 04 |
 | **Title** | Drei |
 | **Album** | [Steiff sein](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | No |
+| **POV** | 1. Person (Ich = Anke) |
+| **Role** | Zwischen Nähe & Distanz |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Target Duration** | ~3:20 |
+| **Sources Verified** | N/A (Character Study, keine externen Quellen) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,7 +45,13 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Track 04 — Liebe auf Abstand. Der Mann („Männlein") liebt in **seiner** Sprache: er
+**trägt das Schwere ab** (sein Streicheln) und hebt sanft die **stille Drei**, wenn sie
+„drüber" ist — *kein Vorwurf*. Er braucht eigenen Raum, wenig Umarmung. Ihr Schmerz:
+**Nähe war immer nötig, nie eingestanden** — sie wählte selbst den Abstand.
+Zärtlichkeit UND Distanz zugleich, **kein Vorwurf an ihn**. Offenes Ende: ein Wunsch
+zeigt sich kurz (eine Hand nicht weggezogen, ein leises „bleib"). Cross-Ref: der
+Griff/die Rüstung lockert sich; das **stille Kind** will gehalten sein.
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -69,13 +75,14 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Zwei Stühle fast berührend; drei Finger in der Luft; getragene Taschen; das Bitten im
+Mantelfutter; eine angelehnte Tür, ein Türlicht-Spalt; eine Hand, nicht weggezogen.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: ~78 BPM
+- **Feel**: warme Soul-Pop-Ballade; ältere Frauenstimme, warm-roh, **weicher** als T01–03; zärtlich-zurückhaltend; offenes Ende
+- **Instrumentation**: weiches Rhodes, gebürstete Drums, Kontrabass, dezenter Streicher-Pad, weiter Raum; gesprochenes Intro (m. Mid-Bariton)
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,15 +91,20 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Older female lead, German — warm-raw, tender at the edges but restrained, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Warm mature soul-pop ballad. Soft Rhodes, brushed kit, upright bass, faint string pad, spacious room. ~78 BPM, gentle dynamics, breath-space at the end.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no dance beat, no disco, no big drums, no autotune
 ```
+
+### Suno Settings
+- **Model**: V5 / V5.5 · **Instrumental**: Off
+- **Weirdness**: ~20 · **Style Influence**: ~70
+- **Hinweis**: gesprochenes `[Spoken Intro]` (m. Mid-Bariton); kein Tanz/Disco (nur T06).
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -106,20 +118,48 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Spoken Intro]
+[male mid-baritone, spoken narrator, dry, observing from outside, gentle]
+Dieses Lied schreibe ich für dich
+für die zwei Stühle, die sich fast berühren
+er trägt die schweren Taschen — so liebt er dich
+und du darfst dir wünschen, dass jemand bleibt
+
 [Verse 1]
-[Lyrics here...]
+[older female voice, warm-raw, tender at the edges, restrained]
+Er nimmt mir alles Schwere aus der Hand
+das ist sein Streicheln, das ich spät verstand
+zwei Stühle, nah, und doch ein Strich dazwischen
+ich rück nicht ran, ich hab es nie gelernt
+
+[Pre-Chorus]
+Und will ich mehr, als gut für uns zwei ist
+hebt er ganz still die Hand, ganz ohne Streit
 
 [Chorus]
-[Lyrics here...]
+Die leise Drei, drei Finger in der Luft
+kein Vorwurf drin, nur: bis hierher, halt ein
+ich zähl sie nach, ich atme, und ich bleib
+die stille Drei, sie hält mich, wenn ich's mein
+er liebt mich anders, in der eignen Sprach
+und ich, ich lern sie langsam, Tag für Tag
 
 [Verse 2]
-[Lyrics here...]
+Im Mantelfutter steckt ein altes Bitten
+ein Wort, das nie den Weg nach draußen fand
+das kleine Kind in mir, das stillgehaltne
+es wollte nur gehalten sein — von Hand
 
 [Bridge]
-[Lyrics here...]
+Ich hab den Abstand selbst gewählt, ich weiß
+hab nie gesagt: ich wünsche mir das Nah
+den Griff um mich, ich lockre ihn ein Stück
+die Tür bleibt einen Spalt, nicht zu, nur an
 
 [Outro]
-[Lyrics here...]
+[older female voice, warm-raw, tender at the edges, restrained]
+Da liegt 'ne Hand, ich zieh sie nicht zurück
+ein Spalt im Türlicht, und ein leises … bleib
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +170,49 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Dieses Lied schreibe ich für dich
+Für die zwei Stühle die sich fast berühren
+Er trägt die schweren Taschen so liebt er dich
+Und du darfst dir wünschen dass jemand bleibt
+
+Er nimmt mir alles Schwere aus der Hand
+Das ist sein Streicheln das ich spät verstand
+Zwei Stühle nah und doch ein Strich dazwischen
+Ich rück nicht ran ich hab es nie gelernt
+
+Und will ich mehr als gut für uns zwei ist
+Hebt er ganz still die Hand ganz ohne Streit
+
+Die leise Drei drei Finger in der Luft
+Kein Vorwurf drin nur bis hierher halt ein
+Ich zähl sie nach ich atme und ich bleib
+Die stille Drei sie hält mich wenn ichs mein
+Er liebt mich anders in der eignen Sprach
+Und ich ich lern sie langsam Tag für Tag
+
+Im Mantelfutter steckt ein altes Bitten
+Ein Wort das nie den Weg nach draußen fand
+Das kleine Kind in mir das stillgehaltne
+Es wollte nur gehalten sein von Hand
+
+Ich hab den Abstand selbst gewählt ich weiß
+Hab nie gesagt ich wünsche mir das Nah
+Den Griff um mich ich lockre ihn ein Stück
+Die Tür bleibt einen Spalt nicht zu nur an
+
+Da liegt ne Hand ich zieh sie nicht zurück
+Ein Spalt im Türlicht und ein leises bleib
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Stimmen:** Gesang = ältere Frauenstimme (Anke), warm-roh, hier weicher. Intro = Persona „me, myself and i", m. Mid-Bariton (Autor), sanft (von außen).
+- **Metatags:** gegendert je Stimmwechsel; Persona/Namen nie im Suno-Tag.
+- **Haltung:** kein Vorwurf an den Partner; die „Drei" ist eine private, liebevolle Geste.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5:** `[Spoken Intro]` gesprochen; kein Tanz/Disco (nur T06).
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->

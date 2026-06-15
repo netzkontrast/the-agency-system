@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 05 |
 | **Title** | Sein dürfen |
 | **Album** | [Steiff sein](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | No |
+| **POV** | 1. Person (Ich = Anke) |
+| **Role** | Der Kampf ums Sein-Dürfen |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Target Duration** | ~3:40 |
+| **Sources Verified** | N/A (Character Study, keine externen Quellen) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,7 +45,15 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Track 05 — der Kampf ums **Sein-Dürfen** (das schwerste Stück). Die **Bestie im Bauch**
+rationiert den Atem (bodily, **kein** Horror-Monster); der Körper entspannt nicht; das
+Gefühl **hinter Glas** (taub). Zwanghaftes **Schaffen** (nasse Leinwand) — gesehen
+werden, um existieren zu *dürfen*. Die Dread-Frage *„wie soll ich funktionieren, wenn
+jeder Weg mehr weh tut"* kehrt wieder, bleibt **unbeantwortet**. Wende **erlauben →
+einfordern**: ein Satz endlich laut („trag das mit mir"). Cross-Ref: die laute Rüstung
+(T01) erschöpft; das stille Kind; „ich frag nie, wer mich trägt". Offenes Ende: die
+Frage bleibt, aber ein Spalt Luft — „ich darf. Ich darf." (Keine Diagnose, kein
+Horror-Klischee, keine Auflösung.)
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -69,13 +77,15 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Der Mieter / die Bestie im Bauch; rationierter Atem; das Gefühl hinter Glas; die
+erschöpfte Rüstung auf dem Stuhl; die nasse Leinwand; der gefaltete, weggesteckte Satz;
+ein Spalt, durch den Luft kommt.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: ~82 BPM, slow burn
+- **Feel**: dunkler Art-Pop / kinematische Ballade, brodelnd; ältere rohe Frauenstimme, zitternd, Richtung weich brechend; das schwerste Stück — endet **offen**
+- **Instrumentation**: spärliches Piano, tiefer pulsierender Sub-Bass, gebürstete Texturen, spät anschwellende Streicher, Atem im Mix; gesprochenes Intro (m. Mid-Bariton)
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,15 +94,20 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Older female lead, German — raw, trembling at the edges, an intimate mezzo cracking toward soft; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Dark art-pop, cinematic ballad, slow burn and brooding. Sparse piano, low pulsing sub-bass, brushed textures, strings swelling late. ~82 BPM, voice forward, wide dynamic range, breath in the mix; ends open and quiet.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no dance beat, no disco, no four-on-the-floor, no aggressive distortion
 ```
+
+### Suno Settings
+- **Model**: V5 / V5.5 · **Instrumental**: Off
+- **Weirdness**: ~28 · **Style Influence**: ~72
+- **Hinweis**: gesprochenes `[Spoken Intro]` (m. Mid-Bariton); slow burn, kein Drop/Tanz.
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -106,20 +121,64 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Spoken Intro]
+[male mid-baritone, spoken narrator, dry, observing from outside, gentle]
+Dieses Lied schreibe ich für dich
+für die Tage, an denen du dich erst verdienen musst
+du musst nichts herstellen, damit du zählst
+du darfst einfach da sein. Atme
+
 [Verse 1]
-[Lyrics here...]
+[older female voice, raw, trembling at the edges, close]
+Da sitzt ein Mieter in meinem Bauch
+der teilt mir die Luft zu, Schluck für Schluck
+nimmt Miete in Atem, zahlt nichts zurück
+spannt jeden Muskel, lässt nichts mehr los
+ich seh mein Gefühl hinter Glas, ganz nah
+greif danach, und die Hand kommt leer zurück
+
+[Pre-Chorus]
+Die laute Rüstung, die mich getragen hat
+liegt müd auf dem Stuhl, sie steht nicht mehr auf
+die Leinwand noch nass, und ich grundier schon die nächste
+gesehen zu werden, nur damit ich da sein darf
 
 [Chorus]
-[Lyrics here...]
+Wie soll ich funktionieren
+wenn jeder Weg, den ich lerne
+nur mehr weh tut?
+ich frag nie, wer mich trägt
+ich will nur einmal sein
+sein dürfen. Ohne Beweis
 
 [Verse 2]
-[Lyrics here...]
+Das stille Kind sitzt in der Ecke und hält
+die Luft an, als wär Atmen ein Lärm
+ich war so laut für alle, ich hab alle gehalten
+und keiner fragt, ob ich den Boden noch spür
+Worte, fast da — dann nicht. Ist es — ich wollt —
+sie kommen bis hier, und dann knicken sie ein
+
+[Chorus]
+Wie soll ich funktionieren
+wenn jeder Weg, den ich lerne
+nur mehr weh tut?
+ich frag nie, wer mich trägt
+ich will nur einmal sein
+sein dürfen. Ohne Beweis
 
 [Bridge]
-[Lyrics here...]
+Ich hab den Satz gefaltet, ihn weggesteckt
+ihn tausendmal geübt vor dem leeren Spiegel
+nicht erlauben. Einfordern. Einmal laut:
+trag das mit mir. Nur dieses eine Stück
 
 [Outro]
-[Lyrics here...]
+Die Frage bleibt offen, ich lös sie nicht auf
+aber da ist ein Spalt, und durch den kommt Luft
+keiner holt mich raus. Keiner lässt mich fallen
+nur ein erster Atemzug: ich darf
+ich darf
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,22 +189,65 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Dieses Lied schreibe ich für dich
+Für die Tage an denen du dich erst verdienen musst
+Du musst nichts herstellen damit du zählst
+Du darfst einfach da sein Atme
+
+Da sitzt ein Mieter in meinem Bauch
+Der teilt mir die Luft zu Schluck für Schluck
+Nimmt Miete in Atem zahlt nichts zurück
+Spannt jeden Muskel lässt nichts mehr los
+Ich seh mein Gefühl hinter Glas ganz nah
+Greif danach und die Hand kommt leer zurück
+
+Die laute Rüstung die mich getragen hat
+Liegt müd auf dem Stuhl sie steht nicht mehr auf
+Die Leinwand noch nass und ich grundier schon die nächste
+Gesehen zu werden nur damit ich da sein darf
+
+Wie soll ich funktionieren
+Wenn jeder Weg den ich lerne
+Nur mehr weh tut
+Ich frag nie wer mich trägt
+Ich will nur einmal sein
+Sein dürfen ohne Beweis
+
+Das stille Kind sitzt in der Ecke und hält
+Die Luft an als wär Atmen ein Lärm
+Ich war so laut für alle ich hab alle gehalten
+Und keiner fragt ob ich den Boden noch spür
+Worte fast da dann nicht Ist es ich wollt
+Sie kommen bis hier und dann knicken sie ein
+
+Wie soll ich funktionieren
+Wenn jeder Weg den ich lerne
+Nur mehr weh tut
+Ich frag nie wer mich trägt
+Ich will nur einmal sein
+Sein dürfen ohne Beweis
+
+Ich hab den Satz gefaltet ihn weggesteckt
+Ihn tausendmal geübt vor dem leeren Spiegel
+Nicht erlauben Einfordern Einmal laut
+Trag das mit mir nur dieses eine Stück
+
+Die Frage bleibt offen ich lös sie nicht auf
+Aber da ist ein Spalt und durch den kommt Luft
+Keiner holt mich raus keiner lässt mich fallen
+Nur ein erster Atemzug ich darf
+Ich darf
 ```
 
 <!-- END VOCAL ONLY -->
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Stimmen:** Gesang = ältere rohe Frauenstimme (Anke), zitternd/Richtung weich brechend. Intro = Persona „me, myself and i", m. Mid-Bariton (Autor), sanft (von außen).
+- **Metatags:** gegendert je Stimmwechsel; Persona/Namen nie im Suno-Tag.
+- **Haltung:** Bestie bodily (kein Horror); Dread-Frage bleibt unaufgelöst; Ende offen.
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5:** `[Spoken Intro]` gesprochen; slow burn, kein Drop/Tanz (Disco nur T06).
 <!-- /SERVICE: suno -->
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
