@@ -59,20 +59,24 @@ Stürme, die wiederkehren. Warm, nah, geborgen — Tränen und Lächeln zugleich
 
 ### Style Box
 *Copy this into Suno's "Style of Music" field:*
-*(Entwurf — final über `/bitwize-music:suno-engineer`)*
 
 ```
-intimate German singer-songwriter ballad, ~70 BPM, warm and tender, uplifting,
-warm female lead vocal close-mic, soft layered harmonies in chorus,
-piano-led with swelling strings, gentle dynamic build, sparse brushed drums late
+Warm female alto, intimate and tender, vowel-forward, gentle controlled vibrato, close-mic; soft layered female harmonies in the chorus. German singer-songwriter piano ballad, chamber folk. Grand piano leads, swelling warm strings, soft upright bass, sparse brushed drums entering late, spacious intimate room. Voice forward, wide dynamic range, organic acoustic production, gentle emotional build, around 70 BPM.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno:*
 
 ```
-no heavy drums, no electric guitar, no synth lead, no aggressive production
+no heavy drums, no electric guitar, no synth lead, no autotune
 ```
+
+### Suno Settings
+- **Model**: V5 / V5.5
+- **Instrumental**: Off
+- **Weirdness**: ~20 (low — clean, straightforward ballad)
+- **Style Influence**: ~70
+- **Audio Influence**: N/A (no reference audio)
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -83,6 +87,8 @@ no heavy drums, no electric guitar, no synth lead, no aggressive production
      (geflüstert)/(sanft)-Hinweise im Lyrics-Feld verwenden. -->
 
 ```
+[Intro]
+
 [Verse 1]
 Schritt für Schritt gehst du den Weg, und manchmal auch zurück
 So fest ist er gepflastert, so klar und stark dein Schritt
@@ -127,6 +133,10 @@ Doch anders wird das Sehen, das Fühlen, Jahr für Jahr
 Alte Wunden dürfen heilen, das Mosaik wird sternenklar
 Fest in den Arm genommen, mit Wärme und Geborgenheit
 Du siehst die Stärken anderer, und wir sehen dich
+
+[Outro]
+
+[End]
 ```
 <!-- /SERVICE: suno -->
 
