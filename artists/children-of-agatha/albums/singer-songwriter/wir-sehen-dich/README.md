@@ -88,13 +88,23 @@ genommen, mit Wärme und Geborgenheit.
 - Du managst alles
 - Hunde: Lucky und ?
 
-## Liedtext — verbindliche Vorlage (möglichst nah einhalten)
+## Liedtext — Quell-Fassung (DNA, vollständig zu erhalten)
 
-> **Diese Fassung ist die Vorlage.** Spätere Bearbeitung (`lyric-writer` /
-> `lyric-reviewer`) darf den Text **nur minimal** anfassen — ausschließlich
-> für Reim, Metrik/Silbenfluss und Struktur (z. B. Refrain-Wiederholungen,
-> Hook-Anker). Inhalt, Bilder und Wortwahl bleiben so nah wie möglich am
-> Original. Keine inhaltlichen Umschreibungen ohne Rückfrage.
+> **Diese Fassung ist die inhaltliche DNA und muss vollständig erhalten
+> bleiben.** Bearbeitung darf Formulierungen **flüssiger** machen sowie
+> **ergänzen, erweitern und korrigieren** — aber kein Bild, kein Motiv und
+> keine Aussage darf verloren gehen. Erhalten bleiben u. a.: der Weg /
+> Schritt für Schritt (vor und zurück), das Tragen anderer (huckepack),
+> Häkeln/Malen/Töpfern → neues Bild, die brechenden Steine → buntes Mosaik,
+> Heilung-braucht-Zeit, Sehen/Fühlen Jahr für Jahr, „sternenklar", in den
+> Arm genommen mit Wärme und Geborgenheit, Garten/Stürme/Unkraut, die
+> Umarbeitung als Pause/Kraftquelle, und die These „Du siehst die Stärken
+> anderer — wir sehen Deine".
+>
+> Der **Hook-Anker „und wir sehen dich"** ist durchgehend in **jeden**
+> Refrain eingewoben. Die aktuelle Arbeitsfassung liegt im Track-File
+> ([`tracks/01-wir-sehen-dich.md`](tracks/01-wir-sehen-dich.md), Suno- &
+> Streaming-Lyrics).
 
 ```text
 (Verse 1)

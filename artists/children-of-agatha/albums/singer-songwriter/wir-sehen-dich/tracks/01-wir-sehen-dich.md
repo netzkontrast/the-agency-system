@@ -84,48 +84,49 @@ no heavy drums, no electric guitar, no synth lead, no aggressive production
 
 ```
 [Verse 1]
-Schritt für Schritt gehst du den Weg und manchmal auch zurück
-Fest gepflastert ist dein Weg, stark und bestimmt der Schritt
-Du hast sehr viel getragen, und andere Huckepack
+Schritt für Schritt gehst du den Weg, und manchmal auch zurück
+So fest ist er gepflastert, so klar und stark dein Schritt
+Du hast so viel getragen, und andere huckepack
+Und fragtest nie, wer dich noch trägt, wenn dir die Kräfte gehn
 
 [Verse 2]
-Doch Wege könn' sich ändern
-Neue Muster bunt entstehn
-Durch Häkeln, Malen, Töpfern
-Siehst du ein neues Bild
-Und alte Steine brechen
-Werden buntes Mosaik
+Doch Wege ändern sich, und neue Muster bunt entstehn
+Durch Häkeln, Malen, Töpfern siehst du ein ganz neues Bild
+Und alte Steine brechen, was lang im Dunkeln lag
+Wird Stück für Stück zum bunten Mosaik
 
 [Chorus]
-Kein Zauber kann schnell richten, was tief verankert war
+Kein Zauber heilt im Handumdrehn, was tief verankert war
 Doch anders wird das Sehen, das Fühlen, Jahr für Jahr
-Alte Wunden können heilen, das Mosaik wird sternenklar
+Alte Wunden dürfen heilen, das Mosaik wird sternenklar
 Fest in den Arm genommen, mit Wärme und Geborgenheit
+Du siehst die Stärken anderer, und wir sehen dich
 
 [Verse 3]
-Du setzt es neu zusammen
-Das bunte Mosaik
-Ein wunderschönes Muster
-Nimmt dich fest in den Arm
-Ganz unbekannt die Farben
-Der Weg erstrahlt in neuem Glanz
+Du setzt es neu zusammen, das bunte Mosaik
+Ein wunderschönes Muster, das dich endlich hält
+Ganz unbekannt die Farben, so fremd und doch vertraut
+Und vor dir liegt der Weg in neuem Glanz
 
 [Chorus]
-Kein Zauber kann schnell richten, was tief verankert war
+Kein Zauber heilt im Handumdrehn, was tief verankert war
 Doch anders wird das Sehen, das Fühlen, Jahr für Jahr
-Alte Wunden können heilen, das Mosaik wird sternenklar
+Alte Wunden dürfen heilen, das Mosaik wird sternenklar
 Fest in den Arm genommen, mit Wärme und Geborgenheit
+Du siehst die Stärken anderer, und wir sehen dich
 
 [Bridge]
-Der Weg ist niemals zu Ende, die Gartenpflege bleibt
-Manch Sturm wird wiederkehren, der Unkraut rübertreibt
-Die Umarmung wird zur Pause, wenn Kraft du schöpfen willst
+Der Weg ist niemals ganz zu Ende, die Gartenpflege bleibt
+Manch Sturm wird wiederkehren, der neues Unkraut treibt
+Doch die Umarmung wird zur Pause, ein Atemholen, still
+Wenn du nur einmal Kraft für dich behalten willst
 
 [Chorus]
-Kein Zauber kann schnell richten, was tief verankert war
+Kein Zauber heilt im Handumdrehn, was tief verankert war
 Doch anders wird das Sehen, das Fühlen, Jahr für Jahr
-Alte Wunden können heilen, das Mosaik wird sternenklar
+Alte Wunden dürfen heilen, das Mosaik wird sternenklar
 Fest in den Arm genommen, mit Wärme und Geborgenheit
+Du siehst die Stärken anderer, und wir sehen dich
 ```
 <!-- /SERVICE: suno -->
 
@@ -135,41 +136,42 @@ Fest in den Arm genommen, mit Wärme und Geborgenheit
 
 ```
 Schritt für Schritt gehst du den Weg und manchmal auch zurück
-Fest gepflastert ist dein Weg, stark und bestimmt der Schritt
-Du hast sehr viel getragen, und andere Huckepack
+So fest ist er gepflastert so klar und stark dein Schritt
+Du hast so viel getragen und andere huckepack
+Und fragtest nie wer dich noch trägt wenn dir die Kräfte gehn
 
-Doch Wege könn' sich ändern
-Neue Muster bunt entstehn
-Durch Häkeln, Malen, Töpfern
-Siehst du ein neues Bild
-Und alte Steine brechen
-Werden buntes Mosaik
+Doch Wege ändern sich und neue Muster bunt entstehn
+Durch Häkeln Malen Töpfern siehst du ein ganz neues Bild
+Und alte Steine brechen was lang im Dunkeln lag
+Wird Stück für Stück zum bunten Mosaik
 
-Kein Zauber kann schnell richten, was tief verankert war
-Doch anders wird das Sehen, das Fühlen, Jahr für Jahr
-Alte Wunden können heilen, das Mosaik wird sternenklar
-Fest in den Arm genommen, mit Wärme und Geborgenheit
+Kein Zauber heilt im Handumdrehn was tief verankert war
+Doch anders wird das Sehen das Fühlen Jahr für Jahr
+Alte Wunden dürfen heilen das Mosaik wird sternenklar
+Fest in den Arm genommen mit Wärme und Geborgenheit
+Du siehst die Stärken anderer und wir sehen dich
 
-Du setzt es neu zusammen
-Das bunte Mosaik
-Ein wunderschönes Muster
-Nimmt dich fest in den Arm
-Ganz unbekannt die Farben
-Der Weg erstrahlt in neuem Glanz
+Du setzt es neu zusammen das bunte Mosaik
+Ein wunderschönes Muster das dich endlich hält
+Ganz unbekannt die Farben so fremd und doch vertraut
+Und vor dir liegt der Weg in neuem Glanz
 
-Kein Zauber kann schnell richten, was tief verankert war
-Doch anders wird das Sehen, das Fühlen, Jahr für Jahr
-Alte Wunden können heilen, das Mosaik wird sternenklar
-Fest in den Arm genommen, mit Wärme und Geborgenheit
+Kein Zauber heilt im Handumdrehn was tief verankert war
+Doch anders wird das Sehen das Fühlen Jahr für Jahr
+Alte Wunden dürfen heilen das Mosaik wird sternenklar
+Fest in den Arm genommen mit Wärme und Geborgenheit
+Du siehst die Stärken anderer und wir sehen dich
 
-Der Weg ist niemals zu Ende, die Gartenpflege bleibt
-Manch Sturm wird wiederkehren, der Unkraut rübertreibt
-Die Umarmung wird zur Pause, wenn Kraft du schöpfen willst
+Der Weg ist niemals ganz zu Ende die Gartenpflege bleibt
+Manch Sturm wird wiederkehren der neues Unkraut treibt
+Doch die Umarmung wird zur Pause ein Atemholen still
+Wenn du nur einmal Kraft für dich behalten willst
 
-Kein Zauber kann schnell richten, was tief verankert war
-Doch anders wird das Sehen, das Fühlen, Jahr für Jahr
-Alte Wunden können heilen, das Mosaik wird sternenklar
-Fest in den Arm genommen, mit Wärme und Geborgenheit
+Kein Zauber heilt im Handumdrehn was tief verankert war
+Doch anders wird das Sehen das Fühlen Jahr für Jahr
+Alte Wunden dürfen heilen das Mosaik wird sternenklar
+Fest in den Arm genommen mit Wärme und Geborgenheit
+Du siehst die Stärken anderer und wir sehen dich
 ```
 
 ## Production Notes
