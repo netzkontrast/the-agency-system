@@ -2,7 +2,7 @@
 title: "Steiff sein"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
 genres: ["art-pop"]
-tags: ["80s", "dark-disco", "italo", "synth", "portrait", "deutsch", "ep", "mini-album", "steiff", "working-title"]
+tags: ["art-pop", "chanson", "soul-pop", "dark-disco", "80s", "portrait", "character-study", "deutsch", "ep", "mini-album", "steiff", "self-love"]
 explicit: false
 streaming:
   soundcloud: ""    # Fill in when released
@@ -15,7 +15,7 @@ sheet_music:
 # slug: ""  # Optional - only uncomment if you need to override auto-generated slug
 ---
 
-# Steiff sein  *(Arbeitstitel)*
+# Steiff sein
 
 ## Album Details
 
@@ -24,12 +24,14 @@ sheet_music:
 | Attribute | Detail |
 |-----------|--------|
 | **Artist** | Children of Agatha |
-| **Release** | Mini-Album / EP (3–4 Tracks) |
-| **Title** | Steiff sein *(Arbeitstitel)* |
+| **Release** | Mini-Album / EP (6 Tracks) |
+| **Title** | Steiff sein *(final; zugleich Titeltrack = Track 06)* |
 | **Genre** | **Pro Song ein eigenes Genre** — altersgerecht, Sarah-Connor-inspiriert (reifer dt. Pop / Ballade / Chanson / Soul-Pop). **Nur** der Selbstliebe-Höhepunkt = tanzbarer, hypnotischer **80s Dark Disco**. |
 | **Tracks** | **6** *(bestätigt; Lilifee in Track 06 eingewoben)* |
-| **Status** | Concept |
+| **Status** | Ready — Konzept finalisiert (Phase 1–7 ✅); Texten beginnt |
 | **Explicit** | No |
+| **Album-Typ** | Character Study |
+| **Distributor-Genre** | Primär: Pop · Track 06: Electronic (Subgenre: Electro/Italo-Disco) |
 | **Concept** | Das innere Gegenstück zur Single „Wir sehen dich" — die harte, laute Rüstung außen, das weiche, verkannte Kind innen. |
 | **Verwandt mit** | Single „Wir sehen dich" (verwandt, aber **ohne direkten Bezug** / keine zitierten Querverweise) |
 | **Profil** | Siehe [`PROFILE.md`](PROFILE.md) *(privat — Hintergrund)* |
@@ -236,9 +238,22 @@ Female lead, mature and warm, intimate lower register; hypnotic 80s dark disco, 
 
 ---
 
+## Album Art — Konzept (Phase 5)
+
+**Richtung: „Hände & ein Steiff".** Starke, abgearbeitete **„Mama-Hände"** (hart,
+würdevoll) halten zart **einen** alten Mohair-Steiff mit **Knopf im Ohr**. Eine Insel
+**warmen Bernstein-Lichts** auf den Händen und dem Fell, ringsum **kühles
+Anthrazit/Blau** (die Rüstung / die Nacht). Das Bild *ist* das Wortspiel: hart außen,
+weich im Innern.
+
+- **Palette:** kühles Anthrazit/Blau + ein warmer Bernstein-Kern; ein Hauch Lila als Brücke zur Welt der Single (kein direkter Bezug).
+- **Stimmung:** intim, würdevoll, nächtlich; kein Kitsch, keine Verniedlichung, kein Glitzer.
+- **Symbol:** der Knopf im Ohr (Echtheit); das eine Tier (nicht die Vitrine) — Zärtlichkeit, die nichts fordert.
+- **Tabu:** kein Name, kein Gesicht nötig; keine Diagnose-Symbolik.
+- Generierung später via `/bitwize-music:album-art-director` (Artist-Name unten rechts, ≥3000×3000).
+
 ## Workflow-Stand
 
-- **Phase**: Concept-Check durch `album-conceptualizer` erfolgt. **Bestätigt:** Typ = Character Study; 6 Tracks; Lilifee in T06 eingewoben; „Steiff sein" = EP- & Titeltrack; Schwere beibehalten (Variation über per-Song-Genres); Ordner → `art-pop`.
-- **Noch offen vor dem Texten:** Phase 5 (Album-Art-Konzept) und **Phase 7 (finale Freigabe)**.
-- **Hard Gate (preserved):** Lyric-Writing beginnt erst nach expliziter Bestätigung der Konzept-Phasen durch den User.
-- **Ordner-Genre:** Slug von `dark-disco` → `art-pop` migriert (nur T06 ist Dark Disco).
+- **Phase 1–7 ✅ abgeschlossen** (Conceptualizer). Bestätigt: Character Study; 6 Tracks; Lilifee in T06 eingewoben; „Steiff sein" = EP- & Titeltrack; Genre pro Song (Dark Disco nur T06); Schwere nie überwiegend / offene Selbst-Enden; Album-Art = „Hände & ein Steiff"; Track-Titel final; Ordner → `art-pop`.
+- **Phase 7 (Hard Gate) durch User freigegeben** → Texten gestartet.
+- **Nächster Schritt:** 6 Track-Files anlegen; Track 01 „Außen laut" via `lyric-writer` (inkl. `[Spoken Intro]`).
