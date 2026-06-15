@@ -66,20 +66,111 @@ no drums, no harsh distortion, no major-key brightness
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt.*
+*Copy into Suno's "Lyrics" field.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Sieh durch mich hindurch
+noch
+
+[Verse 1]
+Durchsichtig kam ich, Glas im Licht,
+ein Faden, den man kaum erkennt
+Das enge Wasser hält mich nicht,
+und alte Haut, die reißt und trennt
+
+[Pre-Chorus]
+Wandle dich, wandle dich
+wenn die Zeit es will
+
+[Chorus]
+Glasaal, Blankaal,
+das Silber kommt herauf
+Ich färb mich für die Reise dunkel
+und nehm die Strömung auf
+
+[Verse 2]
+Die Augen wachsen, suchen Tiefe,
+der Leib wird Pfeil, der Rücken Stahl
+Kein Arzt hat mich je heilen können —
+ich folg dem Ruf, silbern und fahl
+
+[Pre-Chorus]
+Wandle dich, wandle dich
+wenn die Zeit es will
+
+[Chorus]
+Glasaal, Blankaal,
+das Silber kommt herauf
+Ich färb mich für die Reise dunkel
+und nehm die Strömung auf
+
+[Bridge]
+Die alte Haut treibt hinter mir
+und löst sich auf im schwarzen Sog
+Wir trieben einst — jetzt zieh ich los
+und folge, was uns immer zog
+
+[Outro]
+Sieh durch mich —
+du kannst nicht mehr
+Amen
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Sieh durch mich hindurch
+noch
+
+Durchsichtig kam ich Glas im Licht
+ein Faden den man kaum erkennt
+Das enge Wasser hält mich nicht
+und alte Haut die reißt und trennt
+
+Wandle dich wandle dich
+wenn die Zeit es will
+
+Glasaal Blankaal
+das Silber kommt herauf
+Ich färb mich für die Reise dunkel
+und nehm die Strömung auf
+
+Die Augen wachsen suchen Tiefe
+der Leib wird Pfeil der Rücken Stahl
+Kein Arzt hat mich je heilen können
+ich folg dem Ruf silbern und fahl
+
+Wandle dich wandle dich
+wenn die Zeit es will
+
+Glasaal Blankaal
+das Silber kommt herauf
+Ich färb mich für die Reise dunkel
+und nehm die Strömung auf
+
+Die alte Haut treibt hinter mir
+und löst sich auf im schwarzen Sog
+Wir trieben einst jetzt zieh ich los
+und folge was uns immer zog
+
+Sieh durch mich
+du kannst nicht mehr
+Amen
 ```
 
 ## Production Notes
 
 - Glasaal-Glocke ist Leitklang dieses Tracks und wiederkehrendes Sonic-Motiv.
 - Metamorphose-Bild kehrt in Track 8 (Auflösung) wieder.
+
+## Cross-References
+
+- **Strukturelle Parallele:** „Wandle dich, wandle dich" spiegelt das „Biege dich,
+  brich nicht" aus T1 — die Gebote echoen einander in der Imperativ-Form.
+- **Auflösung (T3 → T4):** In T3 schwebt die Gemeinde reglos und fragt nicht nach
+  der Strömung; hier nehme ich sie aktiv auf („nehm die Strömung auf", „jetzt zieh
+  ich los") — das reglose „treiben wir" (T3) kippt in gerichtete Wanderung.
+- **Saat:** „ich folg dem Ruf" und das Wanderungs-/Metamorphose-Bild kehren in
+  T7 (Wanderung) und T8 (Auflösung) wieder.
