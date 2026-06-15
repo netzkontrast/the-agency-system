@@ -67,20 +67,99 @@ no drums, no rhythm, no bright frequencies, no clear high vocals
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt — Bekenntnis hier bewusst zerfasert/fragmentiert.*
+*Copy into Suno's "Lyrics" field. Bekenntnis bewusst zerfasert/fragmentiert.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Ich sinke
+in Nacht und Schlamm
+
+[Verse 1]
+Kein Licht hier unten, keine Zeit,
+kein Name, der mich oben rief
+Der warme Schlamm schließt sich um mich
+und hält mich, hält mich, hält mich tief
+
+[Chorus]
+Glitschig... der Pfad...
+tief... mein Gewässer...
+Fluss... abwärts...
+im Schlamm... die Kraft...
+
+[Verse 2]
+Weit oben grellt ein Rampenlicht,
+das hier nicht mehr nach mir verlangt
+Ich tauch, ich lass mich auseinander,
+hier unten bin ich nie zu lang
+
+[Chorus]
+...abwärts... aufwärts...
+gleich...
+ungreifbar...
+Kraft... im Schlamm... Kraft...
+
+[Bridge]
+Sch... Schlamm...
+die Kra... die Kraft...
+A... A...
+ich bin... nicht mehr... ganz hier
+
+[Outro]
+Im Schlamm
+liegt
+die Kraft
+A... men
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Ich sinke
+in Nacht und Schlamm
+
+Kein Licht hier unten keine Zeit
+kein Name der mich oben rief
+Der warme Schlamm schließt sich um mich
+und hält mich hält mich hält mich tief
+
+Glitschig der Pfad
+tief mein Gewässer
+Fluss abwärts
+im Schlamm die Kraft
+
+Weit oben grellt ein Rampenlicht
+das hier nicht mehr nach mir verlangt
+Ich tauch ich lass mich auseinander
+hier unten bin ich nie zu lang
+
+Abwärts aufwärts
+gleich
+ungreifbar
+Kraft im Schlamm Kraft
+
+Schlamm
+die Kraft
+ich bin nicht mehr ganz hier
+
+Im Schlamm
+liegt
+die Kraft
+Amen
 ```
 
 ## Production Notes
 
 - Längster Track, tiefster Punkt der Energiekurve-Intensität (paradox: tiefste Ruhe = höchste Intensität).
 - Fragmentiertes Bekenntnis bildet die Brücke zwischen Track 1 (vollständig) und Track 8 (wiederkehrend, auflösend).
+
+## Cross-References
+
+- **Fragmentiertes Bekenntnis (T1 → T6):** Das vollständige Glaubensbekenntnis aus
+  „Biege dich" kehrt zerfasert wieder, in Silben aus der Tiefe heraufgemurmelt;
+  nur „Im Schlamm liegt die Kraft" steigt am Grund klar auf.
+- **Auflösung (T5 → T6):** T5 kriecht „dem Schlamm entgegen" — hier ist der Aal
+  endlich *im* Schlamm, der hält statt zu greifen.
+- **Inversion (T1/T2 → T6):** T1s „was uns halten will, verlässt" kippt — der
+  Schlamm „hält mich, hält mich, hält mich tief"; und „kein Name, der mich oben
+  rief" entzieht die Visite/das Etikett aus T2 endgültig der Tiefe.
