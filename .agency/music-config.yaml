@@ -1,0 +1,20 @@
+# agency music — production config (auto-generated default, Spec 117).
+# Bind a project by editing `artist.name` + `paths.content_root`, then run
+# any music verb. Mirrors the bitwize-music `~/.bitwize-music/config.yaml` shape.
+artist:
+  name: "children-of-agatha"
+
+paths:
+  content_root: "/home/user/the-agency-system"
+  # audio_root / documents_root / overrides / ideas_file default under content_root
+
+db:
+  backend: sqlite
+  path: ".agency/music.db"
+
+generation:
+  additional_genres: []
+
+sheet_music:
+  enabled: true
+  page_size: "letter"
