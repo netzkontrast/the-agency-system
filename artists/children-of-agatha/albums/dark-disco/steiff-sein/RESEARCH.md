@@ -173,6 +173,11 @@ seam where gift meets cost.
 - **Sentimentality / kitsch**: diminutives (Bärchen), greeting-card tone, -keit/-heit-Reimketten.
 - **Prescriptiveness / medical advice**, abstract-noun stacking, naming the real person.
 
+> **One sanctioned exception:** the self-love climax (Track 06, §8.5) *does* land a
+> turn — „du darfst" — but as **permission, not cure**. The pain and open questions
+> stay in the room; it is never „und dann war alles heil". Everywhere else, the
+> no-false-resolution rule holds.
+
 ---
 
 ## 7. Handling & Ethics
@@ -273,6 +278,33 @@ for each 2–4-line `[Spoken Intro]`:
 - Each line speakable in one breath. **Plainness is intimacy, never condescension.**
 
 *Example:* *„Dieses Lied ist für meine Tochter. / Bei ihr kann ich umarmen — sonst fällt mir das schwer. / Es heißt: Du bist der Ort, an dem ich die Arme aufmache."*
+
+### 8.5 The self-love climax — „Du darfst" *(mandatory höhepunkt, Track 06)*
+
+> She always dedicated a special song to each great love of her life; **this one is
+> for HER.** Getragen & schwer, 80s dark disco. The single sanctioned exception to
+> "no resolution" — but **permission, not cure** (see §6).
+
+- **Tone:** address the „du" exactly as a real lover — second person, low, direct
+  (no plural-you). Keep the **love-song grammar** (vows, the long-held gaze, „ich
+  bleibe"); let the addressee resolve as *herself*, ideally only at the turn.
+  „Du darfst" earns its weight by **naming the cost first** (decades of conditions;
+  the song she always gave away), so permission lands as the last entry in a ledger,
+  not a greeting card. Sing it *to* her, not *about* her.
+- **Images (act, not affirmation):** die Hand, die diesmal bleibt · der Stuhl, in den
+  sie sich endlich setzt · den Panzer für die Länge eines Liedes abgelegt · das Glas
+  Wasser, das sie sich selbst hinstellt · der Brief mit ihrem eigenen Namen darauf ·
+  die Tür, die offen bleibt statt zu fallen · Schwielen an weichen Händen · die Lampe,
+  die sie für sich brennen lässt.
+- **Motifs:** Der letzte Brief → die Widmung, immer verschenkt, jetzt behalten ·
+  Der Panzer mit Naht → Schutz, der sich öffnen kann ohne zu brechen · Der leere
+  Stuhl → der Platz am eigenen Tisch, nie beansprucht · Das Bleiben → Liebe als
+  Bleiben, nicht Reparieren · Die brennende Lampe → von sich selbst erwartet werden.
+- **AVOID:** „liebe dich selbst" / „love yourself", Spiegel-Pep-Talk,
+  Affirmations-Poster, Glitzer, Heilungs-Schleife, „alles wird gut / jetzt ist alles
+  heil", Greeting-Card, Abstrakt-Stapel (Heilung, Selbstwert).
+- **Permission-not-cure:** the pain stays seated and is loved anyway — *„Der Schmerz
+  bleibt sitzen, und ich halt dich trotzdem."* The gift is company, not closure.
 
 ---
 

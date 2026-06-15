@@ -27,6 +27,9 @@
 - *„Mama-Hände"* — hands that see everyone; *„du gibst die besten Umarmungen"*.
 - *„Deine langen Haare sind so phänomenal"* (line originally in Gülay's voice).
 - Longs for warmth and closeness — but pulled back toward function.
+- **She dedicated a special song to each great love of her life** — the EP's
+  mandatory self-love climax (Track 06, *„Steiff sein / Du darfst"*) inverts this:
+  the song she finally writes **for herself**.
 
 ## 3. Origin & conditioning
 

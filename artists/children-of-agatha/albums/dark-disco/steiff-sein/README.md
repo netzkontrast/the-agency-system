@@ -27,7 +27,7 @@ sheet_music:
 | **Release** | Mini-Album / EP (3–4 Tracks) |
 | **Title** | Steiff sein *(Arbeitstitel)* |
 | **Genre** | 80s Dark Disco *(vorläufig)* — italo / cold synth-disco, nocturnal |
-| **Tracks** | 4 *(geplant, Entwurf)* |
+| **Tracks** | 5–6 *(geplant, Entwurf; inkl. Selbstliebe-Höhepunkt)* |
 | **Status** | Concept |
 | **Explicit** | No |
 | **Concept** | Das innere Gegenstück zur Single „Wir sehen dich" — die harte, laute Rüstung außen, das weiche, verkannte Kind innen. |
@@ -55,7 +55,7 @@ Das Genre ist das Konzept. **80s Dark Disco** — vorwärtstreibend, glänzend, 
 
 Kein Bogen zur „Heilung". Das Zentrum — *darf ich einfach sein?* — bleibt **offen**.
 
-## Structure *(Entwurf — noch nicht bestätigt; flexibel 4–5 Tracks)*
+## Structure *(Entwurf — noch nicht bestätigt; flexibel 5–6 Tracks)*
 
 Ein Bogen von der Herkunft/Rüstung nach innen zum offenen Zentrum. **Humor** läuft
 als Vater-Erbe quer durch (Wärme *und* Schild), kein eigener Track. **Lilifee** (die
@@ -67,7 +67,26 @@ Conceptualizer zu entscheiden)*:
 2. **Fremde Sträuße** → Floristin auf Vaters Rat; Funktion statt Spiel; täglich Schönheit als Pflicht, die eigene Kreativität blieb im Einwickelpapier.
 3. **Volles Haus** → die Steiff-Sammlung & Saison-Deko als Freude-zur-Pflicht; allein im vollen Haus; der Körper, der trägt.
 4. **Drei** → Liebe auf Abstand: das „Männlein", die hochgehaltene Drei, die uneingestandene Sehnsucht.
-5. **Sein dürfen** → die Bestie im Bauch, die taube Emotion, das Schaffen-Müssen, der Schmerz, „wie soll ich funktionieren, wenn jeder Weg mehr weh tut" — vom *erlauben* zum *einfordern*. Unaufgelöst.
+5. **Sein dürfen** → die Bestie im Bauch, die taube Emotion, das Schaffen-Müssen, der Schmerz, „wie soll ich funktionieren, wenn jeder Weg mehr weh tut" — vom *erlauben* zum *einfordern*; die offene Frage.
+6. **Steiff sein / Du darfst** *(Höhepunkt · Pflicht · Titeltrack-Kandidat)* → getragen & schwer; sie gesteht sich die **eigene Liebe** — „du darfst sein, du musst nichts"; hart außen, weich-liebend innen. **Erlaubnis, keine Heilung** — der Schmerz bleibt im Raum, und sie hält sich trotzdem.
+
+## Selbstliebe — der Höhepunkt (Pflicht)
+
+**Pflicht-Track.** Anke hatte für **jede große Liebe** ihres Lebens ein eigenes,
+ganz besonderes Lied. Dieser Song dreht die Tradition um: **er ist für sie selbst.**
+Ein **Liebeslied an sich** — sie gesteht sich die eigene Liebe; *„du darfst sein,
+du musst nichts."* Hart im Außen, weich und zart liebend im Innern — das ist
+zugleich das Titel-Wortspiel *Steiff sein* in einem Song. Darum: **Titeltrack- und
+Höhepunkt-Kandidat.**
+
+- **Klang:** getragen und schwer, 80s Dark Disco — kein euphorischer Affirmations-Pop.
+- **Grammatik:** die *Liebeslied*-Form (ein „du", das in Wahrheit sie selbst ist) —
+  das „du darfst" landet als hart erkämpfte Zeile, nie als Slogan; die Kosten
+  (Jahrzehnte der Bedingungen, das Lied, das sie immer anderen schenkte) zuerst.
+- **Erlaubnis, keine Heilung:** der Schmerz bleibt im Raum und wird *trotzdem*
+  gehalten — *„Der Schmerz bleibt sitzen, und ich halt dich trotzdem."* Keine
+  Schluss-Schleife, kein „alles ist heil".
+- Craft-Details (Bilder, Motive, Avoid): [`RESEARCH.md`](RESEARCH.md) §8.5.
 
 ## Narrative Einleitung — verbindlich für jeden EP-Track
 
@@ -112,6 +131,7 @@ und wählt das Sprech-Register.
 - **Steiff / inneres Kind** — spät gelernte Zärtlichkeit; das Weiche unverdient behalten dürfen
 - **Trauer, Verlustangst & Alter (60+)** — tiefe Trauer; Angst, die Arbeitsfähigkeit und das bisschen Gebaute zu verlieren
 - **Lilifee — der eine sichere Hafen** — ihre Tochter, auf die sie sehr stolz ist; der eine Ort, wo Umarmen *gelingt* und die Arme aufgehen *(zärtlicher Gegenpol)*
+- **Selbstliebe (Höhepunkt, Pflicht)** — sie gesteht sich die eigene Liebe; „du darfst sein, du musst nichts"; hart außen, weich/zart liebend innen — **Erlaubnis, keine Heilung**
 
 ## Motifs & Threads
 
@@ -144,7 +164,8 @@ und wählt das Sprech-Register.
 | 02 | Beruf nicht aus dem Herzen / Funktion | 01s Fassade | die Herkunft der Pflicht |
 | 03 | Freude→Pflicht / Einsamkeit / Körper | 02s Pflicht-Logik | den Körper, der trägt |
 | 04 | Nähe & Distanz | 03s Alleinsein | die uneingestandene Sehnsucht |
-| 05 | Sein dürfen — erlauben→einfordern (offen) | alle | — (bleibt offen) |
+| 05 | Sein dürfen — erlauben→einfordern | alle vorigen | den Selbstliebe-Höhepunkt |
+| 06 | Selbstliebe (Höhepunkt) — „du darfst" | 05s offene Frage | — (Erlaubnis, keine Heilung) |
 
 *Vorläufig. Wird von album-conceptualizer (Phase 4) und lyric-writer beim Schreiben gefestigt.*
 
@@ -165,6 +186,7 @@ und wählt das Sprech-Register.
 | 03 | Volles Haus *(AT)* | 1. Ps. | Steiff & Saison-Deko: Freude zur Pflicht; allein im vollen Haus; Körper trägt | Not Started |
 | 04 | Drei *(AT)* | 1. Ps. | Liebe auf Abstand; das „Männlein"; uneingestandene Sehnsucht | Not Started |
 | 05 | Sein dürfen *(AT)* | 1. Ps. | Bestie im Bauch, taube Emotion, Schmerz; erlauben → einfordern; offen | Not Started |
+| 06 | Steiff sein / Du darfst *(AT, Höhepunkt, Pflicht)* | 2. Ps. (= sie selbst) | Selbstliebe-Liebeslied; „du darfst sein, du musst nichts"; getragen & schwer; Erlaubnis, keine Heilung | Not Started |
 
 ## Production Notes
 
