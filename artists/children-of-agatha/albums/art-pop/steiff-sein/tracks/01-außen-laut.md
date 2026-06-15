@@ -19,16 +19,16 @@ sheet_music:
 | **Track #** | 01 |
 | **Title** | Außen laut |
 | **Album** | [Steiff sein](../README.md) |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Suno Link** | — |
 | **Stems** | No |
 | **Instrumental** | No |
-| **Explicit** | Yes / No |
-| **POV** | — |
-| **Role** | — |
+| **Explicit** | No |
+| **POV** | 1. Person (Ich) |
+| **Role** | Die Rüstung / das verkannte Kind |
 | **Fade Out** | 5s |
-| **Target Duration** | — |
-| **Sources Verified** | ❌ Pending |
+| **Target Duration** | ~3:30 |
+| **Sources Verified** | N/A (Character Study, keine externen Quellen) |
 
 <!--
 SOURCE VERIFICATION: Required for tracks with source material (quotes, real events, etc.)
@@ -45,7 +45,14 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Concept
 
-[Describe the track's narrative, themes, and purpose in the album. What story does this track tell? What emotions should it evoke?]
+Track 01 etabliert die **Rüstung**. Sie betritt jeden Raum laut, kompetent, alles im
+Griff — bewundert, nie durchschaut. Genau die Lautstärke sorgt dafür, dass sie
+**verkannt** wird: keiner sieht das **stille Kind dahinter**. Der ererbte Humor sitzt
+als Reflex-Schild, der innere Kritiker spricht ruhig und vernünftig („reiß dich
+zusammen"). Erst Stärke/Stolz zeigen, dann kippt der Preis durch Umkehrung. Das Ende
+bleibt **offen**: einen Atem lang legt sie das Laute ab — das Kind hebt den Kopf, nur
+da, das genügt. *Erlaubnis, keine Heilung.* (Keine Diagnose, kein Therapie-Sprech —
+nur das Erleben.)
 
 <!-- CONCEPT/NARRATIVE ALBUMS: Include this section for concept, narrative, thematic, character study, or OST albums. Remove for standalone tracks or collection albums. -->
 
@@ -69,13 +76,16 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 
 ## Mood & Imagery
 
-[Key visuals, atmosphere, and sensory details that define this track]
+Köpfe drehen sich, wenn sie eintritt; gerader Rücken, fester Kiefer; der scharfe Satz,
+der rausfällt, eh sie ihn will; die Fremde im Spiegel, die zurücklächelt; die ruhige,
+vernünftige Stimme; ganz am Ende ein gesenkter Rücken, ein Ausatmen, ein vorsichtig
+gehobener Kopf — ein Spalt Licht.
 
 ## Musical Direction
 
-- **Tempo**: [BPM estimate]
-- **Feel**: [Energy level, groove type]
-- **Instrumentation**: [Key instruments/sounds]
+- **Tempo**: ~92–104 BPM (getragen-dramatisch, kein Tanz)
+- **Feel**: dramatischer dt. Pop / Chanson noir mit Kante; reife, warme weibliche Lead; kühle Spannung statt laut-aggressiv (die „Lautheit" ist Haltung, nicht Lärm); offenes, ruhiges Ende
+- **Instrumentation**: Flügel/Klavier, gezupfter Kontrabass, dezente dunkle Streicher, sparsame Drums mit Kante, dunkler Raum; gesprochenes Intro
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
@@ -84,15 +94,20 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-[genre], [tempo/BPM], [mood], [vocal description], [instruments], [production notes]
+Mature warm female lead, German; a spoken narrated intro, then sung — cool, controlled, dramatic, close-mic, restrained vibrato. Dramatic German pop, chanson noir. Grand piano, plucked upright bass, dark restrained strings, sparse drums with a sharp edge, dark room. Voice forward, wide dynamic range, tense and nocturnal; builds, then opens to a quiet, breathing end. ~96 BPM.
 ```
 
 ### Exclude Styles
 *Negative prompts — append to Style Box when pasting into Suno (e.g. "no drums, no electric guitar"):*
 
 ```
-[exclusions, if any]
+no disco, no four-on-the-floor dance beat, no EDM synths, no aggressive distortion
 ```
+
+### Suno Settings
+- **Model**: V5 / V5.5 · **Instrumental**: Off
+- **Weirdness**: ~25 · **Style Influence**: ~70
+- **Hinweis**: `[Spoken Intro]` als gesprochene Erzähl-Eröffnung (Sarah-Connor-Ton); KEIN Dark Disco (das ist nur Track 06).
 
 ### Lyrics Box
 *Copy this into Suno's "Lyrics" field:*
@@ -106,20 +121,51 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
      Use metatags like [Whispered] or put delivery notes in the Style Box instead. -->
 
 ```
+[Spoken Intro]
+Dieses Lied habe ich geschrieben, weil man mich oft falsch versteht
+Ich bin laut, aber das ist nicht alles, was ich bin
+Es heißt „Außen laut" — für das leise Kind, das keiner sieht
+
 [Verse 1]
-[Lyrics here...]
+Ich komm in den Raum, und die Köpfe gehn hoch
+ich hab den Tag im Griff, bevor er beginnt
+den Rücken gerade, ich schaff das schon noch
+und der Witz ist da, schnell wie der Wind
+
+[Pre-Chorus]
+Alle lachen mit, keiner fragt sich, wer da lacht
+und die Stimme in mir sagt nur: reiß dich zusammen, gib acht
 
 [Chorus]
-[Lyrics here...]
+Ich bin außen laut, damit mich keiner hört
+ich mach mich groß und schnell, dass keiner mich stört
+ihr seht die Frau, die alles trägt, die alles kann
+und seht das stille Kind dahinter nicht mehr an
 
 [Verse 2]
-[Lyrics here...]
+Der scharfe Satz fällt raus, bevor ich ihn will
+der Kiefer bleibt fest, auch wenn niemand drückt
+im Spiegel eine Frau, beherrscht und still
+ich kenn sie kaum, und sie lächelt zurück
+
+[Pre-Chorus]
+Keiner fragt, wer mich trägt, wenn ich mal fall
+und die Stimme sagt nur: lauter, dann trägt's dich schon, überall
+
+[Chorus]
+Ich bin außen laut, damit mich keiner hört
+ich mach mich groß und schnell, dass keiner mich stört
+ihr seht die Frau, die alles trägt, die alles kann
+und seht das stille Kind dahinter nicht mehr an
 
 [Bridge]
-[Lyrics here...]
+Doch einmal, ganz kurz, mach ich keinen Witz
+lass den Rücken sinken, atme einmal aus
+und das Kind in mir hebt vorsichtig den Kopf
+nicht laut, nicht stark — nur da, und das ist genug
 
 [Outro]
-[Lyrics here...]
+Vielleicht muss ich nicht laut sein, nur damit ich bin
 ```
 <!-- /SERVICE: suno -->
 
@@ -130,11 +176,42 @@ Human must verify BEFORE track moves to production. See CLAUDE.md for verificati
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-[Plain lyrics here - no [Verse], [Chorus] tags
-Capitalize first letter of each line
-No end punctuation
-Write out all repeats fully
-Blank lines between sections only]
+Dieses Lied habe ich geschrieben weil man mich oft falsch versteht
+Ich bin laut aber das ist nicht alles was ich bin
+Es heißt Außen laut für das leise Kind das keiner sieht
+
+Ich komm in den Raum und die Köpfe gehn hoch
+Ich hab den Tag im Griff bevor er beginnt
+Den Rücken gerade ich schaff das schon noch
+Und der Witz ist da schnell wie der Wind
+
+Alle lachen mit keiner fragt sich wer da lacht
+Und die Stimme in mir sagt nur reiß dich zusammen gib acht
+
+Ich bin außen laut damit mich keiner hört
+Ich mach mich groß und schnell dass keiner mich stört
+Ihr seht die Frau die alles trägt die alles kann
+Und seht das stille Kind dahinter nicht mehr an
+
+Der scharfe Satz fällt raus bevor ich ihn will
+Der Kiefer bleibt fest auch wenn niemand drückt
+Im Spiegel eine Frau beherrscht und still
+Ich kenn sie kaum und sie lächelt zurück
+
+Keiner fragt wer mich trägt wenn ich mal fall
+Und die Stimme sagt nur lauter dann trägt's dich schon überall
+
+Ich bin außen laut damit mich keiner hört
+Ich mach mich groß und schnell dass keiner mich stört
+Ihr seht die Frau die alles trägt die alles kann
+Und seht das stille Kind dahinter nicht mehr an
+
+Doch einmal ganz kurz mach ich keinen Witz
+Lass den Rücken sinken atme einmal aus
+Und das Kind in mir hebt vorsichtig den Kopf
+Nicht laut nicht stark nur da und das ist genug
+
+Vielleicht muss ich nicht laut sein nur damit ich bin
 ```
 
 <!-- END VOCAL ONLY -->
