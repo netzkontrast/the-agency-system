@@ -26,7 +26,7 @@ sheet_music:
 | **Artist** | Children of Agatha |
 | **Release** | Mini-Album / EP (3–4 Tracks) |
 | **Title** | Steiff sein *(Arbeitstitel)* |
-| **Genre** | 80s Dark Disco *(vorläufig)* — italo / cold synth-disco, nocturnal |
+| **Genre** | **Pro Song ein eigenes Genre** — altersgerecht, Sarah-Connor-inspiriert (reifer dt. Pop / Ballade / Chanson / Soul-Pop). **Nur** der Selbstliebe-Höhepunkt = tanzbarer, hypnotischer **80s Dark Disco**. |
 | **Tracks** | 5–6 *(geplant, Entwurf; inkl. Selbstliebe-Höhepunkt)* |
 | **Status** | Concept |
 | **Explicit** | No |
@@ -51,9 +51,18 @@ Diese EP porträtiert eine **reale, private Person**. Die psychischen Hintergrü
 
 „Wir sehen dich" ist das warme **Außen** — wie andere sie sehen. *Steiff sein* ist das **Innen**: der Kampf ums **Sein-Dürfen**.
 
-Das Genre ist das Konzept. **80s Dark Disco** — vorwärtstreibend, glänzend, nächtlich, maskiert — **ist** die Rüstung, die sie nach außen trägt: hart und laut, alles im Blick und Griff. Über diesem kühlen, kontrollierten Vierviertel-Puls liegt das verletzliche Innere: das verkannte Kind, die Einsamkeit im vollen Haus, die Sehnsucht nach Nähe, die sie sich nie eingestand. Die Disco-Kugel als Panzer; darunter der Knopf im Ohr.
+**Jeder Song trägt sein eigenes Genre** — passend zu seinem Ausdruck und zu *ihrem
+Alter*, **Sarah-Connor-inspiriert**: reifer, deutschsprachiger Pop, Ballade, Chanson,
+Soul-Pop. Die schweren Songs bleiben getragen und erzählt (jeder mit gesprochener
+Einleitung, s. u.).
 
-Kein Bogen zur „Heilung". Das Zentrum — *darf ich einfach sein?* — bleibt **offen**.
+**Die eine Ausnahme ist der Höhepunkt:** der **Selbstliebe**-Song ist der **einzige
+tanzbare** — **hypnotischer 80s Dark Disco**, den man *allein mit sich* tanzen kann.
+Das ist die Pointe der EP: der eine Ort, an dem sie sich **frei bewegt**, ist die
+Liebe zu sich selbst — *„du darfst sein, du musst nichts."*
+
+Kein Bogen zur „Heilung". Das Zentrum — *darf ich einfach sein?* — bleibt **offen**;
+der Höhepunkt schenkt **Erlaubnis, keine Heilung** (der Schmerz bleibt im Raum).
 
 ## Structure *(Entwurf — noch nicht bestätigt; flexibel 5–6 Tracks)*
 
@@ -169,24 +178,30 @@ und wählt das Sprech-Register.
 
 *Vorläufig. Wird von album-conceptualizer (Phase 4) und lyric-writer beim Schreiben gefestigt.*
 
-## Sonic Palette
+## Sonic Palette — Genre pro Song (Sarah-Connor-inspiriert)
 
-- **Genre**: 80s Dark Disco / italo — kühler, treibender Vierviertel-Puls, nächtlich, melancholisch
-- **Beats/Synths**: analoger Synth-Bass (arpeggiert/sequenziert), gated-reverb-Drums, kalter Sequencer, glasige Synth-Stabs, Disco-Hi-Hats; sparsame Drum-Machine
-- **Vocals**: weibliche Lead mit zwei Registern — kühl/kontrolliert/fast belt für die Rüstung, fallend in intim/nah für das Kind (descriptive-only, keine Namen in Metatags)
-- **Mood**: glänzende Oberfläche über innerer Schwere; die Spiegelkugel als Panzer
-- **Hinweis**: Die `overrides/suno-preferences.md` (dunkle Synth-Pop-Palette: „analog synth, cold sequencer, gated reverb, sparse drum machine") **passt hier** — anders als bei der warmen Single.
+**Prinzip:** Jeder Song bekommt ein **eigenes Genre**, passend zu seinem Ausdruck und
+zu **ihrem Alter** — reif, deutschsprachig, **Sarah-Connor-inspiriert** (emotionaler
+reifer Pop, Ballade, Chanson, Soul-Pop; *kein* jugendlich-trendiger Sound). Tentative
+Zuordnung in der Tracklist oben; final im `album-conceptualizer` / `suno-engineer`.
+
+**Die eine Ausnahme — Selbstliebe-Höhepunkt (Track 06):** der **einzige tanzbare**
+Song — **hypnotischer 80s Dark Disco**, den man *allein mit sich* tanzen kann.
+- Palette T06: analoger Synth-Bass (arpeggiert/sequenziert), gated-reverb-Drums, kalter Sequencer, glasige Synth-Stabs, Disco-Hi-Hats, hypnotisch-repetitiv, nächtlich.
+
+- **Vocals (EP-weit):** weibliche Lead, **reif/warm**; bei den schweren Tracks nah und getragen, beim Höhepunkt sog-haft im Tanz; + Sprech-Register für die Intros (descriptive-only, keine Namen in Metatags).
+- **Hinweis:** Die `overrides/suno-preferences.md` (dunkle Synth-Pop-Palette: „analog synth, cold sequencer, gated reverb, sparse drum machine") passt **nur für Track 06**, nicht für die übrigen, wärmeren/reiferen Songs.
 
 ## Tracklist *(Entwurf — nicht bestätigt; Titel sind Platzhalter)*
 
-| # | Title | POV | Concept | Status |
-|---|-------|-----|---------|--------|
-| 01 | Außen laut *(AT)* | 2./1. Ps. | Rüstung, verkannt, Reflex-Witz, das stille Kind dahinter | Not Started |
-| 02 | Fremde Sträuße *(AT)* | 1. Ps. | Floristin auf Vaters Rat; Funktion statt Spiel; aufgeschobene Kreativität | Not Started |
-| 03 | Volles Haus *(AT)* | 1. Ps. | Steiff & Saison-Deko: Freude zur Pflicht; allein im vollen Haus; Körper trägt | Not Started |
-| 04 | Drei *(AT)* | 1. Ps. | Liebe auf Abstand; das „Männlein"; uneingestandene Sehnsucht | Not Started |
-| 05 | Sein dürfen *(AT)* | 1. Ps. | Bestie im Bauch, taube Emotion, Schmerz; erlauben → einfordern; offen | Not Started |
-| 06 | Steiff sein / Du darfst *(AT, Höhepunkt, Pflicht)* | 2. Ps. (= sie selbst) | Selbstliebe-Liebeslied; „du darfst sein, du musst nichts"; getragen & schwer; Erlaubnis, keine Heilung | Not Started |
+| # | Title | Genre *(Entwurf, altersgerecht / Sarah-Connor-insp.)* | Concept | Status |
+|---|-------|------|---------|--------|
+| 01 | Außen laut *(AT)* | dramatischer dt. Pop / Chanson noir, mit Kante | Rüstung, verkannt, Reflex-Witz, das stille Kind | Not Started |
+| 02 | Fremde Sträuße *(AT)* | dt. Chanson / Akustik-Singer-Songwriter, melancholischer Walzer-Anklang | Floristin auf Vaters Rat; Funktion statt Spiel; aufgeschobene Kreativität | Not Started |
+| 03 | Volles Haus *(AT)* | reifer Melancholie-/Soul-Pop, mid-tempo | Steiff & Saison-Deko: Freude zur Pflicht; allein im vollen Haus; Körper | Not Started |
+| 04 | Drei *(AT)* | warme Soul-Pop-Ballade (Sarah-Connor-Nähe) | Liebe auf Abstand; das „Männlein"; uneingestandene Sehnsucht | Not Started |
+| 05 | Sein dürfen *(AT)* | dunkler Art-Pop / kinematische Ballade, brodelnd | Bestie im Bauch, taube Emotion, Schmerz; erlauben → einfordern; offen | Not Started |
+| 06 | Steiff sein / Du darfst *(AT, Höhepunkt, Pflicht)* | **hypnotischer 80s Dark Disco — tanzbar, allein mit sich** | Selbstliebe; „du darfst sein, du musst nichts"; Erlaubnis, keine Heilung | Not Started |
 
 ## Production Notes
 
@@ -194,12 +209,16 @@ und wählt das Sprech-Register.
 **Suno Settings**:
 - **Target Duration**: 3:00–4:00 inkl. der gesprochenen Intro (+~15 s einplanen; per-Track-Overrides in den Track-Files)
 - **Pflicht:** jeder Track öffnet mit `[Spoken Intro]` (siehe „Narrative Einleitung")
-- Vokal-Konsistenz über die EP: eine weibliche Lead, zwei Register (Rüstung/Kind) + Sprech-Register für die Intros
-- Production-Continuity: kühle 80s-Synth-Palette, gated drums, nächtlich
+- Vokal-Konsistenz über die EP: eine **reife, warme weibliche Lead** quer durch die Genres (getragen bei den schweren Songs, sog-haft beim Höhepunkt) + Sprech-Register für die Intros
+- Production-Continuity: **nicht** über eine Einheits-Palette, sondern über die Stimme + die gesprochenen Einleitungen; jedes Genre eigenständig (Dark Disco nur T06)
 
-**Style Prompt Base** *(Entwurf — final pro Track über `/bitwize-music:suno-engineer`)*:
+**Style Prompts: pro Song eigenes Genre** — es gibt **keine** EP-weite Base; jeder
+Track erhält seinen eigenen Style-Prompt (altersgerecht, Sarah-Connor-inspiriert),
+final über `/bitwize-music:suno-engineer`.
+
+**Style Prompt — nur Track 06 (Selbstliebe-Höhepunkt, der einzige Dark-Disco-/Tanz-Song):**
 ```
-Female lead, cool and controlled with an intimate lower register; 80s dark disco, italo. Analog synth bass, cold sequencer, gated-reverb drums, glassy synth stabs, four-on-the-floor, nocturnal and melancholic. Voice forward, wide dynamic range.
+Female lead, mature and warm, intimate lower register; hypnotic 80s dark disco, italo. Analog synth bass, cold sequencer, gated-reverb drums, glassy synth stabs, four-on-the-floor, repetitive and nocturnal — a song to dance alone with yourself. Voice forward, wide dynamic range.
 ```
 <!-- /SERVICE: suno -->
 
@@ -209,3 +228,4 @@ Female lead, cool and controlled with an intimate lower register; 80s dark disco
 
 - **Phase**: Concept (Research erfasst). **Nächster Schritt:** Brainstorming/Konzept-Bestätigung (Genre, Titel, Reihenfolge, Verhältnis zur Single) via `/bitwize-music:album-conceptualizer`.
 - **Hard Gate (preserved):** Lyric-Writing beginnt erst nach Bestätigung der Konzept-Phasen durch den User.
+- **Offener Punkt — Ordner-Genre:** Pfad liegt aktuell unter `albums/dark-disco/`, doch nur Track 06 ist Dark Disco. Genre-Slug der EP im Conceptualizer überdenken (z. B. `art-pop` / `chanson` / `deutschpop`) und ggf. via `/bitwize-music:rename` migrieren.
