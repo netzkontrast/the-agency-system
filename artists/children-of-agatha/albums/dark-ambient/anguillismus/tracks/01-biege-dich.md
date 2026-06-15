@@ -67,17 +67,106 @@ no drums, no bright synths, no upbeat rhythm
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt (Track 1 zuerst — etabliert das vollständige Glaubensbekenntnis als Refrain-Anker).*
+*Copy into Suno's "Lyrics" field.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Tritt näher
+Lausche dem Fließen
+
+[Verse 1]
+Der engste Spalt, und ich zieh mich durch
+Kein Knochen, der im Sturm zerbricht
+Das trockne Holz, es splittert, doch
+Ich bieg mich, denn Wasser bricht nicht
+
+[Pre-Chorus]
+Biege dich, brich nicht
+Biege dich, brich nicht
+
+[Chorus]
+Glitschig sei mein Pfad
+Tief mein Gewässer, ungreifbar mein Geist
+Fluss abwärts, Fluss aufwärts
+Im Schlamm liegt die Kraft
+Amen
+
+[Verse 2]
+Sie greifen zu mit kalter Hand
+Die Faust schließt sich um nichts als Nass
+Wir krümmen uns am Beckenrand
+Wer fassen will, behält kein Maß
+
+[Pre-Chorus]
+Biege dich, brich nicht
+Biege dich, brich nicht
+
+[Chorus]
+Glitschig sei mein Pfad
+Tief mein Gewässer, ungreifbar mein Geist
+Fluss abwärts, Fluss aufwärts
+Im Schlamm liegt die Kraft
+Amen
+
+[Bridge]
+Der Schleim der Erleuchtung
+Liegt dünn auf der Haut
+Was nach mir fasst, fasst Wasser
+Hat sich zu früh getraut
+
+[Outro]
+Tritt näher
+Lausche
+Fluss abwärts
+Amen
+Amen
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Tritt näher
+Lausche dem Fließen
+
+Der engste Spalt und ich zieh mich durch
+Kein Knochen der im Sturm zerbricht
+Das trockne Holz es splittert doch
+Ich bieg mich denn Wasser bricht nicht
+
+Biege dich brich nicht
+Biege dich brich nicht
+
+Glitschig sei mein Pfad
+Tief mein Gewässer ungreifbar mein Geist
+Fluss abwärts Fluss aufwärts
+Im Schlamm liegt die Kraft
+Amen
+
+Sie greifen zu mit kalter Hand
+Die Faust schließt sich um nichts als Nass
+Wir krümmen uns am Beckenrand
+Wer fassen will behält kein Maß
+
+Biege dich brich nicht
+Biege dich brich nicht
+
+Glitschig sei mein Pfad
+Tief mein Gewässer ungreifbar mein Geist
+Fluss abwärts Fluss aufwärts
+Im Schlamm liegt die Kraft
+Amen
+
+Der Schleim der Erleuchtung
+Liegt dünn auf der Haut
+Was nach mir fasst fasst Wasser
+Hat sich zu früh getraut
+
+Tritt näher
+Lausche
+Fluss abwärts
+Amen
+Amen
 ```
 
 ## Production Notes
