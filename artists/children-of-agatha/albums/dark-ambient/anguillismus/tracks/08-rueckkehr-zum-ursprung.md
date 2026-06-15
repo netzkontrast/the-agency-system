@@ -67,20 +67,105 @@ no drums, no climactic swell, no bright major-key resolution, no abrupt ending
 ```
 
 ### Lyrics Box
-*Wird von `/bitwize-music:lyric-writer` gefüllt — vollständiges Bekenntnis kehrt zurück und löst sich in Stille auf.*
+*Copy into Suno's "Lyrics" field. Vollständiges Bekenntnis kehrt zurück, löst sich in Stille auf.*
 
 ```
-[Lyrics folgen]
+[Intro]
+Es ruft mich heim
+das Gewicht fällt ab
+
+[Verse 1]
+Ich tret die große Wanderung an,
+zurück, woher die Strömung kam
+Kein Boden mehr, kein Angsthorizont —
+ich sink nach oben, sanft und langsam
+
+[Chorus]
+Glitschig sei mein Pfad,
+tief mein Gewässer, ungreifbar mein Geist
+Fluss abwärts, Fluss aufwärts —
+im Schlamm liegt die Kraft
+Amen
+
+[Verse 2]
+Der Sargassohimmel öffnet sich,
+da, wo ich einst als Glas begann
+Ein Kreis, der atmet, schließt sich leise —
+ich komm dort an, wo ich entstand
+
+[Chorus]
+Glitschig sei mein Pfad,
+tief mein Gewässer, ungreifbar mein Geist
+Fluss abwärts, Fluss aufwärts —
+im Schlamm liegt die Kraft
+Amen
+
+[Bridge]
+Tritt näher, lausche, wie es ausklingt —
+kein Sturm mehr, der mich biegen muss
+Ich brech nicht, und ich bieg mich nicht mehr,
+ich löse mich. Und das ist Schluss
+
+[Outro]
+Im Schlamm liegt die Kraft
+Amen
+Amen
+Amen
 ```
 <!-- /SERVICE: suno -->
 
 ## Streaming Lyrics
 
 ```
-[folgt nach lyric-writer]
+Es ruft mich heim
+das Gewicht fällt ab
+
+Ich tret die große Wanderung an
+zurück woher die Strömung kam
+Kein Boden mehr kein Angsthorizont
+ich sink nach oben sanft und langsam
+
+Glitschig sei mein Pfad
+tief mein Gewässer ungreifbar mein Geist
+Fluss abwärts Fluss aufwärts
+im Schlamm liegt die Kraft
+Amen
+
+Der Sargassohimmel öffnet sich
+da wo ich einst als Glas begann
+Ein Kreis der atmet schließt sich leise
+ich komm dort an wo ich entstand
+
+Glitschig sei mein Pfad
+tief mein Gewässer ungreifbar mein Geist
+Fluss abwärts Fluss aufwärts
+im Schlamm liegt die Kraft
+Amen
+
+Tritt näher lausche wie es ausklingt
+kein Sturm mehr der mich biegen muss
+Ich brech nicht und ich bieg mich nicht mehr
+ich löse mich und das ist Schluss
+
+Im Schlamm liegt die Kraft
+Amen
+Amen
+Amen
 ```
 
 ## Production Notes
 
 - Bekenntnis hier **vollständig** wie in Track 1 — der Kreis schließt sich (Ursprung → Ursprung).
 - Langer 12s-Fade als bewusste Auflösung statt Schluss-Akzent; der „Amen"-Chor verklingt zuletzt.
+
+## Cross-References
+
+- **Bookend (T1 → T8):** Das vollständige Glaubensbekenntnis kehrt unzerteilt
+  zurück (vs. T6 fragmentiert); „Tritt näher, lausche" spiegelt T1s Eröffnung; und
+  „Ich brech nicht, und ich bieg mich nicht mehr — ich löse mich" löst das erste
+  Gebot „Biege dich, brich nicht" auf (jenseits des Biegens, in Auflösung).
+- **Resolution (T3/T4 → T8):** „Der Sargassohimmel öffnet sich, da wo ich einst als
+  Glas begann" bringt das Sargasso/Ursprung-Motiv (T3) und den Glasaal (T4) heim —
+  der Kreis Ursprung → Ursprung schließt sich.
+- **Faden-Abschluss (T6/T7 → T8):** das Sinken aus T6 kippt in „ich sink nach oben";
+  T7s „das offne Wasser ruft mich her" wird zu „Es ruft mich heim".
