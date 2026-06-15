@@ -32,6 +32,7 @@ sheet_music:
 | **Explicit** | No |
 | **Concept** | Das innere Gegenstück zur Single „Wir sehen dich" — die harte, laute Rüstung außen, das weiche, verkannte Kind innen. |
 | **Verwandt mit** | Single „Wir sehen dich" (verwandt, aber **ohne direkten Bezug** / keine zitierten Querverweise) |
+| **Profil** | Siehe [`PROFILE.md`](PROFILE.md) *(privat — Hintergrund)* |
 | **Research** | Siehe [`RESEARCH.md`](RESEARCH.md) |
 
 ## Der Titel — Wortspiel (tragend)
@@ -57,7 +58,10 @@ Kein Bogen zur „Heilung". Das Zentrum — *darf ich einfach sein?* — bleibt 
 ## Structure *(Entwurf — noch nicht bestätigt; flexibel 4–5 Tracks)*
 
 Ein Bogen von der Herkunft/Rüstung nach innen zum offenen Zentrum. **Humor** läuft
-als Vater-Erbe quer durch (Wärme *und* Schild), kein eigener Track:
+als Vater-Erbe quer durch (Wärme *und* Schild), kein eigener Track. **Lilifee** (die
+Tochter) ist der eine warme Gegenpol — wo die Arme aufgehen; sie kann als eigener
+kurzer Track oder als Wendepunkt im Closer „Sein dürfen" verankert werden *(im
+Conceptualizer zu entscheiden)*:
 
 1. **Außen laut** → die Rüstung, das Verkanntsein, der Reflex-Witz, das stille Kind dahinter.
 2. **Fremde Sträuße** → Floristin auf Vaters Rat; Funktion statt Spiel; täglich Schönheit als Pflicht, die eigene Kreativität blieb im Einwickelpapier.
@@ -70,6 +74,17 @@ als Vater-Erbe quer durch (Wärme *und* Schild), kein eigener Track:
 **Pflicht (nur diese EP):** Jeder Song **muss** mit einer kurzen **erzählten/gesprochenen
 Intro** beginnen, die rahmt, worum es im Song geht — ein narrativer Einstieg, der Teil
 der Audio ist (nicht nur Liner-Note).
+
+**Warum (wichtig):** Anke hat eine **Lernschwäche** — die Intro ist **Zugang, nicht
+Schmuck**: sie soll den Song *verstehen* können. **Vorbild: Sarah Connor**, die sie
+mag und die live immer erzählt, *wie* ein Song entstand und *wofür* er steht. Genau
+dieser Ton: warm, persönlich, einfach, ein Gedanke pro Zeile (Tonfall/Format:
+[`RESEARCH.md`](RESEARCH.md) §8.4).
+
+**Beispiel-Intro (DE):**
+> Dieses Lied ist für meine Tochter.
+> Bei ihr kann ich umarmen — sonst fällt mir das schwer.
+> Es heißt: Du bist der Ort, an dem ich die Arme aufmache.
 
 **Umsetzung in Suno:**
 - Erste Sektion der Lyrics-Box als `[Spoken Intro]` (Suno spricht/halb-singt den Text — alles in der Lyrics-Box wird vertont).
@@ -95,6 +110,8 @@ und wählt das Sprech-Register.
 - **Die Reise — erlauben vs. einfordern** — nicht nur sich etwas *erlauben*, sondern aktiv *einfordern*; und der Schmerz, dass jeder Therapie-Weg gerade *mehr* weh tut
 - **Später Spiegel** — Klarheit im Alter, aber gefangen in „wie sie immer war"; innerer Kritiker; sich nicht (an)erkennen
 - **Steiff / inneres Kind** — spät gelernte Zärtlichkeit; das Weiche unverdient behalten dürfen
+- **Trauer, Verlustangst & Alter (60+)** — tiefe Trauer; Angst, die Arbeitsfähigkeit und das bisschen Gebaute zu verlieren
+- **Lilifee — der eine sichere Hafen** — ihre Tochter, auf die sie sehr stolz ist; der eine Ort, wo Umarmen *gelingt* und die Arme aufgehen *(zärtlicher Gegenpol)*
 
 ## Motifs & Threads
 

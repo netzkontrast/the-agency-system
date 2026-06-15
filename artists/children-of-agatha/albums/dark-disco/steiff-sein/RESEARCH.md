@@ -28,7 +28,8 @@ the family plus grounded background reading on the lived experience of the theme
 5. [Humor as inheritance & armor](#5-humor-as-inheritance--armor)
 6. [Craft Guardrails](#6-craft-guardrails)
 7. [Handling & Ethics](#7-handling--ethics)
-8. [Sources](#8-sources)
+8. [Deep-Dive Addenda (Round 4)](#8-deep-dive-addenda-round-4)
+9. [Sources](#9-sources)
 
 ---
 
@@ -184,10 +185,102 @@ seam where gift meets cost.
 
 ---
 
-## 8. Sources
+## 8. Deep-Dive Addenda (Round 4)
 
-Background reading used for §3–§4 (lived-experience + reputable psychology writing;
-consulted for accuracy of *experience*, not cited in any public-facing output):
+### 8.1 Complex trauma, grief & loss, aging (60+)
+
+> Background only — not advice; never named in songs.
+
+Childhood emotional neglect — "only functioning mattered," scarce warmth, hugs
+learned late — wires **complex trauma** as reliably as overt abuse: not from what
+was done, but from what *should* have happened and didn't. ICD-11 **cPTSD (KPTBS)**
+adds three "disturbances in self-organization" on top of the PTSD core: emotions
+that **flood or go numb**, a **fixed sense of not-being-enough**, and **craving
+closeness while withdrawing** from it.
+
+**One root, many labels.** The same dysregulating ground gets read as cPTSD,
+**borderline** traits, **depression**, or late/masked **ADHD** depending on who
+looks — which is why one person sits across several at once. cPTSD = *stable*
+negative self-worth + withdrawal; borderline = *shifting* identity + frantic
+anti-abandonment (different, often confused). Female ADHD masking (lists,
+over-preparing, working late) hides everything until compensation **collapses into
+burnout**; rejection-sensitivity misread as moodiness.
+
+**Conditional worth → loss-fear.** Love felt *earned*, so the bar to deserve
+closeness keeps rising; every shortfall reads as imminent loss. Unwitnessed grief
+stays unmetabolized and generalizes into **anticipatory** loss-anxiety.
+
+**Over 60.** The energy that funded decades of masking drains; focus/stamina fray;
+because identity fused to *doing*, losing **work ability (Arbeitsfähigkeit)** reads
+as the self disappearing — so decline gets **hidden** rather than risk losing
+independence.
+
+*Experiential markers (render, never label):* "only okay when useful — rest feels
+like failing"; "a hug, and my body doesn't know what to do — warmth was taught
+late"; "fine to everyone, then I cry in the car"; "a small 'you seem off' lands
+like a blow and replays for hours"; "I keep a tally of what I've given, like I must
+keep paying for my place at the table"; "happy moments come with a clock running";
+"I used to be sharp — now I stare at the same form for days"; "if I stop working I
+don't know who I am"; "I talk to myself harder than I'd talk to anyone"; "I don't
+tell anyone how much I forget — they'd take my independence."
+
+*Handling:* loss lives in the **future tense** ("when she's gone") more than in
+memory; functioning is armor **and** wound (costly, not heroic); no recovery bow.
+
+### 8.2 Steiff — depth
+
+- **Margarete Steiff** (b. 1847, Giengen), paralysed by polio yet a trained
+  seamstress; felt business 1880; the *Elefäntle* pin-cushion → toy. Nephew
+  Richard's jointed plush bear (prototype "55 PB," 1902). Nephew Franz's
+  **„Knopf im Ohr"** metal button (registered 1904, always the left ear),
+  ear-flag added 1908/09 — built to defeat imitators. Creed: *„Für Kinder ist nur
+  das Beste gut genug."* Mohair, felt, glass eyes.
+- **Collector culture:** button + woven ear-tag = authentication; numbered
+  **Zertifikate**; the "World of Steiff" museum and the annual **Steiff Sommer**
+  festival in Giengen (since 2006); bear-of-the-year limited editions; completism,
+  provenance, rarity.
+- **Psychology (light):** plush as self-soothing bridge; re-parenting the inner
+  child; felt safety; surrounded-yet-unseen.
+
+*Motifs:* Knopf im Ohr → Echtheit / nur das Echte zählt · Vitrine → umgeben, doch
+ungesehen · Glasaugen → ansehen ohne urteilen · Zertifikat → „ich gehöre, ich bin
+verzeichnet" · Naht von Hand → was hält, ist von Hand gemacht · Mohair → Trost, den
+man berühren darf. *(Margarete's own story — disabled hands that made the softest
+things — is a quiet resonance; never spell it out.)*
+
+### 8.3 Lilifee — the one safe harbor
+
+The daughter (nickname „Lilifee") is the **single relationship where the armor
+forgets itself and the arms open**. Render as: arms opening before fear decides; a
+coat still warm after she lets go; watching the grown daughter cross a street, chin
+up, not looking back; the one embrace that lasts a second too long — and for once
+she doesn't count. *Motifs:* die offene Tür (the threshold she guards everywhere
+else simply isn't there) · der warme Mantel (proof closeness *can* stay) · der
+unverwandte Blick (pride as quiet attention). **AVOID:** „my little princess"
+literalism, Glitzer/Einhorn-Kitsch, making the daughter a *fix* for the wound,
+explaining the contrast aloud — let one held thing imply all the unheld ones.
+
+### 8.4 Narration model — Sarah-Connor template (comprehension-first)
+
+Because of her **learning difficulty**, the spoken intro is **access, not
+ornament** — she must be able to *understand* the song. Model: Sarah Connor's live
+practice of telling **how a song came to be and what it stands for**. Tone/format
+for each 2–4-line `[Spoken Intro]`:
+
+- Open with the **occasion**, not the theme: *„Dieses Lied ist für…"* / *„…habe ich geschrieben, als…"*
+- **One idea per line;** short main clauses; everyday words; no metaphor-stacking in the intro itself.
+- **Warm, first-person** — telling a friend, not announcing. Name what it *stands for* in one plain sentence.
+- Each line speakable in one breath. **Plainness is intimacy, never condescension.**
+
+*Example:* *„Dieses Lied ist für meine Tochter. / Bei ihr kann ich umarmen — sonst fällt mir das schwer. / Es heißt: Du bist der Ort, an dem ich die Arme aufmache."*
+
+---
+
+## 9. Sources
+
+Background reading used for §3–§4 and §8 (lived-experience + reputable psychology
+writing, plus Steiff history; consulted for accuracy, **not cited in any
+public-facing output**):
 
 - Sachs Center — ADHD testing for women, diagnosed late in life: <https://sachscenter.com/adhd-testing-for-women-why-so-many-are-diagnosed-late-in-life/>
 - Aeon — the hidden costs of masking for women with ADHD/autism: <https://aeon.co/essays/the-hidden-costs-of-masking-for-women-with-adhd-and-autism>
@@ -196,5 +289,14 @@ consulted for accuracy of *experience*, not cited in any public-facing output):
 - CHADD — getting older with ADHD: <https://chadd.org/attention-article/getting-older-with-adhd-what-does-normal-aging-with-adhd-look-like/>
 - Mad in America — healing crises (worse before better): <https://www.madinamerica.com/2023/08/healing-crises-when-things-get-worse-before-they-get-better/>
 - The Pursuit Counseling — high-functioning burnout: <https://thepursuitcounseling.com/how-to-recover-from-high-functioning-burnout-when-you-still-have-to-show-up-every-day/>
+- Cleveland Clinic — Complex PTSD (cPTSD): <https://my.clevelandclinic.org/health/diseases/24881-cptsd-complex-ptsd>
+- BJPsych Advances — Complex PTSD, a new ICD-11 diagnosis: <https://www.cambridge.org/core/journals/bjpsych-advances/article/complex-posttraumatic-stress-disorder-a-new-diagnosis-in-icd11/2977140CBDAAF402610715BB609F688C>
+- Society for the Advancement of Psychotherapy — borderline vs. complex PTSD: <https://www.societyforpsychotherapy.org/the-differences-between-borderline-personality-and-complex-posttraumatic-stress-disorders/>
+- ADDitude — ADHD symptoms in women: <https://www.additudemag.com/adhd-symptoms-in-women-female-signs/>
+- Frontiers in Psychiatry — grief & attachment: <https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2024.1519699/full>
+- Tim Fletcher — complex trauma & aging: <https://www.timfletcher.ca/blog/when-getting-older-triggers-everything-complex-trauma-aging-and-the-hidden-pain-you-werent-prepared-for>
+- Margarete Steiff — Wikipedia: <https://en.wikipedia.org/wiki/Margarete_Steiff>
+- Steiff — "Button in Ear" / company history: <https://corporate.steiff.com/en/company/button-in-ear/>
+- Global Toy News — the psychology of comfort (plush): <https://globaltoynews.com/2025/05/30/the-psychology-of-comfort-why-teddy-bears-continue-to-thrive-across-generations/>
 
-*Research compiled via parallel craft-research subagents (3 rounds, 11 facets), June 2026.*
+*Research compiled via parallel craft-research subagents (4 rounds, 14 facets), June 2026.*
