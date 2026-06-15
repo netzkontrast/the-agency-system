@@ -84,7 +84,7 @@ gehobener Kopf — ein Spalt Licht.
 ## Musical Direction
 
 - **Tempo**: ~92–104 BPM (getragen-dramatisch, kein Tanz)
-- **Feel**: dramatischer dt. Pop / Chanson noir mit Kante; reife, warme weibliche Lead; kühle Spannung statt laut-aggressiv (die „Lautheit" ist Haltung, nicht Lärm); offenes, ruhiges Ende
+- **Feel**: dramatischer dt. Pop / Chanson noir mit Kante; **ältere, rohe Frauenstimme (Ankes — in T01 sehr hart)**; kühle Spannung statt laut-aggressiv (die „Lautheit" ist Haltung, nicht Lärm); offenes, ruhiges Ende
 - **Instrumentation**: Flügel/Klavier, gezupfter Kontrabass, dezente dunkle Streicher, sparsame Drums mit Kante, dunkler Raum; gesprochenes Intro
 
 <!-- SERVICE: suno -->
@@ -94,7 +94,7 @@ gehobener Kopf — ein Spalt Licht.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Mature warm female lead, German; a spoken narrated intro, then sung — cool, controlled, dramatic, close-mic, restrained vibrato. Dramatic German pop, chanson noir. Grand piano, plucked upright bass, dark restrained strings, sparse drums with a sharp edge, dark room. Voice forward, wide dynamic range, tense and nocturnal; builds, then opens to a quiet, breathing end. ~96 BPM.
+Older female lead, German — raw rather than tender, hard-edged and weathered, dramatic; a male mid-baritone spoken narrator opens the song (dry, observing from outside, gentle), then she sings. Dramatic German pop, chanson noir. Grand piano, plucked upright bass, dark restrained strings, sparse drums with a sharp edge, dark room. Voice forward, wide dynamic range, tense and nocturnal; builds, then opens to a quiet, breathing end. ~96 BPM.
 ```
 
 ### Exclude Styles
@@ -122,11 +122,13 @@ no disco, no four-on-the-floor dance beat, no EDM synths, no aggressive distorti
 
 ```
 [Spoken Intro]
-Dieses Lied habe ich geschrieben, weil man mich oft falsch versteht
-Ich bin laut, aber das ist nicht alles, was ich bin
-Es heißt „Außen laut" — für das leise Kind, das keiner sieht
+[male mid-baritone, spoken narrator, dry, observing from outside, gentle]
+Dieses Lied schreibe ich für dich
+du bist laut nach außen, aber das ist nicht alles, was du bist
+es heißt „Außen laut" — für das leise Kind, das keiner sieht
 
 [Verse 1]
+[older female voice, raw, hard-edged, weathered, dramatic]
 Ich komm in den Raum, und die Köpfe gehn hoch
 ich hab den Tag im Griff, bevor er beginnt
 den Rücken gerade, ich schaff das schon noch
@@ -176,8 +178,8 @@ Vielleicht muss ich nicht laut sein, nur damit ich bin
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Dieses Lied habe ich geschrieben weil man mich oft falsch versteht
-Ich bin laut aber das ist nicht alles was ich bin
+Dieses Lied schreibe ich für dich
+Du bist laut nach außen aber das ist nicht alles was du bist
 Es heißt Außen laut für das leise Kind das keiner sieht
 
 Ich komm in den Raum und die Köpfe gehn hoch
@@ -218,12 +220,12 @@ Vielleicht muss ich nicht laut sein nur damit ich bin
 
 ## Production Notes
 
-- [Technical considerations]
-- [Vocal delivery notes]
-- [Sample ideas]
+- **Stimmen:** Gesang = ältere Frauenstimme (Anke), roh/hart in T01 (wird über die EP weicher). Intro = Persona „me, myself and i", männlicher Mid-Bariton (Autor / the Agency System) — sanft, weil von außen beobachtend.
+- **Metatags:** an jedem Stimmwechsel gegendert (`[male mid-baritone, …]` Intro; `[older female voice, raw, …]` Gesang). **Persona-Namen NIE im Suno-Tag** — nur deskriptiv (`voice-craft-principles`).
 <!-- SERVICE: suno -->
-- [V5 optimization tips if applicable]
+- **V5:** `[Spoken Intro]` als gesprochene Eröffnung; **kein** Dark Disco (nur T06); kein Tanz-Beat.
 <!-- /SERVICE: suno -->
+
 
 <!-- VOCAL TRACKS ONLY: Remove these sections for instrumental tracks -->
 

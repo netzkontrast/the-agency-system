@@ -111,11 +111,34 @@ Die Tochter ist nicht die Lösung, sondern der Beweis, dass die Arme sich öffne
   Schluss-Schleife, kein „alles ist heil".
 - Craft-Details (Bilder, Motive, Avoid): [`RESEARCH.md`](RESEARCH.md) §8.5.
 
+## Stimmen & Personas (verbindlich)
+
+- **Gesang = Anke.** Eine **ältere Frauenstimme**, **roh statt zart**. **Bogen über die
+  EP:** in Track 01 **sehr hart**, wird Song für Song **weicher** (im Höhepunkt T06 am
+  weichsten). Die Härte ist ihre Rüstung; das Weicherwerden ist der Weg.
+- **Intro = Persona „me, myself and i"** (Autor / *the Agency System*): **männlicher
+  Mid-Bariton**. Standardmäßig **nicht weich** — **sanft nur, wenn von außen
+  beobachtet/beurteilt** wird; die gesprochenen Intros *sind* Beobachtung von außen,
+  dürfen also sanft sein.
+- **Immer gegenderte Metatags** an jedem Stimmwechsel, damit Suno die Stimmen trennt:
+  - Intro: `[male mid-baritone, spoken narrator, dry, observing from outside, gentle]`
+  - Gesang: `[older female voice, raw, …]` (Härtegrad je nach EP-Position — T01 sehr hart → T06 weich).
+- **Persona-/Eigennamen NIE im Suno-Metatag** — nur deskriptiv
+  (`overrides/voice-craft-principles.md`). „me, myself and i" und „Anke" sind
+  Doku/Credits, nicht Tag-Inhalt.
+
 ## Narrative Einleitung — verbindlich für jeden EP-Track
 
 **Pflicht (nur diese EP):** Jeder Song **muss** mit einer kurzen **erzählten/gesprochenen
 Intro** beginnen, die rahmt, worum es im Song geht — ein narrativer Einstieg, der Teil
 der Audio ist (nicht nur Liner-Note).
+
+**Perspektive (verbindlich):** Das gesprochene Intro spricht der **Autor — „ich" =
+the Agency System**, der die Lieder **für Anke** schreibt (sie ist „du" / „sie"; ihr
+**realer Name fällt nie** in der Audio). Der **Songtext selbst** steht in **Ankes
+Perspektive** („ich" = Anke). Das Intro *übergibt ihr gleichsam das Mikro*: Autor
+rahmt → sie singt. *(Damit sind die Intros der Berührungspunkt zum Projekt „the
+Agency System" — Autorenstimme, nicht Release-Artist.)*
 
 **Warum (wichtig):** Anke hat eine **Lernschwäche** — die Intro ist **Zugang, nicht
 Schmuck**: sie soll den Song *verstehen* können. **Vorbild: Sarah Connor**, die sie
@@ -123,15 +146,15 @@ mag und die live immer erzählt, *wie* ein Song entstand und *wofür* er steht. 
 dieser Ton: warm, persönlich, einfach, ein Gedanke pro Zeile (Tonfall/Format:
 [`RESEARCH.md`](RESEARCH.md) §8.4).
 
-**Beispiel-Intro (DE):**
-> Dieses Lied ist für meine Tochter.
-> Bei ihr kann ich umarmen — sonst fällt mir das schwer.
-> Es heißt: Du bist der Ort, an dem ich die Arme aufmache.
+**Beispiel-Intro (DE, Autor → für Anke):**
+> Dieses Lied schreibe ich für dich.
+> Du bist laut nach außen — aber das ist nicht alles, was du bist.
+> Es heißt „Außen laut". Für das leise Kind, das keiner sieht.
 
 **Umsetzung in Suno:**
 - Erste Sektion der Lyrics-Box als `[Spoken Intro]` (Suno spricht/halb-singt den Text — alles in der Lyrics-Box wird vertont).
 - **Kurz halten:** 2–4 Zeilen, ~10–20 s; setzt Szene/Thema, dann Übergang in `[Verse 1]`.
-- **Voice:** erzählende/gesprochene Register-Variante (z. B. `[Spoken]`, dry, leicht verzögert) ODER die Lead, die spricht statt singt — final über `/bitwize-music:suno-engineer` pro Track.
+- **Voice:** **männlicher Mid-Bariton**, gesprochen (Persona „me, myself and i" / Autor), dry, von außen beobachtend → sanft erlaubt. Metatag: `[male mid-baritone, spoken narrator, dry, observing from outside, gentle]`. Siehe „Stimmen & Personas".
 - **Guardrails gelten auch hier:** keine Diagnosen, kein Therapie-Sprech; framend/erzählend ist ok, aber nie etikettierend (siehe `RESEARCH.md` §6).
 - **Streaming-Lyrics:** die Intro als eigener, kursiv/abgesetzter Block oder Klammer-Vermerk; Suno-Phonetik nie in Streaming.
 - **Dauer-Effekt:** Target Duration pro Track entsprechend +~15 s einplanen.
@@ -203,7 +226,7 @@ Zuordnung in der Tracklist oben; final im `album-conceptualizer` / `suno-enginee
 Song — **hypnotischer 80s Dark Disco**, den man *allein mit sich* tanzen kann.
 - Palette T06: analoger Synth-Bass (arpeggiert/sequenziert), gated-reverb-Drums, kalter Sequencer, glasige Synth-Stabs, Disco-Hi-Hats, hypnotisch-repetitiv, nächtlich.
 
-- **Vocals (EP-weit):** weibliche Lead, **reif/warm**; bei den schweren Tracks nah und getragen, beim Höhepunkt sog-haft im Tanz; + Sprech-Register für die Intros (descriptive-only, keine Namen in Metatags).
+- **Vocals (EP-weit):** Gesang = **ältere, rohe Frauenstimme** (Anke), **hart in T01 → weicher bis T06**; Intro = **männlicher Mid-Bariton** (Persona „me, myself and i"). Immer gegenderte, deskriptive Metatags. Vollständige Regel: Abschnitt **„Stimmen & Personas (verbindlich)"**.
 - **Hinweis:** Die `overrides/suno-preferences.md` (dunkle Synth-Pop-Palette: „analog synth, cold sequencer, gated reverb, sparse drum machine") passt **nur für Track 06**, nicht für die übrigen, wärmeren/reiferen Songs.
 
 ## Tracklist *(Entwurf — nicht bestätigt; Titel sind Platzhalter)*
