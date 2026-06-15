@@ -65,6 +65,23 @@ als Vater-Erbe quer durch (Wärme *und* Schild), kein eigener Track:
 4. **Drei** → Liebe auf Abstand: das „Männlein", die hochgehaltene Drei, die uneingestandene Sehnsucht.
 5. **Sein dürfen** → die Bestie im Bauch, die taube Emotion, das Schaffen-Müssen, der Schmerz, „wie soll ich funktionieren, wenn jeder Weg mehr weh tut" — vom *erlauben* zum *einfordern*. Unaufgelöst.
 
+## Narrative Einleitung — verbindlich für jeden EP-Track
+
+**Pflicht (nur diese EP):** Jeder Song **muss** mit einer kurzen **erzählten/gesprochenen
+Intro** beginnen, die rahmt, worum es im Song geht — ein narrativer Einstieg, der Teil
+der Audio ist (nicht nur Liner-Note).
+
+**Umsetzung in Suno:**
+- Erste Sektion der Lyrics-Box als `[Spoken Intro]` (Suno spricht/halb-singt den Text — alles in der Lyrics-Box wird vertont).
+- **Kurz halten:** 2–4 Zeilen, ~10–20 s; setzt Szene/Thema, dann Übergang in `[Verse 1]`.
+- **Voice:** erzählende/gesprochene Register-Variante (z. B. `[Spoken]`, dry, leicht verzögert) ODER die Lead, die spricht statt singt — final über `/bitwize-music:suno-engineer` pro Track.
+- **Guardrails gelten auch hier:** keine Diagnosen, kein Therapie-Sprech; framend/erzählend ist ok, aber nie etikettierend (siehe `RESEARCH.md` §6).
+- **Streaming-Lyrics:** die Intro als eigener, kursiv/abgesetzter Block oder Klammer-Vermerk; Suno-Phonetik nie in Streaming.
+- **Dauer-Effekt:** Target Duration pro Track entsprechend +~15 s einplanen.
+
+Der `lyric-writer` textet die Intro mit; der `suno-engineer` taggt sie als `[Spoken Intro]`
+und wählt das Sprech-Register.
+
 ## Themes
 
 - Kampf **ums Sein-Dürfen** — Erlaubnis zu existieren, ohne zu funktionieren/produzieren (offenes Zentrum)
@@ -136,8 +153,9 @@ als Vater-Erbe quer durch (Wärme *und* Schild), kein eigener Track:
 
 <!-- SERVICE: suno -->
 **Suno Settings**:
-- **Target Duration**: 3:00–4:00 (Dark-Disco-Tracks; per-Track-Overrides in den Track-Files)
-- Vokal-Konsistenz über die EP: eine weibliche Lead, zwei Register (Rüstung/Kind)
+- **Target Duration**: 3:00–4:00 inkl. der gesprochenen Intro (+~15 s einplanen; per-Track-Overrides in den Track-Files)
+- **Pflicht:** jeder Track öffnet mit `[Spoken Intro]` (siehe „Narrative Einleitung")
+- Vokal-Konsistenz über die EP: eine weibliche Lead, zwei Register (Rüstung/Kind) + Sprech-Register für die Intros
 - Production-Continuity: kühle 80s-Synth-Palette, gated drums, nächtlich
 
 **Style Prompt Base** *(Entwurf — final pro Track über `/bitwize-music:suno-engineer`)*:
