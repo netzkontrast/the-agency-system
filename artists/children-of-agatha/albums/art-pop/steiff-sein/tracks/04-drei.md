@@ -91,7 +91,7 @@ Mantelfutter; eine angelehnte Tür, ein Türlicht-Spalt; eine Hand, nicht weggez
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — warm-raw, tender at the edges but restrained, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Warm mature soul-pop ballad. Soft Rhodes, brushed kit, upright bass, faint string pad, spacious room. ~78 BPM, gentle dynamics, breath-space at the end.
+Older female lead, German — warm-raw, tender at the edges but restrained, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Warm mature soul-pop ballad. Soft Rhodes, brushed kit, upright bass, faint string pad, spacious room. ~78 BPM, gentle dynamics, breath-space at the end.
 ```
 
 ### Exclude Styles
@@ -120,10 +120,10 @@ no dance beat, no disco, no big drums, no autotune
 ```
 [Spoken Intro]
 [male mid-baritone, spoken narrator, dry, observing from outside, gentle]
-Dieses Lied schreibe ich für dich
-für die zwei Stühle, die sich fast berühren
-er trägt die schweren Taschen — so liebt er dich
-und du darfst dir wünschen, dass jemand bleibt
+Dein Mann liebt dich auf seine Art — er nimmt dir das Schwere ab
+und wenn du zu viel willst, hebt er ganz leise drei Finger
+umarmen fällt euch beiden schwer; Nähe hast du dir nie zugestanden
+dieses Lied heißt „Drei" — über die Liebe, die da ist, und den Wunsch, den du nie ausgesprochen hast
 
 [Verse 1]
 [older female voice, warm-raw, tender at the edges, restrained]
@@ -170,10 +170,10 @@ ein Spalt im Türlicht, und ein leises … bleib
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Dieses Lied schreibe ich für dich
-Für die zwei Stühle die sich fast berühren
-Er trägt die schweren Taschen so liebt er dich
-Und du darfst dir wünschen dass jemand bleibt
+Dein Mann liebt dich auf seine Art er nimmt dir das Schwere ab
+Und wenn du zu viel willst hebt er ganz leise drei Finger
+Umarmen fällt euch beiden schwer Nähe hast du dir nie zugestanden
+Dieses Lied heißt Drei über die Liebe die da ist und den Wunsch den du nie ausgesprochen hast
 
 Er nimmt mir alles Schwere aus der Hand
 Das ist sein Streicheln das ich spät verstand

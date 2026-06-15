@@ -92,7 +92,7 @@ Hand gedreht, nicht zurückgelegt — ein Spalt Licht.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older raw weathered female lead, German, weary and close-mic; opens with a dry male mid-baritone spoken-narrator intro, then she sings. German chanson, acoustic singer-songwriter, melancholic 3/4 waltz lilt. Nylon guitar, brushed upright bass, a faint accordion swell, lots of space. ~84 BPM, intimate, restrained dynamics; breath over resolution.
+Older raw weathered female lead, German, weary and close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. German chanson, acoustic singer-songwriter, melancholic 3/4 waltz lilt. Nylon guitar, brushed upright bass, a faint accordion swell, lots of space. ~84 BPM, intimate, restrained dynamics; breath over resolution.
 ```
 
 ### Exclude Styles
@@ -121,10 +121,10 @@ no dance beat, no disco, no electric guitar, no big drums
 ```
 [Spoken Intro]
 [male mid-baritone, spoken narrator, dry, observing from outside, gentle]
-Dieses Lied schreibe ich für dich
-du wolltest etwas Eigenes machen
-man hat dir andere Blumen in die Hand gedrückt
-hör zu — ich hab gesehen, was du weggelegt hast
+Du wolltest malen, etwas ganz Eigenes machen
+aber nicht jede Tür stand dir offen, und dein Vater riet: lern was Sicheres
+so wurdest du Floristin — und hast Schönheit gebunden, die nie dir gehörte
+dieses Lied heißt „Fremde Sträuße" — es ist für die Zeichnung, die du nie ausgepackt hast
 
 [Verse 1]
 [older female voice, raw, weathered, weary]
@@ -169,10 +169,10 @@ und atme, und ich leg sie nicht zurück
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Dieses Lied schreibe ich für dich
-Du wolltest etwas Eigenes machen
-Man hat dir andere Blumen in die Hand gedrückt
-Hör zu ich hab gesehen was du weggelegt hast
+Du wolltest malen etwas ganz Eigenes machen
+Aber nicht jede Tür stand dir offen und dein Vater riet lern was Sicheres
+So wurdest du Floristin und hast Schönheit gebunden die nie dir gehörte
+Dieses Lied heißt Fremde Sträuße es ist für die Zeichnung die du nie ausgepackt hast
 
 Vier Grad im Kühlhaus ich zähl die Eimer durch
 Stiele auf Länge die Schere kennt den Schnitt

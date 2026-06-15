@@ -91,7 +91,7 @@ nah — ein Atemzug.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — raw and weary, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Mature melancholic soul-pop, mid-tempo. Felt piano, brushed drums, soft upright bass, strings swelling late, warm but heavy. ~88 BPM, voice forward, wide dynamic range; quiet, breathing open end.
+Older female lead, German — raw and weary, intimate close-mic; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Mature melancholic soul-pop, mid-tempo. Felt piano, brushed drums, soft upright bass, strings swelling late, warm but heavy. ~88 BPM, voice forward, wide dynamic range; quiet, breathing open end.
 ```
 
 ### Exclude Styles
@@ -120,10 +120,10 @@ no dance beat, no disco, no aggressive drums, no synth lead
 ```
 [Spoken Intro]
 [male mid-baritone, spoken narrator, dry, observing from outside, gentle]
-Dieses Lied schreibe ich für dich
-für das Haus, das du jedes Jahr neu machst
-für die Augen aus Glas, die zurückschauen sollten
-ich hab gesehen, wie still es bei dir ist
+Dein Haus ist voll — tausend Tiere, Knopf im Ohr, für jede Jahreszeit neu geschmückt
+früher war das deine Freude, heut ist es eine Pflicht
+und je voller das Haus, desto stiller wird es
+dieses Lied heißt „Volles Haus" — wie man von tausend Augen umgeben sein kann und sich allein fühlt
 
 [Verse 1]
 [older female voice, raw, weary, worn]
@@ -170,10 +170,10 @@ ein Atemzug. Volles Haus
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Dieses Lied schreibe ich für dich
-Für das Haus das du jedes Jahr neu machst
-Für die Augen aus Glas die zurückschauen sollten
-Ich hab gesehen wie still es bei dir ist
+Dein Haus ist voll tausend Tiere Knopf im Ohr für jede Jahreszeit neu geschmückt
+Früher war das deine Freude heut ist es eine Pflicht
+Und je voller das Haus desto stiller wird es
+Dieses Lied heißt Volles Haus wie man von tausend Augen umgeben sein kann und sich allein fühlt
 
 Die Kartons kommen wieder hoch aus dem Keller
 Ich räum die Jahreszeit ein Stück für Stück

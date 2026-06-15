@@ -49,6 +49,25 @@ Das Knopf-im-Ohr-Weiche gegen die Starre — das ist die ganze EP in einem Wort.
 
 Diese EP porträtiert eine **reale, private Person**. Die psychischen Hintergründe, die als Kontext geteilt wurden, werden **niemals benannt** — nicht in Lyrics, Titeln, Suno-Metatags, Promo oder Artwork. In die Songs darf ausschließlich das **Erleben** (Bilder, Handlungen, Körper), nie ein Etikett. Details und Guardrails in [`RESEARCH.md`](RESEARCH.md).
 
+## Resonanz-Checkliste — damit es bei Anke ankommt
+
+*Maßstab für jeden Song; vor dem Finalisieren gegen diese Punkte prüfen.*
+
+1. **Erkennen ohne Bloßstellung** — sie findet sich wieder (Steiff/Knopf im Ohr, Floristin, Saison-Deko, die stille Drei, Lilifee), aber mit **Würde**; nie ein Etikett, nie Mitleid.
+2. **Verständlich (Lernschwäche)** — die gesprochene Intro sagt **klar**, worum es geht; einfache Sätze; der Song selbst nicht zu abstrakt.
+3. **Stärke zuerst, kein Opfer** — Kompetenz/Mut/Stolz zeigen, der Preis erst durch Umkehrung.
+4. **Keine Diagnose, kein Therapie-Sprech** — nur **Erleben** (Bilder, Körper, Handlungen).
+5. **Humor darf mit** — wenigstens ein Augenzwinkern / ihr Witz (Vater-Erbe), damit es nicht nur schwer ist.
+6. **Schwere überwiegt nie — offenes Selbst-Ende** — jeder Song lässt einen Spalt Licht / ein „ich darf"; **Erlaubnis, keine Heilung**.
+7. **Ihre konkreten Bilder** — lila Kaffeekanne, Mama-Hände, Kühlhaus/Draht, Vitrine/Glasaugen, der eine Stuhl Abstand, der Mantel — wahr, spezifisch, ihr eigen.
+8. **Der Mann liebevoll, nie beschuldigt** — „Männlein", die Drei = zärtliche Geste.
+9. **Lilifee als warmer Anker** — der eine Ort, wo Umarmen gelingt; Stolz; echte Liebe, nicht instrumentalisiert.
+10. **Selbstliebe als Geschenk, nicht Leistung** — „du darfst sein, du musst nichts"; der Höhepunkt warm, verdient, tanzbar.
+11. **Ein spürbarer Bogen** — Stimme hart→weich, Funktion→Sein-Dürfen; eine **Reise**, keine Mängelliste.
+12. **Zielgefühl: gesehen, gehalten, erlaubt** — Wärme & Geborgenheit als Nachklang.
+13. **Alters- & Geschmacks-treu** — reif, deutschsprachig, Sarah-Connor-Nähe; Dark-Disco nur als bewusster Höhepunkt.
+14. **Ehrlich vor schön** — kein Kitsch, keine Grußkarte; die ehrliche Zeile gewinnt.
+
 ## Concept
 
 „Wir sehen dich" ist das warme **Außen** — wie andere sie sehen. *Steiff sein* ist das **Innen**: der Kampf ums **Sein-Dürfen**.
@@ -153,7 +172,8 @@ dieser Ton: warm, persönlich, einfach, ein Gedanke pro Zeile (Tonfall/Format:
 
 **Umsetzung in Suno:**
 - Erste Sektion der Lyrics-Box als `[Spoken Intro]` (Suno spricht/halb-singt den Text — alles in der Lyrics-Box wird vertont).
-- **Kurz halten:** 2–4 Zeilen, ~10–20 s; setzt Szene/Thema, dann Übergang in `[Verse 1]`.
+- **Länge & Ausführlichkeit:** 3–6 Zeilen erlaubt (ruhig ausführlicher, nicht nur Teaser); erklärt klar, *wie* der Song entstand und *wofür* er steht — ein Gedanke pro Zeile, einfache Sätze (Verständnis-Hilfe). Dann Übergang in `[Verse 1]`.
+- **Variation (verbindlich):** **Nicht** jeder Song wiederholt „Dieses Lied schreibe ich für dich". Der Widmungs-Rahmen wird **einmal** etabliert (T01) und am **Höhepunkt** (T06) zurückgerufen; dazwischen steigt jede Intro anders ein (ein Bild, eine Beobachtung, „Du wolltest…", „Manchmal sitzt da…").
 - **Voice:** **männlicher Mid-Bariton**, gesprochen (Persona „me, myself and i" / Autor), dry, von außen beobachtend → sanft erlaubt. Metatag: `[male mid-baritone, spoken narrator, dry, observing from outside, gentle]`. Siehe „Stimmen & Personas".
 - **Guardrails gelten auch hier:** keine Diagnosen, kein Therapie-Sprech; framend/erzählend ist ok, aber nie etikettierend (siehe `RESEARCH.md` §6).
 - **Streaming-Lyrics:** die Intro als eigener, kursiv/abgesetzter Block oder Klammer-Vermerk; Suno-Phonetik nie in Streaming.

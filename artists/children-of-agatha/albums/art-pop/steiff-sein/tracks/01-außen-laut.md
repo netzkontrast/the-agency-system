@@ -94,7 +94,7 @@ gehobener Kopf — ein Spalt Licht.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — raw rather than tender, hard-edged and weathered, dramatic; a male mid-baritone spoken narrator opens the song (dry, observing from outside, gentle), then she sings. Dramatic German pop, chanson noir. Grand piano, plucked upright bass, dark restrained strings, sparse drums with a sharp edge, dark room. Voice forward, wide dynamic range, tense and nocturnal; builds, then opens to a quiet, breathing end. ~96 BPM.
+Older female lead, German — raw rather than tender, hard-edged and weathered, dramatic; a male mid-baritone spoken narrator opens the song (dry, observing from outside, gentle, clearly enunciated, warm like telling a friend), then she sings. Dramatic German pop, chanson noir. Grand piano, plucked upright bass, dark restrained strings, sparse drums with a sharp edge, dark room. Voice forward, wide dynamic range, tense and nocturnal; builds, then opens to a quiet, breathing end. ~96 BPM.
 ```
 
 ### Exclude Styles
@@ -123,16 +123,17 @@ no disco, no four-on-the-floor dance beat, no EDM synths, no aggressive distorti
 ```
 [Spoken Intro]
 [male mid-baritone, spoken narrator, dry, observing from outside, gentle]
-Dieses Lied schreibe ich für dich
-du bist laut nach außen, aber das ist nicht alles, was du bist
-es heißt „Außen laut" — für das leise Kind, das keiner sieht
+Ich kenne dich von außen — laut, schnell, immer alles im Griff
+aber ich hab das Kind dahinter gesehen, das keiner sieht
+das hier ist das erste von sechs Liedern, die ich für dich geschrieben hab
+es heißt „Außen laut" — es erzählt, warum du so laut wirst, und wer dahinter wartet
 
 [Verse 1]
 [older female voice, raw, hard-edged, weathered, dramatic]
 Ich komm in den Raum, und die Köpfe gehn hoch
 ich hab den Tag im Griff, bevor er beginnt
 den Rücken gerade, ich schaff das schon noch
-und der Witz ist da, schnell wie der Wind
+und der Witz ist da, eh ich ihn erfind
 
 [Pre-Chorus]
 Alle lachen mit, keiner fragt sich, wer da lacht
@@ -178,14 +179,15 @@ Vielleicht muss ich nicht laut sein, nur damit ich bin
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Dieses Lied schreibe ich für dich
-Du bist laut nach außen aber das ist nicht alles was du bist
-Es heißt Außen laut für das leise Kind das keiner sieht
+Ich kenne dich von außen laut schnell immer alles im Griff
+Aber ich hab das Kind dahinter gesehen das keiner sieht
+Das hier ist das erste von sechs Liedern die ich für dich geschrieben hab
+Es heißt Außen laut es erzählt warum du so laut wirst und wer dahinter wartet
 
 Ich komm in den Raum und die Köpfe gehn hoch
 Ich hab den Tag im Griff bevor er beginnt
 Den Rücken gerade ich schaff das schon noch
-Und der Witz ist da schnell wie der Wind
+Und der Witz ist da eh ich ihn erfind
 
 Alle lachen mit keiner fragt sich wer da lacht
 Und die Stimme in mir sagt nur reiß dich zusammen gib acht

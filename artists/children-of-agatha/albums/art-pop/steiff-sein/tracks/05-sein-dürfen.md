@@ -94,7 +94,7 @@ ein Spalt, durch den Luft kommt.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Older female lead, German — raw, trembling at the edges, an intimate mezzo cracking toward soft; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Dark art-pop, cinematic ballad, slow burn and brooding. Sparse piano, low pulsing sub-bass, brushed textures, strings swelling late. ~82 BPM, voice forward, wide dynamic range, breath in the mix; ends open and quiet.
+Older female lead, German — raw, trembling at the edges, an intimate mezzo cracking toward soft; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Dark art-pop, cinematic ballad, slow burn and brooding. Sparse piano, low pulsing sub-bass, brushed textures, strings swelling late. ~82 BPM, voice forward, wide dynamic range, breath in the mix; ends open and quiet.
 ```
 
 ### Exclude Styles
@@ -123,10 +123,10 @@ no dance beat, no disco, no four-on-the-floor, no aggressive distortion
 ```
 [Spoken Intro]
 [male mid-baritone, spoken narrator, dry, observing from outside, gentle]
-Dieses Lied schreibe ich für dich
-für die Tage, an denen du dich erst verdienen musst
-du musst nichts herstellen, damit du zählst
-du darfst einfach da sein. Atme
+Manchmal sitzt da etwas in deinem Bauch, das dir den Atem zuteilt
+als müsstest du dir das Dasein erst verdienen
+du trägst und machst und hältst alle — und keiner fragt, wer dich hält
+dieses Lied heißt „Sein dürfen" — es hat keine schnelle Antwort, nur einen Satz: du darfst einfach da sein. Atme
 
 [Verse 1]
 [older female voice, raw, trembling at the edges, close]
@@ -189,10 +189,10 @@ ich darf
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Dieses Lied schreibe ich für dich
-Für die Tage an denen du dich erst verdienen musst
-Du musst nichts herstellen damit du zählst
-Du darfst einfach da sein Atme
+Manchmal sitzt da etwas in deinem Bauch das dir den Atem zuteilt
+Als müsstest du dir das Dasein erst verdienen
+Du trägst und machst und hältst alle und keiner fragt wer dich hält
+Dieses Lied heißt Sein dürfen es hat keine schnelle Antwort nur einen Satz du darfst einfach da sein Atme
 
 Da sitzt ein Mieter in meinem Bauch
 Der teilt mir die Luft zu Schluck für Schluck

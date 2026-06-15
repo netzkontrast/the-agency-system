@@ -93,7 +93,7 @@ Brief endlich an sie; die offenen Arme der Tochter; allein tanzen im Licht.
 *Copy this into Suno's "Style of Music" field:*
 
 ```
-Softened older female lead, German — warm, intimate close-mic, a little raw underneath; opens with a dry male mid-baritone spoken-narrator intro, then she sings. Hypnotic 80s dark disco, italo. Four-on-the-floor, cold sequenced synth bass, gated-reverb drums, glassy synth stabs, nocturnal and repetitive — a song to dance alone with yourself. Voice forward, wide dynamic range. ~112 BPM.
+Softened older female lead, German — warm, intimate close-mic, a little raw underneath; opens with a dry male mid-baritone spoken-narrator intro (clearly enunciated, warm), then she sings. Hypnotic 80s dark disco, italo. Four-on-the-floor, cold sequenced synth bass, gated-reverb drums, glassy synth stabs, nocturnal and repetitive — a song to dance alone with yourself. Voice forward, wide dynamic range. ~112 BPM.
 ```
 
 ### Exclude Styles
@@ -122,10 +122,10 @@ no aggressive distortion, no EDM big-room drop, no autotune
 ```
 [Spoken Intro]
 [male mid-baritone, spoken narrator, dry, observing from outside, gentle]
-Dieses Lied schreibe ich für dich
-für jede große Liebe deines Lebens hattest du ein Lied
-für jede. Nur für eine nie
-dieses ist für dich selbst
+Für jeden Menschen, den du geliebt hast, hattest du ein eigenes Lied
+für jeden — nur für dich selbst nie
+dieses letzte heißt „Steiff sein", hart und weich zugleich, so wie du
+es ist das Lied, das du dir selber schenkst — tanz es allein, wenn niemand zuschaut
 
 [Verse 1]
 [older female voice, warm, softened, intimate, a little raw underneath]
@@ -180,10 +180,10 @@ ich darf
 *For distributor submission (Spotify, Apple Music, etc.). No section tags, repeats written out, plain text.*
 
 ```
-Dieses Lied schreibe ich für dich
-Für jede große Liebe deines Lebens hattest du ein Lied
-Für jede nur für eine nie
-Dieses ist für dich selbst
+Für jeden Menschen den du geliebt hast hattest du ein eigenes Lied
+Für jeden nur für dich selbst nie
+Dieses letzte heißt Steiff sein hart und weich zugleich so wie du
+Es ist das Lied das du dir selber schenkst tanz es allein wenn niemand zuschaut
 
 Vier Wände ein Beat niemand schaut zu
 Das Licht bleibt an ich lass die Tür im Zu
