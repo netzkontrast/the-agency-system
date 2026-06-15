@@ -51,14 +51,14 @@ splittert — und daneben der Aal, der sich biegt und weiterzieht. Erste Gezeite
 
 - **Tempo**: sehr langsam, ~60 BPM (gefühlte Drift, kaum Puls)
 - **Feel**: tiefer, einladender Drone; erste Tide; aus Stille aufsteigend
-- **Instrumentation**: Sub-Bass-Bett, gefluteter Hall, fernes Neon-Summen, tiefe halb gesprochene Stimme, erste geschichtete „Amen"-Antwort am Schluss
+- **Instrumentation**: Sub-Bass-Bett, gefluteter Hall, fernes Neon-Summen, tiefe halb gesprochene Stimme, erste geschichtete „Aalmen"-Antwort am Schluss
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
 ```
-dark ambient, ritual drone, very slow ~60 BPM, hypnotic, submerged sub-bass like a rising tide, flooded-corridor reverb, distant fluorescent hum, low intimate close-mic German spoken-sung liturgy, layered whispered congregation Amen, solemn, aqueous, clinical, ironic-sublime
+dark ambient, ritual drone, very slow ~60 BPM, hypnotic, submerged sub-bass like a rising tide, flooded-corridor reverb, distant fluorescent hum, low intimate close-mic German spoken-sung liturgy, layered whispered congregation Aalmen, solemn, aqueous, clinical, ironic-sublime
 ```
 
 ### Exclude Styles
@@ -89,7 +89,7 @@ Glitschig sei mein Pfad
 Tief mein Gewässer, ungreifbar mein Geist
 Fluss abwärts, Fluss aufwärts
 Im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 [Verse 2]
 Sie greifen zu mit kalter Hand
@@ -106,7 +106,7 @@ Glitschig sei mein Pfad
 Tief mein Gewässer, ungreifbar mein Geist
 Fluss abwärts, Fluss aufwärts
 Im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 [Bridge]
 Der Schleim der Erleuchtung
@@ -118,8 +118,8 @@ Hat sich zu früh getraut
 Tritt näher
 Lausche
 Fluss abwärts
-Amen
-Amen
+Aalmen
+Aalmen
 ```
 <!-- /SERVICE: suno -->
 
@@ -141,7 +141,7 @@ Glitschig sei mein Pfad
 Tief mein Gewässer ungreifbar mein Geist
 Fluss abwärts Fluss aufwärts
 Im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 Sie greifen zu mit kalter Hand
 Die Faust schließt sich um nichts als Nass
@@ -155,7 +155,7 @@ Glitschig sei mein Pfad
 Tief mein Gewässer ungreifbar mein Geist
 Fluss abwärts Fluss aufwärts
 Im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 Der Schleim der Erleuchtung
 Liegt dünn auf der Haut
@@ -165,11 +165,11 @@ Hat sich zu früh getraut
 Tritt näher
 Lausche
 Fluss abwärts
-Amen
-Amen
+Aalmen
+Aalmen
 ```
 
 ## Production Notes
 
 - Das Glaubensbekenntnis hier **vollständig** und klar — es ist der Anker, auf den alle weiteren Tracks zurückgreifen.
-- Schluss-„Amen" als geflüsterte, mehrfach geschichtete Gemeinde-Antwort (Schluss-Siegel-Motiv des Albums).
+- Schluss-„Aalmen" als geflüsterte, mehrfach geschichtete Gemeinde-Antwort (Schluss-Siegel-Motiv des Albums).

@@ -39,7 +39,7 @@ kosmischen Ozean antrittst. Geh ohne Angst, denn am Ende wartet die ewige
 Schwerelosigkeit. Der Closer löst das ganze Album auf: die große Heimkehr in die
 Sargassosee, der Tod (oder die Entlassung) als angstfreies Schweben. Das
 **Glaubensbekenntnis kehrt vollständig zurück** — und zerfällt diesmal nicht in
-Fragmente, sondern in Stille. Der letzte „Amen"-Chor verklingt im langen Fade.
+Fragmente, sondern in Stille. Der letzte „Aalmen"-Chor verklingt im langen Fade.
 
 ## Mood & Imagery
 
@@ -51,14 +51,14 @@ Frieden ohne Triumph. Auflösung.
 
 - **Tempo**: sehr langsam, pulslos, schwebend aufsteigend
 - **Feel**: auflösende Resolution; angstfreie Heimkehr; Frieden, nicht Triumph
-- **Instrumentation**: aufwärts gleitende Drones, weiter offener Hall, volle geschichtete Bekenntnis-Stimme, finaler mehrfach geschichteter "Amen"-Chor, sehr langer Fade ins Nichts
+- **Instrumentation**: aufwärts gleitende Drones, weiter offener Hall, volle geschichtete Bekenntnis-Stimme, finaler mehrfach geschichteter "Aalmen"-Chor, sehr langer Fade ins Nichts
 
 <!-- SERVICE: suno -->
 ## Suno Inputs
 
 ### Style Box
 ```
-dark ambient, ritual drone, very slow, pulseless, weightless ascending drones, vast open reverb opening into a sky of water, full layered low German liturgy reciting the complete creed, final layered whispered Amen choir, peaceful without triumph, dissolving, aqueous-cosmic, ironic-sublime, very long fade to silence
+dark ambient, ritual drone, very slow, pulseless, weightless ascending drones, vast open reverb opening into a sky of water, full layered low German liturgy reciting the complete creed, final layered whispered Aalmen choir, peaceful without triumph, dissolving, aqueous-cosmic, ironic-sublime, very long fade to silence
 ```
 
 ### Exclude Styles
@@ -85,7 +85,7 @@ Glitschig sei mein Pfad,
 tief mein Gewässer, ungreifbar mein Geist
 Fluss abwärts, Fluss aufwärts —
 im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 [Verse 2]
 Der Sargassohimmel öffnet sich,
@@ -98,7 +98,7 @@ Glitschig sei mein Pfad,
 tief mein Gewässer, ungreifbar mein Geist
 Fluss abwärts, Fluss aufwärts —
 im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 [Bridge]
 Tritt näher, lausche, wie es ausklingt —
@@ -108,9 +108,9 @@ ich löse mich. Und das ist Schluss
 
 [Outro]
 Im Schlamm liegt die Kraft
-Amen
-Amen
-Amen
+Aalmen
+Aalmen
+Aalmen
 ```
 <!-- /SERVICE: suno -->
 
@@ -129,7 +129,7 @@ Glitschig sei mein Pfad
 tief mein Gewässer ungreifbar mein Geist
 Fluss abwärts Fluss aufwärts
 im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 Der Sargassohimmel öffnet sich
 da wo ich einst als Glas begann
@@ -140,7 +140,7 @@ Glitschig sei mein Pfad
 tief mein Gewässer ungreifbar mein Geist
 Fluss abwärts Fluss aufwärts
 im Schlamm liegt die Kraft
-Amen
+Aalmen
 
 Tritt näher lausche wie es ausklingt
 kein Sturm mehr der mich biegen muss
@@ -148,15 +148,15 @@ Ich brech nicht und ich bieg mich nicht mehr
 ich löse mich und das ist Schluss
 
 Im Schlamm liegt die Kraft
-Amen
-Amen
-Amen
+Aalmen
+Aalmen
+Aalmen
 ```
 
 ## Production Notes
 
 - Bekenntnis hier **vollständig** wie in Track 1 — der Kreis schließt sich (Ursprung → Ursprung).
-- Langer 12s-Fade als bewusste Auflösung statt Schluss-Akzent; der „Amen"-Chor verklingt zuletzt.
+- Langer 12s-Fade als bewusste Auflösung statt Schluss-Akzent; der „Aalmen"-Chor verklingt zuletzt.
 
 ## Cross-References
 

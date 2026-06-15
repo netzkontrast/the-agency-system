@@ -114,7 +114,7 @@ und folge, was uns immer zog
 [Outro]
 Sieh durch mich —
 du kannst nicht mehr
-Amen
+Aalmen
 ```
 <!-- /SERVICE: suno -->
 
@@ -157,7 +157,7 @@ und folge was uns immer zog
 
 Sieh durch mich
 du kannst nicht mehr
-Amen
+Aalmen
 ```
 
 ## Production Notes

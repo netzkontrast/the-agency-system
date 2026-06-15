@@ -115,7 +115,7 @@ kein Garn der Welt umfasst dies Licht
 [Outro]
 Ein Riss
 dann offen
-Amen
+Aalmen
 ```
 <!-- /SERVICE: suno -->
 
@@ -158,7 +158,7 @@ kein Garn der Welt umfasst dies Licht
 
 Ein Riss
 dann offen
-Amen
+Aalmen
 ```
 
 ## Production Notes

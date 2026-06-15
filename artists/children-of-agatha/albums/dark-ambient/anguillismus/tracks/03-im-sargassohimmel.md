@@ -105,7 +105,7 @@ die sich um ein Geheimnis schließt
 [Outro]
 Pst
 Es trägt uns
-Amen
+Aalmen
 ```
 <!-- /SERVICE: suno -->
 
@@ -142,7 +142,7 @@ die sich um ein Geheimnis schließt
 
 Pst
 Es trägt uns
-Amen
+Aalmen
 ```
 
 ## Production Notes

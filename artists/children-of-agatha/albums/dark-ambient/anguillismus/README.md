@@ -102,7 +102,7 @@ Ozean als angstfreier Blick auf das Ende.
 ### Glaubensbekenntnis für den Alltag
 
 > „Glitschig sei mein Pfad, tief mein Gewässer, ungreifbar mein Geist. Fluss
-> abwärts, Fluss aufwärts, im Schlamm liegt die Kraft. Amen."
+> abwärts, Fluss aufwärts, im Schlamm liegt die Kraft. Aalmen."
 
 > Möge der Schleim der Erleuchtung stets deine Haut schützen, mein Freund.
 > Schwimme mit dem Strom (oder gekonnt dagegen)!
@@ -117,7 +117,7 @@ Netze**, hin zur **Rückkehr zum Ursprung** — der Auflösung in Schwerelosigke
 
 Das **Glaubensbekenntnis** —
 *„Glitschig sei mein Pfad, tief mein Gewässer, ungreifbar mein Geist. Fluss
-abwärts, Fluss aufwärts, im Schlamm liegt die Kraft. Amen."* —
+abwärts, Fluss aufwärts, im Schlamm liegt die Kraft. Aalmen."* —
 ist der akustische rote Faden: ganz intoniert in Track 1, zerfasert und
 fragmentiert durch die Mitte, vollständig wiederkehrend und sich auflösend in
 Track 8.
@@ -141,7 +141,7 @@ Track 8.
 | Aal / Schlick / Schleim | Der Aal als ungreifbares Selbst; Schleim als Schutzschicht | Track 01 | Track 02, 04, 06, 08 |
 | Festnageln ↔ ungreifbar | Spannung zwischen Kontrolle (Klinik) und Entgleiten | Track 02 | Track 05, 07 |
 | Haut wechseln / Metamorphose | Wandlung als Pflicht und Hoffnung | Track 04 | Track 08 |
-| "Amen" (Gemeinde-Antwort) | Geflüsterte, mehrfach geschichtete Schluss-Antwort | Track 01 | jeder Track als Schluss-Siegel |
+| "Aalmen" (Aal + Amen — bewusster Wortwitz, kein Tippfehler) | Geflüsterte, mehrfach geschichtete Schluss-Antwort der Gemeinde | Track 01 | jeder Track als Schluss-Siegel |
 | Sargasso / kosmischer Ozean | Ursprung und Ziel; das unergründliche Geheimnis | Track 03 | Track 08 |
 
 ### Character Threads
@@ -169,7 +169,7 @@ Track 8.
 
 - **Drones/Beds**: tiefes, wässriges Dunkel; Sub-Bass wie Gezeiten; Hall wie ein gefluteter Korridor
 - **Texturen**: Feldaufnahmen (Tropfen, Leuchtstoffröhren-Summen, ferne Stationsgeräusche), Band-Rauschen, glasige Obertöne ("Glasaal"-Glocke)
-- **Vocals**: tiefe, intime, halb gesprochene Nah-Mikro-Liturgie; gechantete Refrains; mehrfach geschichtete "Amen"-Gemeinde-Antwort
+- **Vocals**: tiefe, intime, halb gesprochene Nah-Mikro-Liturgie; gechantete Refrains; mehrfach geschichtete "Aalmen"-Gemeinde-Antwort
 - **Mood**: sakral + klinisch + aquatisch; schön-beunruhigend; ironisch-erhaben
 
 ## Tracklist
@@ -190,7 +190,7 @@ Track 8.
 **Suno Settings**:
 - **Target Duration**: 4:00–6:00 (Drone darf atmen; Herzstück "Nacht und Schlamm" am längsten)
 - Durchgehend deutsche Vocals, tief, intim, halb gesprochen
-- Vokal-Kontinuität: dieselbe geflüsterte "Amen"-Schichtung als Schluss-Siegel jedes Tracks
+- Vokal-Kontinuität: dieselbe geflüsterte "Aalmen"-Schichtung als Schluss-Siegel jedes Tracks
 - Keine Genre-Labels in Metatags; nur deskriptive Klang-Tags (siehe voice-craft-principles)
 
 **Style Prompt Base**:

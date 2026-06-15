@@ -114,7 +114,7 @@ und Schlamm, ihr ahnt es, ist kein Nichts
 [Outro]
 Atemzug
 Fast da
-Amen
+Aalmen
 ```
 <!-- /SERVICE: suno -->
 
@@ -157,7 +157,7 @@ und Schlamm ihr ahnt es ist kein Nichts
 
 Atemzug
 Fast da
-Amen
+Aalmen
 ```
 
 ## Production Notes

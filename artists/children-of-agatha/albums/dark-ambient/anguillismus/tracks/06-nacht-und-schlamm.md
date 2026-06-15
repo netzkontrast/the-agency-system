@@ -101,14 +101,14 @@ Kraft... im Schlamm... Kraft...
 [Bridge]
 Sch... Schlamm...
 die Kra... die Kraft...
-A... A...
+Aal... Aal...
 ich bin... nicht mehr... ganz hier
 
 [Outro]
 Im Schlamm
 liegt
 die Kraft
-A... men
+Aal... men
 ```
 <!-- /SERVICE: suno -->
 
@@ -145,7 +145,7 @@ ich bin nicht mehr ganz hier
 Im Schlamm
 liegt
 die Kraft
-Amen
+Aalmen
 ```
 
 ## Production Notes

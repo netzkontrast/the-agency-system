@@ -57,7 +57,7 @@ entzieht.
 
 ### Style Box
 ```
-dark ambient, ritual drone, slow ~66 BPM, hypnotic, slippery gliding sub-bass glissandi, oily watery textures, flooded reverb, sparse glassy bell, low intimate close-mic German spoken-sung liturgy, faint wry undertone, layered whispered Amen, aqueous, clinical, ironic-sublime
+dark ambient, ritual drone, slow ~66 BPM, hypnotic, slippery gliding sub-bass glissandi, oily watery textures, flooded reverb, sparse glassy bell, low intimate close-mic German spoken-sung liturgy, faint wry undertone, layered whispered Aalmen, aqueous, clinical, ironic-sublime
 ```
 
 ### Exclude Styles
