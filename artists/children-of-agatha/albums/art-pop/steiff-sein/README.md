@@ -1,7 +1,7 @@
 ---
 title: "Steiff sein"
 release_date: ""  # YYYY-MM-DD (fill in when releasing)
-genres: ["dark-disco"]
+genres: ["art-pop"]
 tags: ["80s", "dark-disco", "italo", "synth", "portrait", "deutsch", "ep", "mini-album", "steiff", "working-title"]
 explicit: false
 streaming:
@@ -27,7 +27,7 @@ sheet_music:
 | **Release** | Mini-Album / EP (3–4 Tracks) |
 | **Title** | Steiff sein *(Arbeitstitel)* |
 | **Genre** | **Pro Song ein eigenes Genre** — altersgerecht, Sarah-Connor-inspiriert (reifer dt. Pop / Ballade / Chanson / Soul-Pop). **Nur** der Selbstliebe-Höhepunkt = tanzbarer, hypnotischer **80s Dark Disco**. |
-| **Tracks** | 5–6 *(geplant, Entwurf; inkl. Selbstliebe-Höhepunkt)* |
+| **Tracks** | **6** *(bestätigt; Lilifee in Track 06 eingewoben)* |
 | **Status** | Concept |
 | **Explicit** | No |
 | **Concept** | Das innere Gegenstück zur Single „Wir sehen dich" — die harte, laute Rüstung außen, das weiche, verkannte Kind innen. |
@@ -64,13 +64,13 @@ Liebe zu sich selbst — *„du darfst sein, du musst nichts."*
 Kein Bogen zur „Heilung". Das Zentrum — *darf ich einfach sein?* — bleibt **offen**;
 der Höhepunkt schenkt **Erlaubnis, keine Heilung** (der Schmerz bleibt im Raum).
 
-## Structure *(Entwurf — noch nicht bestätigt; flexibel 5–6 Tracks)*
+## Structure *(6 Tracks bestätigt; Titel/Genres noch Entwurf bis Phase 7)*
 
 Ein Bogen von der Herkunft/Rüstung nach innen zum offenen Zentrum. **Humor** läuft
 als Vater-Erbe quer durch (Wärme *und* Schild), kein eigener Track. **Lilifee** (die
-Tochter) ist der eine warme Gegenpol — wo die Arme aufgehen; sie kann als eigener
-kurzer Track oder als Wendepunkt im Closer „Sein dürfen" verankert werden *(im
-Conceptualizer zu entscheiden)*:
+Tochter) ist der eine warme Gegenpol — wo die Arme aufgehen; **bestätigt: eingewoben
+als Wendepunkt im Höhepunkt (Track 06)** — die Brücke von „bei ihr gehen die Arme auf"
+zu „auch für mich":
 
 1. **Außen laut** → die Rüstung, das Verkanntsein, der Reflex-Witz, das stille Kind dahinter.
 2. **Fremde Sträuße** → Floristin auf Vaters Rat; Funktion statt Spiel; täglich Schönheit als Pflicht, die eigene Kreativität blieb im Einwickelpapier.
@@ -85,8 +85,13 @@ Conceptualizer zu entscheiden)*:
 ganz besonderes Lied. Dieser Song dreht die Tradition um: **er ist für sie selbst.**
 Ein **Liebeslied an sich** — sie gesteht sich die eigene Liebe; *„du darfst sein,
 du musst nichts."* Hart im Außen, weich und zart liebend im Innern — das ist
-zugleich das Titel-Wortspiel *Steiff sein* in einem Song. Darum: **Titeltrack- und
-Höhepunkt-Kandidat.**
+zugleich das Titel-Wortspiel *Steiff sein* in einem Song. **Bestätigt: der Titeltrack
+und Höhepunkt der EP.**
+
+**Lilifee als Brücke (eingewoben):** der Weg in die Selbstliebe führt über die
+Tochter — *bei ihr gehen die Arme längst auf* — und kippt zur Wende: *auch für mich.*
+Die Tochter ist nicht die Lösung, sondern der Beweis, dass die Arme sich öffnen
+*können* (kein „Fix" der Wunde — siehe RESEARCH §8.3).
 
 - **Klang:** getragen und schwer, 80s Dark Disco — kein euphorischer Affirmations-Pop.
 - **Grammatik:** die *Liebeslied*-Form (ein „du", das in Wahrheit sie selbst ist) —
@@ -201,7 +206,7 @@ Song — **hypnotischer 80s Dark Disco**, den man *allein mit sich* tanzen kann.
 | 03 | Volles Haus *(AT)* | reifer Melancholie-/Soul-Pop, mid-tempo | Steiff & Saison-Deko: Freude zur Pflicht; allein im vollen Haus; Körper | Not Started |
 | 04 | Drei *(AT)* | warme Soul-Pop-Ballade (Sarah-Connor-Nähe) | Liebe auf Abstand; das „Männlein"; uneingestandene Sehnsucht | Not Started |
 | 05 | Sein dürfen *(AT)* | dunkler Art-Pop / kinematische Ballade, brodelnd | Bestie im Bauch, taube Emotion, Schmerz; erlauben → einfordern; offen | Not Started |
-| 06 | Steiff sein / Du darfst *(AT, Höhepunkt, Pflicht)* | **hypnotischer 80s Dark Disco — tanzbar, allein mit sich** | Selbstliebe; „du darfst sein, du musst nichts"; Erlaubnis, keine Heilung | Not Started |
+| 06 | **Steiff sein** *(Titeltrack, Höhepunkt, Pflicht)* | **hypnotischer 80s Dark Disco — tanzbar, allein mit sich** | Selbstliebe; **Lilifee als Brücke** (bei ihr gehen die Arme auf → auch für mich); „du darfst sein, du musst nichts"; Erlaubnis, keine Heilung | Not Started |
 
 ## Production Notes
 
@@ -226,6 +231,7 @@ Female lead, mature and warm, intimate lower register; hypnotic 80s dark disco, 
 
 ## Workflow-Stand
 
-- **Phase**: Concept (Research erfasst). **Nächster Schritt:** Brainstorming/Konzept-Bestätigung (Genre, Titel, Reihenfolge, Verhältnis zur Single) via `/bitwize-music:album-conceptualizer`.
-- **Hard Gate (preserved):** Lyric-Writing beginnt erst nach Bestätigung der Konzept-Phasen durch den User.
-- **Offener Punkt — Ordner-Genre:** Pfad liegt aktuell unter `albums/dark-disco/`, doch nur Track 06 ist Dark Disco. Genre-Slug der EP im Conceptualizer überdenken (z. B. `art-pop` / `chanson` / `deutschpop`) und ggf. via `/bitwize-music:rename` migrieren.
+- **Phase**: Concept-Check durch `album-conceptualizer` erfolgt. **Bestätigt:** Typ = Character Study; 6 Tracks; Lilifee in T06 eingewoben; „Steiff sein" = EP- & Titeltrack; Schwere beibehalten (Variation über per-Song-Genres); Ordner → `art-pop`.
+- **Noch offen vor dem Texten:** Phase 5 (Album-Art-Konzept) und **Phase 7 (finale Freigabe)**.
+- **Hard Gate (preserved):** Lyric-Writing beginnt erst nach expliziter Bestätigung der Konzept-Phasen durch den User.
+- **Ordner-Genre:** Slug von `dark-disco` → `art-pop` migriert (nur T06 ist Dark Disco).
