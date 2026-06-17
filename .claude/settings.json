@@ -23,6 +23,12 @@
         "source": "github",
         "repo": "obra/superpowers-marketplace"
       }
+    },
+    "agency": {
+      "source": {
+        "source": "github",
+        "repo": "netzkontrast/agency"
+      }
     }
   },
   "enabledPlugins": {
@@ -31,7 +37,8 @@
     "sc@superclaude": true,
     "superpowers@superpowers-marketplace": true,
     "episodic-memory@superpowers-marketplace": true,
-    "superpowers-developing-for-claude-code@superpowers-marketplace": true
+    "superpowers-developing-for-claude-code@superpowers-marketplace": true,
+    "agency@agency": true
   },
   "enabledMcpjsonServers": [
     "agency-system",
@@ -45,7 +52,9 @@
   ],
   "permissions": {
     "defaultMode": "bypassPermissions",
-    "allow": ["*"]
+    "allow": [
+      "*"
+    ]
   },
   "hooks": {
     "SessionStart": [
