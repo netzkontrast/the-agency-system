@@ -10,6 +10,8 @@
 ## Music / lyric fingerprint  (role only — no name)
 Very deep bass, sub-tempo near-spoken, gravelly, breath audible between fragments, subkick-close dry mic; line-final pauses longer than the lines. Sparse, lowercase, fragments that don't punctuate — "i can't —" (no period). Words arrive heavy and stay where they fell. The track everyone skips because it doesn't move — and the one that recontextualizes the album.
 
+**Early seeding (music):** a lower / seed voice can surface *before* its full entrance as a faint **parenthesized backing undertow** (V5 renders `( )` as a backing/ad-lib layer) — e.g. a sub-low `(it is pointless)` under an earlier track's verses, building to the full voice later. This is a **general mechanism** (the witness layer uses the same `( )` device); keep it almost under the bed, never a second lead.
+
 ## Novel voice  (name allowed)
 Moros: 1st person, implosive. Circular shame-logic, self-negation, inevitability, repetition as the rhythm of collapse. Vocabulary: sinnlos, immer, schon, nichts, mehr, kommen; Schwere, Sinken, Bleiern, Apnoe. Not depressive in the clinical sense — catatonic. His presence drags every voice down; if present long enough, the novel itself writes slower.
 

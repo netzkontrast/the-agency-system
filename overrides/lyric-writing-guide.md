@@ -1,7 +1,7 @@
 # Lyric Writing Guide
 
 Cross-project lyric craft preferences for the-agency-system. Album-specific
-voice DNA (alter fingerprints, character registers) lives in each album's
+voice DNA (function fingerprints, character registers) lives in each album's
 own folder; this file holds preferences that recur across projects.
 
 For the no-labels / syntax-as-identity rule that governs all multi-voice
@@ -13,10 +13,11 @@ work, see `voice-craft-principles.md`.
 
 - **Show, don't tell.** Render emotion through action, imagery, somatic detail — never through emotion-naming adjectives.
 - **Restraint over saturation.** Density above ~250 words at 3:30 should be intentional, not default. Tracks tend toward Mount Eerie / Phoebe Bridgers / Left at London word counts (140–220 words at 3:30–4:30) for intimate work.
-- **Trailing punctuation permitted.** Em-dashes, refused periods, and sentences that don't resolve are a legitimate craft choice — many tracks across projects use this fingerprint for at least one voice.
+- **Trailing punctuation permitted.** Em-dashes, refused periods, and sentences that don't resolve are a legitimate craft choice — many tracks across projects use this fingerprint for at least one voice (esp. the ambivalent and collapsed functions).
 - **Bilingual readiness.** German source terms (e.g., *Strömungen*, *Sehnsucht*) may appear in lyrics un-translated when no English equivalent carries the same connotation. Document any such choice in the track file's Pronunciation Notes table.
-- **Multi-voice tradition.** Tracks frequently have more than one perspective. Per `voice-craft-principles.md`, the listener recognizes voices by syntax — never by label.
+- **Multi-voice tradition.** Tracks frequently carry more than one perspective drawn from the Agency System's function set. Per `voice-craft-principles.md`, the listener recognizes voices by syntax — never by label, never by personal name.
 - **Honest over beautiful.** When forced to choose between a pretty phrase and an honest one, the honest line wins.
+- **State drives delivery.** A line written under S2 (alert/conflict) is clipped and breathless; the same content under S0 (homeostasis) is measured and closed. Let the active system-state shape syntax and energy before any genre convention.
 
 ---
 
@@ -26,13 +27,13 @@ Preferred POV by context:
 
 | Context | POV | Notes |
 |---------|-----|-------|
-| Default (intimate / character voice) | First person singular | Most tracks center an "I" who is one specific voice |
+| Default (intimate / function voice) | First person singular | Most tracks center an "I" who is one specific function (host, rationalist, protector, etc.) |
 | Witness / observer layer | Third person, lowercase, parenthetical | Used as annotation layer across tracks, not as standalone POV |
 | Documentary / true-story | Third-person narrator only | Never impersonate; describe from outside (see `research-preferences.md` documentary five rules) |
 | Audience direct address | Second person, sparing | Avoid in trauma material — risks accusation register |
-| Collective / system voice | First person plural | Only when grammatically justified — never as default |
+| Collective / system voice | First person plural | The Wir-Stimme (mode_we); only at S4 integration cells or where grammatically justified — never as default |
 
-POV switches within a track are permitted at section boundaries (verse → bridge), never mid-line. When a non-standard shift appears in a draft, **flag it for the user** rather than auto-correcting — it may be intentional voice-DNA.
+POV switches within a track are permitted at section boundaries (verse → bridge), never mid-line. When a non-standard shift appears in a draft, **flag it for the user** rather than auto-correcting — it may be intentional function-DNA.
 
 ---
 
@@ -45,6 +46,7 @@ POV switches within a track are permitted at section boundaries (verse → bridg
 - Action verbs over state verbs ("she fell to her knees" not "she felt sad")
 - Mineral / somatic / object-world vocabulary
 - German un-translated when the concept doesn't carry in English (*Strömungen*, *Sehnsucht*, *Doppelgänger*)
+- Register that matches the function: clinical for the rationalist, fragmentary for child_freeze, declarative for the protector
 
 ### Avoid
 
@@ -56,6 +58,7 @@ POV switches within a track are permitted at section boundaries (verse → bridg
 - **Filler / throat-clearing**: *well, just, kind of, sort of, you know, I think*
 - **Clichés**: *heart of gold, burning bright, cold as ice, broke my heart, set me free, by my side*
 - **Invented contractions for Suno**: *signal'd, brand'd, TV'd* — only standard pronoun/auxiliary contractions like *they'd, wouldn't*
+- **Alter personal names** — never appear in any lyric. Functions are referenced by role only (see `voice-craft-principles.md`).
 
 ---
 
@@ -71,6 +74,7 @@ POV switches within a track are permitted at section boundaries (verse → bridg
 - Bilingual / bicultural inner life
 - Memory, dissociation, almost-knowing
 - Systems (technical, social, internal) seen from inside
+- Movement across system-states: homeostasis → freeze → alert/conflict → collapse-peak → repair/integration (S0–S4)
 
 ### Avoid
 
@@ -80,6 +84,7 @@ POV switches within a track are permitted at section boundaries (verse → bridg
 - Theatrical switching announced by labels or adlibs (see `voice-craft-principles.md`)
 - Trauma porn — graphic detail without somatic grounding
 - Generic political commentary as content (specifics, not slogans)
+- **Dissociation rendered as a "crew menu."** Switching is amnesia-terror, never a roster of cool characters taking turns. Whoever softens a threshold lies about the trauma.
 
 ---
 
@@ -88,16 +93,16 @@ POV switches within a track are permitted at section boundaries (verse → bridg
 - **Verse length**: 4–6 lines for electroacoustic/intimate; up to 8 for denser genres (rock, hip-hop)
 - **Chorus length**: 4 lines, repeated verbatim (rare exceptions when V2 chorus extends with one new line)
 - **Pre-Chorus**: Optional but encouraged at slower tempos (under 90 BPM) to mark dynamic build
-- **Bridge**: Yes — often the moment a second voice surfaces or the perspective shifts
+- **Bridge**: Yes — often the moment a second function surfaces or the system-state shifts (e.g., S1 → S2)
 - **Outro**: Brief return of the opening image, often slowed/sparser; "bookend rule" applies
 - **Section limits per genre**: defer to lyric-writer skill's section-length tables; treat as ceilings, not targets
-- **Syllable balance V1 ↔ V2**: ±2 per line; voice-DNA may permit drift but flag it consciously
+- **Syllable balance V1 ↔ V2**: ±2 per line; function-DNA may permit drift but flag it consciously
 
 ---
 
 ## Custom Rules
 
-- **No labels in lyrics.** Voices recognized by syntax, never by `[Section: Name]`. See `voice-craft-principles.md` for the full rule.
+- **No labels in lyrics.** Voices recognized by syntax, never by `[Section: Name]`, never by personal name. See `voice-craft-principles.md` for the full rule.
 - **Cross-track callbacks** in concept albums: 0 references for track 1, 1–2 for early tracks, 2–3 for mid-tracks, 2–4 for closers (per the lyric-writer skill's bookend rule).
 - **Streaming lyrics** stay in standard English spelling, no em-dashes, no parentheticals; Suno lyrics keep the typographic markers.
 - **Title hook placement**: title appears in first OR last line of chorus, repeated at song's start and end.
@@ -105,3 +110,4 @@ POV switches within a track are permitted at section boundaries (verse → bridg
 - **Refinement passes**: default 1 (Tighten). Skip remaining passes if the draft is already tight — don't refine for the sake of refining.
 - **Twin-verse check is mandatory**: V2 must advance the story, deepen emotion, or shift perspective. Reworded V1 always fails.
 - **Verse-chorus echo check** is mandatory before finalizing: verse-end must not share key phrase, image, or rhyme word with chorus-start.
+- **State-coherence check**: if a track is anchored to a system-state (S0–S4), verify the syntax, breath, and density match that state's register before finalizing.

@@ -10,6 +10,8 @@
 ## Music / lyric fingerprint  (role only — no name)
 Young child, gender-androgynous, head-voice only, whispered consonants, audible breath, very close-mic with permitted tape hiss, ~10–12yr. Fragments, childlike syntax, words that almost arrive then don't; question-marks ending statements — "is it —", "i didn't —". The track listeners misread as cute is the cruellest. Do NOT make it sweet — it is mangled by fear.
 
+**Distinctness:** if a work renders the host as a fragile/genderless head-voice at genesis (see `host.md` Voice arc), keep this child clearly apart — the child is **younger, whispered / fragmented and lo-fi**, where the host head-voice is **adult, sustained and faintly synthetic**.
+
 ## Novel voice  (name allowed)
 Kiko: 1st person, present-fear. Childlike, simple words, short sentences, repetition, sensory focus, ellipses, gap-texts. Vocabulary: kalt, dunkel, weh, wo, wer, weg — concrete body-sensation in childish register. Not "niedlich" — traumatized; sentences mangled by fear. If language grows complex, it is another part or a healing-marker.
 

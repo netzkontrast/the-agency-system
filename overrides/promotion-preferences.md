@@ -47,6 +47,7 @@ Generate copy for these platforms in order:
 
 ### Never Mention
 
+- **An alter's personal name.** the Agency System is a system; its voices are referenced by function/role only (host, protector, witness…), never by personal name. The no-labels rule is sacred in promo as in lyrics.
 - Personal struggles framed as marketing ("I made this while going through X" — only if integral to the work's content, and only in long-form posts)
 - Competing artists by name (unless quoting a third-party comparison)
 - Generic motivational content ("believe in yourself", "follow your dreams")
@@ -111,6 +112,20 @@ and calmly. The position: AI is a tool; the artistic choices are human.
 | Twitter/X | Single statement + link | <280 chars | 2–3 max | Square album art crop |
 | Instagram | Caption with concept hook | 100–300 words | 5–10 in first comment | Album art + 2–3 sec waveform reel |
 | TikTok | Hook in first 3 seconds | Caption <150 chars | 3–5 | Vertical video, waveform + lyric snippet |
+
+---
+
+## Visual Identity Guardrails (promo art / video)
+
+The same aesthetic ban list that governs the Agency System cover art applies
+to promo visuals — promo-director must honor it:
+
+- **No 1980s/90s retro-futurism**: no synthwave, outrun, purple-orange
+  gradients, neon grid, VHS nostalgia, Blade-Runner pastiche.
+- **No daylight, no sun, no natural elements; no cute, no soft lighting.**
+- **State colors meet as hard edges / blocky pixel-shifts only** — no smooth
+  gradients. ≤5% state color over ≥95% Terminal Black / Deep Charcoal.
+- **One core symbol per image; one state-tier per image.**
 
 ---
 

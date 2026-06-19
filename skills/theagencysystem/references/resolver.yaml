@@ -25,6 +25,7 @@ functions:
     tier: core
     layers: [music, novel, design]
     entity: entities/host.md
+    voice_arc: "genesis = nascent/fragile (exact casting in the album DESIGN); matures toward weary mid-baritone; hold ONE timbre per work, first track to last"
   rationalist:
     class: ANP
     novel_name: Lex
@@ -121,7 +122,7 @@ system:
 
 # ---- Narrative modes (novel; we-voice also surfaces in music at S4) -------
 modes:
-  mode_narrator: { novel_name: Erzähler,    tier: mode, layers: [novel],        entity: entities/_modes/narrator.md }
+  mode_narrator: { novel_name: Erzähler,    tier: mode, layers: [novel, music], entity: entities/_modes/narrator.md, music_register: "spoken-word, framing / direct-address, slow & pointiert; distinct from the sung host" }
   mode_we:       { novel_name: Wir-Stimme,  tier: mode, layers: [novel, music], entity: entities/_modes/we-voice.md }
 
 # ---- Blends (composite voices) --------------------------------------------
