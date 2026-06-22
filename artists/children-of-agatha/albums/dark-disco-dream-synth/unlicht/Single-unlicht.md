@@ -1,0 +1,435 @@
+---
+title: "Unlicht"
+track_number: 0
+status: "In Progress"
+instrumental: false
+explicit: false
+suno_url: ""
+sheet_music:
+  pdf: ""
+  musicxml: ""
+  midi: ""
+---
+
+# Unlicht
+
+## Track Details
+
+| Attribute | Detail |
+|-----------|--------|
+| **Track #** | Single |
+| **Title** | Unlicht |
+| **Album** | Standalone Single — Children of Agatha × the Agency System (Crossover) |
+| **Genre** | Dark Disco Dream Synth / Dystopian Future Synth |
+| **Status** | In Progress |
+| **Suno Link** | — |
+| **Stems** | No |
+| **Instrumental** | No |
+| **Explicit** | No |
+| **POV** | Lichtwesen / Empath / Orakel — vier frei alternierende Stimmprofile, m/w driftend |
+| **Role** | Eigenständige Single — tanzbarer Dark-Disco-Sog über das Lichtwesen, dessen Licht zu schwer wurde; veiled mystischer Tod-als-Liebe-Kern (Novalis/Rilke/Sufi) |
+| **Fade Out** | langer Trance-Outro-Fade |
+| **Target Duration** | 5:00–7:00 |
+| **Sources Verified** | N/A |
+
+> **Crossover-Hinweis:** Bewusster Bleed Children of Agatha × the Agency System (vom Nutzer freigegeben: „Darf ruhig bluten. Ist ein Crossover."). Die Agency-System-DNA (ANP/EP-Struktur, Zustands-Achse) liefert das Rückgrat; Children of Agatha liefert Ort und dokumentarisch-würdevollen Ton. **name_exposure bleibt hart:** in Lyrics/Metatags/Promo nur Funktion/Deskriptor — niemals ein Personenname.
+
+## Cross-References
+
+### References FROM This Track
+
+| To Track | Reference Type | Lyric Line | Detail |
+|----------|---------------|------------|--------|
+| Licht | `motif` | „(jemand sieht dein Licht)" / „(noch)" (Witness-Tether) | Der „noch"-Tether zeigt — ohne dass das Selbst es weiß — auf den Raum, in dem „Licht" möglich wird. Soft pointer, kein Wissen der leidenden Stimme. |
+| Licht | `inversion` | „(der Boden hält — du fühlst ihn nicht)" (Witness, mid-break) | **Scharnier-Zeile.** Unlichts Refrain singt „der Boden hält *nicht*"; „Licht" invertiert zu „der Abgrund ist der Boden, der mich *hält*". Der Zeuge flüstert genau dazwischen — dramatische Ironie: der Boden *hält*, aber das Selbst kann es nicht fühlen. |
+
+> **Würde-Disziplin (verbindlich).** Alle Callbacks zu „Licht" leben **ausschließlich in der Witness-Stimme** („Das Licht"). Maske und Inneres — die leidenden Stimmen — wissen *nichts* von Licht. Das hält Unlichts Wahrheit (man kann den Ausweg *im* Zustand nicht sehen) und Lichts Inversions-Regel (Bejahung steht neben, nicht über der Wunde) zugleich intakt. Schwester-Track: [`../licht/Single-licht.md`](../licht/Single-licht.md).
+
+## Concept
+
+**Logline:** Ein Lichtwesen tanzt sich durch eine glitzernde Dark-Disco-Nacht — eines, das Licht *für andere* trägt und es selbst nicht mehr fühlt. Je heller der Schein, den die Tanzenden sehen, desto schwerer wird das Licht, das es trägt. Im Zentrum die mystische Angst: zu erkennen, dass die Erlösung die wahrste Liebe sein könnte — und dass das Licht zu schwer ist, um die Seele frei zu lassen.
+
+**Das Paradox (R5 — Licht enthält Dunkel).** „Unlicht" ist nicht Abwesenheit von Licht, sondern Licht im Übermaß: die *Überfülle*, die blendet (Pseudo-Dionysius' „dazzling darkness"), das Läuterungslicht, das als Nacht erfahren wird (Johannes vom Kreuz), der Schatten der Lichtgestalt (Jung-Enantiodromie). Das Lichtwesen trägt zu viel — und genau das ist seine Dunkelheit.
+
+**Das Doppelbödige (Form spiegelt Inhalt).** Die Vier-zu-Boden-Euphorie *ist* der performte Schein, den andere sehen (Maske-/ANP-Oberfläche). Der Breakdown *ist* der Blick in das eigene Übermaß. Der Refrain ist ein Mitsing-Hook — sein *Text* ist die Last, die er feiert. Man tanzt und trägt im selben Takt.
+
+**Die Figur (Mythos über die Funktions-DNA — name_exposure bleibt hart).**
+Ein einziges Lichtwesen, dramatisiert als vier Stimmen, die **nie durch Text-Labels** markiert werden — erkennbar nur an Syntax, Vokabular, Stimmprofil:
+
+- **Maske** = ANP-Schicht (*host* „The Container" + *protector*). Der/die, der/die *Licht performt* für die Tanzenden — der Schein, den andere sehen, das Lächeln, das festgehalten wird. *(R2: wounded healer — heilt aus der eigenen Wunde.)*
+- **Inneres** = EP-Schicht (*collapsed*). Das *Gewicht* des Lichts; dem eigenen Schein dunkel; trägt ein Licht für andere und fühlt es nicht. *(R1: Taubheit/Dissoziation — van der Kolk, Fisher.)*
+- **Riss** = EP-Schicht (*child_freeze*). Die **Schwelle**, die sich, einmal überschritten, nicht mehr schließt — zwischen Halten und Loslassen. *(R4: Novalis' „Schwelle zum ewigen Leben".)*
+- **Das Licht** = Meta-Schicht (*witness* → Orakel). Der/die Sehende, der das Licht *und* das Paradox benennt; trägt fremde Wahrheit, spricht das „noch". *(R3: Pythia/Kassandra — die Kosten der Schau.)*
+
+**Zustands-Bogen:** **S2 (Alert/Konflikt) → S3 (Kollaps-Peak) → Tether**. Bindende Kollisionen (Agency-System-Collision-Matrix), jetzt mythisch gelesen:
+- *host → collapsed*: „dread of looking down and recognizing the floor" = die Angst, das eigene Übermaß zu sehen.
+- *host ↔ protector*: „the host exposes, the protector covers" = der Schein, den die Schutzmauer hält.
+- *collapsed → niemand*: „past the energy for fear" = der stille Sog des zu schweren Lichts, den nur ein Gegenüber bemerkt.
+
+### Thematisches Rückgrat: Licht / Unlicht (und der veiled mystische Kern)
+
+Durchgängiges Begriffspaar. „Licht" = das Leuchten, das das Wesen für andere trägt — eine geahnte Liebe, ein Schein, den Fremde sehen können. „Unlicht" (geprägtes Wort) = das Licht im Übermaß / abgeschirmt: das, was bleibt, wenn das Leuchten zu schwer wird, um die eigene Seele zu erreichen. Kernzeile: **„Du siehst mein Licht — ich seh nur Unlicht."**
+
+Im S3-Kollaps öffnet sich der **veiled mystische Kern** — Tod-als-Liebe im Register von **Novalis' Nacht (die Nacht als Heimat des Lichts)**, **Rilkes „eigenem Tod"** (das Sterben, das aus dem gelebten Leben reift) und **Rumis fana** (Auflösung des getrennten Ich *in* der Liebe, ausdrücklich nicht physisch). Die Gegenzeile, die das Paradox aufschließt: **„Das Licht ist zu schwer, um dich frei zu lassen."** Der **„noch"-Tether** des Witness hält die Schwelle: jemand sieht das Licht — *noch*. Erkannt, nicht vollzogen.
+
+Siehe `RESEARCH.md` für die belegten Ton-Anker (R1–R5) und das Bild-Lexikon, aus dem der lyric-writer geschöpft hat.
+
+### Guardrails (binden)
+
+1. **Würde-Linie (R4-Würde-Linie, verbindlich).** Tod-als-Liebe wird als mystische Sehnsucht und Paradox gerendert (Novalis/Rilke/Rumi/Apophatik) — **niemals** als Anleitung, Methode oder Lösung; **niemals** als Verklärung des Suizids. Die mystische Todessehnsucht meint die Auflösung des getrennten Ich in Liebe; klinische Suizidalität ist ein medizinischer Notstand. Der **„noch"-Tether** ist Pflicht — in jedem Durchlauf bleibt spürbar: jemand hält die Schwelle.
+2. **Klinische Erdung (R1).** Trauma und Hochsensibilität als Ätiologie, nicht als Spektakel — geerdet gezeichnet (Taubheit, geteiltes Selbst), nie romantisierter Wahnsinn, nie esoterische Übersinnlichkeit. Aron grenzt „Empath" ausdrücklich vom Esoterischen ab; die Figur ist *zu viel fühlen*, nicht „Kräfte haben".
+3. **name_exposure** — keine Personennamen in Lyric/Metatag/Promo; nur Funktion/Deskriptor.
+4. **Kein Voice-Switch-Label im Text** — Identitätswechsel ausschließlich über Stil + (in Suno) deskriptive Stimmprofil-Metatags.
+5. **Metatags = nur deskriptive Stimmprofile** (Instrumental-Tags auf Nutzer-Wunsch entfernt). Keine `[Strophe]`/`[Refrain]`-Struktur-Tags, keine Charakter-Tags.
+
+## Stimm-Architektur (4 Profile, frei alternierende m/w-Besetzung)
+
+Keine Stimme ist an einen Körper gebunden — dieselbe Funktion taucht mal männlich, mal weiblich auf; Identität löst sich hörbar auf („*wessen* Licht ist das?"). Unterscheidbar bleiben die Profile über Timbre/Lage/Mikro:
+
+| Profil | Funktion (DNA) | Mythos-Überlagerung | Deskriptiver Suno-Metatag |
+|--------|----------------|---------------------|----------------------------|
+| **Maske** | ANP (host/protector) | das Lichtwesen, das *Licht performt* — der Schein, den andere sehen | `[polished mid-baritone, controlled, bright four-on-the-floor gloss]` / `[glossy female lead, composed, forward in the mix]` |
+| **Inneres** | EP (collapsed) | das *Gewicht des Lichts* — trägt ein Licht für andere, fühlt es nicht | `[breathy alto, numb, close dry whisper, no reverb]` / `[low leaden male murmur, hollow, distant]` |
+| **Riss** | EP (child_freeze) | die **Schwelle**, die sich nicht mehr schließt | `[thin high androgynous half-voice, held breath, fragile, stuttering delay]` |
+| **Das Licht** | Meta (witness → Orakel) | der/die Sehende, der das Paradox benennt und das „noch" spricht | `[distant doubled voice, neutral observing, long hall reverb, lowercase, behind the beat]` |
+
+Der m/w-Wechsel ist Absicht: die kontrollierte Außenstimme über der getauchten Innenstimme — und beide gleiten in der Besetzung, damit kein „Ich" greifbar bleibt. Das *Wesen* trägt das Licht, nicht ein Geschlecht.
+
+## Mood & Imagery
+
+Spiegelkugel, deren Splitter Licht *schlucken* statt werfen. Tanzfläche bei Nacht; viele Körper sehen den Schein, das Wesen, das ihn trägt, fühlt ihn nicht. Neon, das nach innen kippt. Eine **Schwelle** am Rand des Raums, die einmal überschritten wurde und sich nicht mehr schließt. Glanz oben, Übermaß darunter — der Schein, der den Träger blendet (R5: „dazzling darkness"). Die **Nacht als Heimat des Lichts** (Novalis): nicht Feind, sondern Mutter — aber zu nah, um sich zu zeigen.
+
+Konkrete Bilder aus dem Bild-Lexikon (`RESEARCH.md`): den Schein für andere halten · das Licht, das blendet statt zu wärmen · die Schwelle, die offen blieb · den Raum/die Hände nicht mehr spüren · ein Licht für andere tragen, das den eigenen Körper bricht.
+
+## Musical Direction
+
+- **Tempo**: ~118–122 BPM, Vier-zu-Boden Dark Disco
+- **Feel**: tanzbar, hypnotisch, trance-versetzend; viele Hooks und melodische Elemente; mehrere Builds/Drops; drumlose Sub-Herzschlag-Breaks, die wieder hochbauen. 5–7 Min, club-tauglicher Extended-Sog ohne Längen.
+- **Instrumentation**: gesättigter Reese/FM-Sub, Sechzehntel-Moll-Arpeggio, schimmernde Juno/Prophet-Dream-Pads (das „Dream Synth"-Glänzen), gated-reverb Snare, sidechained Pads, Tape-Sättigung; Glanz und Gloom im selben Akkord.
+
+<!-- SERVICE: suno -->
+## Suno Inputs
+
+### Style Box
+*Copy this into Suno's "Style of Music" field:*
+
+```
+Alternating male and female German vocals — glossy controlled lead trading with a breathy numb whisper, a fragile high half-voice, and a distant doubled backing voice; soaring sung hooks, voice forward, real German umlauts (ä/ö/ü/ß) pronounced cleanly. Dark disco, darkwave. ~120 BPM four-on-the-floor, hypnotic and danceable, saturated reese sub bass, sixteenth-note minor-key synth arpeggio, shimmering Juno dream pads, Prophet poly, gated reverb snare, tape saturation, long plate reverb. Danceable melancholy of a light-bearer too heavy for their own light; mystical-night register beneath neon, dynamic range.
+```
+
+### Style Box — Inhaltsabgeleitet (genrefrei)
+*Alternatives Stil-Feld: **rein aus dem Inhalt** abgeleitet — keine Genre-, Instrument- oder BPM-Vorgabe. Suno erschließt den Klang aus der Bedeutung. Als Experiment ins „Style of Music"-Feld einsetzen (statt der genrebasierten Box oben).*
+
+```
+A composed surface holding a numbness underneath; warmth performed outward while the inside stays sealed behind a wall that once protected and now imprisons; a glow only other people can see; a door left open that will not close again; tenderness shadowed by a quiet pull toward stillness, always caught at the edge by someone who still sees the light; intimate breath against a vast hollow; a steady pulse you can move to carrying an ache that has no name; male and female voices dissolving into one until no single self remains.
+```
+
+### Exclude Styles
+*Negative prompts — append to Style Box when pasting into Suno:*
+
+```
+no autotune, no retro outrun synthwave, no happy major-key eurodance, no Schlager
+```
+
+### Suno Settings
+- **Model**: V5 / V5.5
+- **Instrumental**: Off
+- **Creative Sliders**: Weirdness ~35, Style Influence ~75
+- **Target Duration**: 5:00–7:00 (extended) — Suno V5 max ~8 min; 2–3 Generierungen können nötig sein, um die Länge zu treffen. Struktur über die deskriptiven Metatags (mehrere Builds/Drops + drumlose Sub-Break-Passagen) statt über [Section]-Tags.
+- **Echte Umlaute**: Suno V5.5 rendert ä/ö/ü/ß meist sauber. Falls Fehlartikulation auftritt → A/B-Generierung gegen eine Variante mit ae/oe/ue/ss als Fallback.
+- **Distributor-Surface-Tags** (pro Veröffentlichung): darkwave / nu-disco / dark synth-pop / italo-disco — **nicht** „dark-disco-dream-synth".
+
+### Lyrics Box
+*Copy this into Suno's "Lyrics" field:*
+
+```
+[female vocal — Maske: glossy mid-alto, controlled, slight tape compression, bright disco gloss, voice forward, dry close-mic]
+Licht an. Ich funktionier.
+Glatt wie Glas, nichts dringt zu mir.
+Sieh mich an — ich halt das Lächeln fest.
+Keiner ahnt, was ich nach innen press.
+
+[female vocal continues — Maske: same alto, dynamic lift, slightly more breath]
+Und wenn ich nach unten seh,
+wird mir mein eigner Glanz zu schwer —
+
+[male vocal — Maske hook: soaring layered male lead, upper-tenor register, wide hall reverb, vowel-forward, voice forward]
+Du siehst mein Licht.
+Ich seh nur Unlicht.
+Dreh dich weiter — der Boden hält nicht.
+Du siehst mein Licht.
+Ich seh nur Unlicht.
+Unlicht, Unlicht.
+
+[male vocal — Inneres: breathy intimate tenor, numb delivery, close dry whisper mic, no reverb, very intimate, no vibrato]
+ich spür die Hände nicht
+ich spür den Raum nicht
+ich trag ein Licht für euch
+und ich fühl es nicht
+
+[male vocal — Maske: glossy mid-baritone, composed, forward in mix, controlled disco gloss, slight tape compression]
+Lauter. Schneller. Ich glänz für euch.
+Innen ist ein Zimmer — und das Zimmer ist leer.
+Ich hab den Schlüssel weggesperrt,
+damit mir keiner wehtut. Jetzt kommt keiner mehr.
+
+[female vocal — Maske hook: soaring layered female lead, alto in upper register, wide hall reverb, voice forward]
+Du siehst mein Licht.
+Ich seh nur Unlicht.
+Dreh dich weiter — der Boden hält nicht.
+Du siehst mein Licht.
+Ich seh nur Unlicht.
+Unlicht, Unlicht.
+
+[male vocal — Riss: thin high male half-voice, head voice only, held breath, fragile, stuttering tempo-synced delay]
+die Schwelle — sie schließt nicht zu —
+ich hab sie aufgemacht —
+und jetzt —
+und jetzt —
+
+[male vocal — Das Licht: distant doubled male voice, lowercase delivery, long hall reverb, behind the beat, observing layer, lower in mix]
+(die Nacht ist nicht dein Feind)
+(die Nacht trägt auch ein Licht)
+(der Boden hält — du fühlst ihn nicht)
+(du siehst es nicht)
+
+[female vocal — Inneres: low leaden contralto murmur, sub-tempo near-spoken, gravelly, breath audible between fragments, hollow distance, mono dry]
+leiser jetzt.
+so viel leiser jetzt.
+das Licht ist zu schwer,
+um dich frei zu lassen.
+
+[female vocal — Das Licht: distant doubled female voice, lowercase, long hall reverb, behind the beat, parenthetical layer, witness register]
+(jemand hält die Schwelle)
+(jemand sieht dein Licht)
+(noch)
+
+[layered duet — Maske hook: male soaring lead foreground (upper tenor, wide reverb) + female low resonant murmur underneath (contralto, dry tight close-mic)]
+Du siehst mein Licht.
+Ich seh nur Unlicht.
+Dreh dich weiter — der Boden hält nicht.
+Du siehst mein Licht.
+Ich seh nur Unlicht.
+Unlicht, Unlicht.
+
+[female vocal — Maske: glossy mid-alto returns, softening, controlled, voice forward]
+Licht an. Ich funktionier.
+[male vocal — Das Licht: distant doubled male parenthetical, witness layer, lowercase, long hall reverb]
+(die Schwelle bleibt offen)
+[female vocal — Maske continues: alto softer, plate reverb tail audible]
+ich seh nur Unlicht —
+[male vocal — Das Licht: distant doubled male, parenthetical, witness layer]
+(noch ein Licht. noch ein Licht.)
+[female vocal — Maske coda: alto, fading]
+Unlicht, Unlicht.
+```
+<!-- /SERVICE: suno -->
+
+## Streaming Lyrics
+
+*Für die Distributor-Einreichung. Keine Section-Tags, alle Wiederholungen ausgeschrieben, Reintext, Standard-Rechtschreibung.*
+
+```
+Licht an, ich funktionier
+Glatt wie Glas, nichts dringt zu mir
+Sieh mich an, ich halt das Lächeln fest
+Keiner ahnt, was ich nach innen press
+
+Und wenn ich nach unten seh
+Wird mir mein eigner Glanz zu schwer
+
+Du siehst mein Licht
+Ich seh nur Unlicht
+Dreh dich weiter, der Boden hält nicht
+Du siehst mein Licht
+Ich seh nur Unlicht
+Unlicht, Unlicht
+
+Ich spür die Hände nicht
+Ich spür den Raum nicht
+Ich trag ein Licht für euch
+Und ich fühl es nicht
+
+Lauter, schneller, ich glänz für euch
+Innen ist ein Zimmer, und das Zimmer ist leer
+Ich hab den Schlüssel weggesperrt
+Damit mir keiner wehtut, jetzt kommt keiner mehr
+
+Du siehst mein Licht
+Ich seh nur Unlicht
+Dreh dich weiter, der Boden hält nicht
+Du siehst mein Licht
+Ich seh nur Unlicht
+Unlicht, Unlicht
+
+Die Schwelle, sie schließt nicht zu
+Ich hab sie aufgemacht
+Und jetzt
+Und jetzt
+
+Die Nacht ist nicht dein Feind
+Die Nacht trägt auch ein Licht
+Der Boden hält, du fühlst ihn nicht
+Du siehst es nicht
+
+Leiser jetzt
+So viel leiser jetzt
+Das Licht ist zu schwer
+Um dich frei zu lassen
+
+Jemand hält die Schwelle
+Jemand sieht dein Licht
+Noch
+
+Du siehst mein Licht
+Ich seh nur Unlicht
+Dreh dich weiter, der Boden hält nicht
+Du siehst mein Licht
+Ich seh nur Unlicht
+Unlicht, Unlicht
+
+Licht an, ich funktionier
+Die Schwelle bleibt offen
+Ich seh nur Unlicht
+Noch ein Licht, noch ein Licht
+Unlicht, Unlicht
+```
+
+## Art Direction
+
+**Spannungshinweis:** Das Crossover lädt die Agency-System-ASDLS-Hartregeln (kein 80er-Synthwave/Neon-Grid/Blade-Runner-Pastiche; ≤5 % Zustandsfarbe über Terminal Black; harte Kanten/Glitch statt Verläufe). Eine „Dark-Disco-Glitterkugel" muss also umgedeutet werden: Spiegelkugel als zersplitterndes Schwarz, das Licht *verschluckt*, mit einem schmalen Zustandsfarb-Akzent (Flame/Corrupted für den S3-Peak) über Terminal Black. Finale Festlegung in der Art-Phase via `/bitwize-music:album-art-director`.
+
+**Artist-Name** unten rechts; Schreibweise „Children of Agatha" beibehalten.
+
+## Refinement Log
+
+### Pass 6 — Lyrics-Box auf nur Stimm-Metatags reduziert
+
+Auf Nutzer-Wunsch: alle `[instrumental: …]`-Tags aus der Lyrics-Box entfernt. Es bleiben **nur die Stimm-Metatags** (Geschlecht + Stimmklang bei jedem Persona-Wechsel) und der gesungene Text. Vocal-Tags, Lyrics-Text, Streaming-Lyrics, name_exposure, Würde-Linie und Callbacks unverändert. Arrangement-/Produktions-Hinweise leben weiter in „Musical Direction" und „Production Notes" (nicht in der Lyrics-Box).
+
+### Pass 5 — Globaler Geschlechter-Tausch der Stimmen (Klang erhalten)
+
+Auf Nutzer-Wunsch: jede Stimme, die jetzt männlich war, wird weiblich — und umgekehrt. **Charakter/Textur jeder Stimme wortgleich erhalten** (glossy/controlled, breathy/numb, leaden/hollow, thin-high-half-voice, distant-doubled, soaring, mic/processing); nur die **geschlechtsgebundene Stimmlage** folgt dem Tausch, damit die Tags Suno-kohärent bleiben:
+
+| Mapping (Lage) | m → w | w → m |
+|---|---|---|
+| Maske lead | mid-baritone → mid-alto | mid-alto → mid-baritone |
+| Maske hook | baritone (upper) → alto (upper) | upper-alto → upper-tenor |
+| Inneres | low leaden bass → low leaden contralto | breathy intimate alto → breathy intimate tenor |
+| Riss | — | thin high female → thin high male half-voice |
+| Das Licht | distant doubled male → female | distant doubled female → male |
+| Duet | female lead+male under → male lead+female under | (upper alto↔upper tenor, baritone↔contralto) |
+
+Alle 16 Vocal-Tags getauscht; Instrumental-Tags und Lyrics-Text unverändert; Streaming-Lyrics unberührt (kein Tag-Bezug). Drift-Pattern-Tabelle entsprechend gespiegelt — jede Persona erscheint weiterhin in beiden Geschlechtern. name_exposure, Würde-Linie und Callbacks (Pass 4) unangetastet.
+
+### Pass 1 — Politur nach lyric-reviewer (vor Vertiefung)
+
+| Stelle | Vorher | Nachher | Grund |
+|--------|--------|---------|-------|
+| V1 L2 | „Glatt wie Glas, ich tanz für vier." | „Glatt wie Glas, nichts dringt zu mir." | Opaker, reim-getriebener Füller ersetzt durch Schutzmauer-Bild; Reim auf „funktionier" bleibt |
+| V1 L4 | „Keiner sieht, was ich nach innen press." | „Keiner ahnt, was ich nach innen press." | Verse→Chorus-Echo entschärft (sieht ↔ „Du siehst mein Licht"); „ahnt" schärft die Bedeutung |
+
+### Pass 4 — Subtile Callbacks zur Schwester-Single „Licht" (Witness-Layer only)
+
+Auf Nutzer-Wunsch: subtile Lyric-Andeutung Richtung „Licht" — aber **ausschließlich in der Witness-Stimme**, nie in Maske/Inneres, damit Unlichts Wahrheit (kein Ausweg sichtbar *im* Zustand) und Lichts Inversions-Regel (neben, nicht über der Wunde) intakt bleiben.
+
+| Stelle | Vorher | Nachher | Grund |
+|--------|--------|---------|-------|
+| Witness mid-break | „(die Nacht trägt auch ein Licht) / (du siehst es nicht)" | + neue Zeile dazwischen: „(der Boden hält — du fühlst ihn nicht)" | Scharnier zu Licht: Unlichts Refrain „der Boden hält *nicht*" ↔ Lichts „der Abgrund ist der Boden, der mich *hält*". Dramatische Ironie im Witness-Layer; das Selbst kann es nicht fühlen → Würde gewahrt |
+| Cross-References | (keine Sektion) | neue `## Cross-References`-Sektion mit beiden Witness-Callbacks + Würde-Disziplin-Notiz | dokumentiert das Diptychon kuratorisch; Schwester-Verweis auf `../licht/` |
+
+**Bewusster Counterpoint (kein Fehler):** Die Chorus-Zeile „der Boden hält nicht" und die Witness-Zeile „der Boden hält" widersprechen sich absichtlich — die tanzende Oberfläche verneint, der Zeuge bestätigt. In beiden Lyric-Blöcken (Suno + Streaming) gespiegelt. Würde-Gate (R4) erneut verifiziert.
+
+### Pass 3 — Metatag-Disziplin (Vocal-Tags bei jedem Persona-Wechsel)
+
+Auf Nutzer-Vorgabe: Bei JEDEM Wechsel der Persona explizite Vocal-Metatags mit **Geschlecht + Stimmklang**. Instrumental-Instruktionen klar getrennt als eigene `[instrumental: ...]`-Metatags.
+
+| Stelle | Vorher | Nachher | Grund |
+|--------|--------|---------|-------|
+| alle Vocal-Tags | „glossy mid-baritone", „breathy alto", „androgynous half-voice" etc. — Geschlecht teils implizit | `[male vocal — Maske: glossy mid-baritone, …]` / `[female vocal — Inneres: breathy intimate alto, …]` etc. — Geschlecht IMMER explizit, Persona genannt (Funktion, kein Personenname) | Suno V5 braucht explizite Vocals-Tags pro Wechsel; Persona als Funktions-Bezeichner ist name_exposure-konform |
+| Instrumental-Tags | teils mit Vocal-Tags vermischt (z. B. `[full drop, gated reverb snare, soaring layered female lead]`) | klar getrennt: `[instrumental: full drop, gated reverb snare, saturated bass]` + `[female vocal — Maske hook: …]` | Trennung erlaubt Suno, Arrangement und Vocal-Direction unabhängig zu lesen |
+| Riss („androgynous") | `[thin high androgynous half-voice]` | `[female vocal — Riss: thin high female half-voice, head voice only, …]` | Geschlecht explizit (User-Vorgabe); das m/w-Drift-Pattern dokumentiert, dass Riss in anderen Iterationen auch männlich (Counter-Tenor) gerendert werden kann |
+| Witness | `[distant doubled voice]` | `[female vocal — Das Licht: distant doubled female voice, …]` / `[male vocal — Das Licht: distant doubled male voice, …]` — beide kommen vor | Geschlecht explizit, m/w-Drift gewahrt |
+| Production Notes | nur Hinweis „Stimmprofile m/w frei alternierend" | volle **Metatag-Disziplin**-Subsektion + **m/w-Drift-Pattern-Tabelle** | Vorgabe ist jetzt dokumentierte Konvention, nicht implizit |
+
+Text der Lyrics, Bogen, Hook, Würde-Linie, Tether — alles unangetastet. Streaming-Lyrics unverändert (kein Tag-Bezug).
+
+### Pass 2 — Vertiefung zum Lichtwesen (nach RESEARCH.md, SPEC.md)
+
+Vollumfänglicher Schwenk: die Figur wird auf das Lichtwesen / Empath / Orakel umgegossen; veiled mystischer Tod-als-Liebe-Kern (Novalis/Rilke/Sufi); echte Umlaute überall; Pronunciation-Table geschlankt.
+
+| Stelle | Vorher | Nachher | Grund (mit Research-Anker) |
+|--------|--------|---------|----------------------------|
+| Inneres-Strophe L3–4 | „da unten ist ein boden / und ich find ihn nicht" | „ich trag ein Licht für euch / und ich fühl es nicht" | Macht die Lichtwesen-Figur explizit (R2: wounded healer); die Taubheit bleibt, aber sie ist jetzt *die Last des Tragens*, nicht nur Boden-losigkeit |
+| Riss L1 | „die Tür — sie geht nicht zu —" | „die Schwelle — sie schließt nicht zu —" | **Schwelle** ist der Novalis-Begriff („Schwelle zum ewigen Leben", R4). Erkenntnis ohne Rückweg, ohne den Akt zu nennen |
+| Witness-Klammern (Mitte) | „(da ist ein Licht in dir) / (die andern sehn es brennen) / (du nicht)" | „(die Nacht ist nicht dein Feind) / (die Nacht trägt auch ein Licht) / (du siehst es nicht)" | Direkte Novalis-Resonanz: die Nacht als Heimat des Lichts (R4). Tröstet, ohne zu beschwichtigen |
+| Breakdown L3–4 | „es wär so leicht, sich hinzulegen / und den Takt nicht mehr zu tragen" | „das Licht ist zu schwer, / um dich frei zu lassen." | **Sicherheitskritisch.** Die alte Zeile hatte einen Suizidalitäts-Subtext („sich hinzulegen"). Die neue benennt das *Paradox* (R5: Licht-als-Last; Johannes vom Kreuz, dunkle Nacht) — *erkannt, nicht vollzogen*. Das Licht hält fest, nicht der Tod ruft. Würde-Linie (R4) verbindlich umgesetzt |
+| Riss + Outro L | „Tür" | „Schwelle" | konsequente Bild-Lexikon-Vereinheitlichung |
+| Suno-Box | konvertierte Umlaute (Laecheln, fuer, glaenz …) | **echte Umlaute** (Lächeln, für, glänz …) | Nutzer-Vorgabe: echte Umlaute überall. Suno V5.5 rendert sauber; Fallback bei Bedarf in Settings dokumentiert |
+| Pronunciation-Table | 9 Umlaut-Umschreibungen | **2 echte Risikowörter** (Unlicht, Schwelle) | Umschreibungen obsolet durch echte Umlaute |
+
+In beiden Lyric-Blöcken (Suno + Streaming) gespiegelt. 13-Punkt-Check nach Änderung erneut bestanden; Würde-Gate (R4) verifiziert. Refrain, Hook „Unlicht", Stimm-Architektur (4 Profile) und Bogen unangetastet.
+
+## Production Notes
+
+- Tanzbare Oberfläche = ANP/Maske; Breakdowns/Drops = EP-Durchbruch (S3). Der Kontrast trägt den Song.
+- Viele Hooks: Haupt-Hook „Unlicht", plus melodische Sub-Hooks im Arpeggio und in den drumlosen Breaks.
+- Drumlose Sub-Herzschlag-Passagen = der „eine Körper" hörbar; danach wieder Build → Drop.
+- Subtext-Disziplin: der Todes-Sog bleibt Schatten, nie Aussage.
+
+### Metatag-Disziplin (verbindlich)
+
+**Jeder Persona-Wechsel** in der Suno-Lyrics-Box wird durch einen expliziten **Vocal-Metatag** markiert, der **Geschlecht UND Stimmklang** enthält. Format: `[<male|female|layered duet> vocal — <Persona>: <Lage/Timbre/Mikro/Verarbeitung>]`. Persona-Bezeichner („Maske", „Inneres", „Riss", „Das Licht") sind erlaubt, weil sie *Funktionen* sind, keine Personennamen (name_exposure gewahrt).
+
+**Instrumental-Instruktionen wurden auf Nutzer-Wunsch entfernt** — die Lyrics-Box enthält **nur noch Stimm-Metatags** (Geschlecht + Stimmklang) und den gesungenen Text. Das Arrangement gestaltet Suno frei; Produktions-Hinweise stehen weiterhin in „Musical Direction"/„Production Notes", nicht in der Lyrics-Box.
+
+### m/w-Drift-Pattern (Identität löst sich hörbar auf)
+
+Jede Persona erscheint mindestens einmal in beiden Geschlechtern — keine Stimme ist an einen Körper gebunden (Geschlechter global getauscht in Pass 5; Charakter/Klang je Stimme erhalten):
+
+| Abschnitt | Persona | Geschlecht |
+|---|---|---|
+| V1 + Pre | Maske | **w** (glossy mid-alto) |
+| Chorus 1 | Maske (hook) | **m** (soaring upper-tenor) |
+| V Inneres 1 | Inneres | **m** (breathy intimate tenor) |
+| V2 Maske | Maske | **m** (glossy mid-baritone) — *drift* |
+| Chorus 2 | Maske (hook) | **w** (soaring upper-alto) — *drift* |
+| Riss | Riss | **m** (thin high half-voice) |
+| Witness mid | Das Licht | **m** (distant doubled male) |
+| Breakdown | Inneres | **w** (low leaden contralto murmur) — *drift* |
+| Witness Tether | Das Licht | **w** (distant doubled female) — *drift* |
+| Final Chorus | Maske duet | **m lead + w underneath** (layered duet) |
+| Outro | Maske + Das Licht | **w Maske / m Witness parens** |
+
+Das *Wesen* trägt das Licht, nicht ein Geschlecht.
+
+## Pronunciation Notes
+
+**Pflicht-Checkliste.** Echte Umlaute (ä/ö/ü/ß) gelten überall — auch in der Suno-Lyrics-Box (V5.5-konform). Nur echte Risikowörter werden hier gelistet.
+
+| Word/Phrase | Pronunciation (Suno) | Reason |
+|-------------|----------------------|--------|
+| Unlicht | UN-licht | Betonung auf der ersten Silbe; „ch" = weiches /ç/. Klar artikulieren — geprägtes Wort, sonst evtl. als „Unlich(t)" gemurmelt. |
+| Schwelle | SCHWEL-le | klares /ʃv/ am Anfang; nicht als „Schwele" verschleifen |
+
+*Hinweis: keine englischen Homographe (rein deutscher Text). Em-Dashes/Klammern nur in der Suno-Lyrics-Box; Streaming-Lyrics bleiben in Standard-Rechtschreibung ohne Em-Dashes.*
+
+<!-- SERVICE: suno -->
+## Phonetic Review Checklist
+
+**Vor der Suno-Generierung prüfen (nach lyric-writer):**
+
+- [x] Eigennamen gescannt (Crossover: **keine** Alter-Namen im Text/Metatag — name_exposure gewahrt)
+- [x] Fremdwörter / Anglizismen geprüft (keine)
+- [x] Homographe geprüft (rein deutscher Text, keine englischen Homographe)
+- [x] **Echte Umlaute überall** (ä/ö/ü/ß) — auch in der Suno-Box; V5.5-konform; Fallback ae/oe/ue/ss nur bei Suno-Fehlartikulation
+- [x] Metatags = **nur Stimm-Profile** (Geschlecht + Stimmklang); Instrumental-Tags entfernt; **kein** [Section]/Charakter-Tag
+- [x] Voice-Switch nie im Text markiert (nur Syntax/Stimmprofil); 4 Profile, m/w frei alternierend
+- [x] **Würde-Linie (R4) gewahrt** — Tod-als-Liebe nur als mystisches Paradox; „noch"-Tether vorhanden; keine instruktive Lesart
+<!-- /SERVICE: suno -->
+
+## Generation Log
+
+| # | Date | Model | Result | Notes | Rating |
+|---|------|-------|--------|-------|--------|
+| — | — | — | — | — | — |
