@@ -4,6 +4,16 @@ Working tree for **the-agency-system** music projects and for the
 [bitwize-music](https://github.com/bitwize-music-studio/claude-ai-music-skills)
 plugin that produces them.
 
+## MANDATORY: Deutsch immer mit Umlauten
+
+Deutschsprachige Ausgaben — in Chat-Antworten **und** in allen Dateien
+(READMEs, Track-Files, Konzepte, RESEARCH/SOURCES, Commit-Messages,
+AskUser-Optionen) — verwenden immer korrekte Umlaute (ä, ö, ü) und ß.
+**Niemals** ASCII-Ersatzschreibweisen (ae/oe/ue/ss). JSON und Markdown sind
+UTF-8 — es gibt keinen Grund, Umlaute zu ersetzen. Einzige Ausnahme:
+technische Bezeichner, die ASCII erfordern (Slugs, Datei- und Ordnernamen,
+Branch-Namen, Code-Identifier).
+
 ## MANDATORY: Use subagents for independent or context-heavy work
 
 **Default to subagents when a task is independent, parallelizable, or
