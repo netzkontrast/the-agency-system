@@ -1,0 +1,5 @@
+graphqlite>=0.5.0
+fastmcp[code-mode]>=3.3.0   # [code-mode] pulls the Monty sandbox (pydantic-monty), required for execute()
+pysqlite3-binary           # portability: stdlib sqlite3 often ships with extension loading disabled (Jules review)
+httpx                      # HTTP client for the vendored Jules REST backend (agency/capabilities/_jules_api.py)
+pytest>=9.0.0
