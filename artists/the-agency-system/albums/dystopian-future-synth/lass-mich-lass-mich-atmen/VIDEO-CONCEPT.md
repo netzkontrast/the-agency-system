@@ -7,6 +7,10 @@
 > Pinselstriche, „kochende“ Tuschelinien (12 Zeichnungen/s), Papierkorn, Kamera, Licht
 > per `glow()`, jedes Bild eine reine Funktion der Zeit, paralleles fortsetzbares Rendern
 > in Headless Chrome. Regeln und Werkzeuge: `ANIMATION_GUIDE.md` im Engine-Repo.
+> **Prozess:** `netzkontrast/take-one` — Studio-Ablauf für „Song → Musikvideo“
+> (`references/music-video.md`): Song-Map aus dem Vocal-Stem, Storyboard pro Abschnitt,
+> unabhängiger Critic, Test-Section als Stil-Bibel, ein Animator pro Kapitel, frischer
+> Reviewer pro Runde, Review-Raum mit Notizen an Frames, Prüfwerkzeuge.
 > **Quellen-DNA:** `DESIGN.md` §5 (Gelb-Inventar), §6.1.1 (DNA-Dichte-Raster), §14 Phase 5
 > (Album Art: Gelb + Schwelle + Polyphonie); `overrides/visual-language-guide.md`;
 > `overrides/image-style-spec.md`.
@@ -90,11 +94,12 @@ Stufen aus v0.1 werden deshalb einfacher:
 
 **Renderzeit:**
 
-- *Gemessen* (hier im Cloud-Container, **ohne GPU**, Software-WebGL, 4 CPU-Kerne): ca. 26–32 s
-  pro Bild beim Demo des Kits. Das ist der schlechteste Fall und nicht repräsentativ.
-- Laut README hängen die Kosten vor allem an den Aquarell-Füllungen. Ohne dedizierte GPU
-  rechnet man in Sekunden pro Bild, mit GPU deutlich schneller. Echte Zahlen kommen aus dem
-  Pilot auf der Zielmaschine.
+- *Aus Take-One-Produktionen* (p5.brush, 1080p24): etwa 1,5 s pro Frame mit 11 Workern auf
+  einem 12-Kern-Mac. Ein 3–4-Minuten-Song braucht etwa 30–60 min auf einer GPU.
+- *Gemessen* hier im Cloud-Container, **ohne GPU**, Software-WebGL, 4 CPU-Kerne: ca. 26–32 s
+  pro Bild beim Demo des Kits. Das ist der schlechteste Fall.
+- Die Kosten hängen vor allem an den Aquarell-Füllungen. Echte Zahlen für unsere Szenen
+  kommen aus dem Pilot.
 - Spar-Hebel: `onTwos()` (12 Zeichnungen/s) — jedes zweite Bild ist identisch und muss nur
   einmal gerendert werden. Dazu kommen parallele Worker (`--frames --workers=N`) und
   Aquarell-Füllungen nur dort, wo sie das Bild tragen.
@@ -129,6 +134,28 @@ wird in T11 mit Kintsugi-Gold gefüllt und ist in T13 noch da — nicht verschwu
 repariert. **T13 reimt sich auf T01** (Guide: „das Ende reimt sich auf den Anfang“):
 derselbe Blick auf die Schwelle, derselbe Herzschlag. Aber die Tür steht offen, und es ist
 Tag.
+
+## 3a. Mit den Lyrics erzählen (aus Take One, `music-video.md`)
+
+- **Jede Zeile bekommt ein Bild, das ihre Bedeutung trägt, wenn sie gesungen wird.** Die
+  Aktion landet auf dem Schlüsselwort der Zeile, gemessen am Vocal-Stem, und zwar auf der
+  *betonten Silbe*, nicht am Wortanfang. Das Storyboard notiert das Schlüsselwort jeder
+  Zeile mit Zeit.
+- **Strophen nah, Refrains offen, Bridge leer.** Strophen: eng, still, innere Stimme.
+  Refrains: weiter, Bewegung, Licht. Bridge: alles weg bis auf ein Element.
+- **Wiederkehrende Refrains steigern sich.** Gleiche Wörter, neues Bild: Das doppelte
+  „Lass mich“ in T02 hat beim ersten Mal einen Doppelschatten, beim zweiten zwei
+  Lichtquellen, die sich bewegen, beim letzten Mal dehnt sich der Atem-Nebel über beide.
+  Kein Refrain-Bild wird wiederverwendet (Take One: „One picture, one beat“).
+- **Kontrapunkt statt Wörtlichkeit.** Starke Wörter über einem kleinen, zittrigen Bild
+  bewegen mehr als ein triumphales Bild. Das passt zur Absage des Albums an die heroische
+  Auflösung.
+- **Schnitte auf Takte, Wendungen auf Lyric-Wendungen, Halten, wenn die Stimme hält.**
+
+**Lyrics auf dem Bild:** Das Kit sagt „kein Text“, Take One hat gelernt, dass stumme
+Zuschauer ohne Wörter schwer folgen. Vorschlag: keine eingebrannten Lyrics (außer T12),
+dafür eine `.srt`-Untertiteldatei aus den Streaming Lyrics mit den gemessenen Wort-Zeiten.
+Die kann man auf YouTube zuschalten. Entscheidung beim Lead.
 
 ## 4. Track für Track (Treatment-Keime)
 
@@ -173,10 +200,19 @@ eigener `boilSeed` pro Element.
 
 1. **Dieses Konzept bestätigen** (oder überarbeiten).
 2. **Pilot T02**, sobald die Suno-Generierung von T02 steht (sie ist ohnehin der erste
-   Track). Zuerst nur die erste Strophe plus den ersten Refrain (~45 s). Der Pilot prüft
-   den Look (Kohle/Tusche/Gelb), `beat.js` mit echter Bar-Map, die Renderzeit auf der
-   Zielmaschine und den Review-Ablauf mit Contact Sheets.
-3. Danach volle Länge T02, dann die übrigen Tracks in Album-Reihenfolge.
+   Track). Ablauf nach Take One:
+   - Song-Map (Takte + Wort-Zeiten)
+   - Storyboard für den ganzen Song
+   - Critic-Durchgang
+   - Test-Section: erste Strophe plus erster Refrain (~45 s) fertig gebaut. Sie wird die
+     Stil-Bibel für alle weiteren Kapitel und Tracks.
+   - frischer Reviewer
+   - Notizen im Review-Raum
+
+   Der Pilot prüft den Look (Kohle/Tusche/Gelb), die Werkzeuge auf der Zielmaschine,
+   Renderzeit und Token-Verbrauch.
+3. Danach volle Länge T02, dann die übrigen Tracks in Album-Reihenfolge, höchstens zwei
+   gleichzeitig.
 
 ## 7. Offene Fragen
 
@@ -184,3 +220,5 @@ eigener `boilSeed` pro Element.
   keine GPU.
 - 9:16 nur für Canvas-Loops — oder auch eigene Hochformat-Fassungen der Videos?
 - Soll die CW-Tafel einheitlich für alle 13 gestaltet werden (empfohlen)?
+- Lyrics nur als zuschaltbare `.srt`-Untertitel (empfohlen) oder dezent eingebrannt?
+- Pro Track „Run“ bis zum ersten fertigen Take oder „in Stages“ mit Abnahme an jeder Stufe?
