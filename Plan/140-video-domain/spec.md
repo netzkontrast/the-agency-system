@@ -37,6 +37,12 @@ Erstes Zielalbum: *Lass mich, lass mich atmen* — Konzept in
 
 ## 1. Drei Repos, drei Schichten
 
+**Portiert (2026-11-07):** Alle drei Repos liegen unverändert unter `skills/video/`
+(`take-one/`, `claude-animation-base/`, `higgsfield-video-engineer/`), mit Commit-SHA und
+Lizenzen in [`skills/video/README.md`](../../skills/video/README.md). `shared_list_skills`
+und `plugin_help` kennen die Domain `video`. Pfade in diesem Spec, die mit einem Repo-Namen
+beginnen, meinen ab jetzt diese Ordner.
+
 | Schicht | Repo | Was wir davon nehmen |
 |---|---|---|
 | **Prozess & Qualität** | `netzkontrast/take-one` | das Studio mit 12 Jobs; der Fall „Song → Musikvideo“ (`references/music-video.md`) mit Studio-Prozess für lange Filme (Director → Critic → Animatoren pro Kapitel → Integrator); Song-Map aus dem Vocal-Stem (demucs + whisper, Wort-Zeiten, betonte Silben, Tempo-Drift); frischer Reviewer pro Runde mit Bewertungsraster und 10-Sekunden-Karte (`reviewer-brief.md`, `quality-checklist.md`); Review-Raum mit Notizen an Frames (`review-room.md`); Prüfwerkzeuge (`gate.mjs`, `text-audit.mjs`, `plate-audit.mjs`, `audio-check.mjs`, `songmap.py`, `render-parallel.sh`); Stil-Referenzen *Ink wash*, *Sketchbook*, *Pencil test*, *Watercolor* |
@@ -67,8 +73,8 @@ artists/<artist>/albums/<genre>/<album>/
   VIDEO-CONCEPT.md                 # Album-Ebene: Look, Formate, harte Regeln (Gate)
   video/
     package.json                   # p5, p5.brush, puppeteer-core (gepinnt)
-    studio.html                    # aus ClaudeAnimationBase; ?track=02 wählt den Track
-    render.mjs                     # aus ClaudeAnimationBase, + --track, + Dedupe auf Zweiern
+    studio.html                    # kopiert aus skills/video/claude-animation-base/; ?track=02
+    render.mjs                     # kopiert aus skills/video/claude-animation-base/, + --track, + Dedupe
     engine/                        # core.js, timeline.js aus dem Kit (ohne clawd.js)
     shim/take-one.js               # renderFrame(t)/READY-Vertrag für die Take-One-Prüfwerkzeuge
     lib/                           # Album-Bibliothek: room, door, pillow, breath, glitch, palette, beat …
@@ -274,6 +280,7 @@ Snippets. Neue Anknüpfungen in `references/bitwize-attachment.md`:
 
 | Phase | Inhalt | Ergebnis |
 |---|---|---|
+| **P−1 — Port** ✅ | Die drei Repos nach `skills/video/` übernommen; Domain `video` in `shared_list_skills`/`plugin_help` | erledigt (2026-11-07) |
 | **P0 — Pilot von Hand** | Kit + Shim ins Album, Bibliothek-Minimum (Raum, Kissen, Atem, Palette, `beat.js`). T02: Song-Map, Storyboard, Critic, Test-Section (~45 s). Take-One-Tools auf Linux/Mac zum Laufen bringen, Renderzeit und Token-Verbrauch messen. | Clip + Erfahrungsbericht `Plan/_lessons-learned/140-pilot.md` |
 | **P1 — Skills ohne Handler** | `skills/video/*` als Prompt-Skills, die die Take-One-Referenzen laden | Kette läuft |
 | **P2 — Handler + Status-Leiter** | `handlers/video/`, Felder in `update_track_field`, Templates | Tools-Regel gilt auch für Video |

@@ -1,0 +1,572 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>manifesto boat</title>
+<style>
+  html,body{margin:0;padding:0;background:#111;}
+  #c{display:block;width:1280px;height:720px;}
+</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W = 1280, H = 720;
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+// palette
+const BLACK = '#0b0a08';
+const PAPER = '#f3eee2';
+const YELLOW = '#FFD21F';
+const RED = '#e03a2a';
+
+// fonts
+const GROTESK = '900 76px "Helvetica Neue", Helvetica, Arial, sans-serif';
+const SERIF_I = 'italic 400 26px Georgia, "Times New Roman", serif';
+const MONO = '400 15px Menlo, Monaco, monospace';
+
+// deterministic rng
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+
+// ---------- shared drawing helpers ----------
+
+function grain(seed, color, alpha, n){
+  const r = mulberry32(seed);
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = color;
+  for(let i=0;i<n;i++){
+    const x = r()*W, y = r()*H, s = 0.5 + r()*1.1;
+    ctx.fillRect(x, y, s, s);
+  }
+  ctx.restore();
+}
+
+function frameAndBrackets(ink){
+  ctx.save();
+  ctx.strokeStyle = ink;
+  // hairline frame
+  ctx.globalAlpha = 0.45;
+  ctx.lineWidth = 1;
+  ctx.strokeRect(26.5, 26.5, W-53, H-53);
+  // corner brackets
+  ctx.globalAlpha = 1;
+  ctx.lineWidth = 3;
+  const L = 26, inset = 26;
+  const cs = [[inset,inset,1,1],[W-inset,inset,-1,1],[inset,H-inset,1,-1],[W-inset,H-inset,-1,-1]];
+  for(const [x,y,sx,sy] of cs){
+    ctx.beginPath();
+    ctx.moveTo(x + sx*L, y);
+    ctx.lineTo(x, y);
+    ctx.lineTo(x, y + sy*L);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function monoLabel(text, x, y, color, align){
+  ctx.save();
+  ctx.font = MONO;
+  ctx.fillStyle = color;
+  ctx.textAlign = align || 'left';
+  ctx.textBaseline = 'alphabetic';
+  if('letterSpacing' in ctx) ctx.letterSpacing = '2px';
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+// statement: two lines, heavy grotesk caps. line2 gets a yellow highlight bar
+// (paper frame) or is set in yellow (black frame).
+function statement(l1, l2, x, y, mode){
+  ctx.save();
+  ctx.font = GROTESK;
+  if('letterSpacing' in ctx) ctx.letterSpacing = '1px';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  const lh = 84;
+  if(mode === 'paper'){
+    ctx.fillStyle = BLACK;
+    ctx.fillText(l1, x, y);
+    // highlight bar behind second line
+    const w2 = ctx.measureText(l2).width;
+    ctx.fillStyle = YELLOW;
+    ctx.fillRect(x-14, y+lh-62, w2+28, 76);
+    ctx.fillStyle = BLACK;
+    ctx.fillText(l2, x, y+lh);
+  } else {
+    ctx.fillStyle = PAPER;
+    ctx.fillText(l1, x, y);
+    ctx.fillStyle = YELLOW;
+    ctx.fillText(l2, x, y+lh);
+  }
+  ctx.restore();
+}
+
+function narration(text, x, y, color){
+  ctx.save();
+  ctx.font = SERIF_I;
+  ctx.fillStyle = color;
+  ctx.textAlign = 'left';
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+// paper boat, clean line art. local coords: hull top edge y=0, width ~120.
+function boat(x, y, scale, rot, ink, lw){
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(rot);
+  ctx.scale(scale, scale);
+  ctx.strokeStyle = ink;
+  ctx.lineWidth = lw/scale;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  // hull: trapezoid with slightly raised end points
+  ctx.beginPath();
+  ctx.moveTo(-64, -6);            // left tip, slightly raised
+  ctx.lineTo(-58, 2);
+  ctx.lineTo(-36, 34);            // bottom left
+  ctx.lineTo(36, 34);             // bottom right
+  ctx.lineTo(58, 2);
+  ctx.lineTo(64, -6);             // right tip
+  ctx.stroke();
+  // gunwale line connecting the tips
+  ctx.beginPath();
+  ctx.moveTo(-64, -6);
+  ctx.quadraticCurveTo(0, 1, 64, -6);
+  ctx.stroke();
+  // sail: center triangle
+  ctx.beginPath();
+  ctx.moveTo(-27, -1);
+  ctx.lineTo(0, -56);
+  ctx.lineTo(27, -1);
+  ctx.stroke();
+  // fold line inside sail
+  ctx.beginPath();
+  ctx.moveTo(0, -56);
+  ctx.lineTo(-4, -2);
+  ctx.stroke();
+  // hull fold line
+  ctx.beginPath();
+  ctx.moveTo(-44, 16);
+  ctx.lineTo(44, 16);
+  ctx.globalAlpha = 0.55;
+  ctx.stroke();
+  ctx.restore();
+}
+
+// ---------- FRAME A : setting out ----------
+
+function drawA(){
+  const r = mulberry32(20260928);
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = PAPER;
+  ctx.fillRect(0,0,W,H);
+  grain(11, BLACK, 0.05, 2600);
+
+  const horizon = 452;
+
+  // sun: yellow half-disc rising on the horizon, right side (boat heads toward it)
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(0, 0, W, horizon);
+  ctx.clip();
+  ctx.fillStyle = YELLOW;
+  ctx.beginPath();
+  ctx.arc(950, horizon+16, 62, 0, Math.PI*2);
+  ctx.fill();
+  ctx.strokeStyle = BLACK;
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  ctx.restore();
+  // sun rays: short line ticks
+  ctx.save();
+  ctx.strokeStyle = BLACK;
+  ctx.lineWidth = 2;
+  for(let i=0;i<7;i++){
+    const a = Math.PI + Math.PI*(i+1)/8;  // upper half
+    const r0 = 76, r1 = 92 + (i%2)*8;
+    ctx.beginPath();
+    ctx.moveTo(950 + Math.cos(a)*r0, horizon+16 + Math.sin(a)*r0);
+    ctx.lineTo(950 + Math.cos(a)*r1, horizon+16 + Math.sin(a)*r1);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // horizon line
+  ctx.strokeStyle = BLACK;
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(60, horizon);
+  ctx.lineTo(W-60, horizon);
+  ctx.stroke();
+
+  // calm water: sparse horizontal dashes, denser lower
+  ctx.save();
+  ctx.strokeStyle = BLACK;
+  ctx.lineCap = 'round';
+  for(let i=0;i<64;i++){
+    const t = r();
+    const y = horizon + 14 + Math.pow(t, 1.4) * (H - horizon - 70);
+    const x = 70 + r()*(W-220);
+    const len = 20 + r()*70 * (0.5 + t);
+    ctx.globalAlpha = 0.35 + 0.4*t;
+    ctx.lineWidth = 1.6 + t*1.4;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x+len, y);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // sun glint path on the water: yellow dashes below the sun
+  ctx.save();
+  ctx.strokeStyle = YELLOW;
+  ctx.lineCap = 'round';
+  const rg = mulberry32(77);
+  for(let i=0;i<12;i++){
+    const t = i/12;
+    const y = horizon + 18 + t*180;
+    const wob = (rg()-0.5)*40*(0.3+t);
+    const len = 14 + t*46 + rg()*18;
+    ctx.globalAlpha = 0.9 - t*0.35;
+    ctx.lineWidth = 3.4;
+    ctx.beginPath();
+    ctx.moveTo(950 + wob - len/2, y);
+    ctx.lineTo(950 + wob + len/2, y);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // the boat: lower-left third, heading right, slight confident tilt
+  const bx = 330, by = 560;
+  boat(bx, by, 1.15, -0.05, BLACK, 3.4);
+  // wake: two trailing curves behind (to the left)
+  ctx.save();
+  ctx.strokeStyle = BLACK;
+  ctx.lineCap = 'round';
+  ctx.lineWidth = 2.2;
+  ctx.globalAlpha = 0.7;
+  ctx.beginPath();
+  ctx.moveTo(bx-84, by+42);
+  ctx.quadraticCurveTo(bx-150, by+52, bx-215, by+46);
+  ctx.stroke();
+  ctx.globalAlpha = 0.45;
+  ctx.beginPath();
+  ctx.moveTo(bx-90, by+56);
+  ctx.quadraticCurveTo(bx-140, by+66, bx-180, by+62);
+  ctx.stroke();
+  ctx.restore();
+  // waterline under the boat
+  ctx.save();
+  ctx.strokeStyle = BLACK;
+  ctx.lineWidth = 2.6;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(bx-58, by+41);
+  ctx.quadraticCurveTo(bx, by+48, bx+62, by+41);
+  ctx.stroke();
+  ctx.restore();
+
+  // type
+  statement('IT SET OUT', 'AT FIRST LIGHT.', 72, 168, 'paper');
+  narration('No one watched it leave. That was the point.', 74, 316, 'rgba(11,10,8,0.78)');
+
+  // mono meta
+  monoLabel('THE PAPER BOAT', 68, 58, BLACK);
+  monoLabel('LOG · DAY 01', W-68, 58, BLACK, 'right');
+  monoLabel('06:12 · CALM · HEADING E', 68, H-40, BLACK);
+  monoLabel('OBSERVED 01/02', W-68, H-40, BLACK, 'right');
+
+  frameAndBrackets(BLACK);
+}
+
+// ---------- FRAME B : the storm peak ----------
+
+function drawB(){
+  const r = mulberry32(4041);
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = BLACK;
+  ctx.fillRect(0,0,W,H);
+  grain(13, PAPER, 0.045, 2200);
+
+  // one light source fighting through: a narrow shaft of yellow hatch lines
+  // from the top, converging toward the boat, ends jittered so it dissolves.
+  ctx.save();
+  ctx.strokeStyle = YELLOW;
+  ctx.lineCap = 'round';
+  const rl = mulberry32(31);
+  const topX0 = 250, topX1 = 400, botX0 = 366, botX1 = 436, botY = 505;
+  for(let i=0;i<9;i++){
+    const t = i/8;
+    const x0 = topX0 + t*(topX1-topX0);
+    const x1 = botX0 + t*(botX1-botX0);
+    const endT = 0.72 + rl()*0.26;
+    ctx.globalAlpha = 0.28 + rl()*0.18;
+    ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    ctx.moveTo(x0, 27);
+    ctx.lineTo(x0 + (x1-x0)*endT, 27 + (botY-27)*endT);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // storm sky: angry short strokes upper right
+  ctx.save();
+  ctx.strokeStyle = PAPER;
+  ctx.lineCap = 'round';
+  for(let i=0;i<36;i++){
+    const x = 620 + r()*380;
+    const y = 44 + r()*116;
+    const len = 26 + r()*70;
+    ctx.globalAlpha = 0.16 + r()*0.2;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - len, y + len*0.18);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // THE WAVE: one big diagonal mass from upper right, crest undulating down
+  // to a curl that hangs OVER the boat.
+  function bez(p0,p1,p2,p3,t){
+    const u=1-t;
+    return [u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],
+            u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]];
+  }
+  // spine: bezier from off-screen upper right down-left, then a spiral curl.
+  function spinePts(phase, wob){
+    const pts = [];
+    const P0=[1330,110], P1=[1050,150], P2=[800,270], P3=[604,388];
+    for(let i=0;i<=48;i++){
+      const t=i/48;
+      const [x,y]=bez(P0,P1,P2,P3,t);
+      // normal-ish undulation (mostly vertical)
+      pts.push([x + Math.sin(t*16+phase)*wob*0.4, y + Math.sin(t*13+phase)*wob]);
+    }
+    return pts;
+  }
+  function curlPts(cx, cy, r0, r1, a0, a1, n){
+    const pts=[];
+    for(let i=0;i<=n;i++){
+      const t=i/n, a=a0+(a1-a0)*t, rr=r0+(r1-r0)*t;
+      pts.push([cx+Math.cos(a)*rr, cy+Math.sin(a)*rr]);
+    }
+    return pts;
+  }
+  function strokePts(pts){
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.stroke();
+  }
+  const spineMain = spinePts(0, 6);           // crest, upper-right -> (604,388)
+  const CC = [590, 470];                       // curl center, over the boat
+  // face of the wave: from crest break down to the wave's foot, lower-left
+  const FACE = { p0:[604,388], c:[420,470], p1:[300,724] };
+  function facePt(t){
+    const u=1-t;
+    return [u*u*FACE.p0[0]+2*u*t*FACE.c[0]+t*t*FACE.p1[0],
+            u*u*FACE.p0[1]+2*u*t*FACE.c[1]+t*t*FACE.p1[1]];
+  }
+  function spineYat(x){
+    let best = spineMain[0];
+    for(const p of spineMain) if(Math.abs(p[0]-x) < Math.abs(best[0]-x)) best = p;
+    return best[1];
+  }
+  function faceXat(y){
+    let best = facePt(0);
+    for(let i=0;i<=30;i++){ const p=facePt(i/30); if(Math.abs(p[1]-y)<Math.abs(best[1]-y)) best=p; }
+    return best[0];
+  }
+  function bodyPath(){
+    ctx.beginPath();
+    ctx.moveTo(spineMain[0][0], spineMain[0][1]);
+    for(let i=1;i<spineMain.length;i++) ctx.lineTo(spineMain[i][0], spineMain[i][1]);
+    ctx.quadraticCurveTo(FACE.c[0], FACE.c[1], FACE.p1[0], FACE.p1[1]);
+    ctx.lineTo(W+20, 724);
+    ctx.lineTo(W+20, spineMain[0][1]);
+    ctx.closePath();
+  }
+
+  ctx.save();
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  // wave mass: halftone dots, dense at the crest, thinning into the body
+  ctx.save();
+  bodyPath();
+  ctx.clip();
+  ctx.fillStyle = PAPER;
+  for(let gy=60; gy<724; gy+=13){
+    const rowOff = (Math.floor(gy/13)%2) ? 6.5 : 0;
+    for(let gx=280+rowOff; gx<W+10; gx+=13){
+      const d1 = gx >= 604 ? gy - spineYat(gx) : 1e9;
+      const d2 = gy >= 388 ? (gx - faceXat(gy))*1.15 : 1e9;
+      const d = Math.min(d1, d2);
+      if(d < 0) continue;
+      const s = Math.max(0.6, 2.9 - d*0.0052);
+      ctx.globalAlpha = Math.max(0.18, 0.85 - d*0.0012);
+      ctx.beginPath();
+      ctx.arc(gx, gy, s, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+  ctx.restore();
+
+  // face line the boat climbs
+  ctx.strokeStyle = PAPER;
+  ctx.lineWidth = 3;
+  ctx.globalAlpha = 0.95;
+  ctx.beginPath();
+  ctx.moveTo(FACE.p0[0], FACE.p0[1]);
+  ctx.quadraticCurveTo(FACE.c[0], FACE.c[1], FACE.p1[0], FACE.p1[1]);
+  ctx.stroke();
+
+  // the crest: yellow, the one light catching the breaking edge
+  ctx.strokeStyle = YELLOW;
+  ctx.lineWidth = 5;
+  ctx.globalAlpha = 1;
+  strokePts(spineMain);
+
+  // the curl: hollow the barrel, then the spiral hanging over the boat
+  ctx.fillStyle = BLACK;
+  ctx.beginPath();
+  ctx.arc(CC[0]-16, CC[1]+2, 42, 0, Math.PI*2);
+  ctx.fill();
+  ctx.strokeStyle = PAPER;
+  ctx.lineWidth = 3;
+  ctx.globalAlpha = 0.9;
+  strokePts(curlPts(CC[0], CC[1], 70, 34, -1.40, -4.4, 30));
+  ctx.strokeStyle = YELLOW;
+  ctx.lineWidth = 5;
+  ctx.globalAlpha = 1;
+  strokePts(curlPts(CC[0], CC[1], 84, 24, -1.40, -5.2, 40));
+
+  // foam claws hooked under the crest and the curl, clawing down-left
+  ctx.strokeStyle = PAPER;
+  const rc = mulberry32(99);
+  for(const ti of [0.18, 0.32, 0.46, 0.60, 0.74, 0.88]){
+    const p = spineMain[Math.floor(ti*48)];
+    const s = 18 + rc()*12;
+    ctx.lineWidth = 2.8;
+    ctx.globalAlpha = 0.95;
+    ctx.beginPath();
+    ctx.moveTo(p[0]+6, p[1]+3);
+    ctx.quadraticCurveTo(p[0]-s*0.9, p[1]+s*0.2, p[0]-s*1.2, p[1]+s*1.1);
+    ctx.quadraticCurveTo(p[0]-s*1.05, p[1]+s*1.25, p[0]-s*0.85, p[1]+s*1.0);
+    ctx.stroke();
+  }
+  for(const a of [-1.8, -2.5, -3.2]){
+    const p = [CC[0]+Math.cos(a)*88, CC[1]+Math.sin(a)*88];
+    const s = 14 + rc()*9;
+    ctx.lineWidth = 2.6;
+    ctx.globalAlpha = 0.95;
+    ctx.beginPath();
+    ctx.moveTo(p[0]+4, p[1]+4);
+    ctx.quadraticCurveTo(p[0]-s, p[1]-s*0.1, p[0]-s*1.15, p[1]+s*0.95);
+    ctx.stroke();
+  }
+
+  // spray blown off the crest and the curl
+  ctx.fillStyle = PAPER;
+  for(let i=0;i<90;i++){
+    const t = rc();
+    const p = spineMain[Math.floor(t*48)];
+    ctx.globalAlpha = 0.25 + rc()*0.5;
+    const s2 = 1 + rc()*2.2;
+    ctx.fillRect(p[0] - rc()*80, p[1] - 8 - rc()*60, s2, s2);
+  }
+  for(let i=0;i<36;i++){
+    ctx.globalAlpha = 0.3 + rc()*0.5;
+    const a = -1.2 - rc()*3.6;
+    const rr = 96 + rc()*44;
+    ctx.fillRect(CC[0]+Math.cos(a)*rr, CC[1]+Math.sin(a)*rr, 1.6, 1.6);
+  }
+  ctx.restore();
+
+  // rough sea below-left of the boat
+  ctx.save();
+  ctx.strokeStyle = PAPER;
+  ctx.lineCap = 'round';
+  const rs = mulberry32(55);
+  for(let i=0;i<26;i++){
+    const x = 60 + rs()*420;
+    const y = 560 + rs()*120;
+    const len = 26 + rs()*80;
+    ctx.globalAlpha = 0.25 + rs()*0.35;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.quadraticCurveTo(x+len/2, y - 8 - rs()*10, x+len, y);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // the boat: small, climbing the wave face under the curl, bow up,
+  // still pointing forward. clear a soft halo first so it pops.
+  const bx = 396, by = 540;
+  ctx.save();
+  const halo = ctx.createRadialGradient(bx, by, 12, bx, by, 95);
+  halo.addColorStop(0, 'rgba(11,10,8,0.9)');
+  halo.addColorStop(1, 'rgba(11,10,8,0)');
+  ctx.fillStyle = halo;
+  ctx.fillRect(bx-100, by-100, 200, 200);
+  ctx.restore();
+  boat(bx, by, 0.66, -0.42, PAPER, 3.4);
+  // yellow catch-light on the sail edge facing the shaft
+  ctx.save();
+  ctx.translate(bx, by);
+  ctx.rotate(-0.42);
+  ctx.scale(0.66, 0.66);
+  ctx.strokeStyle = YELLOW;
+  ctx.lineWidth = 3.6/0.66;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(-27, -1);
+  ctx.lineTo(0, -56);
+  ctx.stroke();
+  ctx.restore();
+  // water line the boat sits on
+  ctx.save();
+  ctx.strokeStyle = PAPER;
+  ctx.lineWidth = 2.6;
+  ctx.lineCap = 'round';
+  ctx.translate(bx, by);
+  ctx.rotate(-0.42);
+  ctx.beginPath();
+  ctx.moveTo(-46, 26);
+  ctx.quadraticCurveTo(0, 33, 50, 26);
+  ctx.stroke();
+  ctx.restore();
+
+  // type
+  statement('THE SEA HAD', 'OTHER PLANS.', 72, 168, 'black');
+  narration('It kept the heading anyway.', 74, 316, 'rgba(243,238,226,0.85)');
+
+  // mono meta + red alert rule (black chip under the alert so nothing crosses it)
+  ctx.fillStyle = BLACK;
+  ctx.fillRect(56, H-60, 340, 32);
+  monoLabel('THE PAPER BOAT', 68, 58, PAPER);
+  monoLabel('LOG · DAY 01', W-68, 58, PAPER, 'right');
+  ctx.save();
+  ctx.fillStyle = RED;
+  ctx.fillRect(68, H-54, 3, 18);
+  ctx.restore();
+  monoLabel('SWELL 4.6 M · HEADING HELD', 82, H-40, PAPER);
+  monoLabel('OBSERVED 02/02', W-68, H-40, PAPER, 'right');
+
+  frameAndBrackets(PAPER);
+}
+
+window.drawFrame = function(which){
+  if(which === 'a') drawA(); else drawB();
+  window.DONE = true;
+};
+window.READY = true;
+</script>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>lyric — paper boat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#000;}
+  #c{display:block;width:1280px;height:720px;}
+</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W = 1280, H = 720;
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+const ORANGE = '#FF5A1F';
+const PAPER  = '#f4f2ec';
+const PAPER_SHADE = '#c9c5b8';
+const INK_BG = '#08080a';
+
+// ---------- deterministic rng ----------
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+const GROTESK = '"Archivo Black", Arial Black, sans-serif';
+const MONO    = '"Space Mono", Menlo, monospace';
+const SERIF   = '"Playfair Display", Georgia, serif';
+
+// ---------- shared helpers ----------
+function hud(topR, botL, botR){
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+  ctx.lineWidth = 1.5;
+  const m = 26, L = 20;
+  // corner brackets
+  const cs = [[m,m,1,1],[W-m,m,-1,1],[m,H-m,1,-1],[W-m,H-m,-1,-1]];
+  for(const [x,y,sx,sy] of cs){
+    ctx.beginPath();
+    ctx.moveTo(x + sx*L, y); ctx.lineTo(x, y); ctx.lineTo(x, y + sy*L);
+    ctx.stroke();
+  }
+  ctx.fillStyle = 'rgba(255,255,255,0.55)';
+  ctx.font = '11px ' + MONO;
+  ctx.textBaseline = 'alphabetic';
+  ctx.textAlign = 'left';
+  ctx.fillText('THE PAPER BOAT — LYRIC FILM', m + 34, m + 4);
+  ctx.textAlign = 'right';
+  ctx.fillText(topR, W - m - 34, m + 4);
+  ctx.textAlign = 'left';
+  ctx.fillText(botL, m + 34, H - m + 4);
+  ctx.textAlign = 'right';
+  ctx.fillText(botR, W - m - 34, H - m + 4);
+  ctx.restore();
+}
+
+function vignette(a){
+  ctx.save();
+  const g = ctx.createRadialGradient(W/2, H/2, H*0.42, W/2, H/2, H*0.85);
+  g.addColorStop(0, 'rgba(0,0,0,0)');
+  g.addColorStop(1, 'rgba(0,0,0,' + a + ')');
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,W,H);
+  ctx.restore();
+}
+
+// one row of readable repeated lyric text (the water is made of the words)
+function typeRow(phrase, y, size, weight, xoff, waveFn, colorFn){
+  ctx.font = weight + ' ' + size.toFixed(1) + 'px ' + MONO;
+  ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  let x = xoff, k = 0;
+  while(x < W + 20){
+    const chs = phrase[k % phrase.length];
+    ctx.fillStyle = colorFn(x);
+    ctx.fillText(chs, x, y + waveFn(x));
+    x += ctx.measureText(chs).width + size*0.12;
+    k++;
+  }
+}
+
+// folded paper boat: hull + triangular sail peak. origin = waterline center.
+// scale = full hull width in px. rot in radians (negative = bow up heading right).
+function drawBoat(x, y, scale, rot, rim){
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(rot);
+  ctx.scale(scale, scale);
+  ctx.lineJoin = 'round';
+  // sail (two facets, folded)
+  ctx.fillStyle = PAPER;
+  ctx.beginPath();
+  ctx.moveTo(0, -0.46); ctx.lineTo(-0.26, -0.02); ctx.lineTo(0, -0.02);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = PAPER_SHADE;
+  ctx.beginPath();
+  ctx.moveTo(0, -0.46); ctx.lineTo(0.26, -0.02); ctx.lineTo(0, -0.02);
+  ctx.closePath(); ctx.fill();
+  // hull (front facet bright, tips up)
+  ctx.fillStyle = PAPER;
+  ctx.beginPath();
+  ctx.moveTo(-0.52, -0.06); ctx.lineTo(0.52, -0.06);
+  ctx.lineTo(0.30, 0.26); ctx.lineTo(-0.30, 0.26);
+  ctx.closePath(); ctx.fill();
+  // hull shade strip along top edge
+  ctx.fillStyle = PAPER_SHADE;
+  ctx.beginPath();
+  ctx.moveTo(-0.52, -0.06); ctx.lineTo(0.52, -0.06);
+  ctx.lineTo(0.46, 0.02); ctx.lineTo(-0.46, 0.02);
+  ctx.closePath(); ctx.fill();
+  // fold crease
+  ctx.strokeStyle = 'rgba(0,0,0,0.18)';
+  ctx.lineWidth = 0.015;
+  ctx.beginPath(); ctx.moveTo(0, -0.46); ctx.lineTo(0, -0.02); ctx.stroke();
+  // rim light (sun/glow side)
+  if(rim){
+    ctx.strokeStyle = ORANGE;
+    ctx.lineWidth = 0.035;
+    ctx.lineCap = 'round';
+    if(rim === 'right'){
+      ctx.beginPath(); ctx.moveTo(0, -0.46); ctx.lineTo(0.26, -0.02); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0.52, -0.06); ctx.lineTo(0.30, 0.26); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.moveTo(0, -0.46); ctx.lineTo(-0.26, -0.02); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-0.52, -0.06); ctx.lineTo(-0.30, 0.26); ctx.stroke();
+    }
+  }
+  ctx.restore();
+}
+
+// ============================================================
+// FRAME A — setting out
+// ============================================================
+function frameA(){
+  const rnd = mulberry32(7);
+  // sky
+  const sky = ctx.createLinearGradient(0, 0, 0, 480);
+  sky.addColorStop(0, '#060608');
+  sky.addColorStop(0.75, '#0b0a0c');
+  sky.addColorStop(1, '#17110d');
+  ctx.fillStyle = sky; ctx.fillRect(0, 0, W, 480);
+  ctx.fillStyle = INK_BG; ctx.fillRect(0, 480, W, H-480);
+
+  const HOR = 470, SUNX = 880;
+
+  // sun glow
+  let g = ctx.createRadialGradient(SUNX, HOR-40, 6, SUNX, HOR-40, 240);
+  g.addColorStop(0, 'rgba(255,120,50,0.55)');
+  g.addColorStop(0.35, 'rgba(255,90,31,0.16)');
+  g.addColorStop(1, 'rgba(255,90,31,0)');
+  ctx.fillStyle = g; ctx.fillRect(SUNX-260, HOR-300, 520, 320);
+  // sun disc
+  ctx.fillStyle = ORANGE;
+  ctx.beginPath(); ctx.arc(SUNX, HOR-42, 24, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = 'rgba(255,190,140,0.9)';
+  ctx.beginPath(); ctx.arc(SUNX, HOR-42, 13, 0, Math.PI*2); ctx.fill();
+  // mono tag hanging off the sun, engineered
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.font = '11px ' + MONO;
+  ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  ctx.fillText('lightsource_00 · 06:12', SUNX + 48, HOR - 98);
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(SUNX + 20, HOR - 60); ctx.lineTo(SUNX + 42, HOR - 92); ctx.lineTo(SUNX + 196, HOR - 92); ctx.stroke();
+
+  // ---- the sung line: italic serif, soft moment ----
+  const LX = 150, LY = 210;
+  ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  // outlined echo
+  ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+  ctx.lineWidth = 1.2;
+  ctx.font = 'italic 600 92px ' + SERIF;
+  ctx.strokeText('set out small', LX + 8, LY + 10);
+  // main
+  ctx.fillStyle = 'rgba(244,242,236,0.96)';
+  ctx.fillText('set out small', LX, LY);
+  // orange full stop as the single hot punctuation
+  const lw = ctx.measureText('set out small').width;
+  ctx.fillStyle = ORANGE;
+  ctx.beginPath(); ctx.arc(LX + lw + 26, LY - 8, 7, 0, Math.PI*2); ctx.fill();
+  // mono annotation under the line
+  ctx.fillStyle = 'rgba(255,255,255,0.45)';
+  ctx.font = '13px ' + MONO;
+  ctx.fillText('[ 00:12.408 ]  verse 1 — first light', LX + 4, LY + 44);
+
+  // ---- horizon ruler ----
+  ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, HOR); ctx.lineTo(W, HOR); ctx.stroke();
+  ctx.font = '9px ' + MONO;
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  for(let x = 40; x < W; x += 40){
+    const tall = (x % 200 === 0);
+    ctx.beginPath(); ctx.moveTo(x, HOR); ctx.lineTo(x, HOR - (tall ? 8 : 4)); ctx.stroke();
+    if(tall) ctx.fillText(String(x/10|0).padStart(3,'0') + '°', x + 3, HOR - 6);
+  }
+
+  // ---- type-water: calm rows of the lyric ----
+  const phrase = 'set out small · ';
+  let y = HOR + 10;
+  let rowH = 12, size = 9;
+  while(y < H - 14){
+    const baseA = 0.11 + rnd()*0.09;
+    const xoff = -rnd()*140;
+    const wob = 1 + rnd()*1.3;
+    const ph = rnd()*Math.PI*2;
+    const yy = y;
+    // sun glitter path: narrow band under the sun, gently widening
+    const band = 40 + (yy - HOR)*0.30;
+    typeRow(phrase, yy, size, '400', xoff,
+      x => Math.sin(x*0.012 + ph)*wob,
+      x => (Math.abs(x - SUNX) < band)
+        ? 'rgba(255,110,45,' + Math.min(0.6, baseA + 0.30).toFixed(2) + ')'
+        : 'rgba(210,215,225,' + baseA.toFixed(2) + ')');
+    y += rowH;
+    rowH *= 1.13; size *= 1.085;
+  }
+
+  // ---- the boat ----
+  const BX = 350, BY = 545, BS = 86;
+  // wake: fading type ripples trailing left
+  ctx.font = '13px ' + MONO;
+  ctx.textAlign = 'left';
+  for(let i = 0; i < 9; i++){
+    const wx = BX - 55 - i*34, wy = BY + 12 + Math.sin(i*1.1)*2 + i*0.8;
+    ctx.fillStyle = 'rgba(230,232,238,' + (0.42 - i*0.045).toFixed(2) + ')';
+    ctx.fillText(i % 2 ? '~' : '·', wx, wy);
+  }
+  // water contact shadow
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.beginPath(); ctx.ellipse(BX, BY + 12, 52, 7, 0, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle = 'rgba(240,240,240,0.5)';
+  ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.ellipse(BX + 4, BY + 13, 58, 6, 0, Math.PI*0.05, Math.PI*0.95); ctx.stroke();
+  drawBoat(BX, BY, BS, -0.06, 'right');
+  // engineered callout
+  ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(BX + 30, BY - 44); ctx.lineTo(BX + 78, BY - 92); ctx.lineTo(BX + 196, BY - 92);
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,0.55)';
+  ctx.font = '11px ' + MONO;
+  ctx.fillText('hull_01 — outbound', BX + 84, BY - 97);
+
+  vignette(0.34);
+  hud('00:12.408 / VERSE 1', 'BPM 92 · SEED 7 · CALM 0.2', 'FRAME A / SETTING OUT');
+}
+
+// ============================================================
+// FRAME B — the storm peak: the words ARE the wave
+// ============================================================
+// crest curve: quadratic bezier, upper right mass -> breaking tip lower left
+const P0 = {x: 1320, y: 128}, PC = {x: 840, y: 150}, P1 = {x: 442, y: 418};
+function bez(t){
+  const a = (1-t)*(1-t), b = 2*(1-t)*t, c = t*t;
+  return { x: a*P0.x + b*PC.x + c*P1.x, y: a*P0.y + b*PC.y + c*P1.y };
+}
+// u: 0 at tip (left) -> 1 at upper right
+function crest(u){ return bez(1-u); }
+function crestAngle(u){
+  const e = 0.004, p = crest(Math.min(1-e, u)), q = crest(Math.min(1, u+e));
+  return Math.atan2(q.y - p.y, q.x - p.x);
+}
+
+function lettersAlongCrest(text, dy, mode, alpha, col, s0, s1){
+  // walk letters left->right along the crest, offset dy downward
+  ctx.save();
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  let u = 0.02;
+  for(const chs of text){
+    const size = s0 + (s1 - s0)*u;
+    ctx.font = '900 ' + size.toFixed(0) + 'px ' + GROTESK;
+    const w = ctx.measureText(chs).width || size*0.5;
+    const p = crest(u);
+    const ang = crestAngle(u);
+    // curl the lip: first letters pitch forward over the boat
+    const curl = u < 0.16 ? -(0.16 - u)/0.16 * 0.55 : 0;
+    if(chs !== ' '){
+      ctx.save();
+      ctx.translate(p.x + Math.sin(ang)*dy, p.y + Math.cos(ang)*dy + dy);
+      ctx.rotate(ang + curl);
+      if(mode === 'fill'){
+        ctx.fillStyle = col; ctx.globalAlpha = alpha;
+        ctx.fillText(chs, 0, 0);
+      } else {
+        ctx.strokeStyle = col; ctx.globalAlpha = alpha; ctx.lineWidth = 1.4;
+        ctx.strokeText(chs, 0, 0);
+      }
+      ctx.restore();
+    }
+    // arc-length step
+    const speed = Math.hypot(crest(u+0.004).x - crest(u).x, crest(u+0.004).y - crest(u).y)/0.004;
+    u += ((chs === ' ' ? size*0.42 : w) ) / speed;
+    if(u > 1.08) break;
+  }
+  ctx.restore();
+}
+
+function frameB(){
+  const rnd = mulberry32(58);
+  // storm sky
+  const sky = ctx.createLinearGradient(0, 0, 0, H);
+  sky.addColorStop(0, '#07070a');
+  sky.addColorStop(1, '#050507');
+  ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+
+  // faint warped perspective grid in the sky (engineered dread)
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,255,255,0.055)';
+  ctx.lineWidth = 1;
+  const vpx = 250, vpy = -160;
+  for(let i = -4; i <= 14; i++){
+    ctx.beginPath(); ctx.moveTo(vpx, vpy); ctx.lineTo(i*130 - 200, H); ctx.stroke();
+  }
+  for(let j = 0; j < 6; j++){
+    const yy = 60 + j*j*14;
+    ctx.beginPath(); ctx.moveTo(0, yy + 40); ctx.quadraticCurveTo(W*0.4, yy - 30, W, yy + 70); ctx.stroke();
+  }
+  ctx.restore();
+
+  // one light source fighting through — upper left
+  let g = ctx.createRadialGradient(185, 95, 10, 185, 95, 380);
+  g.addColorStop(0, 'rgba(255,170,110,0.34)');
+  g.addColorStop(0.4, 'rgba(255,110,50,0.12)');
+  g.addColorStop(1, 'rgba(255,90,31,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 640, 520);
+  // crepuscular streaks
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,150,90,0.10)';
+  ctx.lineWidth = 3;
+  for(let i = 0; i < 5; i++){
+    const a = 0.5 + i*0.22;
+    ctx.beginPath(); ctx.moveTo(185, 95);
+    ctx.lineTo(185 + Math.cos(a)*560, 95 + Math.sin(a)*560); ctx.stroke();
+  }
+  ctx.restore();
+
+  // ---- churning type-water first (wave sits on top of it) ----
+  const phrase = 'hold the line ';
+  function churnRows(y0, y1, rH0, s0){
+    let y = y0, rowH = rH0, size = s0;
+    while(y < y1){
+      const baseA = 0.11 + rnd()*0.11;
+      const xoff = -rnd()*160;
+      const amp = 4 + rnd()*5;
+      const ph = rnd()*Math.PI*2;
+      const yy = y;
+      typeRow(phrase, yy, size, '700', xoff,
+        x => Math.sin(x*0.02 + ph)*amp + Math.sin(x*0.006 + ph*2)*amp*0.7 - x*0.012,
+        x => (Math.sin(x*0.05 + ph*3) > 0.93)
+          ? 'rgba(255,110,45,' + (baseA + 0.18).toFixed(2) + ')'
+          : 'rgba(205,212,224,' + baseA.toFixed(2) + ')');
+      y += rowH; rowH *= 1.14; size *= 1.10;
+    }
+  }
+  churnRows(512, H - 10, 15, 11);
+
+  // ---- wave body: dark mass filled with outlined echoes of the line ----
+  ctx.save();
+  ctx.beginPath();
+  const tip = crest(0);
+  ctx.moveTo(tip.x - 70, tip.y + 90);
+  for(let u = 0; u <= 1.001; u += 0.05){
+    const p = crest(u);
+    ctx.lineTo(p.x, p.y - 46);
+  }
+  ctx.lineTo(W + 10, -10); ctx.lineTo(W + 10, H + 10);
+  ctx.lineTo(660, H + 10);
+  ctx.quadraticCurveTo(500, 640, 470, 560);
+  ctx.quadraticCurveTo(440, 500, tip.x - 70, tip.y + 90);
+  ctx.closePath();
+  const bodyG = ctx.createLinearGradient(1200, 100, 450, 500);
+  bodyG.addColorStop(0, '#101017');
+  bodyG.addColorStop(1, '#0a0a10');
+  ctx.fillStyle = bodyG;
+  ctx.fill();
+  ctx.clip();
+  // outlined echo rows = the mass of water is made of the same words
+  for(let i = 1; i <= 9; i++){
+    const a = 0.20 - i*0.019;
+    const col = (i === 2 || i === 5) ? 'rgba(255,90,31,1)' : 'rgba(220,226,238,1)';
+    lettersAlongCrest('HOLD THE LINE', i*58, 'stroke', Math.max(0.035, a) * (col.includes('255,90') ? 0.85 : 1), col, 72 - i*2, 122 - i*4);
+  }
+  ctx.restore();
+
+  // crest edge glow
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,120,55,0.5)';
+  ctx.lineWidth = 2.5;
+  ctx.shadowColor = 'rgba(255,90,31,0.8)';
+  ctx.shadowBlur = 14;
+  ctx.beginPath();
+  for(let u = 0; u <= 1.001; u += 0.03){
+    const p = crest(u);
+    if(u === 0) ctx.moveTo(p.x, p.y - 46); else ctx.lineTo(p.x, p.y - 46);
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  // ---- THE LINE: huge grotesk letters riding the crest ----
+  // echo pass (offset outline)
+  ctx.save(); ctx.translate(9, 14);
+  lettersAlongCrest('HOLD THE LINE', 0, 'stroke', 0.30, 'rgba(230,234,244,1)', 80, 128);
+  ctx.restore();
+  // main pass: HOLD in orange (the imperative, by the boat), THE LINE white
+  ctx.save();
+  ctx.shadowColor = 'rgba(255,90,31,0.55)';
+  ctx.shadowBlur = 22;
+  lettersAlongCrestSplit();
+  ctx.restore();
+
+  // spray: particle burst of glyphs above the crest, dense at the breaking tip
+  ctx.save();
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const glyphs = "/\\'·*^`,";
+  for(let i = 0; i < 120; i++){
+    const u = Math.pow(rnd(), 2.1); // cluster near tip
+    const p = crest(u);
+    const throwUp = 18 + rnd()*90 + (1-u)*40;
+    const gx = p.x + (rnd()-0.5)*130 - (1-u)*50;
+    const gy = Math.max(72, p.y - 46 - throwUp*rnd());
+    const s = 8 + rnd()*14;
+    ctx.font = '700 ' + s.toFixed(0) + 'px ' + MONO;
+    const orange = rnd() < 0.3;
+    const a = 0.25 + rnd()*0.5;
+    ctx.fillStyle = orange ? 'rgba(255,110,45,' + a.toFixed(2) + ')' : 'rgba(235,238,246,' + a.toFixed(2) + ')';
+    ctx.save();
+    ctx.translate(gx, gy); ctx.rotate((rnd()-0.5)*1.6);
+    ctx.fillText(glyphs[(rnd()*glyphs.length)|0], 0, 0);
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // glitch slices across the big word zone
+  for(const [sy, sh, dx] of [[160, 14, -15],[238, 9, 11],[330, 12, -9]]){
+    ctx.drawImage(cv, 470, sy, 790, sh, 470 + dx, sy, 790, sh);
+    ctx.fillStyle = 'rgba(255,90,31,0.10)';
+    ctx.fillRect(470, sy, 790, 1);
+  }
+
+  // ---- the boat: tiny, climbing, lit by the break in the clouds ----
+  const BX = 322, BY = 565, BS = 58;
+  // spotlight glow behind the hero
+  let bg = ctx.createRadialGradient(BX, BY - 8, 4, BX, BY - 8, 120);
+  bg.addColorStop(0, 'rgba(255,150,95,0.36)');
+  bg.addColorStop(1, 'rgba(255,90,31,0)');
+  ctx.fillStyle = bg;
+  ctx.fillRect(BX-120, BY-120, 240, 220);
+  // heaving water contact
+  ctx.strokeStyle = 'rgba(235,238,246,0.55)';
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.moveTo(BX - 62, BY + 18);
+  ctx.quadraticCurveTo(BX - 20, BY + 4, BX + 16, BY + 14);
+  ctx.quadraticCurveTo(BX + 44, BY + 21, BX + 66, BY + 12);
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(0,0,0,0.55)';
+  ctx.beginPath(); ctx.ellipse(BX, BY + 14, 36, 6, -0.1, 0, Math.PI*2); ctx.fill();
+  drawBoat(BX, BY, BS, -0.22, 'left');
+  // callout
+  ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(BX - 24, BY - 24); ctx.lineTo(BX - 78, BY - 66); ctx.lineTo(BX - 218, BY - 66);
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.font = '11px ' + MONO;
+  ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  ctx.fillText('hull_01 — holding', BX - 214, BY - 71);
+  // warning readout near the wave tip
+  ctx.fillStyle = 'rgba(255,110,45,0.85)';
+  ctx.font = '700 11px ' + MONO;
+  ctx.fillText('▲ WAVE_AMP 9.7 — BRACE', 452, 486);
+
+  // foreground churn rows over the wave base to merge it with the sea
+  churnRows(646, H - 6, 26, 20);
+
+  vignette(0.40);
+  hud('00:58.216 / CHORUS — PEAK', 'BPM 92 · SEED 58 · SURGE 0.97', 'FRAME B / THE STORM PEAK');
+}
+
+// main crest word with per-word color
+function lettersAlongCrestSplit(){
+  const text = 'HOLD THE LINE';
+  ctx.save();
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  let u = 0.02, idx = 0;
+  for(const chs of text){
+    const size = 80 + (128 - 80)*u;
+    ctx.font = '900 ' + size.toFixed(0) + 'px ' + GROTESK;
+    const w = ctx.measureText(chs).width || size*0.5;
+    const p = crest(u);
+    const ang = crestAngle(u);
+    const curl = u < 0.16 ? -(0.16 - u)/0.16 * 0.55 : 0;
+    if(chs !== ' '){
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(ang + curl);
+      ctx.fillStyle = idx < 4 ? ORANGE : PAPER;
+      ctx.fillText(chs, 0, 0);
+      ctx.restore();
+    }
+    const speed = Math.hypot(crest(u+0.004).x - crest(u).x, crest(u+0.004).y - crest(u).y)/0.004;
+    u += ((chs === ' ' ? size*0.42 : w)) / speed;
+    idx++;
+    if(u > 1.08) break;
+  }
+  ctx.restore();
+}
+
+// ---------- harness ----------
+window.drawFrame = function(which){
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.globalAlpha = 1;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = INK_BG; ctx.fillRect(0,0,W,H);
+  if(which === 'a') frameA(); else frameB();
+  window.DONE = true;
+};
+
+const want = [
+  '900 100px "Archivo Black"',
+  '400 16px "Space Mono"',
+  '700 16px "Space Mono"',
+  'italic 600 92px "Playfair Display"'
+];
+Promise.race([
+  Promise.all(want.map(f => document.fonts.load(f))),
+  new Promise(r => setTimeout(r, 8000))
+]).then(() => { window.READY = true; });
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ from agency_mcp.lib.codemode.projection import apply_view
 def shared_list_skills(domain: str | None = None) -> dict[str, Any]:
     skills_dir = Path("skills")
     target_domains = (
-        [domain] if domain else ["music", "novel", "jules", "agentic", "shared"]
+        [domain] if domain else ["music", "novel", "jules", "agentic", "shared", "video"]
     )
 
     skills = []
@@ -122,7 +122,7 @@ def _render_cheatsheet(domain: str, skills: list, prologue: str) -> str:
 
 
 def plugin_help(domain: str) -> dict[str, Any]:
-    valid_domains = {"music", "novel", "jules", "agentic", "shared"}
+    valid_domains = {"music", "novel", "jules", "agentic", "shared", "video"}
     if domain not in valid_domains:
         return {
             "ok": False,

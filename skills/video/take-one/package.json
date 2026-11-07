@@ -1,0 +1,14 @@
+{
+  "name": "take-one",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Claude Code skill: a short film from one line, built like a studio team and rendered from code (headless Chrome + ffmpeg).",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "gate:self-test": "node scripts/gate.mjs --self-test",
+    "edge:self-test": "node scripts/edge-audit.mjs --self-test",
+    "check": "bash scripts/check.sh"
+  },
+  "dependencies": { "playwright-core": "^1.63.0" }
+}

@@ -1,0 +1,326 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#000}canvas{display:block}</style>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const W = 1280, H = 720;
+
+// ---------- grid ----------
+const COLS = 160, ROWS = 45;          // 8 x 16 px cells
+const CW = W / COLS, CH = H / ROWS;
+const RAMP = " .:-=+*#%@";
+const MONO = "13px Menlo, 'Courier New', monospace";
+
+// amber world
+const PH = [255, 176, 0];             // #FFB000
+const HOT = [255, 235, 184];          // near-white amber
+const RED = [255, 85, 85];
+
+// ---------- deterministic rng ----------
+function mulberry32(seed){
+  let a = seed >>> 0;
+  return function(){
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+// seeded 2D value noise
+function makeNoise(seed){
+  const r = mulberry32(seed);
+  const g = new Float32Array(256*256);
+  for (let i=0;i<g.length;i++) g[i]=r();
+  const at=(x,y)=>g[((y&255)<<8)|(x&255)];
+  return function(x,y){
+    const xi=Math.floor(x), yi=Math.floor(y);
+    const fx=x-xi, fy=y-yi;
+    const sx=fx*fx*(3-2*fx), sy=fy*fy*(3-2*fy);
+    const a=at(xi,yi), b=at(xi+1,yi), c=at(xi,yi+1), d=at(xi+1,yi+1);
+    return a+(b-a)*sx+(c-a)*sy+(a-b-c+d)*sx*sy;
+  };
+}
+
+// ---------- luminance scene (square-pixel space 160x90) ----------
+const SW = 160, SH = 90;
+const sc = document.createElement('canvas'); sc.width=SW; sc.height=SH;
+const sx = sc.getContext('2d');
+const samp = document.createElement('canvas'); samp.width=COLS; samp.height=ROWS;
+const px = samp.getContext('2d');
+
+function g(v){ const c=Math.round(Math.max(0,Math.min(1,v))*255); return `rgb(${c},${c},${c})`; }
+
+// paper boat silhouette in scene space. (x,y)=waterline center, s=width in px
+function sceneBoat(x, y, s, rot, v){
+  sx.save(); sx.translate(x,y); sx.rotate(rot);
+  sx.fillStyle = g(v);
+  // hull
+  sx.beginPath();
+  sx.moveTo(-0.5*s,0); sx.lineTo(0.5*s,0); sx.lineTo(0.3*s,0.26*s); sx.lineTo(-0.3*s,0.26*s);
+  sx.closePath(); sx.fill();
+  // sail peak
+  sx.beginPath();
+  sx.moveTo(-0.3*s,-0.02*s); sx.lineTo(0.04*s,-0.58*s); sx.lineTo(0.3*s,-0.02*s);
+  sx.closePath(); sx.fill();
+  // bow + stern flaps
+  sx.beginPath();
+  sx.moveTo(-0.5*s,-0.01*s); sx.lineTo(-0.38*s,-0.15*s); sx.lineTo(-0.28*s,-0.01*s); sx.closePath();
+  sx.moveTo(0.28*s,-0.01*s); sx.lineTo(0.38*s,-0.15*s); sx.lineTo(0.5*s,-0.01*s); sx.closePath();
+  sx.fill();
+  sx.restore();
+}
+
+function sceneA(){
+  const n = makeNoise(101);
+  const rnd = mulberry32(7);
+  // sky: dawn gradient
+  const HOR = 40;                          // horizon y in scene space
+  const sky = sx.createLinearGradient(0,0,0,HOR);
+  sky.addColorStop(0, g(0.04)); sky.addColorStop(0.55, g(0.20)); sky.addColorStop(1, g(0.46));
+  sx.fillStyle = sky; sx.fillRect(0,0,SW,HOR);
+  // sun low on the right: halo then a clean disc
+  const sunX=116, sunY=38;
+  let rg = sx.createRadialGradient(sunX,HOR,0,sunX,HOR,16);
+  rg.addColorStop(0, g(0.8)); rg.addColorStop(0.4, g(0.4)); rg.addColorStop(1,'rgba(0,0,0,0)');
+  sx.fillStyle = rg; sx.fillRect(sunX-16, HOR-16, 32, 16);
+  // half-risen sun disc sitting on the horizon
+  sx.fillStyle = g(1.0);
+  sx.beginPath(); sx.arc(sunX, HOR, 5.2, Math.PI, 2*Math.PI); sx.closePath(); sx.fill();
+  // thin morning cloud bands
+  sx.fillStyle = g(0.26);
+  sx.fillRect(16, 22, 36, 1); sx.fillRect(60, 15, 26, 1); sx.fillRect(28, 29, 22, 1);
+  sx.fillRect(90, 25, 18, 1); sx.fillStyle = g(0.18); sx.fillRect(46, 26, 12, 1);
+  // sea
+  const sea = sx.createLinearGradient(0,HOR,0,SH);
+  sea.addColorStop(0, g(0.20)); sea.addColorStop(1, g(0.08));
+  sx.fillStyle = sea; sx.fillRect(0,HOR,SW,SH-HOR);
+  // horizon glint
+  sx.fillStyle = g(0.45); sx.fillRect(0,HOR,SW,1);
+  // calm wave streaks
+  for (let y=HOR+2; y<SH; y+=2){
+    const depth=(y-HOR)/(SH-HOR);
+    for (let x=0; x<SW; x++){
+      const w = n(x*0.09, y*0.35);
+      if (w > 0.62){
+        sx.fillStyle = g(0.16 + 0.16*(1-depth)*(w-0.62)/0.38);
+        sx.fillRect(x,y,1,1);
+      }
+    }
+  }
+  // sun glitter path: a coherent shimmering column under the sun
+  for (let y=HOR+1; y<SH; y++){
+    const depth=(y-HOR)/(SH-HOR);
+    const spread = 1.5 + depth*5;
+    const wob = (n(3, y*0.3)-0.5)*3*depth;
+    for (let k=0;k<3;k++){
+      const x = sunX + wob + (rnd()*2-1)*spread;
+      if (rnd() < 0.9*(1-depth*0.45)){
+        sx.fillStyle = g(0.42 + rnd()*0.3*(1-depth*0.5));
+        sx.fillRect(Math.round(x), y, 1+((rnd()<0.4)?1:0), 1);
+      }
+    }
+  }
+  // the boat: lower-left third, heading right, slight friendly tilt
+  const bx=46, by=66, bs=17;
+  // wake trailing left
+  sx.fillStyle = g(0.30);
+  sx.fillRect(bx-16,by+2,6,1); sx.fillRect(bx-24,by+3,5,1); sx.fillRect(bx-31,by+2,3,1);
+  sceneBoat(bx, by, bs, -0.05, 0.98);
+  // faint reflection under hull
+  sx.fillStyle = g(0.30); sx.fillRect(bx-5, by+5, 11, 1);
+  sx.fillStyle = g(0.20); sx.fillRect(bx-3, by+7, 7, 1);
+}
+
+function sceneB(){
+  const n = makeNoise(555);
+  const rnd = mulberry32(31);
+  // dark storm sky
+  const sky = sx.createLinearGradient(0,0,0,44);
+  sky.addColorStop(0, g(0.05)); sky.addColorStop(1, g(0.11));
+  sx.fillStyle = sky; sx.fillRect(0,0,SW,44);
+  // one light source fighting through, upper left
+  let rg = sx.createRadialGradient(24,10,0,24,10,30);
+  rg.addColorStop(0, g(0.85)); rg.addColorStop(0.22, g(0.5)); rg.addColorStop(0.55, g(0.2)); rg.addColorStop(1,'rgba(0,0,0,0)');
+  sx.fillStyle = rg; sx.fillRect(0,0,64,44);
+  // ragged cloud bites eating into the light
+  sx.fillStyle = g(0.06);
+  sx.fillRect(10, 16, 14, 2); sx.fillRect(26, 20, 16, 2); sx.fillRect(6, 6, 10, 2);
+  // diagonal rain streaks
+  sx.fillStyle = g(0.17);
+  for (let i=0;i<70;i++){
+    const x=rnd()*SW, y=rnd()*40, L=3+rnd()*4;
+    sx.save(); sx.translate(x,y); sx.rotate(0.5);
+    sx.fillRect(0,0,1,L); sx.restore();
+  }
+  // dark sea base
+  const sea = sx.createLinearGradient(0,44,0,SH);
+  sea.addColorStop(0, g(0.13)); sea.addColorStop(1, g(0.07));
+  sx.fillStyle = sea; sx.fillRect(0,44,SW,SH-44);
+
+  // THE WAVE: towering diagonal wall from upper right down to mid-left
+  // crest line: from (158,10) to (46,58)
+  const crest = t => ({ x: 158 - 112*t, y: 10 + 48*t*t*0.6 + 48*t*0.4 });
+  sx.beginPath();
+  sx.moveTo(160, 6);
+  for (let t=0;t<=1.001;t+=0.05){ const p=crest(t); sx.lineTo(p.x, p.y); }
+  sx.lineTo(46, 90); sx.lineTo(160, 90); sx.closePath();
+  sx.save(); sx.clip();
+  // wave face: turbulent density with dark churn broken into it
+  const n2 = makeNoise(901);
+  for (let y=6;y<SH;y++){
+    for (let x=44;x<SW;x++){
+      let v = 0.30 + 0.42*n(x*0.11, y*0.16) + 0.18*n2(x*0.45, y*0.45);
+      if (n2(x*0.2+40, y*0.2) < 0.30) v -= 0.22;         // dark churn pockets
+      // brighter toward the crest, darker at the base
+      const p = (y-6)/(SH-6);
+      v += (1-p)*0.10 - p*0.06;
+      sx.fillStyle = g(Math.max(0.06, Math.min(0.82, v)));
+      sx.fillRect(x,y,1,1);
+    }
+  }
+  sx.restore();
+  // crest foam: thick, jagged, brightest thing in the scene after the boat
+  for (let t=0;t<=1.001;t+=0.01){
+    const p=crest(t);
+    const j = (n(t*40, 3)-0.5)*3;
+    sx.fillStyle = g(0.86);
+    sx.fillRect(Math.round(p.x), Math.round(p.y + j), 2, 2+Math.round(rnd()*2));
+    if (rnd()<0.6){ sx.fillStyle=g(0.7); sx.fillRect(Math.round(p.x+rnd()*4-2), Math.round(p.y+j-2), 1, 2); }
+  }
+  // spray flung off the crest toward the boat
+  for (let i=0;i<90;i++){
+    const t=rnd(); const p=crest(t);
+    sx.fillStyle = g(0.4+rnd()*0.35);
+    sx.fillRect(Math.round(p.x - rnd()*10), Math.round(p.y - 2 - rnd()*7), 1, 1);
+  }
+  // dark trough around the boat so it pops
+  rg = sx.createRadialGradient(37,73,0,37,73,24);
+  rg.addColorStop(0,'rgba(0,0,0,0.6)'); rg.addColorStop(1,'rgba(0,0,0,0)');
+  sx.fillStyle = rg; sx.fillRect(13,49,48,41);
+  // storm streaks on near sea
+  for (let y=62;y<SH;y+=2){
+    for (let x=0;x<50;x++){
+      if (n(x*0.15,y*0.4)>0.68){ sx.fillStyle=g(0.18); sx.fillRect(x,y,2,1); }
+    }
+  }
+  // the boat: tiny, bright, tilted up the swell, still pointing forward (right)
+  const bx=36, by=73, bs=11;
+  sceneBoat(bx, by, bs, -0.22, 1.0);
+  sx.fillStyle = g(0.5); sx.fillRect(bx-8,by+2,4,1);   // struggling wake
+}
+
+// ---------- chrome (real terminal text) ----------
+function chromeFor(which){
+  if (which==='a') return [
+    {r:1, c:2, text:'user@paperboat:~$ sail --heading east', v:0.92, cursor:true},
+    {r:2, c:2, text:'[05:41:07] sea: calm   wind: 4kt NE   vis: good', v:0.45},
+    {r:3, c:2, text:'[05:41:09] course locked. godspeed, little one.', v:0.38},
+  ];
+  return [
+    {r:1, c:2, text:'[05:58:03] ALERT: wave 9.2m bearing NE -- brace brace brace', red:true, v:1.0},
+    {r:2, c:2, text:'[05:58:04] hull stress 87%   heading 090 held', v:0.5},
+    {r:3, c:2, text:'user@paperboat:~$ hold --course', v:0.92, cursor:true},
+  ];
+}
+
+// ---------- character render ----------
+const charCv = document.createElement('canvas'); charCv.width=W; charCv.height=H;
+const cc = charCv.getContext('2d');
+const smallCv = document.createElement('canvas'); smallCv.width=W/4; smallCv.height=H/4;
+const scc = smallCv.getContext('2d');
+
+function phColor(v, red){
+  if (red) return 'rgb(255,82,82)';      // the one declared exception stays RED
+  v = Math.max(0, Math.min(1, v));
+  const c = Math.pow(v, 0.85);
+  let r,gc,b;
+  if (c < 0.7){ const t=c/0.7; r=PH[0]*t; gc=PH[1]*t; b=PH[2]*t; }
+  else { const t=(c-0.7)/0.3; r=PH[0]+(HOT[0]-PH[0])*t; gc=PH[1]+(HOT[1]-PH[1])*t; b=PH[2]+(HOT[2]-PH[2])*t; }
+  return `rgb(${Math.round(r)},${Math.round(gc)},${Math.round(b)})`;
+}
+
+function render(which){
+  // 1) scene -> luminance
+  sx.fillStyle='#000'; sx.fillRect(0,0,SW,SH);
+  (which==='a'?sceneA:sceneB)();
+  px.imageSmoothingEnabled = true;
+  px.drawImage(sc, 0, 0, COLS, ROWS);
+  const data = px.getImageData(0,0,COLS,ROWS).data;
+
+  // 2) build grid
+  const jit = mulberry32(which==='a'?11:77);
+  const grid = new Array(ROWS);
+  for (let r=0;r<ROWS;r++){
+    grid[r]=new Array(COLS);
+    for (let c=0;c<COLS;c++){
+      let v = data[(r*COLS+c)*4]/255;
+      v += (jit()-0.5)*(v>0.85 ? 0.04 : 0.11);   // phosphor life + band dither
+      v = Math.max(0, Math.min(1, v));
+      const idx = v<0.045 ? 0 : Math.min(RAMP.length-1, Math.floor(v*RAMP.length));
+      grid[r][c] = { ch: RAMP[idx], v, red:false };
+    }
+  }
+  // 3) chrome overwrites scene cells (whole row cleared: a terminal line is a terminal line)
+  for (const line of chromeFor(which)){
+    for (let c=0;c<COLS;c++) grid[line.r][c] = { ch:' ', v:0, red:false };
+    for (let i=0;i<line.text.length;i++){
+      const c=line.c+i; if (c>=COLS) break;
+      grid[line.r][c] = { ch: line.text[i], v: line.v, red: !!line.red };
+    }
+    if (line.cursor){
+      const c=line.c+line.text.length+1;
+      grid[line.r][c] = { ch:'█', v:0.95, red:false };
+    }
+  }
+  // 4) draw characters with barrel curvature per row
+  cc.clearRect(0,0,W,H);
+  cc.font = MONO; cc.textAlign='center'; cc.textBaseline='middle';
+  const K = 0.030;
+  for (let r=0;r<ROWS;r++){
+    const dy = (r - (ROWS-1)/2) / ((ROWS-1)/2);
+    const scale = 1 - K*dy*dy;
+    cc.save();
+    cc.translate(W/2, 0); cc.scale(scale, 1); cc.translate(-W/2, 0);
+    const y = (r+0.5)*CH;
+    for (let c=0;c<COLS;c++){
+      const cell = grid[r][c];
+      if (cell.ch===' ') continue;
+      cc.fillStyle = phColor(cell.v, cell.red);
+      cc.fillText(cell.ch, (c+0.5)*CW, y);
+    }
+    cc.restore();
+  }
+  // 5) composite: bg, bloom, sharp, scanlines, vignette
+  ctx.fillStyle = '#0A0806'; ctx.fillRect(0,0,W,H);
+  // faint ambient phosphor
+  let amb = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.62);
+  amb.addColorStop(0,'rgba(255,176,0,0.045)'); amb.addColorStop(1,'rgba(255,176,0,0)');
+  ctx.fillStyle=amb; ctx.fillRect(0,0,W,H);
+  // wide bloom: downscale-upscale
+  scc.clearRect(0,0,W/4,H/4);
+  scc.imageSmoothingEnabled=true;
+  scc.drawImage(charCv,0,0,W/4,H/4);
+  ctx.globalCompositeOperation='lighter';
+  ctx.imageSmoothingEnabled=true;
+  ctx.globalAlpha=0.40; ctx.drawImage(smallCv,0,0,W,H);
+  // tight glow: offset ring
+  ctx.globalAlpha=0.14;
+  for (const [ox,oy] of [[1.5,0],[-1.5,0],[0,1.5],[0,-1.5]]) ctx.drawImage(charCv,ox,oy);
+  ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
+  // sharp layer
+  ctx.drawImage(charCv,0,0);
+  // scanlines
+  ctx.fillStyle='rgba(0,0,0,0.24)';
+  for (let y=0;y<H;y+=3) ctx.fillRect(0,y,W,1);
+  // vignette
+  let vg = ctx.createRadialGradient(W/2,H/2,H*0.35,W/2,H/2,W*0.72);
+  vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,0.55)');
+  ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
+}
+
+window.drawFrame = function(which){ render(which); };
+window.READY = true;
+</script>

@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><style>html,body{margin:0;background:#000}canvas{display:block}</style></head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W = 1280, H = 720;
+const cv = document.getElementById('c');
+const CTX = cv.getContext('2d');
+
+// ---------- deterministic rng + helpers ----------
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+const clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const mix=(a,b,t)=>a+(b-a)*t;
+const sm=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+const rgb=a=>`rgb(${Math.round(a[0])},${Math.round(a[1])},${Math.round(a[2])})`;
+const tint=(a,b,t)=>[mix(a[0],b[0],t),mix(a[1],b[1],t),mix(a[2],b[2],t)];
+
+// palette (style card)
+const VERM=[232,68,44], INK=[14,14,16], CREAM=[239,235,224], ULTRA=[50,48,238];
+const SKYW=[250,251,255], SILV=[198,205,218], DARKB=[24,27,34], BOUNCE=[92,100,114], DEEP=[35,38,46];
+
+// ---------- HUD chrome ----------
+function hud(g, col, idx, tc, barN, prog){
+  g.save();
+  const c=rgb(col);
+  g.strokeStyle=c; g.fillStyle=c; g.lineWidth=2;
+  const m=28, L=16;
+  for(const [x,y,sx,sy] of [[m,m,1,1],[W-m,m,-1,1],[m,H-m,1,-1],[W-m,H-m,-1,-1]]){
+    g.beginPath(); g.moveTo(x,y+L*sy); g.lineTo(x,y); g.lineTo(x+L*sx,y); g.stroke();
+  }
+  const F='11px Menlo, Consolas, monospace';
+  g.textBaseline='middle';
+  const sp=(t,x,y)=>{let cx=x;for(const ch of t){g.fillText(ch,cx,y);cx+=g.measureText(ch).width+2.5;}return cx;};
+  const tw=t=>{let w=0;for(const ch of t){w+=g.measureText(ch).width+2.5;}return w;};
+  g.font='bold '+F;
+  let x2=sp('PAPER BOAT',52,49);
+  g.globalAlpha=0.72; g.font=F; sp('MOTION REEL - 2026',x2+18,49); g.globalAlpha=1;
+  g.font='bold '+F; sp(idx, W-52-tw(idx), 49);
+  g.font='bold '+F; sp(tc,52,H-49);
+  g.globalAlpha=0.72; g.font=F; sp('60 FPS',52+ (function(){g.font='bold '+F;const v=tw(tc);g.font=F;return v;})() +16, H-49); g.globalAlpha=1;
+  g.font='bold '+F;
+  const barsTxt='BAR '+barN+'/8';
+  const bx=W-52-tw(barsTxt); sp(barsTxt,bx,H-49);
+  const sq=8, gap=5; const sxx=bx-4*(sq+gap)-14; const lit=((barN-1)%4)+1;
+  for(let i=0;i<4;i++){
+    if(i<lit){ g.fillRect(sxx+i*(sq+gap),H-49-sq/2,sq,sq); }
+    else { g.globalAlpha=0.55; g.strokeRect(sxx+i*(sq+gap)+0.5,H-49-sq/2+0.5,sq-1,sq-1); g.globalAlpha=1; }
+  }
+  g.globalAlpha=0.72; g.font=F; sp('128 BPM',sxx-tw('128 BPM')-14,H-49); g.globalAlpha=1;
+  g.globalAlpha=0.9; g.fillRect(m,H-30,(W-2*m)*prog,2); g.globalAlpha=1;
+  g.restore();
+}
+
+// ---------- grain ----------
+function grain(g, seed, amt){
+  const im=g.getImageData(0,0,W,H), d=im.data, r=mulberry32(seed);
+  for(let i=0;i<d.length;i+=4){const n=(r()-0.5)*amt; d[i]+=n; d[i+1]+=n; d[i+2]+=n;}
+  g.putImageData(im,0,0);
+}
+
+// ---------- faceted chrome paper boat, pointing right ----------
+function drawBoat(g, cx, cy, S, rot, warm, rimFromLeft){
+  const lg=(x0,y0,x1,y1,stops)=>{const gr=g.createLinearGradient(x0,y0,x1,y1);for(const [t,c] of stops)gr.addColorStop(t,c);return gr;};
+  const midT = warm? tint(SILV,VERM,0.30) : tint(SILV,ULTRA,0.26);
+  const dkT  = warm? tint(DARKB,VERM,0.08): tint(DARKB,ULTRA,0.14);
+  const bnT  = tint(BOUNCE, warm?VERM:ULTRA, 0.20);
+  g.save();
+  g.translate(cx,cy); g.rotate(rot); g.scale(S,S);
+  g.lineJoin='round';
+  const path=p=>{g.beginPath();g.moveTo(p[0][0],p[0][1]);for(let i=1;i<p.length;i++)g.lineTo(p[i][0],p[i][1]);g.closePath();};
+  const hull=[[-0.5,-0.075],[-0.1,0.012],[0.1,0.012],[0.5,-0.075],[0.30,0.24],[-0.30,0.24]];
+  // hull front facet: mirror ramp with hard break
+  path(hull);
+  g.fillStyle=lg(0,-0.075,0,0.24,[[0,rgb(SKYW)],[0.28,rgb(midT)],[0.46,rgb(midT)],[0.50,rgb(dkT)],[0.76,rgb(bnT)],[1,rgb(DEEP)]]);
+  g.fill();
+  // brim fold strip
+  path([[-0.5,-0.075],[-0.1,0.012],[0.1,0.012],[0.5,-0.075],[0.47,-0.045],[0.1,0.042],[-0.1,0.042],[-0.47,-0.045]]);
+  g.fillStyle=lg(0,-0.075,0,0.05,[[0,rgb(SKYW)],[1,rgb(SILV)]]); g.fill();
+  // sail facets
+  const apex=[0,-0.56], bl=[-0.27,0.0], br=[0.27,0.0], bm=[0.005,-0.02];
+  const bright=lg(-0.27,0,0.27,-0.3,[[0,rgb(SILV)],[0.45,rgb(SKYW)],[0.75,rgb(midT)],[1,rgb(SILV)]]);
+  const dark  =lg(-0.27,-0.3,0.27,0,[[0,rgb(dkT)],[0.55,rgb(midT)],[1,rgb(dkT)]]);
+  path([apex,bl,bm]); g.fillStyle=rimFromLeft?bright:dark; g.fill();
+  path([apex,bm,br]); g.fillStyle=rimFromLeft?dark:bright; g.fill();
+  g.strokeStyle=rgb(dkT); g.lineWidth=0.008;
+  g.beginPath(); g.moveTo(apex[0],apex[1]); g.lineTo(bm[0],bm[1]); g.stroke();
+  g.strokeStyle='rgba(24,27,34,0.85)'; g.lineWidth=0.011;
+  path([apex,bl,bm,br]); g.stroke();
+  path(hull); g.stroke();
+  // specular softbox streaks clipped to silhouette
+  g.save();
+  g.beginPath();
+  const sil=[[-0.5,-0.075],[-0.1,0.012],[0.1,0.012],[0.5,-0.075],[0.30,0.24],[-0.30,0.24]];
+  g.moveTo(sil[0][0],sil[0][1]); for(let i=1;i<sil.length;i++) g.lineTo(sil[i][0],sil[i][1]); g.closePath();
+  g.moveTo(apex[0],apex[1]); g.lineTo(bl[0],bl[1]); g.lineTo(br[0],br[1]); g.closePath();
+  g.clip();
+  g.rotate(-0.5);
+  const st=(x,y,w,h,a)=>{g.globalAlpha=a;g.beginPath();g.roundRect(x,y,w,h,h/2);g.fillStyle='#ffffff';g.fill();};
+  st(-0.62,-0.31,1.15,0.030,0.9);
+  st(-0.62,-0.235,1.15,0.012,0.4);
+  g.restore();
+  if(!rimFromLeft===false){} // no-op
+  if(!warm){
+    // storm rim light on edges facing the upper-left source
+    g.strokeStyle='rgba(250,251,255,0.95)'; g.lineWidth=0.016; g.lineCap='round';
+    g.beginPath(); g.moveTo(apex[0],apex[1]); g.lineTo(bl[0],bl[1]); g.stroke();
+    g.strokeStyle='rgba(250,251,255,0.6)'; g.lineWidth=0.012;
+    g.beginPath(); g.moveTo(-0.5,-0.075); g.lineTo(-0.1,0.012); g.stroke();
+  }
+  g.restore();
+}
+
+function boatReflection(g, cx, cy, S, rot, warm, rimFromLeft){
+  const off=document.createElement('canvas'); off.width=W; off.height=H;
+  const o=off.getContext('2d');
+  drawBoat(o,cx,cy,S,rot,warm,rimFromLeft);
+  const top=cy+0.10*S;
+  g.save();
+  for(let i=0;i<80;i++){
+    const sy=top+i*3;
+    const srcY=cy+0.10*S-(i+1)*3;
+    const a=0.30*Math.max(0,1-i/62);
+    if(a<=0.005) break;
+    const wob=Math.sin(i*0.5)* (1.5+i*0.28);
+    g.globalAlpha=a;
+    g.drawImage(off,0,srcY,W,3,wob,sy,W,3);
+  }
+  g.restore();
+}
+
+// ================= FRAME A : setting out at first light =================
+function frameA(){
+  const g=CTX;
+  const HOR=380, SUNX=880, SUNY=306, SUNR=52;
+  // analytic sky color (also sampled by the sea)
+  function skyCol(x,y){
+    let r=VERM[0], gg=VERM[1], b=VERM[2];
+    const dx=x-SUNX, dy=y-SUNY, d=Math.sqrt(dx*dx+dy*dy);
+    if(d<SUNR){ const e=sm(SUNR,SUNR-3,d); r=mix(r,CREAM[0],e); gg=mix(gg,CREAM[1],e); b=mix(b,CREAM[2],e); }
+    else { const glow=Math.exp(-(d-SUNR)/95)*0.32; r=mix(r,255,glow); gg=mix(gg,196,glow); b=mix(b,150,glow); }
+    return [r,gg,b];
+  }
+  // sky (drawn)
+  g.fillStyle=rgb(VERM); g.fillRect(0,0,W,HOR);
+  let grd=g.createRadialGradient(SUNX,SUNY,SUNR,SUNX,SUNY,SUNR+180);
+  grd.addColorStop(0,'rgba(255,196,150,0.32)'); grd.addColorStop(1,'rgba(255,196,150,0)');
+  g.fillStyle=grd; g.fillRect(0,0,W,HOR);
+  g.fillStyle=rgb(CREAM); g.beginPath(); g.arc(SUNX,SUNY,SUNR,0,7); g.fill();
+  // liquid-chrome sea: per-pixel reflection of the analytic sky
+  const im=g.createImageData(W,H-HOR), d=im.data;
+  for(let y=HOR;y<H;y++){
+    const dd=y-HOR+1;
+    const per=dd/(H-HOR);
+    const amp=0.7+per*per*6;
+    for(let x=0;x<W;x++){
+      // calm mirror: mostly-horizontal wobble, slow drift in x
+      const sx1=Math.sin(x*0.004)*2.5, sx2=Math.sin(x*0.009+3)*2.0;
+      const w = Math.sin(dd*0.50+sx1) + 0.6*Math.sin(dd*1.25+sx2);
+      const ry = HOR - dd*0.70 - w*amp*2.4;
+      let c = skyCol(x + Math.sin(x*0.005+dd*0.3)*amp, ry);
+      // perspective-scaled metallic bands (log-spaced: tight at horizon, broad near viewer)
+      const band=Math.sin(6.4*Math.log(dd+14) + Math.sin(x*0.008+dd*0.01)*1.1 + 0.6);
+      const hi=sm(0.74,0.97,band);
+      const loF=sm(-0.62,-0.97,band); // 1 when band deeply negative
+      const shineT=0.75+0.25*Math.sin(x*0.003+dd*0.004+2.0);
+      c=[mix(c[0],SKYW[0],hi*0.60*shineT), mix(c[1],SKYW[1],hi*0.60*shineT), mix(c[2],SKYW[2],hi*0.56*shineT)];
+      c=[mix(c[0],DARKB[0],loF*0.72), mix(c[1],DARKB[1],loF*0.72), mix(c[2],DARKB[2],loF*0.70)];
+      // silver sheen field: the studio reads in the water
+      const sheen=0.09+0.06*Math.sin(x*0.0025+1.2);
+      c=[mix(c[0],SILV[0],sheen*(1-loF)), mix(c[1],SILV[1],sheen*(1-loF)), mix(c[2],SILV[2],sheen*(1-loF))];
+      // metallic hairlines keep the broad near bands crisp
+      const mb=sm(0.90,0.995,Math.sin(28*Math.log(dd+14)+Math.sin(x*0.006)*1.4+1.1))*per*0.5;
+      c=[mix(c[0],SKYW[0],mb), mix(c[1],SKYW[1],mb), mix(c[2],SKYW[2],mb*0.95)];
+      // contrast push
+      c=[(c[0]-128)*1.22+128,(c[1]-128)*1.22+128,(c[2]-128)*1.22+128];
+      // sun glitter column, sliced by the same bands
+      const sig=24+per*115;
+      const gx=x-SUNX+w*amp*5;
+      const gl=Math.exp(-(gx*gx)/(2*sig*sig));
+      const tw2=clamp(w*1.2+0.45,0,1)*(0.12+0.88*sm(0.0,0.7,band));
+      c=[mix(c[0],255,gl*tw2*0.95), mix(c[1],255,gl*tw2*0.92), mix(c[2],255,gl*tw2*0.85)];
+      // near-camera sheen so the bottom HUD stays legible
+      const nc=sm(636,712,y)*0.55;
+      c=[mix(c[0],SILV[0],nc), mix(c[1],SILV[1],nc), mix(c[2],SILV[2],nc)];
+      const i4=((y-HOR)*W+x)*4;
+      d[i4]=clamp(c[0],0,255); d[i4+1]=clamp(c[1],0,255); d[i4+2]=clamp(c[2],0,255); d[i4+3]=255;
+    }
+  }
+  g.putImageData(im,0,HOR);
+  // thin ink horizon rule
+  g.fillStyle='rgba(14,14,16,0.8)'; g.fillRect(0,HOR-1,W,2);
+  // boat: lower-left third, heading right, slight confident bow-up tilt
+  const BX=300, BY=487, BS=210, ROT=-0.055;
+  boatReflection(g,BX,BY,BS,ROT,true,false);
+  // wake: bright chrome V behind the boat
+  g.save();
+  g.translate(BX,BY);
+  g.strokeStyle='rgba(250,251,255,0.55)'; g.lineWidth=2.4;
+  g.beginPath(); g.moveTo(-105,22); g.quadraticCurveTo(-190,34,-268,30); g.stroke();
+  g.strokeStyle='rgba(250,251,255,0.30)'; g.lineWidth=1.6;
+  g.beginPath(); g.moveTo(-105,30); g.quadraticCurveTo(-200,52,-286,54); g.stroke();
+  g.globalAlpha=0.5; g.fillStyle='#FAFBFF';
+  g.beginPath(); g.ellipse(0,25,112,7,0,0,7); g.fill();
+  g.restore();
+  drawBoat(g,BX,BY,BS,ROT,true,false);
+  hud(g, INK, '01 - FIRST LIGHT', '00:00:02:16', 2, 0.16);
+  grain(g, 7101, 14);
+}
+
+// ================= FRAME B : the storm peak =================
+function frameB(){
+  const g=CTX;
+  // field
+  g.fillStyle=rgb(INK); g.fillRect(0,0,W,H);
+  const LX=252, LY=118;
+  // the one light fighting through
+  let grd=g.createRadialGradient(LX,LY,0,LX,LY,340);
+  grd.addColorStop(0,'rgba(250,251,255,0.95)');
+  grd.addColorStop(0.10,'rgba(226,230,244,0.55)');
+  grd.addColorStop(0.45,'rgba(90,92,190,0.18)');
+  grd.addColorStop(1,'rgba(50,48,238,0)');
+  g.fillStyle=grd; g.fillRect(0,0,W,H);
+  // light shafts
+  g.save(); g.translate(LX,LY);
+  for(const [ang,wd,a] of [[0.62,46,0.08],[0.78,22,0.11],[0.50,16,0.07]]){
+    g.save(); g.rotate(ang);
+    const sh=g.createLinearGradient(0,0,1100,0);
+    sh.addColorStop(0,'rgba(250,251,255,'+a+')'); sh.addColorStop(1,'rgba(250,251,255,0)');
+    g.fillStyle=sh; g.fillRect(0,-wd/2,1100,wd); g.restore();
+  }
+  g.restore();
+  // wave surface: crest towering upper-right
+  const chop=x=> 14*Math.sin(x*0.021+1.7)+8*Math.sin(x*0.043+0.3)+5*Math.sin(x*0.011+4);
+  const ys=x=> 620 - 500*Math.pow(x/W,2.3) + chop(x)*(0.4+0.6*x/W);
+  // lighting normals from the smooth base curve only (chop in the normal corrugates the shading)
+  const ysS=x=> 620 - 500*Math.pow(x/W,2.3);
+  const dys=x=>{ const e=6; return (ysS(x+e)-ysS(x-e))/(2*e); };
+  // per-column fill
+  const im=g.getImageData(0,0,W,H), d=im.data;
+  const r0=mulberry32(4242);
+  for(let x=0;x<W;x++){
+    const yTop=Math.max(0,Math.floor(ys(x)));
+    const m=dys(x);
+    const nl=Math.sqrt(m*m+1);
+    const nx=m/nl, ny=-1/nl; // outward (up) normal of the surface line
+    const crestness=sm(500,950,x); // only the towering part gets the big rim
+    for(let y=yTop;y<H;y++){
+      const depth=y-ys(x);
+      // light vector toward the source
+      let lx=LX-x, ly=LY-y; const ll=Math.sqrt(lx*lx+ly*ly); lx/=ll; ly/=ll;
+      const facing=clamp(nx*lx+ny*ly,0,1);
+      // dark liquid-metal base, lit side toward the source; foreground stays pewter-dark
+      let base = 0.08 + 0.34*facing*(0.30+0.70*crestness);
+      // sharp thin flow bands parallel to the surface (liquid metal striations)
+      const ph = depth*0.045 - x*0.0075 + chop(x)*0.06;
+      const s1 = Math.sin(ph);
+      const bandHi = sm(0.90,0.99,s1);            // thin bright silver lines
+      const bandLo = sm(0.80,0.97,-s1);           // thin extra-dark grooves
+      const band2 = sm(0.93,0.995,Math.sin(depth*0.09+x*0.004+2.2))*0.5; // finer secondary lines
+      // broad specular sheet where the face aims at the light
+      const sheet = Math.pow(facing,6)*Math.exp(-depth*0.006)*(0.25+0.75*crestness);
+      // crest rim
+      const rim = sm(10,0,depth)*(0.30+0.70*crestness);
+      let v = base + sheet*0.55 + rim*0.9;
+      let c;
+      const silU = tint(SILV,ULTRA,0.30);
+      const dkU = tint(DARKB,ULTRA,0.28);
+      if(v>0.92) c=SKYW;
+      else if(v>0.62){ const t=(v-0.62)/0.30; c=tint(silU,SKYW,t); }
+      else if(v>0.50){ const t=(v-0.50)/0.12; c=tint(dkU,silU,t*t); }   // HARD break
+      else { const t=v/0.50; c=tint([8,8,20], dkU, t); }
+      // striations on top
+      const bh=(bandHi*0.75+band2)*(0.3+0.7*facing)*(0.35+0.65*crestness);
+      c=[mix(c[0],SKYW[0],bh), mix(c[1],SKYW[1],bh), mix(c[2],SKYW[2],bh*0.95)];
+      c=[mix(c[0],6,bandLo*0.6), mix(c[1],6,bandLo*0.6), mix(c[2],10,bandLo*0.55)];
+      // hot specular core
+      const spec=Math.pow(facing,22)*Math.exp(-depth*0.004)*(0.3+0.7*crestness);
+      c=[mix(c[0],255,spec*0.9),mix(c[1],255,spec*0.9),mix(c[2],255,spec*0.85)];
+      // depth falloff into ink + foreground grounding for the HUD
+      const dk=sm(160,420,depth)*0.55 + sm(500,180,x)*sm(0,70,depth)*0.30;
+      c=[mix(c[0],INK[0],clamp(dk,0,0.8)),mix(c[1],INK[1],clamp(dk,0,0.8)),mix(c[2],INK[2],clamp(dk,0,0.8))];
+      const i4=(y*W+x)*4;
+      d[i4]=clamp(c[0],0,255); d[i4+1]=clamp(c[1],0,255); d[i4+2]=clamp(c[2],0,255); d[i4+3]=255;
+    }
+  }
+  g.putImageData(im,0,0);
+  // crest foam edge + spray (upper right)
+  g.save();
+  g.strokeStyle='rgba(250,251,255,0.9)'; g.lineWidth=2.5;
+  g.beginPath();
+  let started=false;
+  for(let x=640;x<W;x+=4){ const y=ys(x)+1; if(!started){g.moveTo(x,y);started=true;} else g.lineTo(x,y); }
+  g.stroke();
+  const rs=mulberry32(999);
+  g.fillStyle='#FAFBFF';
+  for(let i=0;i<220;i++){
+    const x=740+rs()*540, y=ys(x)-rs()*rs()*160-4;
+    const rr=0.6+rs()*rs()*2.6, a=0.2+rs()*0.65;
+    g.globalAlpha=a;
+    g.beginPath(); g.arc(x-rs()*30, y, rr, 0, 7); g.fill();
+  }
+  g.globalAlpha=1;
+  g.restore();
+  // boat: small, climbing, still pointing forward
+  const BX=356, BY=595, BS=132, ROT=-0.21;
+  // splash at the hull
+  g.save(); g.translate(BX,BY);
+  g.fillStyle='#FAFBFF';
+  g.globalAlpha=0.40; g.beginPath(); g.ellipse(2,14,66,5,-0.06,0,7); g.fill();
+  g.globalAlpha=0.55; g.beginPath(); g.ellipse(-18,13,30,3.4,-0.05,0,7); g.fill();
+  g.globalAlpha=0.5;  g.beginPath(); g.ellipse(40,15,20,2.6,-0.08,0,7); g.fill();
+  const rw=mulberry32(313);
+  for(let i=0;i<26;i++){
+    const a=rw()*Math.PI, rr=20+rw()*46;
+    g.globalAlpha=0.2+rw()*0.5;
+    g.beginPath(); g.arc(-Math.cos(a)*rr, 12-Math.sin(a)*rr*0.45, 0.8+rw()*1.7, 0, 7); g.fill();
+  }
+  g.restore();
+  drawBoat(g,BX,BY,BS,ROT,false,true);
+  hud(g, CREAM, '02 - STORM PEAK', '00:00:12:03', 7, 0.85);
+  grain(g, 7102, 16);
+}
+
+window.drawFrame=function(which){
+  CTX.clearRect(0,0,W,H);
+  if(which==='a') frameA(); else frameB();
+  window.DONE=true;
+};
+window.READY=true;
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Take One · Review room</title><link rel="icon" type="image/svg+xml" href="/logo/take-one-mark.svg">
+<style>
+:root{--bg:#0c0c0d;--panel:#151516;--line:#2c2b29;--ink:#ecebe8;--dim:#8b8a86;--accent:#d97757;--ok:#5fb97a}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+header{display:flex;gap:14px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line)}
+header .brand{display:flex;align-items:center;gap:14px;margin-right:10px}header .brand img{height:38px;display:block}header h1{font-size:15px;margin:0;font-weight:600;color:var(--dim);letter-spacing:.02em;padding-left:14px;border-left:1px solid var(--line)}header label{color:var(--dim);font-size:14px}
+select,button,textarea{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:10px}
+select{padding:8px 10px}button{padding:9px 14px;cursor:pointer}button:hover{border-color:#55544f}button.go{background:var(--accent);border-color:var(--accent);color:#17110e;font-weight:650}
+main{display:grid;grid-template-columns:minmax(0,1fr) 400px;height:calc(100% - 62px)}
+#left{padding:18px 20px;overflow:auto}#stage{display:grid;gap:12px;grid-template-columns:1fr}#stage.two{grid-template-columns:1fr 1fr}
+.vid{position:relative;background:#000;border-radius:12px;overflow:hidden;aspect-ratio:16/9}.vid video{width:100%;height:100%;display:block}
+.vid .tag{position:absolute;left:10px;top:10px;background:rgba(12,12,13,.72);padding:3px 9px;border-radius:8px;font-size:13px;color:var(--dim)}
+#hit{position:absolute;inset:0;cursor:crosshair}
+.pin{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:3px solid #fff;background:var(--accent);box-shadow:0 0 0 2px rgba(0,0,0,.55);pointer-events:none}
+#bar{display:flex;gap:10px;align-items:center;margin-top:12px}#time{font-variant-numeric:tabular-nums;color:var(--dim);min-width:190px;font-size:14px}
+#seekwrap{position:relative;flex:1;height:28px}#seek{position:absolute;inset:0;width:100%;margin:0;accent-color:var(--accent)}
+#marks{position:absolute;left:0;right:0;top:-5px;height:8px;pointer-events:none}#marks i{position:absolute;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--accent)}#marks i.done{background:var(--ok)}
+#hint{color:var(--dim);font-size:14px;margin-top:10px}
+#right{border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+#compose{padding:16px;border-bottom:1px solid var(--line)}#where{font-size:14px;color:var(--accent);margin-bottom:8px;min-height:20px}
+textarea{width:100%;min-height:92px;padding:10px 12px;resize:vertical}#compose .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+#list{overflow:auto;padding:8px 16px 20px;flex:1}.note{display:grid;grid-template-columns:112px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.note img{width:112px;border-radius:6px;cursor:pointer;display:block;background:#000}.note .t{font-size:13px;color:var(--accent);cursor:pointer}.note .x{font-size:13px;color:var(--dim);cursor:pointer;margin-left:10px}
+.note p{margin:4px 0 0;white-space:pre-wrap}.note.done p{color:var(--dim);text-decoration:line-through}.empty{color:var(--dim);padding:18px 0}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ok);color:#0c1a10;padding:10px 16px;border-radius:10px;font-weight:650;display:none}
+</style></head><body>
+<header><span class="brand"><img src="/logo/take-one-logo.svg" alt="Take One"><h1>Review room</h1></span><label>Cut <select id="cut"></select></label><label>Compare with <select id="cmp"><option value="">nothing</option></select></label><span style="flex:1"></span><button class="go" id="send">Send notes to Claude</button></header>
+<main><section id="left">
+  <div id="stage"><div class="vid"><video id="v" playsinline preload="auto"></video><div id="hit"></div><div class="tag" id="tagA"></div></div>
+    <div class="vid" id="boxB" style="display:none"><video id="w" playsinline muted preload="auto"></video><div class="tag" id="tagB"></div></div></div>
+  <div id="bar"><button id="play">Play</button><button id="back" title="one frame back">&#9664; frame</button><button id="fwd" title="one frame forward">frame &#9654;</button>
+    <div id="seekwrap"><div id="marks"></div><input id="seek" type="range" min="0" max="1" step="0.001" value="0"></div><span id="time"></span></div>
+  <div id="hint">Click anywhere on the picture to pin a note to that spot on that frame. Space plays and pauses. The arrow keys move one frame.</div>
+</section>
+<aside id="right"><div id="compose"><div id="where">Click on the picture, or write a note about the whole film.</div>
+  <textarea id="text" placeholder="What should change here?"></textarea>
+  <div class="row"><button class="go" id="add">Save note</button><button id="nopin">Note on this frame, no pin</button><button id="whole">Note on the whole film</button></div></div>
+  <div id="list"></div></aside></main><div id="toast"></div>
+<script>
+const $=(id)=>document.getElementById(id),v=$('v'),w=$('w'),FPS=30;let cuts=[],notes=[],pin=null,mode='pin';
+const fmt=(t)=>{const m=Math.floor(t/60),s=t-m*60;return m+':'+s.toFixed(2).padStart(5,'0');};
+const api=(p,o)=>fetch(p,o).then((r)=>r.json());
+const toast=(s)=>{const t=$('toast');t.textContent=s;t.style.display='block';clearTimeout(toast.k);toast.k=setTimeout(()=>t.style.display='none',2600);};
+async function boot(){cuts=await api('/api/cuts');for(const c of cuts){$('cut').add(new Option(c.name.replace('.mp4',''),c.name));$('cmp').add(new Option(c.name.replace('.mp4',''),c.name));}
+  const want=localStorage.getItem('rr-cut');if(want&&cuts.some((c)=>c.name===want))$('cut').value=want;setCut();await refresh();}
+function setCut(){v.src='/video/'+encodeURIComponent($('cut').value);$('tagA').textContent=$('cut').value.replace('.mp4','');localStorage.setItem('rr-cut',$('cut').value);clearPin();draw();}
+function setCmp(){const n=$('cmp').value;$('boxB').style.display=n?'':'none';$('stage').className=n?'two':'';if(n){w.src='/video/'+encodeURIComponent(n);$('tagB').textContent=n.replace('.mp4','')+' (compare)';w.currentTime=v.currentTime;}else w.removeAttribute('src');}
+async function refresh(){notes=(await api('/api/notes')).notes;draw();}
+function mine(){return notes.filter((n)=>n.cut===$('cut').value).sort((a,b)=>(a.t??-1)-(b.t??-1));}
+function draw(){const L=$('list');L.innerHTML='';const ns=mine();if(!ns.length)L.innerHTML='<div class="empty">No notes on this cut yet.</div>';
+  for(const n of ns){const d=document.createElement('div');d.className='note'+(n.done?' done':'');
+    const im=n.shot?`<img src="/${n.shot}?${n.id}">`:'<div></div>',when=n.t===null?'whole film':fmt(n.t)+(n.x===null?'':' · pinned');
+    d.innerHTML=`${im}<div><span class="t">${when}</span><span class="x" data-a="done">${n.done?'reopen':'mark done'}</span><span class="x" data-a="del">delete</span><p></p></div>`;d.querySelector('p').textContent=n.text;
+    const jump=()=>{if(n.t!==null){v.pause();v.currentTime=n.t;showPin(n.x,n.y);}};d.querySelector('.t').onclick=jump;if(n.shot)d.querySelector('img').onclick=jump;
+    d.querySelector('[data-a=del]').onclick=async()=>{await fetch('/api/notes/'+n.id,{method:'DELETE'});refresh();};
+    d.querySelector('[data-a=done]').onclick=async()=>{await api('/api/notes/'+n.id,{method:'POST',body:JSON.stringify({done:!n.done})});refresh();};L.appendChild(d);}
+  const M=$('marks');M.innerHTML='';if(v.duration)for(const n of ns)if(n.t!==null){const i=document.createElement('i');i.style.left=(n.t/v.duration*100)+'%';if(n.done)i.className='done';M.appendChild(i);}}
+function showPin(x,y){document.querySelectorAll('.pin').forEach((p)=>p.remove());if(x===null||x===undefined)return;const p=document.createElement('div');p.className='pin';p.style.left=x*100+'%';p.style.top=y*100+'%';$('hit').appendChild(p);}
+function clearPin(){pin=null;mode='pin';showPin(null);$('where').textContent='Click on the picture, or write a note about the whole film.';}
+$('hit').onclick=(e)=>{const r=$('hit').getBoundingClientRect();v.pause();pin={x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height};mode='pin';showPin(pin.x,pin.y);$('where').textContent='Note pinned at '+fmt(v.currentTime);$('text').focus();};
+$('nopin').onclick=()=>{v.pause();pin=null;mode='frame';showPin(null);$('where').textContent='Note on the frame at '+fmt(v.currentTime);$('text').focus();};
+$('whole').onclick=()=>{pin=null;mode='whole';showPin(null);$('where').textContent='Note on the whole film';$('text').focus();};
+function shot(){const c=document.createElement('canvas');c.width=960;c.height=540;const g=c.getContext('2d');g.drawImage(v,0,0,960,540);
+  if(pin){g.lineWidth=5;g.strokeStyle='#fff';g.fillStyle='#d97757';g.beginPath();g.arc(pin.x*960,pin.y*540,16,0,7);g.fill();g.stroke();}return c.toDataURL('image/jpeg',0.85);}
+async function add(){const text=$('text').value.trim();if(!text){$('text').focus();return;}if(mode==='pin'&&!pin)mode=v.paused&&v.currentTime>0?'frame':'whole';
+  const b={cut:$('cut').value,text};if(mode!=='whole'){b.t=v.currentTime;b.shot=shot();if(pin){b.x=pin.x;b.y=pin.y;}}
+  await api('/api/notes',{method:'POST',body:JSON.stringify(b)});$('text').value='';clearPin();await refresh();toast('Note saved');}
+$('add').onclick=add;$('text').addEventListener('keydown',(e)=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();add();}});
+$('send').onclick=async()=>{await api('/api/send',{method:'POST',body:JSON.stringify({cut:$('cut').value})});toast('Sent. Claude can read your notes now.');};
+const step=(d)=>{v.pause();v.currentTime=Math.max(0,Math.min(v.duration||0,Math.round(v.currentTime*FPS+d)/FPS));};
+$('play').onclick=()=>v.paused?v.play():v.pause();$('back').onclick=()=>step(-1);$('fwd').onclick=()=>step(1);
+$('seek').oninput=()=>{v.currentTime=$('seek').value*(v.duration||0);};
+v.onplay=()=>{$('play').textContent='Pause';showPin(null);if(w.src){w.currentTime=v.currentTime;w.play();}};v.onpause=()=>{$('play').textContent='Play';if(w.src){w.pause();w.currentTime=v.currentTime;}};
+v.onseeked=()=>{if(w.src&&v.paused)w.currentTime=v.currentTime;};v.onloadedmetadata=draw;
+v.ontimeupdate=()=>{$('seek').value=v.duration?v.currentTime/v.duration:0;$('time').textContent=fmt(v.currentTime)+' / '+fmt(v.duration||0)+' · frame '+Math.round(v.currentTime*FPS);};
+$('cut').onchange=()=>{setCut();};$('cmp').onchange=setCmp;
+document.addEventListener('keydown',(e)=>{if(e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT')return;if(e.code==='Space'){e.preventDefault();$('play').onclick();}if(e.key==='ArrowLeft'){e.preventDefault();step(e.shiftKey?-FPS:-1);}if(e.key==='ArrowRight'){e.preventDefault();step(e.shiftKey?FPS:1);}});
+boot();
+</script></body></html>

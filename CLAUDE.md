@@ -323,6 +323,23 @@ novel writing phase) so the right DNA is in context.
   `[male mid-baritone, weary, dry close-mic]` is permitted; the character
   form `[Container]` is forbidden by `voice-craft-principles.md`.
 
+## Video domain (music videos per song)
+
+Three external repos are ported unchanged under `skills/video/` (provenance and
+licences: [`skills/video/README.md`](skills/video/README.md)):
+
+- `take-one/` — the process: song → music video, critic before animation, fresh
+  reviewer per round, review room, gate / text / audio audits.
+- `claude-animation-base/` — the medium: painted 2D (p5.js + p5.brush).
+- `higgsfield-video-engineer/` — `tools/beatmap.py` for bars and drops; optional
+  path tracer for stills.
+
+The pipeline built on them is planned in
+[`Plan/140-video-domain/spec.md`](Plan/140-video-domain/spec.md); album-specific
+video concepts live in the album folder (`VIDEO-CONCEPT.md`). For an Agency System
+album, run the gate skill `skills/theagencysystem/` first — name_exposure and the
+album's depiction rules apply to every frame.
+
 ## Jules orchestration plugin
 
 The Jules orchestrator allows for multi-agent asynchronous coding sessions.

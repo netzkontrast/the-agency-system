@@ -1,0 +1,641 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Paper Boat — dark premium</title>
+<style>
+  html,body{margin:0;padding:0;background:#000;}
+  #c{display:block;width:1280px;height:720px;}
+</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W = 1280, H = 720;
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+const PAPER_LIT = '#F4E9D0';
+
+// ---------- seeded PRNG ----------
+function mulberry32(a){
+  return function(){
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// ---------- shared pieces ----------
+let grainCanvas = null;
+function grain(alpha){
+  if (!grainCanvas){
+    grainCanvas = document.createElement('canvas');
+    grainCanvas.width = W; grainCanvas.height = H;
+    const gctx = grainCanvas.getContext('2d');
+    const img = gctx.createImageData(W, H);
+    const r = mulberry32(1234567);
+    for (let i = 0; i < img.data.length; i += 4){
+      const v = (r() * 255) | 0;
+      img.data[i] = v; img.data[i+1] = v; img.data[i+2] = v;
+      img.data[i+3] = 255;
+    }
+    gctx.putImageData(img, 0, 0);
+  }
+  ctx.save();
+  ctx.globalCompositeOperation = 'overlay';
+  ctx.globalAlpha = alpha;
+  ctx.drawImage(grainCanvas, 0, 0);
+  ctx.restore();
+}
+
+function vignette(strength){
+  const g = ctx.createRadialGradient(W/2, H/2, H*0.35, W/2, H/2, H*1.05);
+  g.addColorStop(0, 'rgba(0,0,0,0)');
+  g.addColorStop(1, 'rgba(0,0,0,' + strength + ')');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function glow(x, y, r, color, a){
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+  g.addColorStop(0, color.replace('A)', a + ')'));
+  g.addColorStop(0.4, color.replace('A)', (a * 0.4).toFixed(3) + ')'));
+  g.addColorStop(0.75, color.replace('A)', (a * 0.12).toFixed(3) + ')'));
+  g.addColorStop(1, color.replace('A)', '0)'));
+  ctx.fillStyle = g;
+  ctx.fillRect(x - r, y - r, r * 2, r * 2);
+  ctx.restore();
+}
+const GOLD_A = 'rgba(245,181,68,A)';
+const WARM_A = 'rgba(255,220,150,A)';
+
+// soft-edged cloud puff (no hard ellipse edges)
+function puff(x, y, rx, ry, rgb, a, comp){
+  ctx.save();
+  if (comp) ctx.globalCompositeOperation = comp;
+  ctx.translate(x, y);
+  ctx.scale(1, ry / rx);
+  const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+  g.addColorStop(0, 'rgba(' + rgb + ',' + a + ')');
+  g.addColorStop(0.6, 'rgba(' + rgb + ',' + (a * 0.45).toFixed(3) + ')');
+  g.addColorStop(1, 'rgba(' + rgb + ',0)');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(0, 0, rx, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+
+function monoLabel(text, x, y){
+  ctx.save();
+  ctx.font = '15px "SF Mono", Menlo, "Courier New", monospace';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = 'rgba(244,241,234,0.45)';
+  ctx.fillText(text, x, y);
+  ctx.fillStyle = 'rgba(245,181,68,0.8)';
+  ctx.fillRect(x - 18, y - 11, 8, 2);
+  ctx.restore();
+}
+
+// ---------- the paper boat ----------
+// origin: waterline center. s = half-width of hull in px. rot in radians.
+function drawBoat(s, x, y, rot, lightDir, lanternA){
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(rot);
+  ctx.scale(s, s);
+  ctx.lineJoin = 'round';
+
+  const hull = () => {
+    ctx.beginPath();
+    ctx.moveTo(-1, 0);
+    ctx.lineTo(-0.52, 0.42);
+    ctx.lineTo(0.52, 0.42);
+    ctx.lineTo(1, 0);
+    ctx.closePath();
+  };
+  const sail = () => {
+    ctx.beginPath();
+    ctx.moveTo(-0.44, -0.02);
+    ctx.lineTo(0.44, -0.02);
+    ctx.lineTo(0.02, -0.92);
+    ctx.closePath();
+  };
+
+  const hullGrad = ctx.createLinearGradient(-1 * lightDir, 0, 1 * lightDir, 0);
+  hullGrad.addColorStop(0, '#6b5f46');
+  hullGrad.addColorStop(0.55, '#bfae84');
+  hullGrad.addColorStop(1, PAPER_LIT);
+  const sailGrad = ctx.createLinearGradient(-0.5 * lightDir, -0.4, 0.5 * lightDir, -0.4);
+  sailGrad.addColorStop(0, '#77694d');
+  sailGrad.addColorStop(0.55, '#cbbd94');
+  sailGrad.addColorStop(1, '#f7ecd2');
+
+  sail();
+  ctx.fillStyle = sailGrad;
+  ctx.fill();
+  // sail center fold: shaded half (away from the light)
+  ctx.beginPath();
+  ctx.moveTo(0.02, -0.92);
+  if (lightDir > 0){ ctx.lineTo(-0.44, -0.02); ctx.lineTo(0.02, -0.02); }
+  else { ctx.lineTo(0.44, -0.02); ctx.lineTo(0.02, -0.02); }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(20,16,10,0.32)';
+  ctx.fill();
+
+  hull();
+  ctx.fillStyle = hullGrad;
+  ctx.fill();
+  // gunwale crease highlight, only on the lit half so it never reads as a blade
+  ctx.beginPath();
+  if (lightDir > 0){ ctx.moveTo(1, 0); ctx.lineTo(-0.25, 0); }
+  else { ctx.moveTo(-1, 0); ctx.lineTo(0.25, 0); }
+  ctx.strokeStyle = 'rgba(255,235,190,0.7)';
+  ctx.lineWidth = 0.035;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(-0.96, 0.04); ctx.lineTo(0.96, 0.04);
+  ctx.strokeStyle = 'rgba(15,12,8,0.45)';
+  ctx.lineWidth = 0.03;
+  ctx.stroke();
+
+  // gold rim light on the lit edges
+  ctx.strokeStyle = 'rgba(245,181,68,0.95)';
+  ctx.lineWidth = 0.05;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  if (lightDir > 0){
+    ctx.moveTo(1, 0); ctx.lineTo(0.52, 0.42);
+    ctx.moveTo(0.44, -0.02); ctx.lineTo(0.02, -0.92);
+  } else {
+    ctx.moveTo(-1, 0); ctx.lineTo(-0.52, 0.42);
+    ctx.moveTo(-0.44, -0.02); ctx.lineTo(0.02, -0.92);
+  }
+  ctx.stroke();
+
+  ctx.restore();
+
+  // lantern at sail peak (world coords) — kept tight so paper still reads
+  const px = x + Math.cos(rot) * (0.02 * s) - Math.sin(rot) * (-0.92 * s);
+  const py = y + Math.sin(rot) * (0.02 * s) + Math.cos(rot) * (-0.92 * s);
+  if (lanternA > 0){
+    glow(px, py, s * 0.95, WARM_A, 0.30 * lanternA);
+    glow(px, py, s * 0.26, 'rgba(255,240,200,A)', 0.85 * lanternA);
+    ctx.save();
+    ctx.fillStyle = '#FFE9B8';
+    ctx.beginPath();
+    ctx.arc(px, py, Math.max(1.6, s * 0.05), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+  return { px, py };
+}
+
+// ---------- FRAME A : setting out ----------
+function frameA(){
+  const rnd = mulberry32(20260928);
+  ctx.clearRect(0, 0, W, H);
+
+  const HOR = 452;
+
+  // sky: cold night-into-dawn from top, warming faintly near the horizon
+  const sky = ctx.createLinearGradient(0, 0, 0, HOR);
+  sky.addColorStop(0, '#0B0B10');
+  sky.addColorStop(0.62, '#12121a');
+  sky.addColorStop(1, '#1d1a20');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, W, HOR + 1);
+
+  // low morning sun, right of center, hazy
+  const sunX = 905, sunY = HOR - 30;
+  glow(sunX, sunY, 460, GOLD_A, 0.14);
+  glow(sunX, sunY, 200, GOLD_A, 0.20);
+  glow(sunX, sunY, 66, GOLD_A, 0.4);
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  ctx.fillStyle = 'rgba(255,172,66,1)';
+  ctx.beginPath(); ctx.arc(sunX, sunY, 14, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+
+  // soft stratus haze: long low puffs, warm near the sun, cold elsewhere
+  for (let i = 0; i < 22; i++){
+    const cx = rnd() * (W + 300) - 150;
+    const cy = 60 + rnd() * (HOR - 140);
+    const rx = 130 + rnd() * 260;
+    const ry = 9 + rnd() * 20;
+    const near = Math.max(0, 1 - Math.hypot(cx - sunX, (cy - sunY) * 2.4) / 680);
+    if (near > 0.2) puff(cx, cy, rx, ry, '245,181,68', 0.035 + near * 0.05, 'lighter');
+    else puff(cx, cy, rx, ry, '38,44,58', 0.05 + rnd() * 0.05);
+  }
+  // one soft dark band crossing the sun (hazy dawn cloud)
+  puff(sunX + 30, sunY - 12, 220, 10, '10,10,15', 0.5);
+
+  // horizon
+  ctx.save();
+  ctx.strokeStyle = 'rgba(244,241,234,0.13)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, HOR); ctx.lineTo(W, HOR); ctx.stroke();
+  ctx.restore();
+
+  // sea
+  const sea = ctx.createLinearGradient(0, HOR, 0, H);
+  sea.addColorStop(0, '#131522');
+  sea.addColorStop(0.5, '#0d0e16');
+  sea.addColorStop(1, '#07070b');
+  ctx.fillStyle = sea;
+  ctx.fillRect(0, HOR, W, H - HOR);
+
+  // sun's reflection column: vertical shimmer under the sun, widening toward viewer
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 300; i++){
+    const t = rnd();
+    const yy = HOR + 3 + t * t * (H - HOR - 6);
+    const spread = 16 + t * 130;
+    const xx = sunX + (rnd() * 2 - 1) * spread;
+    const len = 5 + (6 + t * 60) * rnd();
+    const a = (1 - t * 0.75) * 0.26;
+    ctx.strokeStyle = 'rgba(245,190,90,' + (a * (0.35 + rnd() * 0.65)).toFixed(3) + ')';
+    ctx.lineWidth = 1 + t * 2;
+    ctx.beginPath();
+    ctx.moveTo(xx - len / 2, yy);
+    ctx.lineTo(xx + len / 2, yy);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // faint cold ambient streaks across the rest of the water
+  ctx.save();
+  for (let i = 0; i < 110; i++){
+    const t = rnd();
+    const yy = HOR + 6 + t * t * (H - HOR - 12);
+    const xx = rnd() * W;
+    const len = 10 + t * 70 * rnd();
+    ctx.strokeStyle = 'rgba(107,122,148,' + (0.045 + t * 0.05).toFixed(3) + ')';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(xx - len/2, yy); ctx.lineTo(xx + len/2, yy); ctx.stroke();
+  }
+  ctx.restore();
+
+  // ---- the boat, lower-left third, heading right, bow lifted a touch
+  const bx = 392, by = 570, bs = 88, brot = -0.06;
+
+  glow(bx, by - 30, 260, GOLD_A, 0.065); // soft wide hero halo, no visible edge
+
+  drawBoat(bs, bx, by, brot, +1, 0.8);
+
+  // waterline contact: dark cut where hull sits in water
+  ctx.save();
+  ctx.fillStyle = 'rgba(5,5,8,0.55)';
+  ctx.beginPath();
+  ctx.ellipse(bx, by + 38, bs * 0.72, 9, brot, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+  // reflection: faint inverted boat
+  ctx.save();
+  ctx.globalAlpha = 0.15;
+  ctx.translate(bx, by + 46);
+  ctx.scale(1, -0.5);
+  ctx.translate(-bx, -(by + 2));
+  drawBoat(bs, bx, by, -brot, +1, 0);
+  ctx.restore();
+
+  // gold shimmer beneath + a broken dash-wake trailing behind (left)
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 30; i++){
+    const yy = by + 48 + rnd() * 80;
+    const xx = bx + (rnd() * 2 - 1) * 66;
+    const len = 8 + rnd() * 36;
+    ctx.strokeStyle = 'rgba(245,181,68,' + (0.06 + rnd() * 0.15).toFixed(3) + ')';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(xx - len/2, yy); ctx.lineTo(xx + len/2, yy); ctx.stroke();
+  }
+  for (let i = 0; i < 26; i++){
+    const t = rnd();
+    const xx = bx - bs * 0.9 - t * 260;
+    const yy = by + 34 + t * 26 + (rnd() * 2 - 1) * 8;
+    const len = 6 + rnd() * 24 * (1 - t * 0.6);
+    ctx.strokeStyle = 'rgba(245,181,68,' + ((1 - t) * (0.08 + rnd() * 0.16)).toFixed(3) + ')';
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(xx - len/2, yy); ctx.lineTo(xx + len/2, yy); ctx.stroke();
+  }
+  ctx.restore();
+
+  // air motes in the morning light
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 46; i++){
+    const xx = rnd() * W, yy = rnd() * HOR;
+    const near = Math.max(0, 1 - Math.hypot(xx - sunX, (yy - sunY) * 1.6) / 560);
+    ctx.fillStyle = 'rgba(255,220,150,' + (0.025 + near * 0.15 * rnd()).toFixed(3) + ')';
+    ctx.beginPath(); ctx.arc(xx, yy, 0.8 + rnd() * 1.3, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+
+  monoLabel('// 01 · setting out', 66, 64);
+
+  grain(0.10);
+  vignette(0.5);
+}
+
+// ---------- FRAME B : the storm peak ----------
+function frameB(){
+  const rnd = mulberry32(9091126);
+  ctx.clearRect(0, 0, W, H);
+
+  // base: cold storm dark
+  const base = ctx.createLinearGradient(0, 0, 0, H);
+  base.addColorStop(0, '#0e0f16');
+  base.addColorStop(0.5, '#0b0c12');
+  base.addColorStop(1, '#07070a');
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, W, H);
+
+  // churning cloud masses: soft puffs only
+  for (let i = 0; i < 70; i++){
+    const cx = rnd() * (W + 400) - 200;
+    const cy = rnd() * 340 - 40;
+    const rx = 120 + rnd() * 260;
+    const ry = 34 + rnd() * 70;
+    const dark = rnd() < 0.55;
+    puff(cx, cy, rx, ry, dark ? '16,19,28' : '36,43,58', 0.06 + rnd() * 0.09);
+  }
+
+  // gold break in the clouds, upper-left (source of the one light)
+  const gapX = 300, gapY = 70;
+  glow(gapX, gapY, 340, GOLD_A, 0.20);
+  glow(gapX, gapY, 150, WARM_A, 0.26);
+  puff(gapX - 220, gapY + 30, 240, 60, '9,11,17', 0.5);
+  puff(gapX + 260, gapY + 12, 280, 66, '9,11,17', 0.5);
+  puff(gapX + 20, gapY - 55, 260, 50, '9,11,17', 0.4);
+
+  // distant raging sea behind the wave
+  const sea = ctx.createLinearGradient(0, 400, 0, H);
+  sea.addColorStop(0, 'rgba(11,12,18,0)');
+  sea.addColorStop(0.35, 'rgba(9,10,15,0.85)');
+  sea.addColorStop(1, 'rgba(7,7,11,1)');
+  ctx.fillStyle = sea;
+  ctx.fillRect(0, 400, W, H - 400);
+  // distant swell humps on the left, faintly rimmed
+  const swells = [
+    { x0: -80, y: 470, x1: 420, h: 26 },
+    { x0: -40, y: 520, x1: 560, h: 34 }
+  ];
+  for (const s of swells){
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(s.x0, s.y + 60);
+    ctx.quadraticCurveTo((s.x0 + s.x1) / 2, s.y - s.h, s.x1, s.y + 60);
+    ctx.closePath();
+    ctx.fillStyle = '#0b0d15';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(150,165,190,0.045)';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(s.x0, s.y + 58);
+    ctx.quadraticCurveTo((s.x0 + s.x1) / 2, s.y - s.h, s.x1, s.y + 58);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // ---- THE WAVE: huge diagonal mass from upper right,
+  //      concave face and a lip curling over the boat
+  const LIP = [640, 330]; // lip tip
+  const wavePath = () => {
+    ctx.beginPath();
+    ctx.moveTo(1330, 190);
+    ctx.quadraticCurveTo(1150, 138, 980, 122);       // back ridge
+    ctx.quadraticCurveTo(878, 112, 790, 150);        // shoulder
+    ctx.bezierCurveTo(706, 176, 632, 224, LIP[0], LIP[1]); // curl over
+    ctx.bezierCurveTo(692, 408, 610, 500, 476, 585); // concave face under the lip
+    ctx.quadraticCurveTo(392, 646, 344, 730);        // base runs off bottom-left
+    ctx.lineTo(1330, 730);
+    ctx.closePath();
+  };
+  wavePath();
+  const wgr = ctx.createLinearGradient(560, 240, 1220, 700);
+  wgr.addColorStop(0, '#252c40');
+  wgr.addColorStop(0.4, '#161b28');
+  wgr.addColorStop(1, '#0a0b11');
+  ctx.fillStyle = wgr;
+  ctx.fill();
+
+  // face texture: streaks following the face + sheen where the light grazes it
+  ctx.save();
+  wavePath();
+  ctx.clip();
+  for (let i = 0; i < 120; i++){
+    const x0 = 440 + rnd() * 860, y0 = 150 + rnd() * 560;
+    const len = 40 + rnd() * 170;
+    const cold = rnd() < 0.7;
+    ctx.strokeStyle = cold
+      ? 'rgba(120,138,168,' + (0.05 + rnd() * 0.09).toFixed(3) + ')'
+      : 'rgba(245,181,68,' + (0.03 + rnd() * 0.06).toFixed(3) + ')';
+    ctx.lineWidth = 1 + rnd() * 2.2;
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.quadraticCurveTo(x0 - len * 0.2, y0 + len * 0.5, x0 - len * 0.5, y0 + len);
+    ctx.stroke();
+  }
+  ctx.globalCompositeOperation = 'lighter';
+  const sheen = ctx.createLinearGradient(470, 560, 760, 320);
+  sheen.addColorStop(0, 'rgba(245,181,68,0.11)');
+  sheen.addColorStop(1, 'rgba(245,181,68,0)');
+  ctx.fillStyle = sheen;
+  ctx.fillRect(360, 220, 480, 500);
+  // shadow under the curling lip
+  ctx.globalCompositeOperation = 'source-over';
+  puff(700, 380, 140, 70, '4,5,8', 0.5);
+  ctx.restore();
+
+  // crest rim light: bright around the lip where the light catches it
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  const rim = () => {
+    ctx.beginPath();
+    ctx.moveTo(1330, 190);
+    ctx.quadraticCurveTo(1150, 138, 980, 122);
+    ctx.quadraticCurveTo(878, 112, 790, 150);
+    ctx.bezierCurveTo(706, 176, 632, 224, LIP[0], LIP[1]);
+  };
+  for (let pass = 0; pass < 3; pass++){
+    rim();
+    const along = ctx.createLinearGradient(1200, 150, LIP[0], LIP[1]);
+    const peak = [0.16, 0.36, 0.9][pass];
+    along.addColorStop(0, 'rgba(160,175,200,' + (0.04 * peak).toFixed(3) + ')');
+    along.addColorStop(0.55, 'rgba(245,181,68,' + (0.30 * peak).toFixed(3) + ')');
+    along.addColorStop(1, 'rgba(255,232,175,' + (0.95 * peak).toFixed(3) + ')');
+    ctx.strokeStyle = along;
+    ctx.lineWidth = [15, 6.5, 2.4][pass];
+    ctx.lineCap = 'round';
+    ctx.stroke();
+  }
+  // faint continuation of the rim down the concave face
+  ctx.beginPath();
+  ctx.moveTo(LIP[0], LIP[1]);
+  ctx.bezierCurveTo(692, 408, 610, 500, 476, 585);
+  ctx.strokeStyle = 'rgba(245,181,68,0.16)';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  ctx.restore();
+
+  // foam boiling at the lip + spray falling toward the boat
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 60; i++){
+    const t = rnd();
+    // along the curl from shoulder to lip tip
+    const cx = 790 + (LIP[0] - 790) * t + (rnd() * 2 - 1) * 22;
+    const cy = 150 + (LIP[1] - 150) * (t * t) + (rnd() * 2 - 1) * 14;
+    const hot = t > 0.55;
+    puff(cx, cy, 7 + rnd() * 22, 5 + rnd() * 11,
+         hot ? '255,228,175' : '185,198,218', (hot ? 0.13 : 0.07) + rnd() * 0.10, 'lighter');
+  }
+  // heavy clot right at the tip
+  puff(LIP[0] - 4, LIP[1] + 2, 30, 18, '255,232,185', 0.28, 'lighter');
+  puff(LIP[0] - 18, LIP[1] + 16, 20, 12, '255,232,185', 0.20, 'lighter');
+  // spray falling from the lip toward the boat below
+  for (let i = 0; i < 150; i++){
+    const t = rnd();
+    const xx = LIP[0] - 10 - t * (150 + rnd() * 60) + (rnd() * 2 - 1) * 26;
+    const yy = LIP[1] + t * (230 + rnd() * 60) + (rnd() * 2 - 1) * 20;
+    const gold = rnd() < 0.55;
+    ctx.fillStyle = gold
+      ? 'rgba(255,222,155,' + ((0.28 - t * 0.18) * (0.4 + rnd() * 0.6)).toFixed(3) + ')'
+      : 'rgba(190,204,224,' + ((0.16 - t * 0.10) * (0.4 + rnd() * 0.6)).toFixed(3) + ')';
+    ctx.beginPath();
+    ctx.arc(xx, yy, 0.7 + rnd() * 2.0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  // wind-blown spray off the back ridge
+  for (let i = 0; i < 60; i++){
+    const t = rnd();
+    const cx = 980 + t * 330, cy = 122 + t * 62;
+    const d = rnd() * 70;
+    ctx.fillStyle = 'rgba(185,200,220,' + (0.04 + rnd() * 0.10).toFixed(3) + ')';
+    ctx.beginPath();
+    ctx.arc(cx - d * 0.9, cy - d * 0.3 + rnd() * 20, 0.6 + rnd() * 1.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+
+  // ---- the ONE light: soft beam from the break, falling on the boat.
+  // Drawn on an offscreen so BOTH the sides and the ends fade out softly.
+  const bmx0 = gapX, bmy0 = gapY, bmx1 = 470, bmy1 = 600;
+  const bc = document.createElement('canvas');
+  bc.width = W; bc.height = H;
+  const bctx = bc.getContext('2d');
+  const mx = (bmx0 + bmx1) / 2, my = (bmy0 + bmy1) / 2;
+  let pdx = (bmy1 - bmy0), pdy = -(bmx1 - bmx0);
+  const pl = Math.hypot(pdx, pdy); pdx /= pl; pdy /= pl;
+  const halfW = 150;
+  const cross = bctx.createLinearGradient(mx - pdx * halfW, my - pdy * halfW,
+                                          mx + pdx * halfW, my + pdy * halfW);
+  cross.addColorStop(0, 'rgba(245,181,68,0)');
+  cross.addColorStop(0.5, 'rgba(245,181,68,0.14)');
+  cross.addColorStop(1, 'rgba(245,181,68,0)');
+  bctx.fillStyle = cross;
+  bctx.beginPath();
+  bctx.moveTo(bmx0 - 170, bmy0 - 60);
+  bctx.lineTo(bmx0 + 170, bmy0 - 60);
+  bctx.lineTo(bmx1 + 310, bmy1 + 90);
+  bctx.lineTo(bmx1 - 310, bmy1 + 110);
+  bctx.closePath();
+  bctx.fill();
+  // fade the beam lengthwise (soft birth at the gap, soft death past the boat)
+  bctx.globalCompositeOperation = 'destination-in';
+  const lng = bctx.createLinearGradient(bmx0, bmy0 - 60, bmx1, bmy1 + 100);
+  lng.addColorStop(0, 'rgba(0,0,0,0)');
+  lng.addColorStop(0.14, 'rgba(0,0,0,1)');
+  lng.addColorStop(0.72, 'rgba(0,0,0,0.85)');
+  lng.addColorStop(1, 'rgba(0,0,0,0)');
+  bctx.fillStyle = lng;
+  bctx.fillRect(0, 0, W, H);
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  ctx.drawImage(bc, 0, 0);
+  // dust caught in the beam
+  for (let i = 0; i < 40; i++){
+    const t = rnd();
+    const xx = bmx0 + (bmx1 - bmx0) * t + (rnd() * 2 - 1) * (40 + t * 130);
+    const yy = bmy0 + (bmy1 - bmy0) * t + (rnd() * 2 - 1) * 24;
+    ctx.fillStyle = 'rgba(255,220,150,' + (0.03 + rnd() * 0.09 * (1 - t)).toFixed(3) + ')';
+    ctx.beginPath(); ctx.arc(xx, yy, 0.7 + rnd() * 1.3, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+
+  // ---- foreground trough in front of the boat
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, 616);
+  ctx.quadraticCurveTo(200, 584, 430, 610);
+  ctx.quadraticCurveTo(590, 630, 770, 688);
+  ctx.lineTo(W, 720); ctx.lineTo(0, 720);
+  ctx.closePath();
+  const fg = ctx.createLinearGradient(0, 584, 0, 720);
+  fg.addColorStop(0, '#171b28');
+  fg.addColorStop(1, '#050508');
+  ctx.fillStyle = fg;
+  ctx.fill();
+  ctx.clip();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 70; i++){
+    const xx = 200 + rnd() * 480, yy = 592 + rnd() * 120;
+    const near = Math.max(0, 1 - Math.abs(xx - 450) / 280);
+    const len = 6 + rnd() * 26;
+    ctx.strokeStyle = 'rgba(245,181,68,' + (0.04 + near * rnd() * 0.20).toFixed(3) + ')';
+    ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(xx - len/2, yy); ctx.lineTo(xx + len/2, yy); ctx.stroke();
+  }
+  ctx.restore();
+
+  // ---- the boat: small under the curling lip, climbing, still pointing forward
+  const bx = 455, by = 594, bs = 58, brot = -0.27;
+  glow(bx, by - 24, 130, GOLD_A, 0.13);
+  drawBoat(bs, bx, by, brot, -1, 0.95);
+  // the beam kisses the sail with gold
+  glow(bx - bs * 0.16, by - bs * 0.42, bs * 0.8, GOLD_A, 0.12);
+  // white water biting at the hull (kept off the paper itself)
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = 0; i < 20; i++){
+    const xx = bx - 52 + rnd() * 112;
+    const yy = by + 18 + rnd() * 12 - (xx - bx) * 0.26;
+    ctx.fillStyle = 'rgba(215,225,240,' + (0.10 + rnd() * 0.28).toFixed(3) + ')';
+    ctx.beginPath(); ctx.arc(xx, yy, 0.8 + rnd() * 2.4, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+
+  // rain: cold diagonal streaks
+  ctx.save();
+  ctx.strokeStyle = 'rgba(140,155,180,0.05)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 100; i++){
+    const xx = rnd() * (W + 200) - 100, yy = rnd() * H;
+    const len = 26 + rnd() * 60;
+    ctx.beginPath();
+    ctx.moveTo(xx, yy);
+    ctx.lineTo(xx - len * 0.42, yy + len);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  monoLabel('// 02 · the storm', 66, 64);
+
+  grain(0.12);
+  vignette(0.58);
+}
+
+window.drawFrame = function(which){
+  if (which === 'a') frameA(); else frameB();
+  window.DONE = true;
+};
+window.READY = true;
+</script>
+</body>
+</html>

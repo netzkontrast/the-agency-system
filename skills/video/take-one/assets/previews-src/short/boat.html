@@ -1,0 +1,437 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;background:#000}canvas{display:block}</style>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W = 1280, H = 720;
+const FH = Math.round(W / 2.39);          // 536 film height (2.39:1)
+const FY = Math.round((H - FH) / 2);      // 92 top bar
+const FB = FY + FH;                       // 628 film bottom
+const ctx = document.getElementById('c').getContext('2d');
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+let R = mulberry32(1);
+const rr = (a,b)=>a+R()*(b-a);
+
+function lin(x0,y0,x1,y1,stops){const g=ctx.createLinearGradient(x0,y0,x1,y1);for(const [o,c] of stops)g.addColorStop(o,c);return g}
+function rad(x,y,r,stops){const g=ctx.createRadialGradient(x,y,0,x,y,r);for(const [o,c] of stops)g.addColorStop(o,c);return g}
+
+// soft glowing dot (bloom in code)
+function glow(x,y,r,col,a){
+  ctx.fillStyle = rad(x,y,r,[[0,col.replace('A',a)],[0.4,col.replace('A',a*0.45)],[1,col.replace('A',0)]]);
+  ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill();
+}
+// soft-shaded puff (stylized-3D cloud lobe): vertical gradient top->bottom
+function puff(x,y,rx,ry,top,bot,a=1,rot=0){
+  ctx.save(); ctx.globalAlpha=a; ctx.translate(x,y); ctx.rotate(rot); ctx.scale(rx,ry);
+  const g=ctx.createLinearGradient(0,-1,0,1); g.addColorStop(0,top); g.addColorStop(1,bot);
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,1,0,7); ctx.fill(); ctx.restore();
+}
+// soft-edged elliptical blob: radial fade to transparent, optional rotation (no hard rims)
+function softblob(x,y,rx,ry,col,a,rot=0){
+  ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.scale(rx,ry);
+  const g=ctx.createRadialGradient(0,0,0,0,0,1);
+  g.addColorStop(0,col.replace('A',a)); g.addColorStop(0.55,col.replace('A',a*0.55)); g.addColorStop(1,col.replace('A',0));
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,1,0,7); ctx.fill(); ctx.restore();
+}
+// union of ellipse lobes as ONE path -> one fill, no internal edges
+function lobeUnion(L){
+  ctx.beginPath();
+  for(const [x,y,rx,ry] of L){ ctx.moveTo(x+rx,y); ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2); }
+}
+
+/* ---------- the paper boat (soft-3D shaded, no face, no limbs) ----------
+   local units: hull half-width 62, hull depth 30, sail apex -54.
+   pal = {litHull, shadeHull, litSail, shadeSail, rim, crease, rimW} ; light from the right when litOnRight */
+function drawBoat(pal){
+  // hull
+  const hull = ()=>{ctx.beginPath();ctx.moveTo(-62,0);ctx.lineTo(62,0);
+    ctx.quadraticCurveTo(52,24,34,30);ctx.lineTo(-34,30);ctx.quadraticCurveTo(-52,24,-62,0);ctx.closePath();};
+  hull();
+  ctx.fillStyle = lin(-62,0,62,0,[[0,pal.shadeHull],[0.55,pal.midHull],[1,pal.litHull]]);
+  ctx.fill();
+  // hull bottom occlusion (sits in water)
+  hull(); ctx.save(); ctx.clip();
+  ctx.fillStyle = lin(0,14,0,32,[[0,'rgba(0,0,0,0)'],[1,pal.occl]]);
+  ctx.fillRect(-70,10,140,24); ctx.restore();
+  // paper rim strip along the gunwale (the fold's top edge catches light)
+  ctx.beginPath(); ctx.moveTo(-62,0); ctx.lineTo(62,0); ctx.lineTo(55,5.5); ctx.lineTo(-55,5.5); ctx.closePath();
+  ctx.fillStyle = pal.rimStrip; ctx.fill();
+  // sail: two folded faces
+  ctx.beginPath(); ctx.moveTo(0,-54); ctx.lineTo(-28,0); ctx.lineTo(0,0); ctx.closePath();
+  ctx.fillStyle = pal.shadeSail; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(0,-54); ctx.lineTo(28,0); ctx.lineTo(0,0); ctx.closePath();
+  ctx.fillStyle = lin(0,-54,28,0,[[0,pal.litSail],[1,pal.litSail2]]);
+  ctx.fill();
+  // center crease
+  ctx.strokeStyle = pal.crease; ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.moveTo(0,-52); ctx.lineTo(0,-2); ctx.stroke();
+  // warm rim light on the lit edges (wide soft pass + thin bright pass)
+  for (const [w,a] of [[4.5,0.28],[1.8,0.9]]){
+    ctx.strokeStyle = pal.rim.replace('A',a); ctx.lineWidth=w; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(0,-54); ctx.lineTo(28,0); ctx.lineTo(62,0); ctx.stroke();
+  }
+  // faint cool edge on shadow side keeps the silhouette readable
+  ctx.strokeStyle = pal.coolEdge; ctx.lineWidth=1.4;
+  ctx.beginPath(); ctx.moveTo(0,-54); ctx.lineTo(-28,0); ctx.lineTo(-62,0); ctx.stroke();
+}
+
+function letterboxAndVignette(strength){
+  // gentle in-code vignette inside the film area
+  ctx.save(); ctx.beginPath(); ctx.rect(0,FY,W,FH); ctx.clip();
+  ctx.fillStyle = rad(W/2, FY+FH*0.52, W*0.72, [[0,'rgba(0,0,0,0)'],[0.72,'rgba(0,0,0,0)'],[1,'rgba(4,6,14,'+strength+')']]);
+  ctx.fillRect(0,FY,W,FH); ctx.restore();
+  // cinema bars
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,W,FY); ctx.fillRect(0,FB,W,H-FB);
+}
+
+/* =========================== FRAME A : setting out =========================== */
+function frameA(){
+  R = mulberry32(101);
+  ctx.clearRect(0,0,W,H);
+  ctx.save(); ctx.beginPath(); ctx.rect(0,FY,W,FH); ctx.clip();
+
+  const yh = FY + Math.round(FH*0.56);   // horizon 392
+  const sunX = 880, sunY = yh - 22;
+
+  // dawn sky: night violet still up high, pink dawn low
+  ctx.fillStyle = lin(0,FY,0,yh,[
+    [0,'#252a52'],[0.35,'#4a4470'],[0.62,'#8f6584'],[0.82,'#d18b88'],[1,'#f8b98d']]);
+  ctx.fillRect(0,FY,W,yh-FY);
+
+  // fading stars in the high night part
+  for(let i=0;i<70;i++){
+    const x=rr(0,W), y=FY+rr(4,170), a=(1-(y-FY)/175)*rr(0.25,0.9);
+    ctx.fillStyle='rgba(255,244,230,'+a.toFixed(3)+')';
+    const s=rr(0.6,1.5); ctx.beginPath(); ctx.arc(x,y,s,0,7); ctx.fill();
+    if(R()<0.12) glow(x,y,rr(4,7),'rgba(255,240,220,A)',0.35);
+  }
+
+  // sun bloom, then the risen sun
+  glow(sunX,sunY,300,'rgba(255,190,120,A)',0.5);
+  glow(sunX,sunY,140,'rgba(255,214,150,A)',0.7);
+  ctx.fillStyle = rad(sunX,sunY,30,[[0,'#fff4d8'],[0.7,'#ffd9a0'],[1,'rgba(255,205,140,0)']]);
+  ctx.beginPath(); ctx.arc(sunX,sunY,30,0,7); ctx.fill();
+
+  // far horizon cloud streaks (flat dawn bands)
+  for(let i=0;i<7;i++){
+    const y=yh-rr(14,70), w=rr(120,330), x=rr(-40,W-100), h=rr(4,9);
+    puff(x+w/2,y,w/2,h,'rgba(214,140,150,0.55)','rgba(255,190,150,0.65)');
+  }
+  // mid stylized clouds: one silhouette, one gradient, warm underlight clipped inside
+  const cloud=(cx,cy,s)=>{
+    const L=[[-1.5,0.15,0.9],[-0.9,-0.2,1.12],[-0.2,-0.38,1.28],[0.5,-0.3,1.18],[1.1,-0.05,1.0],[1.8,0.2,0.72]]
+      .map(([dx,dy,r])=>[cx+dx*46*s, cy+dy*40*s, 52*r*s, 34*r*s]);
+    lobeUnion(L);
+    ctx.fillStyle=lin(0,cy-58*s,0,cy+42*s,[[0,'#877aa8'],[0.55,'#bd8f9d'],[1,'#efad98']]);
+    ctx.fill();
+    ctx.save(); lobeUnion(L); ctx.clip();
+    ctx.fillStyle=rad(cx+34*s,cy+42*s,130*s,[[0,'rgba(255,206,160,0.7)'],[1,'rgba(255,206,160,0)']]);
+    ctx.fillRect(cx-170*s,cy-95*s,340*s,160*s);
+    ctx.restore();
+  };
+  cloud(230, FY+118, 1.15);
+  cloud(560, FY+70, 0.7);
+  cloud(1080, FY+150, 0.95);
+
+  // sea
+  ctx.fillStyle = lin(0,yh,0,FB,[
+    [0,'#e9a487'],[0.12,'#a97d92'],[0.35,'#5f5c8c'],[0.7,'#3b4270'],[1,'#2b3157']]);
+  ctx.fillRect(0,yh,W,FB-yh);
+  // horizon line softly lit
+  ctx.fillStyle='rgba(255,220,180,0.5)'; ctx.fillRect(0,yh-1,W,2);
+
+  // tiny far lighthouse on the right horizon (a home to come back to)
+  (function(){
+    const x=1168, base=yh+1;
+    ctx.fillStyle='#3a3350';
+    ctx.beginPath(); ctx.moveTo(x-6,base); ctx.lineTo(x-3.5,base-26); ctx.lineTo(x+3.5,base-26); ctx.lineTo(x+6,base); ctx.closePath(); ctx.fill();
+    ctx.fillRect(x-4.5,base-31,9,5);
+    glow(x,base-29,16,'rgba(255,220,150,A)',0.9);
+    ctx.fillStyle='#ffeebe'; ctx.beginPath(); ctx.arc(x,base-29,2.4,0,7); ctx.fill();
+  })();
+
+  // sun glitter path on the water (perspective widening dashes)
+  for(let i=0;i<64;i++){
+    const t=R(); const y=yh+4+t*t*(FB-yh-30);
+    const spread=26+(y-yh)*0.85, len=rr(6,16)+(y-yh)*0.12;
+    const x=sunX+rr(-1,1)*spread*rr(0.3,1);
+    ctx.fillStyle='rgba(255,'+Math.round(rr(200,230))+','+Math.round(rr(150,185))+','+rr(0.25,0.7).toFixed(2)+')';
+    ctx.fillRect(x-len/2,y,len,rr(1.2,2.6));
+  }
+  // gentle ripple bands
+  for(let i=0;i<46;i++){
+    const t=R(); const y=yh+8+t*t*(FB-yh-12);
+    const x=rr(-40,W), len=rr(40,150)+(y-yh)*0.5;
+    ctx.strokeStyle='rgba(20,22,52,'+rr(0.05,0.14).toFixed(2)+')';
+    ctx.lineWidth=rr(1,2.4); ctx.beginPath();
+    ctx.moveTo(x,y); ctx.quadraticCurveTo(x+len/2, y+rr(-3,3), x+len, y); ctx.stroke();
+  }
+
+  // ---- the boat, lower-left third, heading right into the light ----
+  const bx=386, by=506, sc=1.42, rot=-0.05;
+  // reflection (broken slices)
+  ctx.save(); ctx.translate(bx,by+16); ctx.scale(sc,-sc*0.42); ctx.globalAlpha=0.20;
+  for(let s=0;s<6;s++){
+    ctx.save(); ctx.beginPath(); ctx.rect(-80,-60+s*16,160,11); ctx.clip();
+    ctx.translate(rr(-4,4),0);
+    drawBoat({litHull:'#ffd9ae',midHull:'#e7b9a8',shadeHull:'#8f7f9d',occl:'rgba(30,25,60,0.4)',
+      rimStrip:'#ffe9c8',litSail:'#fff1d4',litSail2:'#ffd7a8',shadeSail:'#a493b2',
+      crease:'rgba(120,100,140,0.5)',rim:'rgba(255,225,170,A)',coolEdge:'rgba(90,80,130,0.5)'});
+    ctx.restore();
+  }
+  ctx.restore();
+  // contact shadow
+  ctx.fillStyle=rad(bx,by+40,110,[[0,'rgba(18,16,48,0.5)'],[1,'rgba(18,16,48,0)']]);
+  ctx.save(); ctx.translate(bx,by+40); ctx.scale(1,0.22); ctx.beginPath(); ctx.arc(0,0,110,0,7); ctx.fill(); ctx.restore();
+  // wake: a soft widening band fading behind (to the left)
+  ctx.save();
+  ctx.fillStyle = lin(bx-40,0,bx-250,0,[[0,'rgba(255,238,216,0.30)'],[0.5,'rgba(255,238,216,0.12)'],[1,'rgba(255,238,216,0)']]);
+  ctx.beginPath(); ctx.moveTo(bx-46,by+30);
+  ctx.quadraticCurveTo(bx-140,by+22, bx-250,by+18);
+  ctx.lineTo(bx-250,by+52); ctx.quadraticCurveTo(bx-140,by+48, bx-46,by+40);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+  for(let i=0;i<30;i++){ // foam speckles in the wake
+    const t=R(), x=bx-52-t*190, y=by+34+rr(-7,9)*(0.5+t);
+    ctx.fillStyle='rgba(255,240,220,'+(0.5*(1-t)).toFixed(2)+')';
+    ctx.beginPath(); ctx.arc(x,y,rr(0.7,2.2),0,7); ctx.fill();
+  }
+  // a couple of faint flat ripples just ahead of the bow
+  ctx.strokeStyle='rgba(255,236,214,0.22)'; ctx.lineWidth=1.6; ctx.lineCap='round';
+  for(const [dx,w] of [[105,42],[140,30]]){
+    ctx.beginPath(); ctx.moveTo(bx+dx,by+42);
+    ctx.quadraticCurveTo(bx+dx+w/2,by+38, bx+dx+w,by+42); ctx.stroke();
+  }
+  // the boat itself
+  ctx.save(); ctx.translate(bx,by); ctx.rotate(rot); ctx.scale(sc,sc);
+  drawBoat({litHull:'#ffe3ba',midHull:'#f2cdb4',shadeHull:'#9c8bab',occl:'rgba(40,32,70,0.45)',
+    rimStrip:'#fff3d9',litSail:'#fff8e6',litSail2:'#ffdfae',shadeSail:'#b3a3c2',
+    crease:'rgba(130,110,150,0.55)',rim:'rgba(255,214,150,A)',coolEdge:'rgba(105,95,145,0.6)'});
+  ctx.restore();
+
+  // soft warm grade drifting from the sun corner
+  ctx.fillStyle = rad(sunX,sunY,700,[[0,'rgba(255,180,110,0.10)'],[1,'rgba(255,180,110,0)']]);
+  ctx.fillRect(0,FY,W,FH);
+  ctx.restore();
+  letterboxAndVignette(0.5);
+}
+
+/* =========================== FRAME B : the storm peak =========================== */
+function frameB(){
+  R = mulberry32(202);
+  ctx.clearRect(0,0,W,H);
+  ctx.save(); ctx.beginPath(); ctx.rect(0,FY,W,FH); ctx.clip();
+
+  // storm sky, grey-green, very dark
+  ctx.fillStyle = lin(0,FY,0,FB,[[0,'#0d1416'],[0.45,'#1e2e2d'],[1,'#0c1413']]);
+  ctx.fillRect(0,FY,W,FH);
+
+  // heavy cloud ceiling: a few big masses, each ONE union path + one gradient
+  const mass=(cx,cy,s,n,lo)=>{
+    const L=[]; for(let i=0;i<n;i++)
+      L.push([cx+rr(-1.8,1.8)*60*s, cy+rr(-0.5,0.45)*44*s, rr(0.7,1.3)*62*s, rr(0.5,0.85)*44*s]);
+    lobeUnion(L);
+    ctx.fillStyle=lin(0,cy-62*s,0,cy+56*s,[[0,'#101a1c'],[1,lo||'#3a4e47']]);
+    ctx.fill(); return L;
+  };
+  const mL = mass(140, FY+50, 1.35, 8);
+  const mN = mass(450, FY+30, 1.25, 8);
+  mass(780, FY+45, 1.55, 9);
+  mass(1140, FY+70, 1.45, 9);
+  mass(950, FY+15, 1.3, 7);
+  mass(620, FY+128, 0.85, 6, '#2c3d38');
+  mass(60, FY+150, 0.7, 5, '#2c3d38');
+  // seal the very top so masses merge into one ceiling
+  ctx.fillStyle=lin(0,FY,0,FY+95,[[0,'#0c1517'],[0.5,'rgba(12,21,23,0.7)'],[1,'rgba(12,21,23,0)']]);
+  ctx.fillRect(0,FY,W,95);
+
+  // the break in the clouds, upper-left: one light fighting through
+  const LX=320, LY=FY+62;
+  ctx.save(); ctx.globalCompositeOperation='lighter';
+  glow(LX,LY,220,'rgba(238,222,176,A)',0.45);
+  glow(LX,LY,95,'rgba(250,240,205,A)',0.8);
+  ctx.restore();
+  // cloud edges catching the light, clipped inside the masses
+  for(const L of [mL,mN]){
+    ctx.save(); lobeUnion(L); ctx.clip();
+    ctx.fillStyle=rad(LX,LY+20,190,[[0,'rgba(238,224,180,0.5)'],[1,'rgba(238,224,180,0)']]);
+    ctx.fillRect(LX-220,LY-120,440,260); ctx.restore();
+  }
+
+  // dark open sea
+  ctx.fillStyle = lin(0,FY+290,0,FB,[[0,'#1a2928'],[1,'#0a1211']]);
+  ctx.fillRect(0,FY+290,W,FB-(FY+290));
+
+  // volumetric shaft: layered wedges, each fading out before it lands
+  ctx.save(); ctx.globalCompositeOperation='lighter';
+  const shaft=(hw0,xb0,xb1,a)=>{
+    ctx.fillStyle = lin(0,LY,0,585,[[0,'rgba(238,222,170,'+a+')'],[0.55,'rgba(238,222,170,'+(a*0.55)+')'],[1,'rgba(238,222,170,0)']]);
+    ctx.beginPath(); ctx.moveTo(LX-hw0,LY-14); ctx.lineTo(LX+hw0,LY-14);
+    ctx.lineTo(xb1,585); ctx.lineTo(xb0,585); ctx.closePath(); ctx.fill();
+  };
+  shaft(56, 120, 600, 0.07);
+  shaft(34, 180, 520, 0.09);
+  shaft(14, 250, 440, 0.12);
+  ctx.restore();
+
+  // ---- the big diagonal wave: a wall from upper right ----
+  const CP = t => [1280-890*t, 138+242*Math.pow(t,1.3)];   // crest param, (1280,138)->(390,380)
+  const crestPath=()=>{ctx.moveTo(1310,134);
+    for(let t=0;t<=1.001;t+=0.05){const [x,y]=CP(Math.min(t,1)); ctx.lineTo(x,y);}};
+  const waveBody=()=>{ctx.beginPath(); crestPath(); ctx.lineTo(298,FB+10); ctx.lineTo(1310,FB+10); ctx.closePath();};
+  waveBody();
+  ctx.fillStyle = lin(950,170,380,FB,[[0,'#3f6a5c'],[0.3,'#2b4a42'],[0.62,'#16261f'.replace('f','f')],[1,'#0b1312']]);
+  ctx.fill();
+
+  // perpendicular to the crest, pointing down the visible face
+  const perp = t=>{const e=0.01,[x0,y0]=CP(t),[x1,y1]=CP(Math.min(t+e,1));
+    const dx=x1-x0,dy=y1-y0,l=Math.hypot(dx,dy)||1; return [dy/l,-dx/l];};
+
+  ctx.save(); waveBody(); ctx.clip();
+  // backlit translucency where the light grazes the thin crest water
+  ctx.globalCompositeOperation='lighter';
+  ctx.fillStyle = rad(700,276,300,[[0,'rgba(105,185,150,0.34)'],[1,'rgba(105,185,150,0)']]);
+  ctx.fillRect(300,140,900,430);
+  ctx.globalCompositeOperation='source-over';
+  // deep-water weight, soft-edged (no rims)
+  softblob(980,500,430,180,'rgba(3,9,8,A)',0.55,-0.35);
+  softblob(600,540,360,150,'rgba(3,9,8,A)',0.5,-0.4);
+  // foam lace sliding down the face, elongated along the slope
+  for(let i=0;i<48;i++){
+    const t=rr(0.05,0.96); const [x0,y0]=CP(t); const [px,py]=perp(t);
+    const d=rr(18,130);
+    softblob(x0+px*d+rr(-8,8), y0+py*d, rr(26,80), rr(2.5,6),
+      'rgba(165,205,184,A)', rr(0.1,0.26), Math.atan2(py,px));
+  }
+  // scattered foam flecks on the face
+  for(let i=0;i<40;i++){
+    const t=rr(0.1,0.95); const [x0,y0]=CP(t); const [px,py]=perp(t);
+    const d=rr(20,150);
+    softblob(x0+px*d, y0+py*d, rr(2,6), rr(1.5,4), 'rgba(180,215,195,A)', rr(0.12,0.3));
+  }
+  ctx.restore();
+
+  // soft shadow tucked under the crest (kept off the boat's corner)
+  for(let i=0;i<30;i++){
+    const t=rr(0,0.84); const [x0,y0]=CP(t); const [px,py]=perp(t);
+    softblob(x0+px*rr(10,26), y0+py*rr(10,26), rr(16,34), rr(6,12), 'rgba(10,22,18,A)', 0.4);
+  }
+  // turbulent foam crest: thin in the distance, heavy where it breaks near the boat
+  for(let k=0;k<27;k++){
+    const t=Math.min(Math.max(k/26+rr(-0.015,0.015),0),1);
+    const [x0,y0]=CP(t);
+    const m=0.5+1.35*t*t;
+    const L=[]; const n=4+Math.round(3*t);
+    for(let i=0;i<n;i++){
+      const s=rr(5,12)*m;
+      L.push([x0+rr(-30,20)*(0.55+0.6*t), y0+rr(-13,8)*(0.55+0.7*t), s*rr(1.2,2.0), s]);
+    }
+    lobeUnion(L);
+    const lit=0.45+0.55*t; // brighter toward the beam side (left, near the boat)
+    ctx.fillStyle=lin(0,y0-24,0,y0+18,[
+      [0,'rgba(243,249,244,'+(0.72+0.26*lit).toFixed(2)+')'],
+      [1,'rgba('+Math.round(120+30*lit)+','+Math.round(150+28*lit)+','+Math.round(138+26*lit)+',0.85)']]);
+    ctx.fill();
+  }
+  // the lip curling over and pouring down toward the boat
+  for(let i=0;i<26;i++){ // overhang beyond the crest end
+    const [xe,ye]=CP(1);
+    const reach=rr(0,85), sag=reach*rr(0.15,0.45);
+    const w=rr(8,20)*(1-reach/170);
+    puff(xe-reach, ye+sag-rr(0,10), w*rr(1.2,1.9), w,
+      'rgba(240,247,242,'+rr(0.55,0.9).toFixed(2)+')','rgba(150,178,164,'+rr(0.4,0.7).toFixed(2)+')');
+  }
+  for(let i=0;i<46;i++){ // cascade falling to the base of the wall (soft mist column)
+    const t=rr(0.82,1.0); const [x0,y0]=CP(t);
+    const drop=rr(6,200)*Math.pow((t-0.8)/0.2,1.2);
+    const w=rr(8,22)*(1-drop/340);
+    if(drop<40)
+      puff(x0-rr(0,30)-drop*0.22, y0+drop, w*rr(1.2,1.8), w,
+        'rgba(236,245,239,'+rr(0.5,0.85).toFixed(2)+')','rgba(140,168,155,'+rr(0.35,0.6).toFixed(2)+')');
+    else
+      softblob(x0-rr(0,30)-drop*0.22, y0+drop, w*1.8, w*1.1,
+        'rgba(226,240,232,A)', rr(0.3,0.6));
+  }
+  for(let i=0;i<22;i++){ // falling streaks inside the cascade
+    const t=rr(0.88,1.0); const [x0,y0]=CP(t);
+    ctx.strokeStyle='rgba(220,236,228,'+rr(0.15,0.4).toFixed(2)+')'; ctx.lineWidth=rr(1,2.2); ctx.lineCap='round';
+    const sx=x0-rr(0,40), l=rr(30,110);
+    ctx.beginPath(); ctx.moveTo(sx,y0+rr(0,60));
+    ctx.quadraticCurveTo(sx-8,y0+60+l*0.5, sx-l*0.25,y0+60+l); ctx.stroke();
+  }
+  // spray blown off the crest, streaming up-left with the wind
+  for(let i=0;i<60;i++){
+    const t=R(); const [x0,y0]=CP(t);
+    const dx=rr(18,110), dy=rr(-42,-4);
+    ctx.strokeStyle='rgba(232,242,236,'+rr(0.08,0.3).toFixed(2)+')'; ctx.lineWidth=rr(0.7,1.5);
+    ctx.beginPath(); ctx.moveTo(x0+rr(-8,8),y0-rr(2,12));
+    ctx.quadraticCurveTo(x0-dx*0.5,y0+dy*0.7-8, x0-dx,y0+dy); ctx.stroke();
+  }
+  // spray mist drifting off the crest
+  for(let i=0;i<46;i++){
+    const t=R(); const [x0,y0]=CP(t);
+    softblob(x0-rr(10,90), y0-rr(6,44), rr(3,10), rr(2,6), 'rgba(230,242,236,A)', rr(0.08,0.28));
+  }
+  // whitewater churning where the wall meets the sea, just behind the boat
+  for(let i=0;i<44;i++)
+    softblob(rr(300,455), rr(488,592), rr(12,36), rr(7,18), 'rgba(208,228,218,A)', rr(0.25,0.6));
+  for(let i=0;i<16;i++)
+    puff(rr(310,430), rr(498,572), rr(5,13), rr(4,9),'rgba(232,245,238,0.9)','rgba(130,158,146,0.7)');
+
+  // chop + whitecaps on the near sea (lower left)
+  for(let i=0;i<44;i++){
+    const y=rr(495,FB-4), x=rr(-20,420);
+    ctx.strokeStyle='rgba(180,208,196,'+rr(0.06,0.22).toFixed(2)+')'; ctx.lineWidth=rr(1,2.6);
+    ctx.beginPath(); ctx.moveTo(x,y); ctx.quadraticCurveTo(x+rr(18,46),y-rr(2,8),x+rr(56,100),y); ctx.stroke();
+  }
+
+  // pool of beam light on the water around the boat
+  const bx=286, by=512, sc=0.9, rot=-0.2;
+  ctx.save(); ctx.globalCompositeOperation='lighter';
+  ctx.fillStyle=rad(bx+8,by+16,150,[[0,'rgba(242,224,168,0.3)'],[0.5,'rgba(242,224,168,0.12)'],[1,'rgba(242,224,168,0)']]);
+  ctx.save(); ctx.translate(bx+8,by+16); ctx.scale(1,0.4); ctx.beginPath(); ctx.arc(0,0,150,0,7); ctx.fill(); ctx.restore();
+  ctx.restore();
+
+  // ---- the boat: small, climbing, bow still pointing forward ----
+  ctx.fillStyle=rad(bx,by+22,64,[[0,'rgba(0,0,0,0.55)'],[1,'rgba(0,0,0,0)']]);
+  ctx.save(); ctx.translate(bx,by+22); ctx.scale(1,0.24); ctx.beginPath(); ctx.arc(0,0,64,0,7); ctx.fill(); ctx.restore();
+  // splash burst at the bow
+  for(let i=0;i<30;i++){
+    const a=rr(-2.7,-0.5), r=rr(6,36);
+    const x=bx+44*Math.cos(rot)+Math.cos(a)*r, y=by+14+Math.sin(a)*r*0.8;
+    ctx.fillStyle='rgba(228,242,234,'+rr(0.25,0.65).toFixed(2)+')';
+    ctx.beginPath(); ctx.arc(x,y,rr(0.8,2.6),0,7); ctx.fill();
+  }
+  ctx.save(); ctx.translate(bx,by); ctx.rotate(rot); ctx.scale(sc,sc);
+  drawBoat({litHull:'#fdf5da',midHull:'#d9d9c3',shadeHull:'#5a6a68',occl:'rgba(6,12,12,0.5)',
+    rimStrip:'#fff8de',litSail:'#fffae6',litSail2:'#e8e4c8',shadeSail:'#6b7b76',
+    crease:'rgba(55,70,68,0.6)',rim:'rgba(255,238,180,A)',coolEdge:'rgba(160,185,175,0.55)'});
+  ctx.restore();
+  // the beam kissing the sail
+  ctx.save(); ctx.globalCompositeOperation='lighter';
+  glow(bx+4,by-28,48,'rgba(250,232,175,A)',0.34);
+  ctx.restore();
+
+  // driving rain, angled with the wind (from the right)
+  ctx.strokeStyle='rgba(196,212,206,1)';
+  for(let i=0;i<140;i++){
+    const x=rr(-40,W+40), y=rr(FY,FB), l=rr(24,62);
+    ctx.globalAlpha=rr(0.04,0.11); ctx.lineWidth=rr(0.7,1.3);
+    ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-l*0.34,y+l); ctx.stroke();
+  }
+  ctx.globalAlpha=1;
+
+  // cold grade, corners pushed down so the lit boat owns the eye
+  ctx.fillStyle = lin(0,FY,0,FB,[[0,'rgba(8,16,18,0.28)'],[0.5,'rgba(0,0,0,0)'],[1,'rgba(4,9,9,0.34)']]);
+  ctx.fillRect(0,FY,W,FH);
+  ctx.fillStyle = lin(W,0,W*0.45,0,[[0,'rgba(5,10,10,0.28)'],[1,'rgba(5,10,10,0)']]);
+  ctx.fillRect(0,FY,W,FH);
+  ctx.restore();
+  letterboxAndVignette(0.7);
+}
+
+window.drawFrame = w => { (w==='a'?frameA:frameB)(); window.DONE = true; };
+window.READY = true;
+</script>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sketchbook boat</title>
+<style>html,body{margin:0;padding:0;background:#888}#c{display:block}</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+// ---------- deterministic rng ----------
+function mulberry32(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function noise1(seed){const r=mulberry32(seed);const v=[];for(let i=0;i<128;i++)v.push(r()*2-1);
+  return t=>{const i=Math.floor(t),f=t-i,a=v[((i%128)+128)%128],b=v[(((i+1)%128)+128)%128],u=f*f*(3-2*f);return a+(b-a)*u;};}
+
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+
+// ---------- paper grain tile ----------
+const grain=document.createElement('canvas');grain.width=grain.height=256;
+{const g=grain.getContext('2d'),img=g.createImageData(256,256),r=mulberry32(77);
+ for(let i=0;i<img.data.length;i+=4){const n=225+r()*30;img.data[i]=img.data[i+1]=img.data[i+2]=n;img.data[i+3]=255;}
+ g.putImageData(img,0,0);
+ // sparse fibers
+ g.strokeStyle='rgba(120,110,95,0.35)';const fr=mulberry32(78);
+ for(let i=0;i<60;i++){g.beginPath();const x=fr()*256,y=fr()*256,a=fr()*Math.PI;g.moveTo(x,y);g.lineTo(x+Math.cos(a)*(2+fr()*4),y+Math.sin(a)*(2+fr()*4));g.lineWidth=0.5;g.stroke();}}
+
+// ---------- stroke engine: centreline + width profile + jitter seed ----------
+function resample(pts,step){
+  // catmull-rom through pts, then arc-length resample
+  const out=[];const P=pts;
+  if(P.length<2)return P.slice();
+  const cr=[];const get=i=>P[Math.max(0,Math.min(P.length-1,i))];
+  for(let i=0;i<P.length-1;i++){
+    const p0=get(i-1),p1=get(i),p2=get(i+1),p3=get(i+2);
+    const seg=Math.max(2,Math.ceil(Math.hypot(p2[0]-p1[0],p2[1]-p1[1])/6));
+    for(let j=0;j<seg;j++){const t=j/seg,t2=t*t,t3=t2*t;
+      cr.push([0.5*((2*p1[0])+(-p0[0]+p2[0])*t+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3),
+               0.5*((2*p1[1])+(-p0[1]+p2[1])*t+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3)]);}}
+  cr.push(P[P.length-1].slice());
+  let acc=0;out.push(cr[0]);
+  for(let i=1;i<cr.length;i++){acc+=Math.hypot(cr[i][0]-cr[i-1][0],cr[i][1]-cr[i-1][1]);
+    if(acc>=step){out.push(cr[i]);acc=0;}}
+  if(out.length<2)out.push(cr[cr.length-1]);
+  return out;}
+
+// tools
+const TOOLS={
+  pen:    {ink:'#232830',alpha:0.88,w:1.7,jit:1.1,pvar:0.25},
+  penSoft:{ink:'#2a3038',alpha:0.55,w:1.5,jit:1.3,pvar:0.35},
+  pencil: {ink:'#3a3e45',alpha:0.34,w:2.2,jit:1.8,pvar:0.5},
+  charcoal:{ink:'#26241f',alpha:0.16,w:26,jit:4,pvar:0.6}};
+
+function stroke(pts,opt){
+  const tool=TOOLS[opt.tool||'pen'];
+  const seed=opt.seed||1;
+  const cut=opt.cut===undefined?1:opt.cut;      // fraction of centreline drawn (still arriving)
+  const w=(opt.w!==undefined?opt.w:tool.w);
+  const alpha=(opt.alpha!==undefined?opt.alpha:tool.alpha);
+  const jit=(opt.jit!==undefined?opt.jit:tool.jit);
+  const taper=opt.taper===undefined?0.12:opt.taper;
+  const nx=noise1(seed*7919+1),ny=noise1(seed*7919+2),nw=noise1(seed*7919+3),na=noise1(seed*7919+4);
+  let rp=resample(pts,3);
+  const nTot=rp.length;
+  const nDraw=Math.max(2,Math.floor(nTot*cut));
+  ctx.save();
+  ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.strokeStyle=(opt.ink||tool.ink);
+  ctx.globalCompositeOperation=opt.comp||'source-over';
+  for(let i=0;i<nDraw-1;i++){
+    const t=i/(nTot-1);
+    const f=t/cut; // progress along the drawn part
+    // width profile: taper both ends; if stroke is cut, sharp taper at the moving tip
+    let prof=Math.min(1,t/taper||1,cut<1?Math.max(0.05,(cut-t)/0.06):(1-t)/taper);
+    prof=Math.max(0.05,Math.min(1,prof));
+    const jx=nx(t*14)*jit,jy=ny(t*14)*jit;
+    const jx2=nx((t+1/(nTot-1))*14)*jit,jy2=ny((t+1/(nTot-1))*14)*jit;
+    ctx.beginPath();
+    ctx.moveTo(rp[i][0]+jx,rp[i][1]+jy);
+    ctx.lineTo(rp[i+1][0]+jx2,rp[i+1][1]+jy2);
+    ctx.lineWidth=Math.max(0.3,w*Math.pow(prof,0.6)*(1-tool.pvar/2+tool.pvar*(0.5+0.5*nw(t*9))));
+    ctx.globalAlpha=alpha*(0.72+0.28*(0.5+0.5*na(t*11)))*(opt.fade?1-t*opt.fade:1);
+    ctx.stroke();}
+  ctx.restore();}
+
+// dashed / lifted line: several sub-strokes with gaps
+function brokenLine(pts,opt){
+  const r=mulberry32((opt.seed||1)*31+5);
+  const rp=resample(pts,3);const n=rp.length;
+  let i=0,s=opt.seed||1;
+  while(i<n-2){
+    const len=Math.floor(n*(0.12+r()*0.3));
+    const j=Math.min(n-1,i+len);
+    stroke(rp.slice(i,j+1),Object.assign({},opt,{seed:s++}));
+    i=j+Math.floor(n*(0.015+r()*0.05));}}
+
+// ---------- hatching ----------
+function polyPath(poly){ctx.beginPath();ctx.moveTo(poly[0][0],poly[0][1]);for(let i=1;i<poly.length;i++)ctx.lineTo(poly[i][0],poly[i][1]);ctx.closePath();}
+function hatch(poly,angle,spacing,opt){
+  opt=opt||{};
+  const r=mulberry32((opt.seed||1)*101+9);
+  ctx.save();
+  polyPath(poly);ctx.clip();
+  if(opt.exclude){ctx.beginPath();ctx.rect(-10,-10,1300,740);exPath(opt.exclude);ctx.clip('evenodd');}
+  const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]);
+  const cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;
+  const diag=Math.hypot(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys))/2+30;
+  let d=-diag,k=0;
+  while(d<diag){
+    const a=angle+(r()-0.5)*0.06;
+    const dx=Math.cos(a),dy=Math.sin(a),nxv=-dy,nyv=dx;
+    const ox=cx+nxv*d,oy=cy+nyv*d;
+    const L=diag*(0.85+r()*0.3);
+    stroke([[ox-dx*L,oy-dy*L],[ox+dx*L,oy+dy*L]],
+      {tool:opt.tool||'pen',w:opt.w,alpha:opt.alpha,jit:opt.jit===undefined?1.6:opt.jit,seed:(opt.seed||1)*503+k,taper:0.03});
+    d+=spacing*(0.75+r()*0.5);k++;}
+  ctx.restore();}
+
+// evenodd exclusion blob path appender
+function exPath(blob){ctx.moveTo(blob[0][0],blob[0][1]);for(let i=1;i<blob.length;i++)ctx.lineTo(blob[i][0],blob[i][1]);ctx.closePath();}
+function blobPts(cx,cy,rx,ry,seed){const n=noise1(seed);const out=[];for(let i=0;i<26;i++){const a=i/26*Math.PI*2;const k=1+0.22*n(i*0.9);out.push([cx+Math.cos(a)*rx*k,cy+Math.sin(a)*ry*k]);}return out;}
+
+// ---------- wash (single accent) ----------
+function wash(cx,cy,rx,ry,color,alpha,seed){
+  const b=blobPts(cx,cy,rx,ry,seed);
+  ctx.save();ctx.globalCompositeOperation='multiply';
+  polyPath(b);ctx.globalAlpha=alpha;ctx.fillStyle=color;ctx.fill();
+  // pooled rim
+  ctx.globalAlpha=alpha*0.45;ctx.lineWidth=1.2;ctx.strokeStyle=color;polyPath(b);ctx.stroke();
+  // second uneven lobe
+  const b2=blobPts(cx+rx*0.15,cy+ry*0.1,rx*0.6,ry*0.6,seed+3);
+  polyPath(b2);ctx.globalAlpha=alpha*0.5;ctx.fill();
+  ctx.restore();}
+
+// ---------- handwritten single-stroke letters ----------
+const O=(cx,cy,r,open)=>{const p=[];const a0=-2.2,a1=a0+(open?5.7:6.28);for(let i=0;i<=10;i++){const a=a0+(a1-a0)*i/10;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}return p;};
+const GLYPH={
+ a:{w:0.55,s:[O(0.25,0.77,0.2,1),[[0.45,0.57],[0.46,1.0]]]},
+ d:{w:0.55,s:[O(0.25,0.77,0.2,1),[[0.45,0.05],[0.46,1.0]]]},
+ e:{w:0.5,s:[[[0.08,0.76],[0.4,0.72],[0.37,0.56],[0.18,0.53],[0.07,0.68],[0.1,0.9],[0.3,1.0],[0.44,0.92]]]},
+ f:{w:0.5,s:[[[0.42,0.1],[0.28,0.04],[0.2,0.2],[0.2,1.0]],[[0.05,0.5],[0.4,0.5]]]},
+ g:{w:0.55,s:[O(0.25,0.75,0.2,1),[[0.45,0.55],[0.45,1.12],[0.32,1.28],[0.1,1.2]]]},
+ h:{w:0.52,s:[[[0.1,0.05],[0.1,1.0]],[[0.1,0.68],[0.22,0.53],[0.38,0.56],[0.42,1.0]]]},
+ i:{w:0.32,s:[[[0.18,0.55],[0.2,1.0]],[[0.17,0.36],[0.2,0.39]]]},
+ l:{w:0.34,s:[[[0.18,0.05],[0.2,0.88],[0.3,1.0]]]},
+ m:{w:0.62,s:[[[0.06,0.55],[0.06,1.0]],[[0.06,0.66],[0.15,0.53],[0.24,0.58],[0.25,1.0]],[[0.25,0.66],[0.34,0.53],[0.44,0.58],[0.46,1.0]]]},
+ n:{w:0.52,s:[[[0.1,0.55],[0.1,1.0]],[[0.1,0.66],[0.22,0.53],[0.38,0.57],[0.4,1.0]]]},
+ o:{w:0.52,s:[O(0.25,0.77,0.21,1)]},
+ r:{w:0.45,s:[[[0.12,0.55],[0.12,1.0]],[[0.12,0.7],[0.22,0.55],[0.38,0.53]]]},
+ s:{w:0.48,s:[[[0.4,0.6],[0.22,0.53],[0.1,0.62],[0.22,0.74],[0.36,0.82],[0.34,0.96],[0.09,0.95]]]},
+ t:{w:0.46,s:[[[0.22,0.2],[0.22,0.85],[0.3,1.0],[0.42,0.93]],[[0.06,0.5],[0.4,0.5]]]},
+ '.':{w:0.28,s:[[[0.13,0.97],[0.16,1.0]]]},
+ ' ':{w:0.42,s:[]}};
+function writeText(text,x,y,size,opt){
+  opt=opt||{};let cx=x;let k=0;
+  const slant=opt.slant||0.06;const r=mulberry32((opt.seed||1)*17+3);
+  for(const ch of text){
+    const g=GLYPH[ch];if(!g){cx+=size*0.4;continue;}
+    const jx=(r()-0.5)*size*0.06,jy=(r()-0.5)*size*0.08;
+    for(const st of g.s){
+      const pts=st.map(p=>[cx+jx+(p[0]-slant*(p[1]-1))*size,y+jy+(p[1]-1)*size]);
+      stroke(pts,{tool:opt.tool||'pen',w:opt.w||1.4,alpha:opt.alpha,jit:0.7,seed:(opt.seed||1)*97+k,taper:0.15});k++;}
+    cx+=g.w*size*(0.96+r()*0.1);}
+  return cx;}
+
+// ---------- paper ----------
+function paper(){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
+  ctx.fillStyle='#f5f1e6';ctx.fillRect(0,0,1280,720);
+  ctx.restore();}
+function grainOver(){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.globalCompositeOperation='multiply';ctx.globalAlpha=0.5;
+  const pat=ctx.createPattern(grain,'repeat');ctx.fillStyle=pat;ctx.fillRect(0,0,1280,720);
+  ctx.restore();}
+
+// ---------- boat geometry (paper boat: hull + sail peak, no face/limbs) ----------
+function boatPts(cx,cy,s,tilt){
+  // returns named polylines in world coords; s = half width
+  const c=Math.cos(tilt),sn=Math.sin(tilt);
+  const T=p=>[cx+p[0]*c*s-p[1]*sn*s,cy+p[0]*sn*s+p[1]*c*s];
+  return {
+    gunwale:[[-1,0],[1,0]].map(T),                    // top edge of hull
+    hullL:[[-1,0],[-0.55,0.42]].map(T),
+    hullR:[[1,0],[0.55,0.42]].map(T),
+    hullB:[[-0.55,0.42],[0.55,0.42]].map(T),
+    peakL:[[-0.02,-0.78],[-0.5,0]].map(T),
+    peakR:[[-0.02,-0.78],[0.52,0]].map(T),
+    fold:[[-0.02,-0.78],[0.1,0]].map(T),
+    bowTick:[[0.78,-0.1],[1,0],[0.9,0.14]].map(T)};}
+
+// ============================================================
+window.drawFrame=function(which){
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+  ctx.clearRect(0,0,1280,720);
+  if(which==='a')frameA();else frameB();
+  // flatten: fill paper behind any semi-transparent (erased) pixels
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
+  ctx.globalCompositeOperation='destination-over';ctx.fillStyle='#f5f1e6';ctx.fillRect(0,0,1280,720);
+  ctx.restore();
+  window.DONE=true;};
+
+// ---------------- FRAME A : setting out ----------------
+function frameA(){
+  paper();
+  const HZ=418; // horizon
+  // --- pencil construction, faint, left visible ---
+  stroke([[40,HZ+1],[1240,HZ-3]],{tool:'pencil',alpha:0.16,seed:11});           // horizon guide
+  stroke([[955,190],[955,330]],{tool:'pencil',alpha:0.13,seed:12});             // sun drop line
+  // boat construction box + centreline
+  stroke([[300,468],[520,462]],{tool:'pencil',alpha:0.2,seed:13});
+  stroke([[300,468],[300,590]],{tool:'pencil',alpha:0.16,seed:14});
+  stroke([[520,462],[520,585]],{tool:'pencil',alpha:0.16,seed:15});
+  stroke([[406,585],[402,452]],{tool:'pencil',alpha:0.18,seed:16});
+
+  // --- the single accent wash: pale morning ochre ---
+  wash(950,268,145,85,'#e3c37c',0.17,24);          // sun halo
+  wash(660,436,720,24,'#e8cd8f',0.11,22);          // light band on horizon
+  wash(930,520,55,85,'#e3c37c',0.10,23);           // reflection streak
+
+  // --- sun: paper left bright inside a pen circle, few rays ---
+  brokenLine(O(950,268,40,1).map(p=>p),{tool:'pen',w:1.5,alpha:0.7,seed:31});
+  for(let i=0;i<7;i++){const a=-0.5+i*0.32;const r1=50,r2=60+(i%2)*8;
+    stroke([[950+Math.cos(a)*r1,268+Math.sin(a)*r1],[950+Math.cos(a)*r2,268+Math.sin(a)*r2]],{tool:'pen',w:1.3,alpha:0.55,seed:32+i});}
+
+  // --- horizon: pen, with lifts ---
+  brokenLine([[60,HZ],[500,HZ-2],[900,HZ+1],[1230,HZ-2]],{tool:'pen',w:1.6,alpha:0.8,seed:41});
+
+  // --- minimal sky hatching: two thin cloud bands ---
+  hatch([[120,330],[430,318],[470,342],[150,352]],-0.03,7,{tool:'penSoft',w:1.2,alpha:0.4,seed:51});
+  hatch([[620,300],[860,292],[880,312],[640,316]],-0.02,8,{tool:'penSoft',w:1.1,alpha:0.32,seed:52});
+
+  // --- water: sparse horizontal ticks, denser near horizon and under sun ---
+  const wr=mulberry32(61);
+  for(let i=0;i<64;i++){
+    const y=HZ+8+Math.pow(wr(),1.6)*270;
+    let x=80+wr()*1050;const len=24+wr()*90;
+    const nearRef=Math.abs(x+len/2-935)<90&&y<560?0.5:0;
+    stroke([[x,y],[x+len,y+(wr()-0.5)*3]],{tool:'pen',w:1.2,alpha:0.3+nearRef+0.25*(1-(y-HZ)/300),seed:600+i,taper:0.2});}
+
+  // --- the boat, HALF-DRAWN: some strokes still arriving ---
+  const B=boatPts(408,528,105,-0.05);
+  stroke(B.gunwale,{tool:'pen',w:2.1,alpha:0.9,seed:71});
+  stroke(B.hullL,{tool:'pen',w:2.0,alpha:0.9,seed:72});
+  stroke(B.hullR,{tool:'pen',w:2.0,alpha:0.88,seed:73});
+  stroke(B.hullB,{tool:'pen',w:2.0,alpha:0.88,seed:74,cut:0.72});      // bottom edge still arriving
+  stroke(B.peakL,{tool:'pen',w:2.0,alpha:0.9,seed:75});
+  stroke(B.peakR,{tool:'pen',w:2.0,alpha:0.9,seed:76,cut:0.55});       // sail edge mid-stroke
+  stroke(B.fold,{tool:'pencil',alpha:0.3,seed:77,cut:0.8});            // fold line, pencil
+  // hull shadow: a few light hatch ticks on the left face only
+  hatch([[B.gunwale[0][0]+4,B.gunwale[0][1]+6],[B.hullL[1][0]+6,B.hullL[1][1]-2],[B.hullL[1][0]+52,B.hullL[1][1]-2],[B.gunwale[0][0]+46,B.gunwale[0][1]+6]],1.0,7,{tool:'penSoft',w:1.1,alpha:0.3,seed:78});
+  // waterline + wake, partial
+  stroke([[300,578],[420,584],[528,578]],{tool:'pen',w:1.5,alpha:0.55,seed:79});
+  stroke([[298,592],[248,598],[203,596]],{tool:'pen',w:1.3,alpha:0.45,seed:80,cut:0.65}); // wake arriving
+  // reflection hatch under boat
+  hatch([[340,596],[495,594],[485,634],[352,638]],0.02,10,{tool:'penSoft',w:1.0,alpha:0.26,seed:81});
+
+  // --- margin notes ---
+  writeText('first light',78,92,30,{seed:91,w:1.5,alpha:0.75});
+  stroke([[78,104],[212,102]],{tool:'pen',w:1.2,alpha:0.5,seed:92});   // underline
+  writeText('finish the sail',878,652,24,{seed:93,w:1.4,alpha:0.7});
+  // small arrow from note toward the unfinished sail edge, kept clear of the hull
+  stroke([[870,646],[660,632],[478,432]],{tool:'pen',w:1.2,alpha:0.5,seed:94,taper:0.05});
+  stroke([[478,432],[472,452]],{tool:'pen',w:1.2,alpha:0.5,seed:95});
+  stroke([[478,432],[456,436]],{tool:'pen',w:1.2,alpha:0.5,seed:96});
+
+  grainOver();}
+
+// ---------------- FRAME B : the storm peak ----------------
+function frameB(){
+  paper();
+  // boat placement + protected bare patch of untouched paper
+  const bx=375,by=488;
+  const halo=blobPts(bx,by-10,120,95,201);
+
+  // crest curve of the big diagonal wave (from upper right down toward the boat)
+  const crest=[[1300,95],[1060,140],[860,215],[690,315],[585,405],[545,455]];
+  // regions
+  const sky=[[0,0],[1280,0],[1300,95],[1060,140],[860,215],[690,315],[585,405],[545,455],[300,455],[0,420]];
+  const waveFace=[[1300,95],[1060,140],[860,215],[690,315],[585,405],[545,455],[560,540],[780,650],[1280,690],[1300,300]];
+  const foreSea=[[0,420],[300,455],[545,455],[560,540],[780,650],[1280,690],[1280,720],[0,720]];
+
+  // --- pencil construction arcs, buried but present ---
+  stroke([[1240,130],[820,250],[600,420]],{tool:'pencil',alpha:0.25,seed:210});
+  stroke([[40,428],[520,458]],{tool:'pencil',alpha:0.2,seed:211});
+
+  // --- charcoal masses (side of the stick), boat patch excluded ---
+  const ch=(poly,passes,seedBase,alpha,w)=>{
+    ctx.save();polyPath(poly);ctx.clip();
+    ctx.beginPath();ctx.rect(-10,-10,1300,740);exPath(halo);ctx.clip('evenodd');
+    for(let i=0;i<passes.length;i++)stroke(passes[i],{tool:'charcoal',alpha:alpha,w:w||36,seed:seedBase+i});
+    ctx.restore();};
+  // sky clouds: broken heavy drags, heavier at the top
+  {const drags=[];const r=mulberry32(220);
+   for(let i=0;i<11;i++){const y=16+i*30+r()*20;const x0=-40+r()*300;
+     drags.push([[x0,y+r()*22],[x0+300+r()*220,y-14+r()*30],[x0+700+r()*250,y+r()*24],[x0+1100,y-8+r()*20]]);}
+   ch(sky,drags,230,0.1,44);
+   const drags2=[];for(let i=0;i<6;i++){const y=6+i*18+r()*10;drags2.push([[-40,y+r()*8],[600+r()*300,y+r()*16],[1320,y-4]]);}
+   ch([[0,0],[1280,0],[1280,150],[0,130]],drags2,247,0.14,40);}
+  // wave face: drags following the flow (this is the darkest mass)
+  {const drags=[];const r=mulberry32(240);
+   for(let i=0;i<9;i++){const o=14+i*34;
+     drags.push(crest.map(p=>[p[0]+o*0.35+r()*10,p[1]+o+r()*10]));}
+   ch(waveFace,drags,260,0.13,46);}
+
+  // --- cross-hatching: sky, kept a step lighter than the wave ---
+  hatch(sky,-0.3,10,{tool:'pen',w:1.4,alpha:0.42,seed:261,exclude:halo});
+  hatch(sky,1.08,13,{tool:'pen',w:1.2,alpha:0.32,seed:262,exclude:halo});
+  hatch([[0,0],[1280,0],[1280,110],[0,95]],0.32,6,{tool:'pen',w:1.4,alpha:0.5,seed:263,exclude:halo}); // top of frame darkest
+
+  // --- wave face: dense furious hatching along the flow + two cross passes ---
+  {ctx.save();polyPath(waveFace);ctx.clip();
+   ctx.beginPath();ctx.rect(-10,-10,1300,740);exPath(halo);ctx.clip('evenodd');
+   const r=mulberry32(270);
+   // short flow strokes scattered on the face, following the local slope (no concentric shell)
+   for(let i=0;i<150;i++){
+     const t=r()*0.92;const idx=t*(crest.length-1);const i0=Math.floor(idx);const f=idx-i0;
+     const p0=crest[i0],p1=crest[Math.min(i0+1,crest.length-1)];
+     const x=p0[0]+(p1[0]-p0[0])*f+r()*60,y=p0[1]+(p1[1]-p0[1])*f+10+r()*230;
+     const tx=p1[0]-p0[0],ty=p1[1]-p0[1];const L=Math.hypot(tx,ty)||1;
+     const dl=40+r()*110;
+     stroke([[x,y],[x+tx/L*dl*0.5+r()*14,y+ty/L*dl*0.5+dl*0.28],[x+tx/L*dl,y+ty/L*dl+dl*0.5]],
+       {tool:'pen',w:1.8,alpha:0.55,seed:2700+i,taper:0.06});}
+   ctx.restore();}
+  hatch(waveFace,-1.0,7.5,{tool:'pen',w:1.5,alpha:0.55,seed:281,exclude:halo});
+  hatch(waveFace,0.15,9,{tool:'pen',w:1.3,alpha:0.4,seed:283,exclude:halo});
+  hatch([[690,315],[585,405],[545,455],[560,540],[780,650],[950,540],[840,390]],0.5,4.5,{tool:'pen',w:1.7,alpha:0.6,seed:282,exclude:halo}); // extra darkness by the boat
+
+  // --- crest contour: one confident dark line ---
+  stroke(crest,{tool:'pen',w:3.2,alpha:0.85,seed:285});
+
+  // --- foreground sea: lighter chop, so the page has a floor ---
+  hatch(foreSea,0.12,12,{tool:'pen',w:1.4,alpha:0.4,seed:291,exclude:halo});
+  hatch(foreSea,-0.5,17,{tool:'pen',w:1.2,alpha:0.3,seed:292,exclude:halo});
+
+  // --- foam on the crest: scribble loops, paper showing through (never on the boat patch) ---
+  {ctx.save();ctx.beginPath();ctx.rect(0,0,1280,720);exPath(halo);ctx.clip('evenodd');
+   const r=mulberry32(300);
+   for(let i=0;i<24;i++){const t=i/24;const idx=t*(crest.length-1);const i0=Math.floor(idx);const f=idx-i0;
+     const p0=crest[Math.min(i0,crest.length-1)],p1=crest[Math.min(i0+1,crest.length-1)];
+     const x=p0[0]+(p1[0]-p0[0])*f+(r()-0.5)*18,y=p0[1]+(p1[1]-p0[1])*f-6-r()*14;
+     const pts=[];let a=r()*6.28;
+     for(let j=0;j<9;j++){a+=0.9+r()*0.7;const rad=5+r()*9;pts.push([x+Math.cos(a)*rad+j*3,y+Math.sin(a)*rad*0.7]);}
+     stroke(pts,{tool:'pen',w:1.3,alpha:0.6,seed:3000+i});}
+   // heavy foam boiling at the breaking tip, right above the boat
+   for(let i=0;i<20;i++){const x=545+r()*130,y=385+r()*80;
+     const pts=[];let a=r()*6.28;
+     for(let j=0;j<11;j++){a+=0.85+r()*0.7;const rad=6+r()*11;pts.push([x+Math.cos(a)*rad+j*2.5,y+Math.sin(a)*rad*0.75]);}
+     stroke(pts,{tool:'pen',w:1.4,alpha:0.65,seed:3300+i});}
+   // spray flying off the lip, blown toward the boat
+   for(let i=0;i<22;i++){const x=560+r()*460,y=160+r()*220;
+     stroke([[x,y],[x-18-r()*30,y+6+r()*14]],{tool:'pen',w:1.1,alpha:0.45,seed:3100+i,taper:0.3});}
+   ctx.restore();}
+
+  // --- the light fighting through: kneaded-eraser lift (streaky, grey residue stays) ---
+  {const r=mulberry32(320);
+   for(let i=0;i<12;i++){const o=(i-6)*16+(r()-0.5)*10;
+     const p=[[150+o,-20],[235+o*0.85,160],[315+o*0.7,330]];
+     stroke(p,{comp:'destination-out',w:6+r()*6,alpha:0.16+r()*0.12,jit:1.2,seed:3200+i,taper:0.25,ink:'#000',tool:'pen'});}
+   // cloud edge re-cut where the shaft breaks through
+   stroke([[85,55],[160,28],[248,44]],{tool:'pen',w:1.6,alpha:0.5,seed:330});}
+
+  // --- the boat: small, dark, confident, climbing, pointing forward ---
+  const B=boatPts(bx,by,54,-0.18);
+  for(const[k,seed,wd]of[['gunwale',341,2.6],['hullL',342,2.4],['hullR',343,2.4],['hullB',344,2.4],['peakL',345,2.4],['peakR',346,2.4]])
+    stroke(B[k],{tool:'pen',w:wd,alpha:1,seed:seed});
+  stroke(B.fold,{tool:'pen',w:1.3,alpha:0.5,seed:347});
+  hatch([[B.gunwale[0][0]+3,B.gunwale[0][1]+4],[B.hullL[1][0]+4,B.hullL[1][1]-2],[B.hullL[1][0]+30,B.hullL[1][1]-2],[B.gunwale[0][0]+26,B.gunwale[0][1]+4]],1.0,4.5,{tool:'pen',w:1.1,alpha:0.5,seed:348});
+  // water grabbing at the hull inside the bare patch
+  stroke([[bx-72,by+30],[bx-20,by+40],[bx+45,by+28],[bx+74,by+36]],{tool:'pen',w:1.7,alpha:0.75,seed:349});
+  stroke([[bx-58,by+46],[bx-6,by+52],[bx+42,by+44]],{tool:'pen',w:1.3,alpha:0.5,seed:350,cut:0.8});
+  stroke([[bx-95,by+18],[bx-60,by+24]],{tool:'pen',w:1.2,alpha:0.4,seed:351});
+  stroke([[bx+55,by+52],[bx+95,by+46]],{tool:'pen',w:1.2,alpha:0.4,seed:352});
+  // rough the halo edge so the bare patch reads as protected paper, not a sticker
+  {const r=mulberry32(355);
+   for(let i=0;i<30;i++){const a=r()*6.28;const rx=120*1.12,ry=95*1.12;
+     const x=bx+Math.cos(a)*rx*(0.92+r()*0.2),y=by-10+Math.sin(a)*ry*(0.92+r()*0.2);
+     const dl=8+r()*16,da=a+1.57+(r()-0.5)*0.8;
+     stroke([[x,y],[x+Math.cos(da)*dl,y+Math.sin(da)*dl]],{tool:'pen',w:1.2,alpha:0.35,seed:3550+i,taper:0.3});}}
+
+  // --- margin note: urgent scrawl on a scrap of calmer paper ---
+  {ctx.save();ctx.globalCompositeOperation='destination-out';ctx.globalAlpha=0.75;
+   polyPath(blobPts(160,668,120,34,371));ctx.fillStyle='#000';ctx.fill();ctx.restore();}
+  writeText('hold on.',72,668,34,{seed:361,w:1.9,alpha:0.9,slant:0.12});
+  stroke([[70,682],[248,678]],{tool:'pen',w:1.6,alpha:0.7,seed:362});
+  stroke([[74,690],[240,687]],{tool:'pen',w:1.4,alpha:0.6,seed:363});
+
+  grainOver();}
+
+window.READY=true;
+</script>
+</body>
+</html>

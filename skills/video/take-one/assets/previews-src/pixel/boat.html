@@ -1,0 +1,332 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#000}#c{display:block;image-rendering:pixelated}</style>
+</head><body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+/* THE PAPER BOAT — pixel art film style preview.
+   Logical canvas 320x180, 4x nearest-neighbor upscale. Everything whole pixels.
+   Deterministic: seeded hash only. */
+const LW=320,LH=180;
+const cv=document.getElementById('c'),G=cv.getContext('2d');
+const lo=document.createElement('canvas');lo.width=LW;lo.height=LH;
+const c=lo.getContext('2d');
+let cf='';const fs=k=>{if(k!==cf){c.fillStyle=k;cf=k}};
+const P=(x,y,k)=>{x|=0;y|=0;if(x<0||y<0||x>=LW||y>=LH)return;fs(k);c.fillRect(x,y,1,1)};
+const R=(x,y,w,h,k)=>{fs(k);c.fillRect(x|0,y|0,w,h)};
+function hash(a,b){let h=Math.imul(a|0,374761393)^Math.imul((b|0)+1013,668265263);h=Math.imul(h^(h>>>13),1274126177);h^=h>>>16;return(h>>>0)/4294967296}
+const B4M=[[0,8,2,10],[12,4,14,6],[3,11,1,9],[15,7,13,5]];
+const bay4=(x,y)=>(B4M[y&3][x&3]+0.5)/16;
+const bay8=(x,y)=>(4*B4M[y&3][x&3]+B4M[(y>>2)&3][(x>>2)&3]+0.5)/64;
+const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+// ordered-dither pick from a ramp at float position f
+function rampAt(ramp,f,x,y,bay){f=clamp(f,0,ramp.length-1);const i=Math.floor(f),fr=f-i;const j=Math.min(ramp.length-1,i+1);return fr>bay(x,y)?ramp[j]:ramp[i]}
+
+/* ============ the paper boat sprite (generated pixel grid, drawn 1px rects) ============ */
+// pal={o,l,w,s,d}  o outline, l highlight, w lit face, s shade face, d dark fold
+// opt: hw half-width of gunwale, ph peak height, hh hull height, tip tip rise,
+//      light: 1 = lit from right, -1 = lit from left, shear: px lean per row (x += (y-by)*shear)
+function drawBoat(bx,by,pal,opt){
+  const hw=opt.hw,ph=opt.ph,hh=opt.hh,tip=opt.tip,L=opt.light,sh=opt.shear||0;
+  const OX=y=>Math.round((y-by)*sh);
+  // peak (sail triangle), apex at by-ph
+  for(let r=0;r<ph;r++){
+    const y=by-ph+r,half=Math.max(0,Math.round(r*(hw*0.62)/(ph-1)));
+    const o=OX(y);
+    for(let x=bx-half;x<=bx+half;x++){
+      let k;
+      if(x===bx-half||x===bx+half||r===0)k=pal.o;
+      else if(x===bx)k=pal.d;                       // center fold
+      else k=(x>bx)===(L>0)?pal.w:pal.s;
+      P(x+o,y,k);
+    }
+    // highlight rim on lit edge
+    if(r>0&&r<ph-1)P(bx+(L>0?half-1:-half+1)+o,y,pal.l);
+  }
+  // tips (the two upturned paper ends)
+  for(let s=-1;s<=1;s+=2){
+    const tx=bx+s*hw;
+    for(let k=1;k<=tip;k++){const y=by-k;P(tx+OX(y),y,pal.o);}
+    P(bx+s*(hw-1)+OX(by-1),by-1,s===L?pal.l:pal.s);
+  }
+  // hull (trapezoid tapering down)
+  for(let r=0;r<hh;r++){
+    const y=by+r,half=hw-1-Math.round(r*(hw*0.42)/(hh-1));
+    const o=OX(y);
+    for(let x=bx-half;x<=bx+half;x++){
+      let k;
+      if(x===bx-half||x===bx+half||r===hh-1)k=pal.o;
+      else if(r===0)k=pal.d;                        // shadow under gunwale fold
+      else if(r===1)k=pal.l;                        // gunwale highlight
+      else k=r<hh-2?pal.w:pal.s;
+      P(x+o,y,k);
+    }
+  }
+  // gunwale line itself
+  for(let x=bx-hw;x<=bx+hw;x++)P(x+OX(by),by,pal.o);
+  for(let x=bx-hw+2;x<=bx+hw-2;x++)P(x+OX(by),by,pal.l);
+}
+
+/* =================================== FRAME A =================================== */
+function frameA(){
+  const HOR=112,SUNX=234,SUNY=97,SUNR=9;
+  // --- sky: dithered gradient bands, dawn ramp, calm 8x8 bayer
+  const SKY=['#191540','#33205a','#5d2c66','#8f3f68','#c05e60','#e5825c','#f5ab64','#ffd489'];
+  for(let y=0;y<HOR;y++){
+    const f=Math.pow(y/(HOR-1),1.18)*(SKY.length-1);
+    for(let x=0;x<LW;x++){
+      let k=rampAt(SKY,f,x,y,bay8);
+      // sun + dithered halo
+      const dx=x-SUNX,dy=y-SUNY,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<SUNR)k='#fff6cf';
+      else if(d<SUNR+2)k='#ffe6a4';
+      else if(d<SUNR+11){const p=1-(d-SUNR-2)/9;if(bay4(x,y)<p*0.85)k='#ffca7e';}
+      else if(d<SUNR+20){const p=1-(d-SUNR-11)/9;if(bay4(x,y)<p*0.3)k='#f5a86a';}
+      P(x,y,k);
+    }
+  }
+  // --- clouds: chunky strips, lit underside toward the sun
+  cloudA(58,30,52,'#4a2a60','#6e3a6e','#e08a68');
+  cloudA(210,22,40,'#3c2356','#5c3168','#c8735f');
+  cloudA(128,52,66,'#5c3266','#84406b','#f5a86a');
+  cloudA(268,64,34,'#6e3a68','#94486a','#ffb877');
+  // --- sea: dithered depth ramp
+  const SEA=['#c06158','#8a4660','#5c3a66','#403060','#2c2852','#1e1e44','#141534'];
+  for(let y=HOR;y<LH;y++){
+    const f=Math.pow((y-HOR)/(LH-1-HOR),0.8)*(SEA.length-1);
+    for(let x=0;x<LW;x++)P(x,y,rampAt(SEA,f,x,y,bay4));
+  }
+  // horizon glint: dithered warm dashes ON the sea's top row
+  for(let x=0;x<LW;x++){if(bay4(x,HOR)<0.6)P(x,HOR,'#ffcf8e');if(bay4(x,HOR+1)<0.25)P(x,HOR+1,'#e8a878');}
+  // --- ripples: seeded dashes, wider spacing lower (perspective)
+  for(let row=0;row<26;row++){
+    const y=HOR+2+Math.round(Math.pow(row/25,1.5)*62);
+    const n=10-Math.round(row*0.25);
+    for(let i=0;i<n;i++){
+      const x=Math.floor(hash(row,i)*LW),w=2+Math.floor(hash(row,i+50)*4);
+      const dk=hash(row,i+90)<0.5;
+      const k=dk?'#191a3a':(y<HOR+18?'#a85868':'#4a3a66');
+      for(let j=0;j<w;j++)P(x+j,y,k);
+    }
+  }
+  // --- sun glitter path
+  for(let y=HOR+1;y<LH-8;y++){
+    const spread=3+(y-HOR)*0.55;
+    const n=y<HOR+20?3:y<HOR+42?2:1;
+    for(let i=0;i<n;i++){
+      if(hash(y,i+7)<0.62){
+        const x=SUNX+Math.round((hash(y,i+31)*2-1)*spread);
+        const w=1+Math.floor(hash(y,i+61)*3);
+        const k=hash(y,i+81)<0.4?'#ffe9b0':'#ffca7e';
+        for(let j=0;j<w;j++)P(x+j,y,k);
+      }
+    }
+  }
+  // --- the boat: lower-left third, heading right, frozen mid-bob (1px lean)
+  const BP={o:'#38222e',l:'#fff7e2',w:'#f6e3bd',s:'#d8a678',d:'#a86e52'};
+  const bx=92,by=142;
+  // reflection: broken cream dashes straight under the hull
+  for(let i=0;i<9;i++){
+    const y=by+9+i;if(hash(i,3)<0.3)continue;
+    const w=Math.max(3,Math.round(16-i*1.7));const x=bx-Math.floor(w/2)+Math.round((hash(i,9)*2-1)*2);
+    for(let j=0;j<w;j++)if(bay4(x+j,y)<0.55)P(x+j,y,i<3?'#e8b482':'#8a5468');
+  }
+  drawBoat(bx,by,BP,{hw:19,ph:13,hh:8,tip:3,light:1,shear:-0.08});
+  // waterline: hull sits IN the water, a lit ripple hugging the hull
+  for(let x=bx-19;x<=bx+19;x++)if(bay4(x,by+7)<0.75)P(x,by+7,'#ffdca4');
+  // wake: two trailing V-lines opening left, plus sparse foam dashes
+  for(let i=0;i<20;i++){
+    const x=bx-20-i;
+    if(i%3!==2)P(x,by+7+Math.floor(i/4),'#e8b482');
+    if(i%3!==2)P(x,by+8+Math.floor(i/3),'#a86478');
+  }
+  for(let i=0;i<6;i++){
+    const x=bx-24-Math.floor(hash(i,1)*16),y=by+8+Math.floor(hash(i,2)*4);
+    P(x,y,'#e8b482');P(x+1,y,'#e8b482');
+  }
+  // bow water: bright cut at the front
+  P(bx+20,by+6,'#fff1d0');P(bx+21,by+7,'#ffd9a0');P(bx+22,by+7,'#e8b482');
+  // gulls: two tiny far specks
+  P(160,44,'#2a1c4a');P(161,43,'#2a1c4a');P(162,44,'#2a1c4a');
+  P(178,52,'#2a1c4a');P(179,51,'#2a1c4a');P(180,52,'#2a1c4a');
+}
+function cloudA(cx,cy,len,top,body,lit){
+  const h=5;
+  for(let r=0;r<h;r++){
+    const y=cy+r;
+    const half=Math.round(len/2*(r===0?0.55:r===1?0.85:r===h-1?0.9:1));
+    const k=r===0?top:r===h-1?lit:body;
+    for(let x=cx-half;x<=cx+half;x++)if(!(r===0&&bay4(x,y)>0.7))P(x,y,k);
+  }
+  // ragged puffs on top
+  for(let i=0;i<5;i++){
+    const x=cx-len/2+Math.floor(hash(cx+i,cy)*len),w=3+Math.floor(hash(i,cy)*5);
+    for(let j=0;j<w;j++)P(x+j,cy-1,top);
+  }
+}
+
+/* =================================== FRAME B =================================== */
+function frameB(){
+  const HOR=100;
+  // --- storm sky
+  const SKY=['#05060e','#0a0e1c','#12192b','#1b2538'];
+  for(let y=0;y<HOR;y++){
+    const f=(y/(HOR-1))*(SKY.length-1);
+    for(let x=0;x<LW;x++)P(x,y,rampAt(SKY,f,x,y,bay8));
+  }
+  // heavy cloud masses: overlapping dithered ellipse blobs
+  for(let i=0;i<10;i++){
+    const cx=Math.floor(hash(i,11)*LW),cy=4+Math.floor(hash(i,12)*40);
+    const rx=16+Math.floor(hash(i,13)*26),ry=4+Math.floor(hash(i,14)*5);
+    for(let y=cy-ry;y<=cy+ry;y++)for(let x=cx-rx;x<=cx+rx;x++){
+      const dx=(x-cx)/rx,dy=(y-cy)/ry,d=dx*dx+dy*dy;
+      if(d<1){
+        if(d>0.7&&bay4(x,y)>0.5)continue;
+        const lit=y>cy+ry*0.4&&x<cx; // undersides toward the break catch light
+        P(x,y,lit&&bay4(x,y)<0.4?'#20303e':'#060a13');
+      }
+    }
+  }
+  // --- the break in the clouds, upper-left: a ragged bright slit, not a disc
+  const BX=48,BY=22;
+  const BRK=['#f2f3da','#c9d2ba','#8a988e','#46565a'];
+  for(let y=BY-5;y<BY+6;y++)for(let x=BX-30;x<=BX+30;x++){
+    const dx=(x-BX)/(30-Math.abs(y-BY)*2.2),dy=(y-BY)/5.5,d=Math.sqrt(dx*dx+dy*dy);
+    const rag=1+((hash(x>>2,3)-0.5)*0.35);
+    if(d<rag)P(x,y,rampAt(BRK,d*(BRK.length-0.4),x,y,bay4));
+  }
+  // dark cloud lips hugging the slit so it reads as a gap in the storm
+  for(let x=BX-34;x<=BX+34;x++){
+    const wob=Math.floor(hash(x>>1,5)*3);
+    for(let k=0;k<3+wob;k++){P(x,BY-6-k,'#04060c');P(x,BY+6+Math.floor(wob/2)-0,'#04060c');}
+  }
+  // god-rays: thin solid diagonal beams from the slit toward the boat's water
+  for(let s=0;s<3;s++){
+    const sx0=BX-13+s*13,slope=0.24+s*0.05,len=96-((s*37)%23);
+    for(let i=0;i<len;i++){
+      const y=BY+5+i,x=Math.round(sx0+i*slope);
+      const t=i/len;
+      if(t>0.45&&bay4(x,y)>0.9*(1-t))continue; // dither out at the tail
+      const k=s===1?'#3e4c46':'#303e3a';
+      P(x,y,k);if(s===1&&t<0.4)P(x+1,y,'#343f3c');
+    }
+  }
+  // the lit patch of sea where the shaft lands (under the boat)
+  for(let y=118;y<136;y++)for(let x=52;x<112;x++){
+    const dx=(x-81)/30,dy=(y-127)/9;
+    if(dx*dx+dy*dy<1&&bay4(x,y)<0.3)P(x,y,'#4c6058');
+  }
+  // --- sea base (left of / in front of the wave)
+  const SEAB=['#13202e','#0e1926','#0a121d'];
+  for(let y=HOR;y<LH;y++){
+    const f=((y-HOR)/(LH-HOR))*(SEAB.length-1);
+    for(let x=0;x<LW;x++)P(x,y,rampAt(SEAB,f,x,y,bay4));
+  }
+  // wind-torn streaks on the sea
+  for(let i=0;i<26;i++){
+    const y=HOR+2+Math.floor(hash(i,21)*72),x=Math.floor(hash(i,22)*LW);
+    const w=3+Math.floor(hash(i,23)*8);
+    for(let j=0;j<w;j++)P(x+j,y,hash(i,24)<0.5?'#2c4450':'#42606a');
+  }
+  // --- THE WAVE: huge sprite-styled wall, diagonal from upper right
+  const WAVE=['#a4d6a2','#63aa88','#3a8378','#265c66','#193f50','#102a3c','#0a1b2b'];
+  const crestY=x=>Math.round(16+(320-x)*0.33+Math.sin(x*0.06)*2.5);
+  const XL=80; // leftmost wave pixel (under the curl)
+  const frontX=y=>84+Math.max(0,y-112)*1.2+Math.round(Math.sin(y*0.35)*3); // forward base, wobbly
+  for(let x=XL;x<LW;x++){
+    const cy2=crestY(x);
+    for(let y=Math.max(0,cy2);y<LH;y++){
+      if(x<frontX(y))continue;
+      const d=y-cy2;
+      let f=Math.min(WAVE.length-1,d/9);
+      // diagonal streak shading running with the slope (sprite-style banding)
+      const st=((x+d*3)%23+23)%23;
+      if(st<3&&d>4)f=Math.min(WAVE.length-1,f+1);
+      if(st>=12&&st<14&&d>6&&f>0.8)f-=0.8;
+      P(x,y,rampAt(WAVE,f,x,y,bay4));
+    }
+  }
+  // --- the curl: crest lip hooking over toward the boat
+  const CX2=112,CY2=crestY(112)+10;
+  for(let y=CY2-30;y<CY2+26;y++)for(let x=CX2-34;x<=CX2+6;x++){
+    const dx=x-CX2,dy=y-CY2,r=Math.sqrt(dx*dx+dy*dy*1.15);
+    const a=Math.atan2(dy,dx); // -PI..PI, 0 = right
+    if(r>13&&r<27&&(a<-0.15||a>2.5)){
+      const dd=27-r;
+      let f=Math.min(WAVE.length-1,dd/4.5);
+      P(x,y,rampAt(WAVE,f,x,y,bay4));
+    }
+  }
+  // --- foam: crest edge + chunky clumps + spray
+  for(let x=XL+8;x<LW;x++){
+    const cy2=crestY(x);
+    for(let d=0;d<3;d++)if(bay4(x,cy2+d)<(d===0?0.95:0.5))P(x,cy2+d,d===0?'#eef6e6':'#a9cfa8');
+  }
+  // clumps along crest
+  for(let i=0;i<30;i++){
+    const x=XL+8+Math.floor(hash(i,31)*(LW-XL-8)),cy2=crestY(x);
+    const w=2+Math.floor(hash(i,32)*4),h=1+Math.floor(hash(i,33)*2);
+    for(let j=0;j<w;j++)for(let k=0;k<h;k++)P(x+j,cy2-k+1,hash(i+j,34)<0.7?'#f4f9ee':'#c9e2c2');
+  }
+  // curl lip foam
+  for(let y=CY2-30;y<CY2+26;y++)for(let x=CX2-34;x<=CX2+6;x++){
+    const dx=x-CX2,dy=y-CY2,r=Math.sqrt(dx*dx+dy*dy*1.15);
+    const a=Math.atan2(dy,dx);
+    if(r>=24&&r<27&&(a<-0.15||a>2.5)&&bay4(x,y)<0.75)P(x,y,'#eef6e6');
+    if(r>=13&&r<16&&(a<-0.15||a>2.5)&&bay4(x,y)<0.4)P(x,y,'#a9cfa8');
+  }
+  // spray blown off the lip, wind to the left
+  for(let i=0;i<46;i++){
+    const t=hash(i,41);
+    const x=CX2-30-Math.floor(t*38),y=CY2-14-Math.floor(hash(i,42)*22)+Math.floor(t*10);
+    if(hash(i,43)<0.8)P(x,y,hash(i,44)<0.55?'#dfeadb':'#8fb4a4');
+  }
+  // wave-base churn: a continuous boiling foam band hiding the base line
+  for(let y=103;y<LH;y++){
+    const fx=Math.round(frontX(y));
+    const w=7+Math.floor(hash(y,52)*9);
+    for(let x=fx-Math.floor(w*0.6);x<fx+w;x++){
+      const e=Math.abs(x-fx)/w;
+      const p=0.95-e*0.9;
+      if(hash(x,y)<p)P(x,y,hash(x+7,y)<0.6?'#dcebd8':'#79988e');
+    }
+    // dark boil shadow just left of the foam
+    for(let k=0;k<3;k++)if(hash(y,60+k)<0.6)P(fx-Math.floor(w*0.6)-1-k,y,'#1b3340');
+  }
+  // foam scraps drifting left off the base toward the boat
+  for(let i=0;i<16;i++){
+    const y=124+Math.floor(hash(i,56)*30),x=40+Math.floor(hash(i,57)*70);
+    const w=2+Math.floor(hash(i,58)*3);
+    for(let j=0;j<w;j++)P(x+j,y,'#5c7a76');
+  }
+  // --- the boat: small, lower-left, climbing, bow up, still pointing forward
+  const BP={o:'#10141e',l:'#fff8e0',w:'#e4d6b4',s:'#8e8a92',d:'#5c5a66'};
+  const bx=76,by=127;
+  drawBoat(bx,by,BP,{hw:12,ph:8,hh:5,tip:2,light:-1,shear:0.25});
+  // white water breaking around the hull
+  for(let i=0;i<20;i++){
+    const x=bx-16+Math.floor(hash(i,61)*32),y=by+3+Math.floor(hash(i,62)*5);
+    const w=1+Math.floor(hash(i,64)*3);
+    for(let j=0;j<w;j++)P(x+j,y,hash(i,63)<0.6?'#eef6e6':'#9fbfae');
+  }
+  // rain: sparse diagonal ticks
+  for(let i=0;i<60;i++){
+    const x=Math.floor(hash(i,71)*LW),y=Math.floor(hash(i,72)*140);
+    P(x,y,'#33465a');P(x+1,y+1,'#26374a');
+  }
+}
+
+/* =================================== driver =================================== */
+window.drawFrame=function(which){
+  cf='';
+  c.clearRect(0,0,LW,LH);
+  if(which==='a')frameA();else frameB();
+  G.imageSmoothingEnabled=false;
+  G.clearRect(0,0,1280,720);
+  G.drawImage(lo,0,0,1280,720);
+  window.DONE=true;
+};
+window.READY=true;
+</script>
+</body></html>

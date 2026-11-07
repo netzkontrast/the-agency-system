@@ -1,0 +1,245 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#111}canvas{display:block}</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W=1280,H=720,ctx=document.getElementById('c').getContext('2d');
+
+/* ---------- deterministic helpers ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function makeNoise(seed,n){const r=mulberry32(seed),v=[];for(let i=0;i<n;i++)v.push(r());return function(t){t=((t%n)+n)%n;const i=Math.floor(t),f=t-i,u=f*f*(3-2*f);return v[i]*(1-u)+v[(i+1)%n]*u}}
+
+/* resample closed polygon at ~step px, return pts + outward normals */
+function resample(pts,step){
+  const out=[];let per=0;const n=pts.length;
+  for(let i=0;i<n;i++){const a=pts[i],b=pts[(i+1)%n];per+=Math.hypot(b[0]-a[0],b[1]-a[1]);}
+  const cnt=Math.max(24,Math.round(per/step));const seg=per/cnt;
+  let d=0,i=0,a=pts[0],b=pts[1%n],rem=Math.hypot(b[0]-a[0],b[1]-a[1]);
+  for(let k=0;k<cnt;k++){
+    const target=k*seg;
+    while(d+rem<target){d+=rem;i++;a=pts[i%n];b=pts[(i+1)%n];rem=Math.hypot(b[0]-a[0],b[1]-a[1]);}
+    const f=rem>0?(target-d)/rem:0;
+    out.push([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]);
+  }
+  let ar=0;for(let k=0;k<out.length;k++){const p=out[k],q=out[(k+1)%out.length];ar+=p[0]*q[1]-q[0]*p[1];}
+  const s=ar>0?-1:1;
+  const nor=[];
+  for(let k=0;k<out.length;k++){
+    const p=out[(k-1+out.length)%out.length],q=out[(k+1)%out.length];
+    let dx=q[0]-p[0],dy=q[1]-p[1];const L=Math.hypot(dx,dy)||1;
+    nor.push([s*dy/L,-s*dx/L]);
+  }
+  return{pts:out,nor};
+}
+
+/* roughen: displace along outward normals with seeded noise.
+   cut: tight wobble. torn: long ragged excursions (low freq) + small chatter. */
+function rough(base,opt){
+  const{amp=2,step=5,seed=1,freq=0.22,bias=0,oct=0}=opt||{};
+  const{pts,nor}=resample(base,step);
+  const n1=makeNoise(seed,512),n2=makeNoise(seed+77,512);
+  const out=[];
+  for(let k=0;k<pts.length;k++){
+    let d=(n1(k*freq)-.5)*2*amp+bias;
+    if(oct)d+=(n2(k*0.9)-.5)*amp*.55;
+    out.push([pts[k][0]+nor[k][0]*d,pts[k][1]+nor[k][1]*d]);
+  }
+  return out;
+}
+function path(pts){const p=new Path2D();p.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)p.lineTo(pts[i][0],pts[i][1]);p.closePath();return p}
+
+/* ---------- paper texture tiles ---------- */
+function grainTile(seed){
+  const s=160,cv=document.createElement('canvas');cv.width=cv.height=s;
+  const g=cv.getContext('2d'),im=g.createImageData(s,s),r=mulberry32(seed);
+  for(let i=0;i<s*s;i++){const v=r()*255|0;im.data[i*4]=v;im.data[i*4+1]=v;im.data[i*4+2]=v;im.data[i*4+3]=255;}
+  g.putImageData(im,0,0);return cv;
+}
+function blotchTile(seed){
+  const s=16,cv=document.createElement('canvas');cv.width=cv.height=s;
+  const g=cv.getContext('2d'),im=g.createImageData(s,s),r=mulberry32(seed);
+  for(let i=0;i<s*s;i++){const v=110+r()*90|0;im.data[i*4]=v;im.data[i*4+1]=v;im.data[i*4+2]=v;im.data[i*4+3]=255;}
+  g.putImageData(im,0,0);
+  const big=document.createElement('canvas');big.width=big.height=512;
+  const gb=big.getContext('2d');gb.imageSmoothingEnabled=true;gb.drawImage(cv,0,0,512,512);return big;
+}
+const GRAIN=grainTile(11),BLOTCH=blotchTile(23),BLOTCH2=blotchTile(57);
+
+/* ---------- piece renderer ---------- */
+let LIGHT=[-1,1]; // global light -> shadow offset dir for free-floating pieces
+function drawPiece(o){
+  const seed=o.seed||1,depth=o.depth==null?1:o.depth;
+  const eo=o.edge==='torn'
+    ?{amp:o.amp||9,step:5,seed,freq:o.freq||.09,oct:1}
+    :{amp:o.amp||1.6,step:6,seed,freq:.22};
+  const main=rough(o.base,eo);
+  const mp=path(main);
+  let silhouette=mp,fp=null;
+  if(o.edge==='torn'&&o.fringe!==false){
+    const fr=rough(o.base,{amp:(o.amp||9)*1.1,step:5,seed:seed+31,freq:(o.freq||.09)*1.4,bias:3,oct:1});
+    fp=path(fr);silhouette=fp;
+  }
+  if(!o.noShadow){
+    const dir=o.sh||LIGHT;
+    const dist=(o.shDist!=null?o.shDist:5+depth*3.5),blur=4+depth*2.4;
+    ctx.save();
+    ctx.translate(dir[0]*dist,dir[1]*dist);
+    ctx.filter='blur('+blur.toFixed(1)+'px)';
+    ctx.fillStyle='rgba(40,30,22,'+(o.shadowA!=null?o.shadowA:0.34)+')';
+    ctx.fill(silhouette);
+    ctx.restore();
+  }
+  if(fp){ctx.fillStyle=o.fringeColor||'#F0EADB';ctx.fill(fp);}
+  ctx.fillStyle=o.color;ctx.fill(mp);
+  if(o.tex!==false){
+    ctx.save();ctx.clip(fp||mp);
+    const pat=ctx.createPattern(GRAIN,'repeat');
+    ctx.globalCompositeOperation='multiply';ctx.globalAlpha=0.055;ctx.fillStyle=pat;ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='screen';ctx.globalAlpha=0.045;ctx.fillRect(0,0,W,H);
+    const off=(seed*37)%300;
+    ctx.globalCompositeOperation='multiply';ctx.globalAlpha=0.10;
+    ctx.drawImage(seed%2?BLOTCH:BLOTCH2,-off,-((seed*61)%260),1600,1000);
+    ctx.restore();
+  }
+  return main;
+}
+
+/* ---------- shape builders ---------- */
+function circle(cx,cy,r,n){n=n||40;const p=[];for(let i=0;i<n;i++){const a=i/n*Math.PI*2;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}return p}
+function seaStrip(yTop,amp,waves,phase,bottom){
+  const p=[];const n=64;
+  for(let i=0;i<=n;i++){const x=-40+(W+80)*i/n;
+    p.push([x,yTop+Math.sin(i/n*Math.PI*2*waves+phase)*amp]);}
+  p.push([W+40,bottom]);p.push([-40,bottom]);
+  return p;
+}
+function rot(pts,cx,cy,ang){const c=Math.cos(ang),s=Math.sin(ang);return pts.map(p=>[cx+(p[0]-cx)*c-(p[1]-cy)*s,cy+(p[0]-cx)*s+(p[1]-cy)*c])}
+
+/* paper boat: hull trapezoid + sail peak + red pennant */
+function drawBoat(x,y,s,ang,seedBase,depth,sh){
+  const T=p=>rot(p,x,y,ang);
+  const hull=T([[x-1.05*s,y-0.34*s],[x+1.05*s,y-0.34*s],[x+0.62*s,y+0.16*s],[x-0.62*s,y+0.16*s]]);
+  const band=T([[x-1.05*s,y-0.34*s],[x+1.05*s,y-0.34*s],[x+0.92*s,y-0.18*s],[x-0.92*s,y-0.18*s]]);
+  const sail=T([[x,y-1.18*s],[x+0.52*s,y-0.30*s],[x-0.52*s,y-0.30*s]]);
+  const flag=T([[x-0.02*s,y-1.16*s],[x+0.36*s,y-1.03*s],[x-0.02*s,y-0.90*s]]);
+  drawPiece({base:sail,edge:'cut',color:'#F5EDDA',seed:seedBase+1,depth:depth,amp:1.2,sh:sh});
+  drawPiece({base:hull,edge:'cut',color:'#F9F3E3',seed:seedBase+2,depth:depth,amp:1.3,sh:sh});
+  drawPiece({base:band,edge:'cut',color:'#E4D8BC',seed:seedBase+3,depth:depth,amp:1.0,shadowA:.14,shDist:2,sh:sh});
+  drawPiece({base:flag,edge:'cut',color:'#C8402F',seed:seedBase+4,depth:depth,amp:0.9,shDist:3,sh:sh});
+}
+
+/* ---------- FRAME A : setting out, dawn ---------- */
+function frameA(){
+  LIGHT=[-0.55,0.84]; // sun upper-right -> free pieces shadow down-left
+  const BAND=[-0.45,-0.89]; // bands: shadow peeks above their top edge (onto the sheet behind)
+  ctx.fillStyle='#F2E3C8';ctx.fillRect(0,0,W,H);
+  ctx.save();const pat=ctx.createPattern(GRAIN,'repeat');
+  ctx.globalCompositeOperation='multiply';ctx.globalAlpha=.05;ctx.fillStyle=pat;ctx.fillRect(0,0,W,H);
+  ctx.globalCompositeOperation='multiply';ctx.globalAlpha=.08;ctx.drawImage(BLOTCH,0,-80,1500,900);ctx.restore();
+
+  const HOR=396;
+  // sky bands, top to bottom; each casts up onto the previous
+  drawPiece({base:seaStrip(150,10,1.6,1.1,-40).reverse(),edge:'cut',color:'#B9A2BC',seed:101,depth:.8,amp:2,noShadow:true});
+  drawPiece({base:seaStrip(258,12,1.9,2.6,140).reverse(),edge:'cut',color:'#E5A184',seed:102,depth:1.0,amp:2,sh:BAND,shDist:7,shadowA:.28});
+  drawPiece({base:seaStrip(HOR+6,7,2.2,0.4,248).reverse(),edge:'cut',color:'#F0BE7F',seed:103,depth:1.0,amp:2,sh:BAND,shDist:7,shadowA:.28});
+
+  // sun with radiating cut rays
+  const sx=905,sy=286,sr=74;
+  for(let i=0;i<14;i++){
+    const a=i/14*Math.PI*2+0.12,len=(i%2?1.9:2.6)*sr,wd=0.22;
+    const ray=[[sx+Math.cos(a)*sr*1.12,sy+Math.sin(a)*sr*1.12],
+               [sx+Math.cos(a+wd)*len*0.62,sy+Math.sin(a+wd)*len*0.62],
+               [sx+Math.cos(a)*len,sy+Math.sin(a)*len],
+               [sx+Math.cos(a-wd)*len*0.62,sy+Math.sin(a-wd)*len*0.62]];
+    drawPiece({base:ray,edge:'cut',color:i%2?'#F6CE79':'#F2B558',seed:200+i,depth:.8,amp:1.2,shadowA:.2});
+  }
+  drawPiece({base:circle(sx,sy,sr),edge:'cut',color:'#F2A340',seed:230,depth:1.2,amp:1.6});
+  drawPiece({base:circle(sx-8,sy-8,sr*0.62),edge:'cut',color:'#F7BC5C',seed:231,depth:.4,amp:1.2,shadowA:.12,shDist:2});
+
+  // small cut clouds
+  const cl=(cx,cy,s,sd)=>{
+    const b=[[cx-1.5*s,cy+0.32*s],[cx-1.32*s,cy-0.1*s],[cx-0.85*s,cy-0.34*s],[cx-0.35*s,cy-0.52*s],[cx+0.35*s,cy-0.44*s],[cx+0.95*s,cy-0.2*s],[cx+1.5*s,cy+0.05*s],[cx+1.42*s,cy+0.32*s]];
+    drawPiece({base:b,edge:'cut',color:'#F7E9CF',seed:sd,depth:1.2,amp:1.8});
+  };
+  cl(250,150,62,301);cl(1105,120,48,302);cl(620,205,40,303);
+
+  // sea bands, back to front; shadows peek above their wavy top edges
+  const SEA=[-0.3,-0.95];
+  drawPiece({base:seaStrip(HOR,4,3.2,0,H+40),edge:'cut',color:'#5FA898',seed:401,depth:1.0,amp:1.6,sh:SEA,shDist:7,shadowA:.30});
+  // sun glint slivers on the far water
+  for(let i=0;i<4;i++){
+    const gy=HOR+14+i*13,gw=150-i*28,gx=sx+(i%2?14:-10);
+    drawPiece({base:[[gx-gw/2,gy],[gx+gw/2,gy],[gx+gw/2-8,gy+7],[gx-gw/2+6,gy+7]],edge:'cut',color:'#F3C878',seed:420+i,depth:.3,amp:1.2,shadowA:.10,shDist:2});
+  }
+  drawPiece({base:seaStrip(452,7,2.6,1.3,H+40),edge:'cut',color:'#3E8E8B',seed:402,depth:1.2,amp:1.8,sh:SEA,shDist:8,shadowA:.32});
+  drawPiece({base:seaStrip(508,9,2.2,3.9,H+40),edge:'cut',color:'#2F7076',seed:403,depth:1.4,amp:2,sh:SEA,shDist:9,shadowA:.32});
+
+  // the boat, lower-left third heading right; keel dips behind next band
+  drawBoat(360,540,95,0.05,500,1.7);
+  // foam sliver crossing the waterline
+  drawPiece({base:[[264,550],[456,544],[450,560],[272,564]],edge:'cut',color:'#EFE6CE',seed:406,depth:.5,amp:1.6,shadowA:.14,shDist:2});
+  // front sea bands overlap the keel
+  drawPiece({base:seaStrip(560,11,1.9,5.2,H+40),edge:'cut',color:'#26586B',seed:404,depth:1.6,amp:2.2,sh:SEA,shDist:9,shadowA:.34});
+  drawPiece({base:seaStrip(646,13,1.5,2.2,H+40),edge:'cut',color:'#1E4258',seed:407,depth:1.9,amp:2.4,sh:SEA,shDist:10,shadowA:.36});
+}
+
+/* ---------- FRAME B : the storm peak ---------- */
+function frameB(){
+  LIGHT=[0.62,0.79]; // light breaks upper-left -> free pieces shadow down-right
+  const RIM=[0.5,-0.87]; // wave sheets: shadow peeks above the torn crest
+  ctx.fillStyle='#232A40';ctx.fillRect(0,0,W,H);
+  ctx.save();const pat=ctx.createPattern(GRAIN,'repeat');
+  ctx.globalCompositeOperation='screen';ctx.globalAlpha=.05;ctx.fillStyle=pat;ctx.fillRect(0,0,W,H);
+  ctx.globalCompositeOperation='multiply';ctx.globalAlpha=.16;ctx.drawImage(BLOTCH2,-60,-40,1600,980);ctx.restore();
+
+  // torn gap of dawn light, upper-left
+  drawPiece({base:circle(255,140,148,48),edge:'torn',color:'#F4DFA8',seed:601,depth:.4,amp:16,freq:.06,fringeColor:'#F8EFD3',shadowA:.18});
+  drawPiece({base:circle(258,146,84,40),edge:'torn',color:'#F9EDC6',seed:602,depth:.2,amp:9,freq:.08,fringe:false,shadowA:.1});
+
+  // torn storm-cloud sheets crowding around the gap
+  drawPiece({base:[[-40,-40],[560,-40],[470,40],[210,30],[80,120],[110,250],[330,300],[620,270],[-40,360]],edge:'torn',color:'#2A3352',seed:611,depth:1.2,amp:14,freq:.055,fringeColor:'#A9A4B6',shadowA:.38});
+  drawPiece({base:[[340,-40],[1320,-40],[1320,230],[1010,190],[800,235],[600,160],[460,180],[430,70],[520,10]],edge:'torn',color:'#333D63',seed:612,depth:1.4,amp:15,freq:.05,fringeColor:'#B3AEC0',shadowA:.38});
+
+  // light shaft from the gap down to the boat
+  ctx.save();ctx.globalAlpha=.15;ctx.fillStyle='#F4DFA8';
+  ctx.fill(path(rough([[205,120],[350,95],[560,560],[350,600]],{amp:3,step:8,seed:620,freq:.2})));
+  ctx.globalAlpha=.07;
+  ctx.fill(path(rough([[165,130],[410,86],[660,580],[300,640]],{amp:3,step:8,seed:621,freq:.2})));
+  ctx.restore();
+
+  // distant sea behind the wave
+  drawPiece({base:seaStrip(452,9,2.6,.6,H+40),edge:'torn',color:'#1C4D58',seed:630,depth:.9,amp:6,freq:.1,fringe:false,sh:RIM,shDist:6,shadowA:.3});
+
+  /* THE WAVE: giant torn layers diagonal from upper right, curling lip over the boat */
+  // back sheet: tall wall
+  drawPiece({base:[[610,470],[680,350],[760,280],[900,205],[1080,140],[1320,80],[1340,780],[590,780]],
+    edge:'torn',color:'#20626B',seed:640,depth:1.7,amp:15,freq:.05,fringeColor:'#E8E1D0',shadowA:.42,sh:RIM,shDist:9});
+  // mid sheet: diagonal face sweeping down-left to the water, lip at the top
+  drawPiece({base:[[500,614],[560,520],[640,428],[662,368],[642,338],[702,316],[802,298],[932,260],[1100,214],[1320,180],[1340,780],[470,780]],
+    edge:'torn',color:'#174751',seed:641,depth:2.1,amp:16,freq:.055,fringeColor:'#EDE7DA',shadowA:.45,sh:RIM,shDist:10});
+  // spray: elongated ragged shreds flying off the lip, pointing down-left
+  const shred=(cx,cy,len,wd,ang,sd)=>{
+    const b=rot([[cx-len/2,cy],[cx+len/2,cy-wd*.4],[cx+len/2,cy+wd*.6],[cx-len/2+4,cy+wd*.3]],cx,cy,ang);
+    drawPiece({base:b,edge:'torn',color:'#E9E2D2',seed:sd,depth:1.3,amp:wd*.5,freq:.2,fringe:false,shadowA:.24});
+  };
+  shred(600,320,58,16,-0.5,660);shred(536,380,44,13,-0.55,661);
+  shred(668,268,50,14,-0.4,662);shred(790,238,40,12,-0.35,663);
+  shred(492,452,34,11,-0.6,664);
+
+  // the boat: small, bright, clean-cut, bow up toward the wave, in the beam
+  drawBoat(414,562,66,-0.2,700,2.0);
+  // foam sliver crossing its waterline
+  drawPiece({base:[[350,574],[482,562],[476,578],[358,586]],edge:'cut',color:'#D8D2C0',seed:701,depth:.5,amp:1.6,shadowA:.16,shDist:2});
+
+  // foreground torn water, low, not covering the boat
+  drawPiece({base:seaStrip(636,12,1.8,2.4,H+40),edge:'torn',color:'#102A38',seed:642,depth:2.4,amp:12,freq:.06,fringeColor:'#9FB1B2',sh:RIM,shDist:10,shadowA:.4});
+  drawPiece({base:seaStrip(692,10,1.4,4.4,H+40),edge:'torn',color:'#0B1F2B',seed:643,depth:2.8,amp:10,freq:.07,fringe:false,sh:RIM,shDist:10,shadowA:.4});
+}
+
+window.drawFrame=function(which){
+  ctx.save();ctx.clearRect(0,0,W,H);
+  if(which==='a')frameA();else frameB();
+  ctx.restore();window.DONE=true;
+};
+window.READY=true;
+</script></body></html>
