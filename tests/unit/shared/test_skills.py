@@ -35,13 +35,13 @@ def test_shared_list_skills():
 
 
 def test_shared_list_skills_video_domain(monkeypatch):
-    # The video domain holds the three ported engines (take-one, ClaudeAnimationBase, higgsfield).
+    # The video domain is one suite: skills/video/studio (Video Studio), which replaced the three ported repos.
     from pathlib import Path
     monkeypatch.chdir(Path(__file__).resolve().parents[3])
     result = shared_list_skills("video")
     assert result["ok"] is True
     names = {s["name"] for s in result["data"]}
-    assert {"take-one", "claude-animation-base", "code-based-films"} <= names
+    assert names == {"studio"}
 
 
 def test_plugin_help_video_is_a_known_domain():

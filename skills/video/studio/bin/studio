@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+# bin/studio — one entry point for the Video Studio tools. Run `bin/studio help`.
+set -uo pipefail
+S="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PY="${STUDIO_PYTHON:-python3}"
+cmd="${1:-help}"; shift || true
+
+usage() { cat <<EOF
+Video Studio — code-based video production ($S)
+
+  studio doctor                          check this machine; installs the studio's Node packages
+  studio new <dir> [--medium paint|canvas|pathtracer] [--duration S] [--bpm N] [--character]
+                                         start a film project (see tools/new-project.sh)
+  studio update <dir>                    refresh a project's copied engine files from the studio
+  studio render [render.mjs options]     run in a project: --sheet, --strip, --crop, --stills, --frames, --clip, --encode
+  studio gate <dir> [--mp4 cut.mp4] [--step N] [--no-audits]
+                                         the gate battery → <dir>/review/gate-<time>.md; exit 1 on any FAIL
+  studio songmap <audio> [--dir <project>] [--lyrics lyrics.txt] [--lang de] [--beat-this] [--stems auto|demucs|none]
+                 [--from-words raw.json]   (word times from another aligner: [{word,start,end}])
+                                         bar map + (optional) word map → <project>/songmap/*.json + songmap.js
+  studio srt [srt.py options]            subtitles (.srt/.vtt/.ass karaoke) from songmap/words.json
+  studio flash <cut.mp4> [--iris]        flash / red-flash screen (hard gate)
+  studio loudness <file...>              integrated LUFS, true peak, LRA (target -14 LUFS, -1 dBTP)
+  studio pack <cut.mp4> <pack dir> [--beats …] [--strips …] [--text …]
+                                         the fresh reviewer's pack
+  studio review <cuts dir> [port]        the review room (notes pinned on frames), http://localhost:4400
+  studio sheet <video> [outdir]          contact sheet + 3 frames of any video (reference study)
+  studio storyboard <frames dir> <out.png>  tile storyboard frames on one sheet
+  studio music|sfx|vo …                  code music (tools/music.mjs), code SFX (tools/sfx.mjs), voice cutting (tools/vo.py)
+  studio help
+
+Environment: CHROME_PATH, STUDIO_GL=soft|vulkan|gl-egl, STUDIO_TIMEOUT_MS, STUDIO_PYTHON.
+Docs: $S/SKILL.md · playbooks/ · agents/ · references/film-contract.md
+EOF
+}
+
+case "$cmd" in
+  help|-h|--help) usage ;;
+  doctor) exec bash "$S/tools/doctor.sh" "$@" ;;
+  new) exec bash "$S/tools/new-project.sh" "$@" ;;
+  update) exec bash "$S/tools/new-project.sh" "${1:?studio update <dir>}" --update ;;
+  render) exec node "$S/tools/render.mjs" "$@" ;;
+  flash) exec "$PY" -I "$S/tools/flash_test.py" "$@" ;;
+  loudness) exec node "$S/tools/audio-check.mjs" "$@" ;;
+  srt) exec "$PY" "$S/tools/audio/srt.py" "$@" ;;
+  pack) exec bash "$S/tools/review-pack.sh" "$@" ;;
+  review) exec node "$S/tools/review-room/server.mjs" "$@" ;;
+  sheet) exec bash "$S/tools/contact-sheet.sh" "$@" ;;
+  storyboard) exec bash "$S/tools/storyboard-sheet.sh" "$@" ;;
+  music) exec node "$S/tools/music.mjs" "$@" ;;
+  sfx) exec node "$S/tools/sfx.mjs" "$@" ;;
+  vo) exec "$PY" "$S/tools/vo.py" "$@" ;;
+  songmap)
+    audio="${1:?studio songmap <audio> [--dir project] [--lyrics file] [--lang xx] [--beat-this]}"; shift
+    dir=.; lyrics=""; lang=""; beatthis=0; stems=auto; fromw=""
+    while [ $# -gt 0 ]; do case "$1" in
+      --dir) dir="$2"; shift 2;; --lyrics) lyrics="$2"; shift 2;; --lang) lang="$2"; shift 2;;
+      --beat-this) beatthis=1; shift;; --stems) stems="$2"; shift 2;; --from-words) fromw="$(cd "$(dirname "$2")" && pwd)/$(basename "$2")"; shift 2;; *) echo "unknown option $1" >&2; exit 2;; esac; done
+    audio="$(cd "$(dirname "$audio")" && pwd)/$(basename "$audio")"
+    [ -n "$lyrics" ] && lyrics="$(cd "$(dirname "$lyrics")" && pwd)/$(basename "$lyrics")"
+    cd "$dir" && mkdir -p songmap || exit 2
+    "$PY" -I "$S/tools/audio/beatmap.py" "$audio" --out songmap/beatmap.json || exit 1
+    extra=()
+    if [ "$beatthis" = 1 ]; then "$PY" -I "$S/tools/audio/beat_this_track.py" "$audio" --out songmap/beats.json && extra+=(--beats songmap/beats.json); fi
+    if [ -n "$lyrics" ]; then
+      "$PY" -I "$S/tools/audio/align_lyrics.py" "$audio" --lyrics "$lyrics" --out songmap/words.json --stems "$stems" ${lang:+--lang "$lang"} ${fromw:+--from-words "$fromw"} || exit 1
+    fi
+    "$PY" "$S/tools/audio/songmap_js.py" --beatmap songmap/beatmap.json --words songmap/words.json "${extra[@]}" --out songmap.js
+    ;;
+  gate)
+    dir="${1:?studio gate <dir> [--mp4 cut.mp4] [--step N] [--no-audits]}"; shift
+    mp4=""; step=""; audits=1
+    while [ $# -gt 0 ]; do case "$1" in
+      --mp4) mp4="$(cd "$(dirname "$2")" && pwd)/$(basename "$2")"; shift 2;; --step) step="$2"; shift 2;;
+      --no-audits) audits=0; shift;; *) echo "unknown option $1" >&2; exit 2;; esac; done
+    cd "$dir" || exit 2
+    mkdir -p review; log="review/gate-$(date +%Y%m%d-%H%M%S).md"; fails=0
+    run() { local name="$1"; shift; echo "## $name" >> "$log"; echo '```' >> "$log"
+      if "$@" >> "$log" 2>&1; then echo '```' >> "$log"; echo "PASS  $name"; else echo '```' >> "$log"; echo "FAIL  $name"; fails=$((fails+1)); fi; }
+    echo "# Gate battery — $(pwd) — $(date -u +%FT%TZ)" > "$log"
+    if [ -f film.html ]; then
+      run "render gate (determinism, contract, dead air, pops)" node "$S/tools/gate.mjs" film.html ${mp4:+--mp4 "$mp4"} ${step:+--step "$step"}
+      if [ "$audits" = 1 ]; then
+        run "text audit" node "$S/tools/text-audit.mjs" film.html
+        run "edge audit" node "$S/tools/edge-audit.mjs" film.html
+        run "plate audit" node "$S/tools/plate-audit.mjs" film.html
+      fi
+    else echo "no film.html here (path-traced project?): page gates skipped; run the pathtracer QA (references/pathtracer/qa.md)" | tee -a "$log"; fi
+    if [ -n "$mp4" ]; then
+      run "flash test" "$PY" -I "$S/tools/flash_test.py" "$mp4" --json review/flash.json
+      run "loudness" node "$S/tools/audio-check.mjs" "$mp4"
+    else echo "no --mp4: flash test and loudness need an exported cut" | tee -a "$log"; fi
+    echo "gate log: $dir/$log"; [ $fails -eq 0 ] && echo "GATES: PASS" || { echo "GATES: $fails FAIL — fix or explain each in BUILD_NOTES.md"; exit 1; }
+    ;;
+  *) echo "unknown command: $cmd" >&2; usage; exit 2 ;;
+esac

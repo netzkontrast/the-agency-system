@@ -3,8 +3,8 @@
 > **Status:** Entwurf v0.2 (2026-11-07) — wartet auf Bestätigung (Phase-7-Gate analog zum
 > `album-conceptualizer`). Keine Produktion vor Bestätigung.
 > **Pipeline:** [`Plan/140-video-domain/spec.md`](../../../../../Plan/140-video-domain/spec.md)
-> **Engines im Repo:** `skills/video/` (portiert, siehe `skills/video/README.md`).
-> **Engine:** `netzkontrast/ClaudeAnimationBase` (`skills/video/claude-animation-base/`) — p5.js + p5.brush, flaches 2D, gemalte
+> **Suite im Repo:** `skills/video/studio/` (Skill `video-studio`), Playbooks `album-suite.md` + `music-video.md`.
+> **Medium:** paint (`engine/paint/`, aus ClaudeAnimationBase) — p5.js + p5.brush, flaches 2D, gemalte
 > Pinselstriche, „kochende“ Tuschelinien (12 Zeichnungen/s), Papierkorn, Kamera, Licht
 > per `glow()`, jedes Bild eine reine Funktion der Zeit, paralleles fortsetzbares Rendern
 > in Headless Chrome. Regeln und Werkzeuge: `ANIMATION_GUIDE.md` im Engine-Repo.

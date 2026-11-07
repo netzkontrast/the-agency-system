@@ -1,0 +1,20 @@
+{
+  "name": "agency-video-studio",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Code-based video production suite: painted 2D (p5.brush), plain canvas and a WebGPU path tracer, one film contract, one renderer, gates and a review room.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "doctor": "bash tools/doctor.sh",
+    "gate:self-test": "node tools/gate.mjs --self-test",
+    "edge:self-test": "node tools/edge-audit.mjs --self-test",
+    "smoke": "bash tools/smoke.sh"
+  },
+  "dependencies": {
+    "p5": "2.3.3",
+    "p5.brush": "2.2.3",
+    "playwright-core": "^1.63.0"
+  }
+}

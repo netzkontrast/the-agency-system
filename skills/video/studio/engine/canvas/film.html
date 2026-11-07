@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><title>film · canvas medium</title>
+<style>html,body{margin:0;background:#111}canvas{display:block;width:100vw;height:auto;max-height:100vh;object-fit:contain}</style>
+<script src="config.js"></script>
+<script src="songmap.js"></script>
+<script src="engine/springs.js"></script>
+<script src="engine/beat.js"></script>
+<!-- project library (art director): <script src="lib/look.js"></script> — chapters: <script src="scenes/ch01.js"></script> -->
+</head>
+<body><canvas id="c"></canvas><script>
+// Film contract (references/film-contract.md): FILM_DURATION, renderFrame(t) as a pure function of t, READY.
+const Q = new URLSearchParams(location.search);
+const W = Number(Q.get('w')) || (Q.has('portrait') ? 1080 : 1920), H = Number(Q.get('h')) || 1080;
+const c = document.getElementById('c'); c.width = W; c.height = H; const g = c.getContext('2d');
+window.FILM_DURATION = PROJECT.duration; window.FILM_CANVAS = c;
+// Motion = springs (Spring.to: one spring per target change, closed form, any t in any order). Linear motion = never.
+const CARD_X = [[0, -400], [0.4, W / 2 - 300], [3, W / 2 - 100], [6, W + 100]];
+window.renderFrame = (t) => {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; g.filter = 'none';
+  g.fillStyle = '#fafaf8'; g.fillRect(0, 0, W, H);
+  const x = Spring.to(t, CARD_X, 'camera'), s = 0.6 + 0.4 * Spring.unit(t - 0.4, 'playful') + 0.05 * SONG.pulse(t);
+  g.save(); g.translate(x + 300, H / 2); g.scale(s, s); g.fillStyle = '#111'; g.font = '700 120px system-ui'; g.textAlign = 'center';
+  g.fillText('t = ' + t.toFixed(2), 0, 40); g.restore();
+};
+document.fonts.ready.then(() => {
+  window.READY = true; if (navigator.webdriver) return;
+  const s = performance.now(); const loop = (n) => { window.renderFrame(((n - s) / 1000) % window.FILM_DURATION); requestAnimationFrame(loop); }; requestAnimationFrame(loop);
+});
+</script></body></html>

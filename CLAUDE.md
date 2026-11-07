@@ -323,22 +323,22 @@ novel writing phase) so the right DNA is in context.
   `[male mid-baritone, weary, dry close-mic]` is permitted; the character
   form `[Container]` is forbidden by `voice-craft-principles.md`.
 
-## Video domain (music videos per song)
+## Video domain (code-based video production)
 
-Three external repos are ported unchanged under `skills/video/` (provenance and
-licences: [`skills/video/README.md`](skills/video/README.md)):
+One suite: **`skills/video/studio/`** — skill `video-studio`
+([`SKILL.md`](skills/video/studio/SKILL.md)). Every frame is a pure function of time (painted 2D with p5.brush,
+plain canvas, or a WebGPU path tracer); a team of subagents (director, critic, art director, song-map analyst,
+animators per chapter, integrator, QA operator, fresh reviewer, copywriter, …) works through hard gates.
 
-- `take-one/` — the process: song → music video, critic before animation, fresh
-  reviewer per round, review room, gate / text / audio audits.
-- `claude-animation-base/` — the medium: painted 2D (p5.js + p5.brush).
-- `higgsfield-video-engineer/` — `tools/beatmap.py` for bars and drops; optional
-  path tracer for stills.
-
-The pipeline built on them is planned in
-[`Plan/140-video-domain/spec.md`](Plan/140-video-domain/spec.md); album-specific
-video concepts live in the album folder (`VIDEO-CONCEPT.md`). For an Agency System
-album, run the gate skill `skills/theagencysystem/` first — name_exposure and the
-album's depiction rules apply to every frame.
+- **Pick a playbook first:** `skills/video/studio/playbooks/` (music video, album suite, lyric video, visualizer,
+  explainer, launch, brand/title, animated short, documentary, data story, social vertical, teaser, path-traced).
+- **Subagent briefs:** `skills/video/studio/agents/` — paste a brief, fill its bracketed fields, ≤ 2 heavy agents at once.
+- **CLI:** `bash skills/video/studio/bin/studio help` (`doctor`, `new`, `render`, `gate`, `songmap`, `srt`, `flash`, …).
+- **Agency System albums:** run the gate skill `skills/theagencysystem/` first and load the album's
+  `VIDEO-CONCEPT.md`; name_exposure and the album's depiction rules bind every frame, file name and caption.
+  Lyrics for subtitles and alignment come from the **streaming lyrics**, never the Suno phonetic box.
+- The pipeline built around the music domain is planned in
+  [`Plan/140-video-domain/spec.md`](Plan/140-video-domain/spec.md).
 
 ## Jules orchestration plugin
 

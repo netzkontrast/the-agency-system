@@ -52,7 +52,8 @@ def list_skills() -> list[Path]:
     if not skills_dir.exists():
         return []
 
-    return list(skills_dir.rglob("SKILL.md"))
+    # npm packages installed inside a skill (e.g. skills/video/studio/node_modules) ship SKILL.md files of their own
+    return [p for p in skills_dir.rglob("SKILL.md") if "node_modules" not in p.parts]
 
 def dispatch_skill(name: str) -> Path | None:
     """

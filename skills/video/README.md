@@ -1,42 +1,32 @@
-# Video domain — ported engines
+# Video domain
 
-Three external repos, ported into the plugin as the basis of the **video domain** planned in
-[`Plan/140-video-domain/spec.md`](../../Plan/140-video-domain/spec.md). Each folder is the
-upstream repo at the commit below, unchanged, so its own relative paths keep working.
-`.git` and upstream CI (`.github/`) are not ported; everything else is.
+One suite: **[`studio/`](studio/SKILL.md) — Video Studio** (skill `video-studio`). It plans, builds, reviews and
+delivers code-based videos: every frame is a pure function of time, drawn in a web page (painted 2D with p5.brush, or
+a plain canvas) or by a WebGPU path tracer, timed to a measured song or voice map, made by a team of subagents through
+hard gates.
 
-| Folder | Upstream | Commit | Licence | Layer | Entry point |
-|---|---|---|---|---|---|
-| `take-one/` | [netzkontrast/take-one](https://github.com/netzkontrast/take-one) | `830621cce11127a30120d7878570eb8acaaa5bad` | MIT (`LICENSE`); files adapted from anidoodle stay Apache-2.0 (`THIRD_PARTY.md`, `LICENSES/`); the Take One name and logo are not licensed | process & quality: studio jobs, song → music video, critic, fresh reviewer, review room, gate / text / audio audits | `take-one/SKILL.md` |
-| `claude-animation-base/` | [netzkontrast/ClaudeAnimationBase](https://github.com/netzkontrast/ClaudeAnimationBase) | `0ac8bf2b31942376cb6b8c4074715595d512acd2` | MIT (`LICENSE`) | medium: painted 2D with p5.js + p5.brush, `render.mjs`, `studio.html` | `claude-animation-base/SKILL.md` (added on port) → `ANIMATION_GUIDE.md` |
-| `higgsfield-video-engineer/` | [netzkontrast/higgsfield-video-engineer](https://github.com/netzkontrast/higgsfield-video-engineer) | `082bfd7b7b0b863799fa9afcdfeb3e84ba72e015` | MIT (`LICENSE`); engine credits in `skills/code-based-films/engine/NOTICE.md`; example font under OFL | bar map (`tools/beatmap.py`); optional WebGPU path tracer for stills | `higgsfield-video-engineer/skills/code-based-films/SKILL.md` |
+| Start here | |
+|---|---|
+| [`studio/SKILL.md`](studio/SKILL.md) | the pipeline (phases 0–11), the team and fan-out rules, hard rules |
+| [`studio/playbooks/`](studio/playbooks/README.md) | 13 project types: music video, album suite, lyric video, visualizer/loop, explainer, product launch, brand/title, animated short, documentary, data story, social vertical, teaser/cut-down, path-traced short |
+| [`studio/agents/`](studio/agents/README.md) | 12 subagent briefs, ready to paste |
+| [`studio/references/film-contract.md`](studio/references/film-contract.md) | the one contract every medium and tool shares |
+| `bash studio/bin/studio help` | the CLI: doctor, new, render, gate, songmap, srt, flash, loudness, pack, review … |
 
-The only file added on top of the upstream trees is `claude-animation-base/SKILL.md`
-(ClaudeAnimationBase ships no skill file).
+## Where it came from
 
-## How they fit together
+Video Studio replaces the three repos that were first ported here unchanged (take-one, ClaudeAnimationBase,
+higgsfield-video-engineer) and combines them: take-one's process and QA, ClaudeAnimationBase's paint medium,
+higgsfield's path tracer and bar map — plus a shared film contract, one renderer (`tools/render.mjs`), one browser
+launcher, a song map for any medium (`engine/lib/beat.js`), forced lyric alignment, subtitles, a flash gate and
+stepped-art support in the gate. Commits and licences: [`studio/THIRD_PARTY.md`](studio/THIRD_PARTY.md) and
+`studio/LICENSES/`. Tools from other projects that were evaluated: `studio/references/research-2026-11.md`.
 
-```
-take-one                 drives the work: pitch, song map, storyboard, critic, test section,
-                         chaptered build, gate, fresh reviewer, review room, delivery
-  └─ claude-animation-base   draws every frame (ink, charcoal, watercolour, paper)
-  └─ higgsfield beatmap.py   bars, sections, drop → timing of cuts and hits
-the-agency-system        album DNA (skills/theagencysystem/), track state, hard gates
-```
-
-For an Agency System album: load `skills/theagencysystem/` first, then read the album's
-`VIDEO-CONCEPT.md` (for example
-`artists/the-agency-system/albums/dystopian-future-synth/lass-mich-lass-mich-atmen/VIDEO-CONCEPT.md`).
-It overrides the engines' defaults where it says so.
-
-## Updating from upstream
-
-Re-run the port for one repo, then review the diff:
+## Setup
 
 ```bash
-rm -rf skills/video/<folder> && mkdir -p skills/video/<folder>
-git -C <clone of upstream> archive HEAD | tar -x -C skills/video/<folder>
-# claude-animation-base: keep our SKILL.md; higgsfield: drop .github/
+bash skills/video/studio/bin/studio doctor     # installs the studio's Node packages, reports what else is missing
 ```
 
-Update the commit column above in the same change.
+`studio/node_modules/` is not committed. npm packages may ship their own `SKILL.md` files; the plugin's skill listing
+ignores anything under `node_modules/`.

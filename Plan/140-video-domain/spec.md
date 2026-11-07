@@ -37,11 +37,23 @@ Erstes Zielalbum: *Lass mich, lass mich atmen* — Konzept in
 
 ## 1. Drei Repos, drei Schichten
 
-**Portiert (2026-11-07):** Alle drei Repos liegen unverändert unter `skills/video/`
-(`take-one/`, `claude-animation-base/`, `higgsfield-video-engineer/`), mit Commit-SHA und
-Lizenzen in [`skills/video/README.md`](../../skills/video/README.md). `shared_list_skills`
-und `plugin_help` kennen die Domain `video`. Pfade in diesem Spec, die mit einem Repo-Namen
-beginnen, meinen ab jetzt diese Ordner.
+**Stand 2026-11-07 — Video Studio:** Die drei Repos sind zu einer eigenen Suite
+zusammengeführt und ersetzt: [`skills/video/studio/`](../../skills/video/studio/SKILL.md),
+Skill `video-studio`. Sie enthält:
+- **Pipeline** (Phasen 0–11 mit harten Gates)
+- **12 Subagenten-Briefs** (`agents/`)
+- **13 Playbooks** (`playbooks/`)
+- **Einen Film-Vertrag für alle Medien** (`references/film-contract.md`)
+- **Einen Renderer** (`tools/render.mjs`) und einen Browser-Starter (`tools/lib/browser.mjs`)
+- **Song-Map für jedes Medium** (`engine/lib/beat.js`)
+- **Audio-Werkzeuge:** Lyrics-Alignment (`tools/audio/align_lyrics.py`, stable-ts) und beat_this
+- **Untertitel** (`tools/audio/srt.py`) und Blitz-Gate (`tools/flash_test.py`)
+- **CLI** (`bin/studio`)
+
+Herkunft und Lizenzen stehen in `skills/video/studio/THIRD_PARTY.md`. Die Rollen-, Gate- und
+Skill-Namen in §4–§5 unten sind der ursprüngliche Plan. Die umgesetzte Fassung steht in
+`SKILL.md` (Phasen) und `agents/` (Rollen). Pfade in diesem Spec, die mit einem Repo-Namen
+beginnen, meinen jetzt die entsprechenden Ordner der Suite.
 
 | Schicht | Repo | Was wir davon nehmen |
 |---|---|---|
@@ -73,8 +85,8 @@ artists/<artist>/albums/<genre>/<album>/
   VIDEO-CONCEPT.md                 # Album-Ebene: Look, Formate, harte Regeln (Gate)
   video/
     package.json                   # p5, p5.brush, puppeteer-core (gepinnt)
-    studio.html                    # kopiert aus skills/video/claude-animation-base/; ?track=02
-    render.mjs                     # kopiert aus skills/video/claude-animation-base/, + --track, + Dedupe
+    film.html                      # aus skills/video/studio/engine/paint/ (tools/new-project.sh)
+    (render: skills/video/studio/tools/render.mjs, nicht kopiert)
     engine/                        # core.js, timeline.js aus dem Kit (ohne clawd.js)
     shim/take-one.js               # renderFrame(t)/READY-Vertrag für die Take-One-Prüfwerkzeuge
     lib/                           # Album-Bibliothek: room, door, pillow, breath, glitch, palette, beat …
@@ -281,6 +293,7 @@ Snippets. Neue Anknüpfungen in `references/bitwize-attachment.md`:
 | Phase | Inhalt | Ergebnis |
 |---|---|---|
 | **P−1 — Port** ✅ | Die drei Repos nach `skills/video/` übernommen; Domain `video` in `shared_list_skills`/`plugin_help` | erledigt (2026-11-07) |
+| **P1 — Skill-Suite** ✅ | Video Studio: Skill + Subagenten-Briefs + Playbooks + Werkzeuge, ersetzt die drei Ports | erledigt (2026-11-07), Tests in `tests/unit/video/` |
 | **P0 — Pilot von Hand** | Kit + Shim ins Album, Bibliothek-Minimum (Raum, Kissen, Atem, Palette, `beat.js`). T02: Song-Map, Storyboard, Critic, Test-Section (~45 s). Take-One-Tools auf Linux/Mac zum Laufen bringen, Renderzeit und Token-Verbrauch messen. | Clip + Erfahrungsbericht `Plan/_lessons-learned/140-pilot.md` |
 | **P1 — Skills ohne Handler** | `skills/video/*` als Prompt-Skills, die die Take-One-Referenzen laden | Kette läuft |
 | **P2 — Handler + Status-Leiter** | `handlers/video/`, Felder in `update_track_field`, Templates | Tools-Regel gilt auch für Video |
