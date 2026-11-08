@@ -18,6 +18,41 @@ stable-ts was not installed in the cloud container). Machine: cloud container **
 
 Render speed here (no GPU, 960×540, 3 workers): 96 drawings on twos in 18 s; 192 frames on ones in about 35 s.
 
+## Takes 8–13 (second cycle, a rebuilt idea)
+
+After take 7 the film was rebuilt around one idea (a ring of shapes crowds the knot; "atmen" pushes it back; on "ich"
+the shapes lie down as flat marks; the knot lands on "hier"; the shapes stand up again, further out, and breathe to the
+last downbeat). Each take went through the full gate battery and a fresh reviewer (new agent every round):
+
+| Take | Gates | Reviewer (overall) | Lowest axis | What the reviewer asked for |
+|---|---|---|---|---|
+| 8 | PASS | 6 | hook 5 | the knot's shadow read as a rabbit face (a shadow map through the knot's holes); dead opening |
+| 9 | PASS | 6 | sound sync 6 | no hit on "ich"; the ring vanished leaving a seam through the shadow discs |
+| 10 | PASS | **7** | hook, variety, composition 7 (readability, motion, sound sync **8**) | no closing gesture; ring cropped at the edge; clump before "atmen" |
+| 11 | PASS | 5 | hook, sound sync 5 | the hit on "atmen" came 0.2 s late |
+| 12 | PASS | 6 | hook, motion 6 | stalled stretch after "ich"; sticker-like shadows |
+| 13 | PASS (after one pop fixed) | 6 | motion, variety, composition 6 | shapes cropped at the top edge at 0.4 s; ring broken at 1.4 s |
+
+Best take: **10** (`film-take10-640.mp4`, `scenes/scene-take10.js`): overall 7, three axes at 8. Latest: 13
+(`film-take13-640.mp4`, `scenes/scene.js`). Reviews: `review/review-take8-1.md` … `review-take13-3.md`.
+
+What these takes found in the studio:
+
+- `SONG.pulse`-style envelopes and any `sin²` hit shape peak late: the old `kick` peaked 0.26 s after its event, and
+  the reviewer measured it ("the hit comes 0.2 s late"). A hit that must land on a word needs an envelope that peaks
+  **on** the time (smooth rise over the 0.08 s before, then decay). Documented in `references/three-medium.md`.
+- A shadow map through a torus knot's holes casts a face-like pattern, and per-object shadow maps drift from floating
+  shapes. Drawn blob shadows (a flat disc under each object that shrinks and fades as the object rises) read as
+  intended. Documented in `references/three-medium.md`.
+- Two overlapping flat meshes on the floor need `renderOrder` and a y offset, or they z-fight into split shadow discs.
+- The gate caught a first-frame pop (a hop that is already mid-air at frame 1); hops must not start on t = 0.
+
+## The score stalled again — the rule applies again
+
+Cycle 2: 6, 6, **7**, 5, 6, 6. No take reached 8 on every axis; the film is a deliberately tiny abstract test (8 s,
+synthetic song, no people, no type). Per `references/reviewer-brief.md` the person decides the next take; the reviewer
+notes for take 13 are in `review/review-take13-3.md`. The scores stay as reported.
+
 ## What the run fixed in the studio
 
 - `SONG.pulseSoft()` added to `engine/lib/beat.js`: `SONG.pulse()` has an instant attack, and positions driven by it

@@ -84,6 +84,19 @@ needs it, and set any time uniform from `t`.
 the gate measures (and a viewer sees) as a pop. Pulse scale or position on the beat (`SONG.pulseSoft`), not the
 lights; if light must move, move it slowly (≥ 0.5 s) or animate a non-toon layer.
 
+## Hits that must land on a word
+
+An envelope shaped like `sin(x*6)²·exp(-4x)` rises first and peaks about 0.25 s after its event: a reviewer measured
+"the hit comes 0.2 s late". A hit that has to land on a sung word or a downbeat peaks **on** the time: a smooth rise
+over the 0.08 s before it, then an exponential fall (`x < -0.08 → 0`; `x < 0 → smoothstep((x+0.08)/0.08)`;
+else `exp(-5x)`). Do not start a hop on t = 0: frame 1 would already be mid-air and the pop gate reports it.
+
+## Shadows under floating shapes
+
+A shadow map through a torus knot's holes casts a pattern that reads as a face, and per-object shadow maps drift away
+from shapes that float. A flat disc under each object (own `MeshBasicMaterial`, `renderOrder` above the floor, a small
+y offset so it does not z-fight), shrunk and blended into the floor colour as the object rises, reads as intended.
+
 ## Light has shape
 
 Key + rim on every hero, real shadows (`renderer.shadowMap.enabled = true`, `light.castShadow = true`, shadow map 2048),
