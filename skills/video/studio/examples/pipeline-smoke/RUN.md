@@ -32,9 +32,10 @@ last downbeat). Each take went through the full gate battery and a fresh reviewe
 | 11 | PASS | 5 | hook, sound sync 5 | the hit on "atmen" came 0.2 s late |
 | 12 | PASS | 6 | hook, motion 6 | stalled stretch after "ich"; sticker-like shadows |
 | 13 | PASS (after one pop fixed) | 6 | motion, variety, composition 6 | shapes cropped at the top edge at 0.4 s; ring broken at 1.4 s |
+| 14 | PASS | 6 | five axes at 6 | frozen flat-tile stretch after "ich"; little motion in the hook; washed-out fade |
 
-Best take: **10** (`film-take10-640.mp4`, `scenes/scene-take10.js`): overall 7, three axes at 8. Latest: 13
-(`film-take13-640.mp4`, `scenes/scene.js`). Reviews: `review/review-take8-1.md` … `review-take13-3.md`.
+Best take: **10** (`film-take10-640.mp4`, `scenes/scene-take10.js`): overall 7, three axes at 8. Latest: 14
+(`scenes/scene.js`; `film-take13-640.mp4` is take 13). Reviews: `review/review-take8-1.md` … `review-take14-1.md`.
 
 What these takes found in the studio:
 
@@ -49,7 +50,7 @@ What these takes found in the studio:
 
 ## The score stalled again — the rule applies again
 
-Cycle 2: 6, 6, **7**, 5, 6, 6. No take reached 8 on every axis; the film is a deliberately tiny abstract test (8 s,
+Cycle 2: 6, 6, **7**, 5, 6, 6, 6. No take reached 8 on every axis; the film is a deliberately tiny abstract test (8 s,
 synthetic song, no people, no type). Per `references/reviewer-brief.md` the person decides the next take; the reviewer
 notes for take 13 are in `review/review-take13-3.md`. The scores stay as reported.
 

@@ -62,7 +62,8 @@ export async function setup({ THREE, FX, W, H, SONG, renderer }) {
   const kick = (x) => { if (x < -0.08) return 0; if (x < 0) { const u = (x + 0.08) / 0.08; return u * u * (3 - 2 * u); } return Math.exp(-5 * x); };
   const step = (t, at, len = 0.22) => ease((t - at + 0.06) / len);   // a step that lands on `at` (6 frames, starts 1.5 frames early)
 
-  const passes = [FX.ink({ threshold: 0.15, keep: 1 }), FX.boil({ fps: 12, amount: 0.9 }), FX.paper({ strength: 0.2 }), FX.grain({ amount: 0.035 }), FX.vignette()];
+  const fade = FX.fade({ amount: 0 });
+  const passes = [FX.ink({ threshold: 0.15, keep: 1 }), FX.boil({ fps: 12, amount: 0.9 }), FX.paper({ strength: 0.2 }), FX.grain({ amount: 0.035 }), FX.vignette(), fade];
   const cam = new THREE.Vector3(), look = new THREE.Vector3(), box = new THREE.Box3(), groundNow = new THREE.Color();
 
   function update(t) {
@@ -122,7 +123,7 @@ export async function setup({ THREE, FX, W, H, SONG, renderer }) {
     setBlob(heroBlob, hero, rest);
 
     // --- ripples: one from the knot on "atmen", "hier", 5.53 and 7.51
-    const RIP = [[BEATS[0], .5], [BEATS[1], .5], [BEATS[2], .5], [D1, .9], [MICH[1], .5], [ATMEN, 1.2], [BEATS[9], .5], [HIER, 1.2], [D3, 1.2], [D4, .42]];
+    const RIP = [[ATMEN, 1.0], [HIER, 1.0], [D3, 1.0]];
     ripples.forEach((rp, i) => { if (i >= RIP.length) rp.visible = false; });
     RIP.forEach(([at, life], i) => {
       const x = t - at, rp = ripples[i];
@@ -138,17 +139,18 @@ export async function setup({ THREE, FX, W, H, SONG, renderer }) {
     const hold = ease((t - D3 + 0.3) / 1.2);   // the hold widens to keep the standing ring in frame
     const backs = 0.22 * (step(t, BEATS[1]) + step(t, BEATS[2]) + step(t, MICH[0]) + step(t, MICH[1]));   // the camera steps back on every beat of the hook
     const dist = 4.7 + backs + 1.3 * open - 0.6 * settle + 1.1 * hold - 0.15 * out;
-    const hgt = 3.5 + 0.3 * backs + 0.7 * open - 0.7 * settle + 1.2 * hold - 0.1 * out;
+    const hgt = 3.7 + 0.3 * backs + 0.7 * open - 0.7 * settle + 1.2 * hold - 0.1 * out;
     cam.set(Math.cos(ang) * dist, hgt, Math.sin(ang) * dist);
     camera.position.copy(cam);
     look.set(0, 0.45 - 0.2 * settle - 0.25 * open * (1 - settle) - 0.35 * hold, 0);
-    const fwd = 0.55 * (1 - open);   // in the hook, aim a little toward the camera so the front of the ring stays in frame
+    const fwd = 0.55 * (1 - open); look.y += 0.45 * (1 - open);   // in the hook, aim a little toward the camera so the front of the ring stays in frame
     look.x += Math.cos(ang) * fwd; look.z += Math.sin(ang) * fwd; look.y += 0.05 * (1 - open);
     camera.lookAt(look);
 
     // --- light and colour: the floor flushes warm on "atmen" and stays a little warm from "hier" (no light pulses)
     const flush = kick(t - ATMEN), warmth = 0.35 * ease((t - HIER) / 1.2);
     scene.background.copy(bgWarm).lerp(bgDeep, Math.max(0.6 * flush, warmth));
+    fade.uniforms.u_amount.value = 0.3 * ease((t - 7.2) / 0.75);   // settles into the paper with the audio fade (last pass in the chain)
     ground.material.color.copy(groundNow).lerp(groundWarm, 0.12 * (SONG ? SONG.pulseSoft(t, 0.05, 6) : 0) * (1 - ease((t - 7.6) / 0.3)));
   }
   return { scene, camera, passes, update, step: 12, holds: [[7.7, 8.0]] };   // the closing image rests on the audio fade
