@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>film · paint medium</title>
+<!-- Lettering face: put an OFL font file in fonts/ and declare it with @font-face as "Permanent Marker" (or change
+     letter()'s font); without one, letter() falls back to a cursive system face. -->
+<style>
+  html, body { margin: 0; background: #1b1820; color: #eee; font: 13px system-ui, sans-serif; }
+  main { padding: 12px; display: grid; gap: 8px; }
+  #out { width: min(100%, 1280px); height: auto; background: #F3EBDC; }
+  .p5Canvas { display: none !important; }
+  .bar { display: flex; gap: 10px; align-items: center; max-width: 1280px; }
+  #scrub { flex: 1; }
+  #tt { font-variant-numeric: tabular-nums; min-width: 190px; }
+</style>
+<!-- libraries for module scripts (engine/lib/importmap.json, references/libraries.md) -->
+<script type="importmap">{"imports": {"three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/", "postprocessing": "./node_modules/postprocessing/build/index.js", "simplex-noise": "./node_modules/simplex-noise/dist/esm/simplex-noise.js", "culori": "./node_modules/culori/bundled/culori.min.mjs", "roughjs": "./node_modules/roughjs/bundled/rough.esm.js", "perfect-freehand": "./node_modules/perfect-freehand/dist/esm/index.mjs", "animejs": "./node_modules/animejs/dist/bundles/anime.esm.min.js", "pixi.js": "./node_modules/pixi.js/dist/pixi.min.mjs", "opentype.js": "./node_modules/opentype.js/dist/opentype.mjs"}}</script>
+<!-- classic-script libraries (globals): d3, lottie, Alea — uncomment what the film uses -->
+<!-- <script src="node_modules/d3/dist/d3.min.js"></script> <script src="node_modules/lottie-web/build/player/lottie.min.js"></script> <script src="node_modules/alea/alea.js"></script> -->
+<script src="node_modules/p5/lib/p5.min.js"></script>
+<script src="node_modules/p5.brush/dist/p5.brush.js"></script>
+</head>
+<body>
+<main>
+  <canvas id="out" width="1920" height="1080"></canvas>
+  <div class="bar"><input id="scrub" type="range" min="0" max="11" step="0.0417" value="0"><span id="tt">loading…</span></div>
+</main>
+<!-- project settings and song map (songmap.js is written by tools/audio/songmap_js.py; a stub sets SONGMAP = null) -->
+<script src="config.js"></script>
+<script src="songmap.js"></script>
+<!-- engine (copied from <studio>/engine by tools/new-project.sh; update with tools/new-project.sh --update) -->
+<script src="engine/core.js"></script>
+<script src="engine/beat.js"></script>
+<script src="engine/timeline.js"></script>
+<!-- optional: the sample character and its model sheets -->
+<!-- <script src="engine/clawd.js"></script> <script src="engine/sheets.js"></script> -->
+<!-- project library (owned by the art director): one tag per lib/ file, e.g. <script src="lib/look.js"></script> -->
+<!-- your film: one script per chapter, in order (register every chapter before a parallel build) -->
+<script src="lib/look.js"></script>
+<script src="scenes/ch01.js"></script>
+<script src="scenes/ch02.js"></script>
+<script src="scenes/ch03.js"></script>
+<script>
+  // film.html?loop=<name> scrubs or renders a standalone loop (model sheets, Canvas loops) instead of the film.
+  const q = new URLSearchParams(location.search).get('loop'); if (q && LOOPS[q]) window.LOOP = LOOPS[q];
+</script>
+</body>
+</html>
