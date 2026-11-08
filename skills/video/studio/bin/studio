@@ -88,7 +88,9 @@ case "$cmd" in
     else echo "no film.html here (path-traced project?): page gates skipped; run the pathtracer QA (references/pathtracer/qa.md)" | tee -a "$log"; fi
     if [ -n "$mp4" ]; then
       run "flash test" "$PY" -I "$S/tools/flash_test.py" "$mp4" --json review/flash.json
-      run "loudness" node "$S/tools/audio-check.mjs" "$mp4"
+      if [ -n "$(ffprobe -v error -select_streams a -show_entries stream=index -of csv=p=0 "$mp4" 2>/dev/null)" ]; then
+        run "loudness" node "$S/tools/audio-check.mjs" "$mp4"
+      else echo "no audio stream in $mp4: loudness skipped (mux the master audio before the final gate)" | tee -a "$log"; fi
     else echo "no --mp4: flash test and loudness need an exported cut" | tee -a "$log"; fi
     echo "gate log: $dir/$log"; [ $fails -eq 0 ] && echo "GATES: PASS" || { echo "GATES: $fails FAIL — fix or explain each in BUILD_NOTES.md"; exit 1; }
     ;;

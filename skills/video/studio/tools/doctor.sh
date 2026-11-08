@@ -19,6 +19,7 @@ chrome=$(node "$S/tools/lib/browser.mjs" 2>/dev/null | node -e 'let s="";process
 if [ -n "$chrome" ]; then ok "Chrome/Chromium" "$chrome (draws every frame; override with CHROME_PATH)"
 elif [ -d "/Applications/Google Chrome.app" ]; then ok "Google Chrome" "draws every frame"
 else miss "Chrome/Chromium" "the frames are drawn in Chrome; install it (google.com/chrome) or set CHROME_PATH"; need=1; fi
+node "$S/tools/libs-check.mjs" >/dev/null 2>&1 && ok "animation libraries" "three, postprocessing, pixi, animejs, lottie, d3, roughjs, perfect-freehand, culori, simplex-noise, opentype (tools/libs-check.mjs)" || opt "animation libraries" "some did not load: run node $S/tools/libs-check.mjs"
 echo "  note     GPU: without one, set STUDIO_GL=soft (software WebGL, ~20-30 s per 1080p painted frame); check with: node $S/tools/gpu_probe.mjs"
 echo "Optional (only some films):"
 if command -v python3 >/dev/null 2>&1; then ok python3 "$(python3 -V 2>&1 | cut -d' ' -f2)"

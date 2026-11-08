@@ -203,12 +203,22 @@ const contractScan = (filmPath) => {
     if (/(^|[\\/])node_modules[\\/]/.test(m[1])) { vendor.push(path.basename(p)); continue; }
     if (fs.existsSync(p)) files.push([p, fs.readFileSync(p, 'utf8')]);
   }
+  // ES modules: follow local imports (scenes/scene.js, engine/passes.js, …) from the page and from every scanned file
+  for (let k = 0; k < files.length; k++) {
+    const [f, src] = files[k];
+    for (const m of src.matchAll(/(?:import|from)\s*\(?\s*['"](\.{1,2}\/[^'"]+)['"]/g)) {
+      const p = path.resolve(path.dirname(f), m[1]);
+      if (/[\\/]node_modules[\\/]/.test(p)) { if (!vendor.includes(path.basename(p))) vendor.push(path.basename(p)); continue; }
+      if (fs.existsSync(p) && !files.some(([q]) => q === p)) files.push([p, fs.readFileSync(p, 'utf8')]);
+    }
+  }
   const hits = [], warns = [], hostClocks = []; let rngSites = 0; const badSeeds = [];
   for (const [f, raw] of files) {
     const rel = path.basename(f), lines = strip(raw).split('\n'), rawLines = raw.split('\n');
     lines.forEach((line, i) => {
       for (const r of RULES) if (r.re.test(line)) {
         // studio:host-timing marks a clock read that only measures the tool itself (ms per frame), never feeds the picture
+        if (r.label === 'Math.random' && /studio:seeded-random/.test(rawLines[i] || '')) { hostClocks.push(`${rel}:${i + 1} Math.random replaced by a per-frame seeded stream`); continue; }
         if (r.clock && (CLOCK_HOST_OK.test(line) || /studio:host-timing/.test(rawLines[i] || ''))) { hostClocks.push(`${rel}:${i + 1} ${r.label}`); continue; }
         hits.push(`${rel}:${i + 1}: ${r.label}${r.fix ? ` (${r.fix})` : ''}`);
       }

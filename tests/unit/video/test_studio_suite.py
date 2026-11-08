@@ -181,3 +181,50 @@ def test_skill_frontmatter_is_valid_yaml():
     text = (STUDIO / "SKILL.md").read_text()
     data = yaml.safe_load(text.split("---")[1])
     assert data["name"] == "video-studio" and "music videos" in data["description"]
+
+
+FX_NAMES = ["ink", "toon", "kuwahara", "watercolor", "hatch", "halftone", "riso", "dither", "pixelate", "posterize",
+            "crt", "boil", "paper", "grain", "vignette", "chroma", "grade", "glitch"]
+
+
+def test_three_pass_catalogue_is_complete_and_documented():
+    src = (STUDIO / "engine/three/passes.js").read_text()
+    doc = (STUDIO / "references/three-medium.md").read_text()
+    for name in FX_NAMES:
+        assert re.search(rf"^\s+{name}: \(o\) => pass\('{name}'", src, re.M), f"FX.{name} missing"
+        assert f"`{name}`" in doc, f"FX.{name} not documented"
+    assert "Math.random" not in src  # our passes hash from uTime; the page seeds Math.random for addons
+
+
+def test_glsl_library_includes_and_attributions():
+    glsl = STUDIO / "engine/glsl"
+    assert {p.name for p in glsl.glob("*.glsl")} >= {"hash.glsl", "noise.glsl", "sdf.glsl", "color.glsl", "dither.glsl"}
+    assert "MIT License" in (glsl / "noise.glsl").read_text() and "Ashima" in (glsl / "noise.glsl").read_text()
+    for f in (STUDIO / "engine/shader").glob("*.frag"):
+        for inc in re.findall(r'#include "([^"]+)"', f.read_text()):
+            assert (STUDIO / inc).exists(), f"{f.name} includes missing {inc}"
+
+
+@pytest.mark.parametrize("medium,files", [
+    ("three", ["film.html", "scenes/scene.js", "engine/passes.js", "engine/beat.js", "config.js", "songmap.js"]),
+    ("shader", ["film.html", "scenes/film.js", "scenes/main.frag", "scenes/trails.frag", "engine/runtime.js", "engine/glsl/noise.glsl"]),
+    ("paint", ["film.html", "scenes/ch01.js", "engine/core.js", "engine/beat.js"]),
+    ("canvas", ["film.html", "engine/springs.js", "engine/beat.js"]),
+])
+def test_new_project_scaffolds_each_medium(tmp_path, medium, files):
+    if not (STUDIO / "node_modules").exists():
+        pytest.skip("studio packages not installed (bin/studio doctor)")
+    d = tmp_path / medium
+    subprocess.run(["bash", str(STUDIO / "tools/new-project.sh"), str(d), "--medium", medium, "--duration", "3"],
+                   check=True, capture_output=True)
+    for f in files:
+        assert (d / f).exists(), f"{medium}: {f} missing"
+    assert (d / ".studio-medium").read_text().strip() == medium
+
+
+def test_importmap_targets_exist_when_installed():
+    if not (STUDIO / "node_modules").exists():
+        pytest.skip("studio packages not installed")
+    imp = json.loads((STUDIO / "engine/lib/importmap.json").read_text())["imports"]
+    for name, path in imp.items():
+        assert (STUDIO / path.replace("./", "", 1)).exists(), f"{name} → {path} missing"

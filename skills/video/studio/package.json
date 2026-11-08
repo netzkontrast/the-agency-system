@@ -5,7 +5,9 @@
   "license": "MIT",
   "type": "module",
   "description": "Code-based video production suite: painted 2D (p5.brush), plain canvas and a WebGPU path tracer, one film contract, one renderer, gates and a review room.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "doctor": "bash tools/doctor.sh",
     "gate:self-test": "node tools/gate.mjs --self-test",
@@ -13,8 +15,20 @@
     "smoke": "bash tools/smoke.sh"
   },
   "dependencies": {
+    "alea": "1.0.1",
+    "animejs": "4.5.0",
+    "culori": "4.0.2",
+    "d3": "7.9.2",
+    "lottie-web": "5.13.0",
+    "opentype.js": "2.0.0",
     "p5": "2.3.3",
     "p5.brush": "2.2.3",
-    "playwright-core": "^1.63.0"
+    "perfect-freehand": "1.2.3",
+    "pixi.js": "8.22.0",
+    "playwright-core": "^1.63.0",
+    "postprocessing": "6.39.6",
+    "roughjs": "4.6.6",
+    "simplex-noise": "4.0.3",
+    "three": "0.186.1"
   }
 }

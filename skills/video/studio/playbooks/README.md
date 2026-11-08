@@ -51,3 +51,9 @@ Nothing fits: take the nearest playbook, say what you changed, and after deliver
   depiction rules bind every playbook, not only `album-suite.md`.
 - The flash test is a hard gate in every playbook.
 - `<studio>` in every command is `skills/video/studio/`.
+
+## Media for any look
+
+Every playbook names a default medium. Any playbook can use any of the five media — `paint`, `canvas`, `three`, `shader`,
+`pathtracer` — when the look calls for it: `references/style-recipes.md` maps a look to a medium, a pass chain and
+libraries; `references/libraries.md` lists what is installed and how to drive it by t.

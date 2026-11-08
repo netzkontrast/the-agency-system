@@ -1,6 +1,6 @@
 ---
 name: video-studio
-description: "The agency-system video studio — plans, builds, reviews and delivers code-based videos where every frame is a pure function of time (painted 2D with p5.brush, plain canvas with springs, or a WebGPU path tracer), timed to a measured song or voice map, produced by a team of subagents (director, critic, art director, song-map analyst, animators per chapter, integrator, QA, fresh reviewer, copywriter) through hard gates. Use for any video project: music videos and album suites, lyric videos, visualizers and Canvas loops, explainers, product launches, brand and title sequences, animated shorts, documentary pieces, data stories, vertical social cuts, path-traced 3D shorts. Pick a playbook in playbooks/ first."
+description: "The agency-system video studio — plans, builds, reviews and delivers code-based videos where every frame is a pure function of time (painted 2D with p5.brush, plain canvas with springs, three.js 3D with 18 stylisation passes, fullscreen GLSL shaders, or a WebGPU path tracer), timed to a measured song or voice map, produced by a team of subagents (director, critic, art director, song-map analyst, animators per chapter, integrator, QA, fresh reviewer, copywriter) through hard gates. Use for any video project: music videos and album suites, lyric videos, visualizers and Canvas loops, explainers, product launches, brand and title sequences, animated shorts, documentary pieces, data stories, vertical social cuts, path-traced 3D shorts. Pick a playbook in playbooks/ first."
 ---
 
 # Video Studio
@@ -16,8 +16,8 @@ animation, measured timing against the music, hard gates, and a reviewer who has
 |---|---|
 | `playbooks/` | one file per project type: inputs, format, phases that differ, team, style options, gates, pitfalls, deliverables. **Read the matching playbook before the pitch.** |
 | `agents/` | the subagent briefs (one per role), each with inputs, outputs, file ownership, done criteria and report format |
-| `references/` | the craft: `film-contract.md` (read first), `pitch.md`, `paint-medium.md`, `timing.md`, `words.md`, `songmap.md`, `audio.md`, `pipeline.md`, `quality-checklist.md`, `reviewer-brief.md`, `review-room.md`, `vertical.md`, `brand*.md`, `motion-kit.md`, `styles/*.md` (21 looks), `pathtracer/` (3D route), `research-2026-11.md` (upstream tools worth adopting) |
-| `engine/` | `paint/` (p5.brush medium), `canvas/` (plain canvas template), `pathtracer/` (WebGPU path tracer), `lib/` (`beat.js` song map, `springs.js`, `life.js`) |
+| `references/` | the craft: `film-contract.md` (read first), `pitch.md`, `paint-medium.md`, `timing.md`, `words.md`, `songmap.md`, `audio.md`, `pipeline.md`, `quality-checklist.md`, `reviewer-brief.md`, `review-room.md`, `vertical.md`, `brand*.md`, `motion-kit.md`, `styles/*.md` (21 looks), `pathtracer/` (3D route), `research-2026-11.md` (upstream tools worth adopting), `three-medium.md`, `shader-medium.md`, `libraries.md` (every bundled library and how to drive it by t), `style-recipes.md` (any look → medium + passes + libraries) |
+| `engine/` | `paint/` (p5.brush medium), `canvas/` (plain canvas), `three/` (three.js + `passes.js`: ink, toon, kuwahara, watercolor, hatch, halftone, riso, dither, pixelate, crt, boil, paper, grain …), `shader/` (fullscreen GLSL runtime with deterministic feedback), `glsl/` (hash, noise, sdf, color, dither), `pathtracer/` (WebGPU path tracer), `lib/` (`beat.js` song map, `springs.js`, `life.js`, `importmap.json`) |
 | `tools/` | `new-project.sh`, `render.mjs`, `gate.mjs`, audits, `review-room/`, `review-pack.sh`, `audio/` (beat map, lyric alignment, song map, subtitles, loudness, flash test), `music/`, `sfx.mjs`, `vo.py` |
 | `bin/studio` | one CLI over all of it: `studio doctor`, `studio new`, `studio render`, `studio gate`, `studio songmap`, `studio review` … (`bin/studio help`) |
 | `gallery/` | the style gallery (`gallery.html`, the same two story frames rendered in every style) |
@@ -140,7 +140,9 @@ run. The playbook says which phases it skips or adds.
 - **Storyboard:** one row per shot (or per lyric line in music videos): time, what happens, the reads in order, the key
   word and its time, the transition out, the chapter. Verses intimate, choruses open, the bridge strips down; a
   returning chorus gets a new image that escalates; the ending rhymes with the opening (`playbooks/music-video.md`).
-- **Build:** `bash <studio>/tools/new-project.sh <dir> --medium paint|canvas|pathtracer`. Follow
+- **Build:** `bash <studio>/tools/new-project.sh <dir> --medium paint|canvas|three|shader|pathtracer` — pick the medium
+  from `references/style-recipes.md` (any look: cel, ink, oil, watercolour, engraving, print, pixel, CRT, neon, SDF,
+  fluid, data, Lottie …); libraries per `references/libraries.md`. Follow
   `references/film-contract.md` and the medium's rules (`references/paint-medium.md`: handmade, alive, transitions
   always, one read at a time). All motion on springs or eased curves; nothing linear. Review constantly:
   `node <studio>/tools/render.mjs --sheet=…` (shape), `--strip=a:b` (every frame of a move), `--crop` (details).

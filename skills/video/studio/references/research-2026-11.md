@@ -33,3 +33,21 @@ uses it (optionally); **next** means planned; **avoid** means a licence problem 
 | essentia | AGPL |
 | madmom models | CC BY-NC-SA (non-commercial); its code is BSD but the models are what matter |
 | BeatNet | CC BY 4.0 — usable with attribution, but beat_this is better and MIT |
+
+## Second survey: animation, 3D and shader libraries (November 2026)
+
+Adopted from it — and shipped with the studio — are three.js + addons, pmndrs postprocessing (Zlib), pixi.js 8,
+animejs 4, lottie-web, d3, roughjs, perfect-freehand, opentype.js, simplex-noise, alea and culori, plus the studio's
+own three.js stylisation passes, GLSL library and shader runtime. Every library, its licence and how to drive it
+deterministically by `t`: `references/libraries.md`. Which look uses which: `references/style-recipes.md`.
+
+Key findings that shaped the design:
+- three's WebGPU renderer + TSL is a second backend (EffectComposer and ShaderMaterial do not work on it); the
+  studio stays on WebGLRenderer, which is bit-stable under SwiftShader. Some addons call `Math.random`; the three
+  medium replaces it with a stream seeded per frame.
+- Feedback shaders (trails, fluids, reaction-diffusion) are history-dependent: the shader runtime re-simulates a
+  fixed warm-up window before every frame; long histories are baked.
+- Physics: only Rapier's `-deterministic` builds are cross-platform deterministic; everything else is baked to a
+  per-frame cache.
+- Shader code: copy only MIT/BSD/CC0 sources (Ashima noise, Inigo Quilez article snippets, hg_sdf under MIT, glsl-*
+  packages, CC0 blue noise); re-implement anything from Shadertoy, lygia or The Book of Shaders.

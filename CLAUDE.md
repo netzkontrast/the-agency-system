@@ -327,7 +327,8 @@ novel writing phase) so the right DNA is in context.
 
 One suite: **`skills/video/studio/`** — skill `video-studio`
 ([`SKILL.md`](skills/video/studio/SKILL.md)). Every frame is a pure function of time (painted 2D with p5.brush,
-plain canvas, or a WebGPU path tracer); a team of subagents (director, critic, art director, song-map analyst,
+plain canvas, three.js 3D with stylisation passes, GLSL shaders, or a WebGPU path tracer — any look via
+`references/style-recipes.md`); a team of subagents (director, critic, art director, song-map analyst,
 animators per chapter, integrator, QA operator, fresh reviewer, copywriter, …) works through hard gates.
 
 - **Pick a playbook first:** `skills/video/studio/playbooks/` (music video, album suite, lyric video, visualizer,

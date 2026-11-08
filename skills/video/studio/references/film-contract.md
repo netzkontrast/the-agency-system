@@ -42,7 +42,9 @@ show scrub controls outside the canvas. Clock reads that only time the tool itse
 | Medium | Template | Notes |
 |---|---|---|
 | paint | `engine/paint/film.html` + `engine/paint/*.js` | p5.js + p5.brush; sets `FILM_CANVAS`, `FILM_STEP = 12`, `FILM_TO_SCREEN`. Rules: `references/paint-medium.md` |
-| canvas | `engine/canvas/film.html` | plain 2D canvas + `engine/lib/springs.js`; type, HUD, explainers, data |
+| canvas | `engine/canvas/film.html` | plain 2D canvas + `engine/lib/springs.js`; type, HUD, explainers, data; any ESM library from `engine/lib/importmap.json` |
+| three | `engine/three/film.html` + `scenes/scene.js` | three.js; `setup(ctx)` → `{ scene, camera, passes, update(t), step? }`; `Math.random` seeded per frame. Rules: `references/three-medium.md` |
+| shader | `engine/shader/film.html` + `scenes/film.js` + `*.frag` | fullscreen GLSL passes, Shadertoy-style; feedback re-simulated over a fixed warm-up. Rules: `references/shader-medium.md` |
 | pathtracer | `engine/pathtracer/` (Node driver, not a page) | its own renderer (`references/pathtracer/`), same principle: `sceneFor(i)` is a pure function of the frame index |
 
 All page media load `engine/lib/beat.js` after `songmap.js`, so `SONG.beatAt(t)`, `SONG.word(t)`, `SONG.section(t)`

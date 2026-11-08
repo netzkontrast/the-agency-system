@@ -1,0 +1,14 @@
+{
+  "imports": {
+    "three": "./node_modules/three/build/three.module.js",
+    "three/addons/": "./node_modules/three/examples/jsm/",
+    "postprocessing": "./node_modules/postprocessing/build/index.js",
+    "simplex-noise": "./node_modules/simplex-noise/dist/esm/simplex-noise.js",
+    "culori": "./node_modules/culori/bundled/culori.min.mjs",
+    "roughjs": "./node_modules/roughjs/bundled/rough.esm.js",
+    "perfect-freehand": "./node_modules/perfect-freehand/dist/esm/index.mjs",
+    "animejs": "./node_modules/animejs/dist/bundles/anime.esm.min.js",
+    "pixi.js": "./node_modules/pixi.js/dist/pixi.min.mjs",
+    "opentype.js": "./node_modules/opentype.js/dist/opentype.mjs"
+  }
+}
