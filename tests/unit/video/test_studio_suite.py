@@ -250,3 +250,35 @@ def test_pulse_soft_has_no_one_frame_jump():
     )
     v = json.loads(subprocess.run(["node", "-e", script], capture_output=True, text=True, check=True).stdout)
     assert v[0] == 0 and max(b - a for a, b in zip(v, v[1:])) < 0.6   # rises over several frames
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node not installed")
+def test_beat_fallback_reads_const_project_bpm():
+    # config.js declares `const PROJECT` (not a window property); without a song map the beat must follow its bpm
+    beat = json.dumps(str(STUDIO / "engine/lib/beat.js"))
+    script = (
+        "const vm=require('vm'),fs=require('fs');const c={};c.globalThis=c;vm.createContext(c);"
+        "vm.runInContext('const PROJECT={bpm:90,offset:0};',c);"
+        f"vm.runInContext(fs.readFileSync({beat},'utf8'),c);console.log(c.SONG.beatAt(2))"
+    )
+    out = subprocess.run(["node", "-e", script], capture_output=True, text=True, check=True).stdout
+    assert float(out) == pytest.approx(3.0)
+
+
+def test_gate_serves_module_scripts():
+    src = (STUDIO / "tools/gate.mjs").read_text()
+    assert "'.mjs': 'text/javascript'" in src
+
+
+def test_toon_pass_never_floors_to_black():
+    src = (STUDIO / "engine/three/passes.js").read_text()
+    toon = src[src.index("toon: (o)"):src.index("kuwahara: (o)")]
+    assert "pluma(" in toon and "+ .5" in toon
+
+
+def test_recipe_sampler_record():
+    readme = (STUDIO / "examples/recipe-sampler/README.md").read_text()
+    assert "PASS 4/4" in readme and "Status after the sampler" in readme
+    for m in ("three", "shader", "canvas"):
+        sheet = STUDIO / f"gallery/recipes-{m}.jpg"
+        assert sheet.exists() and sheet.stat().st_size < 1_000_000

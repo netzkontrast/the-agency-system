@@ -65,8 +65,10 @@ export const FX = {
       float gx = -tl-2.*l-bl+tr+2.*r+br, gy = -tl-2.*t-tr+bl+2.*b+br, e = smoothstep(u_threshold, u_threshold*1.6, length(vec2(gx,gy)));
       vec3 base = mix(vec3(1.), tex(vUv).rgb, u_keep); gl_FragColor = vec4(mix(base, u_color, e), 1.); }`, o),
   toon: (o) => pass('toon', { bands: 4, softness: 0.05 }, `
-    void main(){ vec4 c = tex(vUv); float l = luma(c.rgb), q = floor(l*u_bands)/u_bands, f = fract(l*u_bands);
-      q += smoothstep(1.-u_softness*u_bands, 1., f)/u_bands; gl_FragColor = vec4(c.rgb*(q/max(l,1e-3)), c.a); }`, o),
+    // bands are cut in perceptual luma (pluma) and each band takes its centre value, so the darkest band is never black
+    void main(){ vec4 c = tex(vUv); float l = luma(c.rgb), p = pluma(c.rgb), b = floor(p*u_bands), f = fract(p*u_bands);
+      float q = (b + .5 + smoothstep(1.-u_softness*u_bands, 1., f))/u_bands; q = pow(min(q, 1.), 2.2);
+      gl_FragColor = vec4(c.rgb*(q/max(l,1e-4)), c.a); }`, o),
   kuwahara: (o) => pass('kuwahara', { radius: 4 }, `
     void main(){ vec2 px = 1./uResolution; int R = int(u_radius); vec3 m[4]; vec3 s[4];
       for (int k=0;k<4;k++){ m[k]=vec3(0.); s[k]=vec3(0.); }

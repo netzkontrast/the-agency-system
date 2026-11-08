@@ -81,7 +81,7 @@ const loadChromium = () => {
 };
 
 // tiny static server: canvas reading local images needs http, not file:// (taint)
-const TYPES = { '.html': 'text/html', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.css': 'text/css', '.json': 'application/json', '.woff2': 'font/woff2' };
+const TYPES = { '.html': 'text/html', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.js': 'text/javascript', '.mjs': 'text/javascript', '.wasm': 'application/wasm', '.ttf': 'font/ttf', '.otf': 'font/otf', '.svg': 'image/svg+xml', '.css': 'text/css', '.json': 'application/json', '.woff2': 'font/woff2' };
 const serve = (root) => new Promise((res) => {
   const base = path.resolve(root);
   const srv = http.createServer((req, r) => {

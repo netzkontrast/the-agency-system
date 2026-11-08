@@ -19,7 +19,8 @@
 // Everything is deterministic and keeps no state between frames.
 (function (root) {
   const M = root.SONGMAP || null;
-  const P = root.PROJECT || {};
+  // config.js declares `const PROJECT` (a global lexical binding, not a window property): read both
+  const P = root.PROJECT || (typeof PROJECT !== 'undefined' ? PROJECT : {});
   const fixedBeat = 60 / (P.bpm || 120), fixedOff = P.offset || 0;
   const beats = (M && M.beats && M.beats.length > 1) ? M.beats : null;
   const downs = (M && M.downbeats && M.downbeats.length > 1) ? M.downbeats : null;

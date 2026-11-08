@@ -1,32 +1,36 @@
-<!doctype html><html><head><meta charset="utf-8"><title>film · canvas medium</title>
+<!doctype html><html><head><meta charset="utf-8"><title>recipe sampler · canvas medium</title>
 <style>html,body{margin:0;background:#111}canvas{display:block;width:100vw;height:auto;max-height:100vh;object-fit:contain}</style>
 <!-- libraries (engine/lib/importmap.json, references/libraries.md) -->
 <script type="importmap">{"imports": {"three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/", "postprocessing": "./node_modules/postprocessing/build/index.js", "simplex-noise": "./node_modules/simplex-noise/dist/esm/simplex-noise.js", "culori": "./node_modules/culori/bundled/culori.min.mjs", "roughjs": "./node_modules/roughjs/bundled/rough.esm.js", "perfect-freehand": "./node_modules/perfect-freehand/dist/esm/index.mjs", "animejs": "./node_modules/animejs/dist/bundles/anime.esm.min.js", "pixi.js": "./node_modules/pixi.js/dist/pixi.min.mjs", "opentype.js": "./node_modules/opentype.js/dist/opentype.mjs"}}</script>
-<!-- classic-script libraries (globals): d3, lottie, Alea — uncomment what the film uses -->
-<!-- <script src="node_modules/d3/dist/d3.min.js"></script> <script src="node_modules/lottie-web/build/player/lottie.min.js"></script> <script src="node_modules/alea/alea.js"></script> -->
+<!-- classic-script libraries (globals): d3 and Alea. NB: the template's comment names d3/dist/d3.min.js, which the installed d3 does not ship -->
+<script src="node_modules/d3/dist/d3.js"></script>
+<script src="node_modules/alea/alea.js"></script>
+<!-- culori and opentype as classic (UMD) scripts: tools/gate.mjs serves .mjs as application/octet-stream, so the importmap
+     entries culori.min.mjs / opentype.mjs fail to load under the gate (README problem 14); render.mjs serves them fine -->
+<script src="node_modules/culori/bundled/culori.umd.js"></script>
+<script src="node_modules/opentype.js/dist/opentype.js"></script>
 <script src="config.js"></script>
 <script src="songmap.js"></script>
 <script src="engine/springs.js"></script>
 <script src="engine/beat.js"></script>
-<!-- project library (art director): <script src="lib/look.js"></script> — chapters: <script src="scenes/ch01.js"></script> -->
 </head>
-<body><canvas id="c"></canvas><script>
-// Film contract (references/film-contract.md): FILM_DURATION, renderFrame(t) as a pure function of t, READY.
+<body><canvas id="c"></canvas><script type="module">
+// Recipe sampler, canvas medium: ?recipe=<id> picks one of RECIPES (scenes/recipes.js). Film contract as usual:
+// FILM_DURATION, renderFrame(t) a pure function of t, READY after fonts and the bake.
+import { RECIPES, DEFAULT_RECIPE } from './scenes/recipes.js';
 const Q = new URLSearchParams(location.search);
 const W = Number(Q.get('w')) || (Q.has('portrait') ? 1080 : 1920), H = Number(Q.get('h')) || 1080;
 const c = document.getElementById('c'); c.width = W; c.height = H; const g = c.getContext('2d');
 window.FILM_DURATION = PROJECT.duration; window.FILM_CANVAS = c;
-// Motion = springs (Spring.to: one spring per target change, closed form, any t in any order). Linear motion = never.
-const CARD_X = [[0, -400], [0.4, W / 2 - 300], [3, W / 2 - 100], [6, W + 100]];
+const id = Q.get('recipe') || DEFAULT_RECIPE, R = RECIPES[id];
+if (!R) throw new Error(`unknown recipe "${id}" — one of ${Object.keys(RECIPES).join(', ')}`);
+const state = await R.setup({ W, H, g, duration: PROJECT.duration, SONG: window.SONG });
+if (R.step) window.FILM_STEP = R.step;
 window.renderFrame = (t) => {
   g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; g.filter = 'none';
-  g.fillStyle = '#fafaf8'; g.fillRect(0, 0, W, H);
-  const x = Spring.to(t, CARD_X, 'camera'), s = 0.6 + 0.4 * Spring.unit(t - 0.4, 'playful') + 0.05 * SONG.pulse(t);
-  g.save(); g.translate(x + 300, H / 2); g.scale(s, s); g.fillStyle = '#111'; g.font = '700 120px system-ui'; g.textAlign = 'center';
-  g.fillText('t = ' + t.toFixed(2), 0, 40); g.restore();
+  R.draw(g, t, state);
 };
-document.fonts.ready.then(() => {
-  window.READY = true; if (navigator.webdriver) return;
-  const s = performance.now(); const loop = (n) => { window.renderFrame(((n - s) / 1000) % window.FILM_DURATION); requestAnimationFrame(loop); }; requestAnimationFrame(loop);
-});
+await document.fonts.ready;
+window.READY = true;
+if (!navigator.webdriver) { const s = performance.now(); const loop = (n) => { window.renderFrame(((n - s) / 1000) % window.FILM_DURATION); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }   // studio:host-timing
 </script></body></html>
