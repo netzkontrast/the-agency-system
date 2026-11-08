@@ -19,3 +19,8 @@ hello.png
 # examples ship without their concept images and music (rights)
 examples/*/refs/
 examples/*/music/
+# sampler/example projects: linked packages and render output stay local
+examples/**/node_modules
+examples/**/out/
+examples/**/review/
+!examples/pipeline-smoke/review/
