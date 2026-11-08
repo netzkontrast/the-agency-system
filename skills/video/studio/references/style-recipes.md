@@ -73,17 +73,20 @@ Notation. Three FX chains are written in order, options as passed: `FX.ink({thre
 appends `OutputPass` last. Passes run **before** OutputPass, i.e. in linear light before ACES tone mapping and sRGB
 encoding: colours given as pass options (`paper.tint`, `riso.inkA`, `ink.color`) come out lighter and slightly
 desaturated. Lower them ~20 % or set `renderer.toneMapping = THREE.NoToneMapping` in `setup` for print looks where
-exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.glitch(); … gl.uniforms.u_amount.value = …`).
+exact ink colours matter. `posterize`/`pixelate` `levels` also quantise in linear light: dark tones get very coarse
+steps and dark gradients break into stripes of a different hue per channel, so feed them mid-value colours. Keep a handle on any pass you animate (`const gl = FX.glitch(); … gl.uniforms.u_amount.value = …`).
 
 ### Cel, line and drawn 3D
 
 **1. Anime cel / toon with outlines** — three
 - Recipe: `MeshToonMaterial` + 3-step `gradientMap` (`[60,160,255]`, NearestFilter); inverted-hull outline (clone mesh,
-  `MeshBasicMaterial({color:'#1a1416', side: BackSide})`, scale along normals 1.02–1.04) for hero silhouettes;
+  `MeshBasicMaterial({color:'#1a1416', side: BackSide})`, pushed out along its normals by ~.03 units with a vertex push in
+  `onBeforeCompile`: `transformed += normal * .03;` after `#include <begin_vertex>`) for hero silhouettes;
   passes `FX.ink({threshold:.1, width:1, keep:1})`, `FX.toon({bands:3, softness:.03})`, `FX.grade({sat:1.15})`, `FX.grain({amount:.02})`.
 - Motion: characters on twos (`step: 12`, quantise pose time `tq = Math.floor(t*12)/12`), camera smooth on ones.
 - Palette: bright saturated mids, shadow colour = hue-shifted toward blue/violet, not darker grey.
-- Pitfalls: Sobel ink also traces texture noise — keep albedo flat; quantising the camera too makes it stutter.
+- Pitfalls: Sobel ink also traces texture noise — keep albedo flat; quantising the camera too makes it stutter. A box's split
+  normals crack the hull open at its corners — use smooth (shared-normal) geometry for hulls.
 
 **2. Ligne claire (clear line, flat colour, no hatching)** — three or canvas
 - Three: `MeshBasicMaterial` flat colours (no shading) + `FX.ink({threshold:.05, width:1.2, color:[.05,.05,.06], keep:1})`, `FX.paper({strength:.08})`.
@@ -108,7 +111,8 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
   wood grain = seeded stripes `snoise(x*0.002, y*0.05)` at 6 % alpha multiply.
 - Motion: held tableaux, slow 2D pans, water and snow animated on threes (8 fps).
 - Palette: Prussian blue, vermilion, pale indigo, ochre, soft pink on warm paper.
-- Pitfalls: real perspective fights the look — use orthographic cameras or flattened stages.
+- Pitfalls: real perspective fights the look — use orthographic cameras or flattened stages. `posterize 5` works in linear
+  light and shifts dark colours (a teal block turns navy) — pick block colours in the mid values and check them in the frame.
 
 **5. Linocut** — three or shader
 - Three: `FX.ink({threshold:.12, width:2, keep:0})` → `FX.dither({levels:2, scale:3, mono:1})` → `FX.paper({strength:.2})`.
@@ -118,11 +122,12 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 - Pitfalls: mid-greys must die — threshold hard, no anti-aliased grey ramps.
 
 **6. Etching / engraving** — three
-- Recipe: `FX.hatch({spacing:4, angle:.4, layers:4, color:[.12,.1,.08]})`, `FX.ink({threshold:.1, width:1, keep:1})`, `FX.paper({strength:.22, tint:[.95,.92,.84]})`, `FX.vignette({strength:.3})`.
+- Recipe: `FX.ink({threshold:.1, width:1, keep:1})`, `FX.hatch({spacing:4, angle:.4, layers:4, color:[.12,.1,.08]})`, `FX.paper({strength:.22, tint:[.95,.92,.84]})`, `FX.vignette({strength:.3})`.
   For curved engraving lines, use a `ShaderMaterial` that hatches along UV v (`fract(vUv.y*120.)`) with thickness by shade.
 - Motion: slow camera, no boil (engraving is precise), 24 fps smooth.
 - Palette: sepia ink on cream; one red for a seal.
-- Pitfalls: hatch spacing < 3 px aliases at 1080p and shimmers when downscaled for phones.
+- Pitfalls: hatch spacing < 3 px aliases at 1080p and shimmers when downscaled for phones. Keep `ink` before `hatch`: `ink`
+  after `hatch` traces every hatch line and the frame turns almost solid ink.
 
 **7. Pencil sketch** — paint or three
 - Paint: `inkLine(pts, .6, '#3a3632', 'HB')`, tone with `paint(region,{hatch:{d:5, a:.8, o:{rand:.1}, b:'2B', c:'#4a4440', w:.5}, ink:null})`.
@@ -157,8 +162,9 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 **11. Oil painting** — three (or shader/canvas)
 - Recipe: `FX.kuwahara({radius:6})`, `FX.posterize({levels:12})`, `FX.paper({strength:.12, scale:2, tint:[.95,.9,.82]})` (canvas weave), `FX.grade({sat:1.15})`, `FX.vignette({strength:.3})`.
 - Motion: smooth camera; strokes shimmer if radius changes — keep it constant per shot.
-- Palette: earth pigments, deep shadows, impasto highlights.
-- Pitfalls: Kuwahara ignores stroke direction; for visible directional strokes use canvas flow-field strokes (see recipe 39).
+- Palette: earth pigments in the mid values (e.g. `#c4573a`, `#3f7a7f`, `#e0b25a`, `#9a8060`), not deep shadows; all materials `roughness: 1`.
+- Pitfalls: `posterize` runs in linear light, so specular falloffs and dark grounds break into pink/yellow/green bands —
+  keep values mid and surfaces matte. Kuwahara ignores stroke direction; for visible directional strokes use canvas flow-field strokes (see recipe 39).
 
 **12. Gouache** — three or paint
 - Three: `FX.kuwahara({radius:3})`, `FX.posterize({levels:7})`, `FX.ink({threshold:.2, width:1, color:[.2,.15,.15], keep:1})`, `FX.paper({strength:.2})`.
@@ -210,11 +216,11 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 ### Craft and miniature 3D
 
 **19. Claymation look** — three
-- Recipe: `MeshStandardMaterial({roughness:.9, metalness:0})` + `onBeforeCompile` fbm bump (thumbprint), soft key (DirectionalLight + `shadow.radius 8`),
-  big hemisphere fill; passes `FX.toon({bands:6, softness:.2})`, `FX.grain({amount:.03})`, `FX.vignette({strength:.25})`.
+- Recipe: `MeshStandardMaterial({roughness:.9, metalness:0})` + `onBeforeCompile` fbm bump (thumbprint), soft key (DirectionalLight + `shadow.radius 8`;
+  in `setup`: `renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFShadowMap`, `castShadow`/`receiveShadow` on meshes), big hemisphere fill; passes `FX.toon({bands:6, softness:.2})`, `FX.grain({amount:.03})`, `FX.vignette({strength:.25})`.
 - Motion: everything on twos, `step: 12`; add per-drawing micro-jitter of 0.002 units to positions (`hash(Math.floor(t*12))`) = replacement boil.
 - Palette: plasticine primaries, slightly desaturated, warm key.
-- Pitfalls: smooth 24 fps motion instantly reads as CG.
+- Pitfalls: smooth 24 fps motion instantly reads as CG. `PCFSoftShadowMap` ignores `shadow.radius` — use `PCFShadowMap`.
 
 **20. Low-poly flat shading** — three
 - Recipe: `IcosahedronGeometry(r, 1)` etc., `MeshLambertMaterial({flatShading:true})`, one strong key + soft hemi; `FX.grade({sat:1.1})`, `FX.vignette({strength:.2})`; `renderer` antialias on.
@@ -243,11 +249,13 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 ### Retro, neon and screen looks
 
 **24. Synthwave / outrun grid** — shader or three
-- Shader: horizon split `uv.y < .45`; ground grid `strokeAA(abs(fract(vec2(x/z, 1./z + iTime*.8)) - .5) ...)` with perspective `z = (.45-uv.y)`; sun = disc with horizontal cut bands `step(.5, fract(uv.y*30.))` below its centre; sky `palette()` magenta→purple.
-- Three: `GridHelper` scrolled by `position.z = (t*speed) % cell`, sun sphere emissive, `UnrealBloomPass(new THREE.Vector2(W,H), 1.2, .4, .2)`, `FX.crt({curve:.03, scan:.2, mask:.1})`.
+- Shader: horizon split `uv.y < .45`; ground grid per axis: `g = vec2(x/z, 1./z + iTime*.8)` with perspective `z = (.45-uv.y)`, `d = .5 - abs(fract(g) - .5)` (distance to the line), `px = fwidth(g)`,
+  `line = max(strokeAA(d.x, .02, px.x), strokeAA(d.y, .02, px.y))`; sun = disc with horizontal cut bands `smoothstep(.45, .55, fract(uv.y*30.))` below its centre; sky `palette()` magenta→purple.
+- Three: `GridHelper` scrolled by `position.z = (t*speed) % cell`, sun sphere emissive, `UnrealBloomPass(new THREE.Vector2(W,H), 1.2, .4, .85)` with only grid and sun colours pushed above 1 (`multiplyScalar(1.5)`), `FX.crt({curve:.03, scan:.2, mask:.1})`.
 - Motion: constant forward drive on the bar, cuts on `floor(iBar)`.
 - Palette: `#ff2a6d`, `#d1f7ff`, `#05d9e8`, `#1a0b2e`.
-- Pitfalls: modulo the grid scroll by exactly one cell or it jumps.
+- Pitfalls: modulo the grid scroll by exactly one cell or it jumps. A bloom threshold of .2 makes every lit surface glow; only grid and sun should.
+  `strokeAA` takes a float: pass each axis separately, never a vec2. Judge bloom at final size (see recipe 26).
 
 **25. Vaporwave** — canvas + three
 - Recipe: pastel gradient sky, checkerboard floor (three `Plane` + checker texture), marble bust stand-in (generic sculpted primitive), Windows-ish UI frames in canvas,
@@ -257,14 +265,17 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 - Pitfalls: no logos, no real brand UI.
 
 **26. Neon glow / cyberpunk night** — three
-- Recipe: dark scene, emissive tubes (`MeshBasicMaterial` colours > 1 via `color.multiplyScalar(4)`), wet-floor `MeshStandardMaterial({roughness:.15, metalness:.6})` + `Reflector` from addons;
+- Recipe: dark scene, thin emissive tubes (`MeshBasicMaterial` colours > 1 via `color.multiplyScalar(1.5)`; e.g. torus-knot tube .03, wireframe icosahedron);
+  wet floor = `Reflector` from addons (`textureWidth: W, textureHeight: H`) with a 55 %-opaque `MeshStandardMaterial({roughness:.15, metalness:.6, transparent:true, opacity:.55})` plane just above it;
   passes `new UnrealBloomPass(new THREE.Vector2(W,H), 1.6, .5, .85)`, `FX.chroma({amount:1.8})`, `FX.grade({lift:[.02,0,.05], gain:[1,.95,1.1], sat:1.2})`, `FX.grain({amount:.04})`, `FX.vignette({strength:.4})`.
 - Motion: neon flicker from `hash11(floor(t*24)+id) > .97`, rain streaks analytic; camera dolly smooth.
 - Palette: cyan + magenta + one sodium amber; black base.
-- Pitfalls: bloom threshold too low smears everything; flicker must respect the flash gate (≤ 3/s full-frame).
+- Pitfalls: bloom threshold too low smears everything; colours ×4 or thick tubes fill the frame with haze. UnrealBloomPass blurs over a
+  fixed mip chain, so at 480×270 the glow covers far more of the frame than at 1080p — judge bloom at final size. Flicker must respect the flash gate (≤ 3/s full-frame).
 
 **27. Film noir** — three
-- Recipe: one hard SpotLight (`penumbra .1`, shadows 4096) through venetian-blind geometry, fog `FogExp2('#000', .08)`;
+- Recipe: one hard SpotLight (`new THREE.SpotLight('#fff', 200, 0, .5, .1, 2)`: intensity ~200 at decay 2 with physical light units, `penumbra .1`, shadows 4096,
+  `renderer.shadowMap.enabled = true`) through venetian-blind geometry, fog `FogExp2('#000', .08)`;
   `FX.grade({lift:[0,0,0], gamma:[.85,.85,.85], gain:[1.15,1.15,1.15], sat:0})`, `FX.grain({amount:.08, size:1.5})`, `FX.vignette({strength:.5, softness:.4})`.
 - Motion: slow push-ins, long holds (`HOLDS`), smoke via billboarded noise sprites.
 - Palette: monochrome, crushed blacks; optional single red.
@@ -274,7 +285,8 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 - Recipe: `FX.grade({lift:[.04,.03,.01], gamma:[1.05,1,.92], gain:[1.05,.98,.88], sat:.85})`, `FX.chroma({amount:1.2})`, `FX.grain({amount:.07, size:2})`, `FX.vignette({strength:.35})`.
   Gate weave: offset the camera's view by `setViewOffset(W,H, 1.5*snoise(floor(t*24)*.3), 1*snoise(...+9), W, H)` per frame; dust/scratch flecks from `hash(frame)` drawn in canvas or a custom pass.
 - Motion: 24 fps, handheld via low-freq `snoise(t*.5)` rotation 0.3°.
-- Palette: warm highlights, teal-green shadows, halation (a weak red bloom: UnrealBloomPass strength .3 tinted via grade).
+- Palette: warm highlights, teal-green shadows, halation (a weak bloom first in the chain: `UnrealBloomPass(v, .3, .4, .8)`). The grade
+  tints the whole frame, not only the bloom — a red halation needs its own custom pass. Judge bloom at final size (see recipe 26).
 - Pitfalls: weave must be a function of the frame index, not accumulated.
 
 **29. VHS / analog video** — shader (post) or three
@@ -296,9 +308,10 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 - Pitfalls: tone mapping after the pass is harmless for 0/1, but `FX.grain` after dither reintroduces greys.
 
 **32. Four-colour handheld palette** — three or canvas
-- Recipe: `FX.pixelate({size:6, levels:4})`, then a custom palette-map pass: `idx = floor(luma*3.999)` → `[#0f380f,#306230,#8bac0f,#9bbc0f][idx]`; or canvas 160×144 logical canvas with Bayer B4 between the 4 tones.
+- Recipe: `renderer.toneMapping = THREE.NoToneMapping`; `FX.pixelate({size:6, levels:4})`, then a last custom palette-map pass: `idx = floor(pow(luma, 1./2.2)*3.999)` →
+  `[#0f380f,#306230,#8bac0f,#9bbc0f][idx]`, written as *linear* colours (sRGB→linear in the shader) so the sRGB encode gives the exact hexes; or canvas 160×144 logical canvas with Bayer B4 between the 4 tones.
 - Motion: 12 fps sprite animation, integer-pixel camera.
-- Pitfalls: the palette map must come after OutputPass colour encoding — add it as the last custom pass with `NoToneMapping`.
+- Pitfalls: `film.html` always appends OutputPass last, so the palette map cannot come after it — write linear palette colours instead.
 
 **33. Pixel art** — canvas (see `styles/pixel-art.md`); three variant `RenderPixelatedPass(6, scene, camera)` + `FX.posterize({levels:6})` for 3D pixel dioramas.
 
@@ -311,10 +324,11 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 - Pitfalls: speech balloons are excluded by design; text-free storytelling needs bigger acting.
 
 **35. Risograph zine** — three or canvas (see `styles/riso-pop.md`)
-- Three: `FX.riso({inkA:[.97,.33,.48], inkB:[.12,.38,.78], offset:[3,-2]})`, `FX.halftone({cell:5, cmyk:0})` optional before it, `FX.grain({amount:.03})`.
+- Three: `FX.riso({inkA:[.97,.33,.48], inkB:[.12,.38,.78], offset:[3,-2]})`, `FX.grain({amount:.03})`, with `renderer.toneMapping = THREE.NoToneMapping`.
   Animate `offset` per drawing: `riso.uniforms.u_offset.value = [2+hash(k), -1-hash(k+1)]`, `k=floor(t*8)`.
 - Palette: fluorescent pink + blue, or yellow + teal, on cream.
-- Pitfalls: inks from options are tone-mapped — use `NoToneMapping` (see notation).
+- Pitfalls: inks from options are tone-mapped — use `NoToneMapping` (see notation). No `FX.halftone({cmyk:0})` before `riso`: it turns
+  both plates into the same grey dots and the print reads pale.
 
 **36. Swiss poster typography** — canvas
 - Recipe: 12-column grid (margins 6 % W), one grotesk family, sizes from a modular scale 1.333; `opentype.js` paths for exact kerning; flush-left ragged-right; two colours + black.
@@ -322,7 +336,8 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 - Pitfalls: centring and decorative type break the system; keep text ≥ 4 % of H for phones.
 
 **37. Kinetic typography** — canvas
-- Recipe: `SONG.word(t)` drives entry; per-glyph paths from opentype (`font.getPath(ch, x, y, size)` → `new Path2D(p.toPathData())`), animate scale/position/rotation per glyph with `Spring.unit(t - word.t, 'snappy')`; stressed words (`word.stress`) 1.5× size.
+- Recipe: `import * as opentype from 'opentype.js'` (the importmap's `opentype.mjs` has no default export); `SONG.word(t)` drives entry,
+  with a fallback word when it returns null (no song map), e.g. `SONG.word(t) || { w: 'RESONANCE', t: 1.5, end: 3.8, stress: 1 }`; per-glyph paths from opentype (`font.getPath(ch, x, y, size)` → `new Path2D(p.toPathData())`), animate scale/position/rotation per glyph with `Spring.unit(t - word.t, 'snappy')`; stressed words (`word.stress`) 1.5× size.
 - Motion: 60 fps, smooth; holds on line ends.
 - Pitfalls: wait for `document.fonts.ready` and font ArrayBuffers before `READY`; never `fillText` in fonts not loaded.
 
@@ -349,16 +364,21 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 
 **41. Generative flow fields** — canvas (simplex-noise) or shader
 - Recipe: `const n3 = createNoise3D(Alea('flow'))`; N = 4000 particles; position is **integrated analytically per frame from t = 0 at fixed dt** or, cheaper, baked: precompute paths once in setup (`steps = duration*24`) into Float32Arrays and draw trail segments `[f-12, f]`.
-  Angle `a = n3(x*.0015, y*.0015, t*.05) * Math.PI*2`.
+  Angle `a = n3(x*.0015, y*.0015, t*.05) * Math.PI*2`, integrated in a 1920×1080 design space (the scale assumes 1080p pixels; scale the drawing to the canvas).
+  Each particle lives 1–2.5 s and is reborn at a seeded position; store its age for colour.
 - Motion: slow; field evolves at 0.05/s.
 - Palette: culori ramp along particle age (`interpolate(['#0b132b','#5bc0be','#f5f5f5'],'oklch')`).
-- Pitfalls: integrating inside `renderFrame` from the previous frame breaks determinism — bake in setup.
+- Pitfalls: integrating inside `renderFrame` from the previous frame breaks determinism — bake in setup. A plain noise-angle field is not
+  divergence-free: immortal particles collapse into a few sink lines within ~2 s — use lifetimes with rebirth, or curl noise.
 
 **42. Reaction-diffusion** — shader (feedback)
-- Recipe: sim pass `feedback: true`, Gray–Scott on RG: `A += (Da*lapA - A*B*B + f*(1-A))*dt`, `B += (Db*lapB + A*B*B - (k+f)*B)*dt` with `Da 1.0, Db .5, f .055, k .062, dt 1`; run 8 substeps by stacking 8 identical sim passes or bake;
+- Recipe: sim pass `feedback: true`, Gray–Scott on RG: `A += (Da*lapA - A*B*B + f*(1-A))*dt`, `B += (Db*lapB + A*B*B - (k+f)*B)*dt` with `Da 1.0, Db .5, f .055, k .062, dt 1`; run 8 substeps with 8 identical sim passes, each `feedback: true`, sim *n* reading sim *n−1* via `inputs`, and sim1 `inputs: ['sim8']`
+  (still the previous frame's last substep); or bake;
   seed B from `hash12` blobs at `iFrame == 0`-equivalent (when the read is zero). Show pass maps B through `palette()`.
 - Warm-up: patterns need hundreds of steps — bake (render sim sequentially to PNGs, see `references/shader-medium.md`) rather than warmup > 3 s.
-- Pitfalls: half-float targets are fine; `CLAMP_TO_EDGE` wrap means edges behave as boundaries — design for it.
+  With 8 substeps and `warmup: 3`, a frame at t = 2 s gets only 384 steps (still the ring stage) and costs ~4.8 s at 480×270.
+- Pitfalls: half-float targets are fine; `CLAMP_TO_EDGE` wrap means edges behave as boundaries — design for it. A feedback pass reads
+  only its own previous frame, and only feedback targets are cleared before the warm-up: a non-feedback sim pass keeps stale state and breaks determinism.
 
 **43. Fluid ink in water** — shader
 - Cheap: no sim — `warp2(warp2(p*1.5, t*.1), t*.07)` domain warp twice, ink density `smoothstep(.45,.6, fbm2(q*3.))`, multiply over paper.
@@ -366,10 +386,11 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 - Pitfalls: decay ≥ .995 means long memory → warmup too short shows the "clean start"; then bake.
 
 **44. Raymarched SDF worlds** — shader
-- Recipe: 3D SDFs written inline (sdf.glsl is 2D); 96 steps, `eps .001`, normals by central differences, soft shadows (IQ technique), `smin(a, b, .3)` from `sdf.glsl` to blend; fog `mix(col, fogCol, 1.-exp(-.02*d*d))`; camera from `iTime` via look-at matrix.
+- Recipe: 3D SDFs written inline (sdf.glsl is 2D); 96 steps, `eps .001`, normals by central differences, soft shadows (IQ technique), `smin(a, b, .3)` from `sdf.glsl` to blend; fog `mix(col, fogCol, 1.-exp(-.002*d*d))`; camera from `iTime` via look-at matrix.
 - Motion: camera paths as closed-form curves; morphs by `smin` k on `iPulse`.
 - Palette: `palette(t, vec3(.5), vec3(.5), vec3(1.), vec3(0.,.33,.67))` + toSRGB once.
-- Pitfalls: 1080p at 96 steps is heavy in SwiftShader — preview at `?w=960&h=540`.
+- Pitfalls: 1080p at 96 steps is heavy in SwiftShader — preview at `?w=960&h=540`. Fog density depends on scene units: .02 fogs half the
+  subject at d = 6, a normal camera distance.
 
 **45. Particle swarms (analytic)** — shader or three
 - Recipe: each particle `i` is `pos(i, t)` closed-form: `base = hash22(vec2(i))`, `p = base + .2*vec2(snoise(base*3.+t*.2), snoise(base*3.+9.-t*.2))`; three: `Points` with a `ShaderMaterial` whose vertex shader computes position from `aSeed` and `uTime`; set `uTime = t` in `update`.
@@ -378,7 +399,8 @@ exact ink colours matter. Keep a handle on any pass you animate (`const gl = FX.
 
 **46. Glitch art on beats** — three or shader
 - Three: `const gl = FX.glitch({amount:0, seed:3})` in the chain after the look passes, `FX.chroma({amount:1})` after it;
-  `update`: `gl.uniforms.u_amount.value = SONG.section(t)?.kind === 'drop' ? SONG.pulse(t, 12) * .8 : 0`.
+  `update`: `const sec = SONG.section(t), drop = sec ? sec.kind === 'drop' : true; gl.uniforms.u_amount.value = drop ? SONG.pulse(t, 12) * .8 : 0`
+  (no song map → `section()` is null; treat that as a drop, or the glitch never fires).
 - Shader: row displacement `if (hash12(vec2(row, floor(iBeat))) < iPulse*.4) uv.x += ...`.
 - Motion: glitches only on chosen beats; clean frames otherwise.
 - Pitfalls: `FX.glitch` re-rolls at 12 Hz internally, independent of beats — the beat gating is your `amount`. Respect the flash gate.
@@ -446,7 +468,7 @@ passes: [ new UnrealBloomPass(new THREE.Vector2(W, H), 0.9, 0.5, 0.88),   // onl
 | perfect-freehand | `getStroke(points, { size, thinning, smoothing, streamline, simulatePressure: false, last: true })` with stored pressure; cut `points` by progress for draw-on | sample pointer input at render time |
 | simplex-noise v4 | `createNoise2D(Alea('seed'))` (Alea is a classic global; load `node_modules/alea/alea.js`) | `createNoise2D()` with no PRNG (uses `Math.random`) |
 | culori | pure functions: `interpolate(colors, 'oklch')(k)`, `formatHex` | — |
-| opentype.js | `opentype.parse(await (await fetch(url)).arrayBuffer())` in setup; `getPath(...).toPathData()` per frame | load fonts after READY |
+| opentype.js | `import * as opentype from 'opentype.js'` (no default export); `opentype.parse(await (await fetch(url)).arrayBuffer())` in setup; `getPath(...).toPathData()` per frame | load fonts after READY |
 | d3 (classic global) | scales, shapes, `d3.interpolate*` evaluated at `k(t)`; `d3.Delaunay`; `geoPath(proj, ctx)` | `.transition()`, `d3.timer`, force simulations live (bake them, below) |
 | three | set every transform/uniform in `update(t)`; `mixer.setTime(t)`; `composer.render(0)`; `setFxTime` | `Clock`, `getDelta`, `mixer.update(dt)`, `AfterimagePass` or any pass keeping the previous frame |
 | troika-three-text | not installed: `npm i troika-three-text` in the studio and add importmap entries for it and its deps (`troika-three-utils`, `troika-worker-utils`, `webgl-sdf-generator`, `bidi-js`); set `.text` in `update`, then `await new Promise(r => text.sync(r))` before rendering | render before `sync` resolves |
