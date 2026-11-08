@@ -42,6 +42,8 @@ composer.addPass(new OutputPass());
 
 window.FILM_DURATION = PROJECT.duration; window.FILM_CANVAS = canvas;
 if (built.step) window.FILM_STEP = built.step;           // stepped looks (boil on twos) declare their drawing rate
+if (built.holds) window.HOLDS = built.holds;             // deliberate still stretches [[a, b], …] (the gate's dead-air check)
+if (built.cuts) window.CUTS = built.cuts;                // deliberate hard cuts [t, …] (the gate's pop check)
 // some three/addons passes (GlitchPass, film/noise) call Math.random: give them a stream seeded by the frame,
 // so every frame is the same however often and in whatever order it is drawn
 const seedFrame = (t) => { Math.random = rng(1 + Math.round(t * 1000)); };   // studio:seeded-random

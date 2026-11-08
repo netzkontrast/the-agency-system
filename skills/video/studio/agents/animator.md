@@ -31,7 +31,7 @@ match the neighbours, and it passes the gate.
 3. `<proj>/LOOK.md`, `<studio>/references/film-contract.md`, `references/timing.md`; paint:
    `references/paint-medium.md` in full (rules, principles, workflow, engine); canvas: `references/motion-kit.md`;
    pathtracer: `references/pathtracer/shots-and-timeline.md`, `asset-contract.md`.
-4. `<proj>/songmap/REPORT.md` and `songmap.js` for every time; `<proj>/STORYBOARD.md` rows of [range] only.
+4. `<proj>/songmap/beatmap.md` + `songmap/words.json` and `songmap.js` for every time; `<proj>/STORYBOARD.md` rows of [range] only.
 5. Agency System `yes`: load the gate skill `skills/theagencysystem/` for layer design; resolve figures by function.
 
 ## Own / read-only

@@ -34,7 +34,7 @@ start and stressed-syllable time, verified bars and sections, and a tempo-drift 
 - If `songmap/` already holds results for the same master (same duration and hash in `REPORT.md`), continue from them.
 
 ## Method
-1. Record the master: duration (`ffprobe`), sample rate, md5. Write them at the top of `songmap/REPORT.md`.
+1. Record the master: duration (`ffprobe`), sample rate, md5. Write them at the top of `songmap/beatmap.md` + `songmap/words.json`.
 2. Run the whole map: `bash <studio>/bin/studio songmap [master audio] --lyrics [lyrics source]`. If the CLI is
    missing, run the steps it wraps:
    - `python3 -I <studio>/tools/audio/beatmap.py [master audio] --fps [fps] --out songmap/beatmap.json`
@@ -54,7 +54,7 @@ start and stressed-syllable time, verified bars and sections, and a tempo-drift 
    Record silences/breaks, pickups, risers and the last strong hit.
 7. Sections: name each (intro, verse 1, pre, chorus 1, …, bridge, outro) with start/end bar and time; mark returning
    choruses with their index.
-8. Write `songmap/REPORT.md`: tempo and candidates, downbeat confidence, drift verdict with numbers, drop, sections
+8. Write `songmap/beatmap.md` + `songmap/words.json`: tempo and candidates, downbeat confidence, drift verdict with numbers, drop, sections
    table, every lyric line with start/end, a list of action-candidate words with start and stress, and a list of
    spans you could not pin (with your best estimate marked as such).
 

@@ -20,7 +20,7 @@ picture and the master audio are the same length. You run after the animators, a
 == master audio length ± 1 frame.
 
 ## Read
-- `<proj>/BUILD_NOTES.md` (first), `<proj>/STORYBOARD.md` (handoff rows), `<proj>/songmap/REPORT.md`,
+- `<proj>/BUILD_NOTES.md` (first), `<proj>/STORYBOARD.md` (handoff rows), `<proj>/songmap/beatmap.md` + `songmap/words.json`,
   `<studio>/references/film-contract.md`, `references/pipeline.md` (Long films, Re-render only what changed,
   Gotchas, Frame safety), `references/paint-medium.md` Workflow §4 for paint.
 - Agency System `yes`: load the gate skill `skills/theagencysystem/`; check file names you write carry no personal name.

@@ -10,7 +10,7 @@ Goal · Read / do not read · Own / read-only · Method · Done · Report · Sto
 |---|---|---|---|---|---|
 | Strategist | `strategist.md` | 1 Brief (and brand pass before 3 when a brand is in the film) | light | 1 | `BRIEF.md`, `BRAND-BRIEF.md` |
 | Director | `director.md` | 3 Pitch, 5 Storyboard (and revisions after each critique), architecture before 7 | heavy | 1 per film | `STORYBOARD.md`, `BUILD_NOTES.md`, `film.html`, `config.js`, chapter stubs `scenes/chNN.js` (stubs only), `review/storyboard*` |
-| Song-map analyst | `songmap-analyst.md` | 4 Map (re-run when the master audio changes) | light | 1 | `songmap/*.json`, `songmap.js`, `songmap/REPORT.md` |
+| Song-map analyst | `songmap-analyst.md` | 4 Map (re-run when the master audio changes) | light | 1 | `songmap/*.json`, `songmap.js`, `songmap/beatmap.md` + `songmap/words.json` |
 | Critic | `critic.md` | 5 Storyboard: a new one per storyboard round | heavy | 1 | `review/critique-N.md` |
 | Art director | `art-director.md` | 2 Route (style pick), 6 Test section (library, model sheets, LOOK.md); spot frame reviews in 7 | heavy | 1 | `LOOK.md`, `lib/look.js` (or the file the director names), `assets/look/`, `review/look_*` |
 | Animator | `animator.md` | 6 Test section (one), 7 Build (one per chapter) | heavy (light for small fixes) | 2 | `scenes/chNN.js` (its own), `review/chNN_*` |

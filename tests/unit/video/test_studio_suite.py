@@ -184,7 +184,7 @@ def test_skill_frontmatter_is_valid_yaml():
 
 
 FX_NAMES = ["ink", "toon", "kuwahara", "watercolor", "hatch", "halftone", "riso", "dither", "pixelate", "posterize",
-            "crt", "boil", "paper", "grain", "vignette", "chroma", "grade", "glitch"]
+            "crt", "boil", "paper", "grain", "vignette", "chroma", "grade", "glitch", "fade"]
 
 
 def test_three_pass_catalogue_is_complete_and_documented():
@@ -228,3 +228,23 @@ def test_importmap_targets_exist_when_installed():
     imp = json.loads((STUDIO / "engine/lib/importmap.json").read_text())["imports"]
     for name, path in imp.items():
         assert (STUDIO / path.replace("./", "", 1)).exists(), f"{name} → {path} missing"
+
+
+def test_pipeline_smoke_run_is_recorded():
+    run = STUDIO / "examples/pipeline-smoke"
+    text = (run / "RUN.md").read_text()
+    assert "CLEAR" in text and "PASS on all six" in text
+    assert sorted(p.name for p in (run / "review").glob("critique-*.md"))[-1] == "critique-6.md"
+    assert len(list((run / "review").glob("review-*.md"))) == 3   # the 3-round reviewer limit was honoured
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node not installed")
+def test_pulse_soft_has_no_one_frame_jump():
+    script = (
+        "globalThis.SONGMAP={beats:[0,0.5,1,1.5,2]};"
+        f"require('vm').runInThisContext(require('fs').readFileSync({json.dumps(str(STUDIO / 'engine/lib/beat.js'))}, 'utf8'));"
+        "const S=globalThis.SONG; const v=[1.0,1+1/24,1+2/24,1+3/24].map(t=>S.pulseSoft(t));"
+        "console.log(JSON.stringify(v))"
+    )
+    v = json.loads(subprocess.run(["node", "-e", script], capture_output=True, text=True, check=True).stdout)
+    assert v[0] == 0 and max(b - a for a, b in zip(v, v[1:])) < 0.6   # rises over several frames

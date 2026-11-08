@@ -6,7 +6,9 @@
 //
 //   SONG.beatAt(t)    fractional beat index; follows the measured beats, so tempo ramps (60 → 90 bpm) stay in sync
 //   SONG.barAt(t)     fractional bar index from the measured downbeats
-//   SONG.pulse(t, k)  1 exactly on each beat, decaying after (k = decay speed)
+//   SONG.pulse(t, k)  1 exactly on each beat, decaying after (k = decay speed) — an instant attack: use it for light,
+//                     colour and flashes of type, not for positions (a one-frame jump reads as a pop)
+//   SONG.pulseSoft(t, a, k)  the same envelope with a smooth attack of `a` seconds (default 0.12 s, i.e. 3 frames at 24 fps): for motion
 //   SONG.downbeat(n)  time of bar n's downbeat
 //   SONG.section(t)   { name, kind, t, end } of the song section at t (hook, verse, build, drop, stop, release …)
 //   SONG.word(t)      the sung word at t: { w, t, end, stress, line } or null
@@ -42,6 +44,12 @@
     map: M,
     beatAt, barAt,
     pulse: (t, k = 6) => Math.exp(-frac(beatAt(t)) * k),
+    pulseSoft(t, a = 0.12, k = 6) {
+      // smoothstep rise over `a` seconds from the beat, then the same exponential fall as pulse(): no one-frame jump
+      const i = Math.floor(beatAt(t)), t0 = SONG.beatTime(i), len = Math.max(1e-3, SONG.beatTime(i + 1) - t0), x = t - t0;
+      const u = Math.min(1, Math.max(0, x / a)), rise = u * u * (3 - 2 * u);
+      return rise * Math.exp(-Math.max(0, x - a) / len * k);
+    },
     beatTime: (i) => (beats ? timeAt(beats, i) : fixedOff + i * fixedBeat),
     downbeat: (n) => (downs ? timeAt(downs, n) : fixedOff + n * 4 * fixedBeat),
     section(t) {

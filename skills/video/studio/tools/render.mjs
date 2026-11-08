@@ -57,8 +57,12 @@ async function openPage(tag = '') {
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   page.on('console', (m) => { if (['error', 'warning'].includes(m.type())) console.log(`[page${tag}]`, m.text()); });
   page.on('pageerror', (e) => console.log(`[page error${tag}]`, e.message));
+  // a script error before READY would otherwise wait out the whole timeout: fail at once, with the error
+  let failed; const broke = new Promise((_, bad) => { failed = bad; });
+  page.on('pageerror', (e) => failed(new Error(`film page error before READY: ${e.message}`)));
   await page.goto(`${url}/${FILM}${query}`, { timeout: navTimeout() });
-  await page.waitForFunction(() => typeof window.renderFrame === 'function' && window.READY === true, null, { timeout: navTimeout() });
+  await Promise.race([page.waitForFunction(() => typeof window.renderFrame === 'function' && window.READY === true, null, { timeout: navTimeout() }), broke]);
+  page.removeAllListeners('pageerror'); page.on('pageerror', (e) => console.log(`[page error${tag}]`, e.message));
   return page;
 }
 const grab = (page, t, type = 'image/jpeg', q = 0.92) => page.evaluate(async ([t, type, q, pick]) => {

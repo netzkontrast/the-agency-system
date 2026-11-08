@@ -27,6 +27,8 @@
 //   chroma     radial chromatic aberration: { amount 1.5 } px at the corners
 //   grade      lift / gamma / gain / saturation: { lift [0,0,0], gamma [1,1,1], gain [1,1,1], sat 1 }
 //   glitch     block displacement on given beats (deterministic): { amount 0, seed 1 } — drive amount from SONG.pulse(t)
+//   fade       mix the finished frame toward a colour: { amount 0, color [.94,.91,.84] } — put it LAST, drive amount
+//              from t for fades to/from paper or black (a veil in the scene would be re-inked by the ink pass)
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 
 const COMMON = /* glsl */ `
@@ -133,6 +135,8 @@ export const FX = {
     void main(){ float row = floor(vUv.y*24.), k = floor(uTime*12.); float r = h21(vec2(row, k+u_seed));
       vec2 uv = vUv; if (r < u_amount*.5) uv.x += (h21(vec2(row*3.1, k))-.5)*u_amount*.15;
       vec3 c = vec3(tex(uv+vec2(u_amount*.004,0.)).r, tex(uv).g, tex(uv-vec2(u_amount*.004,0.)).b); gl_FragColor = vec4(c,1.); }`, o),
+  fade: (o) => pass('fade', { amount: 0, color: [0.94, 0.91, 0.84] }, `
+    void main(){ vec3 c = tex(vUv).rgb; gl_FragColor = vec4(mix(c, u_color, clamp(u_amount, 0., 1.)), 1.); }`, o),
 };
 
 // Set time and size on every studio pass of a composer (call once per frame, before composer.render(0)).

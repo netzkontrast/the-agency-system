@@ -1,0 +1,126 @@
+{
+ "source": "song.wav",
+ "language": null,
+ "words": [
+  {
+   "w": "lass",
+   "t": 1.0,
+   "end": 1.3,
+   "line": 0,
+   "stress": 1.0
+  },
+  {
+   "w": "mich",
+   "t": 1.35,
+   "end": 1.6,
+   "line": 0,
+   "stress": 1.5
+  },
+  {
+   "w": "lass",
+   "t": 1.7,
+   "end": 2.0,
+   "line": 0,
+   "stress": 1.71
+  },
+  {
+   "w": "mich",
+   "t": 2.05,
+   "end": 2.3,
+   "line": 0,
+   "stress": 2.04
+  },
+  {
+   "w": "atmen",
+   "t": 2.4,
+   "end": 3.1,
+   "line": 0,
+   "stress": 2.5
+  },
+  {
+   "w": "ich",
+   "t": 4.0,
+   "end": 4.2,
+   "line": 1,
+   "stress": 4.0
+  },
+  {
+   "w": "bin",
+   "t": 4.25,
+   "end": 4.5,
+   "line": 1,
+   "stress": 4.26
+  },
+  {
+   "w": "hier",
+   "t": 4.6,
+   "end": 5.2,
+   "line": 1,
+   "stress": 5.0
+  },
+  {
+   "w": "das",
+   "t": 8.0,
+   "end": 8.3,
+   "line": 2,
+   "stress": 8.0
+  },
+  {
+   "w": "war",
+   "t": 8.4,
+   "end": 9.4,
+   "line": 2,
+   "stress": 8.4
+  }
+ ],
+ "lines": [
+  {
+   "i": 0,
+   "text": "lass mich lass mich atmen",
+   "section": "Verse 1",
+   "t": 1.0,
+   "end": 3.1,
+   "key": {
+    "w": "atmen",
+    "t": 2.4,
+    "stress": 2.5
+   }
+  },
+  {
+   "i": 1,
+   "text": "ich bin hier",
+   "section": "Verse 1",
+   "t": 4.0,
+   "end": 5.2,
+   "key": {
+    "w": "ich",
+    "t": 4.0,
+    "stress": 4.0
+   }
+  },
+  {
+   "i": 2,
+   "text": "das war",
+   "section": "Chorus",
+   "t": 8.0,
+   "end": 9.4,
+   "key": {
+    "w": "das",
+    "t": 8.0,
+    "stress": 8.0
+   }
+  }
+ ],
+ "sections": [
+  {
+   "name": "Verse 1",
+   "t": 1.0,
+   "end": 8.0
+  },
+  {
+   "name": "Chorus",
+   "t": 8.0,
+   "end": 9.4
+  }
+ ]
+}

@@ -31,6 +31,8 @@ It writes `film.html` (importmap for three, addons and the studio libraries), `e
   stream seeded per frame, so addons that use it (GlitchPass, noise) stay deterministic.
 - Text: `troika-three-text` (install it into the studio when needed) — `await text.sync()` inside `update` before the
   frame is captured. Or draw text in a canvas texture.
+- Return `holds: [[a, b]]` for deliberate still stretches (an end card, blank paper) and `cuts: [t]` for hard cuts,
+  so the gate's dead-air and pop checks know they are intended.
 - Return `step: 12` when the look is stepped (the `boil` pass, animation on twos); the gate then judges stillness per
   drawing, and `render.mjs --twos` halves the render.
 
@@ -46,6 +48,7 @@ Order: structure → medium → surface → (OutputPass is added last by `film.h
 | `watercolor` edge darkening, granulation, bleed | `pixelate` + palette snap | `chroma` radial aberration |
 | `hatch` cross-hatching by luminance | `posterize` | `grade` lift/gamma/gain/saturation |
 | `boil` hand-drawn line wobble at `fps` | `crt` curvature, scanlines, mask | `glitch` beat-driven blocks |
+|  |  | `fade` to a colour (last in the chain) |
 
 `gallery/fx-catalogue.jpg` shows every pass alone on the same scene (default options; chroma, grain, boil and glitch
 turned up so they read at thumbnail size).

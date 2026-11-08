@@ -21,7 +21,7 @@ two takes) is the person's. You place music, voice and effects against the pictu
 
 ## Read
 - `<studio>/references/audio.md` in full, `references/music-engine.md` (when composing), `references/voice.md` (when
-  a voice is involved), `<proj>/BRIEF.md`, `<proj>/BUILD_NOTES.md`, `<proj>/songmap/REPORT.md`, the storyboard rows
+  a voice is involved), `<proj>/BRIEF.md`, `<proj>/BUILD_NOTES.md`, `<proj>/songmap/beatmap.md` + `songmap/words.json`, the storyboard rows
   that carry events.
 - Agency System `yes`: load the gate skill `skills/theagencysystem/`; voice lines and file names carry functions/roles
   only, never personal names.

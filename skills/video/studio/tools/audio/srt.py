@@ -3,12 +3,13 @@
 
 Usage:
   python3 srt.py [--words songmap/words.json] [--out out/film.srt] [--format srt|vtt|ass] [--offset 0]
-                 [--max-chars 42] [--min-dur 0.8] [--gap 0.08] [--lead 0.1]
+                 [--max-chars 42] [--min-dur 0.8] [--gap 0.08] [--lead 0.1] [--end <film length s>]
 
 Text comes from words.json, i.e. from the real / streaming lyrics the alignment was given — never from a phonetic
 generation prompt. A line longer than --max-chars is split into two rows at the word nearest the middle; a line
 longer than two rows becomes two cues split at the word boundary nearest the middle in time.
 Cue timing: starts --lead before the first word, holds at least --min-dur, ends --gap before the next cue.
+With --end, a line sung in the film's last 0.3 s or later is dropped and the rest are clipped to the end.
 ASS output highlights each word on its sung time (\\k tags) for karaoke-style burn-in.
 Pure Python; no dependencies.
 """
@@ -83,10 +84,15 @@ def main():
     ap.add_argument('--min-dur', type=float, default=0.8)
     ap.add_argument('--gap', type=float, default=0.08)
     ap.add_argument('--lead', type=float, default=0.1)
+    ap.add_argument('--end', type=float, default=None, help='film length in seconds: drop/clip cues past it')
     a = ap.parse_args()
     fmt = a.format or os.path.splitext(a.out)[1].lstrip('.') or 'srt'
     data = json.load(open(a.words, encoding='utf-8'))
     cues = time_cues(cues_from(data, a.max_chars), a.lead, a.min_dur, a.gap, a.offset)
+    if a.end is not None:
+        cues = [c for c in cues if c['t'] - a.offset < a.end - 0.3]   # a line sung in the last 0.3 s cannot be read
+        for c in cues:
+            c['b'] = min(c['b'], a.end)
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     with open(a.out, 'w', encoding='utf-8') as f:
         if fmt == 'srt':

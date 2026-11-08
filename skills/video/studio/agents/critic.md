@@ -19,7 +19,7 @@ between the director and the animators.
 with the shot, the time and the concrete fix.
 
 ## Read
-- `<proj>/STORYBOARD.md`, `<proj>/review/storyboard-sheet.png` (open it as an image), `<proj>/songmap/REPORT.md`
+- `<proj>/STORYBOARD.md`, `<proj>/review/storyboard-sheet.png` (open it as an image), `<proj>/songmap/beatmap.md` + `songmap/words.json`
   (times and sections), `<proj>/BRIEF.md`.
 - The craft: `<studio>/references/timing.md`, `references/quality-checklist.md`, `references/page-or-picture.md`,
   `references/concept-check.md` (§1, 3, 5), `references/before-the-first-cut.md`, `references/music-video.md`
