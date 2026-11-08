@@ -152,7 +152,7 @@ Before the UMD switch (problem 14), the first canvas gate run hung in "1. DETERM
 
 - **1 fixed in the pass.** `FX.toon` now cuts its bands in perceptual luma (`pluma`), and each band takes its
   centre value, so the darkest band is never black. Recipe 1 here uses `FX.toon` again, as the recipe writes it.
-- **2–13, 17 fixed in `references/style-recipes.md`**, with the working settings from this sampler.
+- **2–13, 17 fixed in `references/style-recipes.md`**, with the working settings from this sampler. Recipe 24 (three) was re-rendered with the corrected numbers (bloom threshold .85, grid and sun ×1.5): only grid and sun glow, the subjects stay clean.
 - **14 fixed.** `tools/gate.mjs` serves `.mjs`, `.wasm`, `.ttf` and `.otf` with the right types.
 - **15 not reproduced.** The studio's pinned d3 (`node_modules/d3/dist/`) ships `d3.min.js`, and
   `engine/lib/libs-check.html` loads it. Check a project's `node_modules` link if the tag fails.

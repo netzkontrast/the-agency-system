@@ -113,12 +113,12 @@ export const RECIPES = {
     mat: (c, kind, col) => new c.THREE.MeshStandardMaterial({ color: col, roughness: .4, metalness: .3 }),   // only grid + sun are emissive, as the recipe says
     extras: ({ THREE, scene }) => {
       const cell = 1;
-      const grid = new THREE.GridHelper(40, 40, '#ff2a6d', '#ff2a6d'); scene.add(grid);
-      const sun = new THREE.Mesh(new THREE.SphereGeometry(4, 48, 24), new THREE.MeshBasicMaterial({ color: '#ff5a3d' }));
+      const grid = new THREE.GridHelper(40, 40, '#ff2a6d', '#ff2a6d'); grid.material.color.multiplyScalar(1.5); scene.add(grid);   // grid + sun ×1.5 over the bloom threshold .85
+      const sun = new THREE.Mesh(new THREE.SphereGeometry(4, 48, 24), new THREE.MeshBasicMaterial({ color: new THREE.Color('#ff5a3d').multiplyScalar(1.5) }));
       sun.position.set(0, 2.5, -18); scene.add(sun);
       return (t, cam) => { grid.position.z = (t * 1.6) % cell; sun.position.set(cam.position.x * -5, 3, cam.position.z * -5); };
     },
-    passes: ({ FX, THREE, W, H }) => [new UnrealBloomPass(new THREE.Vector2(W, H), 1.2, .4, .2), FX.crt({ curve: .03, scan: .2, mask: .1 })],
+    passes: ({ FX, THREE, W, H }) => [new UnrealBloomPass(new THREE.Vector2(W, H), 1.2, .4, .85), FX.crt({ curve: .03, scan: .2, mask: .1 })],
   },
   neon: {
     n: 26, title: 'Neon glow / cyberpunk night', bg: '#030308', dark: true, noGround: true, thinKnot: true,
