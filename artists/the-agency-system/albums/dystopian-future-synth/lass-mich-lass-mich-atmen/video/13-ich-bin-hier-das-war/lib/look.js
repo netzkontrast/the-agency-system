@@ -38,7 +38,9 @@ function softBeat(t, tb, a = .12, k = 5) {
   const u = Math.min(1, x / a), rise = u * u * (3 - 2 * u);
   return rise * Math.exp(-Math.max(0, x - a) * k);
 }
+const FIRST_BEAT = SONG.beatTime(Math.ceil(SONG.beatAt(2.35)));   // the audio is silent until 2.35 s: no pulse before the first beat after it
 function heart(t) {
+  if (t < FIRST_BEAT) return 0;
   const tc = TS.s23 - .2;
   if (t < tc) return SONG.pulseSoft(t, .12, 5);
   const i = Math.floor(SONG.beatAt(tc)), b0 = SONG.beatTime(i);   // the beat that is sounding as the outro begins
@@ -53,16 +55,17 @@ function worldState(t) {
   const hb = heart(t);
   let big = .38 * bump(t, tMein, .3, .9);                       // "meiner": a larger pulse
   for (const [i, g] of [[4, .16], [5, .2], [8, .16], [12, .16], [13, .2], [16, .16], [18, .16], [20, .16]]) big += g * bump(t, stress(i), .3, 1.2);
-  const fade21 = 1 - ease(seg(t, DUR - 4.2, DUR - 2.6));
-  const level = clamp((lerp(.72, .5, pulseOn) + .36 * pulseOn * hb + big) * fade21 + .02 * Math.sin(t * .6));
+  const fade21 = 1 - ease(seg(t, DUR - 3.6, DUR - 1.9));
+  const swell = ease(seg(t, TS.s21 + 1, TS.s21 + 9)) * (1 - ease(seg(t, TS.s22 - 1, TS.s22 + .5)));   // the loud instrumental: the film's biggest light
+  const level = clamp((lerp(.72, .5, pulseOn) + .36 * pulseOn * hb + big + .22 * swell) * fade21 + .02 * Math.sin(t * .6));
   const strip = .36 + .4 * ease(seg(t, (TS.s3 + TS.s4) / 2, TS.s4)) + .02 * Math.sin(t * .5);
   const daylight = ease(seg(t, tLicht - .2, tLicht + .5));
   const thread = ease(seg(t, tDruck - .12, tDruck + 1.0));
-  const pingK = ease(seg(t, stress(17) - .15, stress(17) + .45)) * (1 - ease(seg(t, DUR - 5, DUR - 3)));
+  const pingK = ease(seg(t, stress(17) - .15, stress(17) + .45)) * (1 - ease(seg(t, DUR - 4.2, DUR - 2.8)));
   const empty = ease(seg(t, TS.s18 + .1, TS.s19 + .6)) * (1 - ease(seg(t, TS.s20 - 1.4, TS.s20 + .4)));
   const doorGone = ease(seg(t, TS.s19 + .8, TS.s19 + 2.4)) * (1 - ease(seg(t, TS.s20 - 1.8, TS.s20 - .2)));
   const pk = ease(seg(t, TS.s21 + 1.5, TS.s22 - .5)), pingPos = { x: lerp(1754, 548, pk), y: lerp(170, 128, pk) };
-  const pingBoost = .5 * bump(t, stress(20), .3, 2.5) + .12 * hb * ease(seg(t, TS.s20, TS.s20 + 2));
+  const pingBoost = .5 * bump(t, stress(20), .3, 2.5) + .55 * bump(t, stress(19) + .15, .3, 1.8) + .55 * bump(t, stress(21) + .15, .3, 1.8) + .12 * hb * ease(seg(t, TS.s20, TS.s20 + 2));
   return { level, hb, pulseOn, big, strip, daylight, thread, pingK, pingPos, pingBoost, empty, doorGone, breath: .5 + .5 * Math.sin(t * .45) };
 }
 
@@ -374,7 +377,7 @@ function room(t, o = {}) {
   ping(t, o.pingK ?? S.pingK, S.pingPos, S.pingBoost);
   if (o.roomLight > .01) {   // daylight lying on the wall and the floor of the room
     boilSeed('rl');
-    glow(660, 520, 400, C.glowY, .3 * o.roomLight); glow(1130, 560, 420, C.glowY, .3 * o.roomLight); glow(900, 930, 480, C.glowPale, .28 * o.roomLight);
+    glow(660, 520, 460, C.glowY, .5 * o.roomLight); glow(1130, 560, 480, C.glowY, .5 * o.roomLight); glow(900, 930, 560, C.glowPale, .45 * o.roomLight);
   }
 }
 
@@ -417,4 +420,4 @@ function runShot(id, t, lt, dur) {
   else if (pout.type === 'shoji') shojiWipe(.5 + .5 * seg(lt, 0, pout.dur));
 }
 
-window.HOLDS = [[DUR - 2, DUR]];   // the last two seconds are blank paper: a declared hold
+window.HOLDS = [[DUR - 1.6, DUR]];   // the last two seconds are blank paper: a declared hold

@@ -89,21 +89,21 @@
   // 22  The threshold again, from the front. On "hier" the point brightens a little and holds; on "war" the room is paper-quiet.
   const s22 = defShot(22, {
     cam: lt => [DOORC[0] + 4 * Math.sin(lt * .2), DOORC[1], DOORC[2] + .004 * lt],
-    world: t => room(t, { roomLight: 1 }),
-    out: { type: 'wash', dur: .45 },
+    world: t => room(t, { roomLight: 1 - ease(seg(t, TS.s23 - .9, TS.s23)) }),
+    out: { type: 'slide', to: 23, dur: .9 },
   });
 
   // 23  Stille: the pulse slows (every 2 s, then 4 s), one last breath fog, then the picture goes to paper (blank from DUR - 2: a declared hold).
   const s23 = defShot(23, {
     cam: lt => [960, 540, 1.0 + .002 * lt],
     world: t => {
-      if (t >= DUR - 2.7) return;
-      const k = ease(seg(t, TS.s23 + .5, TS.s23 + 1.8)) * (1 - ease(seg(t, TS.s23 + 2.3, TS.s23 + 3.7)));
+      if (t >= DUR - 1.4) return;
+      const k = ease(seg(t, DUR - 4.0, DUR - 2.7)) * (1 - ease(seg(t, DUR - 2.6, DUR - 1.6)));   // blooms with the sub-bass swell, 134-136 s
       room(t, { mist: { x: 1010, y: 520, k } });
     },
     over: t => {
-      if (t < DUR - 2.7) paperWash(ease(seg(t, DUR - 4.4, DUR - 2.8)));
-      else paperWash(1 - ease(seg(t, DUR - 2.7, DUR - 2.1)));   // flat paper settles into the grain of bare paper: no pop
+      if (t < DUR - 1.4) paperWash(ease(seg(t, DUR - 3.6, DUR - 1.6)));
+      else paperWash(1 - ease(seg(t, DUR - 1.4, DUR - 1.0)));   // flat paper settles into the grain of bare paper: no pop
     },
     out: { type: 'cont' },
   });
