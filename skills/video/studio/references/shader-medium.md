@@ -57,7 +57,8 @@ Each file is included once, however often it is named.
   depends on `t` only, and parallel workers agree. Cost: `warmup × fps` extra passes per frame — keep it short (a
   trail that fades to 1/e in 0.5 s needs ~1.5 s). A simulation that must remember the whole film (a painting that
   builds up for 3 minutes) is baked instead: render the sim pass sequentially once to PNG frames, then read them as
-  an image input per frame.
+  an image **sequence** input, e.g. `inputs: ['assets/bake/%05d.png']` — the runtime loads frame `round(t × fps)` for
+  every rendered frame. Footage works the same way (`ffmpeg -i clip.mp4 -vf fps=24 -start_number 0 assets/clip/%05d.png`).
 - Grain and boil: hash with `floor(iTime * 24.0)` (or `* 12.0` on twos), never a running counter.
 
 ## Craft notes

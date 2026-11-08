@@ -24,7 +24,7 @@ This style is about story first. The drawing only has to be warm and consistent;
 
 ## Engine
 
-Canvas 2D with layered parallax, or Three.js for real 3D staging (load it from a CDN such as `https://cdn.jsdelivr.net/npm/three@0.170/build/three.module.js`; the page is served over http). Keep every frame a pure function of t. For a film this long, split into scene files and brief parallel subagents with a shared character sheet and palette (see the watercolor style's notes on chapters).
+Canvas 2D with layered parallax, or Three.js for real 3D staging (use the studio's three medium: `new-project.sh --medium three`, three 0.186 served locally through `engine/lib/importmap.json`, `references/three-medium.md`; the page is served over http). Keep every frame a pure function of t. For a film this long, split into scene files and brief parallel subagents with a shared character sheet and palette (see the watercolor style's notes on chapters).
 
 ## Music
 

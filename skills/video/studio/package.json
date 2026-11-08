@@ -12,7 +12,7 @@
     "doctor": "bash tools/doctor.sh",
     "gate:self-test": "node tools/gate.mjs --self-test",
     "edge:self-test": "node tools/edge-audit.mjs --self-test",
-    "smoke": "bash tools/smoke.sh"
+    "libs": "node tools/libs-check.mjs"
   },
   "dependencies": {
     "alea": "1.0.1",

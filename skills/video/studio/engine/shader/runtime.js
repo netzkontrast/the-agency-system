@@ -16,6 +16,8 @@
 //   export default { passes: [
 //     { name: 'trail', frag: 'scenes/trail.frag', feedback: true, inputs: [] },      // iChannel0 = its previous frame
 //     { name: 'main',  frag: 'scenes/main.frag',  inputs: ['trail', 'assets/paper.png'] },  // last pass is shown
+//   An input like 'assets/bake/%05d.png' is an image SEQUENCE: frame round(t * fps) is loaded for every rendered
+//   frame (use it for long simulations baked once, or footage pre-extracted with ffmpeg at the film's fps).
 //   ], warmup: 2.0, fps: 24 };
 
 const HEADER = `#version 300 es
@@ -84,7 +86,7 @@ export async function createFilm(canvas, film, { W, H, SONG }) {
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(`shader ${p.name}: ${gl.getProgramInfoLog(prog)}`);
     const u = (n) => gl.getUniformLocation(prog, n);
     const last = i === film.passes.length - 1;
-    for (const inp of p.inputs || []) if (/\.(png|jpe?g|webp)$/i.test(inp) && !images[inp]) {
+    for (const inp of p.inputs || []) if (/\.(png|jpe?g|webp)$/i.test(inp) && !/%0?\d*d/.test(inp) && !images[inp]) {
       const im = await loadImage(inp), tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, im);
       gl.generateMipmap(gl.TEXTURE_2D); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
@@ -107,6 +109,19 @@ export async function createFilm(canvas, film, { W, H, SONG }) {
     gl.bindAttribLocation(prog, 0, 'p'); gl.linkProgram(prog); return prog;
   })();
 
+  // image sequences: one texture per input, refilled with the frame's image before each render
+  const seqInputs = [...new Set(film.passes.flatMap((p) => (p.inputs || []).filter((n) => /%0?\d*d/.test(n))))];
+  for (const n of seqInputs) { const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    images[n] = tex; }
+  const seqPath = (pat, f) => pat.replace(/%0?(\d*)d/, (_, w) => String(f).padStart(Number(w) || 0, '0'));
+  async function loadSequences(frame) {
+    for (const n of seqInputs) {
+      const im = await loadImage(seqPath(n, frame));
+      gl.bindTexture(gl.TEXTURE_2D, images[n]); gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, im);
+    }
+  }
   const outputOf = (name) => { const p = passes.find((q) => q.name === name); return p && p.targets ? p.targets[p.cur].tex : null; };
   function drawPass(p, t, frame, toCanvas) {
     const readOwn = p.feedback ? p.targets[p.cur].tex : null;
@@ -138,8 +153,9 @@ export async function createFilm(canvas, film, { W, H, SONG }) {
   const hasFeedback = passes.some((p) => p.feedback);
 
   return {
-    renderFrame(t) {
+    async renderFrame(t) {
       const frame = Math.round(t * fps);
+      if (seqInputs.length) await loadSequences(frame);   // sequences hold the shown frame during a feedback warm-up
       if (hasFeedback) {
         // re-simulate a fixed window ending at t: the result depends on t only, never on the previous call
         clearFeedback();

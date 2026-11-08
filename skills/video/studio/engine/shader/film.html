@@ -23,7 +23,7 @@ const canvas = document.getElementById('c'); canvas.width = W; canvas.height = H
 const f = await createFilm(canvas, film, { W, H, SONG: window.SONG });
 window.FILM_DURATION = PROJECT.duration; window.FILM_CANVAS = canvas;
 if (film.step) window.FILM_STEP = film.step;
-window.renderFrame = (t) => f.renderFrame(t);
+window.renderFrame = async (t) => { await f.renderFrame(t); };
 window.READY = true;
 if (!navigator.webdriver) { const s = performance.now(); const loop = (n) => { f.renderFrame(((n - s) / 1000) % window.FILM_DURATION); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
 </script>

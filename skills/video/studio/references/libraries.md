@@ -47,7 +47,7 @@ dither), `engine/shader/runtime.js` (fullscreen shader films), `engine/lib/beat.
 | rembg (BiRefNet / u2net weights) | MIT code; check each model | offline, PNG + alpha sequences | cut-outs, collage, double exposure |
 
 Video inside a film, the simple way: pre-extract frames with ffmpeg at the film's fps
-(`ffmpeg -i clip.mp4 -vf fps=24 assets/clip/%05d.webp`) and draw `frames[floor(t * 24)]`.
+(`ffmpeg -i clip.mp4 -vf fps=24 -start_number 0 assets/clip/%05d.webp`) and draw `frames[floor(t * 24)]`.
 
 ## Never
 

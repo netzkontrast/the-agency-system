@@ -21,4 +21,4 @@ Turn a book, a course, a paper or a product into a catchy song (Suno) plus a cli
 
 ## Engine
 
-Three.js (from a CDN, e.g. `https://cdn.jsdelivr.net/npm/three@0.170/build/three.module.js`) for the 3D world; a 2D canvas overlay for karaoke and labels. Every frame a pure function of t: camera, animation and highlights driven by the lyric timeline. Serve over http (the scripts do). Keep geometry instanced (thousands of cells as InstancedMesh) for speed.
+Three.js (the studio's three medium: `new-project.sh --medium three`, served locally, `references/three-medium.md`) for the 3D world; a 2D canvas overlay for karaoke and labels. Every frame a pure function of t: camera, animation and highlights driven by the lyric timeline. Serve over http (the scripts do). Keep geometry instanced (thousands of cells as InstancedMesh) for speed.
