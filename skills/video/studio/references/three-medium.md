@@ -78,6 +78,12 @@ needs it, and set any time uniform from `t`.
 - **Custom shading:** `ShaderMaterial` or `onBeforeCompile`; GLSL helpers from `engine/glsl/` can be pasted in
   (noise, sdf, color, dither).
 
+## Toon materials and light pulses
+
+`MeshToonMaterial` quantises light into bands. A small change of light intensity flips whole bands at once, which
+the gate measures (and a viewer sees) as a pop. Pulse scale or position on the beat (`SONG.pulseSoft`), not the
+lights; if light must move, move it slowly (≥ 0.5 s) or animate a non-toon layer.
+
 ## Light has shape
 
 Key + rim on every hero, real shadows (`renderer.shadowMap.enabled = true`, `light.castShadow = true`, shadow map 2048),

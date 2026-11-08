@@ -235,7 +235,9 @@ def test_pipeline_smoke_run_is_recorded():
     text = (run / "RUN.md").read_text()
     assert "CLEAR" in text and "PASS on all six" in text
     assert sorted(p.name for p in (run / "review").glob("critique-*.md"))[-1] == "critique-6.md"
-    assert len(list((run / "review").glob("review-*.md"))) == 3   # the 3-round reviewer limit was honoured
+    assert len(list((run / "review").glob("review-[0-9].md"))) == 3   # the 3-round reviewer limit per cycle was honoured
+    assert len(list((run / "review").glob("review-take*.md"))) == 4   # later takes, each with its own fresh reviewer
+    assert "score stalled" in text
 
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="node not installed")

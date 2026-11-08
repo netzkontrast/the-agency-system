@@ -1,86 +1,105 @@
-// scenes/scene.js — a three medium film. setup() builds once; update(t) sets every animated value from t.
-// Read <studio>/references/three-medium.md before building (contract, determinism, passes, style recipes).
-export async function setup({ THREE, FX, W, H, rng }) {
+// scenes/scene.js — take 4 of the pipeline smoke film (three medium). Every value is a function of t; every event
+// time comes from the song map. Reads, in order: shapes drop in on the first beats (hook) → two inhales on "mich" →
+// the ring breathes out on "atmen" with a warm light → a wave runs round the ring on 3.0 / 3.5 → on "ich" the others
+// snap away and the teal knot pops → the camera lands on it on "hier" → half-turn on 5.53, swells on the beats,
+// the light turns cool → pull back and return to the page with the audio's fade.
+export async function setup({ THREE, FX, W, H, SONG }) {
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color('#efe7d6');
+  const bgWarm = new THREE.Color('#f1e6cf'), bgCool = new THREE.Color('#dfe6ea');
+  scene.background = bgWarm.clone();
   const camera = new THREE.PerspectiveCamera(35, W / H, 0.1, 100);
 
-  // light with shape: a key and a rim, never a flat wash
   const key = new THREE.DirectionalLight('#fff4e0', 2.2); key.position.set(3, 5, 4); scene.add(key);
   const rim = new THREE.DirectionalLight('#9fb7ff', 1.2); rim.position.set(-4, 2, -3); scene.add(rim);
-  scene.add(new THREE.HemisphereLight('#ffffff', '#8a7a66', 0.6));
+  const hemi = new THREE.HemisphereLight('#ffffff', '#8a7a66', 0.6); scene.add(hemi);
+  const warm = new THREE.PointLight('#ffb347', 0, 12); warm.position.set(0, 2.2, 0); scene.add(warm);
 
-  // toon material with a 4-step ramp: reads as cel animation under the ink pass
   const ramp = new THREE.DataTexture(new Uint8Array([40, 110, 190, 255]), 4, 1, THREE.RedFormat);
   ramp.minFilter = ramp.magFilter = THREE.NearestFilter; ramp.needsUpdate = true;
   const toon = (c) => new THREE.MeshToonMaterial({ color: c, gradientMap: ramp });
 
+  const groundBase = new THREE.Color('#d9c7a6'), groundWarm = new THREE.Color('#f0823f');
   const ground = new THREE.Mesh(new THREE.CircleGeometry(6, 64), toon('#d9c7a6'));
   ground.rotation.x = -Math.PI / 2; scene.add(ground);
-  const r = rng(7), shapes = [];
-  for (let i = 0; i < 7; i++) {
-    const g = i % 3 === 0 ? new THREE.IcosahedronGeometry(0.45, 0) : i % 3 === 1 ? new THREE.TorusKnotGeometry(0.3, 0.1, 96, 12) : new THREE.BoxGeometry(0.6, 0.6, 0.6);
-    const m = new THREE.Mesh(g, toon(i === 1 ? '#3a9c98' : ['#d97757', '#e8aa38', '#7b5ca8'][i % 3]));
-    m.userData = { a: (i / 7) * Math.PI * 2, r: 1.4 + r() * 1.2, h: 0.5 + r() * 0.8, s: 0.5 + r() };
-    scene.add(m); shapes.push(m);
+
+  // the ring: six shapes on a fixed circle (radius 1.7) around the hero, all inside the wide frame
+  const ring = [];
+  const geos = [new THREE.IcosahedronGeometry(0.4, 0), new THREE.BoxGeometry(0.55, 0.55, 0.55), new THREE.OctahedronGeometry(0.45, 0)];
+  const cols = ['#d97757', '#e8aa38', '#7b5ca8'];
+  for (let i = 0; i < 6; i++) {
+    const m = new THREE.Mesh(geos[i % 3], toon(cols[i % 3]));
+    m.userData = { a: (i / 6) * Math.PI * 2 + 0.3, drop: i * 0.083 };   // drop-in staggered by 2 frames each
+    scene.add(m); ring.push(m);
   }
+  // the hero gets a softer 3-step ramp: close up, hard bands would be inked as seams
+  const softRamp = new THREE.DataTexture(new Uint8Array([120, 190, 255]), 3, 1, THREE.RedFormat);
+  softRamp.minFilter = softRamp.magFilter = THREE.NearestFilter; softRamp.needsUpdate = true;
+  const hero = new THREE.Mesh(new THREE.TorusKnotGeometry(0.42, 0.14, 192, 24), new THREE.MeshToonMaterial({ color: '#3a9c98', gradientMap: softRamp }));
+  scene.add(hero);
 
-  const fade = FX.fade({ amount: 0 });   // last in the chain: fades the inked frame, so no outline is left behind
-  const passes = [FX.ink({ threshold: 0.12, keep: 1 }), FX.boil({ fps: 12, amount: 1.0 }), FX.paper({ strength: 0.2 }), FX.grain({ amount: 0.04 }), FX.vignette(), fade];
-
-  // timings from the song map (stressed syllables), never hand-typed
-  const W0 = SONG && SONG.map ? SONG.map.words : [];
-  const stressOf = (i, fb) => (W0[i] ? W0[i].stress : fb);
-  const PULLS = [stressOf(1, 1.5), stressOf(3, 2.05)];                // "mich", "mich": small inward breaths
-  const BREATH = SONG && SONG.line(0) ? SONG.line(0).key.stress : 2.5;   // "atmen": breathe out
-  const ICH = SONG && SONG.line(1) ? SONG.line(1).key.stress : 4.0;      // "ich": the camera starts to choose
-  const HIER = stressOf(7, 5.0);                                        // "hier": the push settles
-  const END0 = 7.0;    // closing gesture from the 7.0 beat, blank paper on the 7.51 downbeat, held to 8.0
-  const back0 = (t) => ease((t - END0) / 0.9);   // the page returns with the audio's fade: paper only at 7.9 s
-  const LAST = SONG && SONG.map && SONG.map.downbeats ? SONG.map.downbeats.filter((d) => d < 7.9).pop() : 7.5;
-  const ease = (x) => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
-  const spring = (x, k = 5, w = 9) => (x < 0 ? 0 : 1 - Math.exp(-k * x) * Math.cos(w * x));
-  // eased kick: starts with zero velocity (no one-frame jump), peaks ~0.12 s after the hit, settles
-  const kick = (x) => (x < 0 ? 0 : Math.pow(Math.sin(Math.min(x * 6, Math.PI)), 2) * Math.exp(-4 * x));
+  // timings from the song map (stress times), with fallbacks for a missing map
+  const words = SONG && SONG.map ? SONG.map.words : [];
+  const st = (i, fb) => (words[i] ? words[i].stress : fb);
+  const MICH = [st(1, 1.5), st(3, 2.04)], ATMEN = st(4, 2.5), ICH = st(5, 4.0), HIER = st(7, 5.0);
   const DOWNS = SONG && SONG.map && SONG.map.downbeats ? SONG.map.downbeats : [1.53, 3.53, 5.53, 7.51];
-  const bar = (t) => DOWNS.reduce((s, d) => s + kick(t - d), 0);   // a squash-and-stretch kick on every downbeat
-  const hero = shapes[1];                                              // the teal knot
-  hero.scale.setScalar(0.8);   // the hub of the ring: always mid-ground, the same size as the others — found, not given
-  const orbit = new THREE.Vector3(), close = new THREE.Vector3(), look = new THREE.Vector3(), target = new THREE.Vector3();
+  const WAVE = [3.0, 3.5];                                    // beats in the gap between the lines
 
-  function update(t, { SONG }) {
-    const beat = SONG ? SONG.pulseSoft(t) : 0;   // soft attack: positions never jump in one frame
-    const clear = ease((t - ICH + 0.3) / (HIER - ICH + 0.3));   // the others start to clear just before "ich"
-    const leave = clear;                          // once gone, the six stay gone: the closing gesture shows only the knot
-    const inhale = kick(t - PULLS[0]) * 0.08 + kick(t - PULLS[1]) * 0.15;   // two pulls, the second deeper, build into the release
-    const out = spring(t - BREATH + 0.15) * 0.9;                         // anticipation 0.15 s before the syllable
-    const down = bar(t);
-    const push = ease((t - ICH) / Math.max(0.4, HIER - ICH));            // settles exactly on "hier"
-    for (const m of shapes) {
-      const { a: a0, r: rad, h, s } = m.userData;
-      if (m === hero) { m.position.set(0, 1.05 + Math.sin(t * 1.1) * 0.12 + beat * 0.08, 0);   // raised: never hidden behind the ring
-        m.rotation.set(t * 0.6, t * 0.45 + Math.PI * ease((t - 5.53) / 0.7), 0); continue; }   // a half-turn on the 5.53 downbeat
-      const rr = rad * (1 + out * 0.45 - inhale + clear * 2.0);  // the others breathe out, then drift outward …
-      const sq = 1 + 0.35 * kick(t - BREATH) + 0.18 * down;      // … swell on "atmen" and kick on every downbeat …
-      const k0 = 0.78 * (1 - leave);                             // smaller than the hero: one focal point from frame 0
-      m.scale.set(sq * k0, (2 - sq) * k0, sq * k0);   // … and shrink away, gone by "hier"
-      m.position.set(Math.cos(a0 + t * 0.3 * s) * rr, h + Math.sin(t * 1.3 * s + a0) * 0.2 + beat * 0.12, Math.sin(a0 + t * 0.3 * s) * rr);
-      m.rotation.set(t * 0.7 * s, t * 0.5 + a0, 0);
-    }
-    const a = 0.9 + t * 0.25;                    // start phase: the knot is visible between its neighbours at frame 0
-    orbit.set(Math.cos(a) * 6, 2.6 + Math.sin(t * 0.4) * 0.2, Math.sin(a) * 6);
-    close.copy(hero.position).add(new THREE.Vector3(Math.cos(a) * 1.9, 0.5, Math.sin(a) * 1.9));
-    const back = back0(t);                                             // ONE closing gesture 7.0–7.51: back to the wide view while the page returns
-    const k2 = push * (1 - back);
-    camera.position.lerpVectors(orbit, close, k2);
-    look.set(0, 0.8, 0); target.lerpVectors(look, hero.position, k2);
-    const acc = t > HIER && t < END0 ? (SONG ? SONG.pulseSoft(t, 0.12, 9) : 0) : 0;   // accents on the beats of the hold
-    const hk = 1 + 0.12 * acc + 0.22 * down + 0.3 * kick(t - BREATH);   // the hero answers downbeats and the breath too
-    hero.scale.set(0.95 * hk, 0.95 * (2 - hk), 0.95 * hk);
-    hero.rotation.z = 0.35 * down;
+  const ease = (x) => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
+  const easeOut = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+  const kick = (x) => (x < 0 ? 0 : Math.pow(Math.sin(Math.min(x * 6, Math.PI)), 2) * Math.exp(-4 * x));   // no one-frame jump
+  const land = (x) => (x < 0 ? 0 : Math.exp(-7 * x) * Math.sin(x * 22) * 0.35);   // squash after a landing
+
+  const fade = FX.fade({ amount: 0 });
+  const passes = [FX.ink({ threshold: 0.2, keep: 1 }), FX.boil({ fps: 12, amount: 1.0 }), FX.paper({ strength: 0.2 }), FX.grain({ amount: 0.04 }), FX.vignette(), fade];
+  const orbit = new THREE.Vector3(), close = new THREE.Vector3(), target = new THREE.Vector3(), look = new THREE.Vector3();
+
+  function update(t) {
+    const soft = SONG ? SONG.pulseSoft(t) : 0;
+    const down = DOWNS.reduce((s, d) => s + kick(t - d), 0);
+    const inhale = kick(t - MICH[0]) * 0.1 + kick(t - MICH[1]) * 0.18;
+    const out = ease((t - ATMEN + 0.12) / 0.25) * (1 - 0.5 * ease((t - ATMEN - 0.7) / 0.9));   // a big breath out, settles half back
+    const beatHop = SONG ? SONG.pulseSoft(t, 0.1, 5) : 0;     // every shape hops on every beat until "ich"
+    const leap = ease((t - ICH + 0.05) / 0.7);                 // on "ich" the ring leaps away over 0.7 s (readable, not a 2-frame scatter)
+    const shrink = ease((t - ICH - 0.2) / 0.3);                // and shrinks only in the second half of the leap, already off-centre
+    const gone = leap;
+    const back = ease((t - 7.0) / 0.9);                         // closing gesture with the audio fade
+
+    ring.forEach((m, i) => {
+      const { a, drop } = m.userData;
+      const dt = t - drop;                                      // drop-in: falls from y = 3.2, lands at 0.35 + drop
+      const fall = dt < 0.35 ? 3.2 - 2.85 * Math.pow(Math.max(0, dt) / 0.35, 2) : 0.35;
+      const wave = WAVE.reduce((s, w) => s + kick(t - w - i * 0.05), 0);
+      const r = 1.7 * (1 - 1.8 * inhale + 0.3 * out) + 2.6 * leap;   // on "ich" they leap outward …
+      const sink = -1.6 * Math.sin(Math.PI * leap);                    // … on a high arc, never through the floor
+      m.position.set(Math.cos(a + t * 0.25) * r, fall + 0.3 * wave + 0.22 * beatHop * (1 - gone) - sink, Math.sin(a + t * 0.25) * r);
+      const sq = 1 + (dt > 0.35 ? land(dt - 0.35) : 0) + 0.2 * down * (1 - gone);
+      const k = 0.85 * (1 + 0.12 * out) * (1 - shrink);            // … and are gone by 4.7 s, at the top of the arc
+      m.scale.set(sq * k, (2 - sq) * k, sq * k);
+      m.rotation.set(t * 0.8 + i, t * 0.6 + a, 0);
+    });
+
+    const hold = ease((t - HIER) / 0.3);   // eased switch: a hard 0/1 would jump while a pulse is high
+    const pop = kick(t - ICH) * 0.45 + kick(t - HIER) * 0.25 + 0.25 * down + 0.35 * kick(t - ATMEN) + 0.3 * soft * hold;   // the knot answers every beat in the hold
+    hero.position.set(0, 0.95 + Math.sin(t * 1.1) * 0.1 + 0.06 * soft + 0.18 * soft * hold, 0);
+    hero.rotation.set(t * 0.6, t * 0.45 + Math.PI * ease((t - 5.53) / 0.7), 0.3 * down);
+    hero.scale.set(1 + pop, 1 - pop * 0.6, 1 + pop);
+
+    // camera: starts close and already moving (hook), opens to the ring on the first beats, pushes in on "ich"
+    const a = 0.9 + t * 0.25 + 0.9 * ease((t - ICH) / 2.5);   // the orbit speeds up after "ich": the hold keeps travelling
+    const open = easeOut(t / 0.9);
+    const rOrbit = (3.9 + 2.6 * open) * (1 - 0.08 * kick(t - ATMEN));   // a camera nudge on "atmen"
+    orbit.set(Math.cos(a) * rOrbit, 1.9 + 0.7 * open, Math.sin(a) * rOrbit);
+    close.set(Math.cos(a) * 3.4, 1.7, Math.sin(a) * 3.4);   // close, with air above and below the knot
+    const push = ease((t - ICH) / Math.max(0.4, HIER - ICH)) * (1 - back);
+    camera.position.lerpVectors(orbit, close, push);
+    look.set(0, 0.7, 0); target.lerpVectors(look, hero.position, push);
     camera.lookAt(target);
-    fade.uniforms.u_amount.value = Math.min(1, 0.55 * (1 - ease(t / 0.4)) + back * back);   // frame 0 already shows the scene; the closing gesture ends on paper
+
+    warm.intensity = 3 * kick(t - ATMEN);   // light only on the breath: on toon materials a light pulse flips whole bands (a pop)
+    const flush = kick(t - ATMEN);                                                   // "atmen": the page flushes warm
+    scene.background.copy(bgWarm).lerp(new THREE.Color('#f6c98f'), 0.8 * flush).lerp(bgCool, ease((t - HIER) / 1.5));
+    ground.material.color.copy(groundBase).lerp(groundWarm, 0.95 * flush);   // the floor glows warm on the breath
+    fade.uniforms.u_amount.value = 0;   // no fade: the last image is the knot in full colour on the page, settling on the 7.51 downbeat
   }
-  // the release: blank paper from the 7.51 downbeat to the end is a deliberate hold (storyboard shot 5)
-  return { scene, camera, passes, update, step: 12, holds: [[7.8, 8.0]] };   // step: the boil pass redraws 12 times a second
+  return { scene, camera, passes, update, step: 12 };
 }

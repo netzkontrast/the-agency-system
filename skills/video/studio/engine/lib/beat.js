@@ -6,9 +6,11 @@
 //
 //   SONG.beatAt(t)    fractional beat index; follows the measured beats, so tempo ramps (60 → 90 bpm) stay in sync
 //   SONG.barAt(t)     fractional bar index from the measured downbeats
-//   SONG.pulse(t, k)  1 exactly on each beat, decaying after (k = decay speed) — an instant attack: use it for light,
-//                     colour and flashes of type, not for positions (a one-frame jump reads as a pop)
-//   SONG.pulseSoft(t, a, k)  the same envelope with a smooth attack of `a` seconds (default 0.12 s, i.e. 3 frames at 24 fps): for motion
+//   SONG.pulse(t, k)  1 exactly on each beat, decaying after (k = decay speed) — an instant attack: a one-frame jump.
+//                     Use it only where a hard hit is the intent (a declared cut, a strobe that passed the flash gate);
+//                     a full-frame light or colour change on it is measured as a pop by the gate, like a position jump
+//   SONG.pulseSoft(t, a, k)  the same envelope with a smooth attack of `a` seconds (default 0.12 s, i.e. 3 frames at 24 fps): for motion,
+//                     light and colour (a short attack such as 0.08 still reads as "on the beat")
 //   SONG.downbeat(n)  time of bar n's downbeat
 //   SONG.section(t)   { name, kind, t, end } of the song section at t (hook, verse, build, drop, stop, release …)
 //   SONG.word(t)      the sung word at t: { w, t, end, stress, line } or null

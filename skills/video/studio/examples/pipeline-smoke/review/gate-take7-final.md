@@ -1,4 +1,4 @@
-# Gate battery — /tmp/claude-0/-home-user/0b1fe73e-918d-5978-8b74-a8ee10efa833/scratchpad/e2e — 2026-11-08T02:12:38Z
+# Gate battery — /tmp/claude-0/-home-user/0b1fe73e-918d-5978-8b74-a8ee10efa833/scratchpad/e2e — 2026-11-08T09:34:47Z
 ## render gate (determinism, contract, dead air, pops)
 ```
 QUALITY GATE   /tmp/claude-0/-home-user/0b1fe73e-918d-5978-8b74-a8ee10efa833/scratchpad/e2e/film.html   viewport 1920x1080
@@ -12,16 +12,15 @@ QUALITY GATE   /tmp/claude-0/-home-user/0b1fe73e-918d-5978-8b74-a8ee10efa833/scr
 2. CONTRACT  the draw path cannot reach a clock, chance or storage
 ----------------------------------------------------------
   PASS  no forbidden call in 6 file(s) (film.html, config.js, songmap.js, beat.js, passes.js, scene.js)
-  PASS  randomness is seeded: 2 rng()/rand()/hash() call sites   no seed derived from a clock
+  PASS  randomness is seeded: 1 rng()/rand()/hash() call sites   no seed derived from a clock
   ----  vendor libraries (checked at runtime by check 1, not scanned)   d3.min.js, lottie.min.js, alea.js
   ----  host clock in the preview loop (allowed)   film.html:49 Math.random replaced by a per-frame seeded stream | film.html:53 performance.now
 
 3. DEAD AIR  something visibly moves in every half second
 ----------------------------------------------------------
-  ----  declared holds: 7.8-8s
   PASS  no unexplained identical frames 1/30 s apart   192 frames at 24 fps
   PASS  no 12-frame (half-second) window under 0.5% changed area   none
-  ----  192 frames measured   median changed 8.02%  min 0.00%
+  ----  192 frames measured   median changed 8.38%  min 2.20%
 
 4. POPS  no frame jumps 3x more than its neighbours unless it is a declared cut
 ----------------------------------------------------------
@@ -49,14 +48,14 @@ PLATE AUDIT: PASS
 ```
 ## flash test
 ```
-FLASH TEST  /tmp/claude-0/-home-user/0b1fe73e-918d-5978-8b74-a8ee10efa833/scratchpad/e2e/out/film-v3.mp4  192 frames @ 24.00 fps  (area >= 25%, limit 3/s)
+FLASH TEST  /tmp/claude-0/-home-user/0b1fe73e-918d-5978-8b74-a8ee10efa833/scratchpad/e2e/out/film-v7.mp4  192 frames @ 24.00 fps  (area >= 25%, limit 3/s)
   general flashes: 0 total, worst 0 in one second
   red flashes:     0 total, worst 0 in one second
 FLASH: PASS
 ```
 ## loudness
 ```
-=== film-v3.mp4 ===
+=== film-v7.mp4 ===
 duration    8.00 s  (decoded to stereo float 48 kHz via ffmpeg)
 integrated  -14.1 LUFS   ffmpeg ebur128 -14.1 LUFS   delta 0.03 LU  AGREE
 LRA         0.2 LU     ffmpeg 0.3 LU
