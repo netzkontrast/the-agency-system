@@ -12,7 +12,7 @@
   const s1 = defShot(1, {
     cam: lt => [960, 540, 1.0 + .003 * lt],
     world: t => room(t),
-    over: (t, lt) => paperWash(1 - ease(seg(lt, 0, 1.4))),
+    over: (t, lt) => paperWash(1 - ease(seg(lt, 1.5, TS.s2))),   // blank paper under the notice, then the room fades up as it leaves
     out: { type: 'cont' },
   });
 

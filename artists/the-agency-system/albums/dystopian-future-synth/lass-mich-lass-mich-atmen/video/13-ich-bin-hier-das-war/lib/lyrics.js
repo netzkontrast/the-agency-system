@@ -49,14 +49,15 @@
 
   // ---------- the layout spec (design space 1920x1080; the text-safe frame is x 160..1760, y 120..960) ----------
   const LOW = { x: 200, y: 855, align: 'left' };         // first row baseline; further rows go below it (inside y 960), clear of the door         // strophes: lower third, left-aligned
+  const BESIDE = { x: 1130, y: 850, align: 'left' };      // lower third, to the right of the pillow (shots 2 and 7)
   const UP = { x: 200, y: 230, align: 'left' };          // upper third, where a prop sits low (the pillow, shot 5)
   const CEN = y => ({ x: 960, y, align: 'center' });     // refrains: centred, mid-frame
   const SPECS = [
-    { lines: [0], at: LOW, size: 64, puls: true, introGlow: true },
+    { lines: [0], at: BESIDE, size: 64, rows: [3], puls: true, introGlow: true },
     { lines: [1], at: LOW, size: 64, rows: [5], tintWord: 1, evenGlow: true },
     { lines: [2], at: UP, size: 64, rows: [4], thread: 2, exhale: 9, wordK: { 9: .85 } },
     { lines: [3], at: LOW, size: 64, rows: [5], rowK: [1, .8], track: [0, 1, 2, 3, 4, 5] },
-    { lines: [4], at: LOW, size: 64 },
+    { lines: [4], at: BESIDE, size: 64, rows: [3] },
     { lines: [5], at: CEN(500), size: 150, keyK: 1.2 },
     { lines: [6], at: { x: 880, y: 670, align: 'right' }, size: 96, keyK: 1.2, goldWord: 1 },
     { lines: [7], at: LOW, size: 64, rows: [3], rowAlpha: [.6, 1] },
@@ -70,7 +71,7 @@
     { lines: [16], at: { x: 700, y: 520, align: 'right' }, size: 110, keyK: 1.2 },
     { lines: [17], at: { x: 1650, y: 190, align: 'right' }, size: 48, ping: true },
     { lines: [18, 19], at: { x: 1180, y: 540, align: 'center' }, size: 104, keyK: 1.2, leave: 'group', leaveHold: 1.2, leaveDur: 2.2 },
-    { lines: [20, 21], at: CEN(540), size: 120, keyK: 1.2, leave: 'rtl' },
+    { lines: [20, 21], at: { x: 160, y: 600, align: 'left' }, size: 80, rows: [2], keyK: 1.2, leave: 'rtl' },
   ];
   const KEYK = 84 / 64;
 
@@ -88,6 +89,8 @@
           stress: o.w.stress != null ? o.w.stress : o.w.t, key: !!(L && L.key && Math.abs(L.key.t - o.w.t) < 1e-6) }));
       }
       words.forEach(w => { w.gn = words.length; });
+      // appear start; words that would show while the content-warning board is still up wait for it, then come in .3 s apart
+      let prev = -1e9; words.forEach(w => { w.at = Math.max(w.t - .12, prev + (w.t - .12 < GATE ? .3 : 0), w.t - .12 < GATE ? GATE : -1e9); prev = w.at; w.stress = Math.max(w.stress, w.at + .45); });
       if (!words.length) return null;
       // rows
       const rows = [[]]; let br = (sp.rows || []).slice();
@@ -136,7 +139,7 @@
   function drawWord(c, G, w, t, ink, kk) {
     const sp = G.sp;
     // appear: rises 14 px, 0 -> 1 over 0.45 s ease-out, starting 0.12 s before the word is sung
-    const afloat = sp.floatFrom != null && w.gk >= sp.floatFrom, ad = afloat ? .8 : .45, a0 = w.t - .12;
+    const afloat = sp.floatFrom != null && w.gk >= sp.floatFrom, ad = afloat ? .8 : .45, a0 = w.at;
     const ak = easeOut(seg(t, a0, a0 + ad)), rise = (afloat ? 20 : 14) * (1 - ak);
     const lv = leaveOf(sp, w), lk = ease(seg(t, lv.s, lv.s + lv.d));
     let al = ak * (1 - lk) * w.alpha;
@@ -247,16 +250,16 @@
 
   // ---------- the content-warning board (shot 0, 0.0-2.3 s): opaque paper board, three lines, then it fades ----------
   const BOARD = [
-    { txt: 'Dieses Album handelt von sexualisierter Gewalt in der Kindheit und ihren Folgen.', size: 64, y: 440, wrap: 1300, alpha: 1, gap: 84 },
-    { txt: 'Hör nur zu, wenn du dich sicher fühlst.', size: 48, y: 660, alpha: .88 },
-    { txt: 'Hilfe und Hinweise stehen in der Beschreibung.', size: 48, y: 740, alpha: .88 },
+    { txt: 'Dieses Album behandelt sexualisierte Gewalt in der Kindheit.', size: 64, y: 500, alpha: 1, gap: 84 },
+    { txt: 'Hör nur zu, wenn du dich sicher fühlst.', size: 52, y: 620, alpha: .9 },
   ];
   function wrapLines(c, txt, maxW) {
     const ws = txt.split(' '), rows = []; let cur = '';
     for (const w of ws) { const tst = cur ? cur + ' ' + w : w; if (cur && c.measureText(tst).width > maxW) { rows.push(cur); cur = w; } else cur = tst; }
     rows.push(cur); return rows;
   }
-  const BOARD_END = 2.3, BOARD_FADE0 = 1.8, BOARD_STEP = .5, BOARD_IN0 = .1, BOARD_IN = .5;
+  const BOARD_END = 4.8, BOARD_FADE0 = 4.0, BOARD_STEP = .5, BOARD_IN0 = .2, BOARD_IN = .5;
+  const GATE = BOARD_FADE0 + (BOARD_END - BOARD_FADE0) * .68;   // board opacity is below 0.3 from here; no lyric word appears before it
   function drawBoard(c, t, kk) {
     if (t >= BOARD_END) return;
     const ba = 1 - ease(seg(t, BOARD_FADE0, BOARD_END));
@@ -273,7 +276,7 @@
     });
     // a hairline above the notice (paper-ruled, no ornament)
     const ha = ease(seg(t, BOARD_IN0, BOARD_IN0 + BOARD_IN)) * ba * .5;
-    c.globalAlpha = ha; c.strokeStyle = INK; c.lineWidth = 1.5; c.beginPath(); c.moveTo(900, 340); c.lineTo(1020, 340); c.stroke();
+    c.globalAlpha = ha; c.strokeStyle = INK; c.lineWidth = 1.5; c.beginPath(); c.moveTo(900, 400); c.lineTo(1020, 400); c.stroke();
     c.restore();
   }
 
@@ -288,7 +291,7 @@
     c.save(); c.translate((W - DW * kk) / 2, (H - DH * kk) / 2); c.scale(kk, kk);
     let any = false;
     for (const G of GROUPS) {
-      const sp = G.sp, a = G.words[0].t - .5, lastW = G.words[G.words.length - 1];
+      const sp = G.sp, a = G.words[0].at - .1, lastW = G.words[G.words.length - 1];
       const lv = leaveOf(sp, G.words.reduce((m, w) => (leaveOf(sp, w).s > leaveOf(sp, m).s ? w : m), G.words[0]));
       if (t < a || t > lv.s + lv.d + .1) continue;
       if (sp.track) relayTracked(G, t);

@@ -45,16 +45,16 @@
   const s19 = defShot(19, {
     cam: lt => [CORNER[0] + 3 * Math.sin(lt * .2) + 4 * lt, CORNER[1] + 1.5 * lt, CORNER[2] + .006 * lt],
     world: t => {
-      const S = worldState(t), e = S.empty, la = t - TS.s19;
+      const S = worldState(t), e = S.empty, la = t - TS.s19, dk = darkK(t);
       room(t);
       boilSeed('corner');
       if (e > .02) {   // the corner of a window frame: two ink lines, so the point has a place
-        inkLine([[1560, 191], [1648, 190], [1730, 190]], 2.2, fadeCol(C.ink, e, C.paper), 'ink', .1);
-        inkLine([[1730, 190], [1731, 280], [1730, 380]], 2.2, fadeCol(C.ink, e, C.paper), 'ink', .1);
+        inkLine([[1560, 191], [1648, 190], [1730, 190]], 2.2, mixCol(fadeCol(C.ink, e, C.paper), C.paper, dk), 'ink', .1);
+        inkLine([[1730, 190], [1731, 280], [1730, 380]], 2.2, mixCol(fadeCol(C.ink, e, C.paper), C.paper, dk), 'ink', .1);
       }
       const L1 = ease(seg(t, TS.s19 + .3, TS.s19 + 1.5)) * e;     // the wall: one soft shadow, then, after "auch", one more, bright
       boilSeed('layer1');
-      if (L1 > .02) paint([[1560, 300], [1790, 262], [1900, 700], [1660, 760]], { wash: C.graphiteLt, washOp: 42 * L1, ink: null });
+      if (L1 > .02) paint([[1560, 300], [1790, 262], [1900, 700], [1660, 760]], { wash: mixCol(C.graphiteLt, '#4A3F55', dk), washOp: (42 + 60 * dk) * L1, ink: null });
       const L2 = ease(seg(t, tAuch + .1, tAuch + 1.6)) * e, dx = 55 * Math.sin(la * .22), br = .85 + .15 * Math.sin(la * .5);
       boilSeed('layer2');
       if (L2 > .02) {

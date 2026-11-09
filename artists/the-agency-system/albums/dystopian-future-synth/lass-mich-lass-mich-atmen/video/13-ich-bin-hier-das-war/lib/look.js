@@ -25,13 +25,15 @@ function wordT(line, re, fb) {
 const _lt = i => { const l = SONG.line(i); return l ? l.t : null; }, _le = i => { const l = SONG.line(i); return l ? l.end : null; };
 const _instr = (SONG.map && SONG.map.sections || []).filter(x => /instrumental/i.test(x.name));
 const TS = {
-  s2: _lt(0), s3: _instr[0] ? _instr[0].t : 8.62, s4: _instr[0] ? _instr[0].end : 21.5, s5: _lt(2) - .34, s6: _le(2), s7: _lt(4),
+  s2: SONG.beatTime(Math.ceil(SONG.beatAt(2.35))), s3: _instr[0] ? _instr[0].t : 8.62, s4: _instr[0] ? _instr[0].end : 21.5, s5: _lt(2) - .34, s6: _le(2), s7: _lt(4),
   s8: _lt(5), s9: _lt(6), s10: _lt(7), s11: _le(7), s12: _lt(9), s13: _le(9), s14: _le(10), s15: _lt(12), s16: _lt(13),
   s17: _le(14), s18: _le(15), s19: _le(16), s20: _lt(18), s21: _le(19), s22: _lt(20), s23: _le(21),
 };
 // smooth bump peaking at t0 (rises over `rise` s before it, falls over `fall` s after)
 const bump = (t, t0, rise, fall) => ease(seg(t, t0 - rise, t0)) * (1 - ease(seg(t, t0, t0 + fall)));
 
+// dark paper of the bridge (shot 19): painted night paper; same eased window the lyric layer uses for its paper-coloured ink
+function darkK(t) { return ease(seg(t, TS.s19, TS.s19 + 1.2)) * (1 - ease(seg(t, TS.s20 - 1.0, TS.s20))); }
 // ---------- the heartbeat: 1 beat = 1 s, soft attack; slows to nothing in the outro ----------
 function softBeat(t, tb, a = .12, k = 5) {
   const x = t - tb; if (x < 0) return 0;
@@ -374,6 +376,11 @@ function room(t, o = {}) {
   pillow(t, { empty: e, bg: fbg, hb: S.hb * S.pulseOn });
   thread(t, { p: o.thread ?? S.thread, empty: e, bg: fbg });
   if (o.mist) breathFog(t, o.mist.x, o.mist.y, o.mist.k);
+  const dk = darkK(t);
+  if (dk > .002) {   // night paper: a wash of ink-tinted dark over the whole view; the light point sits on top of it
+    boilSeed('night');
+    paint(rectPts(VIEW[0], VIEW[1], VIEW[2] - VIEW[0], VIEW[3] - VIEW[1]), { wash: '#2B2233', washOp: 255 * dk, ink: null });
+  }
   ping(t, o.pingK ?? S.pingK, S.pingPos, S.pingBoost);
   if (o.roomLight > .01) {   // daylight lying on the wall and the floor of the room
     boilSeed('rl');
