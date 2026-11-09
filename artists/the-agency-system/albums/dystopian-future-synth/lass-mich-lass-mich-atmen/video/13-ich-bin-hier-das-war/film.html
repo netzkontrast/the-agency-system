@@ -41,6 +41,8 @@
 <script src="scenes/ch01.js"></script>
 <script src="scenes/ch02.js"></script>
 <script src="scenes/ch03.js"></script>
+<script src="lib/lyrics.js"></script>
+<script>const __dw = drawWorld; drawWorld = function (t) { __dw(t); drawLyrics(t); };</script>
 <script>
   // film.html?loop=<name> scrubs or renders a standalone loop (model sheets, Canvas loops) instead of the film.
   const q = new URLSearchParams(location.search).get('loop'); if (q && LOOPS[q]) window.LOOP = LOOPS[q];
