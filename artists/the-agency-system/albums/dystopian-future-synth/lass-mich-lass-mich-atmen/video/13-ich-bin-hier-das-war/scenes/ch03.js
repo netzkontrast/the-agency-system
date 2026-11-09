@@ -55,15 +55,15 @@
       const L1 = ease(seg(t, TS.s19 + .3, TS.s19 + 1.5)) * e;     // the wall: one soft shadow, then, after "auch", one more, bright
       boilSeed('layer1');
       if (L1 > .02) paint([[1560, 300], [1790, 262], [1900, 700], [1660, 760]], { wash: mixCol(C.graphiteLt, '#4A3F55', dk), washOp: (42 + 60 * dk) * L1, ink: null });
-      const L2 = ease(seg(t, tAuch + .1, tAuch + 1.6)) * e, dx = 55 * Math.sin(la * .22), br = .85 + .15 * Math.sin(la * .5);
+      const L2 = ease(seg(t, tAuch + .1, tAuch + 1.6)) * e, dx = 130 * Math.sin(la * .3), br = .8 + .2 * Math.sin(la * .6);
       boilSeed('layer2');
       if (L2 > .02) {
         paint([[1470 + dx, 330], [1690 + dx, 292], [1790 + dx, 720], [1570 + dx, 770]], { wash: C.day, washOp: 150 * L2, ink: null });
-        glow(1630 + dx, 520, 320, C.glowY, .5 * L2 * br);
+        glow(1630 + dx, 520, 320 + 50 * Math.sin(la * .45), C.glowY, .5 * L2 * br);
       }
-      const L3 = ease(seg(t, TS.s19 + 5, TS.s20 - 2)) * e;           // in the quiet seven seconds the light slowly lies further across the paper
+      const L3 = ease(seg(t, TS.s19 + 2.5, TS.s19 + 6)) * e;           // in the quiet seven seconds the light slowly lies further across the paper
       boilSeed('layer3');
-      if (L3 > .02) glow(1900 + 40 * Math.sin(la * .2), 560, 380, C.glowPale, .35 * L3);
+      if (L3 > .02) glow(1850 + 150 * Math.sin(la * .27), 560 + 40 * Math.sin(la * .4), 420, C.glowPale, .4 * L3);
     },
     out: { type: 'slide', to: 20, dur: 1.8 },
   });

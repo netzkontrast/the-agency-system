@@ -427,4 +427,4 @@ function runShot(id, t, lt, dur) {
   else if (pout.type === 'shoji') shojiWipe(.5 + .5 * seg(lt, 0, pout.dur));
 }
 
-window.HOLDS = [[DUR - 1.6, DUR]];   // the last two seconds are blank paper: a declared hold
+window.HOLDS = [[0, .6], [DUR - 2, DUR]];   // blank paper under the opening notice; the last seconds are blank paper   // the last two seconds are blank paper: a declared hold
