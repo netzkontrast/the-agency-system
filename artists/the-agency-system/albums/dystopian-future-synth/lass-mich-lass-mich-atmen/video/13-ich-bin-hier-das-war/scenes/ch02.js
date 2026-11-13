@@ -1,8 +1,8 @@
 // ch02.js: shots 8-15 (44.6 - 78.6 s). The refrain: here, and what was. The seam takes the light once; the glass clears; no turning round.
 (() => {
   const WIDE = [960, 540, 1.0];
-  const WALLC = [2450, 470, 1.3];       // the seam, centred
-  const BOTH = [1500, 500, .8];         // room on the left, wall on the right
+  const WALLC = [2450, 460, 1.2];       // the seam, centred
+  const BOTH = [1480, 480, .67];         // room on the left, wall on the right
   const CLOSE = [960, 540, 1.15];       // the room again, closer
   const WINC = [1550, 420, 1.5];        // the window
   const WIN2 = [1550, 430, 1.35];       // the window, open
@@ -12,7 +12,7 @@
   const s8 = defShot(8, {
     cam: () => WIDE,
     world: t => room(t),
-    out: { type: 'slide', to: 9, dur: .75, wash: .5 },
+    out: { type: 'wash', dur: .5 },
   });
 
   // 9  The paper wall with its gold seam. On "war" the seam takes the light once: a glint runs along it and fades.
@@ -21,7 +21,7 @@
   const s9 = defShot(9, {
     cam: lt => [WALLC[0] + 4 * lt, WALLC[1], WALLC[2] + .004 * lt],
     world: t => room(t, { glint: glint(t) }),
-    out: { type: 'slide', to: 10, dur: .6 },
+    out: { type: 'wash', dur: .5 },
   });
 
   // 10  Room and wall in one frame. The light strip crosses from the room onto the wall. No flare; the seam stays at 60 %.

@@ -62,7 +62,7 @@ function worldState(t) {
   const level = clamp((lerp(.72, .5, pulseOn) + .36 * pulseOn * hb + big + .22 * swell) * fade21 + .02 * Math.sin(t * .6));
   const strip = .36 + .4 * ease(seg(t, (TS.s3 + TS.s4) / 2, TS.s4)) + .02 * Math.sin(t * .5);
   const daylight = ease(seg(t, tLicht - .2, tLicht + .5));
-  const thread = ease(seg(t, tDruck - .12, tDruck + 1.0));
+  const thread = ease(seg(t, tDruck - .1, tDruck + .7));
   const pingK = ease(seg(t, stress(17) - .15, stress(17) + .45)) * (1 - ease(seg(t, DUR - 4.2, DUR - 2.8)));
   const empty = ease(seg(t, TS.s18 + .1, TS.s19 + .6)) * (1 - ease(seg(t, TS.s20 - 1.4, TS.s20 + .4)));
   const doorGone = ease(seg(t, TS.s19 + .8, TS.s19 + 2.4)) * (1 - ease(seg(t, TS.s20 - 1.8, TS.s20 - .2)));
@@ -166,6 +166,11 @@ function windowPane(t, o = {}) {
   boilSeed('win-roof');
   paint([[x0, y1], [x0, y1 - 90], [x0 + 90, y1 - 120], [x0 + 150, y1 - 95], [x0 + 250, y1 - 140], [x0 + 330, y1 - 100], [x1, y1 - 130], [x1, y1]], { wash: fadeCol('#E3D69A', a, bg), ink: null });
   glow(1560, 400, 330 + 90 * open + 14 * Math.sin(t * .4), C.glowY, (.38 + .3 * open + .1 * (o.day ?? 0)) * a);
+  if (o.cloud != null && o.cloud > .001 && o.cloud < .999) {   // a cloud shadow crossing the glass, left to right
+    boilSeed('cloud');
+    const c = lerp(x0 - 120, x1 + 260, o.cloud), xs = Math.max(x0, c - 260), xe = Math.min(x1, c);
+    if (xe - xs > 4) paint(rectPts(xs, y0, xe - xs, h, 2), { wash: '#A9B0AE', washOp: 85 * Math.sin(Math.PI * o.cloud) * a, ink: null });
+  }
   if (o.fog && o.fog.k > .01) glassFog(t, o.fog.k, o.fog.wipe || 0, a);
   boilSeed('win-frame');
   inkLine([[x0, y1], [x0 - 1, y0], [x1, y0 - 2], [x1 + 1, y1], [x0, y1 + 2]], 2.3, fadeCol(C.ink, a, bg), 'ink', .1);
@@ -203,7 +208,7 @@ const xc_clear = (x, wipe) => x < lerp(WIN.x0 - 24, WIN.x1 + 24, ease(seg(wipe, 
 // ---------- the curtain: cloth with yellow behind the folds; strip = how far it is drawn back; lift = a breath of air ----------
 function curtain(t, o = {}) {
   const a = 1 - (o.empty ?? 0); if (a < .02 || !seen(1150, 1900)) return;
-  const bg = o.bg || C.wall, strip = o.strip ?? .7, sw = o.sway ?? 1, lift = o.lift ?? 0, yT = 150, yB = 775;
+  const bg = o.bg || C.wall, strip = o.strip ?? .7, sw = o.sway ?? 1, lift = o.lift ?? 0, yT = 150, yB = 770;
   const xL = 1205, xR = 1500 - 85 * strip, N = 7;
   const sx = (y, ph) => sw * (5 + 4 * lift) * Math.sin(t * .55 + y * .006 + ph);
   const edge = (x, ph, extra) => { const P = []; for (let k = 0; k <= 6; k++) { const f = k / 6, y = yT + (yB - yT) * f; P.push([x + sx(y, ph) * f + extra * f * f, y - (k === 6 ? 78 * lift : 0)]); } return P; };
@@ -255,24 +260,40 @@ function lamp(t, o = {}) {
   glow(lx, 288, 80 + 50 * level, '#FFF1C0', .55 * a);
 }
 
-// ---------- the pillow on the floor, smooth, with the room's one shadow ----------
+// ---------- the low bed edge under the window, one pillow on it (a soft square with a seam and a dent), and the room's one shadow ----------
+// Everything sits above y 782: the text lane (y 800-980) stays clear of props.
+const BED = { x0: 1450, x1: 1880, top: 748, bot: 782 }, PIL = { cx: 1595, cy: 706, w: 190, h: 88 };
 function pillow(t, o = {}) {
-  const a = 1 - (o.empty ?? 0); if (a < .02 || !seen(640, 1180)) return;
-  const bg = o.bg || C.floor, cx = 900, cy = 890, sh = (cx - (LAMP.x + 5 * Math.sin(t * .35))) * .6 + 55, br = 1 + .012 * (o.hb ?? 0);
-  boilSeed('pillow-shadow');   // the one shadow: away from the one light
-  paint(ellPts(cx + sh, cy + 54, 215, 36, 28, 2), { wash: fadeCol(C.graphite, a, bg), washOp: 70 * a, ink: null });
+  const a = 1 - (o.empty ?? 0); if (a < .02 || !seen(1380, 1960)) return;
+  const bg = o.bg || C.floor, wb = o.wall || C.wall, br = 1 + .012 * (o.hb ?? 0);
+  const { x0, x1, top, bot } = BED, { cx, cy, w, h } = PIL;
+  boilSeed('bed');
+  paint(rectPts(x0, top, x1 - x0, bot - top, 1.5), { wash: fadeCol('#D8C8A4', a, wb), ink: fadeCol(C.ink, a, wb), sw: 1.4 });
+  boilSeed('bed-top');
+  inkLine([[x0 + 4, top + 8], [(x0 + x1) / 2, top + 10], [x1 - 4, top + 8]], .8, fadeCol(C.ink, a * .6, wb), 'inkfine', .2);
+  const lx = LAMP.x + 5 * Math.sin(t * .35);
+  boilSeed('pillow-shadow');   // the one shadow, on the mattress, away from the one light
+  paint(ellPts(cx + 32 + (cx - lx) * .03, top + 3, w * .55, 9, 20, 1), { wash: fadeCol(C.graphite, a, wb), washOp: 80 * a, ink: null });
   boilSeed('pillow-body');
-  paint(rrPts(cx - 190 * br, cy - 52 * br, 380 * br, 104 * br, 50, 1.2), { wash: fadeCol(C.pillow, a, bg), ink: fadeCol(C.ink, a, bg), sw: 1.3, curv: .6 });
+  paint(rrPts(cx - w / 2 * br, cy - h / 2 * br, w * br, h * br, 34, 1), { wash: fadeCol(C.pillow, a, wb), ink: fadeCol(C.ink, a, wb), sw: 1.4, curv: .6 });
+  boilSeed('pillow-seam');   // a stitched seam just inside the edge
+  inkLine(rrPts(cx - w / 2 + 11, cy - h / 2 + 10, w - 22, h - 20, 26, 0), .8, fadeCol(C.ink, a * .55, wb), 'inkfine', .6);
+  boilSeed('pillow-dent');   // the dent in the middle
+  paint(ellPts(cx, cy + 3, w * .22, h * .2, 16, .6), { wash: fadeCol(C.graphiteLt, a, wb), washOp: 70 * a, ink: null });
+  inkLine([[cx - w * .16, cy - 2], [cx, cy + h * .17], [cx + w * .16, cy - 2]], .8, fadeCol(C.ink, a * .5, wb), 'inkfine', .6);
   boilSeed('pillow-light');
-  paint(ellPts(cx - 40, cy - 22, 120, 16, 16, 1), { wash: fadeCol(C.cream, a, bg), washOp: 160 * a, ink: null });
+  paint(ellPts(cx - 30, cy - 22, 52, 7, 12, .6), { wash: fadeCol(C.cream, a, wb), washOp: 150 * a, ink: null });
 }
-// the yellowed thread beside the pillow; p = 0 at rest, 1 gone (it slides off to the right and does not come back)
+// the yellowed thread on the bed beside the pillow: a clean ink line with a knot at its start. p = 0 at rest, 1 gone:
+// it slides off to the right in one smooth move (0.8 s on "Druck") and does not come back
 function thread(t, o = {}) {
-  const p = o.p ?? 0, a = 1 - (o.empty ?? 0); if (p >= .999 || a < .02 || !seen(1000, 2400)) return;
-  const bg = o.bg || C.floor, dx = 950 * ease(p), lift = -26 * Math.sin(Math.PI * clamp(p)), d = 3 * Math.sin(t * .5);
-  const P = [[1086, 893], [1140, 906], [1196, 899], [1252, 919], [1312, 912], [1366, 927]].map(([x, y], i) => [x + dx * (.85 + .15 * i / 5), y + lift * (i / 5) + d * (i / 5)]);
+  const p = o.p ?? 0, a = 1 - (o.empty ?? 0); if (p >= .999 || a < .02 || !seen(1500, 2800)) return;
+  const wb = o.wall || C.wall, dx = 620 * p;
+  const P = [[1700, 727], [1730, 735], [1768, 731], [1806, 738], [1846, 733]].map(([x, y]) => [x + dx, y]);
   boilSeed('thread');
-  inkLine(P, 1.5, fadeCol(C.thread, a, bg), 'inkfine', .6);
+  inkLine(P, 1.6, fadeCol(C.thread, a, wb), 'ink', .6);
+  boilSeed('thread-knot');
+  paint(ellPts(1700 + dx, 727, 4.5, 4.5, 10, .3), { wash: fadeCol(C.thread, a, wb), ink: fadeCol(C.goldDk, a, wb), sw: .6 });
 }
 
 // ---------- the paper wall with the repaired seam (the Riss) ----------
@@ -346,8 +367,9 @@ const PING = { x: 1754, y: 170 };
 function ping(t, k = 1, pos = PING, boost = 0) {
   if (k <= .01) return;
   boilSeed('ping');
-  glow(pos.x, pos.y, (110 + 90 * boost) * k, C.ping, Math.min(1, .95 + .3 * boost) * k);
-  paint(ellPts(pos.x, pos.y, 8 * k, 8 * k, 10, .3), { wash: C.ping, ink: null });
+  glow(pos.x, pos.y, (130 + 90 * boost) * k, C.ping, Math.min(1, .95 + .3 * boost) * k);
+  glow(pos.x, pos.y, 46 * k, C.ping, .9 * k);
+  paint(ellPts(pos.x, pos.y, 10 * k, 10 * k, 10, .3), { wash: C.ping, ink: null });
 }
 
 // ---------- breath fog: a soft watercolour wash that opens and closes ----------
@@ -369,17 +391,24 @@ function room(t, o = {}) {
   backdrop(t, S, e);
   paperWall(t, { bg, lvl: o.seamLvl ?? .6, glint: o.glint, ghost: o.ghost, wallLight: o.wallLight });
   door(t, { gone: o.doorGone ?? S.doorGone, bg, day: S.daylight });
-  windowPane(t, { empty: e, bg, open: o.open, day: S.daylight, fog: o.fog });
+  windowPane(t, { empty: e, bg, open: o.open, day: S.daylight, fog: o.fog, cloud: o.cloud });
+  if (o.patch && o.patch.k > .01) {   // a patch of window light travelling across the floor and up the wall
+    const { k, p } = o.patch, px = lerp(1420, 700, ease(seg(p, 0, .7))), py = lerp(920, 470, ease(seg(p, .55, 1)));
+    boilSeed('patch');
+    paint([[px - 110, py - 55], [px + 90, py - 55], [px + 135, py + 55], [px - 65, py + 55]], { wash: C.day, washOp: 190 * k, ink: null });
+    glow(px, py, 340, C.glowY, .7 * k);
+  }
   if (o.shafts) for (const s of o.shafts) shaft(...s);
   lamp(t, { empty: e, bg, level: o.level ?? S.level });
   curtain(t, { empty: e, bg, strip: o.strip ?? S.strip, sway: o.sway, lift: o.lift, day: S.daylight, pulse: S.pulseOn * S.hb });
-  pillow(t, { empty: e, bg: fbg, hb: S.hb * S.pulseOn });
-  thread(t, { p: o.thread ?? S.thread, empty: e, bg: fbg });
+  pillow(t, { empty: e, bg: fbg, wall: bg, hb: S.hb * S.pulseOn });
+  thread(t, { p: o.thread ?? S.thread, empty: e, wall: bg });
   if (o.mist) breathFog(t, o.mist.x, o.mist.y, o.mist.k);
   const dk = darkK(t);
   if (dk > .002) {   // night paper: a wash of ink-tinted dark over the whole view; the light point sits on top of it
     boilSeed('night');
-    paint(rectPts(VIEW[0], VIEW[1], VIEW[2] - VIEW[0], VIEW[3] - VIEW[1]), { wash: '#2B2233', washOp: 255 * dk, ink: null });
+    paint(rectPts(VIEW[0], VIEW[1], VIEW[2] - VIEW[0], VIEW[3] - VIEW[1]), { wash: '#35232B', washOp: 255 * dk, ink: null });
+    for (let i = 0; i < 4; i++) { boilSeed('nightgrain' + i); paint(ellPts(VIEW[0] + (VIEW[2] - VIEW[0]) * (.2 + .2 * i), VIEW[1] + (VIEW[3] - VIEW[1]) * (.3 + .4 * hash(i + 2)), 380, 220, 16, 6), { wash: '#4A3139', washOp: 60 * dk, ink: null }); }
   }
   ping(t, o.pingK ?? S.pingK, S.pingPos, S.pingBoost);
   if (o.roomLight > .01) {   // daylight lying on the wall and the floor of the room

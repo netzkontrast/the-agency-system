@@ -5,7 +5,7 @@
   const END2 = [985, 535, 1.07];                 // where the slow push of shot 2 ends
   const DOORV = [400, 480, 1.35], MIDV = [1250, 470, 1.45];
   const CURT = [1400, 470, 1.7];                 // shot 4 start
-  const PILL = [940, 850, 1.8];                  // shot 5 start
+  const PILL = [1520, 690, 1.9];                  // shot 5 start
   const MID = [900, 570, 1.3];                   // shot 6 / shot 7 start
 
   // 1  Fade up from blank paper onto the threshold; the lamp breathes on every beat.

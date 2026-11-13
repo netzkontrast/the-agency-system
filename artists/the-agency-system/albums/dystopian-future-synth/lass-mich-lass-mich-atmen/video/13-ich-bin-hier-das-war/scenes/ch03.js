@@ -2,7 +2,7 @@
 // the opening view returns, a long exhale, the threshold again, the pulse slows, and the page goes blank.
 (() => {
   const WIDE = [960, 540, 1.0];
-  const WALL16 = [2450, 470, 1.25];
+  const WALL16 = [2450, 460, 1.2];
   const WALL17 = [2600, 470, .95];
   const DOOR18 = [320, 480, 1.1];
   const CORNER = [1650, 340, 1.5];
@@ -79,9 +79,12 @@
   const s21 = defShot(21, {
     cam: (lt, t, dur) => { const k = ease(seg(lt, 0, dur - 3)); return [lerp(960, 1010, k), 540, lerp(1.0, .84, k)]; },
     world: t => {
-      const a = t - TS.s21;
-      const lift = .55 * bump(t, TS.s21 + 5.5, 1.6, 2.6) + .55 * bump(t, TS.s21 + 11.5, 1.6, 2.6);
-      room(t, { roomLight: ease(seg(t, TS.s21 + 1, TS.s21 + 9)), lift, sway: 1.4 + .3 * Math.sin(a * .4) });
+      const a = t - TS.s21, S = worldState(t);
+      const lift = .6 * bump(t, TS.s21 + 3.0, 1.4, 2.2) + .6 * bump(t, TS.s21 + 12.5, 1.4, 2.2);      // the curtain lifts and settles, twice
+      const dim = .4 * ease(seg(a, 4, 10)) * (1 - ease(seg(a, 13, 16)));                                // the lamp's glow dims into daylight
+      const patch = { k: ease(seg(a, 5, 7)) * (1 - ease(seg(a, 14, 16))), p: seg(a, 5.5, 15) };         // window light travels across the floor and up the wall
+      const cloud = seg(a, 8.5, 12.5);                                                                    // a cloud shadow passes the window
+      room(t, { roomLight: ease(seg(t, TS.s21 + 1, TS.s21 + 9)), lift, sway: 1.4 + .3 * Math.sin(a * .4), level: S.level * (1 - dim), patch, cloud });
     },
     out: { type: 'slide', to: 22, dur: 3.0 },
   });

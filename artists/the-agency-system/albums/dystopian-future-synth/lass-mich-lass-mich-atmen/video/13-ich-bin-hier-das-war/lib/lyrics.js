@@ -48,32 +48,31 @@
   window.lyricInk = lyricInk;
 
   // ---------- the layout spec (design space 1920x1080; the text-safe frame is x 160..1760, y 120..960) ----------
-  const LOW = { x: 200, y: 855, align: 'left' };         // first row baseline; further rows go below it (inside y 960), clear of the door         // strophes: lower third, left-aligned
-  const BESIDE = { x: 1130, y: 850, align: 'left' };      // lower third, to the right of the pillow (shots 2 and 7)
-  const UP = { x: 200, y: 230, align: 'left' };          // upper third, where a prop sits low (the pillow, shot 5)
-  const CEN = y => ({ x: 960, y, align: 'center' });     // refrains: centred, mid-frame
+  const CEN = y => ({ x: 960, y, align: 'center' });     // hero refrains: centred, mid-frame
+  // THE TEXT LANE (contract with the animator): y 800-980, x 160-1760, kept free of props during the strophe shots.
+  const LOW = { x: 200, y: 862, align: 'left' };         // strophes: first row baseline in the lane, a second row below it
   const SPECS = [
-    { lines: [0], at: BESIDE, size: 64, rows: [3], puls: true, introGlow: true },
-    { lines: [1], at: LOW, size: 64, rows: [5], tintWord: 1, evenGlow: true },
-    { lines: [2], at: UP, size: 64, rows: [4], thread: 2, exhale: 9, wordK: { 9: .85 } },
-    { lines: [3], at: LOW, size: 64, rows: [5], rowK: [1, .8], track: [0, 1, 2, 3, 4, 5] },
-    { lines: [4], at: BESIDE, size: 64, rows: [3] },
-    { lines: [5], at: CEN(500), size: 150, keyK: 1.2 },
-    { lines: [6], at: { x: 880, y: 670, align: 'right' }, size: 96, keyK: 1.2, goldWord: 1 },
-    { lines: [7], at: LOW, size: 64, rows: [3], rowAlpha: [.6, 1] },
-    { lines: [8], at: CEN(580), size: 150, keyK: 1.2 },
-    { lines: [9], at: LOW, size: 64, rows: [4], emph: [8], dim: .82, leaveAt: -.2, leaveTot: .6 },
-    { lines: [10], at: LOW, size: 64, rows: [4], floatFrom: 5, leaveAt: .2, leaveTot: .7 },
-    { lines: [11], at: UP, size: 64, rows: [4], slide: true },
-    { lines: [12], at: LOW, size: 64, rows: [5], leaveAt: -.15, leaveTot: .6 },
-    { lines: [13, 14], at: LOW, size: 56, goldSweep: true, leave: 'group' },
-    { lines: [15], at: LOW, size: 64, rows: [3], alpha: .6 },
-    { lines: [16], at: { x: 700, y: 520, align: 'right' }, size: 110, keyK: 1.2 },
-    { lines: [17], at: { x: 1650, y: 190, align: 'right' }, size: 48, ping: true },
-    { lines: [18, 19], at: { x: 1180, y: 540, align: 'center' }, size: 104, keyK: 1.2, leave: 'group', leaveHold: 1.2, leaveDur: 2.2 },
-    { lines: [20, 21], at: { x: 160, y: 600, align: 'left' }, size: 80, rows: [2], keyK: 1.2, leave: 'rtl' },
+    { lines: [0], at: LOW, size: 84, rows: [3], lane: true, puls: true, introGlow: true },
+    { lines: [1], at: LOW, size: 84, rows: [5], lane: true, tintWord: 1, evenGlow: true },
+    { lines: [2], at: LOW, size: 84, rows: [4], lane: true },
+    { lines: [3], at: LOW, size: 84, rows: [5], lane: true, rowK: [1, .85], track: [0, 1, 2, 3, 4, 5] },
+    { lines: [4], at: LOW, size: 84, rows: [3], lane: true },
+    { lines: [5], at: CEN(520), size: 190, keyK: 1.2 },
+    { lines: [6], at: { x: 880, y: 700, align: 'right' }, size: 126, keyK: 1.2, goldWord: 1 },
+    { lines: [7], at: LOW, size: 84, rows: [3], lane: true },
+    { lines: [8], at: CEN(600), size: 190, keyK: 1.2 },
+    { lines: [9], at: LOW, size: 84, rows: [4], lane: true, emph: [8] },
+    { lines: [10], at: LOW, size: 84, rows: [4], lane: true, floatFrom: 5 },
+    { lines: [11], at: LOW, size: 84, rows: [4], lane: true, slide: true },
+    { lines: [12], at: LOW, size: 84, rows: [5], lane: true },
+    { lines: [13, 14], at: LOW, size: 74, lane: true, goldSweep: true, leave: 'group' },
+    { lines: [15], at: LOW, size: 84, rows: [3], lane: true },
+    { lines: [16], at: { x: 860, y: 540, align: 'right' }, size: 118, keyK: 1.2 },
+    { lines: [17], at: { x: 1200, y: 320, align: 'left' }, size: 72, ping: true },
+    { lines: [18, 19], at: { x: 1130, y: 560, align: 'center' }, size: 118, keyK: 1.15, leave: 'group', leaveHold: 1.2, leaveDur: 2.2 },
+    { lines: [20, 21], at: { x: 160, y: 600, align: 'left' }, size: 92, rows: [2], keyK: 1.2, leave: 'rtl' },
   ];
-  const KEYK = 84 / 64;
+  const KEYK = 108 / 84;
 
   // ---------- build: words per group, measured at the real fonts (once; depends on fonts + song map only) ----------
   let GROUPS = null, mctx = null;
@@ -89,13 +88,12 @@
           stress: o.w.stress != null ? o.w.stress : o.w.t, key: !!(L && L.key && Math.abs(L.key.t - o.w.t) < 1e-6) }));
       }
       words.forEach(w => { w.gn = words.length; });
-      // appear start; words that would show while the content-warning board is still up wait for it, then come in .3 s apart
-      let prev = -1e9; words.forEach(w => { w.at = Math.max(w.t - .12, prev + (w.t - .12 < GATE ? .3 : 0), w.t - .12 < GATE ? GATE : -1e9); prev = w.at; w.stress = Math.max(w.stress, w.at + .45); });
+      words.forEach(w => { w.at = w.t - .12; });
       if (!words.length) return null;
       // rows
       const rows = [[]]; let br = (sp.rows || []).slice();
       words.forEach((w, i) => { rows[rows.length - 1].push(w); if (br.length && br[0] === i) { br.shift(); rows.push([]); } });
-      const nR = rows.length, gap = sp.size * 1.27;
+      const nR = rows.length, gap = sp.size * 1.2;
       rows.forEach((row, ri) => {
         const rk = (sp.rowK && sp.rowK[ri]) || 1;
         row.forEach(w => {
@@ -118,17 +116,24 @@
   }
 
   // ---------- one word ----------
-  function leaveOf(sp, w) {   // { s, d }: when this word starts to dissolve and for how long
-    if (sp.leave === 'group' || sp.leave === 'rtl') {
-      const last = sp.lines[sp.lines.length - 1], s = lineEnd(last) + (sp.leaveHold != null ? sp.leaveHold : (sp.leave === 'rtl' ? 0 : .9)), tot = sp.leaveDur || .8;
-      const ord = sp.leave === 'rtl' ? (w.gn - 1 - w.gk) : w.gk, dd = Math.min(.5, tot * .6);
-      if (sp.leave === 'rtl') return { s: (LINE(21) ? LINE(21).key.stress : s) - .0 + ord / w.gn * (tot * .8 - dd) , d: dd };
-      return { s: s + ord / w.gn * (tot - dd), d: dd };
+  // exit window of a group: a word stays at 100 % until the line's exit starts at line.end + 1.2 s, over 1.0 s.
+  // Lane lines that are followed at once by another lane line give way in time (exit starts at the end, over 0.4 s).
+  function exitOf(sp) {
+    if (sp._exit) return sp._exit;
+    const last = sp.lines[sp.lines.length - 1], e = lineEnd(last);
+    let s = e + 1.2, d = 1.0;
+    if (sp.leaveHold != null) { s = e + sp.leaveHold; d = sp.leaveDur || 1.0; }
+    else if (sp.leave === 'rtl') { s = LINE(21) ? LINE(21).key.stress : e; d = .7; }
+    else if (sp.lane) {
+      const i = SPECS.indexOf(sp), nx = SPECS[i + 1];
+      if (nx && nx.lane) { const nt = lineT(nx.lines[0]); s = Math.min(s, Math.max(e + .1, nt - .3)); d = Math.min(1.0, Math.max(.4, nt + .3 - s)); }
     }
-    const e = lineEnd(w.line); let s = e + .9, tot = .8;
-    if (sp.leaveAt != null) { s = e + sp.leaveAt; tot = sp.leaveTot || .6; }   // line 9: the shot's brush wipe takes laut verlangt with it; line 12 makes room for line 13
-    const dd = Math.min(.4, tot * .55);
-    return { s: s + w.k / w.n * (tot - dd), d: dd };
+    return (sp._exit = { s, d });
+  }
+  function leaveOf(sp, w) {   // { s, d } per word: dissolves word by word in reading order (right to left for the last refrain)
+    const ex = exitOf(sp), ord = sp.leave === 'rtl' ? (w.gn - 1 - w.gk) : (sp.leave === 'group' || sp.leaveHold != null ? w.gk : w.k), n = sp.leave === 'group' || sp.leave === 'rtl' || sp.leaveHold != null ? w.gn : w.n;
+    const dd = ex.d * .55;
+    return { s: ex.s + ord / n * (ex.d - dd), d: dd };
   }
   function wobXY(w, t) {                                   // 0.6 px ink wobble at 12 drawings per second, seeded by word and boil frame
     const f = Math.floor(t * 12 + 1e-6);
@@ -189,20 +194,12 @@
       const trk = trackOf(t) * w.size;
       c.fillStyle = col;
       [...w.txt].forEach((ch, i) => { const px = lx + mctxW(w, i) + i * trk; c.fillText(ch, px, 0); });
-    } else if (sp.exhale === w.gk) {
-      const s0 = w.stress + .35;
-      [...w.txt].forEach((ch, i) => {
-        const ls = s0 + (n - 1 - i) / n * .7, k = ease(seg(t, ls, ls + .35));
-        if (k >= 1) return; c.globalAlpha = al * (1 - k); c.fillStyle = col;
-        c.fillText(ch, lx + mctxW(w, i), -7 * k);
-      });
     } else {
       const g = sp.goldWord === w.gk ? goldBand(c, w, t, lx, 0, w.stress - .45, w.stress + 1.0, lx - 20, lx + w.wR + 20, col)
         : sp.goldSweep ? sweepBand(c, G, w, t, cx + ox, sc, lx, col) : col;
+      if (sp.ping) { c.shadowColor = 'rgba(30,20,28,.8)'; c.shadowBlur = 18; c.shadowOffsetX = 0; c.shadowOffsetY = 2; c.fillStyle = g; c.fillText(w.txt, lx, 0); c.fillText(w.txt, lx, 0); c.shadowColor = 'rgba(0,0,0,0)'; c.shadowBlur = 0; c.shadowOffsetY = 0; }
       c.fillStyle = g; c.fillText(w.txt, lx, 0);
     }
-    // thread under "Faden": a thin ink line that slides out to the left on "Druck"
-    if (sp.thread != null && w.gk === 1) { /* drawn once per group in drawThread */ }
     c.restore();
     return true;
   }
@@ -237,46 +234,36 @@
     const abs = row.x0 - 120 + (row.x1 - row.x0 + 240) * ease(p), hw = 130, off = (abs - absCx) / sc;
     return band(c, off - hw, off + hw, col, mixCol(col, GOLDLT, .9));
   }
-  // thread under "Faden" (line 2)
-  function drawThread(c, G, t, ink, kk) {
-    const w = G.words[1]; if (!w) return;
-    const a0 = w.t - .12, ak = easeOut(seg(t, a0, a0 + .45)), dr = LINE(2).key.stress;
-    const slide = Math.pow(seg(t, dr - .05, dr + 1.15), 2.2), lk = ease(seg(t, dr + .5, dr + 1.15));
-    const al = ak * (1 - lk) * .85; if (al <= .003) return;
-    const x0 = w.x - 18 - slide * 1500, x1 = w.x + w.wR + 150 - slide * 1500, y = w.y + 13 + (hash(Math.floor(t * 12)) - .5) * .8;
-    c.save(); c.globalAlpha = al; c.strokeStyle = ink; c.lineWidth = 2; c.lineCap = 'round'; c.beginPath(); c.moveTo(x0, y);
-    c.bezierCurveTo(x0 + (x1 - x0) * .3, y + 5, x0 + (x1 - x0) * .6, y - 5, x1, y + 1); c.stroke(); c.restore();
-  }
-
-  // ---------- the content-warning board (shot 0, 0.0-2.3 s): opaque paper board, three lines, then it fades ----------
+  // ---------- the content-warning card (0.2-4.4 s): a paper card over the LIVE room, thin ink border ----------
+  const CARD = { x: 384, y: 140, w: 1152, h: 420 };
   const BOARD = [
-    { txt: 'Dieses Album behandelt sexualisierte Gewalt in der Kindheit.', size: 64, y: 500, alpha: 1, gap: 84 },
-    { txt: 'Hör nur zu, wenn du dich sicher fühlst.', size: 52, y: 620, alpha: .9 },
+    { txt: 'Dieses Album behandelt sexualisierte Gewalt in der Kindheit.', size: 58, y: 300, wrap: 1000, gap: 74, d: 0 },
+    { txt: 'Hör nur zu, wenn du dich sicher fühlst.', size: 50, y: 468, d: .3 },
   ];
   function wrapLines(c, txt, maxW) {
     const ws = txt.split(' '), rows = []; let cur = '';
     for (const w of ws) { const tst = cur ? cur + ' ' + w : w; if (cur && c.measureText(tst).width > maxW) { rows.push(cur); cur = w; } else cur = tst; }
     rows.push(cur); return rows;
   }
-  const BOARD_END = 4.8, BOARD_FADE0 = 4.0, BOARD_STEP = .5, BOARD_IN0 = .2, BOARD_IN = .5;
-  const GATE = BOARD_FADE0 + (BOARD_END - BOARD_FADE0) * .68;   // board opacity is below 0.3 from here; no lyric word appears before it
-  function drawBoard(c, t, kk) {
+  const BOARD_IN0 = .2, BOARD_IN1 = .6, BOARD_OUT0 = 3.8, BOARD_END = 4.4;
+  function drawBoard(c, t) {
     if (t >= BOARD_END) return;
-    const ba = 1 - ease(seg(t, BOARD_FADE0, BOARD_END));
+    const ba = ease(seg(t, BOARD_IN0, BOARD_IN1)) * (1 - ease(seg(t, BOARD_OUT0, BOARD_END)));
+    if (ba <= .003) return;
     c.save(); c.globalAlpha = ba;
+    c.shadowColor = 'rgba(43,34,51,.28)'; c.shadowBlur = 36; c.shadowOffsetY = 8;
+    c.fillStyle = PAPER; c.fillRect(CARD.x, CARD.y, CARD.w, CARD.h);
+    c.shadowColor = 'rgba(0,0,0,0)'; c.shadowBlur = 0; c.shadowOffsetY = 0;
     const pg = window.__paperSrc && window.__paperSrc();
-    if (pg) c.drawImage(pg, 0, 0, DW, DH); else { c.fillStyle = PAPER; c.fillRect(0, 0, DW, DH); }
+    if (pg) c.drawImage(pg, CARD.x, CARD.y, CARD.w, CARD.h, CARD.x, CARD.y, CARD.w, CARD.h);
+    c.strokeStyle = INK; c.lineWidth = 2; c.globalAlpha = ba * .8; c.strokeRect(CARD.x + 14, CARD.y + 14, CARD.w - 28, CARD.h - 28);
+    const f = Math.floor(t * 12 + 1e-6);
     BOARD.forEach((b, i) => {
-      const a = ease(seg(t, BOARD_IN0 + i * BOARD_STEP, BOARD_IN0 + i * BOARD_STEP + BOARD_IN)) * ba * b.alpha;
-      if (a <= .003) return;
-      c.font = `italic 500 ${b.size}px ${FAMILY}`; c.textAlign = 'center'; c.textBaseline = 'alphabetic'; c.fillStyle = INK;
-      const rows = b.wrap ? wrapLines(c, b.txt, b.wrap) : [b.txt], f = Math.floor(t * 12 + 1e-6);
-      c.globalAlpha = a;
-      rows.forEach((r, ri) => c.fillText(r, 960 + (hash(i * 7 + f * 3.3) - .5) * 1.0, b.y + ri * (b.gap || 0) + (hash(i * 5 + f * 9.1) - .5) * 1.0));
+      const a = ba * ease(seg(t, BOARD_IN0 + b.d, BOARD_IN1 + b.d));
+      c.globalAlpha = a; c.font = `italic 500 ${b.size}px ${FAMILY}`; c.textAlign = 'center'; c.textBaseline = 'alphabetic'; c.fillStyle = INK;
+      const rows = b.wrap ? wrapLines(c, b.txt, b.wrap) : [b.txt];
+      rows.forEach((r, ri) => c.fillText(r, 960 + (hash(i * 7 + f * 3.3) - .5), b.y + ri * (b.gap || 0) + (hash(i * 5 + f * 9.1) - .5)));
     });
-    // a hairline above the notice (paper-ruled, no ornament)
-    const ha = ease(seg(t, BOARD_IN0, BOARD_IN0 + BOARD_IN)) * ba * .5;
-    c.globalAlpha = ha; c.strokeStyle = INK; c.lineWidth = 1.5; c.beginPath(); c.moveTo(900, 400); c.lineTo(1020, 400); c.stroke();
     c.restore();
   }
 
@@ -296,9 +283,8 @@
       if (t < a || t > lv.s + lv.d + .1) continue;
       if (sp.track) relayTracked(G, t);
       for (const w of G.words) if (drawWord(c, G, w, t, ink, kk)) any = true;
-      if (sp.thread != null) { drawThread(c, G, t, ink, kk); any = true; }
     }
-    if (t < BOARD_END) { drawBoard(c, t, kk); any = true; }
+    if (t < BOARD_END) { drawBoard(c, t); any = true; }
     c.restore();
     if (!any) return;
     if (typeof flushBrush === 'function') flushBrush();
