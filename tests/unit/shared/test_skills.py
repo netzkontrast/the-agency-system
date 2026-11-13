@@ -32,3 +32,18 @@ def test_shared_list_skills():
     result = shared_list_skills("non-existent-domain")
     assert result["ok"] is True
     assert result["data"] == []
+
+
+def test_shared_list_skills_video_domain(monkeypatch):
+    # The video domain is one suite: skills/video/studio (Video Studio), which replaced the three ported repos.
+    from pathlib import Path
+    monkeypatch.chdir(Path(__file__).resolve().parents[3])
+    result = shared_list_skills("video")
+    assert result["ok"] is True
+    names = {s["name"] for s in result["data"]}
+    assert names == {"studio"}
+
+
+def test_plugin_help_video_is_a_known_domain():
+    result = plugin_help("video")
+    assert result["ok"] is True

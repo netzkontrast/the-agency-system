@@ -1,0 +1,466 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>pencil test boat</title>
+<style>html,body{margin:0;padding:0;background:#888}#c{display:block}</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W=1280,H=720;
+function mulberry32(seed){let a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function noise1(seed){const r=mulberry32(seed);const v=[];for(let i=0;i<256;i++)v.push(r()*2-1);
+  return t=>{const i=Math.floor(t),f=t-i,a=v[((i%256)+256)%256],b=v[(((i+1)%256)+256)%256],u=f*f*(3-2*f);return a+(b-a)*u;};}
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+function mk(){const c=document.createElement('canvas');c.width=W;c.height=H;return c;}
+
+// ---------- palette ----------
+const PAPER='#EDE6D8';
+const INK={red:'#C23A4F',blue:'#8FB0D0',gray:'#55575C',purple:'#6A4C9C'};
+let L={}; // layers per pencil
+let scratch=mk(),sx=scratch.getContext('2d');
+
+// ---------- tooth tile ----------
+const tooth=document.createElement('canvas');tooth.width=tooth.height=256;
+{const g=tooth.getContext('2d'),img=g.createImageData(256,256),r=mulberry32(11);
+ for(let y=0;y<256;y++)for(let x=0;x<256;x++){const i=(y*256+x)*4;
+   // slight horizontal streak so graphite reads as drawn on tooth
+   const v=0.42+0.58*r();img.data[i]=img.data[i+1]=img.data[i+2]=0;img.data[i+3]=Math.floor(255*v);}
+ g.putImageData(img,0,0);}
+
+// ---------- geometry ----------
+function catmull(P,dens){
+  if(P.length<3)return P.slice();
+  const out=[];const get=i=>P[Math.max(0,Math.min(P.length-1,i))];
+  for(let i=0;i<P.length-1;i++){const p0=get(i-1),p1=get(i),p2=get(i+1),p3=get(i+2);
+    const seg=Math.max(2,Math.ceil(Math.hypot(p2[0]-p1[0],p2[1]-p1[1])/(dens||5)));
+    for(let j=0;j<seg;j++){const t=j/seg,t2=t*t,t3=t2*t;
+      out.push([0.5*((2*p1[0])+(-p0[0]+p2[0])*t+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3),
+                0.5*((2*p1[1])+(-p0[1]+p2[1])*t+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3)]);}}
+  out.push(P[P.length-1].slice());return out;}
+function resample(P,step){
+  const out=[P[0].slice()];let acc=0;
+  for(let i=1;i<P.length;i++){const a=P[i-1],b=P[i];const d=Math.hypot(b[0]-a[0],b[1]-a[1]);
+    if(d===0)continue;let pos=step-acc;
+    while(pos<=d){out.push([a[0]+(b[0]-a[0])*pos/d,a[1]+(b[1]-a[1])*pos/d]);pos+=step;}
+    acc=d-(pos-step);}
+  const last=P[P.length-1];out.push(last.slice());return out;}
+
+// ---------- pencil stroke ----------
+// opts: w, alpha, jit, seed, smooth, taper, over (overshoot px), dbl (double-line prob)
+function stroke(layer,pts,o){
+  o=o||{};const seed=o.seed||1;const w=o.w||1.6,alpha=o.alpha===undefined?0.9:o.alpha,jit=o.jit===undefined?0.9:o.jit;
+  let P=pts.map(p=>p.slice());
+  if(o.over){ // overshoot ends a little along the tangent
+    const a=P[0],b=P[1],n=P.length,y=P[n-1],z=P[n-2];
+    const d1=Math.hypot(a[0]-b[0],a[1]-b[1])||1,d2=Math.hypot(y[0]-z[0],y[1]-z[1])||1;
+    P.unshift([a[0]+(a[0]-b[0])/d1*o.over,a[1]+(a[1]-b[1])/d1*o.over]);
+    P.push([y[0]+(y[0]-z[0])/d2*o.over,y[1]+(y[1]-z[1])/d2*o.over]);}
+  if(o.smooth)P=catmull(P,4);
+  const R=resample(P,2.2);const n=R.length;if(n<2)return;
+  const nj=noise1(seed*977+3),nw=noise1(seed*977+5);
+  const taper=o.taper===undefined?0.18:o.taper;
+  // bbox
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const p of R){x0=Math.min(x0,p[0]);y0=Math.min(y0,p[1]);x1=Math.max(x1,p[0]);y1=Math.max(y1,p[1]);}
+  const pad=w*2+jit*3+4;x0=Math.max(0,Math.floor(x0-pad));y0=Math.max(0,Math.floor(y0-pad));x1=Math.min(W,Math.ceil(x1+pad));y1=Math.min(H,Math.ceil(y1+pad));
+  if(x1<=x0||y1<=y0)return;
+  sx.clearRect(x0,y0,x1-x0,y1-y0);
+  sx.save();sx.strokeStyle='#000';sx.lineCap='round';sx.lineJoin='round';
+  let totalLen=0;for(let i=1;i<n;i++)totalLen+=Math.hypot(R[i][0]-R[i-1][0],R[i][1]-R[i-1][1]);
+  const Q=R.map((p,i)=>{const a=R[Math.max(0,i-1)],b=R[Math.min(n-1,i+1)];let dx=b[0]-a[0],dy=b[1]-a[1];const d=Math.hypot(dx,dy)||1;
+    const off=nj(i*2.2/38)*jit;return[p[0]-dy/d*off,p[1]+dx/d*off];});
+  for(let i=0;i<n-1;i++){const t=i/(n-1);
+    let prof=Math.min(1,t/taper,(1-t)/taper);prof=Math.max(0.15,prof);
+    sx.lineWidth=Math.max(0.4,w*Math.pow(prof,0.7)*(0.78+0.3*(0.5+0.5*nw(i*2.2/30))));
+    sx.beginPath();sx.moveTo(Q[i][0],Q[i][1]);sx.lineTo(Q[i+1][0],Q[i+1][1]);sx.stroke();}
+  sx.restore();
+  const g=layer.getContext('2d');g.save();g.globalAlpha=alpha;
+  g.drawImage(scratch,x0,y0,x1-x0,y1-y0,x0,y0,x1-x0,y1-y0);g.restore();
+  if(o.dbl){const r=mulberry32(seed*13+7);if(r()<o.dbl){stroke(layer,pts,Object.assign({},o,{dbl:0,seed:seed+4001,alpha:alpha*0.45,w:w*0.7,jit:jit*1.8+0.8}));}}
+}
+// fast thin stroke straight on the layer (hatching, rain)
+function fast(layer,pts,o){
+  const g=layer.getContext('2d');g.save();g.globalAlpha=o.alpha;g.lineWidth=o.w;g.strokeStyle='#000';g.lineCap='round';
+  const r=mulberry32(o.seed||1);g.beginPath();
+  const R=o.smooth?catmull(pts,6):pts;
+  g.moveTo(R[0][0]+(r()-0.5)*o.jit,R[0][1]+(r()-0.5)*o.jit);
+  for(let i=1;i<R.length;i++)g.lineTo(R[i][0]+(r()-0.5)*o.jit,R[i][1]+(r()-0.5)*o.jit);
+  g.stroke();g.restore();}
+
+function ellipsePts(cx,cy,rx,ry,rot,a0,a1,n){const p=[];n=n||40;const c=Math.cos(rot||0),s=Math.sin(rot||0);
+  for(let i=0;i<=n;i++){const a=a0+(a1-a0)*i/n;const x=Math.cos(a)*rx,y=Math.sin(a)*ry;p.push([cx+x*c-y*s,cy+x*s+y*c]);}return p;}
+// hand-drawn loop: slightly more than a full turn, drifting
+function loop(layer,cx,cy,rx,ry,o){const r=mulberry32(o.seed||3);const st=-1.9+r()*0.4;
+  const p=[];for(let i=0;i<=46;i++){const t=i/46,a=st+t*(Math.PI*2+0.5);const k=1+0.06*Math.sin(t*5+r())+t*0.05;p.push([cx+Math.cos(a)*rx*k,cy+Math.sin(a)*ry*k]);}
+  stroke(layer,p,Object.assign({smooth:true,taper:0.08},o));}
+
+// ---------- single-stroke lettering ----------
+const E=(cx,cy,rx,ry)=>ellipsePts(cx,cy,rx,ry,0,-Math.PI/2,Math.PI*1.5+0.15,22);
+const G={
+A:[[[0,1],[0.45,0],[0.9,1]],[[0.2,0.62],[0.72,0.62]]],
+B:[[[0,1],[0,0],[0.6,0],[0.82,0.1],[0.84,0.32],[0.6,0.47],[0,0.47]],[[0.6,0.47],[0.88,0.6],[0.9,0.86],[0.66,1],[0,1]]],
+C:[[[0.9,0.16],[0.68,0],[0.32,0],[0.06,0.22],[0.04,0.72],[0.3,1],[0.68,1],[0.92,0.84]]],
+D:[[[0,0],[0,1],[0.5,1],[0.84,0.8],[0.9,0.5],[0.84,0.2],[0.5,0],[0,0]]],
+E:[[[0.82,0],[0,0],[0,1],[0.84,1]],[[0,0.5],[0.66,0.5]]],
+F:[[[0.82,0],[0,0],[0,1]],[[0,0.5],[0.64,0.5]]],
+G:[[[0.9,0.16],[0.68,0],[0.32,0],[0.06,0.22],[0.04,0.72],[0.3,1],[0.68,1],[0.92,0.82],[0.92,0.56],[0.52,0.56]]],
+H:[[[0,0],[0,1]],[[0.84,0],[0.84,1]],[[0,0.5],[0.84,0.5]]],
+I:[[[0.12,0],[0.12,1]]],
+J:[[[0.74,0],[0.74,0.76],[0.56,1],[0.24,1],[0.04,0.8]]],
+K:[[[0,0],[0,1]],[[0.8,0],[0,0.62]],[[0.28,0.42],[0.84,1]]],
+L:[[[0,0],[0,1],[0.78,1]]],
+M:[[[0,1],[0,0],[0.5,0.62],[1,0],[1,1]]],
+N:[[[0,1],[0,0],[0.84,1],[0.84,0]]],
+O:[E(0.47,0.5,0.47,0.5)],
+P:[[[0,1],[0,0],[0.62,0],[0.84,0.14],[0.84,0.38],[0.62,0.52],[0,0.52]]],
+Q:[E(0.47,0.5,0.47,0.5),[[0.58,0.7],[0.98,1.06]]],
+R:[[[0,1],[0,0],[0.62,0],[0.84,0.14],[0.84,0.38],[0.62,0.52],[0,0.52]],[[0.42,0.52],[0.86,1]]],
+S:[[[0.84,0.14],[0.6,0],[0.28,0],[0.04,0.16],[0.08,0.38],[0.44,0.5],[0.8,0.62],[0.86,0.86],[0.6,1],[0.26,1],[0,0.86]]],
+T:[[[0,0],[0.88,0]],[[0.44,0],[0.44,1]]],
+U:[[[0,0],[0,0.72],[0.2,1],[0.64,1],[0.84,0.72],[0.84,0]]],
+V:[[[0,0],[0.44,1],[0.88,0]]],
+W:[[[0,0],[0.25,1],[0.5,0.36],[0.75,1],[1,0]]],
+X:[[[0,0],[0.84,1]],[[0.84,0],[0,1]]],
+Y:[[[0,0],[0.44,0.52],[0.88,0]],[[0.44,0.52],[0.44,1]]],
+Z:[[[0,0],[0.84,0],[0,1],[0.86,1]]],
+'0':[E(0.36,0.5,0.34,0.5)],
+'1':[[[0.08,0.2],[0.36,0],[0.36,1]]],
+'2':[[[0.04,0.2],[0.24,0],[0.56,0],[0.74,0.18],[0.7,0.42],[0,1],[0.8,1]]],
+'3':[[[0.04,0.1],[0.28,0],[0.56,0],[0.74,0.14],[0.7,0.36],[0.38,0.48]],[[0.38,0.48],[0.74,0.6],[0.78,0.86],[0.56,1],[0.26,1],[0.02,0.88]]],
+'4':[[[0.62,1],[0.62,0],[0,0.7],[0.84,0.7]]],
+'5':[[[0.74,0],[0.14,0],[0.08,0.45],[0.4,0.38],[0.7,0.5],[0.78,0.76],[0.56,1],[0.24,1],[0.02,0.88]]],
+'6':[[[0.7,0.06],[0.44,0],[0.16,0.16],[0.04,0.56],[0.1,0.9],[0.4,1],[0.7,0.9],[0.76,0.64],[0.6,0.46],[0.34,0.44],[0.08,0.62]]],
+'7':[[[0,0],[0.8,0],[0.3,1]]],
+'8':[[[0.4,0.47],[0.1,0.35],[0.1,0.12],[0.4,0],[0.7,0.12],[0.7,0.35],[0.4,0.47],[0.06,0.62],[0.06,0.88],[0.4,1],[0.74,0.88],[0.74,0.62],[0.4,0.47]]],
+'9':[[[0.74,0.4],[0.52,0.54],[0.22,0.52],[0.06,0.3],[0.16,0.05],[0.44,0],[0.7,0.1],[0.78,0.44],[0.66,0.84],[0.36,1],[0.1,0.92]]],
+'.':[[[0.04,0.9],[0.16,0.88],[0.18,1],[0.04,1],[0.05,0.9]]],
+'-':[[[0.04,0.56],[0.5,0.56]]],
+'+':[[[0.04,0.52],[0.64,0.52]],[[0.34,0.22],[0.34,0.82]]],
+"'":[[[0.14,0],[0.08,0.26]]],
+'(':[[[0.34,-0.06],[0.08,0.3],[0.06,0.7],[0.34,1.06]]],
+')':[[[0,-0.06],[0.26,0.3],[0.28,0.7],[0,1.06]]],
+'·':[[[0.08,0.46],[0.2,0.44],[0.22,0.56],[0.08,0.57],[0.09,0.46]]],
+'>':[[[0,0.52],[1.1,0.52]],[[0.8,0.3],[1.1,0.52],[0.8,0.74]]],
+'/':[[[0.6,0],[0,1]]],
+};
+function glyphW(ch){if(ch===' ')return 0.55;const g=G[ch];if(!g)return 0.6;let m=0;for(const s of g)for(const p of s)m=Math.max(m,p[0]);return m;}
+function textWidth(str,size){let x=0;for(const ch of str)x+=(glyphW(ch)+0.36)*size*0.66;return x-0.36*size*0.66;}
+// size = cap height. Returns width.
+function write(layer,str,x,y,size,o){
+  o=o||{};const r=mulberry32(o.seed||7);let cx=x;const sw=size*0.66;
+  for(const ch of str){
+    if(ch!==' '&&G[ch]){
+      const bj=(r()-0.5)*size*0.07,sj=1+(r()-0.5)*0.08,rot=(r()-0.5)*0.05;
+      for(const s of G[ch]){
+        const pts=s.map(p=>{const px=p[0]*sw*sj,py=(p[1]-1)*size*sj;return[cx+px*Math.cos(rot)-py*Math.sin(rot),y+bj+px*Math.sin(rot)+py*Math.cos(rot)];});
+        stroke(layer,pts,{w:o.w||1.6,alpha:o.alpha||0.9,jit:o.jit===undefined?0.35:o.jit,seed:Math.floor(r()*1e6),taper:0.12,smooth:s.length>4});
+      }}
+    cx+=(glyphW(ch)+0.36)*sw;}
+  return cx-x;}
+
+// ---------- paper ----------
+function paper(seed){
+  ctx.fillStyle=PAPER;ctx.fillRect(0,0,W,H);
+  // light-table centre lift
+  let g=ctx.createRadialGradient(W*0.5,H*0.52,40,W*0.5,H*0.52,W*0.62);
+  g.addColorStop(0,'rgba(255,252,244,0.45)');g.addColorStop(1,'rgba(255,252,244,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  // aged blotches
+  const r=mulberry32(seed);ctx.save();ctx.globalCompositeOperation='multiply';
+  for(let i=0;i<22;i++){const x=r()*W,y=r()*H,rad=60+r()*220;const gg=ctx.createRadialGradient(x,y,0,x,y,rad);
+    gg.addColorStop(0,'rgba(196,176,140,'+(0.05+r()*0.06)+')');gg.addColorStop(1,'rgba(196,176,140,0)');ctx.fillStyle=gg;ctx.fillRect(x-rad,y-rad,rad*2,rad*2);}
+  // grain
+  const gt=document.createElement('canvas');gt.width=gt.height=256;{const q=gt.getContext('2d'),im=q.createImageData(256,256),rr=mulberry32(seed+9);
+    for(let i=0;i<im.data.length;i+=4){const v=226+rr()*29;im.data[i]=v;im.data[i+1]=v-2;im.data[i+2]=v-6;im.data[i+3]=255;}q.putImageData(im,0,0);
+    q.strokeStyle='rgba(130,112,88,0.35)';q.lineWidth=0.6;for(let i=0;i<45;i++){const x=rr()*256,y=rr()*256,a=rr()*Math.PI,l=2+rr()*6;q.beginPath();q.moveTo(x,y);q.quadraticCurveTo(x+Math.cos(a)*l*0.5+rr()*2,y+Math.sin(a)*l*0.5,x+Math.cos(a)*l,y+Math.sin(a)*l);q.stroke();}}
+  ctx.globalAlpha=0.55;ctx.fillStyle=ctx.createPattern(gt,'repeat');ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;
+  // warm vignette
+  g=ctx.createRadialGradient(W*0.5,H*0.5,H*0.42,W*0.5,H*0.5,W*0.72);
+  g.addColorStop(0,'rgba(170,130,85,0)');g.addColorStop(1,'rgba(150,108,62,0.42)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.restore();}
+
+function composite(name,alpha,blotchy){
+  const c=L[name],g=c.getContext('2d');
+  g.save();g.globalCompositeOperation='destination-in';g.fillStyle=g.createPattern(tooth,'repeat');g.fillRect(0,0,W,H);g.restore();
+  g.save();g.globalCompositeOperation='source-in';g.fillStyle=INK[name];g.fillRect(0,0,W,H);g.restore();
+  ctx.save();ctx.globalCompositeOperation='multiply';ctx.globalAlpha=alpha||1;ctx.drawImage(c,0,0);ctx.restore();}
+
+// ---------- the paper boat ----------
+// local coords: hull top edge y=0 from -100..100, keel at y=40, sail peak at y=-80
+function boatParts(){
+  return {
+    hull:[[-104,-2],[-64,40],[64,40],[104,-2]],
+    rim:[[-104,-2],[104,-2]],
+    brim:[[-90,11],[90,11]],
+    sail:[[-66,-2],[-4,-96],[62,-2]],
+    crease:[[-4,-96],[-2,-2]],
+    fold:[[-66,-2],[-30,-20]],fold2:[[62,-2],[28,-18]],
+  };}
+function xf(pts,b){const c=Math.cos(b.ang),s=Math.sin(b.ang);const sqx=1+(b.sq||0),sqy=1/(1+(b.sq||0));
+  return pts.map(p=>{const x=p[0]*b.s*sqx,y=p[1]*b.s*sqy;return[b.x+x*c-y*s,b.y+x*s+y*c];});}
+function drawBoat(layer,b,o){
+  const P=boatParts(),seed=o.seed||1;const w=o.w||2.4,al=o.alpha===undefined?0.95:o.alpha;
+  const k={w:w,alpha:al,jit:o.jit||0.7,over:o.over===undefined?3:o.over,dbl:o.dbl===undefined?0.5:o.dbl,taper:0.1};
+  let i=0;
+  for(const key of ['hull','rim','sail','crease','brim','fold','fold2']){
+    const kk=Object.assign({},k,{seed:seed*50+(i++)});
+    if(key==='brim'||key==='fold'||key==='fold2'||key==='crease'){kk.w=w*0.7;kk.alpha=al*0.8;}
+    stroke(layer,xf(P[key],b),kk);}
+}
+function boatConstruction(layer,b,o){
+  const seed=o.seed||2,al=o.alpha||0.7,w=o.w||1.3;
+  // bounding ellipse of hull
+  const e=ellipsePts(0,14,118,38,0,0,Math.PI*2+0.3,40);stroke(layer,xf(e,b),{w:w,alpha:al,jit:1.4,seed:seed,smooth:true});
+  // centre / tilt axis, overshooting
+  stroke(layer,xf([[-150,6],[150,6]],b),{w:w,alpha:al*0.8,jit:1,seed:seed+1});
+  stroke(layer,xf([[-3,-112],[-1,56]],b),{w:w,alpha:al*0.8,jit:1,seed:seed+2});
+  // rough sail triangle, looser
+  stroke(layer,xf([[-74,4],[-6,-106],[70,4]],b),{w:w,alpha:al*0.7,jit:2.2,seed:seed+3});
+  // rough hull box
+  stroke(layer,xf([[-112,-6],[-70,46],[70,46],[114,-8]],b),{w:w,alpha:al*0.6,jit:2.4,seed:seed+4});
+}
+function boatPeak(b){return xf([[-4,-96]],b)[0];}
+function boatKeel(b){return xf([[0,40]],b)[0];}
+
+// ---------- slate + counter ----------
+function slate(title,seed){
+  write(L.gray,'PROD. 2026-A   SEQ. 3   SC. 12',70,86,17,{w:1.5,alpha:0.95,seed:seed,jit:0.2});
+  const tw=write(L.red,title,70,132,29,{w:2.4,alpha:0.95,seed:seed+1,jit:0.35});
+  stroke(L.red,[[66,145],[70+tw*0.5,143],[70+tw+10,146]],{w:2.2,alpha:0.9,jit:0.8,seed:seed+2,smooth:true,taper:0.25});
+}
+function counter(num,label,circled,seed){
+  const size=34;const tw=textWidth(num,size);const x=1198-tw/2;
+  write(L.gray,num,x,650,size,{w:2.4,alpha:0.95,seed:seed,jit:0.3});
+  if(circled)loop(L.gray,1198,633,tw/2+22,26,{w:1.6,alpha:0.8,seed:seed+3,jit:0.8});
+  const lw=textWidth(label,15);write(L.gray,label,1198-lw/2,690,15,{w:1.4,alpha:0.9,seed:seed+5,jit:0.2});
+}
+function circNum(layer,num,cx,cy,o){o=o||{};const size=o.size||17;const tw=textWidth(num,size);
+  write(layer,num,cx-tw/2,cy+size/2,size,{w:1.5,alpha:o.alpha||0.9,seed:o.seed||5,jit:0.25});
+  loop(layer,cx,cy,tw/2+13,size*0.95,{w:1.3,alpha:(o.alpha||0.9)*0.85,seed:(o.seed||5)+9,jit:0.6});}
+// dashed arc with cross ticks
+function dashedArc(layer,pts,o){
+  const C=catmull(pts,4);const R=resample(C,3);let s=o.seed||9;const dash=o.dash||5,gap=o.gap||4;
+  let i=0;while(i<R.length-1){const j=Math.min(R.length-1,i+dash);stroke(layer,R.slice(i,j+1),{w:o.w||1.4,alpha:o.alpha||0.8,jit:0.3,seed:s++,taper:0.3});i=j+gap;}
+  if(o.ticks){for(let k=o.tickEvery;k<R.length-2;k+=o.tickEvery){const a=R[k-1],b=R[k+1];const dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy)||1;
+    const nx=-dy/d*6,ny=dx/d*6;stroke(layer,[[R[k][0]-nx,R[k][1]-ny],[R[k][0]+nx,R[k][1]+ny]],{w:1.2,alpha:(o.alpha||0.8)*0.9,jit:0.2,seed:s++,taper:0.3});}}
+  return R;}
+function arrow(layer,pts,o){const C=catmull(pts,4);stroke(layer,C,Object.assign({w:1.4,alpha:0.85,jit:0.5,taper:0.12},o));
+  const n=C.length,a=C[n-4]||C[0],b=C[n-1];const ang=Math.atan2(b[1]-a[1],b[0]-a[0]);const hl=11;
+  stroke(layer,[[b[0]-Math.cos(ang-0.45)*hl,b[1]-Math.sin(ang-0.45)*hl],b,[b[0]-Math.cos(ang+0.45)*hl,b[1]-Math.sin(ang+0.45)*hl]],Object.assign({w:1.4,alpha:0.85,jit:0.3,taper:0.2},o,{seed:(o.seed||1)+77}));}
+
+// hatching inside polygon (fast strokes)
+function hatch(layer,poly,ang,sp,o){
+  const g=layer.getContext('2d');g.save();g.beginPath();g.moveTo(poly[0][0],poly[0][1]);for(const p of poly)g.lineTo(p[0],p[1]);g.closePath();g.clip();
+  if(o.clipOut){g.beginPath();g.rect(0,0,W,H);for(const q of o.clipOut){g.moveTo(q[0][0],q[0][1]);for(const p of q)g.lineTo(p[0],p[1]);g.closePath();}g.clip('evenodd');}
+  const r=mulberry32(o.seed||5);const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]);
+  const cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;const R=Math.hypot(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys))/2+20;
+  const dx=Math.cos(ang),dy=Math.sin(ang);
+  for(let d=-R;d<R;d+=sp*(0.7+r()*0.6)){const ox=cx-dy*d,oy=cy+dx*d;
+    let a=o.dens?o.dens(ox,oy):1;for(const c of CLEAR){const dd=Math.hypot(ox-c[0],oy-c[1]);}if(r()>a)continue;
+    const L0=R*(0.9+r()*0.2);
+    // broken strokes: split into 1-3 pieces
+    let t=-L0;while(t<L0){const len=40+r()*160;const t2=Math.min(L0,t+len);
+      {const mx=ox+dx*(t+t2)/2,my=oy+dy*(t+t2)/2;let keep=1;for(const c of CLEAR){keep*=Math.max(0,Math.min(1,(Math.hypot(mx-c[0],my-c[1])-c[2])/c[3]));}if(r()>keep){t=t2+r()*o.gap;continue;}}
+      fast(layer,[[ox+dx*t,oy+dy*t],[ox+dx*(t+t2)/2+(r()-0.5)*2,oy+dy*(t+t2)/2+(r()-0.5)*2],[ox+dx*t2,oy+dy*t2]],{w:o.w||1,alpha:(o.alpha||0.35)*(0.6+r()*0.5),jit:0.8,seed:Math.floor(r()*1e6)});
+      t=t2+r()*o.gap;}}
+  g.restore();}
+
+let CLEAR=[];
+function reset(){CLEAR=[];L={blue:mk(),gray:mk(),red:mk(),purple:mk()};ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;}
+function finish(){composite('blue',0.95);composite('gray',0.92);composite('red',1);}
+
+// ================= FRAME A: the run, dawn, on twos =================
+function frameA(){
+  reset();paper(21);
+  const hz=420;
+  // --- graphite background layout ---
+  // horizon, broken
+  const r=mulberry32(4);
+  let x=-10;while(x<W+10){const l=90+r()*260;stroke(L.gray,[[x,hz+(r()-0.5)*1.5],[x+l*0.5,hz+(r()-0.5)*2],[x+l,hz+(r()-0.5)*1.5]],{w:1.3,alpha:0.7,jit:0.6,seed:Math.floor(r()*1e5),taper:0.15});x+=l+4+r()*14;}
+  // sun: half disc on horizon, with rays
+  const sc=[905,hz];stroke(L.gray,ellipsePts(sc[0],sc[1],64,64,0,Math.PI+0.05,Math.PI*2-0.02,40),{w:1.6,alpha:0.85,jit:0.6,seed:31,smooth:true,over:4});
+  stroke(L.gray,ellipsePts(sc[0],sc[1],70,70,0,Math.PI+0.3,Math.PI*1.7,30),{w:1,alpha:0.4,jit:1.2,seed:32,smooth:true});
+  for(let i=0;i<13;i++){const a=Math.PI+0.18+i*(Math.PI-0.36)/12;const r1=86+(i%2)*6,r2=r1+(i%2?26:42);
+    stroke(L.gray,[[sc[0]+Math.cos(a)*r1,sc[1]+Math.sin(a)*r1],[sc[0]+Math.cos(a)*r2,sc[1]+Math.sin(a)*r2]],{w:1.3,alpha:0.7,jit:0.3,seed:40+i,taper:0.3});}
+  // sun glitter path on water
+  const rg=mulberry32(12);
+  for(let i=0;i<34;i++){const y=hz+10+Math.pow(i/34,1.4)*250;const spread=18+(y-hz)*0.55;const cx=sc[0]+(rg()-0.5)*spread*1.6;const l=10+(y-hz)*0.12+rg()*16;
+    stroke(L.gray,[[cx-l/2,y],[cx+l/2,y+(rg()-0.5)]],{w:1.1+(y-hz)/260,alpha:0.55,jit:0.3,seed:100+i,taper:0.35});}
+  // water ripples: sparse near horizon, bigger closer
+  for(let i=0;i<60;i++){const t=rg();const y=hz+12+t*t*270;const xx=rg()*W;if(Math.abs(xx-sc[0])<60)continue;const l=14+t*60+rg()*20;
+    if(xx>150&&xx<560&&y>455&&y<560)continue; // keep boat zone clean
+    stroke(L.gray,[[xx-l/2,y],[xx,y-1.5-t*3],[xx+l/2,y]],{w:0.9+t*0.8,alpha:0.45,jit:0.4,seed:300+i,smooth:true,taper:0.35});}
+  // clouds: simple outlines, like layout props
+  function cloud(cx,cy,s,seed){const rr=mulberry32(seed);const bumps=[[-62,14],[-30,26],[10,34],[48,22],[78,10]];
+    for(let i=0;i<bumps.length;i++){const [bx,br]=bumps[i];const R=br*s*(0.95+rr()*0.15);const l=i===0?-84:(bumps[i-1][0]+bx)/2,rt=i===bumps.length-1?90:(bumps[i+1][0]+bx)/2;
+      const p=[[cx+l*s,cy-(i===0?0:4*s)],[cx+(l+bx)/2*s,cy-R*0.8],[cx+bx*s,cy-R],[cx+(rt+bx)/2*s,cy-R*0.8],[cx+rt*s,cy-(i===bumps.length-1?0:4*s)]];
+      stroke(L.gray,p,{w:1.3,alpha:0.62,jit:0.6,seed:seed+i*7,smooth:true,taper:0.15});}
+    stroke(L.gray,[[cx-92*s,cy+2],[cx+96*s,cy+1]],{w:1,alpha:0.5,jit:0.6,seed:seed+1,taper:0.2});}
+  cloud(640,215,1.1,501);cloud(1090,160,0.8,502);cloud(300,300,0.7,503);
+  // gulls
+  for(const [gx,gy,gs] of [[760,285,1],[800,262,0.75]]){stroke(L.gray,[[gx-14*gs,gy-2],[gx-6*gs,gy-7*gs],[gx,gy]],{w:1.3,alpha:0.75,seed:gx,smooth:true});stroke(L.gray,[[gx,gy],[gx+7*gs,gy-8*gs],[gx+15*gs,gy-3]],{w:1.3,alpha:0.75,seed:gx+1,smooth:true});}
+
+  // --- the run: pose library keyed by frame (on twos) ---
+  const poses={45:{x:175,y:520,s:0.98,ang:0.07,sq:0.06},51:{x:310,y:506,s:0.98,ang:-0.03,sq:-0.04},57:{x:450,y:510,s:1.06,ang:-0.1,sq:0}};
+  // blue construction layout: bob path + waterline guides
+  stroke(L.blue,[[60,548],[640,548]],{w:1.2,alpha:0.55,jit:1,seed:61});
+  stroke(L.blue,[[80,470],[620,440]],{w:1,alpha:0.35,jit:1.4,seed:62});
+  // onion skins (older = fainter)
+  drawBoat(L.blue,poses[45],{w:2.3,alpha:0.3,seed:45,dbl:0.3});boatConstruction(L.blue,poses[45],{alpha:0.16,seed:450});
+  drawBoat(L.blue,poses[51],{w:2.3,alpha:0.4,seed:51,dbl:0.3});boatConstruction(L.blue,poses[51],{alpha:0.2,seed:510});
+  // path of the sail peak, dashed with ticks
+  const pk=[45,51,57].map(f=>boatPeak(poses[f]));
+  dashedArc(L.blue,[[pk[0][0]-60,pk[0][1]+14],pk[0],pk[1],pk[2],[pk[2][0]+70,pk[2][1]-10]],{alpha:0.8,w:1.4,seed:71,ticks:true,tickEvery:14});
+  // current drawing: blue rough under red clean
+  boatConstruction(L.blue,poses[57],{alpha:0.75,seed:570,w:1.4});
+  drawBoat(L.blue,Object.assign({},poses[57],{x:poses[57].x-3,y:poses[57].y+2}),{w:1.6,alpha:0.5,seed:571,jit:1.8,dbl:0});
+  drawBoat(L.red,poses[57],{w:3.3,alpha:1,seed:57,dbl:0.6});
+  // red wake + waterline (part of the drawing)
+  const b=poses[57];
+  const wl=(lx,ly)=>xf([[lx,ly]],b)[0];
+  // waterline hugging the hull, bow wave, and a V wake opening behind (to the left)
+  stroke(L.red,[wl(-78,28),wl(-30,33),wl(30,31),wl(80,24)],{w:1.8,alpha:0.85,jit:0.5,seed:581,smooth:true});
+  stroke(L.red,[wl(84,22),wl(104,14),wl(120,20)],{w:1.6,alpha:0.8,seed:585,smooth:true});
+  stroke(L.red,[wl(-86,30),wl(-118,27),wl(-150,27)],{w:1.5,alpha:0.7,seed:582,smooth:true,taper:0.4});
+  stroke(L.red,[wl(-80,38),wl(-116,44),wl(-156,47)],{w:1.5,alpha:0.6,seed:583,smooth:true,taper:0.4});
+  // circled key numbers under the drawings (graphite)
+  circNum(L.gray,'45',poses[45].x,612,{seed:901,alpha:0.7});circNum(L.gray,'51',poses[51].x,612,{seed:902,alpha:0.7});circNum(L.gray,'57',poses[57].x,612,{seed:903,alpha:0.85});
+  for(const f of [45,51,57])stroke(L.gray,[[poses[f].x,560],[poses[f].x,590]],{w:1,alpha:0.5,seed:f+950});
+  slate('SETTING OUT (DAWN)',1001);
+  counter('57','ON TWOS',true,1101);
+  finish();
+}
+
+// ================= FRAME B: storm peak, frozen and dissected =================
+function frameB(){
+  reset();paper(22);
+  // wave comes from upper right and breaks LEFT over the boat. face = trough (lower left) up to under the lip.
+  CLEAR=[[1198,655,40,60]];
+  const face=[[40,652],[250,634],[430,596],[575,540],[690,470],[780,392],[840,312],[872,236],[884,176]];
+  // lip outer contour, right edge -> crest -> thrown forward -> curling down
+  const lipTop=[[1290,128],[1180,78],[1060,44],[960,38],[870,56],[800,96],[764,146],[772,186],[806,196],[828,172],[824,150]];
+  const lipUnder=[[824,150],[850,150],[884,176]];
+  const faceC=catmull(face,4);
+  const body=faceC.concat(lipUnder.slice().reverse(),lipTop.slice().reverse(),[[1290,720],[40,720]]);
+  // --- storm sky: light graphite hatching around a clearing where the light breaks through ---
+  const gap=ellipsePts(600,58,74,40,-0.1,0,Math.PI*2,30);
+  const beam=[[560,70],[652,62],[720,440],[600,470]];
+  const skyMass=[[470,0],[1280,0],[1280,260],[980,240],[760,200],[620,150],[520,120],[480,70]];
+  // light falloff: hatching thins toward the clearing and along the beam (no hard edges)
+  const beamD=(x,y)=>{const t=Math.max(0,Math.min(1,(y-58)/400));const cx=606+t*54,hw=40+t*30;return Math.abs(x-cx)/hw;};
+  const lightK=(x,y)=>{const g=Math.hypot((x-600)/90,(y-58)/55);const k=Math.min(g,y<470?beamD(x,y):9);return Math.max(0,Math.min(1,(k-0.6)/1.4));};
+  const soft=(x,y)=>Math.max(0,Math.min(1,0.35+(x-470)/450-(y)/1000))*lightK(x,y);
+  hatch(L.gray,skyMass,-0.35,6.5,{seed:5,alpha:0.36,w:1.1,gap:14,clipOut:[body],dens:soft});
+  hatch(L.gray,skyMass,0.95,8,{seed:6,alpha:0.28,w:1,gap:20,clipOut:[body],dens:(x,y)=>soft(x,y)*0.85});
+  const r=mulberry32(33);
+  // scalloped underside of the storm cloud
+  stroke(L.gray,[[480,40],[500,74],[536,92],[560,118]],{w:1.3,alpha:0.5,jit:1.4,seed:41,smooth:true});
+  // clearing rim + beam edges aimed at the boat
+  for(let i=0;i<6;i++){const a0=[572+i*12,70],a1=[586+i*22,300+i*26];stroke(L.gray,[a0,a1],{w:0.9,alpha:0.2+0.04*(i%2),jit:0.6,seed:43+i,taper:0.4});}
+  // rain slanting in from the right, never inside the beam
+  const inBeam=(x,y)=>{const t=Math.max(0,Math.min(1,(y-66)/390));return x>560+t*40-6&&x<652+t*68+6&&y<470;};
+  for(let i=0;i<220;i++){const x=470+r()*810,y=r()*440;if(inBeam(x,y)||y>150+(x-470)*0.9)continue;const l=12+r()*16;fast(L.gray,[[x,y],[x-l*0.4,y+l]],{w:1,alpha:0.38,jit:0.3,seed:i});}
+  // --- wave body: graphite hatching, darkest in the tube under the lip ---
+  hatch(L.gray,body,-0.6,4,{seed:7,alpha:0.58,w:1.2,gap:8,dens:(x,y)=>Math.min(1,0.45+(x-300)/600+(560-y)/600)});
+  hatch(L.gray,body,0.4,4.6,{seed:8,alpha:0.5,w:1.1,gap:12,dens:(x,y)=>Math.max(0,Math.min(1,(x-560)/380+(460-y)/380))});
+  hatch(L.gray,body,1.2,6,{seed:10,alpha:0.3,w:1,gap:14,dens:(x,y)=>Math.max(0,Math.min(1,(x-760)/300+(300-y)/300))});
+  // tube shadow: dense band just under the lip on the face
+  const tube=[[884,176],[850,150],[824,150],[828,172],[806,196],[812,226],[852,236],[872,236],[884,176],[960,150],[1040,120],[1100,110],[1000,210],[930,300],[860,330],[872,236]];
+  hatch(L.gray,body,-0.25,2.6,{seed:9,alpha:0.62,w:1.2,gap:4,dens:(x,y)=>{const d=Math.hypot(x-920,y-180);return Math.max(0,1.2-d/200);}});
+  hatch(L.gray,body,1.1,3,{seed:19,alpha:0.55,w:1.1,gap:5,dens:(x,y)=>{const d=Math.hypot(x-940,y-160);return Math.max(0,1.2-d/170);}});
+  // contours
+  stroke(L.gray,face,{w:2.6,alpha:0.95,jit:0.9,seed:11,smooth:true,taper:0.06,over:4});
+  stroke(L.gray,lipTop,{w:2.6,alpha:0.95,jit:0.8,seed:12,smooth:true,taper:0.06});
+  stroke(L.gray,lipUnder,{w:1.8,alpha:0.85,jit:0.6,seed:13,smooth:true});
+  // spray thrown off the lip: scribble loops + flecks
+  // spray: short flicked strokes thrown forward (left) off the lip
+  {const lp=catmull(lipTop,6);for(let i=0;i<46;i++){const q=lp[Math.floor(r()*(lp.length*0.7))];const d=6+r()*26;const x=q[0]-r()*14,y=q[1]-4-r()*18;
+    stroke(L.gray,[[x,y],[x-d,y-d*0.25+r()*6]],{w:1.1,alpha:0.55,jit:0.3,seed:700+i,taper:0.4});}}
+  for(let i=0;i<40;i++){const x=730+r()*140,y=110+r()*140;fast(L.gray,[[x,y],[x+1.5,y+1.5]],{w:1.8,alpha:0.6,jit:0,seed:i+500});}
+  // flow lines on the face
+  for(let k=0;k<5;k++){const off=36+k*44;stroke(L.gray,faceC.filter((p,i)=>i%3===0).map(p=>[p[0]+off*0.7,p[1]+off*0.5]).filter(p=>p[1]<712&&p[0]<1270&&p[1]>150),{w:1,alpha:0.38,jit:1.4,seed:20+k,taper:0.3,smooth:true});}
+  // --- blue construction of the wave: rhythm curve + curl circle ---
+  stroke(L.blue,[[40,712],[420,650],[720,470],[860,250],[900,120],[980,60]],{w:1.4,alpha:0.55,jit:1.6,seed:51,smooth:true,over:10});
+  stroke(L.blue,ellipsePts(840,150,82,64,0,0,Math.PI*2+0.3,36),{w:1.2,alpha:0.45,jit:1.8,seed:52,smooth:true});
+
+  // --- pose library: the climb, keyed by frame (sat on the face surface) ---
+  function onFace(x,dAng,sq,s){let i=0;while(i<faceC.length-2&&faceC[i][0]<x)i++;const p=faceC[i],q=faceC[Math.min(faceC.length-1,i+2)],pp=faceC[Math.max(0,i-2)];
+    const ang=Math.atan2(q[1]-pp[1],q[0]-pp[0])+dAng;const sink=33*s;return{x:p[0]+Math.sin(ang)*sink,y:p[1]-Math.cos(ang)*sink,s:s,ang:ang,sq:sq};}
+  const S=0.64;
+  const poses={108:onFace(190,0.2,0,S),115:onFace(318,-0.02,0.26,S),119:onFace(440,-0.08,-0.22,S),124:onFace(548,-0.02,-0.08,S),131:onFace(662,0,0,0.68)};
+  const onion=[108,115,119,124];
+  onion.forEach((f,i)=>{const b=poses[f];boatConstruction(L.blue,b,{alpha:0.2,seed:f*3,w:1.1});drawBoat(L.blue,b,{w:2.6,alpha:0.34+i*0.02,seed:f,dbl:0.3,over:2});});
+  const pk=[108,115,119,124,131].map(f=>boatPeak(poses[f]));
+  dashedArc(L.blue,[[pk[0][0]-50,pk[0][1]+4]].concat(pk,[[pk[4][0]+70,pk[4][1]-90],[pk[4][0]+110,pk[4][1]-180]]),{alpha:0.95,w:1.7,seed:81,ticks:true,tickEvery:12});
+  boatConstruction(L.blue,poses[131],{alpha:0.7,seed:1310,w:1.3});
+  drawBoat(L.red,poses[131],{w:2.9,alpha:1,seed:131,dbl:0.6,over:2});
+  const b=poses[131];const wl=(lx,ly)=>xf([[lx,ly]],b)[0];
+  stroke(L.red,[wl(-80,28),wl(0,32),wl(80,26)],{w:1.6,alpha:0.8,seed:1320,smooth:true});
+  stroke(L.red,[wl(84,20),wl(110,6),wl(128,-6)],{w:1.5,alpha:0.75,seed:1321,smooth:true});
+  stroke(L.red,[wl(-90,32),wl(-150,40),wl(-210,40)],{w:1.4,alpha:0.6,seed:1322,smooth:true,taper:0.4});
+  // circled frame numbers below each key
+  [108,115,119,124,131].forEach(f=>{const b=poses[f];const kp=boatKeel(b);const cx=b.x+18,cy=Math.min(700,kp[1]+58);
+    stroke(L.gray,[[b.x+6,kp[1]+10],[cx,cy-18]],{w:1,alpha:0.5,seed:f+700});
+    circNum(L.gray,String(f),cx,cy,{seed:f+800,alpha:0.85,size:15});});
+
+  // --- spacing chart under the slate ---
+  const sy=182;
+  write(L.gray,'SPACING  ·  ANTIC > CLIMB  ·  ON ONES',70,sy,15,{w:1.4,alpha:0.9,seed:1201,jit:0.2});
+  const rx0=72,rx1=470,ry=252;
+  stroke(L.gray,[[rx0,ry],[rx1,ry]],{w:1.4,alpha:0.85,seed:1202,jit:0.4});
+  const nT=22;for(let i=0;i<=nT;i++){const u=i/nT;const e=0.5-0.5*Math.cos(Math.PI*u);const x=rx0+e*(rx1-rx0);const tall=(i%5===0)?11:6;
+    stroke(L.gray,[[x,ry-tall],[x,ry+tall]],{w:1.1,alpha:0.8,seed:1210+i,jit:0.2,taper:0.25});}
+  [[108,0],[115,0.3],[119,0.5],[124,0.68],[131,1]].forEach(([f,u],i)=>{const e=0.5-0.5*Math.cos(Math.PI*u);const x=rx0+e*(rx1-rx0);circNum(L.gray,String(f),x,218,{seed:1300+i,size:12,alpha:0.85});});
+
+  // --- principle labels with arrows ---
+  function label(str,x,y,size,seed){return write(L.gray,str,x,y,size,{w:1.7,alpha:0.95,seed:seed,jit:0.25});}
+  label('ANTICIPATION',48,468,19,1401);
+  arrow(L.gray,[[118,478],[146,522],[166,560]],{seed:1402});
+  label('SQUASH',236,400,19,1403);
+  arrow(L.gray,[[284,408],[300,468],[306,528]],{seed:1404});
+  label('STRETCH',356,322,19,1405);
+  arrow(L.gray,[[404,330],[420,400],[430,466]],{seed:1406});
+  label('ARC',566,268,22,1407);
+  arrow(L.gray,[[620,258],[672,252],[716,288]],{seed:1408});
+
+  slate('STORM PEAK (WAVE)',1001);
+  counter('131','ONES',true,1111);
+  finish();
+  stamp(1030,520,-0.13);
+}
+
+// ---------- APPROVED rubber stamp ----------
+function stamp(cx,cy,rot){
+  const c=mk(),g=c.getContext('2d');
+  const bw=textWidth('APPROVED',50)+84,bh=128;
+  g.save();g.translate(cx,cy);g.rotate(rot);g.strokeStyle='#000';g.lineJoin='round';
+  function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.lineTo(x+w-r,y);g.quadraticCurveTo(x+w,y,x+w,y+r);g.lineTo(x+w,y+h-r);g.quadraticCurveTo(x+w,y+h,x+w-r,y+h);g.lineTo(x+r,y+h);g.quadraticCurveTo(x,y+h,x,y+h-r);g.lineTo(x,y+r);g.quadraticCurveTo(x,y,x+r,y);g.closePath();}
+  g.lineWidth=6;rr(-bw/2,-bh/2,bw,bh,12);g.stroke();
+  g.lineWidth=2.2;rr(-bw/2+10,-bh/2+10,bw-20,bh-20,7);g.stroke();
+  g.restore();
+  // letters via stroke font on a temp layer, transformed
+  const tl=mk();
+  const big='APPROVED',bs=50;const bwid=textWidth(big,bs);
+  const tmpL={getContext:()=>tl.getContext('2d')};
+  // draw letters in local space then rotate by drawing onto c with transform
+  const lc=mk();write(lc,big,640-bwid/2,360+6,bs,{w:7.6,alpha:1,seed:77,jit:0.15});
+  const small="PENCIL TEST · SC. 12 · SEP 29 '26",ss=12;const swid=textWidth(small,ss);
+  write(lc,small,640-swid/2,360+36,ss,{w:1.9,alpha:1,seed:78,jit:0.1});
+  stroke(lc,[[640-bwid/2,360+15],[640+bwid/2,360+15]],{w:1.6,alpha:1,seed:79,jit:0.2});
+  g.save();g.translate(cx,cy);g.rotate(rot);g.drawImage(lc,-640,-360-10);g.restore();
+  // ink texture: coarse dropout noise + fine tooth
+  const n=mk(),q=n.getContext('2d');const r=mulberry32(99);
+  q.fillStyle='#000';q.fillRect(0,0,W,H);q.globalCompositeOperation='destination-out';
+  for(let i=0;i<900;i++){const x=cx-190+r()*380,y=cy-110+r()*220,rad=1+r()*r()*7;q.globalAlpha=0.35+r()*0.6;q.beginPath();q.arc(x,y,rad,0,7);q.fill();}
+  // pressure falloff on one side
+  q.globalCompositeOperation='destination-out';const gr=q.createLinearGradient(cx-180,cy,cx+180,cy);gr.addColorStop(0,'rgba(0,0,0,0.35)');gr.addColorStop(0.5,'rgba(0,0,0,0)');gr.addColorStop(1,'rgba(0,0,0,0.1)');q.globalAlpha=1;q.fillStyle=gr;q.fillRect(0,0,W,H);
+  g.save();g.globalCompositeOperation='destination-in';g.drawImage(n,0,0);g.restore();
+  L.purple=c;composite('purple',0.9);
+}
+
+window.drawFrame=function(which){if(which==='a')frameA();else frameB();window.DONE=true;};
+window.READY=true;
+</script>
+</body>
+</html>

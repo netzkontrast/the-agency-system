@@ -1,0 +1,362 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#000}canvas{display:block}</style>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const W = 1280, H = 720;
+
+// ---------- deterministic rng ----------
+function mulberry32(seed){
+  let a = seed >>> 0;
+  return function(){
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const SANS = "'Helvetica Neue', Helvetica, Arial, sans-serif";
+const MONO = "'SF Mono', Menlo, 'Courier New', monospace";
+
+// ---------- the paper boat silhouette ----------
+// waterline is local y=0. hull dips below, peaks rise above.
+function boatPath(s){
+  const p = new Path2D();
+  // hull (trapezoid)
+  p.moveTo(-0.54*s, 0);
+  p.lineTo( 0.54*s, 0);
+  p.lineTo( 0.30*s, 0.30*s);
+  p.lineTo(-0.30*s, 0.30*s);
+  p.closePath();
+  // central sail peak
+  p.moveTo(-0.34*s, 0.01*s);
+  p.lineTo( 0.03*s, -0.64*s);
+  p.lineTo( 0.34*s, 0.01*s);
+  p.closePath();
+  // bow + stern flaps
+  p.moveTo(-0.54*s, 0.01*s);
+  p.lineTo(-0.41*s, -0.155*s);
+  p.lineTo(-0.30*s, 0.01*s);
+  p.closePath();
+  p.moveTo( 0.30*s, 0.01*s);
+  p.lineTo( 0.41*s, -0.155*s);
+  p.lineTo( 0.54*s, 0.01*s);
+  p.closePath();
+  return p;
+}
+function drawBoat(x, y, s, rot, fill, seamColor, outline){
+  ctx.save();
+  ctx.translate(x, y); ctx.rotate(rot);
+  const p = boatPath(s);
+  if (outline){ ctx.lineWidth = outline.w; ctx.strokeStyle = outline.c; ctx.lineJoin='round'; ctx.stroke(p); }
+  ctx.fillStyle = fill; ctx.fill(p);
+  // paper fold seam inside the sail
+  if (seamColor){
+    ctx.strokeStyle = seamColor; ctx.lineWidth = Math.max(1, s*0.016);
+    ctx.beginPath(); ctx.moveTo(0.03*s, -0.60*s); ctx.lineTo(0.0*s, -0.02*s); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-0.50*s, 0.0); ctx.lineTo(0.50*s, 0.0); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// ---------- shared type helpers ----------
+function bigWord(word, x, y, color, size){
+  ctx.save();
+  ctx.font = '600 ' + size + 'px ' + SANS;
+  try{ ctx.letterSpacing = (-size*0.03) + 'px'; }catch(e){}
+  ctx.fillStyle = color;
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillText(word, x, y);
+  ctx.restore();
+}
+function mono(txt, x, y, color, size, spacing){
+  ctx.save();
+  ctx.font = '400 ' + size + 'px ' + MONO;
+  try{ ctx.letterSpacing = (spacing==null?1:spacing) + 'px'; }catch(e){}
+  ctx.fillStyle = color;
+  ctx.fillText(txt, x, y);
+  ctx.restore();
+}
+function dotGrid(x, y, cols, rows, gap, r, color, alpha){
+  ctx.save(); ctx.fillStyle = color; ctx.globalAlpha = alpha;
+  for (let i=0;i<cols;i++) for (let j=0;j<rows;j++){
+    ctx.beginPath(); ctx.arc(x+i*gap, y+j*gap, r, 0, 7); ctx.fill();
+  }
+  ctx.restore();
+}
+
+// =====================================================================
+// FRAME A — the white world. quant-terminal morning.
+// =====================================================================
+function frameA(){
+  const R = mulberry32(20260929);
+  ctx.fillStyle = '#fff'; ctx.fillRect(0,0,W,H);
+
+  const HORIZON = 440;
+  const BX = 358, BY = 556, BS = 118;
+
+  // --- the sea: a stack of thin chart series ---
+  let y = HORIZON + 8, gap = 5.0;
+  const seaLines = [];
+  while (y < H + 14){
+    seaLines.push(y);
+    y += gap; gap *= 1.062;
+  }
+  ctx.lineWidth = 1;
+  seaLines.forEach((base, idx) => {
+    const depth = idx / seaLines.length;           // 0 near horizon, 1 near bottom
+    const amp = 1.2 + depth*7.5;
+    const alpha = 0.10 + depth*0.13;
+    ctx.strokeStyle = 'rgba(0,0,0,' + alpha.toFixed(3) + ')';
+    ctx.beginPath();
+    const ph1 = R()*6.28, ph2 = R()*6.28, drift = (R()-0.5)*0.002;
+    for (let x=0; x<=W; x+=8){
+      let yy = base + amp*Math.sin(x*0.011 + ph1) + amp*0.5*Math.sin(x*0.031 + ph2) + x*drift;
+      // small jagged quant steps on some series
+      if (idx % 3 === 0) yy += (Math.floor(x/48)%2 ? 1 : -1) * amp*0.22;
+      if (x===0) ctx.moveTo(x,yy); else ctx.lineTo(x,yy);
+    }
+    ctx.stroke();
+  });
+
+  // --- horizon rule ---
+  ctx.strokeStyle = 'rgba(0,0,0,0.4)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0,HORIZON); ctx.lineTo(W,HORIZON); ctx.stroke();
+  // sun on the horizon: a small open circle rising (morning), pure line
+  ctx.strokeStyle = 'rgba(0,0,0,0.55)'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.arc(930, HORIZON, 26, Math.PI, 0); ctx.stroke();
+  mono('first light 05:51', 968, HORIZON - 10, '#999', 10);
+
+  // --- hero series: the boat's course, bold black ---
+  const hero = [];
+  // behind the boat: choppy walk from off-left up to the boat waterline
+  let hx = -20, hy = 596;
+  while (hx < BX - 30){
+    hero.push([hx, hy]);
+    hx += 22 + R()*10;
+    const pull = (BY + 4 - hy) * 0.16;
+    hy += pull + (R()-0.5)*26;
+  }
+  hero.push([BX - 28, BY + 3]);
+  hero.push([BX + 30, BY + 3]);      // flat under the hull
+  // ahead of the boat: rising, jagged, confident
+  hx = BX + 30; hy = BY + 3;
+  while (hx < W + 20){
+    hx += 20 + R()*14;
+    const trend = -0.062 * (hx - BX);
+    hy = BY + trend + (R()-0.5)*20;
+    if (R() < 0.1) hy -= 16;         // occasional pop
+    hero.push([hx, Math.max(hy, HORIZON + 26)]);
+  }
+  ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.lineJoin = 'miter';
+  ctx.beginPath();
+  hero.forEach((p,i)=>{ if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); });
+  ctx.stroke();
+
+  // --- dashed crosshair locked on the boat ---
+  ctx.save();
+  ctx.strokeStyle = 'rgba(0,0,0,0.5)'; ctx.lineWidth = 1; ctx.setLineDash([5,5]);
+  ctx.beginPath(); ctx.moveTo(0, BY); ctx.lineTo(W, BY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(BX, 96); ctx.lineTo(BX, H); ctx.stroke();
+  ctx.restore();
+
+  // --- the boat: the one dark shape ---
+  drawBoat(BX, BY, BS, -0.055, '#000', 'rgba(255,255,255,0.55)');
+  // waterline cut: white slivers across the hull so it sits IN the water
+  ctx.save();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 2.2;
+  ctx.beginPath();
+  for (let x = BX-70; x <= BX+70; x += 6){
+    const yy = BY + 12 + 2.6*Math.sin(x*0.09 + 1.3);
+    if (x === BX-70) ctx.moveTo(x,yy); else ctx.lineTo(x,yy);
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  // --- live number callout at the crosshair ---
+  const cbx = BX + 26, cby = BY - 180;
+  ctx.strokeStyle = 'rgba(0,0,0,0.9)'; ctx.lineWidth = 1;
+  ctx.strokeRect(cbx, cby, 176, 52);
+  ctx.fillStyle = '#fff'; ctx.fillRect(cbx+1, cby+1, 174, 50);
+  mono('$2,071.79', cbx + 14, cby + 24, '#000', 17, 0.5);
+  mono('day 001 · heading east', cbx + 14, cby + 41, '#999', 10);
+  // tick marker where the crosshair meets the course
+  ctx.fillStyle = '#000';
+  ctx.beginPath(); ctx.arc(BX, BY, 3.2, 0, 7); ctx.fill();
+  ctx.strokeStyle = '#000'; ctx.lineWidth = 1;
+  ctx.strokeRect(BX-7, BY-7, 14, 14);
+
+  // --- big split line: "setting ... out" ---
+  bigWord('setting', 76, 208, '#000', 118);
+  bigWord('out', 858, 348, '#999', 118);
+
+  // --- editorial furniture ---
+  mono('the paper boat — a launch film', 78, 62, '#999', 11);
+  mono('fig. 01 / departure', 78, 80, '#999', 10);
+  ctx.strokeStyle = 'rgba(0,0,0,0.8)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(78, 94); ctx.lineTo(292, 94); ctx.stroke();
+  dotGrid(1082, 56, 10, 5, 10, 1.4, '#000', 0.7);
+  mono('calm regime', 1082, 122, '#999', 10);
+
+  // bottom time axis
+  for (let i=0;i<8;i++){
+    const x = 78 + i*158;
+    const mns = 51 + i*12;
+    const t = '0' + (5 + Math.floor(mns/60)) + ':' + String(mns%60).padStart(2,'0');
+    mono(t, x, 708, '#999', 10);
+    ctx.strokeStyle = 'rgba(0,0,0,0.35)';
+    ctx.beginPath(); ctx.moveTo(x, 694); ctx.lineTo(x, 699); ctx.stroke();
+  }
+  // right price ladder
+  for (let i=0;i<5;i++){
+    const yy = 470 + i*52;
+    mono((2074 - i*8).toFixed(1), 1206, yy, '#999', 10);
+  }
+}
+
+// =====================================================================
+// FRAME B — the black world. liquid chrome storm.
+// =====================================================================
+// wave surface: big diagonal from upper right down to lower left
+function surfY(x){
+  return 620 - 0.40*x + 46*Math.sin(x*0.0042 + 1.1) + 18*Math.sin(x*0.011 + 3.0)
+       + 8*Math.sin(x*0.031 + 0.7) + 4*Math.sin(x*0.067 + 2.2);
+}
+function frameB(){
+  const R = mulberry32(777317);
+  ctx.fillStyle = '#000'; ctx.fillRect(0,0,W,H);
+
+  const BXB = 396;
+  const BYB = surfY(BXB) - 2;
+
+  const img = ctx.getImageData(0,0,W,H);
+  const d = img.data;
+
+  // flow direction of the wave (diagonal, down toward lower-left)
+  const th = -0.40, cs = Math.cos(th), sn = Math.sin(th);
+
+  // precompute surface per column
+  const S = new Float32Array(W);
+  for (let x=0;x<W;x++) S[x] = surfY(x);
+
+  for (let yy=0; yy<H; yy++){
+    for (let xx=0; xx<W; xx++){
+      const sy = S[xx];
+      const depth = yy - sy;              // >0 inside the wave
+      if (depth < 0) continue;            // sky stays pure black; light is halftone, drawn after
+      const i = (yy*W + xx)*4;
+      // ---- LIQUID CHROME: long molten streaks running down the face ----
+      const u = xx*cs - yy*sn;            // along the flow
+      const w = xx*sn + yy*cs;            // across the flow
+      const phase =
+        w*0.050 +
+        2.1*Math.sin(u*0.0085 + w*0.0032 + 0.6) +
+        1.0*Math.sin(u*0.026 + 1.7) +
+        0.45*Math.sin(w*0.115 + u*0.004);
+      const band = Math.sin(phase);
+      const spec = Math.pow(Math.max(band, 0), 11);
+      const base = 0.035 + 0.085*(0.5 + 0.5*Math.sin(phase*0.7 + 1.0));
+      const fade = Math.min(1, Math.max(0.05, 1 - depth/430));
+      let lum = base*fade + spec*(0.18 + 0.82*fade)*0.95;
+      // bright molten rim at the crest edge
+      if (depth < 3.5) lum = 1;
+      else if (depth < 15) lum = Math.max(lum, 1 - (depth-3.5)/11.5 * 0.85);
+      // calm dark pocket around the boat so the white shape owns its zone
+      const pdx = xx-BXB, pdy = yy-BYB;
+      const pocket = 1 - 0.88*Math.exp(-(pdx*pdx + pdy*pdy)/(2*105*105));
+      lum *= (depth > 14) ? pocket : Math.max(pocket, 0.30);
+      const v = Math.max(0, Math.min(255, lum*255));
+      d[i] = d[i+1] = d[i+2] = v; d[i+3] = 255;
+    }
+  }
+  ctx.putImageData(img, 0, 0);
+
+  // ---- SKY: one light fighting through, as a coarse halftone dot field ----
+  const LX = 500, LY = 130, LR = 170;
+  const CELL = 7;
+  // keep the captions readable: no dots in these zones
+  const keep = [[64,24,340,80],[84,296,330,352]];
+  ctx.fillStyle = '#fff';
+  for (let gy = Math.floor(CELL/2); gy < H; gy += CELL){
+    for (let gx = Math.floor(CELL/2) + ((Math.floor(gy/CELL)%2)?3:0); gx < W; gx += CELL){
+      const sy = S[Math.min(W-1, gx)];
+      if (gy > sy - 6) continue;                       // sky only
+      if (keep.some(k => gx>k[0] && gx<k[2] && gy>k[1] && gy<k[3])) continue;
+      const dx = gx-LX, dy = gy-LY;
+      let g = 0.95*Math.exp(-(dx*dx + dy*dy)/(2*LR*LR));
+      const rimD = sy - gy;                            // near the crest, light leaks
+      if (rimD < 34) g += 0.24*(1 - rimD/34)*Math.exp(-Math.abs(gx-620)/420);
+      g = Math.min(g, 0.9);
+      const r = g*2.7;
+      if (r < 0.42) continue;
+      ctx.beginPath(); ctx.arc(gx, gy, r, 0, 7); ctx.fill();
+    }
+  }
+
+  // ---- dot-grid rain slanting through the sky ----
+  ctx.save();
+  for (let k=0;k<110;k++){
+    const x0 = R()*W, y0 = R()*H*0.8;
+    const n = 4 + Math.floor(R()*8);
+    const a0 = 0.2 + R()*0.55;
+    for (let j=0;j<n;j++){
+      const x = x0 - j*2.8, y = y0 + j*10;
+      const xi = Math.max(0, Math.min(W-1, Math.floor(x)));
+      if (y > S[xi] - 8) break;                        // stay in the sky
+      ctx.globalAlpha = a0 * (1 - j/n);
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.arc(x, y, 1.3, 0, 7); ctx.fill();
+    }
+  }
+  ctx.restore();
+
+  // ---- spray torn off the crest, upper right ----
+  ctx.save();
+  ctx.fillStyle = '#fff';
+  for (let k=0;k<260;k++){
+    const x = 560 + R()*700;
+    const xi = Math.max(0, Math.min(W-1, Math.floor(x)));
+    const lift = Math.pow(R(), 2.2) * 60;
+    const y = S[xi] - 4 - lift;
+    if (y < 0) continue;
+    ctx.globalAlpha = 0.25 + R()*0.6*(1 - lift/60);
+    ctx.beginPath(); ctx.arc(x - lift*0.5, y, 0.9 + R()*1.2, 0, 7); ctx.fill();
+  }
+  ctx.restore();
+
+  // --- the boat: the one white shape, small, climbing the wave ---
+  const bx = BXB;
+  const by = BYB + 8;                          // hull in the water, not perched
+  const slope = (surfY(bx+24)-surfY(bx-24))/48;
+  const rot = Math.atan(slope) - 0.17;         // bow up, still pointing forward
+  drawBoat(bx, by, 106, rot, '#fff', 'rgba(0,0,0,0.5)', {w:6, c:'#000'});
+
+  // --- callout: dashed leader + live number ---
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,255,255,0.75)'; ctx.lineWidth = 1; ctx.setLineDash([4,5]);
+  ctx.beginPath(); ctx.moveTo(bx - 40, by - 52); ctx.lineTo(224, 330); ctx.stroke();
+  ctx.restore();
+  mono('$1,283.07', 100, 322, '#fff', 17, 0.5);
+  mono('day 014 · drawdown −38.2%', 100, 342, '#999', 10);
+
+  // --- big split line: "still ... forward" ---
+  bigWord('still', 76, 168, '#fff', 112);
+  bigWord('forward', 806, 660, '#999', 112);
+
+  // --- editorial furniture ---
+  mono('the paper boat — a launch film', 78, 48, '#999', 11);
+  mono('fig. 02 / the storm', 78, 66, '#999', 10);
+  dotGrid(1120, 46, 8, 4, 10, 1.4, '#fff', 0.8);
+  mono('volatility regime', 1120, 102, '#999', 10);
+}
+
+window.drawFrame = function(which){
+  if (which === 'a') frameA(); else frameB();
+  window.DONE = true;
+};
+window.READY = true;
+</script>

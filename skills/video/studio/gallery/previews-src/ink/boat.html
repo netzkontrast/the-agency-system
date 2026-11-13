@@ -1,0 +1,541 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ink boat</title>
+<style>html,body{margin:0;padding:0;background:#f3ede0}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+// THE PAPER BOAT in ink wash (sumi-e). Recipe informed by anidoodle (Apache-2.0):
+// five dilutions, hair-based brush with flying white, bleed halos at slow points,
+// baiwen cinnabar seal. Everything below is drawn in code, seeded, deterministic.
+const W = 1280, H = 720;
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+// ---------- deterministic rng + noise ----------
+function mulberry32(seed){
+  let a = seed >>> 0;
+  return function(){
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const clamp = (v,a,b)=>v<a?a:(v>b?b:v);
+const lerp = (a,b,t)=>a+(b-a)*t;
+function makeNoise(seed){
+  const r = mulberry32(seed);
+  const g = new Float64Array(512); for(let i=0;i<512;i++) g[i]=r();
+  const perm = new Uint8Array(256); for(let i=0;i<256;i++) perm[i]=i;
+  for(let i=255;i>0;i--){ const j=Math.floor(r()*(i+1)); const t=perm[i]; perm[i]=perm[j]; perm[j]=t; }
+  const P=i=>perm[i&255];
+  function n2(x,y){
+    const ix=Math.floor(x), iy=Math.floor(y), fx=x-ix, fy=y-iy;
+    const sx=fx*fx*(3-2*fx), sy=fy*fy*(3-2*fy);
+    const v=(a,b)=>g[P(P((ix+a)&255)+((iy+b)&255))];
+    return lerp(lerp(v(0,0),v(1,0),sx), lerp(v(0,1),v(1,1),sx), sy);
+  }
+  return function fbm(x,y,o){
+    o=o||2; let s=0, amp=0.6, f=1, tot=0;
+    for(let i=0;i<o;i++){ s+=n2(x*f+i*17.7,y*f+i*31.3)*amp; tot+=amp; amp*=0.5; f*=2.1; }
+    return s/tot;
+  };
+}
+const FBM = makeNoise(77);
+
+// ---------- ink: five dilutions of one stick ----------
+const JIAO=1, NONG=0.82, ZHONG=0.6, DAN=0.38, QING=0.2;
+function hex2rgb(h){ return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]; }
+const INK_BLACK=hex2rgb('#0f0d0c'), INK_COOL=hex2rgb('#39414a');
+function tone(v){
+  const t = clamp(1-v,0,1)*0.85;
+  const c = INK_BLACK.map((a,i)=>Math.round(lerp(a,INK_COOL[i],t)));
+  return { color:`rgb(${c[0]},${c[1]},${c[2]})`, alpha: clamp(0.08+0.92*Math.pow(clamp(v,0,1),0.95),0,1) };
+}
+const PAPER = '#f3ede0';
+
+// ---------- geometry ----------
+function smoothResample(ctrl, n){
+  // catmull-rom through ctrl, resampled to n points
+  const pts=[];
+  const P=ctrl;
+  const seg=24;
+  for(let i=0;i<P.length-1;i++){
+    const p0=P[Math.max(0,i-1)], p1=P[i], p2=P[i+1], p3=P[Math.min(P.length-1,i+2)];
+    for(let k=0;k<seg;k++){
+      const t=k/seg, t2=t*t, t3=t2*t;
+      pts.push([
+        0.5*((2*p1[0])+(-p0[0]+p2[0])*t+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3),
+        0.5*((2*p1[1])+(-p0[1]+p2[1])*t+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3)
+      ]);
+    }
+  }
+  pts.push(P[P.length-1].slice());
+  // arc-length resample
+  const cum=[0];
+  for(let i=1;i<pts.length;i++) cum.push(cum[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]));
+  const len=cum[cum.length-1], out=[];
+  let j=0;
+  for(let i=0;i<n;i++){
+    const s=len*i/(n-1);
+    while(j<cum.length-2 && cum[j+1]<s) j++;
+    const f=(s-cum[j])/((cum[j+1]-cum[j])||1);
+    out.push([lerp(pts[j][0],pts[j+1][0],f), lerp(pts[j][1],pts[j+1][1],f)]);
+  }
+  return { pts:out, len };
+}
+function profile(knots){
+  return function(t){
+    if(t<=knots[0][0]) return knots[0][1];
+    for(let i=1;i<knots.length;i++){
+      if(t<=knots[i][0]){
+        const f=(t-knots[i-1][0])/((knots[i][0]-knots[i-1][0])||1);
+        return lerp(knots[i-1][1],knots[i][1],f);
+      }
+    }
+    return knots[knots.length-1][1];
+  };
+}
+
+// ---------- THE BRUSH: hairs that spend their ink ----------
+// b: { ctrl, w, ink, press, load, dry, edge, split, bleed, wet, streak, slow, hairs, seed }
+// dry = fraction of the load spent over the WHOLE stroke (0.06 wash stays wet, 1.1 runs dry early)
+let OFF=null, OFFX=null;
+function brush(b){
+  const pre = smoothResample(b.ctrl, 64);
+  const n = Math.max(24, Math.min(900, Math.round(pre.len/2.2)));
+  const { pts, len } = smoothResample(b.ctrl, n);
+  const pr = profile(b.press || [[0,0.8],[0.2,1],[0.8,0.9],[1,0.3]]);
+  const T = tone(b.ink);
+  const dry = (b.dry==null?0.35:b.dry);
+  const split = b.split==null?0.5:b.split;
+  const wet = b.wet||0;
+  const load0 = b.load==null?1:b.load;
+  const edge = b.edge||0;
+  const nh = b.hairs || Math.max(10, Math.min(40, Math.round(b.w*1.2)));
+  const r = mulberry32(b.seed*7+3);
+  const streakV = b.streak?0.75:0.28;
+  const hairs=[];
+  for(let i=0;i<nh;i++){
+    const u = -1 + (2*(i+0.5))/nh + (r()-0.5)*(1.6/nh);
+    hairs.push({ u, load: load0*(1+edge*(u*u-0.33))*(1-streakV/2+streakV*r()) });
+  }
+  const nr = pts.map((_,i)=>{
+    const a=pts[Math.max(0,i-1)], q=pts[Math.min(n-1,i+1)];
+    const dx=q[0]-a[0], dy=q[1]-a[1], l=Math.hypot(dx,dy)||1;
+    return [-dy/l, dx/l];
+  });
+  const wid = i => b.w * pr(i/(n-1));
+
+  // 1) bleed layer: slow-point halos + feathers + wet-body halo, blurred, multiply
+  const bl = b.bleed==null?0.6:b.bleed;
+  if(bl>0){
+    ctx.save();
+    ctx.globalCompositeOperation='multiply';
+    ctx.filter = `blur(${(1.4+1.6*Math.min(1.5,bl)+3*wet).toFixed(1)}px)`;
+    ctx.fillStyle = T.color; ctx.strokeStyle = T.color; ctx.lineCap='round';
+    (b.slow||[]).forEach(([t,s],j)=>{
+      const i=Math.round(t*(n-1));
+      const r0 = wid(i)*(0.5+0.35*s)+2.5*s;
+      const [x,y]=pts[i];
+      const rr = mulberry32(b.seed*31+j);
+      ctx.globalAlpha = T.alpha*0.34*s*bl;
+      ctx.beginPath();
+      for(let a=0;a<18;a++){
+        const th=(a/18)*Math.PI*2;
+        const f=1+(FBM(Math.cos(th)*2+9+b.seed*0.13+j,Math.sin(th)*2+9)-0.5)*0.7;
+        const px=x+Math.cos(th)*r0*f, py=y+Math.sin(th)*r0*f;
+        a?ctx.lineTo(px,py):ctx.moveTo(px,py);
+      }
+      ctx.closePath(); ctx.fill();
+      // feathers wicking along single fibres
+      ctx.lineWidth=0.55;
+      const nf = Math.round(10+14*s);
+      for(let q2=0;q2<nf;q2++){
+        const th=rr()*Math.PI*2, d0=r0*(0.75+rr()*0.3), d1=d0+(2+rr()*7*s);
+        ctx.globalAlpha=T.alpha*(0.25+rr()*0.3)*bl;
+        ctx.beginPath();
+        ctx.moveTo(x+Math.cos(th)*d0, y+Math.sin(th)*d0);
+        ctx.lineTo(x+Math.cos(th)*d1, y+Math.sin(th)*d1);
+        ctx.stroke();
+      }
+    });
+    // wet-body halo where the brush still had ink
+    ctx.globalAlpha = T.alpha*0.16*bl;
+    ctx.beginPath();
+    const L=[], R=[];
+    for(let i=0;i<n;i++){
+      const wetness = clamp(load0 - dry*(i/(n-1))*1.2, 0, 1);
+      const h=(wid(i)/2)*(0.9+0.25*wetness)+1.6*wetness;
+      L.push([pts[i][0]+nr[i][0]*h, pts[i][1]+nr[i][1]*h]);
+      R.push([pts[i][0]-nr[i][0]*h, pts[i][1]-nr[i][1]*h]);
+    }
+    L.concat(R.reverse()).forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
+  // 2) the hairs: drawn OPAQUE into an offscreen sheet, then laid down ONCE at the
+  // ink's tone (multiply): ink does not stack with itself inside a single stroke.
+  if(!OFF){ OFF=document.createElement('canvas'); OFF.width=W; OFF.height=H; OFFX=OFF.getContext('2d'); }
+  const k=OFFX;
+  k.setTransform(1,0,0,1,0,0); k.clearRect(0,0,W,H);
+  k.globalCompositeOperation='source-over'; k.globalAlpha=1;
+  k.strokeStyle=T.color; k.lineCap='round'; k.lineJoin='round';
+  const tipLen = Math.min(len*0.2, b.w*0.45);
+  hairs.forEach((h,hi)=>{
+    let run=[];
+    const flush=()=>{
+      if(run.length>1){
+        let w=0; run.forEach(s=>{w+=s.w;}); w/=run.length;
+        k.lineWidth=w;
+        k.beginPath();
+        run.forEach((s,i)=>i?k.lineTo(s.p[0],s.p[1]):k.moveTo(s.p[0],s.p[1]));
+        k.stroke();
+      }
+      run=[];
+    };
+    for(let i=0;i<n;i++){
+      const s=(i/(n-1))*len, t=i/(n-1);
+      const rem = h.load - dry*t*(1+0.7*Math.abs(h.u));
+      const q = clamp(rem*(b.streak?1.25:2.1),0,1);
+      const tipIn = tipLen*Math.pow(Math.abs(h.u),1.6)*(0.8+0.4*h.load);
+      const tipOut = tipLen*0.7*Math.pow(Math.abs(h.u),1.6);
+      if(s<tipIn || s>len-tipOut){ flush(); continue; }
+      const nz = FBM(b.seed*0.13+hi*0.83, s*0.045);
+      if(q*1.3 <= nz+0.06){ flush(); continue; }  // flying white: the paper won
+      const Wd = wid(i);
+      const spl = (FBM(b.seed*0.17+hi*0.5, s*0.02+40)-0.5)*split*(1-q)*b.w*0.7;
+      const off = h.u*(Wd/2)*(1+0.12*(1-q))+spl;
+      run.push({ p:[pts[i][0]+nr[i][0]*off, pts[i][1]+nr[i][1]*off],
+                 w: Math.max(0.45,(Wd/nh)*2.6*(0.75+0.25*q)) });
+      if(run.length>=10){ const keep=run[run.length-1]; flush(); run=[keep]; }
+    }
+    flush();
+  });
+  ctx.save();
+  ctx.globalCompositeOperation='multiply';
+  ctx.globalAlpha = T.alpha*(1-0.35*wet);
+  if(wet||b.soft) ctx.filter=`blur(${(0.6+2.6*wet+(b.soft||0)).toFixed(1)}px)`;
+  ctx.drawImage(OFF,0,0);
+  ctx.restore();
+}
+
+// a wet wash: same brush laid into a damp sheet — everything goes soft
+function wash(b){ brush(Object.assign({wet:1, split:0.2, dry:0.06, bleed:1.1}, b)); }
+
+// ---------- the paper ----------
+function paperGround(){
+  ctx.save();
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.globalCompositeOperation='source-over';
+  ctx.filter='none';
+  ctx.fillStyle=PAPER;
+  ctx.fillRect(0,0,W,H);
+  const r=mulberry32(501);
+  ctx.lineCap='round';
+  // long fibres laid in the vat
+  for(let i=0;i<140;i++){
+    const x=r()*W, y=r()*H;
+    const a=(FBM(x*0.004,y*0.004)-0.5)*5;
+    const L2=14+r()*46, bend=(r()-0.5)*0.5;
+    ctx.strokeStyle = r()<0.5 ? '#d9cfbc' : '#fbf7ee';
+    ctx.globalAlpha = 0.16+r()*0.2;
+    ctx.lineWidth = 0.4+r()*0.6;
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.quadraticCurveTo(x+Math.cos(a+bend)*L2*0.5, y+Math.sin(a+bend)*L2*0.5, x+Math.cos(a)*L2, y+Math.sin(a)*L2);
+    ctx.stroke();
+  }
+  // bark flecks never beaten out
+  for(let i=0;i<24;i++){
+    const x=r()*W, y=r()*H, a=r()*6.28, L2=1.5+r()*4;
+    ctx.strokeStyle='#8f806b'; ctx.globalAlpha=0.22+r()*0.28; ctx.lineWidth=0.6+r()*0.5;
+    ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+Math.cos(a)*L2,y+Math.sin(a)*L2); ctx.stroke();
+  }
+  ctx.restore();
+}
+function paperGrain(){
+  // light tooth over everything
+  ctx.save();
+  ctx.globalCompositeOperation='multiply';
+  const r=mulberry32(909);
+  for(let i=0;i<900;i++){
+    const x=r()*W, y=r()*H;
+    const v=FBM(x*0.02,y*0.02);
+    if(v<0.52) continue;
+    ctx.fillStyle='#dcd2c0';
+    ctx.globalAlpha=(v-0.5)*0.5;
+    ctx.fillRect(x,y,1.3,1.3);
+  }
+  ctx.restore();
+}
+
+// ---------- the seal: baiwen, cinnabar, pressed once ----------
+function seal(x,y,s){
+  const r=mulberry32(900);
+  ctx.save();
+  ctx.globalCompositeOperation='multiply';
+  ctx.globalAlpha=0.92;
+  // the block, edge worn uneven
+  const off=document.createElement('canvas'); off.width=Math.ceil(s+8); off.height=Math.ceil(s+8);
+  const k=off.getContext('2d');
+  k.translate(4,4);
+  k.fillStyle='#b8352b';
+  k.beginPath();
+  for(let i=0;i<40;i++){
+    const t=i/10, side=Math.floor(t), f=t-side;
+    const j=(FBM(i*0.7,side*3.1)-0.5)*2.6;
+    const p = side===0?[s*f,j]: side===1?[s+j,s*f]: side===2?[s*(1-f),s+j]:[j,s*(1-f)];
+    i?k.lineTo(p[0],p[1]):k.moveTo(p[0],p[1]);
+  }
+  k.closePath(); k.fill();
+  // carving cut into the stone: prints as paper
+  k.globalCompositeOperation='destination-out';
+  k.lineCap='square'; k.lineJoin='miter';
+  const GLYPHS=[
+    [[[0.12,0.16],[0.88,0.16]],[[0.5,0.16],[0.5,0.88]],[[0.16,0.46],[0.84,0.46]],[[0.2,0.62],[0.2,0.86],[0.8,0.86],[0.8,0.62]]],
+    [[[0.16,0.1],[0.16,0.9]],[[0.16,0.3],[0.86,0.3],[0.86,0.9]],[[0.44,0.3],[0.44,0.7],[0.68,0.7]],[[0.16,0.9],[0.62,0.9]]],
+    [[[0.1,0.2],[0.9,0.2]],[[0.3,0.2],[0.3,0.55],[0.7,0.55],[0.7,0.2]],[[0.5,0.55],[0.5,0.9]],[[0.14,0.76],[0.86,0.76]]],
+    [[[0.18,0.14],[0.82,0.14],[0.82,0.86],[0.18,0.86],[0.18,0.4],[0.6,0.4],[0.6,0.64],[0.4,0.64]]]
+  ];
+  const cell=(s-12)/2, order=[[1,0],[1,1],[0,0],[0,1]]; // right column first, top to bottom
+  GLYPHS.forEach((gl,gi)=>{
+    const ox=6+order[gi][0]*cell, oy=6+order[gi][1]*cell;
+    gl.forEach(line=>{
+      k.lineWidth=cell*0.13*(0.9+r()*0.25);
+      k.beginPath();
+      line.forEach(([u,v],i)=>{
+        const px=ox+cell*(0.08+u*0.84)+(r()-0.5)*0.8, py=oy+cell*(0.08+v*0.84)+(r()-0.5)*0.8;
+        i?k.lineTo(px,py):k.moveTo(px,py);
+      });
+      k.stroke();
+    });
+  });
+  // inner border and chips
+  k.lineWidth=1.6; k.strokeStyle='#000'; k.strokeRect(3.2,3.2,s-6.4,s-6.4);
+  for(let i=0;i<3;i++){
+    const a=r()*4;
+    const px=a<1?a*s:a<2?s:a<3?(a-2)*s:0, py=a<1?0:a<2?(a-1)*s:a<3?s:(a-3)*s;
+    k.beginPath(); k.arc(px,py,1.6+r()*2.2,0,6.28); k.fill();
+  }
+  // paste pressed unevenly: break the red where the stamp met the paper lightly
+  for(let i=0;i<120;i++){
+    const px=r()*s, py=r()*s;
+    const lighter=FBM(px*0.06+3,py*0.06+3);
+    if(lighter<0.5) continue;
+    k.globalAlpha=(lighter-0.48)*1.1;
+    k.beginPath(); k.arc(px,py,0.5+r()*1.4,0,6.28); k.fill();
+    k.globalAlpha=1;
+  }
+  ctx.drawImage(off,x-4,y-4);
+  ctx.restore();
+}
+
+// ---------- the paper boat (shared geometry, translated into ink) ----------
+// hull + triangular sail-peak, no face, no limbs. attitude by tilt and stroke weight.
+function boat(x,y,s,tilt,inkMain,seedBase,opts){
+  opts=opts||{};
+  const c=Math.cos(tilt), sn=Math.sin(tilt);
+  const T=(px,py)=>[x+(px*c-py*sn)*s, y+(px*sn+py*c)*s];
+  // hull: one confident loaded side-laid drag, bow (right) slightly raised
+  brush({ ctrl:[T(-1.05,0.02),T(-0.5,0.13),T(0.15,0.13),T(0.75,0.03),T(1.05,-0.12)],
+    w:0.29*s, ink:inkMain, press:[[0,0.4],[0.12,1.05],[0.55,0.95],[0.85,0.8],[1,0.15]],
+    load:1.05, dry:opts.dryHull==null?0.5:opts.dryHull, edge:0.35, split:0.75, bleed:0.8, streak:true,
+    slow:[[0.03,0.5],[0.97,0.25]], seed:seedBase});
+  // bow and stern up-flicks of the folded paper
+  brush({ ctrl:[T(-1.02,0.06),T(-1.16,-0.2),T(-1.2,-0.38)], w:0.09*s, ink:inkMain,
+    press:[[0,0.9],[0.5,0.7],[1,0.05]], dry:0.25, split:0.5, bleed:0.35, slow:[[0.02,0.3]], hairs:8, seed:seedBase+1});
+  brush({ ctrl:[T(1.0,-0.08),T(1.18,-0.3),T(1.24,-0.5)], w:0.09*s, ink:inkMain,
+    press:[[0,0.9],[0.5,0.7],[1,0.05]], dry:0.25, split:0.5, bleed:0.35, slow:[[0.02,0.3]], hairs:8, seed:seedBase+2});
+  // the sail-peak: two strokes meeting at the point, leaning forward (right)
+  brush({ ctrl:[T(-0.55,-0.02),T(-0.25,-0.5),T(0.14,-0.98)], w:0.13*s, ink:inkMain,
+    press:[[0,0.85],[0.5,0.95],[1,0.1]], dry:0.3, split:0.6, bleed:0.5, slow:[[0.02,0.4]], hairs:10, seed:seedBase+3});
+  brush({ ctrl:[T(0.14,-0.98),T(0.42,-0.55),T(0.62,-0.06)], w:0.115*s, ink:inkMain,
+    press:[[0,0.15],[0.4,0.9],[1,0.75]], dry:0.35, split:0.7, bleed:0.4, slow:[[0.96,0.35]], hairs:9, seed:seedBase+4});
+  // one pale fold-line inside the sail (the crease of the paper), clear ink
+  brush({ ctrl:[T(0.1,-0.9),T(0.05,-0.5),T(-0.02,-0.1)], w:0.045*s, ink:QING,
+    press:[[0,0.2],[0.5,0.8],[1,0.1]], dry:0.2, split:0.3, bleed:0.25, slow:[], hairs:5, seed:seedBase+5});
+}
+
+// ---------- FRAME A: setting out at first light ----------
+function drawA(){
+  paperGround();
+
+  // far peaks on the horizon, right side: depth is dilution; mist is where they stop.
+  // each peak is one wet flank of the brush: up one side, over, down the other,
+  // its foot dissolving into the mist above the water.
+  // each hill is built of short side-laid strokes stacked toward its summit
+  const hill = (rows, ink0, wet0, seed0) => rows.forEach((row,ri)=>{
+    brush({ ctrl:row.c, w:row.w, ink:ink0*(0.9+0.1*(ri/rows.length)),
+      press:[[0,0.08],[0.25,0.9],[0.6,1],[1,0.1]],
+      load:0.95, dry:0.5, edge:0.15, split:0.6, bleed:0.55, wet:wet0,
+      slow:[[0.4,0.3]], hairs:Math.max(8,Math.round(row.w*0.5)), seed:seed0+ri });
+  });
+  hill([ // the far hill: clear ink, low and long
+    { c:[[864,450],[944,442],[1024,446]], w:20 },
+    { c:[[906,432],[962,422],[1014,430]], w:17 }
+  ], QING*0.8, 0.35, 210);
+  hill([ // the near hill: light ink, one summit
+    { c:[[982,452],[1074,442],[1166,440],[1252,450]], w:24 },
+    { c:[[1042,428],[1114,416],[1194,426]], w:22 },
+    { c:[[1092,402],[1134,392],[1180,402]], w:19 }
+  ], DAN*0.92, 0.2, 215);
+  // the mist at their feet: one pale horizontal breath that swallows the bases
+  wash({ ctrl:[[820,452],[1000,446],[1180,450],[1276,448]],
+    w:34, ink:QING*0.45, press:[[0,0.1],[0.4,0.9],[1,0.35]],
+    slow:[], soft:6, hairs:16, seed:214 });
+  // one darker near shoulder at its foot, a single dry side-laid stroke
+  brush({ ctrl:[[1120,452],[1180,432],[1236,436],[1276,448]],
+    w:18, ink:DAN, press:[[0,0.05],[0.35,1],[0.8,0.7],[1,0.05]],
+    load:0.95, dry:0.7, edge:0.3, split:0.9, streak:true, bleed:0.5,
+    slow:[[0.35,0.35]], seed:212 });
+  // the horizon: one pale resting line where water meets the mist
+  brush({ ctrl:[[790,470],[960,466],[1150,468],[1272,470]], w:3.4, ink:QING*0.7,
+    press:[[0,0.03],[0.3,0.55],[0.7,0.5],[1,0.03]], dry:0.6, split:0.7, streak:true,
+    bleed:0.2, slow:[], hairs:5, seed:213 });
+
+  // the pale sun: a near-clear ring, brushed once, high in the empty sky
+  {
+    const cx=962, cy=128, R=40, pts=[];
+    for(let i=0;i<=10;i++){ const a=-Math.PI/2+i*(Math.PI*2)/10*1.02; pts.push([cx+Math.cos(a)*R, cy+Math.sin(a)*R]); }
+    brush({ ctrl:pts, w:7, ink:QING*0.85, press:[[0,0.25],[0.15,0.8],[0.5,0.55],[0.85,0.75],[1,0.1]],
+      load:0.9, dry:0.5, split:0.6, bleed:0.45, slow:[[0.02,0.3]], hairs:9, seed:230 });
+  }
+
+  // the water: the paper is the water. only a few resting strokes say so.
+  brush({ ctrl:[[70,556],[230,552],[400,556]], w:5, ink:QING,
+    press:[[0,0.05],[0.3,0.7],[0.7,0.6],[1,0.05]], dry:0.45, split:0.7, streak:true, bleed:0.3, slow:[], hairs:7, seed:240 });
+  brush({ ctrl:[[540,586],[700,582],[900,588],[1080,584]], w:4.5, ink:QING*0.8,
+    press:[[0,0.05],[0.4,0.6],[1,0.05]], dry:0.5, split:0.7, streak:true, bleed:0.25, slow:[], hairs:6, seed:241 });
+  brush({ ctrl:[[860,470],[1000,466],[1140,470]], w:3.5, ink:QING*0.7,
+    press:[[0,0.05],[0.5,0.55],[1,0.05]], dry:0.5, split:0.6, streak:true, bleed:0.2, slow:[], hairs:5, seed:242 });
+
+  // THE BOAT: lower-left third, heading right into the morning
+  const bx=330, by=520, bs=58, tilt=-0.045;
+  boat(bx,by,bs,tilt,NONG,300,{});
+  // its reflection: the same idea upside down in clear ink, broken by the water
+  ctx.save();
+  ctx.translate(bx, by+22); ctx.scale(1,-0.42); ctx.translate(-bx,-(by));
+  boat(bx,by,bs,tilt,QING*0.9,320,{dryHull:0.9});
+  ctx.restore();
+  // the wake: two dry flicks trailing left
+  brush({ ctrl:[[bx-120,by+34],[bx-70,by+30],[bx-38,by+29]], w:4, ink:DAN,
+    press:[[0,0.05],[0.6,0.7],[1,0.3]], dry:0.5, split:0.8, streak:true, bleed:0.2, slow:[], hairs:6, seed:340 });
+  brush({ ctrl:[[bx-88,by+46],[bx-46,by+43],[bx-16,by+44]], w:3.2, ink:DAN*0.8,
+    press:[[0,0.05],[0.6,0.6],[1,0.25]], dry:0.55, split:0.8, streak:true, bleed:0.2, slow:[], hairs:5, seed:341 });
+
+  // two birds, far, each one bent stroke
+  [[760,120,15],[812,138,11]].forEach(([x,y,w2],i)=>{
+    brush({ ctrl:[[x-w2,y+4],[x-w2*0.3,y-3],[x,y],[x+w2*0.3,y-3],[x+w2,y+4]], w:2.6, ink:DAN,
+      press:[[0,0.1],[0.25,0.8],[0.5,0.4],[0.75,0.8],[1,0.1]], dry:0.3, split:0.4, bleed:0.2, slow:[], hairs:4, seed:350+i });
+  });
+
+  // the seal, stamped last, lower right, balancing the boat
+  seal(1176,596,58);
+  paperGrain();
+}
+
+// ---------- FRAME B: the storm wave as one huge loaded brushstroke ----------
+function drawB(){
+  paperGround();
+
+  // the storm sky: heavy wet washes crowding from the upper right,
+  // one gap of bare paper left where the light fights through (upper left-center)
+  wash({ ctrl:[[300,-44],[540,-58],[790,-40],[980,-6]],
+    w:96, ink:DAN*0.9, press:[[0,0.2],[0.35,0.85],[0.7,1.0],[1,0.4]],
+    slow:[[0.55,0.6]], soft:7, hairs:26, seed:400 });
+  wash({ ctrl:[[520,44],[720,26],[900,50]],
+    w:52, ink:QING*0.8, press:[[0,0.08],[0.4,0.85],[1,0.3]],
+    slow:[[0.5,0.4]], soft:6, hairs:18, seed:401 });
+  // rain: dry diagonal hairlines through the dark side
+  {
+    const r=mulberry32(420);
+    for(let i=0;i<3;i++){
+      const x0=640+r()*380, y0=30+r()*100, L2=60+r()*70, bendR=(r()-0.5)*22;
+      brush({ ctrl:[[x0,y0],[x0-L2*0.3+bendR,y0+L2*0.5],[x0-L2*0.62,y0+L2]], w:2, ink:DAN*(0.55+r()*0.35),
+        press:[[0,0.45],[1,0.05]], dry:0.85, split:0.6, streak:true, bleed:0.1, slow:[], hairs:3, seed:430+i });
+    }
+  }
+
+  // THE WAVE: one huge loaded brushstroke, diagonal from upper right,
+  // wet and thunder-dark where it was loaded, breaking into flying white at the crest
+  brush({ ctrl:[[1400,96],[1252,178],[1080,246],[900,352],[724,474],[540,580],[330,652]],
+    w:96, ink:JIAO, press:[[0,0.55],[0.2,1.08],[0.45,0.95],[0.75,0.78],[1,0.2]],
+    load:0.95, dry:0.62, edge:0.45, split:1, streak:true, bleed:0.9,
+    slow:[[0.22,0.7],[0.55,0.4]], hairs:34, seed:500 });
+  // its underbelly: a second heavy stroke tucked beneath, drier
+  brush({ ctrl:[[1210,330],[1030,420],[850,504],[660,584]],
+    w:56, ink:NONG, press:[[0,0.25],[0.3,0.95],[1,0.15]],
+    load:0.85, dry:0.8, edge:0.4, split:1, streak:true, bleed:0.6,
+    slow:[[0.1,0.5]], hairs:24, seed:501 });
+  // the crest curling over: the lip hooks up, over and back down toward the boat
+  brush({ ctrl:[[1340,152],[1246,110],[1148,98],[1058,110],[1004,148]],
+    w:40, ink:NONG, press:[[0,0.45],[0.3,0.95],[0.65,0.75],[1,0.05]],
+    load:0.85, dry:0.75, edge:0.5, split:1, streak:true, bleed:0.4,
+    slow:[[0.3,0.4]], hairs:17, seed:502 });
+  // foam claws raking down off the lip
+  [[1010,146,-70],[1076,118,-64],[1140,108,-58]].forEach(([fx,fy,fl],i)=>{
+    brush({ ctrl:[[fx,fy],[fx-24,fy-fl*0.5],[fx-58,fy-fl]], w:10, ink:NONG,
+      press:[[0,0.7],[0.5,0.5],[1,0.03]], dry:1.05, split:1, streak:true, bleed:0.2,
+      slow:[], hairs:7, seed:560+i });
+  });
+  // spray: dry flicks and thrown dots off the crest
+  {
+    const r=mulberry32(510);
+    for(let i=0;i<9;i++){
+      const t=r(), x0=1040-t*330+(r()-0.5)*130, y0=170+t*180+(r()-0.5)*110;
+      const a=-2.3+(r()-0.5)*0.7, L2=22+r()*40;
+      brush({ ctrl:[[x0,y0],[x0+Math.cos(a)*L2,y0+Math.sin(a)*L2]], w:4+r()*4, ink:NONG,
+        press:[[0,0.8],[1,0.02]], dry:1.1, split:1, streak:true, bleed:0.15, slow:[], hairs:5, seed:520+i });
+    }
+    ctx.save(); ctx.globalCompositeOperation='multiply';
+    for(let i=0;i<26;i++){
+      const t=r(), x0=1010-t*420+(r()-0.5)*170, y0=150+t*200+(r()-0.5)*140;
+      const T2=tone(r()<0.5?NONG:ZHONG);
+      ctx.fillStyle=T2.color; ctx.globalAlpha=T2.alpha*(0.4+r()*0.5);
+      ctx.beginPath(); ctx.arc(x0,y0,0.8+r()*2.4,0,6.28); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  // troubled water beneath the boat: heavy short strokes, rising left to right
+  brush({ ctrl:[[60,640],[220,624],[400,634],[540,616]], w:26, ink:ZHONG,
+    press:[[0,0.1],[0.3,0.9],[0.7,0.8],[1,0.1]], load:0.85, dry:0.8, edge:0.3, split:1, streak:true,
+    bleed:0.5, slow:[[0.4,0.4]], hairs:14, seed:530 });
+  brush({ ctrl:[[140,686],[330,672],[520,680]], w:20, ink:DAN,
+    press:[[0,0.1],[0.4,0.8],[1,0.1]], load:0.8, dry:0.9, split:1, streak:true,
+    bleed:0.4, slow:[], hairs:11, seed:531 });
+
+  // the swell the boat rides: one long stroke passing under the hull
+  brush({ ctrl:[[96,610],[240,588],[380,578],[520,590],[640,614]], w:16, ink:ZHONG,
+    press:[[0,0.05],[0.3,0.75],[0.55,0.9],[0.8,0.6],[1,0.05]],
+    load:0.85, dry:0.75, edge:0.3, split:1, streak:true, bleed:0.4,
+    slow:[[0.5,0.3]], hairs:10, seed:533 });
+  // THE BOAT: small against the wave, climbing it, bow still pointing forward
+  const bx=350, by=546, bs=34, tilt=-0.3;
+  boat(bx,by,bs,tilt,JIAO,600,{dryHull:0.4});
+  // a splash where the hull cuts the water
+  brush({ ctrl:[[bx-42,by+26],[bx-16,by+16],[bx+16,by+18]], w:8, ink:NONG,
+    press:[[0,0.05],[0.5,0.9],[1,0.1]], dry:0.7, split:1, streak:true, bleed:0.3, slow:[], hairs:8, seed:620 });
+
+  // the seal: same stone, same corner family — upper left, in the light the storm left open
+  seal(66,58,52);
+  paperGrain();
+}
+
+window.drawFrame=function(which){
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.globalCompositeOperation='source-over';
+  ctx.filter='none';
+  ctx.clearRect(0,0,W,H);
+  if(which==='a') drawA(); else drawB();
+  window.DONE=true;
+};
+window.READY=true;
+</script>
+</body>
+</html>

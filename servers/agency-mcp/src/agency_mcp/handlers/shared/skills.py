@@ -9,7 +9,7 @@ from agency_mcp.lib.codemode.projection import apply_view
 def shared_list_skills(domain: str | None = None) -> dict[str, Any]:
     skills_dir = Path("skills")
     target_domains = (
-        [domain] if domain else ["music", "novel", "jules", "agentic", "shared"]
+        [domain] if domain else ["music", "novel", "jules", "agentic", "shared", "video"]
     )
 
     skills = []
@@ -21,6 +21,8 @@ def shared_list_skills(domain: str | None = None) -> dict[str, Any]:
                 continue
 
             for skill_path in dom_dir.rglob("SKILL.md"):
+                if "node_modules" in skill_path.parts:  # npm packages (e.g. playwright-core) ship their own SKILL.md files
+                    continue
                 try:
                     content = skill_path.read_text(encoding="utf-8")
                     frontmatter = {}
@@ -59,6 +61,8 @@ def shared_get_skill(name: str) -> dict[str, Any]:
     skills_dir = Path("skills")
     if skills_dir.exists():
         for skill_path in skills_dir.rglob("SKILL.md"):
+            if "node_modules" in skill_path.parts:
+                continue
             if skill_path.parent.name == name:
                 try:
                     content = skill_path.read_text(encoding="utf-8")
@@ -122,7 +126,7 @@ def _render_cheatsheet(domain: str, skills: list, prologue: str) -> str:
 
 
 def plugin_help(domain: str) -> dict[str, Any]:
-    valid_domains = {"music", "novel", "jules", "agentic", "shared"}
+    valid_domains = {"music", "novel", "jules", "agentic", "shared", "video"}
     if domain not in valid_domains:
         return {
             "ok": False,

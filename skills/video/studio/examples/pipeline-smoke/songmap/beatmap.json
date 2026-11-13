@@ -1,0 +1,334 @@
+{
+ "source": "/tmp/claude-0/-home-user/0b1fe73e-918d-5978-8b74-a8ee10efa833/scratchpad/e2e/audio/song.wav",
+ "fps": 24,
+ "start": 0.0,
+ "duration": 8.0,
+ "bpm": 120.06,
+ "beat": 0.49975,
+ "bar": 1.999,
+ "meter": "4/4 (assumed)",
+ "tempogram_bpm": 120.19,
+ "tempo_candidates": [
+  {
+   "bpm": 120.06,
+   "phase": 0.0174,
+   "score": 11.71,
+   "fit": 10.227,
+   "hit_frac": 0.94,
+   "subdiv": -0.013,
+   "contrast_full": 4.975,
+   "contrast_kick": 5.693,
+   "contrast_snare": 4.978,
+   "seeds": [
+    "tempogram",
+    "kick_autocorr"
+   ]
+  },
+  {
+   "bpm": 60.03,
+   "phase": 0.5176,
+   "score": 1.956,
+   "fit": 10.817,
+   "hit_frac": 1.0,
+   "subdiv": 5.413,
+   "contrast_full": -0.223,
+   "contrast_kick": 0.075,
+   "contrast_snare": -0.136,
+   "seeds": []
+  }
+ ],
+ "tempo_ambiguous": true,
+ "tempo_alternative": 60.03,
+ "nn_downbeat_agreement": null,
+ "downbeat_phase": 3,
+ "downbeat_confidence": 0.004,
+ "downbeat_scores": [
+  4.056,
+  4.661,
+  4.822,
+  4.861
+ ],
+ "beats": [
+  0.0337,
+  0.5318,
+  1.0327,
+  1.5325,
+  2.0324,
+  2.5322,
+  3.0321,
+  3.532,
+  4.0318,
+  4.5327,
+  5.0326,
+  5.5324,
+  6.0323,
+  6.5322,
+  7.032,
+  7.5069
+ ],
+ "downbeats": [
+  1.5325,
+  3.532,
+  5.5324,
+  7.5069
+ ],
+ "hits": [
+  0.5068,
+  1.0067,
+  1.4996,
+  1.9995,
+  2.5003,
+  4.5068,
+  4.9996,
+  5.4995,
+  6.0004,
+  6.5002
+ ],
+ "stops": [],
+ "drop": null,
+ "frames": {
+  "beats": [
+   1,
+   13,
+   25,
+   37,
+   49,
+   61,
+   73,
+   85,
+   97,
+   109,
+   121,
+   133,
+   145,
+   157,
+   169,
+   180
+  ],
+  "downbeats": [
+   37,
+   85,
+   133,
+   180
+  ],
+  "hits": [
+   12,
+   24,
+   36,
+   48,
+   60,
+   108,
+   120,
+   132,
+   144,
+   156
+  ],
+  "stops": [],
+  "drop": null
+ },
+ "bars": [
+  {
+   "i": 1,
+   "t": -0.4665,
+   "f": -11,
+   "end": 1.5325,
+   "rms_db": -17.9,
+   "low_db": -24.4,
+   "onsets_per_s": 1.31,
+   "section": "hook",
+   "flags": [
+    "partial"
+   ]
+  },
+  {
+   "i": 2,
+   "t": 1.5325,
+   "f": 37,
+   "end": 3.532,
+   "rms_db": -18.1,
+   "low_db": -24.9,
+   "onsets_per_s": 2.0,
+   "section": "full",
+   "flags": []
+  },
+  {
+   "i": 3,
+   "t": 3.532,
+   "f": 85,
+   "end": 5.5324,
+   "rms_db": -18.1,
+   "low_db": -24.9,
+   "onsets_per_s": 2.0,
+   "section": "full",
+   "flags": []
+  },
+  {
+   "i": 4,
+   "t": 5.5324,
+   "f": 133,
+   "end": 7.5069,
+   "rms_db": -18.6,
+   "low_db": -25.4,
+   "onsets_per_s": 2.03,
+   "section": "full",
+   "flags": []
+  },
+  {
+   "i": 5,
+   "t": 7.5069,
+   "f": 180,
+   "end": 9.5059,
+   "rms_db": -23.3,
+   "low_db": -27.3,
+   "onsets_per_s": 2.03,
+   "section": "release",
+   "flags": []
+  }
+ ],
+ "sections": [
+  {
+   "kind": "hook",
+   "from_bar": 0,
+   "to_bar": 0,
+   "t": -0.4665,
+   "end": 1.5325,
+   "rms_db": -17.9,
+   "f": -11,
+   "f_end": 37,
+   "bars": 1,
+   "density_target": "4–9 ev/s",
+   "name": "hook"
+  },
+  {
+   "kind": "full",
+   "from_bar": 1,
+   "to_bar": 3,
+   "t": 1.5325,
+   "end": 7.5069,
+   "rms_db": -18.3,
+   "f": 37,
+   "f_end": 180,
+   "bars": 3,
+   "density_target": "3–5 ev/s",
+   "name": "full"
+  },
+  {
+   "kind": "release",
+   "from_bar": 4,
+   "to_bar": 4,
+   "t": 7.5069,
+   "end": 9.5059,
+   "rms_db": -23.3,
+   "f": 180,
+   "f_end": 228,
+   "bars": 1,
+   "density_target": "≈1 ev/s (one held bar)",
+   "name": "release"
+  }
+ ],
+ "hits_detail": [
+  {
+   "rank": 1,
+   "t": 1.9995,
+   "f": 48,
+   "score": 1.006,
+   "nearest_beat_off_f": -0.8,
+   "on_downbeat": false
+  },
+  {
+   "rank": 2,
+   "t": 6.0004,
+   "f": 144,
+   "score": 0.996,
+   "nearest_beat_off_f": -0.8,
+   "on_downbeat": false
+  },
+  {
+   "rank": 3,
+   "t": 1.4996,
+   "f": 36,
+   "score": 0.992,
+   "nearest_beat_off_f": -0.8,
+   "on_downbeat": true
+  },
+  {
+   "rank": 4,
+   "t": 5.4995,
+   "f": 132,
+   "score": 0.991,
+   "nearest_beat_off_f": -0.8,
+   "on_downbeat": true
+  },
+  {
+   "rank": 5,
+   "t": 2.5003,
+   "f": 60,
+   "score": 0.988,
+   "nearest_beat_off_f": -0.8,
+   "on_downbeat": false
+  },
+  {
+   "rank": 6,
+   "t": 4.9996,
+   "f": 120,
+   "score": 0.97,
+   "nearest_beat_off_f": -0.8,
+   "on_downbeat": false
+  },
+  {
+   "rank": 7,
+   "t": 1.0067,
+   "f": 24,
+   "score": 0.968,
+   "nearest_beat_off_f": -0.6,
+   "on_downbeat": false
+  },
+  {
+   "rank": 8,
+   "t": 6.5002,
+   "f": 156,
+   "score": 0.952,
+   "nearest_beat_off_f": -0.8,
+   "on_downbeat": false
+  },
+  {
+   "rank": 9,
+   "t": 4.5068,
+   "f": 108,
+   "score": 0.941,
+   "nearest_beat_off_f": -0.6,
+   "on_downbeat": false
+  },
+  {
+   "rank": 10,
+   "t": 0.5068,
+   "f": 12,
+   "score": 0.933,
+   "nearest_beat_off_f": -0.6,
+   "on_downbeat": false
+  }
+ ],
+ "stops_detail": [],
+ "pickups": [],
+ "risers": [],
+ "drop_candidates": [],
+ "grid_shift_ms": 16.3,
+ "drop_detail": null,
+ "onsets": [
+  0.5318,
+  1.0327,
+  1.5325,
+  2.0324,
+  2.5322,
+  3.0321,
+  3.532,
+  4.0318,
+  4.5327,
+  5.0326,
+  5.5324,
+  6.0323,
+  6.5322,
+  7.032,
+  7.5069
+ ]
+}

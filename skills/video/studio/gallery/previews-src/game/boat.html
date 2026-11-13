@@ -1,0 +1,752 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>THE CROSSING — game style boat preview</title>
+<style>html,body{margin:0;padding:0;background:#000}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const C = document.getElementById('c');
+const X = C.getContext('2d');
+const W = 1280, H = 720;
+
+// ---------- deterministic rng ----------
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+let R = mulberry32(1);
+const rand=(a=1,b)=>b===undefined?R()*a:a+R()*(b-a);
+
+// ---------- helpers ----------
+function lerp(a,b,t){return a+(b-a)*t}
+function mix(c1,c2,t){ // c = [r,g,b]
+  return 'rgb('+Math.round(lerp(c1[0],c2[0],t))+','+Math.round(lerp(c1[1],c2[1],t))+','+Math.round(lerp(c1[2],c2[2],t))+')';
+}
+function dab(x,y,w,h,rot,fill,alpha){
+  X.save();X.translate(x,y);X.rotate(rot);X.globalAlpha=alpha;X.fillStyle=fill;
+  X.beginPath();X.ellipse(0,0,w,h,0,0,Math.PI*2);X.fill();X.restore();X.globalAlpha=1;
+}
+function rr(x,y,w,h,r){
+  X.beginPath();
+  X.moveTo(x+r,y);X.arcTo(x+w,y,x+w,y+h,r);X.arcTo(x+w,y+h,x,y+h,r);
+  X.arcTo(x,y+h,x,y,r);X.arcTo(x,y,x+w,y,r);X.closePath();
+}
+const HUD_FONT = "'Avenir Next Condensed','Arial Narrow',sans-serif";
+const TITLE_FONT = "'Optima','Palatino',serif";
+function text(t,x,y,size,color,opts={}){
+  X.save();
+  X.font=(opts.weight||'600')+' '+(opts.italic?'italic ':'')+size+'px '+(opts.font||HUD_FONT);
+  // note: italic must precede weight in canvas font shorthand; build properly:
+  X.font=(opts.italic?'italic ':'')+(opts.weight||'600')+' '+size+'px '+(opts.font||HUD_FONT);
+  if(opts.ls) X.letterSpacing=opts.ls+'px';
+  X.textAlign=opts.align||'left';
+  X.textBaseline=opts.base||'alphabetic';
+  if(opts.shadow!==false){X.shadowColor='rgba(0,0,0,0.75)';X.shadowBlur=opts.blur||4;X.shadowOffsetY=1.5;}
+  X.globalAlpha=opts.alpha===undefined?1:opts.alpha;
+  X.fillStyle=color;
+  X.fillText(t,x,y);
+  X.restore();X.globalAlpha=1;X.letterSpacing='0px';
+}
+
+// ---------- paper boat ----------
+// origin = waterline center. s = half hull width-ish scale. heading right.
+// clear read: low hull band + tall narrow sail peak, visible gunwale gap.
+function boat(x,y,s,tilt,o){
+  X.save();X.translate(x,y);X.rotate(tilt);
+  // contact shadow on water
+  X.globalAlpha=0.35;X.fillStyle=o.shadow||'rgba(20,20,30,1)';
+  X.beginPath();X.ellipse(0,0.06*s,1.08*s,0.14*s,0,0,Math.PI*2);X.fill();X.globalAlpha=1;
+  // hull (low band)
+  X.beginPath();
+  X.moveTo(-1.1*s,-0.02*s);
+  X.lineTo(-0.72*s,-0.40*s);
+  X.lineTo(0.72*s,-0.40*s);
+  X.lineTo(1.1*s,-0.02*s);
+  X.quadraticCurveTo(0,0.20*s,-1.1*s,-0.02*s);
+  X.closePath();
+  const g=X.createLinearGradient(-s,0,s,0);
+  if(o.rimSide==='right'){g.addColorStop(0,o.hullDark);g.addColorStop(0.55,o.hullMid||o.hullDark);g.addColorStop(1,o.hullLight);}
+  else{g.addColorStop(0,o.hullLight);g.addColorStop(0.45,o.hullMid||o.hullDark);g.addColorStop(1,o.hullDark);}
+  X.fillStyle=g;X.fill();
+  // gunwale (top rim of hull) — bright folded-paper edge
+  X.strokeStyle=o.gunwale||o.rim;X.globalAlpha=0.9;X.lineWidth=Math.max(1.2,s*0.045);
+  X.beginPath();X.moveTo(-0.72*s,-0.40*s);X.lineTo(0.72*s,-0.40*s);X.stroke();X.globalAlpha=1;
+  // sail (tall narrow peak, papery fold: two values split at center)
+  X.beginPath();
+  X.moveTo(-0.40*s,-0.40*s);X.lineTo(-0.02*s,-1.42*s);X.lineTo(0.40*s,-0.40*s);X.closePath();
+  const g2=X.createLinearGradient(-0.4*s,0,0.4*s,0);
+  const dk=o.rimSide==='right'?o.sailDark:o.sailLight;
+  const lt=o.rimSide==='right'?o.sailLight:o.sailDark;
+  g2.addColorStop(0,dk);g2.addColorStop(0.49,dk);g2.addColorStop(0.52,lt);g2.addColorStop(1,lt);
+  X.fillStyle=g2;X.fill();
+  // center fold crease
+  X.strokeStyle=o.fold;X.globalAlpha=0.6;X.lineWidth=Math.max(1,s*0.03);
+  X.beginPath();X.moveTo(-0.02*s,-1.42*s);X.lineTo(-0.01*s,-0.40*s);X.stroke();X.globalAlpha=1;
+  // rim light on the lit side edges
+  X.strokeStyle=o.rim;X.lineWidth=Math.max(1.6,s*0.07);X.globalAlpha=o.rimA;
+  X.lineCap='round';
+  X.beginPath();
+  if(o.rimSide==='right'){
+    X.moveTo(-0.02*s,-1.42*s);X.lineTo(0.40*s,-0.40*s);
+    X.moveTo(0.72*s,-0.40*s);X.lineTo(1.1*s,-0.02*s);
+  }else{
+    X.moveTo(-0.02*s,-1.42*s);X.lineTo(-0.40*s,-0.40*s);
+    X.moveTo(-0.72*s,-0.40*s);X.lineTo(-1.1*s,-0.02*s);
+  }
+  X.stroke();X.globalAlpha=1;
+  X.restore();
+}
+function boatSilhouette(x,y,s,tilt,fill,alpha,squash){
+  X.save();X.translate(x,y);X.scale(1,-squash);X.rotate(-tilt*0.6);
+  X.globalAlpha=alpha;X.fillStyle=fill;
+  X.beginPath();
+  X.moveTo(-1.1*s,0);X.lineTo(-0.72*s,-0.40*s);X.lineTo(0.72*s,-0.40*s);X.lineTo(1.1*s,0);
+  X.quadraticCurveTo(0,0.20*s,-1.1*s,0);X.closePath();X.fill();
+  X.beginPath();
+  X.moveTo(-0.40*s,-0.40*s);X.lineTo(0,-1.42*s);X.lineTo(0.40*s,-0.40*s);X.closePath();X.fill();
+  X.restore();X.globalAlpha=1;
+}
+
+// ---------- HUD widgets ----------
+function panel(x,y,w,h,border){
+  X.save();
+  X.fillStyle='rgba(8,12,16,0.52)';
+  rr(x,y,w,h,4);X.fill();
+  X.strokeStyle=border||'rgba(235,225,200,0.4)';X.lineWidth=1.2;
+  rr(x+0.5,y+0.5,w-1,h-1,4);X.stroke();
+  // top inner highlight
+  X.strokeStyle='rgba(255,255,255,0.09)';X.lineWidth=1;
+  X.beginPath();X.moveTo(x+4,y+1.6);X.lineTo(x+w-4,y+1.6);X.stroke();
+  X.restore();
+}
+function bar(x,y,w,h,frac,trailFrac,main,trail){
+  X.save();
+  X.fillStyle='rgba(6,9,12,0.8)';rr(x,y,w,h,3);X.fill();
+  if(trailFrac>0){X.fillStyle=trail;rr(x+1.5,y+1.5,Math.max(0,(w-3)*trailFrac),h-3,2);X.fill();}
+  if(frac>0){
+    const g=X.createLinearGradient(x,y,x,y+h);
+    g.addColorStop(0,main[0]);g.addColorStop(1,main[1]);
+    X.fillStyle=g;rr(x+1.5,y+1.5,Math.max(0,(w-3)*frac),h-3,2);X.fill();
+    // gloss
+    X.fillStyle='rgba(255,255,255,0.22)';
+    rr(x+1.5,y+1.5,Math.max(0,(w-3)*frac),(h-3)*0.42,2);X.fill();
+  }
+  // segment ticks
+  X.strokeStyle='rgba(0,0,0,0.35)';X.lineWidth=1;
+  for(let i=1;i<10;i++){const tx=x+(w/10)*i;X.beginPath();X.moveTo(tx,y+1.5);X.lineTo(tx,y+h-1.5);X.stroke();}
+  X.strokeStyle='rgba(240,232,214,0.65)';X.lineWidth=1.2;
+  rr(x+0.5,y+0.5,w-1,h-1,3);X.stroke();
+  X.restore();
+}
+function diamond(x,y,r,fill,stroke){
+  X.save();X.translate(x,y);X.rotate(Math.PI/4);
+  X.fillStyle=fill;X.fillRect(-r,-r,2*r,2*r);
+  if(stroke){X.strokeStyle=stroke;X.lineWidth=1.4;X.strokeRect(-r,-r,2*r,2*r);}
+  X.restore();
+}
+function minimap(cx,cy,r,mode){
+  X.save();
+  X.beginPath();X.arc(cx,cy,r,0,Math.PI*2);X.clip();
+  if(mode==='a'){
+    X.fillStyle='#0f2028';X.fillRect(cx-r,cy-r,2*r,2*r);
+    // water texture
+    for(let i=0;i<90;i++){dab(cx-r+rand(2*r),cy-r+rand(2*r),rand(3,9),rand(1,2),0,'#1a3542',0.35);}
+    // far coast blob upper-right
+    X.fillStyle='#233b2e';
+    X.beginPath();X.moveTo(cx+r*0.2,cy-r);X.quadraticCurveTo(cx+r*0.45,cy-r*0.35,cx+r*1.1,cy-r*0.5);
+    X.lineTo(cx+r*1.1,cy-r*1.1);X.closePath();X.fill();
+    X.strokeStyle='rgba(120,200,160,0.35)';X.lineWidth=1;
+    X.beginPath();X.moveTo(cx+r*0.2,cy-r);X.quadraticCurveTo(cx+r*0.45,cy-r*0.35,cx+r*1.1,cy-r*0.5);X.stroke();
+    // dotted route
+    X.setLineDash([3,5]);X.strokeStyle='rgba(232,200,122,0.85)';X.lineWidth=1.6;
+    X.beginPath();X.moveTo(cx-r*0.42,cy+r*0.44);X.quadraticCurveTo(cx+r*0.05,cy+r*0.05,cx+r*0.5,cy-r*0.42);X.stroke();
+    X.setLineDash([]);
+    // waypoint
+    diamond(cx+r*0.5,cy-r*0.42,4.5,'#f0c860','rgba(255,240,200,0.9)');
+    // player arrow
+    X.save();X.translate(cx-r*0.42,cy+r*0.44);X.rotate(-Math.PI/4);
+    X.fillStyle='#eef4f0';X.beginPath();X.moveTo(0,-7);X.lineTo(5,6);X.lineTo(0,3);X.lineTo(-5,6);X.closePath();X.fill();
+    X.restore();
+  }else{
+    X.fillStyle='#140f12';X.fillRect(cx-r,cy-r,2*r,2*r);
+    for(let i=0;i<80;i++){dab(cx-r+rand(2*r),cy-r+rand(2*r),rand(3,8),rand(1,2),0,'#2a1c1e',0.5);}
+    // storm spiral
+    X.strokeStyle='rgba(216,72,56,0.8)';X.lineWidth=2;
+    for(let k=0;k<3;k++){
+      X.beginPath();
+      for(let a=0;a<Math.PI*1.7;a+=0.1){
+        const rr2=(0.15+0.26*k)*r + a*r*0.055;
+        const px=cx+Math.cos(a+k*2.1)*rr2, py=cy+Math.sin(a+k*2.1)*rr2;
+        if(a===0)X.moveTo(px,py);else X.lineTo(px,py);
+      }
+      X.stroke();
+    }
+    dab(cx,cy,5,5,0,'#f0d264',0.9);
+    // player arrow being pulled in
+    X.save();X.translate(cx-r*0.4,cy+r*0.4);X.rotate(-Math.PI/3.2);
+    X.fillStyle='#eef4f0';X.beginPath();X.moveTo(0,-7);X.lineTo(5,6);X.lineTo(0,3);X.lineTo(-5,6);X.closePath();X.fill();
+    X.restore();
+  }
+  X.restore();
+  // rings
+  X.strokeStyle=mode==='a'?'rgba(235,225,200,0.75)':'rgba(240,120,100,0.85)';
+  X.lineWidth=2;X.beginPath();X.arc(cx,cy,r,0,Math.PI*2);X.stroke();
+  X.strokeStyle='rgba(255,255,255,0.18)';X.lineWidth=1;
+  X.beginPath();X.arc(cx,cy,r-3.5,0,Math.PI*2);X.stroke();
+  // N
+  text('N',cx,cy-r-6,13,'#e8e2d2',{align:'center',weight:'700',ls:1});
+}
+function keyPrompt(x,y,key,label,accent){
+  X.save();
+  X.strokeStyle=accent||'rgba(235,225,200,0.85)';X.lineWidth=1.6;
+  X.fillStyle='rgba(8,12,16,0.6)';
+  X.beginPath();X.arc(x,y,11,0,Math.PI*2);X.fill();X.stroke();
+  text(key,x,y+4.5,13,'#f0ead8',{align:'center',weight:'700'});
+  text(label,x+18,y+5,14,'rgba(235,230,215,0.9)',{ls:1.5,weight:'600'});
+  X.restore();
+}
+function grain(n,alpha){
+  for(let i=0;i<n;i++){
+    const v=rand()<0.5?0:255;
+    X.fillStyle='rgba('+v+','+v+','+v+','+alpha+')';
+    X.fillRect(rand(W),rand(H),1.2,1.2);
+  }
+}
+function vignette(strength,color){
+  const g=X.createRadialGradient(W/2,H/2,H*0.42,W/2,H/2,H*0.85);
+  g.addColorStop(0,'rgba(0,0,0,0)');
+  g.addColorStop(1,color||('rgba(8,8,16,'+strength+')'));
+  X.fillStyle=g;X.fillRect(0,0,W,H);
+}
+
+// =========================================================
+// FRAME A — "SETTING OUT" (quest start, dawn)
+// =========================================================
+function frameA(){
+  R=mulberry32(20260928);
+  const hor=458;
+  const sunX=905, sunY=352;
+
+  // sky
+  {
+    const g=X.createLinearGradient(0,0,0,hor);
+    g.addColorStop(0,'#2c3760');
+    g.addColorStop(0.42,'#7d6584');
+    g.addColorStop(0.66,'#c98d74');
+    g.addColorStop(0.85,'#efc188');
+    g.addColorStop(1,'#ffe2a6');
+    X.fillStyle=g;X.fillRect(0,0,W,hor+2);
+  }
+  // painterly sky strokes (subtle brushed texture)
+  for(let i=0;i<700;i++){
+    const t=rand();const y=t*hor;
+    const c=t<0.42?mix([60,70,110],[130,105,135],t/0.42):mix([205,145,120],[255,228,170],(t-0.42)/0.58);
+    dab(rand(-30,W+30),y,rand(18,70),rand(2,5),rand(-0.06,0.06),c,0.05+rand(0.05));
+  }
+  // sun glow + disc (soft, hazy dawn sun — no hard spokes)
+  X.save();X.globalCompositeOperation='lighter';
+  let g=X.createRadialGradient(sunX,sunY,0,sunX,sunY,320);
+  g.addColorStop(0,'rgba(255,218,158,0.42)');g.addColorStop(0.4,'rgba(255,190,120,0.14)');g.addColorStop(1,'rgba(255,180,110,0)');
+  X.fillStyle=g;X.fillRect(0,0,W,H);
+  g=X.createRadialGradient(sunX,sunY,0,sunX,sunY,58);
+  g.addColorStop(0,'rgba(255,244,216,0.85)');g.addColorStop(0.5,'rgba(255,226,170,0.5)');g.addColorStop(1,'rgba(255,214,150,0)');
+  X.fillStyle=g;X.beginPath();X.arc(sunX,sunY,58,0,Math.PI*2);X.fill();
+  X.restore();
+
+  // clouds: long flat dawn stratus, undersides lit; keep the title band clear
+  const bands=[[118,1.5],[310,0.9],[362,0.62]];
+  for(const[by,sc]of bands){
+    for(let k=0;k<4;k++){
+      const cx0=rand(-60,W+60), cy0=by+rand(-16,16)*sc;
+      const len=rand(140,300)*sc;
+      const n=Math.round(rand(22,32));
+      for(let i=0;i<n;i++){
+        const dx=(rand()-0.5)*2*len, dy=rand(-8,8)*sc*(1-Math.abs(dx)/len*0.5);
+        const px=cx0+dx,py=cy0+dy;
+        if(by>250&&Math.hypot(px-sunX,py-sunY)<160)continue; // keep the sun clean
+        dab(px,py,rand(34,80)*sc,rand(4,8)*sc,rand(-0.02,0.02),'#5c5478',0.09);
+        dab(px+10,py+4,rand(26,60)*sc,rand(3,6)*sc,rand(-0.02,0.02),'#f4bd8c',0.11);
+      }
+    }
+  }
+  // two gentle light shafts from the sun (soft, wide)
+  X.save();X.globalCompositeOperation='lighter';X.translate(sunX,sunY);
+  for(const[a,sp]of[[-2.6,0.4],[2.62,0.34]]){
+    X.save();X.rotate(a);
+    const rg=X.createLinearGradient(0,0,560,0);
+    rg.addColorStop(0,'rgba(255,214,150,0.05)');rg.addColorStop(1,'rgba(255,214,150,0)');
+    X.fillStyle=rg;
+    X.beginPath();X.moveTo(0,0);X.lineTo(600,-600*Math.tan(sp/2));X.lineTo(600,600*Math.tan(sp/2));X.closePath();X.fill();
+    X.restore();
+  }
+  X.restore();
+
+  // sea base
+  {
+    const g=X.createLinearGradient(0,hor,0,H);
+    g.addColorStop(0,'#e9b57f');
+    g.addColorStop(0.16,'#a97e83');
+    g.addColorStop(0.45,'#5f5b76');
+    g.addColorStop(1,'#333c56');
+    X.fillStyle=g;X.fillRect(0,hor,W,H-hor);
+  }
+  // horizon line crispness + far haze
+  X.fillStyle='rgba(255,224,166,0.5)';X.fillRect(0,hor-1,W,2);
+  {
+    const g2=X.createLinearGradient(0,hor,0,hor+70);
+    g2.addColorStop(0,'rgba(255,220,160,0.35)');g2.addColorStop(1,'rgba(255,220,160,0)');
+    X.fillStyle=g2;X.fillRect(0,hor,W,70);
+  }
+  // painterly sea dabs
+  for(let i=0;i<3400;i++){
+    const t=Math.pow(rand(),1.35); // 0=far
+    const y=hor+2+t*(H-hor-2);
+    const x=rand(-20,W+20);
+    const p=0.15+t*1.25;
+    const cc=t<0.5?mix([233,181,127],[100,92,124],t/0.5):mix([100,92,124],[66,78,116],(t-0.5)/0.5);
+    dab(x,y,rand(7,30)*p,rand(1.2,2.8)*p,rand(-0.02,0.02),cc,0.13+rand(0.12));
+  }
+  // long swell lines with perspective (gives the sea structure)
+  for(let i=0;i<46;i++){
+    const t=Math.pow(rand(),1.25);
+    const y=hor+10+t*(H-hor-14);
+    const p=0.15+t*1.3;
+    const len=rand(120,420)*p;
+    const x0=rand(-40,W);
+    X.strokeStyle='rgba(50,54,86,'+(0.14+rand(0.14))+')';
+    X.lineWidth=rand(1,2.6)*p;
+    X.beginPath();X.moveTo(x0,y);X.quadraticCurveTo(x0+len*0.5,y+rand(-4,4)*p,x0+len,y+rand(-2,2)*p);X.stroke();
+  }
+  // warm crest catches
+  for(let i=0;i<380;i++){
+    const t=Math.pow(rand(),1.1);
+    const y=hor+8+t*(H-hor-10);
+    const p=0.15+t*1.25;
+    dab(rand(W),y,rand(8,26)*p,rand(0.8,1.6)*p,rand(-0.02,0.02),'#c99a86',0.10+rand(0.10));
+  }
+  // darker trough strokes
+  for(let i=0;i<700;i++){
+    const t=Math.pow(rand(),1.2);
+    const y=hor+6+t*(H-hor-6);
+    const p=0.15+t*1.25;
+    dab(rand(W),y,rand(10,34)*p,rand(1,2)*p,rand(-0.02,0.02),'#383c5e',0.12+rand(0.10));
+  }
+  // sun glitter path
+  for(let i=0;i<520;i++){
+    const t=Math.pow(rand(),0.8);
+    const y=hor+3+t*(H-hor-40);
+    const spread=14+t*130;
+    const x=sunX-40+rand(-spread,spread)*0.9 - t*180; // path drifts toward boat
+    const p=0.2+t*1.2;
+    const a=0.10+rand(0.28)*(1-t*0.4);
+    dab(x,y,rand(4,16)*p,rand(0.8,1.8)*p,0,i%5?'#ffd9a0':'#fff0cc',a);
+  }
+
+  // distant sail? no — keep the sea empty, one protagonist.
+
+  // world waypoint marker (objective diamond floating above horizon)
+  {
+    const wx=986,wy=404;
+    X.save();X.globalCompositeOperation='lighter';
+    const lg=X.createLinearGradient(0,hor,0,wy-40);
+    lg.addColorStop(0,'rgba(240,200,96,0.22)');lg.addColorStop(1,'rgba(240,200,96,0)');
+    X.fillStyle=lg;X.fillRect(wx-2,wy-40,4,hor-(wy-40));
+    X.restore();
+    diamond(wx,wy,7,'#f0c860','rgba(255,244,210,0.95)');
+    diamond(wx,wy,11,'rgba(0,0,0,0)','rgba(240,200,96,0.5)');
+    text('2.4 km',wx,wy+27,16,'#f4e8c8',{align:'center',weight:'700'});
+  }
+
+  // ---- boat ----
+  const bx=298,by=556,bs=58,tilt=-0.05;
+  // reflection
+  boatSilhouette(bx,by+3,bs,tilt,'#8a6540',0.28,0.5);
+  for(let i=0;i<26;i++){ // reflection shimmer breaks
+    dab(bx+rand(-70,70),by+rand(6,64),rand(8,26),rand(1,2),0,'#8f7788',0.35);
+  }
+  // wake: gentle V trailing left + ripples
+  X.save();X.strokeStyle='rgba(255,236,200,0.4)';X.lineWidth=2;
+  X.beginPath();X.moveTo(bx-bs*0.9,by+2);X.quadraticCurveTo(bx-170,by+10,bx-300,by+30);X.stroke();
+  X.strokeStyle='rgba(255,236,200,0.25)';
+  X.beginPath();X.moveTo(bx-bs*0.9,by+4);X.quadraticCurveTo(bx-160,by+26,bx-280,by+52);X.stroke();
+  X.restore();
+  for(let i=0;i<14;i++){
+    dab(bx+rand(-90,60),by+rand(2,10),rand(10,26),rand(1,2),0,'#ffe4b0',0.22);
+  }
+  boat(bx,by,bs,tilt,{
+    hullDark:'#9a8672',hullMid:'#cbb89e',hullLight:'#f2e2c4',
+    sailDark:'#c4ae92',sailLight:'#fff6e0',
+    fold:'#5e4c3a',rim:'#ffe9b8',rimA:1.0,rimSide:'right',
+    gunwale:'#fff2d4',shadow:'rgba(60,40,50,1)'
+  });
+  // warm bounce light on water at bow
+  dab(bx+bs*0.9,by+5,26,3,0,'#ffdf9e',0.35);
+
+  // scene finish
+  grain(5200,0.03);
+  vignette(0.30);
+
+  // ---------------- HUD ----------------
+  // location title (slam-in frozen)
+  {
+    const ty=212;
+    X.save();
+    X.shadowColor='rgba(0,0,0,0.6)';X.shadowBlur=14;
+    text('THE CROSSING',W/2,ty,60,'#f6ecd4',{align:'center',font:TITLE_FONT,weight:'700',ls:14,blur:10});
+    X.restore();
+    // rules + ornaments
+    X.strokeStyle='rgba(240,222,180,0.8)';X.lineWidth=1.4;
+    X.beginPath();X.moveTo(W/2-250,ty+22);X.lineTo(W/2-30,ty+22);X.moveTo(W/2+30,ty+22);X.lineTo(W/2+250,ty+22);X.stroke();
+    diamond(W/2,ty+22,4,'#f0c860','rgba(255,244,210,0.9)');
+    text('CHAPTER I — FIRST LIGHT',W/2,ty+48,17,'rgba(244,232,204,0.85)',{align:'center',ls:5,weight:'600'});
+  }
+  // player plate top-left
+  {
+    const px=28,py=26;
+    panel(px,py,300,74);
+    text('PAPER BOAT',px+16,py+26,19,'#f2ead6',{weight:'700',ls:2});
+    text('LV 1',px+284,py+26,15,'#f0c860',{align:'right',weight:'700',ls:1});
+    bar(px+16,py+36,268,13,1.0,0,['#8fe6b0','#4aa878'],'');
+    text('HULL',px+16,py+64,11,'rgba(235,228,210,0.7)',{ls:2,weight:'600'});
+    bar(px+52,py+55,180,7,0.85,0,['#f0d47e','#c89b46'],'');
+  }
+  // minimap top-right
+  minimap(1178,96,64,'a');
+  // objective bottom-left
+  {
+    const ox=28,oy=596;
+    panel(ox,oy,332,90);
+    diamond(ox+24,oy+24,6,'#f0c860','rgba(255,244,210,0.9)');
+    text('NEW OBJECTIVE',ox+40,oy+29,14,'#f0c860',{ls:3,weight:'700'});
+    text('Cross the Meridian Sea',ox+18,oy+56,23,'#f4efe2',{weight:'600',ls:0.5});
+    text('Reach open water   0 / 1',ox+18,oy+78,14,'rgba(235,230,215,0.65)',{ls:1,weight:'600'});
+  }
+  // key prompts bottom-right
+  keyPrompt(1082,662,'E','SET SAIL');
+  keyPrompt(1082,690,'Q','CHART');
+}
+
+// =========================================================
+// FRAME B — "THE STORM PEAK" (boss fight)
+// =========================================================
+function crestYat(x){
+  // diagonal crest from upper-right down toward lower-left
+  const pts=[[80,600],[300,492],[560,368],[860,230],[1140,122],[1280,80]];
+  if(x<=pts[0][0])return pts[0][1];
+  for(let i=0;i<pts.length-1;i++){
+    if(x<=pts[i+1][0]){
+      const t=(x-pts[i][0])/(pts[i+1][0]-pts[i][0]);
+      const tt=t*t*(3-2*t);
+      return lerp(pts[i][1],pts[i+1][1],tt);
+    }
+  }
+  return pts[pts.length-1][1];
+}
+function frameB(){
+  R=mulberry32(19770914);
+  const gapX=235,gapY=96;
+
+  // sky — bruised storm
+  {
+    const g=X.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'#12161a');
+    g.addColorStop(0.4,'#1c2429');
+    g.addColorStop(1,'#0b1013');
+    X.fillStyle=g;X.fillRect(0,0,W,H);
+  }
+  // light gap upper-left
+  X.save();X.globalCompositeOperation='lighter';
+  let g=X.createRadialGradient(gapX,gapY,0,gapX,gapY,280);
+  g.addColorStop(0,'rgba(190,214,220,0.55)');g.addColorStop(0.35,'rgba(150,180,190,0.2)');g.addColorStop(1,'rgba(140,170,180,0)');
+  X.fillStyle=g;X.fillRect(0,0,W,H);
+  X.restore();
+  // heavy cloud dabs
+  for(let i=0;i<900;i++){
+    const y=Math.pow(rand(),1.6)*360;
+    const x=rand(-40,W+40);
+    const d=Math.hypot(x-gapX,y-gapY);
+    const litT=Math.max(0,1-d/330);
+    const base=mix([20,26,30],[38,48,52],rand());
+    dab(x,y,rand(30,85),rand(8,20),rand(-0.1,0.1),base,0.12+rand(0.10));
+    if(litT>0.05) dab(x+6,y+6,rand(20,55),rand(5,12),rand(-0.1,0.1),'#9db4bc',0.14*litT);
+  }
+  // roiling cloud bottoms
+  for(let i=0;i<260;i++){
+    const x=rand(-40,W+40),y=250+Math.pow(rand(),2)*140;
+    dab(x,y,rand(30,70),rand(7,14),rand(-0.1,0.1),'#161c20',0.16);
+  }
+  // light shaft toward the boat
+  X.save();X.globalCompositeOperation='lighter';
+  for(const[a,w0,w1]of[[0.05,60,190],[0.028,140,360]]){
+    X.globalAlpha=1;
+    const sg=X.createLinearGradient(0,gapY,0,600);
+    sg.addColorStop(0,'rgba(190,214,220,'+a+')');sg.addColorStop(1,'rgba(190,214,220,0)');
+    X.fillStyle=sg;
+    X.beginPath();
+    X.moveTo(gapX-w0/2,gapY);X.lineTo(gapX+w0/2,gapY);
+    X.lineTo(gapX+130+w1/2,600);X.lineTo(gapX+130-w1/2,600);X.closePath();X.fill();
+  }
+  X.restore();
+
+  // distant sea behind wave (left sliver) — soft blend, no hard band
+  {
+    const g2=X.createLinearGradient(0,300,0,H);
+    g2.addColorStop(0,'rgba(24,38,42,0)');g2.addColorStop(0.14,'rgba(24,38,42,0.9)');g2.addColorStop(1,'rgba(9,15,18,1)');
+    X.fillStyle=g2;X.fillRect(0,300,W,H-300);
+    X.fillStyle='rgba(150,180,185,0.18)';X.fillRect(0,338,240,1.2);
+    for(let i=0;i<320;i++){
+      const t=rand();const y=345+t*(H-345);
+      dab(rand(W),y,rand(8,30)*(0.3+t),rand(1,2.4)*(0.3+t),0,'#22343a',0.14);
+    }
+    // whitecaps on the open water
+    for(let i=0;i<60;i++){
+      const t=rand();const y=350+t*(H-350);
+      dab(rand(300),y,rand(5,16)*(0.3+t),rand(1,2)*(0.3+t),0,'#7f9a98',0.20);
+    }
+  }
+
+  // ===== THE WAVE (boss) =====
+  X.save();
+  X.beginPath();
+  X.moveTo(-10,H+10);
+  X.lineTo(-10,crestYat(0));
+  for(let x=0;x<=W;x+=8)X.lineTo(x,crestYat(x));
+  X.lineTo(W+10,crestYat(W));
+  X.lineTo(W+10,H+10);X.closePath();
+  const wg=X.createLinearGradient(300,650,1150,120);
+  wg.addColorStop(0,'#0d181a');
+  wg.addColorStop(0.45,'#1d3a3e');
+  wg.addColorStop(0.8,'#2e565a');
+  wg.addColorStop(1,'#3c6a6a');
+  X.fillStyle=wg;X.fill();
+  X.clip();
+  // broad mass patches first (value structure, not lines)
+  const slope=Math.atan2(-1,2.4); // approx crest direction
+  for(let i=0;i<220;i++){
+    const x=rand(-20,W+20);
+    const cy=crestYat(x);
+    const depth=rand();
+    const y=cy+10+depth*(H-cy);
+    if(y>H+30)continue;
+    const cc=depth<0.5?mix([46,86,88],[24,46,50],depth*2):mix([24,46,50],[10,20,22],(depth-0.5)*2);
+    dab(x,y,rand(60,150),rand(14,34),slope+rand(-0.1,0.1),cc,0.10+rand(0.08));
+  }
+  // deep shadow just under the crest overhang
+  for(let x=40;x<W;x+=10){
+    const cy=crestYat(x);
+    dab(x+rand(-4,4),cy+rand(14,40),rand(24,60),rand(6,14),slope,'#0c1a1c',0.16+rand(0.10));
+  }
+  // face streaks along the slope (curved, painterly)
+  for(let i=0;i<900;i++){
+    const x=rand(-20,W+20);
+    const cy=crestYat(x);
+    const depth=rand();
+    const y=cy+8+depth*(H-cy);
+    if(y>H+20)continue;
+    const nearCrest=Math.max(0,1-depth*2.2);
+    const cc=depth<0.5?mix([62,110,108],[28,56,60],depth*2):mix([28,56,60],[12,22,24],(depth-0.5)*2);
+    dab(x,y,rand(14,48),rand(1.6,3.6),slope+rand(-0.08,0.08),cc,0.12+rand(0.10));
+    if(nearCrest>0.2&&rand()<0.5)
+      dab(x,y,rand(8,26),rand(1,2),slope+rand(-0.05,0.05),'#7ba49e',0.10*nearCrest+rand(0.08));
+  }
+  // curved water-drag arcs on the face (the wave rolling over itself)
+  for(let i=0;i<90;i++){
+    const x=rand(200,W);
+    const cy=crestYat(x);
+    const d0=rand(20,160);
+    X.strokeStyle='rgba(120,160,152,'+(0.06+rand(0.10))+')';
+    X.lineWidth=rand(1,3);
+    X.beginPath();
+    X.moveTo(x,cy+d0);
+    X.quadraticCurveTo(x-rand(40,90),cy+d0+rand(10,40),x-rand(90,180),cy+d0+rand(50,110));
+    X.stroke();
+  }
+  // foam lace drifting on the lower face (texture for the big teal expanse)
+  for(let i=0;i<40;i++){
+    const x=rand(360,W+20);
+    const cy=crestYat(x);
+    const y=cy+rand(90,Math.max(100,H-cy-10));
+    if(y>H)continue;
+    const n=Math.round(rand(6,14));
+    for(let k=0;k<n;k++){
+      dab(x+rand(-34,34),y+rand(-10,10),rand(3,10),rand(1,3),slope+rand(-0.2,0.2),'#7ea69e',0.08+rand(0.10));
+    }
+  }
+  // sparse foam runnels sliding down (fewer, softer than before)
+  for(let i=0;i<55;i++){
+    const x=rand(160,W);
+    const cy=crestYat(x);
+    const len=rand(26,80);
+    X.save();X.translate(x,cy+rand(8,50));X.rotate(slope+1.45+rand(-0.2,0.2));
+    X.strokeStyle='rgba(196,220,212,'+(0.08+rand(0.10))+')';X.lineWidth=rand(1,2.2);
+    X.beginPath();X.moveTo(0,0);X.quadraticCurveTo(rand(-16,16),len*0.5,rand(-24,24),len);X.stroke();
+    X.restore();
+  }
+  // light shaft catching the face (rim glow from upper-left)
+  X.save();X.globalCompositeOperation='lighter';
+  const fg=X.createLinearGradient(150,350,650,550);
+  fg.addColorStop(0,'rgba(160,190,190,0.16)');fg.addColorStop(1,'rgba(160,190,190,0)');
+  X.fillStyle=fg;X.fillRect(0,0,W,H);
+  X.restore();
+  X.restore(); // unclip
+
+  // crest foam: chunky tumbling clusters, not a thin line
+  for(let x=40;x<W;x+=6){
+    const cy=crestYat(x);
+    const litT=Math.max(0,1-Math.hypot(x-gapX,cy-gapY)/900);
+    if(rand()<0.9)dab(x+rand(-5,5),cy+rand(-6,8),rand(5,18),rand(3,8),slope+rand(-0.3,0.3),'#bcd6ca',0.24+rand(0.26)+litT*0.18);
+    if(rand()<0.5)dab(x+rand(-7,3),cy-rand(3,16),rand(3,9),rand(2,5),0,'#e2efe4',0.18+rand(0.26));
+  }
+  // big foam boulders at intervals (tumbling masses)
+  for(let i=0;i<16;i++){
+    const x=140+i*72+rand(-20,20);
+    const cy=crestYat(x);
+    const n=Math.round(rand(8,16));
+    for(let k=0;k<n;k++){
+      dab(x+rand(-26,20),cy+rand(-16,22),rand(6,20),rand(4,12),rand(-0.6,0.6),k%3?'#a8c2b8':'#dcece2',0.20+rand(0.24));
+    }
+    // foam bits dropping down the face
+    for(let k=0;k<6;k++){
+      dab(x+rand(-14,6),cy+rand(24,90),rand(2,6),rand(2,5),0,'#b8d2c8',0.18+rand(0.16));
+    }
+  }
+  // spray blown left off the crest
+  for(let i=0;i<380;i++){
+    const x=rand(100,W);
+    const cy=crestYat(x);
+    const d=rand(6,90);
+    dab(x-d*rand(0.6,1.4),cy-d*rand(0.3,0.8),rand(0.8,2.6),rand(0.8,2.2),0,'#e6f2ec',0.08+rand(0.22)*(1-d/100));
+  }
+  // motion smears parallel to crest
+  X.save();X.globalCompositeOperation='lighter';
+  for(let i=0;i<26;i++){
+    const x=rand(300,1200);const cy=crestYat(x);
+    X.strokeStyle='rgba(220,238,230,'+(0.05+rand(0.07))+')';X.lineWidth=rand(1,3);
+    X.beginPath();X.moveTo(x,cy+rand(-4,8));X.lineTo(x-rand(60,160),cy+rand(20,60));X.stroke();
+  }
+  X.restore();
+
+  // ---- boat: small but unmissable, climbing the base of the wave ----
+  const bx=300,by=556,bs=44,tilt=-0.34;
+  // dark water window behind the boat so it separates from the foam
+  X.save();
+  const dw=X.createRadialGradient(bx+14,by-26,0,bx+14,by-26,95);
+  dw.addColorStop(0,'rgba(12,26,28,0.75)');dw.addColorStop(0.7,'rgba(12,26,28,0.35)');dw.addColorStop(1,'rgba(12,26,28,0)');
+  X.fillStyle=dw;X.fillRect(bx-90,by-130,210,190);
+  X.restore();
+  // pool of shaft light on the water around the boat
+  X.save();X.globalCompositeOperation='lighter';
+  const bl=X.createRadialGradient(bx,by-10,0,bx,by-10,130);
+  bl.addColorStop(0,'rgba(170,200,200,0.20)');bl.addColorStop(1,'rgba(170,200,200,0)');
+  X.fillStyle=bl;X.fillRect(bx-140,by-150,280,290);
+  X.restore();
+  // churned water + foam ring at hull
+  for(let i=0;i<46;i++){
+    dab(bx+rand(-64,64),by+rand(-6,16),rand(6,24),rand(2,6),rand(-0.3,0.3),'#cfe2da',0.24+rand(0.22));
+  }
+  for(let i=0;i<20;i++){
+    dab(bx+rand(-44,44),by+rand(-18,-4),rand(2,6),rand(2,5),0,'#eef6f0',0.32);
+  }
+  boat(bx,by,bs,tilt,{
+    hullDark:'#5c6864',hullMid:'#95a29a',hullLight:'#e2eade',
+    sailDark:'#707c76',sailLight:'#ffffff',
+    fold:'#1a2224',rim:'#f2fffa',rimA:1.0,rimSide:'left',
+    gunwale:'#eefaf2',shadow:'rgba(6,12,14,1)'
+  });
+  // spray whipping off the boat
+  for(let i=0;i<14;i++){
+    dab(bx-rand(20,70),by-rand(10,50),rand(1,3),rand(1,2),0,'#e6f2ec',0.25);
+  }
+  // damage popup
+  text('-14',bx+86,by-92,27,'#ff6a52',{weight:'800',italic:true,ls:1,align:'center',blur:6});
+  text('HULL',bx+86,by-74,11,'rgba(255,150,130,0.8)',{weight:'700',ls:2,align:'center'});
+
+  // rain — driven from upper right
+  X.save();
+  for(let i=0;i<210;i++){
+    const x=rand(-40,W+120),y=rand(-20,H);
+    const len=rand(20,48);
+    X.strokeStyle='rgba(200,216,218,'+(0.03+rand(0.08))+')';
+    X.lineWidth=rand(0.7,1.4);
+    X.beginPath();X.moveTo(x,y);X.lineTo(x-len*0.34,y+len);X.stroke();
+  }
+  // a few close heavy streaks
+  for(let i=0;i<14;i++){
+    const x=rand(W+100),y=rand(H);const len=rand(80,150);
+    X.strokeStyle='rgba(210,226,228,0.12)';X.lineWidth=rand(1.6,2.4);
+    X.beginPath();X.moveTo(x,y);X.lineTo(x-len*0.34,y+len);X.stroke();
+  }
+  X.restore();
+
+  grain(6200,0.035);
+  vignette(0.42,'rgba(4,6,10,0.5)');
+  // low-HP red edge pulse
+  {
+    const g2=X.createRadialGradient(W/2,H/2,H*0.40,W/2,H/2,H*0.78);
+    g2.addColorStop(0,'rgba(180,30,24,0)');g2.addColorStop(1,'rgba(180,30,24,0.17)');
+    X.fillStyle=g2;X.fillRect(0,0,W,H);
+  }
+
+  // ---------------- HUD ----------------
+  // boss bar top-center
+  {
+    const bw=540,bxx=W/2-bw/2,byy=74;
+    text('THE MAELSTROM',W/2,46,30,'#f2e8d6',{align:'center',font:TITLE_FONT,weight:'700',ls:8,blur:8});
+    text('DEVOURER OF SAILS',W/2,64,12,'rgba(240,200,150,0.85)',{align:'center',ls:4,weight:'600'});
+    bar(bxx,byy,bw,13,0.76,0.85,['#e05244','#8e1f1a'],'rgba(240,200,96,0.85)');
+    diamond(bxx-10,byy+6.5,5,'#f0c860','rgba(255,244,210,0.9)');
+    diamond(bxx+bw+10,byy+6.5,5,'#f0c860','rgba(255,244,210,0.9)');
+  }
+  // SURVIVE slam (frozen mid-slam, with smear echoes)
+  {
+    X.save();X.translate(W/2,178);X.rotate(-0.025);
+    text('SURVIVE',1,6,64,'rgba(200,50,36,0.5)',{align:'center',weight:'800',italic:true,ls:6,shadow:false});
+    text('SURVIVE',0,0,64,'#f4f2ec',{align:'center',weight:'800',italic:true,ls:6,blur:12});
+    X.restore();
+  }
+  // player plate top-left — hurt
+  {
+    const px=28,py=26;
+    panel(px,py,300,74,'rgba(240,120,100,0.55)');
+    text('PAPER BOAT',px+16,py+26,19,'#f2ead6',{weight:'700',ls:2});
+    text('LV 1',px+284,py+26,15,'#f0c860',{align:'right',weight:'700',ls:1});
+    bar(px+16,py+36,268,13,0.22,0.47,['#e05244','#8e1f1a'],'rgba(240,200,96,0.8)');
+    text('HULL',px+16,py+64,11,'rgba(255,170,150,0.85)',{ls:2,weight:'600'});
+    bar(px+52,py+55,180,7,0.18,0,['#f0d47e','#c89b46'],'');
+  }
+  // minimap top-right — storm swirl
+  minimap(1178,96,64,'b');
+  // objective bottom-left
+  {
+    const ox=28,oy=596;
+    panel(ox,oy,332,90,'rgba(240,120,100,0.55)');
+    diamond(ox+24,oy+24,6,'#e05244','rgba(255,200,180,0.9)');
+    text('OBJECTIVE',ox+40,oy+29,14,'#ff9678',{ls:3,weight:'700'});
+    text('Survive the Maelstrom',ox+18,oy+56,23,'#f4efe2',{weight:'600',ls:0.5});
+    text('Hold together',ox+18,oy+78,14,'rgba(235,230,215,0.65)',{ls:1,weight:'600'});
+    text('01:47',ox+312,oy+62,30,'#f0c860',{align:'right',weight:'700',ls:2});
+  }
+  // brace prompt bottom-right
+  {
+    const kx=1010,ky=668;
+    X.save();
+    X.fillStyle='rgba(8,12,16,0.6)';X.strokeStyle='rgba(240,150,120,0.9)';X.lineWidth=1.8;
+    rr(kx,ky-16,86,24,4);X.fill();X.stroke();
+    text('SPACE',kx+43,ky+1,14,'#f4efe2',{align:'center',weight:'700',ls:2});
+    text('BRACE',kx+104,ky+1,17,'#ffb49a',{weight:'700',ls:3});
+    X.restore();
+  }
+}
+
+// ---------- entry ----------
+window.drawFrame=function(which){
+  X.setTransform(1,0,0,1,0,0);
+  X.clearRect(0,0,W,H);
+  if(which==='a')frameA();else frameB();
+  window.DONE=true;
+};
+window.READY=true;
+</script>
+</body>
+</html>

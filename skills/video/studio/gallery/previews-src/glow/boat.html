@@ -1,0 +1,526 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>glow boat</title>
+<style>html,body{margin:0;padding:0;background:#0a1226}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const W = 1280, H = 720;
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+
+// ---------- deterministic rng ----------
+function mulberry32(seed){
+  let a = seed >>> 0;
+  return function(){
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const lerp = (a,b,t)=>a+(b-a)*t;
+const clamp = (v,a,b)=>v<a?a:(v>b?b:v);
+const sstep = (a,b,x)=>{ const t=clamp((x-a)/(b-a),0,1); return t*t*(3-2*t); };
+
+// ---------- value noise ----------
+function makeNoise(rng){
+  const g = new Float64Array(256);
+  for(let i=0;i<256;i++) g[i]=rng();
+  const perm = new Uint8Array(256);
+  for(let i=0;i<256;i++) perm[i]=i;
+  for(let i=255;i>0;i--){ const j=Math.floor(rng()*(i+1)); const t=perm[i]; perm[i]=perm[j]; perm[j]=t; }
+  const P = i => perm[i & 255];
+  function noise2(x,y){
+    const ix=Math.floor(x), iy=Math.floor(y);
+    const fx=x-ix, fy=y-iy;
+    const sx=fx*fx*(3-2*fx), sy=fy*fy*(3-2*fy);
+    const v=(a,b)=>g[P(P((ix+a)&255)+((iy+b)&255))];
+    return lerp(lerp(v(0,0),v(1,0),sx), lerp(v(0,1),v(1,1),sx), sy);
+  }
+  function fbm(x,y){
+    return noise2(x,y)*0.55 + noise2(x*2.1+13.7,y*2.1+7.3)*0.3 + noise2(x*4.3+41.2,y*4.3+17.9)*0.15;
+  }
+  return { noise2, fbm };
+}
+
+// ---------- vortex field helper ----------
+// base: {a: angle, s: strength}; vorts: [{x,y,r,s}] (s>0 counter-clockwise)
+function fieldAngle(x,y,base,vorts,noiseFn,noiseScale,noiseAmp){
+  let vx = Math.cos(base.a)*base.s, vy = Math.sin(base.a)*base.s;
+  for(let i=0;i<vorts.length;i++){
+    const o=vorts[i];
+    const dx=x-o.x, dy=y-o.y;
+    const d2=dx*dx+dy*dy;
+    const f=o.s*Math.exp(-d2/(2*o.r*o.r));
+    const d=Math.sqrt(d2)+1;
+    vx += (-dy/d)*f; vy += (dx/d)*f;
+  }
+  let a = Math.atan2(vy,vx);
+  if(noiseAmp) a += (noiseFn(x*noiseScale,y*noiseScale)-0.5)*2*noiseAmp;
+  return a;
+}
+
+// ---------- base layer (offscreen painted scene) ----------
+const base = document.createElement('canvas');
+base.width=W; base.height=H;
+const bx = base.getContext('2d');
+let baseData = null;
+
+function radial(g,x,y,r,stops){
+  const grad=g.createRadialGradient(x,y,0,x,y,r);
+  for(const s of stops) grad.addColorStop(s[0],s[1]);
+  g.fillStyle=grad; g.fillRect(0,0,W,H);
+}
+
+function sampleBase(x,y){
+  const xi=clamp(Math.round(x),0,W-1), yi=clamp(Math.round(y),0,H-1);
+  const i=(yi*W+xi)*4;
+  return [baseData[i],baseData[i+1],baseData[i+2]];
+}
+
+// ---------- brush strokes pass ----------
+// stratified grid so canvas is fully covered
+function strokePass(field, opts, rng){
+  const {cell, lenMin, lenMax, wMin, wMax, alpha, jitter, light, curl} = opts;
+  ctx.lineCap='round'; ctx.lineJoin='round';
+  const cols=Math.ceil(W/cell), rows=Math.ceil(H/cell);
+  for(let cyc=0; cyc<(opts.per||1); cyc++){
+    for(let gy=0; gy<rows; gy++){
+      for(let gx=0; gx<cols; gx++){
+        const x0=(gx+rng())*cell, y0=(gy+rng())*cell;
+        let c=sampleBase(x0,y0);
+        const j=(rng()-0.5)*2*jitter;
+        const lt=light?light(x0,y0,rng):1;
+        const r=clamp(c[0]*lt+j,0,255), g2=clamp(c[1]*lt+j*0.9,0,255), b=clamp(c[2]*lt+j*0.7,0,255);
+        ctx.strokeStyle=`rgba(${r|0},${g2|0},${b|0},${alpha})`;
+        ctx.lineWidth=lerp(wMin,wMax,rng());
+        const len=lerp(lenMin,lenMax,rng());
+        const steps=5;
+        const seg=len/steps;
+        // walk back half, then forward, so stroke is centered on sample point
+        let px=x0, py=y0;
+        for(let s=0;s<Math.floor(steps/2);s++){
+          const a=field(px,py);
+          px-=Math.cos(a)*seg; py-=Math.sin(a)*seg;
+        }
+        ctx.beginPath(); ctx.moveTo(px,py);
+        let bend=(rng()-0.5)*(curl||0);
+        let pa=field(px,py);
+        for(let s=0;s<steps;s++){
+          const a=field(px,py)+bend*s;
+          pa=pa+ (a-pa)*0.6;
+          px+=Math.cos(pa)*seg; py+=Math.sin(pa)*seg;
+          ctx.lineTo(px,py);
+        }
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+// ---------- glow helpers (radial gradients, additive) ----------
+function glow(x,y,r,col,a){
+  ctx.save();
+  ctx.globalCompositeOperation='lighter';
+  const g=ctx.createRadialGradient(x,y,0,x,y,r);
+  g.addColorStop(0,`rgba(${col},${a})`);
+  g.addColorStop(0.35,`rgba(${col},${a*0.45})`);
+  g.addColorStop(1,`rgba(${col},0)`);
+  ctx.fillStyle=g;
+  ctx.fillRect(x-r,y-r,2*r,2*r);
+  ctx.restore();
+}
+
+// ---------- the paper boat, painted in strokes ----------
+// s = hull width in px; heading right; tilt in radians (positive = bow up)
+function paintBoat(x,y,s,tilt,rng,stormy){
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.rotate(-tilt);
+  ctx.lineCap='round';
+  const u=s; // unit
+
+  // --- glow under/behind sail (bloom base) ---
+  glow(0,-0.16*u, 1.15*u, '255,150,60', 0.34);
+  glow(0,-0.20*u, 0.55*u, '255,190,110', 0.5);
+
+  // --- sail: narrow triangular peak, a fan of glowing strokes ---
+  const peak=[0.015*u,-0.47*u];
+  const baseL=[-0.17*u,-0.01*u], baseR=[0.20*u,-0.02*u];
+  const nSail=8;
+  for(let i=0;i<nSail;i++){
+    const t=i/(nSail-1);
+    const bxp=lerp(baseL[0],baseR[0],t), byp=lerp(baseL[1],baseR[1],t);
+    const e=Math.abs(t-0.45)*2.2; // 0 core, ~1 edge
+    const ee=clamp(e,0,1);
+    const rC=lerp(255,208,ee), gC=lerp(210,104,ee), bC=lerp(130,38,ee);
+    ctx.strokeStyle=`rgba(${rC|0},${gC|0},${bC|0},0.95)`;
+    ctx.lineWidth=lerp(0.06,0.04,ee)*u*(0.9+rng()*0.25);
+    ctx.beginPath();
+    ctx.moveTo(bxp+(rng()-0.5)*0.02*u, byp+(rng()-0.5)*0.02*u);
+    const mx=lerp(bxp,peak[0],0.5)+(rng()-0.5)*0.035*u;
+    const my=lerp(byp,peak[1],0.5)+(rng()-0.5)*0.03*u;
+    ctx.quadraticCurveTo(mx,my, peak[0]+(rng()-0.5)*0.025*u, peak[1]+rng()*0.03*u);
+    ctx.stroke();
+  }
+  // soft hot core inside the sail
+  ctx.save();
+  ctx.globalCompositeOperation='lighter';
+  ctx.strokeStyle='rgba(255,232,180,0.55)';
+  ctx.lineWidth=0.055*u;
+  ctx.beginPath();
+  ctx.moveTo(0.012*u,-0.06*u);
+  ctx.quadraticCurveTo(0.004*u,-0.28*u, peak[0],peak[1]+0.08*u);
+  ctx.stroke();
+  ctx.restore();
+
+  // --- hull: folded-paper hull with raised pointed tips ---
+  const sternT=[-0.52*u,-0.115*u], bowT=[0.55*u,-0.135*u]; // raised paper points
+  const hull=new Path2D();
+  hull.moveTo(sternT[0],sternT[1]);
+  hull.quadraticCurveTo(-0.20*u,0.035*u, 0.0,0.035*u);      // top edge dips to middle
+  hull.quadraticCurveTo(0.22*u,0.035*u, bowT[0],bowT[1]);    // rises to bow point
+  hull.quadraticCurveTo(0.34*u,0.16*u, 0.20*u,0.185*u);      // bow underside
+  hull.quadraticCurveTo(0,0.21*u,-0.19*u,0.185*u);           // keel
+  hull.quadraticCurveTo(-0.33*u,0.155*u, sternT[0],sternT[1]);
+  ctx.fillStyle='rgba(13,22,42,0.97)';
+  ctx.fill(hull);
+  // painterly texture strokes inside the hull
+  for(let i=0;i<4;i++){
+    const t=i/3;
+    ctx.strokeStyle=`rgba(${20+t*16+rng()*8|0},${32+t*16|0},${58+t*20|0},0.8)`;
+    ctx.lineWidth=lerp(0.055,0.035,t)*u;
+    const yy=lerp(0.07,0.16,t)*u;
+    ctx.beginPath();
+    ctx.moveTo(-0.40*u*(1-t*0.3), yy*0.8);
+    ctx.quadraticCurveTo(0, yy+0.045*u, 0.42*u*(1-t*0.3), yy*0.75);
+    ctx.stroke();
+  }
+  // warm rim light along the gunwale (lit by the sail)
+  ctx.strokeStyle='rgba(255,158,70,0.9)';
+  ctx.lineWidth=0.032*u;
+  ctx.beginPath();
+  ctx.moveTo(sternT[0]+0.02*u,sternT[1]+0.02*u);
+  ctx.quadraticCurveTo(-0.2*u,0.045*u,0,0.045*u);
+  ctx.quadraticCurveTo(0.22*u,0.045*u,bowT[0]-0.015*u,bowT[1]+0.02*u);
+  ctx.stroke();
+  // the two paper points catch the light
+  ctx.strokeStyle='rgba(255,196,120,0.95)';
+  ctx.lineWidth=0.028*u;
+  ctx.beginPath(); ctx.moveTo(bowT[0]-0.09*u,bowT[1]+0.055*u); ctx.lineTo(bowT[0],bowT[1]); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(sternT[0]+0.085*u,sternT[1]+0.055*u); ctx.lineTo(sternT[0],sternT[1]); ctx.stroke();
+
+  ctx.restore();
+
+  // --- embers / sparks rising from the sail ---
+  ctx.save();
+  ctx.globalCompositeOperation='lighter';
+  const nSpark = stormy? 16 : 9;
+  for(let i=0;i<nSpark;i++){
+    const t=rng();
+    const dx = stormy ? (-0.2-1.5*t)*s*(0.5+rng()) : (rng()-0.35)*0.5*s;
+    const dy = -0.35*s - t*(stormy?0.9:1.1)*s - rng()*0.2*s;
+    const px=x+dx, py=y+dy+0.1*s;
+    const rr=(1-t)*0.028*s+1;
+    const al=(1-t)*0.85;
+    const g=ctx.createRadialGradient(px,py,0,px,py,rr*3);
+    g.addColorStop(0,`rgba(255,220,150,${al})`);
+    g.addColorStop(0.4,`rgba(255,150,60,${al*0.5})`);
+    g.addColorStop(1,'rgba(255,150,60,0)');
+    ctx.fillStyle=g;
+    ctx.fillRect(px-rr*3,py-rr*3,rr*6,rr*6);
+  }
+  ctx.restore();
+}
+
+// broken shimmering reflection in the water below the boat
+function paintReflection(x,y,s,rng,rough){
+  ctx.save();
+  ctx.globalCompositeOperation='lighter';
+  ctx.lineCap='round';
+  const n=rough?7:12;
+  for(let i=0;i<n;i++){
+    const t=i/(n-1);
+    const yy=y+0.12*s+t*(rough?0.8:1.5)*s + (rng()-0.5)*0.28*s;
+    const ww=(1-t)*(rough?0.4:0.5)*s*(0.25+rng()*0.9);
+    const xx=x+(rng()-0.5)*(rough?0.5:0.45)*s*(0.6+t*2);
+    ctx.strokeStyle=`rgba(255,${140+rng()*50|0},60,${(0.15+0.85*(1-t))*(rough?0.28:0.38)*(0.5+rng()*0.5)})`;
+    ctx.lineWidth=(rough?0.05:0.04)*s*(1-t*0.5)*(0.6+rng()*0.8)+1;
+    ctx.beginPath();
+    ctx.moveTo(xx-ww/2,yy);
+    ctx.quadraticCurveTo(xx,yy+(rng()-0.5)*3,xx+ww/2,yy);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function vignette(strength){
+  const g=ctx.createRadialGradient(W/2,H/2,H*0.35,W/2,H/2,H*0.95);
+  g.addColorStop(0,'rgba(4,7,18,0)');
+  g.addColorStop(1,`rgba(4,7,18,${strength})`);
+  ctx.fillStyle=g;
+  ctx.fillRect(0,0,W,H);
+}
+
+// =========================================================
+// FRAME A — setting out: calm dawn, gentle swirls, big sky
+// =========================================================
+function drawA(){
+  const rng=mulberry32(20260928);
+  const nz=makeNoise(mulberry32(777));
+  const horizon=0.46*H;
+  const sun={x:0.78*W,y:horizon-0.035*H};
+  const boat={x:0.30*W,y:0.735*H,s:170};
+
+  // ---- base layer ----
+  const sky=bx.createLinearGradient(0,0,0,horizon);
+  sky.addColorStop(0,'#241d4e');   // violet dusk
+  sky.addColorStop(0.45,'#1e3260');
+  sky.addColorStop(0.8,'#1c4a6a');
+  sky.addColorStop(1,'#2c5f74');   // teal near horizon
+  bx.fillStyle=sky; bx.fillRect(0,0,W,horizon);
+  const sea=bx.createLinearGradient(0,horizon,0,H);
+  sea.addColorStop(0,'#25617a');
+  sea.addColorStop(0.35,'#173e58');
+  sea.addColorStop(1,'#0a1630');
+  bx.fillStyle=sea; bx.fillRect(0,horizon,W,H-horizon);
+  // faint pale band along the whole horizon (dawn haze)
+  const hz=bx.createLinearGradient(0,horizon-0.06*H,0,horizon+0.05*H);
+  hz.addColorStop(0,'rgba(120,170,190,0)');
+  hz.addColorStop(0.55,'rgba(150,195,205,0.28)');
+  hz.addColorStop(1,'rgba(120,170,190,0)');
+  bx.fillStyle=hz; bx.fillRect(0,horizon-0.06*H,W,0.11*H);
+  // warm dawn light around the sun, bleeding into sky and sea
+  radial(bx,sun.x,sun.y,0.46*W,[[0,'rgba(255,170,80,0.85)'],[0.18,'rgba(240,130,60,0.5)'],[0.5,'rgba(150,80,70,0.18)'],[1,'rgba(0,0,0,0)']]);
+  // sun reflection column on the water
+  const refl=bx.createLinearGradient(0,horizon,0,H);
+  refl.addColorStop(0,'rgba(255,160,70,0.55)');
+  refl.addColorStop(0.6,'rgba(220,110,50,0.16)');
+  refl.addColorStop(1,'rgba(200,90,40,0)');
+  bx.save();
+  bx.beginPath();
+  bx.moveTo(sun.x-0.035*W,horizon);
+  bx.lineTo(sun.x+0.035*W,horizon);
+  bx.lineTo(sun.x+0.14*W,H);
+  bx.lineTo(sun.x-0.14*W,H);
+  bx.closePath();
+  bx.fillStyle=refl; bx.fill();
+  bx.restore();
+  // faint warm pool around the boat (its own lantern-light on the water)
+  radial(bx,boat.x,boat.y,0.13*W,[[0,'rgba(255,150,70,0.35)'],[1,'rgba(0,0,0,0)']]);
+  baseData=bx.getImageData(0,0,W,H).data;
+
+  // ---- flow field ----
+  const skyVorts=[
+    {x:0.16*W,y:0.12*H,r:0.13*W,s:2.6},
+    {x:0.46*W,y:0.24*H,r:0.10*W,s:-2.2},
+    {x:sun.x,y:sun.y-0.04*H,r:0.11*W,s:3.0},
+    {x:0.92*W,y:0.08*H,r:0.09*W,s:-1.8},
+  ];
+  const field=(x,y)=>{
+    if(y<horizon+8){
+      return fieldAngle(x,y,{a:0.06,s:1},skyVorts,nz.fbm,0.004,0.9);
+    }
+    // water: horizontal streaks, mild ripple
+    const rip=(nz.fbm(x*0.004,y*0.012)-0.5)*0.28;
+    return rip + Math.sin(x*0.002+y*0.02)*0.05;
+  };
+
+  // ---- paint ----
+  ctx.globalCompositeOperation='source-over';
+  ctx.drawImage(base,0,0);
+  const warmLight=(x,y,r)=>{
+    const dx=x-sun.x, dy=y-sun.y;
+    const d=Math.sqrt(dx*dx+dy*dy);
+    return 1 + 0.22*Math.exp(-d/(0.3*W)) + (r()-0.5)*0.12;
+  };
+  strokePass(field,{cell:26,lenMin:34,lenMax:60,wMin:7,wMax:12,alpha:0.85,jitter:16,light:warmLight,curl:0.05},rng);
+  strokePass(field,{cell:15,lenMin:22,lenMax:42,wMin:4,wMax:7,alpha:0.8,jitter:20,light:warmLight,curl:0.06},rng);
+  strokePass(field,{cell:10,lenMin:12,lenMax:26,wMin:2,wMax:4,alpha:0.65,jitter:24,light:warmLight,curl:0.08},rng);
+
+  // sun disc + bloom (additive)
+  glow(sun.x,sun.y,0.20*W,'255,170,80',0.55);
+  glow(sun.x,sun.y,0.055*W,'255,220,150',0.9);
+  glow(sun.x,sun.y,0.022*W,'255,245,215',1);
+
+  // gentle wake behind the boat
+  ctx.save();
+  ctx.lineCap='round';
+  for(let i=0;i<5;i++){
+    const t=i/4;
+    ctx.strokeStyle=`rgba(140,200,210,${0.35-0.05*i})`;
+    ctx.lineWidth=4-t*2;
+    ctx.beginPath();
+    const y0=boat.y+0.06*boat.s+i*5;
+    ctx.moveTo(boat.x-0.5*boat.s-10-i*38, y0+(rng()-0.5)*6);
+    ctx.quadraticCurveTo(boat.x-0.3*boat.s-i*20, y0-4, boat.x-0.2*boat.s, y0);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  paintBoat(boat.x,boat.y,boat.s,0.045,rng,false);
+  paintReflection(boat.x,boat.y+0.1*boat.s,boat.s,rng,false);
+
+  vignette(0.5);
+}
+
+// =========================================================
+// FRAME B — storm peak: one huge diagonal wave, turbulence
+// =========================================================
+function drawB(){
+  const rng=mulberry32(99280926);
+  const nz=makeNoise(mulberry32(4242));
+  // wave surface: high at the right, low at the left; boat rides its lower slope
+  const waveTop=(x)=>{
+    const u=x/W;
+    return H*(0.80 - 0.60*sstep(0.08,0.92,u)) + Math.sin(u*9+1.2)*8;
+  };
+  const crest={x:0.865*W,y:waveTop(0.865*W)};
+  const curl={x:crest.x-0.045*W,y:crest.y+0.055*H}; // roll center of the breaking crest
+  const boat={x:0.30*W,y:waveTop(0.30*W)+0.010*H,s:100};
+  const moon={x:0.14*W,y:0.14*H};
+
+  // ---- base layer ----
+  const sky=bx.createLinearGradient(0,0,0,H*0.75);
+  sky.addColorStop(0,'#120f2e');
+  sky.addColorStop(0.5,'#1a1a44');
+  sky.addColorStop(1,'#1e2c52');
+  bx.fillStyle=sky; bx.fillRect(0,0,W,H);
+  // pale moonlight fighting through the storm (cool, dim — amber stays the boat's)
+  radial(bx,moon.x,moon.y,0.3*W,[[0,'rgba(190,200,235,0.6)'],[0.25,'rgba(140,150,200,0.25)'],[1,'rgba(0,0,0,0)']]);
+  // wave body
+  bx.save();
+  bx.beginPath();
+  bx.moveTo(0,H); bx.lineTo(0,waveTop(0));
+  for(let x=0;x<=W;x+=8) bx.lineTo(x,waveTop(x));
+  bx.lineTo(W,H); bx.closePath();
+  const wg=bx.createLinearGradient(0,0.2*H,0,H);
+  wg.addColorStop(0,'#2f7a80');   // lit teal near the crest
+  wg.addColorStop(0.4,'#1c4a60');
+  wg.addColorStop(1,'#081226');   // abyss
+  bx.fillStyle=wg; bx.fill();
+  bx.clip();
+  // foam pale band along the wave surface
+  bx.lineCap='round';
+  bx.strokeStyle='rgba(190,230,225,0.75)';
+  bx.lineWidth=16;
+  bx.beginPath();
+  for(let x=0.2*W;x<=W;x+=8){const y=waveTop(x)+8; if(x===0.2*W)bx.moveTo(x,y); else bx.lineTo(x,y);}
+  bx.stroke();
+  bx.restore();
+  // curl shadow under the breaking crest
+  radial(bx,curl.x,curl.y+0.03*H,0.10*W,[[0,'rgba(6,12,26,0.8)'],[1,'rgba(0,0,0,0)']]);
+  // warm pool: the boat's glow on the black water
+  radial(bx,boat.x,boat.y,0.15*W,[[0,'rgba(255,150,65,0.5)'],[0.4,'rgba(230,110,50,0.22)'],[1,'rgba(0,0,0,0)']]);
+  baseData=bx.getImageData(0,0,W,H).data;
+
+  // ---- flow field: full turbulence ----
+  const skyVorts=[
+    {x:0.30*W,y:0.14*H,r:0.12*W,s:3.4},
+    {x:0.58*W,y:0.10*H,r:0.10*W,s:-3.2},
+    {x:0.12*W,y:0.30*H,r:0.09*W,s:2.8},
+    {x:0.80*W,y:0.05*H,r:0.08*W,s:-2.6},
+    {x:moon.x,y:moon.y,r:0.08*W,s:3.2},
+  ];
+  const curlVort=[{x:curl.x,y:curl.y,r:0.085*W,s:9}];
+  const field=(x,y)=>{
+    const wy=waveTop(x);
+    if(y<wy-6){
+      return fieldAngle(x,y,{a:Math.PI+0.3,s:0.8},skyVorts,nz.fbm,0.005,1.5);
+    }
+    // slope direction of the wave face (strokes run along the face)
+    const dx=12, slope=Math.atan2(waveTop(x+dx)-waveTop(x-dx),2*dx);
+    const depth=sstep(0,0.28*H,y-wy);
+    const a=fieldAngle(x,y,{a:slope+Math.PI,s:1.4},curlVort,nz.fbm,0.006,0.5+0.7*depth);
+    return a;
+  };
+
+  // ---- paint ----
+  ctx.globalCompositeOperation='source-over';
+  ctx.drawImage(base,0,0);
+  const stormLight=(x,y,r)=>{
+    const dm=Math.hypot(x-moon.x,y-moon.y);
+    const db=Math.hypot(x-boat.x,y-boat.y);
+    return 1 + 0.2*Math.exp(-dm/(0.22*W)) + 0.25*Math.exp(-db/(0.13*W)) + (r()-0.5)*0.14;
+  };
+  strokePass(field,{cell:26,lenMin:38,lenMax:70,wMin:7,wMax:13,alpha:0.85,jitter:15,light:stormLight,curl:0.09},rng);
+  strokePass(field,{cell:15,lenMin:26,lenMax:48,wMin:4,wMax:7,alpha:0.8,jitter:20,light:stormLight,curl:0.10},rng);
+  strokePass(field,{cell:10,lenMin:14,lenMax:30,wMin:2,wMax:4,alpha:0.65,jitter:26,light:stormLight,curl:0.12},rng);
+
+  // breaking crest: hooked foam strokes curling over, torn spray
+  ctx.save();
+  ctx.lineCap='round';
+  for(let i=0;i<40;i++){
+    const t=rng();
+    const x0=lerp(0.58*W,0.985*W,t);
+    const y0=waveTop(x0)+rng()*14-4;
+    const pale=200+rng()*55|0;
+    const corner=1-0.55*sstep(0.86,1,t); // calm the very corner
+    ctx.strokeStyle=`rgba(${pale-30},${pale},${pale-8},${(0.45+rng()*0.4)*corner})`;
+    ctx.lineWidth=(2+rng()*4.5)*lerp(1,0.75,sstep(0.86,1,t));
+    // hook: follow surface then curl down-left around the roll center
+    ctx.beginPath();
+    let px=x0, py=y0;
+    ctx.moveTo(px,py);
+    let a=Math.atan2(waveTop(x0+10)-waveTop(x0-10),20)+Math.PI;
+    const hook=0.12+rng()*0.22;
+    const segs=4+Math.floor(rng()*4), segLen=6+rng()*4;
+    for(let s2=0;s2<segs;s2++){
+      a+=hook;
+      px+=Math.cos(a)*segLen; py+=Math.sin(a)*segLen;
+      ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+  }
+  // spray blown off the crest toward the boat
+  ctx.globalCompositeOperation='lighter';
+  for(let i=0;i<60;i++){
+    const t=rng();
+    const px=crest.x-t*0.45*W+(rng()-0.5)*60;
+    const py=crest.y-10-t*0.12*H+(rng()-0.5)*50;
+    const rr=1+rng()*2.2;
+    ctx.fillStyle=`rgba(200,225,230,${0.5*(1-t)})`;
+    ctx.beginPath(); ctx.arc(px,py,rr,0,7); ctx.fill();
+  }
+  ctx.restore();
+
+  // moon: dim silver, fighting through
+  glow(moon.x,moon.y,0.14*W,'190,205,240',0.5);
+  glow(moon.x,moon.y,0.03*W,'225,232,250',0.85);
+
+  // foam licking the hull
+  paintBoat(boat.x,boat.y,boat.s,0.22,rng,true);
+  ctx.save();
+  ctx.lineCap='round';
+  for(let i=0;i<6;i++){
+    ctx.strokeStyle=`rgba(185,220,220,${0.45+rng()*0.3})`;
+    ctx.lineWidth=2.5+rng()*3;
+    const x0=boat.x-0.5*boat.s+rng()*boat.s*0.85;
+    const y0=boat.y+0.10*boat.s+rng()*0.08*boat.s;
+    ctx.beginPath();
+    ctx.moveTo(x0,y0);
+    ctx.quadraticCurveTo(x0+8,y0-4-rng()*6,x0+16+rng()*8,y0-1+rng()*4);
+    ctx.stroke();
+  }
+  ctx.restore();
+  paintReflection(boat.x,boat.y+0.05*boat.s,boat.s,rng,true);
+
+  vignette(0.62);
+}
+
+window.drawFrame=function(which){
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.globalCompositeOperation='source-over';
+  ctx.clearRect(0,0,W,H);
+  bx.setTransform(1,0,0,1,0,0);
+  bx.clearRect(0,0,W,H);
+  if(which==='a') drawA(); else drawB();
+  window.DONE=true;
+};
+window.READY=true;
+</script>
+</body>
+</html>

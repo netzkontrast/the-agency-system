@@ -1,0 +1,521 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Paper Boat — watercolor</title>
+<style>html,body{margin:0;padding:0;background:#efe9da}#c{display:block;width:100vw;height:100vh}</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const cv = document.getElementById('c');
+let ctx = cv.getContext('2d');
+const W = 1280, H = 720;
+
+// ---------- seeded RNG ----------
+let _s = 1;
+function seed(n){ _s = n >>> 0; }
+function rnd(){ // mulberry32
+  _s |= 0; _s = (_s + 0x6D2B79F5) | 0;
+  let t = Math.imul(_s ^ (_s >>> 15), 1 | _s);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+}
+function rr(a, b){ return a + (b - a) * rnd(); }
+function gauss(){ let s = 0; for (let i = 0; i < 6; i++) s += rnd(); return (s - 3) / 3; } // ~N(0, .33)
+
+// ---------- watercolor machinery ----------
+// Add vertices so long straight edges can feather like a real wash rim.
+function resample(pts, maxLen){
+  const out = [];
+  for (let i = 0; i < pts.length; i++){
+    const a = pts[i], b = pts[(i + 1) % pts.length];
+    const d = Math.hypot(b.x - a.x, b.y - a.y);
+    const n = Math.max(1, Math.ceil(d / maxLen));
+    for (let s = 0; s < n; s++){
+      const t = s / n;
+      out.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
+    }
+  }
+  return out;
+}
+// Tyler-Hobbs-style recursive polygon deformation.
+function deform(pts, depth, mag){
+  let p = pts;
+  for (let d = 0; d < depth; d++){
+    const out = [];
+    for (let i = 0; i < p.length; i++){
+      const a = p[i], b = p[(i + 1) % p.length];
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      let nx = -(b.y - a.y), ny = (b.x - a.x);
+      const len = Math.hypot(nx, ny) || 1;
+      nx /= len; ny /= len;
+      const disp = gauss() * mag * len * 0.5;
+      const tng = gauss() * mag * len * 0.2;
+      out.push(a, { x: mx + nx * disp + (b.x - a.x) / len * tng,
+                    y: my + ny * disp + (b.y - a.y) / len * tng });
+    }
+    p = out;
+  }
+  return p;
+}
+function pathOf(c, p){
+  c.beginPath(); c.moveTo(p[0].x, p[0].y);
+  for (let i = 1; i < p.length; i++) c.lineTo(p[i].x, p[i].y);
+  c.closePath();
+}
+// One watercolor wash: base polygon layered as many deformed translucent fills.
+function wash(basePts, color, opts){
+  const o = Object.assign({ layers: 16, alpha: 0.032, mag: 0.34, depth: 4, edge: 0.10, gran: 0, res: 70 }, opts || {});
+  // pre-roughen the base once so all layers share one wet footprint
+  const rootMag = o.rootMag !== undefined ? o.rootMag : o.mag * 0.8;
+  const base = resample(basePts, o.res);
+  const root = deform(base, 2, rootMag);
+  ctx.fillStyle = color;
+  for (let i = 0; i < o.layers; i++){
+    let p, a;
+    if (i % 3 === 2){ // feather layer: wanders far from the footprint -> soft gradient rim
+      p = deform(base, o.depth + 1, o.mag * rr(1.3, 1.9));
+      a = o.alpha * rr(0.4, 0.8);
+    } else {          // body layer: hugs the footprint
+      p = deform(root, o.depth, o.mag * rr(0.5, 1.15));
+      a = o.alpha * rr(0.6, 1.3);
+    }
+    ctx.globalAlpha = a;
+    pathOf(ctx, p); ctx.fill();
+  }
+  // edge darkening: pigment pools at the rim
+  if (o.edge > 0){
+    const p = deform(root, o.depth, o.mag * 0.7);
+    pathOf(ctx, p);
+    ctx.globalAlpha = o.edge; ctx.strokeStyle = color; ctx.lineWidth = rr(1.4, 2.6);
+    ctx.stroke();
+  }
+  // granulation: dark specks trapped in the wash
+  if (o.gran > 0){
+    const p = deform(root, 3, o.mag * 0.6);
+    let minx = 1e9, miny = 1e9, maxx = -1e9, maxy = -1e9;
+    for (const q of p){ minx = Math.min(minx, q.x); maxx = Math.max(maxx, q.x); miny = Math.min(miny, q.y); maxy = Math.max(maxy, q.y); }
+    ctx.save(); pathOf(ctx, p); ctx.clip();
+    ctx.fillStyle = color;
+    for (let i = 0; i < o.gran; i++){
+      ctx.globalAlpha = rr(0.03, 0.10);
+      const x = rr(minx, maxx), y = rr(miny, maxy);
+      ctx.beginPath(); ctx.arc(x, y, rr(0.4, 1.6), 0, 7); ctx.fill();
+    }
+    ctx.restore();
+  }
+  ctx.globalAlpha = 1;
+}
+function blobPts(cx, cy, rx, ry, n, rough){
+  n = n || 10; rough = rough === undefined ? 0.18 : rough;
+  const pts = [];
+  const a0 = rnd() * Math.PI * 2;
+  for (let i = 0; i < n; i++){
+    const a = a0 + (i / n) * Math.PI * 2;
+    const k = 1 + gauss() * rough;
+    pts.push({ x: cx + Math.cos(a) * rx * k, y: cy + Math.sin(a) * ry * k });
+  }
+  return pts;
+}
+// A soft blob wash shortcut
+function blot(cx, cy, rx, ry, color, opts){
+  const o = opts || {};
+  wash(blobPts(cx, cy, rx, ry, o.n || 10, o.rough !== undefined ? o.rough : 0.16), color, opts);
+}
+// An elongated rotated blob: one loaded brush stroke
+function strokeBlob(cx, cy, len, wid, ang, color, opts){
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang);
+  blot(0, 0, len / 2, wid / 2, color, opts);
+  ctx.restore();
+}
+// Wobbly ink line ("boil" frozen at one frame)
+function ink(pts, width, color, alpha, wob){
+  wob = wob === undefined ? 1.4 : wob;
+  ctx.strokeStyle = color;
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  for (let pass = 0; pass < 2; pass++){
+    ctx.globalAlpha = (alpha || 0.85) * (pass ? 0.45 : 1);
+    ctx.beginPath();
+    let prev = null;
+    for (let i = 0; i < pts.length; i++){
+      const a = pts[i], b = pts[Math.min(i + 1, pts.length - 1)];
+      const segs = Math.max(2, Math.ceil(Math.hypot(b.x - a.x, b.y - a.y) / 9));
+      for (let s = 0; s <= segs; s++){
+        const t = s / segs;
+        const x = a.x + (b.x - a.x) * t + gauss() * wob + (pass ? gauss() * wob : 0);
+        const y = a.y + (b.y - a.y) * t + gauss() * wob + (pass ? gauss() * wob : 0);
+        if (!prev) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        prev = { x, y };
+      }
+    }
+    ctx.lineWidth = width * (pass ? rr(0.5, 0.7) : rr(0.9, 1.1));
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+function spatter(cx, cy, r, color, n, aMin, aMax, rMax){
+  ctx.fillStyle = color;
+  for (let i = 0; i < n; i++){
+    const a = rnd() * Math.PI * 2, d = Math.sqrt(rnd()) * r;
+    ctx.globalAlpha = rr(aMin, aMax);
+    ctx.beginPath();
+    ctx.arc(cx + Math.cos(a) * d, cy + Math.sin(a) * d * 0.7, rr(0.5, rMax), 0, 7);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ---------- paper ----------
+function paper(){
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = '#f7f2e4';
+  ctx.fillRect(0, 0, W, H);
+  // fibre noise
+  const img = ctx.getImageData(0, 0, W, H);
+  const d = img.data;
+  for (let i = 0; i < d.length; i += 4){
+    const n = (rnd() - 0.5) * 11;
+    d[i] += n; d[i + 1] += n; d[i + 2] += n * 0.9;
+  }
+  ctx.putImageData(img, 0, 0);
+  // a few long faint fibres
+  ctx.strokeStyle = '#d8cfae';
+  for (let i = 0; i < 130; i++){
+    ctx.globalAlpha = rr(0.05, 0.14);
+    const x = rr(0, W), y = rr(0, H), a = rr(0, Math.PI), l = rr(3, 14);
+    ctx.lineWidth = rr(0.4, 0.9);
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+function paperGrainOver(){
+  // multiply a faint grain back over the paint so pigment sits IN the paper
+  ctx.globalCompositeOperation = 'multiply';
+  ctx.globalAlpha = 0.16;
+  for (let i = 0; i < 900; i++){
+    ctx.fillStyle = rnd() < 0.5 ? '#cfc3a4' : '#e6dcc2';
+    const x = rr(0, W), y = rr(0, H);
+    ctx.fillRect(x, y, rr(1, 3), rr(1, 2));
+  }
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalAlpha = 1;
+  // gentle vignette of clean paper at the very edges (deckled border feel)
+  ctx.globalAlpha = 0.5;
+  ctx.strokeStyle = '#f7f2e4';
+  for (let i = 0; i < 3; i++){
+    ctx.lineWidth = 10 - i * 3;
+    ctx.globalAlpha = 0.22 - i * 0.05;
+    ctx.strokeRect(ctx.lineWidth / 2, ctx.lineWidth / 2, W - ctx.lineWidth, H - ctx.lineWidth);
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ---------- the paper boat ----------
+// Drawn in a local frame: boat length = 1 unit (from stern tip to bow tip).
+function boat(cx, cy, len, tilt, opts){
+  const o = Object.assign({ inkW: 2.2, shadow: true, dark: false }, opts || {});
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(tilt);
+  const s = len;
+  // silhouette (classic folded paper boat, side view, bow to the RIGHT)
+  const hull = [
+    { x: -0.50 * s, y: -0.16 * s },  // stern tip (raised point)
+    { x: -0.30 * s, y: -0.045 * s },
+    { x:  0.30 * s, y: -0.045 * s },
+    { x:  0.50 * s, y: -0.16 * s },  // bow tip (raised point)
+    { x:  0.34 * s, y:  0.16 * s },  // waterline right
+    { x: -0.34 * s, y:  0.16 * s }   // waterline left
+  ];
+  const sail = [
+    { x: -0.155 * s, y: -0.05 * s },
+    { x:  0.155 * s, y: -0.05 * s },
+    { x:  0.015 * s, y: -0.46 * s }
+  ];
+  // paper body: reserved white, so paint it opaque-ish white first
+  ctx.fillStyle = o.dark ? '#f3ecdb' : '#fbf7ec';
+  ctx.globalAlpha = 0.94;
+  pathOf(ctx, deform(hull, 3, 0.05)); ctx.fill();
+  pathOf(ctx, deform(sail, 3, 0.05)); ctx.fill();
+  ctx.globalAlpha = 1;
+  // soft warm shadow wash on the hull's lower half + right of sail
+  wash([{ x: -0.34 * s, y: 0.03 * s }, { x: 0.34 * s, y: 0.03 * s }, { x: 0.33 * s, y: 0.16 * s }, { x: -0.33 * s, y: 0.16 * s }],
+       o.dark ? '#5d6b80' : '#c9b48c', { layers: 5, alpha: 0.07, mag: 0.2, depth: 3, edge: 0.06 });
+  wash([{ x: 0.015 * s, y: -0.44 * s }, { x: 0.14 * s, y: -0.06 * s }, { x: 0.02 * s, y: -0.06 * s }],
+       o.dark ? '#5d6b80' : '#cbb691', { layers: 4, alpha: 0.06, mag: 0.22, depth: 3, edge: 0.05 });
+  // a blush of reflected light color on the sail (ties boat into scene)
+  if (o.glow){
+    wash([{ x: -0.13 * s, y: -0.08 * s }, { x: 0.01 * s, y: -0.4 * s }, { x: 0.0 * s, y: -0.08 * s }],
+         o.glow, { layers: 4, alpha: 0.06, mag: 0.25, depth: 3, edge: 0 });
+  }
+  // ink outline (wobbly, hand-drawn)
+  const inkC = o.dark ? '#20242e' : '#3a3b33';
+  ink(deform(hull, 1, 0.03).concat([deform(hull, 1, 0.02)[0]]), o.inkW, inkC, 0.9, 1.1);
+  ink(deform(sail, 1, 0.03).concat([deform(sail, 1, 0.02)[0]]), o.inkW * 0.9, inkC, 0.9, 1.0);
+  // fold line: gunwale crease + sail center crease
+  ink([{ x: -0.30 * s, y: -0.045 * s }, { x: 0.30 * s, y: -0.045 * s }], o.inkW * 0.6, inkC, 0.55, 0.9);
+  ink([{ x: 0.015 * s, y: -0.44 * s }, { x: 0.02 * s, y: -0.05 * s }], o.inkW * 0.5, inkC, 0.4, 0.9);
+  ctx.restore();
+}
+
+// ---------- FRAME A: setting out ----------
+function frameA(){
+  seed(20260928);
+  paper();
+
+  // SKY — wet-on-wet morning: pale cerulean above, rose, then lemon at the horizon
+  const HOR = 462;
+  wash([{ x: -60, y: -60 }, { x: W + 60, y: -60 }, { x: W + 60, y: 290 }, { x: 640, y: 250 }, { x: -60, y: 280 }],
+       '#8fb8d6', { mag: 0.4, edge: 0.05, gran: 260 });
+  wash([{ x: -60, y: 180 }, { x: 700, y: 150 }, { x: W + 60, y: 175 }, { x: W + 60, y: 380 }, { x: 500, y: 360 }, { x: -60, y: 390 }],
+       '#e8b8a4', { layers: 13, alpha: 0.03, mag: 0.42, edge: 0.04 });
+  wash([{ x: -60, y: 320 }, { x: 620, y: 300 }, { x: W + 60, y: 318 }, { x: W + 60, y: HOR + 6 }, { x: -60, y: HOR + 6 }],
+       '#f0d68a', { layers: 15, alpha: 0.035, mag: 0.4, edge: 0.05 });
+  // blend blobs straddling the band seams (wet-on-wet, no hard boundary)
+  blot(340, 265, 420, 46, '#dcb9a8', { layers: 6, alpha: 0.028, mag: 0.5, edge: 0 });
+  blot(1000, 250, 380, 42, '#e2bfa2', { layers: 6, alpha: 0.026, mag: 0.5, edge: 0 });
+  blot(500, 350, 480, 44, '#eecf95', { layers: 6, alpha: 0.03, mag: 0.5, edge: 0 });
+  blot(240, 170, 380, 40, '#a9c3d6', { layers: 5, alpha: 0.028, mag: 0.5, edge: 0 });
+  // sun: reserved pale disc with a warm bloom, upper right of center
+  const sx = 905, sy = 300;
+  for (let i = 0; i < 9; i++){ // scattered bloom, no concentric rings
+    const a = rnd() * Math.PI * 2, d = rr(20, 95);
+    blot(sx + Math.cos(a) * d, sy + Math.sin(a) * d * 0.8, rr(60, 120), rr(45, 90), '#f0c67c',
+         { layers: 4, alpha: 0.022, mag: 0.5, edge: 0 });
+  }
+  blot(sx, sy, 58, 50, '#f6e3ae', { layers: 7, alpha: 0.08, mag: 0.28, edge: 0, n: 18, rough: 0.07 });
+  blot(sx, sy, 44, 41, '#fbf4e0', { layers: 7, alpha: 0.16, mag: 0.16, edge: 0, n: 18, rough: 0.05 });
+  // two lazy morning clouds
+  blot(300, 190, 150, 34, '#f3ede0', { layers: 9, alpha: 0.06, mag: 0.4, edge: 0.03 });
+  blot(390, 214, 100, 22, '#e7ddcb', { layers: 6, alpha: 0.05, mag: 0.4, edge: 0.03 });
+  blot(1090, 165, 110, 24, '#f1ebdd', { layers: 7, alpha: 0.055, mag: 0.4, edge: 0.03 });
+
+  // SEA — calm bands, greener close, sun path glitter
+  wash([{ x: -60, y: HOR }, { x: W + 60, y: HOR }, { x: W + 60, y: H + 60 }, { x: -60, y: H + 60 }],
+       '#7fb3c9', { mag: 0.22, edge: 0.06, gran: 320 });
+  wash([{ x: -60, y: HOR + 85 }, { x: 660, y: HOR + 65 }, { x: W + 60, y: HOR + 80 }, { x: W + 60, y: H + 60 }, { x: -60, y: H + 60 }],
+       '#6ea3a4', { layers: 13, alpha: 0.032, mag: 0.3, edge: 0.05 });
+  wash([{ x: -60, y: HOR + 190 }, { x: 700, y: HOR + 172 }, { x: W + 60, y: HOR + 185 }, { x: W + 60, y: H + 60 }, { x: -60, y: H + 60 }],
+       '#4f7f92', { layers: 11, alpha: 0.032, mag: 0.32, edge: 0.05, gran: 200 });
+  // blend blobs over the sea band seams
+  blot(400, HOR + 88, 460, 34, '#6aa5ac', { layers: 5, alpha: 0.028, mag: 0.5, edge: 0 });
+  blot(980, HOR + 80, 380, 30, '#74a8b0', { layers: 5, alpha: 0.026, mag: 0.5, edge: 0 });
+  blot(600, HOR + 190, 520, 36, '#578798', { layers: 5, alpha: 0.028, mag: 0.5, edge: 0 });
+  // sun path on the water
+  wash([{ x: sx - 80, y: HOR + 4 }, { x: sx + 80, y: HOR + 4 }, { x: sx + 140, y: 640 }, { x: sx - 160, y: 640 }],
+       '#f2d489', { layers: 10, alpha: 0.032, mag: 0.5, edge: 0 });
+  // calm ripple strokes (drybrush)
+  for (let i = 0; i < 26; i++){
+    const y = HOR + 14 + Math.pow(rnd(), 1.4) * 235;
+    const x = rr(30, W - 130), l = rr(35, 150) * (0.4 + (y - HOR) / 260);
+    const c = rnd() < 0.35 ? '#e9dfc2' : '#3f6f84';
+    ink([{ x, y }, { x: x + l, y: y + rr(-2, 2) }], rr(1, 2.4), c, rr(0.14, 0.34), 0.7);
+  }
+  // horizon: one confident broken ink line
+  ink([{ x: 20, y: HOR }, { x: 240, y: HOR - 3 }, { x: 470, y: HOR - 1 }], 1.6, '#3d5a66', 0.38, 1.6);
+  ink([{ x: 610, y: HOR - 1 }, { x: 930, y: HOR + 2 }, { x: 1255, y: HOR - 2 }], 1.6, '#3d5a66', 0.33, 1.6);
+
+  // BOAT — lower-left third, heading right, bow a touch up: eager
+  const bx = 356, by = 560, blen = 210, tilt = -0.06;
+  // its reflection first: draw offscreen, composite squashed + faint + wobbled
+  const off = document.createElement('canvas'); off.width = 512; off.height = 512;
+  const main = ctx; ctx = off.getContext('2d');
+  boat(256, 256, blen * 0.96, -tilt, { inkW: 1.4, shadow: false });
+  ctx = main;
+  ctx.save(); ctx.translate(bx, by + 58); ctx.scale(1, -0.34);
+  for (let i = 0; i < 3; i++){
+    ctx.globalAlpha = 0.11;
+    ctx.drawImage(off, -256 + rr(-3, 3), -229 + rr(-5, 5));
+  }
+  ctx.restore(); ctx.globalAlpha = 1;
+  // wash the reflection wobbly with sea color so it sits under water
+  wash([{ x: bx - 120, y: by + 40 }, { x: bx + 120, y: by + 40 }, { x: bx + 130, y: by + 120 }, { x: bx - 130, y: by + 120 }],
+       '#6ea3a4', { layers: 4, alpha: 0.06, mag: 0.3, depth: 4, edge: 0 });
+  // wake: small V opening behind (left of) the boat
+  ink([{ x: bx - 88, y: by + 44 }, { x: bx - 158, y: by + 58 }], 2, '#e9e4cf', 0.5, 1.4);
+  ink([{ x: bx - 86, y: by + 50 }, { x: bx - 172, y: by + 70 }], 2.2, '#3f6f84', 0.26, 1.4);
+  ink([{ x: bx + 92, y: by + 42 }, { x: bx + 150, y: by + 50 }], 1.8, '#e9e4cf', 0.4, 1);
+  boat(bx, by, blen, tilt, { glow: '#f0d68a' });
+  // waterline touch: a little green lapping at the hull
+  wash([{ x: bx - 78, y: by + 30 }, { x: bx + 82, y: by + 28 }, { x: bx + 92, y: by + 52 }, { x: bx - 92, y: by + 54 }],
+       '#5d94a0', { layers: 4, alpha: 0.07, mag: 0.3, depth: 4, edge: 0.05 });
+
+  // two distant birds
+  ink([{ x: 620, y: 205 }, { x: 634, y: 198 }, { x: 648, y: 205 }], 1.7, '#4a4d44', 0.55, 0.8);
+  ink([{ x: 676, y: 228 }, { x: 687, y: 222 }, { x: 698, y: 228 }], 1.5, '#4a4d44', 0.45, 0.8);
+
+  paperGrainOver();
+}
+
+// ---------- FRAME B: the storm peak ----------
+// The crest of the one big wave, as a curve from upper right down to the boat.
+function crestPt(t){ // t in [0,1], 0 = off-canvas upper right, 1 = near the boat
+  const x = 1330 - 810 * t;
+  const y = 130 + 330 * t + 90 * Math.sin(t * Math.PI) * (1 - t * 0.4);
+  return { x, y };
+}
+function frameB(){
+  seed(70424511);
+  paper();
+
+  // SKY — one full bruised wash first (covers down past the horizon: NO bare paper)
+  wash([{ x: -60, y: -60 }, { x: W + 60, y: -60 }, { x: W + 60, y: 500 }, { x: -60, y: 480 }],
+       '#41546e', { layers: 15, alpha: 0.038, mag: 0.34, edge: 0.05, gran: 380 });
+  // second, darker wash across the top half of the sky
+  wash([{ x: -60, y: -60 }, { x: W + 60, y: -60 }, { x: W + 60, y: 300 }, { x: -60, y: 240 }],
+       '#37485f', { layers: 11, alpha: 0.032, mag: 0.4, edge: 0 });
+  // storm mass as big soft blobs, heavier to the upper right (no polygon seams)
+  const cloudSpots = [
+    [1120, 90, 320, 120, '#2c3a50', 0.04], [860, 180, 280, 105, '#2c3a50', 0.035],
+    [1180, 270, 250, 115, '#243247', 0.036], [640, 80, 250, 90, '#33425a', 0.032],
+    [980, 40, 280, 85, '#243247', 0.038], [520, 210, 230, 80, '#36455c', 0.026]
+  ];
+  for (const [cx2, cy2, rx2, ry2, col, al] of cloudSpots){
+    // each cloud is a cluster of overlapping soft blobs, not one cut shape
+    for (let k = 0; k < 3; k++){
+      blot(cx2 + rr(-rx2, rx2) * 0.35, cy2 + rr(-ry2, ry2) * 0.4,
+           rx2 * rr(0.6, 0.95), ry2 * rr(0.6, 0.95), col,
+           { layers: 6, alpha: al * 0.7, mag: 0.6, edge: 0 });
+    }
+  }
+
+  // weigh down the lower sky so the storm presses on the sea
+  wash([{ x: -60, y: 250 }, { x: W + 60, y: 210 }, { x: W + 60, y: 470 }, { x: -60, y: 480 }],
+       '#4c5e75', { layers: 8, alpha: 0.026, mag: 0.42, edge: 0 });
+
+  // ONE LIGHT: a gap upper-left, a pale shaft falling toward the boat
+  blot(280, 145, 130, 82, '#f3e3b2', { layers: 10, alpha: 0.05, mag: 0.5, edge: 0, n: 14, rough: 0.1 });
+  blot(280, 145, 70, 48, '#f7ecc9', { layers: 8, alpha: 0.075, mag: 0.4, edge: 0, n: 14, rough: 0.09 });
+  wash([{ x: 215, y: 165 }, { x: 360, y: 160 }, { x: 500, y: 555 }, { x: 190, y: 585 }],
+       '#efdda6', { layers: 9, alpha: 0.028, mag: 0.5, edge: 0 });
+
+  // SEA — dark heaving water, overlapping well up into the sky wash
+  wash([{ x: -60, y: 420 }, { x: 500, y: 440 }, { x: 900, y: 380 }, { x: W + 60, y: 360 }, { x: W + 60, y: H + 60 }, { x: -60, y: H + 60 }],
+       '#2f4a5c', { layers: 14, alpha: 0.04, mag: 0.3, edge: 0.06, gran: 380 });
+  wash([{ x: -60, y: 545 }, { x: 600, y: 570 }, { x: W + 60, y: 505 }, { x: W + 60, y: H + 60 }, { x: -60, y: H + 60 }],
+       '#22394a', { layers: 11, alpha: 0.04, mag: 0.3, edge: 0.06 });
+  // blend the sea/sky meeting on the left into a rough weather line
+  blot(210, 445, 320, 40, '#33506a', { layers: 6, alpha: 0.035, mag: 0.5, edge: 0 });
+  strokeBlob(180, 425, 420, 28, -0.03, '#42607a', { layers: 4, alpha: 0.03, mag: 0.55, edge: 0 });
+  strokeBlob(360, 438, 320, 24, -0.05, '#3a5871', { layers: 4, alpha: 0.028, mag: 0.55, edge: 0 });
+  // heavy water in the near corner
+  blot(150, 660, 340, 90, '#1a3242', { layers: 8, alpha: 0.04, mag: 0.5, edge: 0 });
+  blot(60, 540, 220, 60, '#22394a', { layers: 6, alpha: 0.035, mag: 0.5, edge: 0 });
+  // open-sea brushwork: long horizontal strokes, slightly lifted by the storm
+  for (let i = 0; i < 10; i++){
+    const y = rr(460, 700), x = rr(-40, 400);
+    strokeBlob(x, y, rr(140, 300), rr(16, 34), rr(-0.12, -0.02),
+               rnd() < 0.5 ? '#1d3a4c' : '#33566b',
+               { layers: 4, alpha: 0.035, mag: 0.5, edge: 0 });
+  }
+  // swell strokes on the open sea, following the storm's diagonal
+  for (let i = 0; i < 12; i++){
+    const y = rr(470, 690), x = rr(-20, 420), l = rr(60, 170);
+    ink([{ x, y }, { x: x + l, y: y - l * 0.16 }], rr(1.4, 3), '#16303f', rr(0.14, 0.3), 1.4);
+  }
+
+  // THE WAVE — one huge diagonal built off the crest curve
+  const N = 14;
+  const crestLine = []; for (let i = 0; i <= N; i++) crestLine.push(crestPt(i / N));
+  const waveBody = crestLine.concat([{ x: 430, y: 700 }, { x: 760, y: H + 60 }, { x: W + 60, y: H + 60 }, { x: W + 60, y: 130 }]);
+  wash(waveBody, '#27435a', { layers: 15, alpha: 0.045, mag: 0.24, res: 52, edge: 0.09, gran: 420 });
+  // the face of the wave: brush strokes running parallel to the crest, darker deeper
+  const faceBands = [
+    [42, '#1d374c', 0.038, 42], [110, '#16293c', 0.036, 58],
+    [195, '#132b3d', 0.032, 72], [285, '#122636', 0.028, 84]
+  ];
+  for (const [off, col, al, wid] of faceBands){
+    for (let i = 0; i < 5; i++){
+      const t = (i + rr(0.3, 0.7)) / 5;
+      if (t > 1) continue;
+      const p1 = crestPt(Math.max(0, t - 0.08)), p2 = crestPt(Math.min(1, t + 0.08));
+      const ang = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+      const p = crestPt(t);
+      strokeBlob(p.x + 45 + rr(-8, 8), p.y + off + rr(-8, 8),
+                 rr(280, 430), wid * rr(0.9, 1.2), ang, col,
+                 { layers: 4, alpha: al, mag: 0.42, edge: 0 });
+    }
+  }
+  // green glassy face where the light shaft hits the wave, just above the boat
+  strokeBlob(575, 505, 230, 70, -0.6, '#4e7d78', { layers: 7, alpha: 0.04, mag: 0.45, edge: 0 });
+  strokeBlob(640, 470, 170, 46, -0.55, '#5d8a80', { layers: 5, alpha: 0.04, mag: 0.45, edge: 0 });
+
+  // crest foam: one connected churn hugging the curve — smaller far away, bigger near
+  for (let i = 0; i <= 34; i++){
+    const t = i / 34;
+    const p = crestPt(t);
+    const persp = 0.5 + 0.7 * t; // grows toward the viewer/boat
+    blot(p.x + rr(-9, 9), p.y + rr(-12, 12), rr(18, 48) * persp, rr(9, 22) * persp, '#f6f1e2',
+         { layers: 5, alpha: 0.12, mag: 0.6, edge: 0 });
+  }
+  // bright lip dabs right on the edge
+  for (let i = 0; i <= 16; i++){
+    const t = i / 16;
+    const p = crestPt(t);
+    const persp = 0.55 + 0.65 * t;
+    blot(p.x + rr(-8, 8), p.y - rr(2, 12), rr(9, 20) * persp, rr(5, 11) * persp, '#fbf8ee',
+         { layers: 4, alpha: 0.26, mag: 0.6, edge: 0 });
+  }
+  // the breaking lip overhanging near the boat: a heavier churning mass
+  blot(555, 452, 64, 34, '#f6f1e2', { layers: 6, alpha: 0.16, mag: 0.55, edge: 0 });
+  blot(510, 478, 52, 30, '#fbf8ee', { layers: 5, alpha: 0.2, mag: 0.55, edge: 0 });
+  spatter(520, 460, 70, '#f6f1e2', 60, 0.25, 0.6, 2.2);
+  // foam sliding down the face: soft narrow streak-blots, not ink staples
+  for (let i = 0; i < 9; i++){
+    const t = rr(0.2, 0.97);
+    const p = crestPt(t);
+    const len = rr(40, 100) * (0.5 + 0.6 * t);
+    const steps = 4;
+    for (let s2 = 0; s2 < steps; s2++){
+      const q = s2 / (steps - 1);
+      blot(p.x - q * len * 0.5 + rr(-4, 4), p.y + 12 + q * len * 0.85,
+           rr(7, 14) * (1 - q * 0.5), rr(5, 9), '#e8e3d1',
+           { layers: 3, alpha: 0.1 * (1 - q * 0.55), mag: 0.5, edge: 0 });
+    }
+  }
+  // dark water bites just under the foam edge (short, broken)
+  for (let i = 0; i < 7; i++){
+    const t = rr(0.15, 0.92);
+    const a = crestPt(t), b = crestPt(Math.min(1, t + 0.05));
+    ink([{ x: a.x - 2, y: a.y + 20 }, { x: b.x - 2, y: b.y + 20 }], rr(1.8, 2.8), '#152633', rr(0.22, 0.38), 2);
+  }
+  // spray blown off the crest, upwind
+  spatter(900, 260, 170, '#f2ecdc', 120, 0.18, 0.55, 2.3);
+  spatter(640, 400, 110, '#f2ecdc', 70, 0.15, 0.5, 2);
+  spatter(1120, 180, 120, '#dfe4dd', 55, 0.12, 0.4, 2.1);
+
+  // rain: slanted drybrush strokes over the right sky
+  for (let i = 0; i < 30; i++){
+    const x = rr(500, W), y = rr(0, 300), l = rr(25, 60);
+    ink([{ x, y }, { x: x - l * 0.45, y: y + l }], rr(0.8, 1.5), '#8ea0b4', rr(0.08, 0.2), 0.5);
+  }
+
+  // BOAT — small, climbing the lit slope, bow up, still pointing right/into it
+  const bx = 440, by = 566, blen = 122, tilt = -0.30;
+  // halo of the light shaft catching the boat FIRST (paint light, then subject)
+  blot(bx + 8, by - 30, 95, 75, '#f2e4b4', { layers: 6, alpha: 0.045, mag: 0.4, edge: 0 });
+  // trough shadow beneath it
+  wash([{ x: bx - 70, y: by + 28 }, { x: bx + 62, y: by + 8 }, { x: bx + 78, y: by + 48 }, { x: bx - 80, y: by + 64 }],
+       '#122736', { layers: 6, alpha: 0.045, mag: 0.42, edge: 0 });
+  boat(bx, by, blen, tilt, { dark: true, inkW: 1.8, glow: '#f0dda6' });
+  // foam smacking the hull
+  spatter(bx - 42, by + 28, 46, '#f4efe1', 46, 0.3, 0.7, 2);
+  ink([{ x: bx - 62, y: by + 28 }, { x: bx - 112, y: by + 50 }], 2.2, '#e9e4d2', 0.55, 1.6);
+  ink([{ x: bx + 42, y: by + 10 }, { x: bx + 86, y: by + 4 }], 1.8, '#e9e4d2', 0.4, 1.4);
+
+  paperGrainOver();
+}
+
+// ---------- harness ----------
+window.drawFrame = function(which){
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+  if (which === 'b') frameB(); else frameA();
+  window.DONE = true;
+};
+window.READY = true;
+</script>
+</body>
+</html>

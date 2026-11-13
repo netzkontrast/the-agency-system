@@ -1,0 +1,345 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#000}canvas{display:block}</style>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+// RISO POP: the paper boat, printed in 3 inks on cream stock.
+// Separations model: every shape is painted as COVERAGE (0..1) onto one plate per ink.
+// Each plate is screened with its own AM dot screen at its own angle, gets dot gain,
+// is offset a couple of px (misregistration), and all inks MULTIPLY onto the paper.
+// Halftone recipe informed by anidoodle (Apache-2.0): 30deg screen spacing, midtone dot gain,
+// highlight dropout, misregistration lip.
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const W = 1280, H = 720;
+
+function mulberry32(seed){ let a = seed>>>0; return function(){ a|=0; a=(a+0x6D2B79F5)|0;
+  let t=Math.imul(a^(a>>>15),1|a); t=(t+Math.imul(t^(t>>>7),61|t))^t; return ((t^(t>>>14))>>>0)/4294967296; }; }
+
+// ---------- inks (ONLY these; overprints make every other colour) ----------
+const PAPER = [0xE6,0xDE,0xCB];
+const INKS = {
+  y: { rgb:[0xF4,0xC5,0x1A], angle:75, pitch:9.5, off:[0,0] },     // yellow
+  p: { rgb:[0xF0,0x50,0x8C], angle:15, pitch:9.5, off:[2,-1] },    // fluorescent pink
+  b: { rgb:[0x21,0x60,0xA8], angle:45, pitch:9.5, off:[-1,2] },    // blue
+};
+const KEYS = ['y','p','b'];
+
+// ---------- plates ----------
+const plates = {};
+KEYS.forEach(k => { const c = document.createElement('canvas'); c.width=W; c.height=H;
+  plates[k] = { cv:c, ctx:c.getContext('2d') }; });
+function clearPlates(){ KEYS.forEach(k => { const g = plates[k].ctx; g.setTransform(1,0,0,1,0,0);
+  g.globalCompositeOperation='source-over'; g.fillStyle='#000'; g.fillRect(0,0,W,H); }); }
+const gray = v => { const n = Math.round(Math.max(0,Math.min(1,v))*255); return `rgb(${n},${n},${n})`; };
+// paint(fn, cov, overprint): fn(g) builds path and calls g.fill()/g.stroke().
+// cov: {y,p,b} each a number or (g)=>CanvasGradient. Unlisted plates are KNOCKED OUT unless overprint.
+function paint(fn, cov, overprint){
+  KEYS.forEach(k => {
+    let v = cov[k];
+    if (v === undefined){ if (overprint) return; v = 0; }
+    const g = plates[k].ctx; g.save();
+    const style = (typeof v === 'function') ? v(g) : gray(v);
+    g.fillStyle = style; g.strokeStyle = style;
+    fn(g); g.restore();
+  });
+}
+const rgrad = (x,y,r0,r1,stops) => g => { const gr = g.createRadialGradient(x,y,r0,x,y,r1); stops.forEach(s=>gr.addColorStop(s[0],gray(s[1]))); return gr; };
+const lgrad = (x0,y0,x1,y1,stops) => g => { const gr = g.createLinearGradient(x0,y0,x1,y1); stops.forEach(s=>gr.addColorStop(s[0],gray(s[1]))); return gr; };
+
+// ---------- value noise ----------
+function makeNoise(seed, cell){
+  const R = mulberry32(seed); const gw = Math.ceil(W/cell)+2, gh = Math.ceil(H/cell)+2;
+  const grid = new Float32Array(gw*gh); for (let i=0;i<grid.length;i++) grid[i]=R();
+  return (x,y) => { const fx=x/cell, fy=y/cell, ix=Math.floor(fx), iy=Math.floor(fy);
+    let tx=fx-ix, ty=fy-iy; tx=tx*tx*(3-2*tx); ty=ty*ty*(3-2*ty);
+    const a=grid[iy*gw+ix], b=grid[iy*gw+ix+1], c=grid[(iy+1)*gw+ix], d=grid[(iy+1)*gw+ix+1];
+    return a+(b-a)*tx+(c-a)*ty+(a-b-c+d)*tx*ty; };
+}
+
+// ---------- the press: screen, gain, offset, multiply, paper ----------
+function press(seed){
+  const R = mulberry32(seed);
+  const cov = {}; KEYS.forEach(k => { const d = plates[k].ctx.getImageData(0,0,W,H).data;
+    const a = new Float32Array(W*H); for (let i=0;i<W*H;i++) a[i]=d[i*4]/255; cov[k]=a; });
+  const nLow = makeNoise(seed+1, 90), nMid = makeNoise(seed+2, 14), nFib = makeNoise(seed+3, 3.2);
+  const inkMottle = { y:makeNoise(seed+11,60), p:makeNoise(seed+12,60), b:makeNoise(seed+13,60) };
+  const inkGrain  = { y:makeNoise(seed+21,2.1), p:makeNoise(seed+22,2.1), b:makeNoise(seed+23,2.1) };
+  const img = ctx.createImageData(W,H); const out = img.data;
+  const TAU = Math.PI*2;
+  const sc = {}; KEYS.forEach(k => { const t = INKS[k].angle*Math.PI/180;
+    sc[k] = { c:Math.cos(t)/INKS[k].pitch, s:Math.sin(t)/INKS[k].pitch }; });
+  for (let y=0;y<H;y++){
+    for (let x=0;x<W;x++){
+      const i = y*W+x;
+      const fib = nFib(x,y);
+      let r=PAPER[0], g=PAPER[1], b=PAPER[2];
+      for (let q=0;q<3;q++){
+        const k = KEYS[q], ink = INKS[k];
+        const sx = Math.min(W-1, Math.max(0, x - ink.off[0])), sy = Math.min(H-1, Math.max(0, y - ink.off[1]));
+        let c = cov[k][sy*W+sx];
+        if (c < 0.04) continue;                      // highlights drop out to bare paper
+        let a;
+        if (c > 0.985){ a = 1; }                     // solid
+        else {
+          c = c + 0.5*c*(1-c);                       // dot gain, ~+25% at 50%
+          const u = x*sc[k].c + y*sc[k].s, v = -x*sc[k].s + y*sc[k].c;
+          let t = (Math.cos(TAU*u) + Math.cos(TAU*v))*0.25 + 0.5;   // round dots -> checker -> holes
+          t += (fib-0.5)*0.16;                        // ragged fibre edge
+          a = (t - (1 - c))/0.09 + 0.5; a = a<0?0:a>1?1:a;
+        }
+        if (a <= 0) continue;
+        // uneven riso ink laydown: soft mottle + fine speckle, starved specks
+        const m = 0.86 + 0.14*inkMottle[k](x,y);
+        const gr = inkGrain[k](x,y);
+        a *= m * (gr < 0.12 ? 0.45 : 0.93 + 0.07*gr);
+        r *= 1 - a*(1 - ink.rgb[0]/255);
+        g *= 1 - a*(1 - ink.rgb[1]/255);
+        b *= 1 - a*(1 - ink.rgb[2]/255);
+      }
+      // paper grain: blotchy tooth + fibre
+      const pg = 0.965 + 0.035*nLow(x,y) + 0.03*(nMid(x,y)-0.5) + 0.045*(fib-0.5) + (R()-0.5)*0.03;
+      out[i*4]=r*pg; out[i*4+1]=g*pg; out[i*4+2]=b*pg; out[i*4+3]=255;
+    }
+  }
+  ctx.putImageData(img,0,0);
+  // a few paper flecks and a faint crease (scanned proof)
+  ctx.save();
+  for (let k=0;k<70;k++){ ctx.globalAlpha = 0.18 + R()*0.3; ctx.fillStyle = R()<0.5 ? '#f4efe2' : '#8c8474';
+    ctx.beginPath(); ctx.ellipse(R()*W, R()*H, 0.6+R()*2.2, 0.5+R()*1.2, R()*3, 0, 7); ctx.fill(); }
+  ctx.restore();
+}
+
+// ---------- shared pieces ----------
+const TYPE = "'Courier New', Courier, monospace";
+const SLAB = "'Arial Black', 'Helvetica Neue', Arial, sans-serif";
+
+function regMark(x,y){ // printed in all three inks: misregistration shows as colour fringes
+  paint(g => { g.lineWidth = 1.6; g.beginPath(); g.arc(x,y,13,0,7); g.moveTo(x-22,y); g.lineTo(x+22,y);
+    g.moveTo(x,y-22); g.lineTo(x,y+22); g.stroke(); }, {y:1,p:1,b:1}, true);
+}
+function margins(){ // bare paper trim: the art is a print on a sheet
+  const M=24, MB=48;
+  paint(g => { g.beginPath(); g.rect(0,0,W,H); g.rect(M,M,W-2*M,H-M-MB); g.fill('evenodd'); }, {});
+  regMark(32, H-24); regMark(W-32, H-24);
+  paint(g => { g.lineWidth=1.2; [[M,M],[W-M,M]].forEach(([x,y])=>{ g.beginPath(); g.moveTo(x,y-18); g.lineTo(x,y-6); g.moveTo(x-18,y); g.lineTo(x-6,y); g.moveTo(x+6,y); g.lineTo(x+18,y); g.stroke(); }); }, {y:1,p:1,b:1}, true);
+  slug('PROOF \u00b7 PAPER BOAT \u00b7 3 COLOUR', 66, H-18);
+  swatches(1090, H-35);
+}
+function slug(txt, x, y){
+  paint(g => { g.font = `900 12px ${SLAB}`; try{ g.letterSpacing='3px'; }catch(e){} g.fillText(txt, x, y); }, {b:1});
+}
+function swatches(x, y){
+  paint(g => g.fillRect(x, y, 30, 22), {y:1});
+  paint(g => g.fillRect(x+38, y, 30, 22), {p:1});
+  paint(g => g.fillRect(x+76, y, 30, 22), {b:1});
+}
+// typewriter caption card: line1 plain, line2 struck through in pink
+function caption(x, y, w, line1, line2, typed){
+  paint(g => { g.fillRect(x+5, y+5, w, 92); }, {p:1});                         // pink offset shadow
+  paint(g => { g.fillRect(x, y, w, 92); }, {});                                 // cream card (knockout)
+  paint(g => { g.lineWidth = 2; g.strokeRect(x+1, y+1, w-2, 90); }, {b:1});
+  paint(g => { g.font = `bold 24px ${TYPE}`; g.fillText(line1, x+20, y+38); }, {b:1});
+  paint(g => { g.font = `bold 24px ${TYPE}`; g.fillText(line2, x+20, y+74); }, {b:1});
+  const g0 = plates.b.ctx; g0.font = `bold 24px ${TYPE}`;
+  const tw = g0.measureText(line2).width;
+  paint(g => { g.lineWidth = 3.2; g.beginPath(); g.moveTo(x+14, y+68); g.lineTo(x+26+tw, y+66); g.stroke(); }, {p:1}, true);
+  if (typed){ const tw1 = g0.measureText(line2).width; // blinking typewriter cursor after the struck line
+    paint(g => g.fillRect(x+30+tw1, y+54, 3, 26), {b:1}); }
+}
+
+// folded paper boat. faces get separate coverage (the light model is per-plate tint)
+function boat(x, y, s, rot, faces){
+  const T = g => { g.translate(x,y); g.rotate(rot); };
+  const hull = g => { T(g); g.beginPath(); g.moveTo(-0.56*s,0); g.lineTo(0.56*s,0); g.lineTo(0.32*s,0.30*s); g.lineTo(-0.32*s,0.30*s); g.closePath(); g.fill(); };
+  const sailL = g => { T(g); g.beginPath(); g.moveTo(-0.34*s,0.005*s); g.lineTo(0.03*s,-0.66*s); g.lineTo(0.03*s,0.005*s); g.closePath(); g.fill(); };
+  const sailR = g => { T(g); g.beginPath(); g.moveTo(0.03*s,-0.66*s); g.lineTo(0.34*s,0.005*s); g.lineTo(0.03*s,0.005*s); g.closePath(); g.fill(); };
+  const flaps = g => { T(g); g.beginPath(); g.moveTo(-0.56*s,0.005*s); g.lineTo(-0.43*s,-0.17*s); g.lineTo(-0.30*s,0.005*s); g.closePath();
+    g.moveTo(0.30*s,0.005*s); g.lineTo(0.43*s,-0.17*s); g.lineTo(0.56*s,0.005*s); g.closePath(); g.fill(); };
+  paint(hull, faces.hull); paint(flaps, faces.flaps); paint(sailL, faces.sailL); paint(sailR, faces.sailR);
+  // fold lines: thin solid blue
+  paint(g => { T(g); g.lineWidth = Math.max(1.4, s*0.018); g.lineJoin='round';
+    g.beginPath(); g.moveTo(-0.56*s,0.005*s); g.lineTo(0.56*s,0.005*s);
+    g.moveTo(0.03*s,-0.64*s); g.lineTo(0.03*s,0); g.stroke(); }, {b:1}, true);
+}
+
+// =====================================================================
+// FRAME A: riso dawn. calm sea, smiley sun rising, sunburst.
+// =====================================================================
+function frameA(){
+  clearPlates();
+  const R = mulberry32(4401);
+  const HZ = 418;
+  // sky: yellow screen rising from the horizon, pink screen from the top
+  paint(g => g.fillRect(0,0,W,HZ), {
+    y: lgrad(0,HZ,0,0,[[0,0.78],[0.55,0.22],[1,0.0]]),
+    p: lgrad(0,0,0,HZ,[[0,0.62],[0.5,0.22],[1,0.05]]),
+    b: lgrad(0,0,0,HZ,[[0,0.10],[0.35,0.0],[1,0]]) });
+  // sunburst rays from the sun (mid-century wedges), yellow overprint
+  const SX = 930, SY = 300;
+  for (let k=0;k<24;k+=2){
+    const a0 = (k/24)*Math.PI*2, a1 = ((k+1)/24)*Math.PI*2;
+    paint(g => { g.beginPath(); g.moveTo(SX,SY); g.arc(SX,SY,1400,a0,a1); g.closePath(); g.fill(); },
+      { y: rgrad(SX,SY,100,700,[[0,0.62],[1,0.30]]) }, true);
+  }
+  // re-clean the sea area from rays
+  // sea
+  paint(g => g.fillRect(0,HZ,W,H-HZ), {
+    b: lgrad(0,HZ,0,H,[[0,0.42],[0.35,0.62],[1,0.92]]),
+    p: lgrad(0,HZ,0,H,[[0,0.18],[1,0.0]]) });
+  // calm swell bands: blue screen stepping darker toward the viewer, soft wavy edges
+  for (let band=0; band<6; band++){
+    const y0 = HZ + 34 + band*band*9 + band*22, th = 10 + band*5;
+    paint(g => { g.beginPath(); for (let x=-5;x<=W+5;x+=6) g.lineTo(x, y0 + 3*Math.sin(x*0.012+band*1.7));
+      for (let x=W+5;x>=-5;x-=6) g.lineTo(x, y0 + th + 3*Math.sin(x*0.012+band*1.7+0.8)); g.closePath(); g.fill(); },
+      { b: Math.min(1, 0.72 + band*0.06) }, true);
+  }
+  // distant scallop swell row at the horizon (solid blue)
+  paint(g => { g.beginPath(); for (let x=-10;x<W+30;x+=26){ g.moveTo(x,HZ+6); g.arc(x+13,HZ+6,13,Math.PI,0); } g.fill(); }, {b:0.82});
+  // sun: yellow solid disc, pink cheek-shading, blue face (overprints green)
+  const SR = 88;
+  paint(g => { g.beginPath(); g.arc(SX,SY,SR,0,7); g.fill(); }, {y:1});
+  paint(g => { g.beginPath(); g.arc(SX,SY,SR,0,7); g.fill(); },
+    { p: rgrad(SX-40,SY-45,10,SR*2.0,[[0,0],[0.45,0.08],[0.8,0.6],[1,0.85]]) }, true);
+  paint(g => { g.beginPath(); g.ellipse(SX-27,SY-18,8,13,0,0,7); g.ellipse(SX+27,SY-18,8,13,0,0,7); g.fill(); }, {b:1}, true);
+  paint(g => { g.lineWidth=7; g.lineCap='round'; g.beginPath(); g.arc(SX+2,SY-10,50,0.22*Math.PI,0.80*Math.PI); g.stroke(); }, {b:1}, true);
+  // sun half-sunk: redraw sea over the lower sun? sun sits above horizon; add reflection column
+  for (let j=0;j<8;j++){
+    const yy = HZ+20+j*24+j*j*1.2, ww = 120 - j*10 + R()*24, x0 = SX-ww/2+(R()-0.5)*26;
+    paint(g => { g.lineWidth = 6 + j*0.4; g.lineCap='round'; g.beginPath(); g.moveTo(x0,yy);
+      for (let t=0;t<=1.001;t+=0.1) g.lineTo(x0+ww*t, yy + 2.5*Math.sin(t*9+j)); g.stroke(); }, j%3===1 ? {y:1, p:0.5} : {y:1});
+  }
+  // ripple dashes: solid blue and paper knockouts
+  for (let k=0;k<70;k++){
+    const yy = HZ+30+Math.pow(R(),0.8)*(H-HZ-40), len = 18 + (yy-HZ)*0.18*R() + 10;
+    const xx = R()*W; if (Math.abs(xx-SX)<80) continue;
+    const knock = R()<0.45;
+    paint(g => { g.lineWidth = 2 + (yy-HZ)*0.012; g.lineCap='round'; g.beginPath(); g.moveTo(xx,yy);
+      g.quadraticCurveTo(xx+len/2,yy-4,xx+len,yy); g.stroke(); }, knock ? {} : {b:1}, !knock);
+  }
+  // the boat, lower-left third, heading right, a little bow-up
+  const BX = 350, BY = 566, BS = 150;
+  // wake: paper V-lines behind, shadow beneath
+  paint(g => { g.beginPath(); g.ellipse(BX+6,BY+50,98,12,0,0,7); g.fill(); }, {b:1, p:0.55});
+  for (let j=0;j<4;j++){
+    paint(g => { g.lineWidth = 4-j*0.6; g.lineCap='round'; g.beginPath();
+      g.moveTo(BX-80-j*38, BY+36+j*6); g.quadraticCurveTo(BX-100-j*40, BY+38+j*7, BX-120-j*44, BY+44+j*9); g.stroke(); }, {});
+  }
+  boat(BX, BY, BS, -0.06, {
+    hull:{}, flaps:{b:0.32}, sailL:{b:0.30}, sailR:{y:0.14} });
+  // print furniture
+  caption(60, 56, 470, 'Day 1: setting out', 'what could go wrong', true);
+  margins();
+  press(20260929);
+}
+
+// =====================================================================
+// FRAME B: storm peak. navy overprint sky, one yellow light, halftone wave.
+// =====================================================================
+function surfY(x){ return 650 - 0.44*x + 34*Math.sin(x*0.0045+1.1) + 12*Math.sin(x*0.013+3.0) + 5*Math.sin(x*0.033+0.7); }
+function frameB(){
+  clearPlates();
+  const R = mulberry32(9917);
+  const LX = 470, LY = 190;
+  // sky: blue + pink overprint = navy/violet; both retreat toward the one light, yellow fills the hole
+  paint(g => g.fillRect(0,0,W,H), {
+    b: rgrad(LX,LY,80,400,[[0,0.0],[0.25,0.3],[0.6,0.85],[1,1]]),
+    p: rgrad(LX,LY,40,560,[[0,0.0],[0.25,0.55],[0.6,0.6],[1,0.78]]),
+    y: rgrad(LX,LY,0,260,[[0,1],[0.45,0.8],[1,0.0]]) });
+  // the light itself: a solid yellow disc with a paper core, bursting
+  paint(g => { g.beginPath(); g.arc(LX,LY,62,0,7); g.fill(); }, {y:1});
+    for (let k=0;k<16;k++){
+    const a = k/16*Math.PI*2 + 0.2, r0 = 78, r1 = 104 + (k%2)*26;
+    paint(g => { g.lineWidth = 7; g.lineCap='round'; g.beginPath(); g.moveTo(LX+Math.cos(a)*r0, LY+Math.sin(a)*r0);
+      g.lineTo(LX+Math.cos(a)*r1, LY+Math.sin(a)*r1); g.stroke(); }, {y:1});
+  }
+  // scalloped storm clouds (flat-bottom mid-century), solid blue + pink = navy
+  const cloud = (cx,cy,rs) => g => { g.beginPath(); let x=cx; rs.forEach((r,i)=>{ g.moveTo(x+r, cy); g.arc(x, cy, r, 0, Math.PI, true); x += r*1.35; });
+    g.fill(); };
+  paint(cloud(40, 330, [30,44,36,26]), {b:1, p:1});
+  paint(cloud(350, 292, [34,52,60,44,30]), {b:1, p:1});
+  paint(cloud(1080, 60, [26,38,30]), {b:1, p:1});
+  // rain: thin paper-knockout slashes
+  for (let k=0;k<140;k++){
+    const x = R()*W, y = R()*H*0.8, xi = Math.floor(Math.min(W-1,Math.max(0,x)));
+    if (y > surfY(xi) + 14 || (x > 640 && y < 330)) continue;
+    const dx = x-LX, dy = y-LY; if (dx*dx+dy*dy < 170*170) continue;
+    paint(g => { g.lineWidth = 1.6; g.beginPath(); g.moveTo(x,y); g.lineTo(x-7,y+22); g.stroke(); }, {});
+  }
+  KEYS.forEach(k => plates[k].ctx.setTransform(1,0,0,1,0,34));   // drop the wave+boat so the crest clears the trim
+  // THE WAVE: face rises from lower-left, goes steep, and the lip curls back over toward the boat
+  const S = surfY, XC = 700;
+  const TOP = [930, 58], TIP = [690, 150];
+  const outline = g => { g.beginPath(); g.moveTo(-5, H+5);
+    for (let x=-5;x<=XC;x+=4) g.lineTo(x, S(x));
+    g.bezierCurveTo(780, S(XC)-30, 850, 220, 870, 130);             // steepening face
+    g.bezierCurveTo(880, 90, 900, 60, TOP[0], TOP[1]);               // up into the crest
+    g.bezierCurveTo(1030, 50, 1120, 110, 1180, 170);                 // back of the wave
+    g.lineTo(W+5, 200); g.lineTo(W+5, H+5); g.closePath(); };
+  // the lip: a crescent from the crest hanging left, tip curling down
+  const lip = g => { g.beginPath(); g.moveTo(TOP[0]+30, TOP[1]+4);
+    g.bezierCurveTo(880, 20, 760, 30, 705, 90);                      // outer edge over the top
+    g.bezierCurveTo(680, 115, 678, 140, TIP[0], TIP[1]);             // tip
+    g.bezierCurveTo(712, 120, 760, 96, 810, 100);                    // underside of the lip
+    g.bezierCurveTo(850, 104, 868, 120, 872, 140); g.lineTo(890, 90); g.closePath(); };
+  paint(g => { outline(g); g.fill(); }, {b:1});
+  paint(g => { lip(g); g.fill(); }, {b:1});
+  // the barrel under the lip: pink over blue = deep navy
+  const barrel = g => { g.beginPath(); g.moveTo(TIP[0]+4, TIP[1]-2);
+    g.bezierCurveTo(712, 124, 760, 100, 810, 104); g.bezierCurveTo(850, 108, 868, 124, 870, 146);
+    g.bezierCurveTo(850, 220, 780, 260, XC+2, S(XC)+2);
+    g.bezierCurveTo(690, 250, 684, 190, TIP[0]+4, TIP[1]-2); g.closePath(); };
+  paint(g => { barrel(g); g.fill(); }, {b:1, p:1});
+  // streaks of light inside the barrel
+  for (let k=0;k<4;k++) paint(g => { barrel(g); g.clip(); g.lineWidth = 9 - k*1.5; g.beginPath();
+    g.arc(820, 250, 90 + k*24, -2.3, -0.6); g.stroke(); }, {p:0.45, b:1});
+  // halftone bands flowing along the face: pink screen stepping up with depth
+  const clipFace = g => { outline(g); g.clip(); };
+  for (let band=0; band<10; band++){
+    const d0 = 26 + band*58, th = 28 + band*3.5;
+    const cov = Math.min(0.9, 0.18 + band*0.085);
+    paint(g => { clipFace(g); g.beginPath();
+      for (let x=-5;x<=W+5;x+=4) g.lineTo(x, S(Math.min(x,XC)) + d0 + 10*Math.sin(x*0.018+band) - Math.max(0,x-XC)*0.4);
+      for (let x=W+5;x>=-5;x-=4) g.lineTo(x, S(Math.min(x,XC)) + d0 + th + 10*Math.sin(x*0.018+band+0.6) - Math.max(0,x-XC)*0.4);
+      g.closePath(); g.fill(); }, { p: cov }, true);
+  }
+  // lit edge: yellow along the face, blue/pink knocked so it reads clean
+  paint(g => { g.lineWidth = 6; g.lineJoin='round'; g.lineCap='round'; g.beginPath(); for (let x=-5;x<=XC;x+=4) g.lineTo(x, S(x)+3);
+    g.stroke(); }, {y:1});
+  // foam band riding the lip: solid paper, then claws (paper dots) shrinking to the tip
+  paint(g => { g.lineWidth = 16; g.lineCap='round'; g.beginPath(); g.moveTo(TOP[0]+60, TOP[1]+12);
+    g.bezierCurveTo(880, 26, 770, 36, 712, 92); g.stroke(); }, {});
+  paint(g => { g.lineWidth = 5; g.lineCap='round'; g.beginPath(); g.moveTo(TOP[0]+40, TOP[1]+24);
+    g.bezierCurveTo(880, 40, 780, 50, 722, 100); g.stroke(); }, {y:1});
+  const clawPts = [[706,108,11],[694,126,9],[690,146,7.5],[700,160,6],[676,150,6],[680,170,5],[694,178,4],[668,172,4],[672,190,3]];
+  clawPts.forEach(c => paint(g => { g.beginPath(); g.arc(c[0],c[1],c[2],0,7); g.fill(); }, {}));
+  for (let i=0;i<14;i++){ const t=i/13; const x = 720 + t*260, y = 34 - Math.sin(t*Math.PI)*16 + 40*(1-t)*0.4;
+    paint(g => { g.beginPath(); g.arc(x, y - 10, 5 + 5*Math.sin(t*Math.PI), 0, 7); g.fill(); }, {}); }
+  // spray flung off the crest and falling off the tip (dot matrix)
+  for (let k=0;k<160;k++){
+    const t = R(); let x, y, r;
+    if (k < 110){ x = 700 + t*480 + (R()-0.5)*40; y = 18 + R()*50 + Math.abs(t-0.45)*40; r = 1.4 + R()*4.5; }
+    else { x = 640 + R()*70; y = 170 + R()*110; r = 1.2 + R()*3; if (y > S(Math.floor(x)) - 8) continue; }
+    if (y < 26) continue;
+    paint(g => { g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }, R()<0.2 ? {y:1} : {});
+  }
+  // foam lace riding the face
+  for (let x=0;x<XC;x+=20){
+    if (R()<0.35) continue; const y = S(x) + 18 + R()*6;
+    paint(g => { g.beginPath(); g.arc(x, y, 3.5 + R()*4, 0, 7); g.fill(); }, {});
+  }
+  // the boat: small, climbing the slope, bow up, still pointing forward (toward the curl)
+  const bx = 330, by = S(bx) + 10;
+  const slope = (S(bx+26)-S(bx-26))/52; const rot = Math.atan(slope) - 0.10;
+  paint(g => { g.translate(bx,by); g.rotate(rot); g.beginPath(); g.ellipse(-4,26,60,8,0,0,7); g.fill(); }, {b:1, p:1});
+  boat(bx, by, 100, rot, { hull:{}, flaps:{b:0.35}, sailL:{y:0.5}, sailR:{b:0.30} });
+  KEYS.forEach(k => plates[k].ctx.setTransform(1,0,0,1,0,0));
+  caption(60, 56, 520, "You're absolutely right.", "it's just a little wave", false);
+  margins();
+  press(777);
+}
+
+window.drawFrame = function(which){ if (which === 'a') frameA(); else frameB(); window.DONE = true; };
+window.READY = true;
+</script>

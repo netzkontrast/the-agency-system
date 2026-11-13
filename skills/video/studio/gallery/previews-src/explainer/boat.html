@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800;900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#FAFAF8;}
+  #c{display:block;width:1280px;height:720px;}
+</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+'use strict';
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const W = 1280, H = 720;
+
+// ---------- palette (decided once, never deviate) ----------
+const PAPER  = '#FAFAF8';   // off-white page
+const INK    = '#111111';   // black
+const GREY   = '#8A8A86';   // mid grey
+const LGREY  = '#D8D8D4';   // hairline grey
+const BLUE   = '#2563EB';   // the one accent
+const BLUED  = '#123A9E';   // wave mass on the accent scene
+const BLUEDD = '#0C2B78';   // deepest wave shadow
+
+const SANS  = '"Inter Tight", "Futura", "Avenir Next", sans-serif';
+const SERIF = 'italic "Instrument Serif", "Georgia", serif';
+const MONO  = '"JetBrains Mono", "Menlo", monospace';
+
+// ---------- deterministic PRNG ----------
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+
+// ---------- 8x8 Bayer ordered dithering ----------
+const BAYER8 = [
+  [ 0,32, 8,40, 2,34,10,42],[48,16,56,24,50,18,58,26],
+  [12,44, 4,36,14,46, 6,38],[60,28,52,20,62,30,54,22],
+  [ 3,35,11,43, 1,33, 9,41],[51,19,59,27,49,17,57,25],
+  [15,47, 7,39,13,45, 5,37],[63,31,55,23,61,29,53,21]
+];
+// plot `cell`-sized dots where valueFn(x,y) in [0..1] beats the Bayer threshold
+function dither(x0,y0,x1,y1,cell,color,valueFn){
+  ctx.fillStyle = color;
+  for(let y=y0;y<y1;y+=cell){
+    for(let x=x0;x<x1;x+=cell){
+      const v = valueFn(x,y);
+      if(v<=0) continue;
+      const t = (BAYER8[(y/cell|0)&7][(x/cell|0)&7]+0.5)/64;
+      if(v>t) ctx.fillRect(x,y,cell,cell);
+    }
+  }
+}
+
+// ---------- the paper boat (hull + triangular sail-peak, nothing else) ----------
+// local units: hull half-width 60, drawn around (0,0) = waterline at hull top
+function drawBoat(s, x, y, rot, opts){
+  const o = Object.assign({sail:BLUE, body:'#FFFFFF', line:INK, lw:2.6, fold:LGREY}, opts||{});
+  ctx.save();
+  ctx.translate(x,y); ctx.rotate(rot*Math.PI/180); ctx.scale(s,s);
+  ctx.lineJoin='round'; ctx.lineCap='round';
+  // hull: trapezoid, top edge wide with slightly raised tips
+  ctx.beginPath();
+  ctx.moveTo(-62,-4); ctx.lineTo(62,-4); ctx.lineTo(36,30); ctx.lineTo(-36,30); ctx.closePath();
+  ctx.fillStyle=o.body; ctx.fill();
+  ctx.strokeStyle=o.line; ctx.lineWidth=o.lw; ctx.stroke();
+  // hull fold line
+  ctx.beginPath(); ctx.moveTo(-52,2); ctx.lineTo(52,2);
+  ctx.strokeStyle=o.fold; ctx.lineWidth=1.4; ctx.stroke();
+  // sail-peak: center triangle
+  ctx.beginPath();
+  ctx.moveTo(-28,-4); ctx.lineTo(28,-4); ctx.lineTo(2,-52); ctx.closePath();
+  ctx.fillStyle=o.sail; ctx.fill();
+  ctx.strokeStyle=o.line; ctx.lineWidth=o.lw; ctx.stroke();
+  // sail fold
+  ctx.beginPath(); ctx.moveTo(2,-52); ctx.lineTo(-4,-4);
+  ctx.strokeStyle = o.sailFold || 'rgba(255,255,255,0.55)'; ctx.lineWidth=1.6; ctx.stroke();
+  ctx.restore();
+}
+
+// ---------- shared chrome: mono labels ----------
+function monoLabel(text, x, y, color, size, align){
+  ctx.save();
+  ctx.font = `500 ${size||15}px ${MONO}`;
+  ctx.fillStyle = color; ctx.textAlign = align||'left'; ctx.textBaseline='alphabetic';
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+// rounded rect path
+function rr(x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+
+// ---------- conditions card (the UI device, rhymes across frames) ----------
+function conditionsCard(x,y,label,big,unit,sub,accent,warn){
+  const w=228,h=118;
+  ctx.save();
+  // soft shadow
+  ctx.fillStyle='rgba(17,17,17,0.06)';
+  rr(x+3,y+5,w,h,18); ctx.fill();
+  ctx.fillStyle='#FFFFFF';
+  rr(x,y,w,h,18); ctx.fill();
+  ctx.strokeStyle=LGREY; ctx.lineWidth=1; rr(x+0.5,y+0.5,w-1,h-1,18); ctx.stroke();
+  ctx.font=`500 12px ${MONO}`; ctx.fillStyle=GREY; ctx.textAlign='left';
+  ctx.fillText(label, x+18, y+28);
+  ctx.font=`800 40px ${SANS}`; ctx.fillStyle=INK;
+  ctx.fillText(big, x+18, y+70);
+  const bw = ctx.measureText(big).width;
+  ctx.font=`700 18px ${SANS}`; ctx.fillStyle=GREY;
+  ctx.fillText(unit, x+18+bw+8, y+70);
+  ctx.font=`500 13px ${MONO}`;
+  ctx.fillStyle = warn ? INK : GREY;
+  ctx.fillText(sub, x+18, y+96);
+  if(!warn){
+    // blue checkmark
+    ctx.strokeStyle=accent; ctx.lineWidth=3; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath(); ctx.moveTo(x+w-46,y+66); ctx.lineTo(x+w-37,y+75); ctx.lineTo(x+w-22,y+56); ctx.stroke();
+  } else {
+    // warning triangle, black
+    ctx.fillStyle=INK;
+    ctx.beginPath(); ctx.moveTo(x+w-34,y+52); ctx.lineTo(x+w-18,y+78); ctx.lineTo(x+w-50,y+78); ctx.closePath(); ctx.fill();
+    ctx.fillStyle='#FFFFFF'; ctx.font=`800 16px ${SANS}`; ctx.textAlign='center';
+    ctx.fillText('!', x+w-34, y+75);
+  }
+  ctx.restore();
+}
+
+// =======================================================================
+// FRAME A — setting out
+// =======================================================================
+function frameA(){
+  const rnd = mulberry32(7);
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle=PAPER; ctx.fillRect(0,0,W,H);
+
+  const HOR = 452; // horizon y
+
+  // morning sun: thin circle low over the horizon, dithered halo (the 1-bit device)
+  const sx=986, sy=318, srad=54;
+  dither(sx-150,sy-150,sx+150,Math.min(sy+150,HOR-2),2,'#C2C2BD',(x,y)=>{
+    const d=Math.hypot(x-sx,y-sy);
+    if(d<srad+6) return 0;
+    return Math.max(0, 0.22*(1-(d-srad)/92));
+  });
+  ctx.beginPath(); ctx.arc(sx,sy,srad,0,7);
+  ctx.fillStyle=PAPER; ctx.fill();
+  ctx.strokeStyle=INK; ctx.lineWidth=2; ctx.stroke();
+
+  // horizon
+  ctx.strokeStyle='#B5B5B0'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(0,HOR+0.5); ctx.lineTo(W,HOR+0.5); ctx.stroke();
+
+  // water: sparse engineered ripple dashes, denser near horizon
+  ctx.strokeStyle='#C7C7C2'; ctx.lineWidth=1.4; ctx.lineCap='round';
+  for(let i=0;i<42;i++){
+    const y = HOR+14+Math.pow(rnd(),1.5)*(H-HOR-40);
+    const x = 30+rnd()*(W-140);
+    const len = 22+rnd()*70*(y-HOR)/(H-HOR);
+    ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+len,y); ctx.stroke();
+  }
+  // sun path glimmer on the water: short blue-less grey dashes under the sun
+  ctx.strokeStyle='#B9B9B4';
+  for(let i=0;i<9;i++){
+    const y=HOR+12+i*13+rnd()*4;
+    const spread = 12+i*7;
+    ctx.beginPath(); ctx.moveTo(sx-spread/2+rnd()*8,y); ctx.lineTo(sx+spread/2,y); ctx.stroke();
+  }
+
+  // the boat: lower-left third, heading right, bow a touch up
+  const bx=330, by=536, bs=1.5;
+  // wake: two thin curves trailing left
+  ctx.strokeStyle='#AFAFAA'; ctx.lineWidth=1.6;
+  ctx.beginPath(); ctx.moveTo(bx-70*bs,by+40); ctx.quadraticCurveTo(bx-170,by+52,bx-268,by+46); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(bx-64*bs,by+52); ctx.quadraticCurveTo(bx-150,by+66,bx-212,by+62); ctx.stroke();
+  // reflection: three broken grey dashes under the hull
+  ctx.strokeStyle='#C7C7C2'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(bx-44,by+56); ctx.lineTo(bx+40,by+56); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(bx-28,by+66); ctx.lineTo(bx+22,by+66); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(bx-12,by+76); ctx.lineTo(bx+8,by+76); ctx.stroke();
+  drawBoat(bs,bx,by,-2,{});
+
+  // ---- type: giant sans + the one italic serif word ----
+  ctx.textAlign='left'; ctx.textBaseline='alphabetic';
+  ctx.font=`800 118px ${SANS}`;
+  ctx.fillStyle=INK;
+  const t1='set ', tx=88, ty=232;
+  ctx.fillText(t1,tx,ty);
+  const w1=ctx.measureText(t1).width;
+  ctx.font=`400 ${''}132px ${SERIF}`.replace('400 ','');
+  ctx.font=`italic 132px "Instrument Serif", Georgia, serif`;
+  ctx.fillStyle=BLUE;
+  ctx.fillText('sail.',tx+w1+6,ty);
+  // small sub-line, engineered
+  monoLabel('calm water. first light. day one.', tx+4, ty+44, GREY, 16);
+
+  // chrome
+  monoLabel('// 01 — setting out', 40, 52, GREY, 15);
+  monoLabel('BOAT  00:00:02:10', W-40, 52, GREY, 15, 'right');
+  conditionsCard(1010,556,'// conditions','4','kn','WIND · CALM',BLUE,false);
+}
+
+// =======================================================================
+// FRAME B — the storm peak (the one full-bleed accent scene)
+// =======================================================================
+function frameB(){
+  const rnd = mulberry32(41);
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle=BLUE; ctx.fillRect(0,0,W,H);
+
+  const boatX=320, boatY=596;
+
+  // one mass: the foreground sea, rising at the right into a claw-wave that
+  // overhangs left, lip tip above the boat. Diagonal reads from upper right.
+  const seaChop = () => {
+    ctx.moveTo(0,606);
+    ctx.bezierCurveTo(90,590,170,616,300,600);
+    ctx.bezierCurveTo(420,586,540,608,660,586);
+  };
+  const frontWall = () => {           // A up the leaning front, out to the lip tip
+    ctx.bezierCurveTo(646,540,628,492,600,440);
+    ctx.bezierCurveTo(572,392,540,352,510,334);
+    ctx.bezierCurveTo(504,330,497,327,492,326); // lip tip ~(492,326)
+  };
+  const backEdge = () => {            // crest: steep off the lip, one diagonal to top-right
+    ctx.bezierCurveTo(500,268,560,208,700,150);
+    ctx.bezierCurveTo(860,96,1080,72,1280,88);
+  };
+  const wavePath = () => {
+    ctx.beginPath();
+    seaChop(); frontWall(); backEdge();
+    ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath();
+  };
+  wavePath(); ctx.fillStyle=BLUED; ctx.fill();
+
+  // deepest shadow: under the curl, plus depth at the very bottom
+  ctx.save(); wavePath(); ctx.clip();
+  dither(0,80,W,H,3,BLUEDD,(x,y)=>{
+    const d=Math.hypot((x-760)*1.1,y-460);
+    const lobe = Math.max(0,0.7*(1-d/370));
+    const deep = y>580 ? 0.45*Math.min(1,(y-580)/140) : 0;
+    return Math.max(lobe,deep);
+  });
+  ctx.restore();
+
+  // one light source fighting through: dithered shaft from the sky gap,
+  // falling onto the boat. Density fades to zero before the region edges.
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0,0,W,H); wavePath(); ctx.clip('evenodd');
+  dither(100,0,660,600,3,'rgba(255,255,255,0.85)',(x,y)=>{
+    const t = y/600;                       // progress down the shaft
+    const cx = 520 + (boatX-520)*t;        // centreline drifts onto the boat
+    const half = 45 + 70*t;                // widens as it falls
+    const e = 1 - Math.abs(x-cx)/half;
+    if(e<=0) return 0;
+    return 0.26 * Math.pow(e,1.6) * (1 - 0.45*t);
+  });
+  ctx.restore();
+
+  // foam: crisp white edges
+  ctx.strokeStyle='#FFFFFF'; ctx.lineCap='round';
+  ctx.lineWidth=6;
+  ctx.beginPath(); ctx.moveTo(660,586); frontWall(); ctx.stroke();   // breaking front
+  ctx.lineWidth=4;
+  ctx.beginPath(); ctx.moveTo(492,326); backEdge(); ctx.stroke();    // crest line
+  ctx.lineWidth=3.5;
+  ctx.beginPath(); seaChop(); ctx.stroke();                          // sea surface
+  // spray falling off the lip, wind throwing it down-left toward the boat
+  ctx.fillStyle='#FFFFFF';
+  for(let i=0;i<160;i++){
+    const r = Math.pow(rnd(),1.6);
+    const px = 492 - r*180*(0.4+0.6*rnd());
+    const py = 330 + r*230*rnd() + 8;
+    const s = rnd()<0.75?2:3;
+    if(px>0&&py<560) ctx.fillRect(px,py,s,s);
+  }
+  // flecks along the sea chop
+  for(let i=0;i<70;i++){
+    const px = rnd()*640;
+    const py = 600 + (rnd()-0.5)*26 + 8*Math.sin(px/60);
+    ctx.fillRect(px,py,2,2);
+  }
+
+  // rain: thin diagonal ticks in the sky, kept off the headline block
+  ctx.strokeStyle='rgba(255,255,255,0.4)'; ctx.lineWidth=1.4;
+  let placed=0;
+  while(placed<38){
+    const x=rnd()*W, y=rnd()*500;
+    if(x>70 && x<600 && y>100 && y<310) continue;   // headline zone
+    ctx.save(); wavePath(); // skip ticks inside the dark mass upper region
+    const inWave = ctx.isPointInPath(x,y);
+    ctx.restore();
+    if(inWave && y<540){ continue; }
+    ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-11,y+24); ctx.stroke();
+    placed++;
+  }
+
+  // ---- the boat: small on the chop, under the overhang, still pointing forward ----
+  drawBoat(0.8,boatX,boatY,-10,{sail:'#FFFFFF',body:'#FFFFFF',line:INK,lw:3,sailFold:'rgba(17,17,17,0.25)'});
+  // white water breaking at the bow and stern
+  for(let i=0;i<26;i++){
+    const px=boatX-70-rnd()*70, py=boatY+16+rnd()*18;
+    ctx.fillRect(px,py,2,2);
+  }
+  for(let i=0;i<14;i++){
+    const px=boatX+46+rnd()*40, py=boatY+12+rnd()*14;
+    ctx.fillRect(px,py,2,2);
+  }
+
+  // ---- type: the stamp word, slammed at an angle, crisp on plain blue ----
+  ctx.save();
+  ctx.translate(96,238); ctx.rotate(-5*Math.PI/180);
+  ctx.font=`italic 150px "Instrument Serif", Georgia, serif`;
+  ctx.fillStyle='#FFFFFF'; ctx.textAlign='left';
+  ctx.fillText('storm.',0,0);
+  ctx.font=`500 16px ${MONO}`; ctx.fillStyle='rgba(255,255,255,0.9)';
+  ctx.fillText('keep the bow forward.',10,44);
+  ctx.restore();
+
+  // chrome
+  monoLabel('// 02 — the storm', 40, 52, 'rgba(255,255,255,0.9)', 15);
+  monoLabel('BOAT  00:00:09:12', W-40, 52, 'rgba(255,255,255,0.9)', 15, 'right');
+  conditionsCard(1010,556,'// conditions','41','kn','GUSTS · SEVERE',BLUE,true);
+}
+
+window.drawFrame = function(which){
+  if(which==='a') frameA(); else frameB();
+  window.DONE = true;
+};
+
+// wait for the real fonts before declaring ready
+Promise.all([
+  document.fonts.load('800 118px "Inter Tight"'),
+  document.fonts.load('700 18px "Inter Tight"'),
+  document.fonts.load('italic 150px "Instrument Serif"'),
+  document.fonts.load('500 15px "JetBrains Mono"')
+]).then(()=>document.fonts.ready).then(()=>{ window.READY = true; })
+  .catch(()=>{ window.READY = true; });
+</script>
+</body>
+</html>

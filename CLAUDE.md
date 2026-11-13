@@ -323,6 +323,24 @@ novel writing phase) so the right DNA is in context.
   `[male mid-baritone, weary, dry close-mic]` is permitted; the character
   form `[Container]` is forbidden by `voice-craft-principles.md`.
 
+## Video domain (code-based video production)
+
+One suite: **`skills/video/studio/`** — skill `video-studio`
+([`SKILL.md`](skills/video/studio/SKILL.md)). Every frame is a pure function of time (painted 2D with p5.brush,
+plain canvas, three.js 3D with stylisation passes, GLSL shaders, or a WebGPU path tracer — any look via
+`references/style-recipes.md`); a team of subagents (director, critic, art director, song-map analyst,
+animators per chapter, integrator, QA operator, fresh reviewer, copywriter, …) works through hard gates.
+
+- **Pick a playbook first:** `skills/video/studio/playbooks/` (music video, album suite, lyric video, visualizer,
+  explainer, launch, brand/title, animated short, documentary, data story, social vertical, teaser, path-traced).
+- **Subagent briefs:** `skills/video/studio/agents/` — paste a brief, fill its bracketed fields, ≤ 2 heavy agents at once.
+- **CLI:** `bash skills/video/studio/bin/studio help` (`doctor`, `new`, `render`, `gate`, `songmap`, `srt`, `flash`, …).
+- **Agency System albums:** run the gate skill `skills/theagencysystem/` first and load the album's
+  `VIDEO-CONCEPT.md`; name_exposure and the album's depiction rules bind every frame, file name and caption.
+  Lyrics for subtitles and alignment come from the **streaming lyrics**, never the Suno phonetic box.
+- The pipeline built around the music domain is planned in
+  [`Plan/140-video-domain/spec.md`](Plan/140-video-domain/spec.md).
+
 ## Jules orchestration plugin
 
 The Jules orchestrator allows for multi-agent asynchronous coding sessions.

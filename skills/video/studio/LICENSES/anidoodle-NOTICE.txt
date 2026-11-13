@@ -1,0 +1,17 @@
+anidoodle
+Copyright 2026 Alex Greenshpun
+
+This product includes software developed as an original work,
+licensed under the Apache License, Version 2.0.
+
+Third-party material
+
+skills/anidoodle/engine/assets/refs/vangogh-almond-blossom.jpg
+  Vincent van Gogh, Almond Blossom (1890), Van Gogh Museum, Amsterdam.
+  Public domain (the author died in 1890; a faithful reproduction of a two-dimensional
+  public-domain work). Downloaded from Wikimedia Commons:
+  https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg
+  Kept byte-identical to the download (sha256
+  6f640dcd79def4223bf16569fd29ca5e37ee9d6cde2670958636e259e2a1c9d0). Full provenance:
+  skills/anidoodle/engine/assets/refs/PROVENANCE.json. It is not covered by the Apache
+  License grant above; it carries no copyright.

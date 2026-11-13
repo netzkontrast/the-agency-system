@@ -1,0 +1,26 @@
+node_modules/
+out/
+*.log
+.DS_Store
+__pycache__/
+projects/
+engine/pathtracer/tests/out/
+engine/pathtracer/proofs/out/
+engine/pathtracer/proofs/assets/
+hello.png
+*.pfm
+# credentials: never commit
+.env
+.env.*
+*.pem
+*.key
+.runpod/
+.rp/
+# examples ship without their concept images and music (rights)
+examples/*/refs/
+examples/*/music/
+# sampler/example projects: linked packages and render output stay local
+examples/**/node_modules
+examples/**/out/
+examples/**/review/
+!examples/pipeline-smoke/review/
